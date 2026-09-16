@@ -21,7 +21,9 @@
     const featureFocusSectionEl = document.querySelector('.feature-focus-section');
     const metricsSectionLabelEl = document.querySelector('.metrics-section');
     const licensingSectionEl = document.querySelector('.licensing-section');
-    const heroBadgesContainer = document.querySelector('.hero-badges');
+    const resourcesSectionEl = document.querySelector('.resources-section');
+    const resourcePdfLink = document.querySelector('.resource-actions [data-resource="pdf"]');
+    const resourceOnlineLink = document.querySelector('.resource-actions [data-resource="online"]');
     const brandImage = document.querySelector('.brand img');
     const brandWordmark = document.querySelector('.brand-wordmark');
     const heroImage = document.querySelector('.hero-visual img');
@@ -190,10 +192,15 @@
                 rowClasses.push('is-even');
             }
 
+            // Las columnas salen de `row.plans`, no de campos fijos `core`/`pro`:
+            // el modelo de licenciamiento cambio una vez y va a volver a cambiar.
+            const plans = Array.isArray(row.plans) ? row.plans : [];
+
             return '<tr class="' + rowClasses.join(' ') + '">' +
                 '<th scope="row" class="licensing-table-module"><button type="button" class="licensing-module-trigger" data-licensing-description="' + escapeHtml(row.description) + '">' + escapeHtml(row.module) + '</button></th>' +
-                '<td class="licensing-table-status">' + renderLicensingStatus(row.core, copy.licensingIncludedLabel, copy.licensingUnavailableLabel, copy.licensingIncludedMark, copy.licensingUnavailableMark) + '</td>' +
-                '<td class="licensing-table-status">' + renderLicensingStatus(row.pro, copy.licensingIncludedLabel, copy.licensingUnavailableLabel, copy.licensingIncludedMark, copy.licensingUnavailableMark) + '</td>' +
+                plans.map(function (included) {
+                    return '<td class="licensing-table-status">' + renderLicensingStatus(included, copy.licensingIncludedLabel, copy.licensingUnavailableLabel, copy.licensingIncludedMark, copy.licensingUnavailableMark) + '</td>';
+                }).join('') +
                 '</tr>';
         }).join('');
         hideLicensingHoverCard();
@@ -202,13 +209,13 @@
     const translations = {
         es: {
             htmlLang: 'es',
-            title: 'Oktavia',
-            metaDescription: 'Oktavia unifica descubrimiento, cumplimiento y generación de configuraciones deseadas con tareas asíncronas, artefactos versionables y operación auditable para redes empresariales.',
+            title: 'Oktavia 2.0 — Automatización de redes multivendor | Oktanet',
+            metaDescription: 'Oktavia 2.0 automatiza descubrimiento, cumplimiento, seguridad y remediación verificada en redes multivendor: detecta la desviación, propone el cambio, lo aplica con aprobación y confirma que cerró.',
             brandAria: 'Ir al inicio',
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Plataforma', 'Servicios', 'Metodología', 'Casos de uso', 'Quiénes somos', 'Licencias'],
+            navLinks: ['Plataforma', 'Servicios', 'Metodología', 'Casos de uso', 'Quiénes somos', 'Licencias', 'Recursos'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -224,87 +231,108 @@
             metricsEyebrow: 'Impacto medible',
             metricsTitle: 'Resultados operativos desde las primeras iteraciones de adopción.',
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
-            heroEyebrow: 'Automatización de redes segura y auditable',
-            heroTitle: 'Estandariza el descubrimiento, el cumplimiento y las configuraciones deseadas desde una sola plataforma.',
-            heroBody: 'Oktavia es una plataforma de automatización de redes diseñada para automatizar el descubrimiento de red, el cumplimiento de configuraciones y la generación de configuraciones de estado deseado en infraestructuras empresariales multivendor.',
-            heroActions: ['Solicitar una demostración', 'Conocer Oktavia'],
-            heroBadgesAria: 'Puntos clave de la plataforma',
-            heroBadges: ['Listo para múltiples fabricantes', 'Auditoría continua', 'Automatización guiada'],
+            heroEyebrow: 'Oktavia 2.0 · Automatización de redes segura y auditable',
+            heroTitle: 'De detectar la desviación a remediarla verificada, sin salir de una sola plataforma.',
+            heroBody: 'Oktavia es una plataforma de automatización para redes multivendor. Descubre la red, verifica que cumpla tu estándar, propone el cambio contra la intención declarada y, con tu aprobación, lo aplica y confirma que el hallazgo cerró.',
+            heroActions: ['Solicitar una demostración', 'Descargar el data sheet'],
             heroPoints: [
-                'Modelo de ejecución basado en tareas asíncronas que generan resultados estructurados y versionables (JSON, CSV, CFG).',
-                'Sin cambios directos en la red: primero se generan configuraciones deseadas.',
-                'Remediación controlada con validación y aprobación previa.'
+                'Ningún cambio llega a la red sin que una persona lo apruebe: primero se genera la configuración deseada y se revisa el diff contra lo activo.',
+                'Cada ejecución deja artefactos descargables y versionables (JSON, CSV, CFG) y queda registrada en el historial de trabajos.',
+                'El ciclo completo usa la primitiva segura de cada fabricante: commit confirmed en Junos, operaciones CMDB en FortiGate, diff y verificación en IOS y FortiSwitch.'
             ],
             trustLabel: 'Compatible con infraestructura multifabricante:',
             platformEyebrow: 'Producto principal',
-            platformTitle: 'Oktavia: motor de automatización + interfaz web para operar redes con control continuo.',
-            platformBody: 'Diseñada para despliegues simples y demostraciones, con arquitectura preparada para servicios externos, Oktavia integra descubrimiento multifabricante, cumplimiento por sitio o dispositivo y generación de configuraciones deseadas en una sola consola.',
+            platformTitle: 'Oktavia 2.0: motor de automatización, interfaz web y ChatOps para operar la red con control continuo.',
+            platformBody: 'Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol o dispositivo, configuración deseada, seguridad de red y remediación verificada en una sola consola. Argos, el asistente de ChatOps, atraviesa todos los módulos y declara en cada acción si consume el modelo de IA o si se resuelve de forma determinista.',
             platformChips: [
-                'Tareas asíncronas',
+                'Ciclo cerrado con aprobación',
+                'ChatOps con el costo de IA a la vista',
                 'Artefactos versionables',
-                'Reglas de cumplimiento editables',
+                'Multi-tenant',
                 'API REST con clave de API'
             ],
             servicesEyebrow: 'Capacidades de la plataforma',
-            servicesTitle: 'Módulos diseñados para descubrimiento, cumplimiento y operación trazable.',
+            servicesTitle: 'Quince módulos para descubrir, verificar, remediar y dar de alta servicios nuevos.',
             serviceTitles: [
                 'Descubrimiento multifabricante',
-                'Pruebas y reglas de cumplimiento',
-                'Generador de configuraciones deseadas',
-                'Telemetría en tiempo real',
                 'Inventario de red',
-                'Topología de red',
+                'Topología y trazado de rutas',
+                'Cumplimiento de configuración',
+                'Configuración deseada por alcance',
+                'Ciclo cerrado de remediación',
+                'Alta de servicios nuevos',
+                'Argos, ChatOps de red',
+                'Seguridad de red',
+                'Inventario de servicios',
                 'Gemelo digital',
+                'Análisis de políticas de firewall',
+                'Inteligencia IP (IPAM)',
                 'Reportes avanzados',
-                'Orquestador de tareas'
+                'Telemetría y automatización de eventos'
             ],
             serviceBodies: [
-                'Reúne la información clave de la red y la organiza para que todo el equipo trabaje con una misma base operativa.',
-                'Revisa si la red cumple con tus estándares y muestra hallazgos, prioridades y acciones sugeridas.',
-                'Prepara configuraciones de forma consistente para distintos sitios, roles y equipos, sin depender de procesos manuales.',
-                'Muestra CPU, memoria e interfaces en tiempo real para detectar comportamientos anómalos con rapidez.',
-                'Centraliza equipos, sitios y roles para facilitar la búsqueda, la segmentación y la exportación de información.',
-                'Visualiza cómo están conectados los equipos y cómo fluye la red para entender mejor el impacto de cada cambio.',
-                'Compara el estado esperado con el estado real para detectar desvíos antes de que se conviertan en incidentes.',
-                'Resume salud, riesgo, capacidad y cambios en reportes claros para auditoría y toma de decisiones.',
-                'Programa auditorías y validaciones recurrentes para mantener seguimiento continuo y resultados descargables.'
+                'Recolecta y normaliza el estado de la red respetando el modelo de cada fabricante, en lugar de traducirlo todo a sintaxis Cisco.',
+                'Centraliza equipos, sitios, roles, plataformas y metadatos, con filtros y exportación para que todo el equipo trabaje sobre la misma base.',
+                'Mapa físico y de plano de control con LLDP, CDP, OSPF, BGP, STP y VRRP, más el camino real entre dos direcciones IP con ida y regreso.',
+                'Verifica la red contra reglas editables por sitio, rol o dispositivo, y entrega hallazgos con severidad y las líneas de configuración que faltan.',
+                'Genera la configuración desde plantillas y variables de servicio, con precedencia por sitio, plataforma, modelo, rol y equipo.',
+                'Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar que el hallazgo cerró. Con artefacto y vuelta atrás.',
+                'Túneles entre sitios, publicación de una red en OSPF y BGP, o DHCP por VLAN. Cada servicio se propone, se edita y trae su rollback.',
+                'Se le pregunta en lenguaje natural y responde con datos de la red. Cada acción declara antes de pulsarla si consume IA o si es determinista.',
+                'Postura calculada sobre la configuración real en cuatro dominios: perímetro, gestión, identidades y segmentación, con la evidencia de cada hallazgo.',
+                'Responde qué hay configurado en cada equipo y cuánto de eso está declarado como intención, para cerrar los puntos ciegos sin tocar la red.',
+                'Compara la configuración deseada contra la activa, detecta desvíos y sostiene el diff que se aprueba antes de cualquier cambio.',
+                'Qué política decide un flujo en cada salto, con su NAT y su registro. Si un objeto no se puede resolver lo dice, en vez de afirmar que bloquea.',
+                'Mapa de direccionamiento, subredes detectadas, solapamientos y la ubicación de una IP hasta el puerto de acceso cruzando ARP con la tabla MAC.',
+                'Salud de red, riesgo de configuración, desvíos, capacidad y puertos, en reportes descargables listos para auditoría.',
+                'Métricas en tiempo real y reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU. Se licencia por separado.'
             ],
             showcaseTitle: 'Interfaz pensada para operar flujos complejos con una experiencia simple.',
-            showcaseIntro: 'Desde cumplimiento y generación de configuraciones hasta topología, enrutamiento e inteligencia de IP, cada módulo produce resultados accionables.',
+            showcaseIntro: 'Desde cumplimiento y configuración deseada hasta topología, enrutamiento, seguridad e inteligencia de IP, cada módulo produce resultados accionables.',
             showcaseCaptions: [
                 'Cumplimiento por dominio, sitio y criticidad con reglas y pruebas editables.',
                 'Inventario técnico consolidado con trazabilidad de software, hardware y metadatos.',
                 'Topología física y plano de control, con vistas de enrutamiento (BGP/OSPF) para análisis de impacto.'
             ],
             featureFocusEyebrow: 'Capacidades destacadas',
-            featureFocusTitle: 'Telemetría, gemelo digital y generador de configuración como núcleo operativo.',
-            featureFocusIntro: 'Estos tres módulos aceleran diagnóstico, reducen riesgo de cambio y mejoran trazabilidad en cada ejecución.',
+            featureFocusTitle: 'Ciclo cerrado, servicios nuevos y ChatOps: lo que separa a Oktavia de una herramienta de auditoría.',
+            featureFocusIntro: 'Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien.',
             featureFocusTitles: [
-                'Telemetría operativa',
-                'Gemelo digital y desvío de configuración',
-                'Generador de configuraciones deseadas'
+                'Ciclo cerrado de remediación verificada',
+                'Servicios nuevos, no sólo correcciones',
+                'Argos: ChatOps con el costo de la IA a la vista'
             ],
             featureFocusBodies: [
-                'Centraliza métricas, tendencias e historial para detectar anomalías y priorizar acciones de forma proactiva.',
-                'Compara instantáneas por dispositivo para identificar desviaciones, validar impacto y proponer cambios con evidencia.',
-                'Produce configuraciones desde plantillas Jinja y variables de servicio, manteniendo control antes de cualquier remediación.'
+                'Auditar, proponer contra la intención declarada, revisar el diff en el Gemelo Digital, aprobar, aplicar con la primitiva segura del fabricante y volver a auditar para confirmar que cerró.',
+                'El mismo ciclo da de alta un túnel entre sitios, publica una red en OSPF y BGP o levanta DHCP en una VLAN, siempre con su rollback y con aprobación previa.',
+                'La mayoría de las consultas no consumen el modelo: son cálculos reproducibles sobre datos ya recolectados. Cada acción lleva su marca antes de pulsarla.'
             ],
             methodEyebrow: 'Modelo de ejecución',
-            methodTitle: 'Operación basada en tareas asíncronas, logs, registros y aprobación.',
-            methodTitles: ['Descubrimiento', 'Cumplimiento', 'Configuraciones deseadas', 'Validación y aprobación'],
+            methodTitle: 'Operación basada en tareas asíncronas, artefactos, aprobación y verificación.',
+            methodTitles: ['Descubrimiento', 'Cumplimiento', 'Configuración deseada', 'Aprobación y verificación'],
             methodBodies: [
                 'Recolectamos y normalizamos el estado de la red por sitio y dispositivo para construir una línea base confiable.',
-                'Ejecutamos pruebas contra reglas editables para identificar desvíos y priorizar remediación controlada.',
-                'Generamos logs y registros versionables (JSON/CSV/CFG) antes de cualquier cambio en la infraestructura.',
-                'Aplicamos cambios solo con control operativo, trazabilidad completa y seguimiento de desvíos.'
+                'Ejecutamos pruebas contra reglas editables para identificar desvíos, priorizarlos por severidad y ubicar la evidencia de cada uno.',
+                'Generamos la configuración deseada y su diff contra lo activo, con artefactos versionables, antes de cualquier cambio en la red.',
+                'Una persona aprueba, Oktavia aplica con la primitiva segura del fabricante y vuelve a auditar para confirmar que el hallazgo cerró.'
             ],
             casesEyebrow: 'Casos de uso',
             casesTitle: 'Aplicaciones reales en operación de redes empresariales.',
-            caseTitles: ['Auditorías de cumplimiento', 'Configuraciones deseadas', 'Tableros técnicos'],
+            caseTitles: [
+                'Auditorías de cumplimiento',
+                'Remediación verificada',
+                'Alta de servicios nuevos',
+                'Seguridad de red',
+                'Análisis de flujos y rutas',
+                'Adopción de lo existente'
+            ],
             caseBodies: [
-                'Evalúa cumplimiento por sitio o dispositivo sin procesos manuales y con evidencia exportable.',
-                'Genera configuraciones desde plantillas y variables de servicio para reducir riesgo operativo en cambios.',
-                'Visualiza inventario, topología, enrutamiento y tendencias para acelerar diagnóstico y priorización.'
+                'Evalúa cumplimiento por sitio, rol o dispositivo en minutos, con evidencia exportable para auditoría o licitación.',
+                'Corrige una desviación de punta a punta: proponer, aprobar, aplicar y verificar que cerró, sin salir de la herramienta.',
+                'Levanta un túnel entre dos sitios con sus rutas, o publica una red nueva en OSPF y BGP con verificación por ping incluida.',
+                'Postura de firewalls y switches con la línea de configuración que sustenta cada hallazgo y la corrección en CLI del fabricante.',
+                'Traza el camino entre dos direcciones IP con ida y regreso, y qué política de firewall decide el flujo en cada salto.',
+                'Declara como intención la configuración que un equipo ya tiene, para empezar a auditarla sin rediseñar nada.'
             ],
             metricsBodies: [
                 'menos tiempo en revisiones manuales de cumplimiento y configuración.',
@@ -315,190 +343,158 @@
             aboutEyebrow: 'Arquitectura y enfoque',
             aboutTitle: 'Automatización segura, auditable y extensible para entornos multifabricante.',
             aboutParagraphs: [
-                'Oktavia no busca reemplazar un NMS de monitoreo en tiempo real. Su foco es estandarizar descubrimiento, cumplimiento y generación de configuraciones deseadas con un modelo de ejecución controlado y trazable.',
+                'Oktavia no busca reemplazar un NMS de monitoreo en tiempo real. Su foco es estandarizar descubrimiento, cumplimiento y configuración deseada, y cerrar el ciclo hasta la remediación verificada con un modelo de ejecución controlado y trazable.',
                 'La arquitectura separa la interfaz web y el motor de automatización para facilitar despliegues simples y evolución a servicios externos sin perder compatibilidad de API ni trazabilidad de artefactos.'
             ],
             aboutCardTitles: [
                 'Extensibilidad por fabricante',
                 'Control y visibilidad en la automatización',
-                'Licenciamiento básico / avanzado'
+                'Dos licencias, sin ediciones recortadas'
             ],
             aboutCardBodies: [
                 'Cada fabricante se integra con adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas Jinja.',
                 'Prioriza remediación supervisada con aprobación, evitando automatizaciones opacas y no auditables.',
-                'La licencia básica cubre cumplimiento e inventario; la avanzada agrega observabilidad, programación y gemelo digital.'
+                'Oktavia Pro incluye la plataforma completa. La telemetría continua y la orquestación de eventos se licencian aparte por su perfil de consumo.'
             ],
             licensingAria: 'Licenciamiento Oktavia',
             licensingEyebrow: 'Licenciamiento',
-            licensingTitle: 'Oktavia Core y Oktavia Pro',
-            licensingIntro: 'Compara los módulos incluidos en cada edición.',
+            licensingTitle: 'Dos licencias, no tres ediciones',
+            licensingIntro: 'Oktavia Pro es la plataforma completa. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
             licensingPlanLabels: [],
             licensingPlanTitles: [],
             licensingPlanBodies: [],
-            licensingHeaders: ['Módulo Oktavia', 'Oktavia Core', 'Oktavia Pro'],
+            licensingHeaders: ['Módulo Oktavia', 'Oktavia Pro', 'Telemetría y Eventos'],
             licensingIncludedLabel: 'Incluido',
             licensingUnavailableLabel: 'No incluido',
             licensingIncludedMark: '✓',
-            licensingUnavailableMark: 'X',
+            licensingUnavailableMark: '—',
             licensingRows: [
                 {
                     module: 'Auditoría del estado de red',
-                    description: 'Ejecuta un análisis integral del estado actual de la red en minutos, evaluando inventario, conectividad, configuración y cumplimiento desde una sola operación.',
-                    core: true,
-                    pro: true
+                    description: 'Análisis integral del estado actual de la red en minutos: inventario, conectividad, configuración y cumplimiento desde una sola operación.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Inventario de red',
-                    description: 'Inventario dinámico multi-fabricante con filtros por sitio, rol, plataforma y proveedor, modelo, metadata.',
-                    core: true,
-                    pro: true
+                    description: 'Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante, modelo y metadatos.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Topología de red',
-                    description: 'Mapa interactivo de la red con vistas física, control plane, ruteo, protocolos LLDP, CDP, OSPF, EIGRP, BGP y STP, VRRP, direccionamiento IP.',
-                    core: true,
-                    pro: true
+                    module: 'Topología y trazado de rutas',
+                    description: 'Mapa interactivo con vistas física, de plano de control y de enrutamiento (LLDP, CDP, OSPF, EIGRP, BGP, STP, VRRP), más el camino real entre dos direcciones IP con ida y regreso.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Cumplimiento de configuración',
-                    description: 'Verificación de cumplimiento de configuración con reglas, tests y diagnóstico',
-                    core: true,
-                    pro: true
+                    description: 'Verificación contra reglas y pruebas editables por sitio, rol o dispositivo, con severidad, evidencia y diagnóstico.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Generador de configuración',
-                    description: 'Generación de configuraciones estándar mediante plantillas y variables de servicio',
-                    core: true,
-                    pro: true
+                    module: 'Configuración deseada por alcance',
+                    description: 'Generación desde plantillas y variables de servicio, con precedencia por sitio, tipo de sitio, plataforma, modelo, rol y equipo.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Orquestador de automatizaciones',
-                    description: 'Ejecución de auditorías, sincronización de inventario y orquestador de tareas',
-                    core: true,
-                    pro: true
+                    module: 'Ciclo cerrado de remediación',
+                    description: 'Auditar, proponer el cambio contra la intención declarada, revisar el diff, aprobar, aplicar con la primitiva segura del fabricante y volver a auditar para confirmar que el hallazgo cerró.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Respaldos de configuración',
-                    description: 'Visualización y descarga de archivos de configuración',
-                    core: true,
-                    pro: true
+                    module: 'Alta de servicios nuevos',
+                    description: 'El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, cada uno con su rollback.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Inteligencia IP (IPAM)',
-                    description: 'Mapa de direccionamiento IP, subredes detectadas y vecinos de routing',
-                    core: true,
-                    pro: true
+                    module: 'Argos — ChatOps de red',
+                    description: 'Asistente en lenguaje natural integrado en todas las pantallas. Cada acción declara antes de pulsarla si consume el modelo de IA o si se resuelve de forma determinista.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'FinOps',
-                    description: 'Calculadora de ROI de automatización y análisis de ahorro operativo',
-                    core: true,
-                    pro: true
+                    module: 'Seguridad de red',
+                    description: 'Postura de seguridad calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, con la evidencia de cada hallazgo.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Telemetría en tiempo real',
-                    description: 'Métricas SNMP (CPU, memoria, interfaces), GrPC(telemetria streaming), APIs, con visualización temporal',
-                    core: false,
-                    pro: true,
-                    advanced: true
+                    module: 'Inventario de servicios',
+                    description: 'Qué hay configurado en cada equipo y cuánto de eso está declarado como intención, clasificado en cubierto, punto ciego, sin aplicar e inaplicable.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Análisis de políticas de firewall',
+                    description: 'Qué política decide un flujo en cada salto, con su NAT y su registro. Un objeto que no se puede resolver se reporta como indeterminado, nunca como bloqueo.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Gemelo digital',
-                    description: 'Capturas del estado de la red, comparación de configuración deseada vs activa y detección de cambios de configuracion',
-                    core: false,
-                    pro: true,
-                    advanced: true
+                    description: 'Capturas del estado de la red, comparación de configuración deseada contra activa y detección de desvíos de configuración.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Análisis inteligente de red',
-                    description: 'Analisis de red automáticos de riesgo, configuración y capacidad, documentación de la red.',
-                    core: false,
-                    pro: true,
-                    advanced: true
+                    module: 'Respaldos de configuración',
+                    description: 'Visualización, comparación y descarga de archivos de configuración por dispositivo y fecha.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Inteligencia IP (IPAM)',
+                    description: 'Mapa de direccionamiento, subredes detectadas, solapamientos, vecinos de enrutamiento y ubicación de una IP hasta el puerto de acceso.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Reportes avanzados',
-                    description: 'Reportes de salud de red, cambios de configuración, capacidad, puertos y analisis de riesgos.',
-                    core: false,
-                    pro: true,
-                    advanced: true
+                    description: 'Salud de red, riesgo de configuración, desvíos, capacidad, puertos y topología, en reportes descargables listos para auditoría.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Provisioning y gestión de sitios',
+                    description: 'Estructura lógica de tipos de sitio, sitios y roles definida antes del primer descubrimiento.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Operaciones y auditorías programadas',
+                    description: 'Ejecución y programación de auditorías, descubrimiento, sincronización de inventario y validaciones de conectividad, con historial de trabajos y artefactos.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'FinOps',
+                    description: 'Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Gestión multi-tenant',
                     description: 'Multi-organización, gestión de usuarios y separación de datos por tenant.',
-                    core: false,
-                    pro: true,
+                    plans: [true, false]
+                },
+                {
+                    module: 'Telemetría en tiempo real',
+                    description: 'Métricas SNMP y de streaming (CPU, memoria, interfaces) almacenadas como series de tiempo, con visualización temporal y umbrales.',
+                    plans: [false, true],
+                    advanced: true
+                },
+                {
+                    module: 'Dashboards de telemetría y Grafana',
+                    description: 'Tableros de telemetría propios; la base de series de tiempo de Oktavia es datasource directo de Grafana, sin ETL adicional.',
+                    plans: [false, true],
+                    advanced: true
+                },
+                {
+                    module: 'Motor de automatización de eventos',
+                    description: 'Reglas condición→acción que reaccionan solas ante caídas de BGP u OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura o errores.',
+                    plans: [false, true],
                     advanced: true
                 }
             ],
-            featureDetailsAria: 'Detalle de módulos de Oktavia',
-            featureDetailsEyebrow: 'Detalle de módulos',
-            featureDetailsTitle: 'Descripción por módulo',
-            featureDetailsIntro: 'Consulta el alcance funcional de cada capacidad incluida en Oktavia.',
-            featureDetailsHeaders: ['Módulo Oktavia', 'Descripción'],
-            featureDetailsRows: [
-                {
-                    feature: 'Auditoría del estado de red',
-                    description: 'Ejecuta un análisis integral del estado actual de la red en minutos, evaluando inventario, conectividad, configuración y cumplimiento desde una sola operación.'
-                },
-                {
-                    feature: 'Inventario de red',
-                    description: 'Inventario dinámico multi-fabricante con filtros por sitio, rol, plataforma y proveedor, modelo, metadata.'
-                },
-                {
-                    feature: 'Topología de red',
-                    description: 'Mapa interactivo de la red con vistas física, control plane, ruteo, protocolos LLDP, CDP, OSPF, EIGRP, BGP y STP, VRRP, direccionamiento IP.'
-                },
-                {
-                    feature: 'Cumplimiento de configuración',
-                    description: 'Verificación de cumplimiento de configuración con reglas, tests y diagnóstico'
-                },
-                {
-                    feature: 'Generador de configuración',
-                    description: 'Generación de configuraciones estándar mediante plantillas y variables de servicio'
-                },
-                {
-                    feature: 'Orquestador de automatizaciones',
-                    description: 'Ejecución de auditorías, sincronización de inventario y orquestador de tareas'
-                },
-                {
-                    feature: 'Respaldos de configuración',
-                    description: 'Visualización y descarga de archivos de configuración'
-                },
-                {
-                    feature: 'Inteligencia IP (IPAM)',
-                    description: 'Mapa de direccionamiento IP, subredes detectadas y vecinos de routing'
-                },
-                {
-                    feature: 'FinOps',
-                    description: 'Calculadora de ROI de automatización y análisis de ahorro operativo'
-                },
-                {
-                    feature: 'Telemetría en tiempo real',
-                    description: 'Métricas SNMP (CPU, memoria, interfaces), GrPC(telemetria streaming), APIs, con visualización temporal',
-                    advanced: true
-                },
-                {
-                    feature: 'Gemelo digital',
-                    description: 'Capturas del estado de la red, comparación de configuración deseada vs activa y detección de cambios de configuracion',
-                    advanced: true
-                },
-                {
-                    feature: 'Análisis inteligente de red',
-                    description: 'Analisis de red automáticos de riesgo, configuración y capacidad, documentación de la red.',
-                    advanced: true
-                },
-                {
-                    feature: 'Reportes avanzados',
-                    description: 'Reportes de salud de red, cambios de configuración, capacidad, puertos y analisis de riesgos.',
-                    advanced: true
-                },
-                {
-                    feature: 'Gestión multi-tenant',
-                    description: 'Multi-organización, gestión de usuarios y separación de datos por tenant.',
-                    advanced: true
-                }
-            ],
+            resourcesAria: 'Recursos y documentación de Oktavia',
+            resourcesEyebrow: 'Recursos',
+            resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
+            resourcesIntro: 'El data sheet reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación en un documento que se puede leer en línea o descargar.',
+            resourceCardTitle: 'Data sheet de Oktavia 2.0',
+            resourceCardBody: 'Documento comercial y técnico de la plataforma: los quince módulos con su alcance, las siete categorías de valor, cobertura y acceso por fabricante, integraciones con el ecosistema, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.',
+            resourceCardMeta: 'PDF · Español e inglés · Actualizado en 2026',
+            resourceActions: ['Ver en línea', 'Descargar PDF', 'Ver toda la documentación'],
+            resourceUpcomingLabel: 'En preparación:',
+            resourceUpcoming: ['Guía de network automation', 'Catálogo de servicios', 'Guía de integración multifabricante'],
+            resourcePdfHref: 'docs/oktavia-2.0-datasheet-es.pdf',
+            resourceOnlineHref: 'docs/datasheet.html',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
@@ -512,14 +508,20 @@
             platformImageAlt: 'Vista de cumplimiento de configuración en Oktavia',
             serviceIconAlts: [
                 'Icono de visibilidad de red',
-                'Icono de configuración',
-                'Icono de herramienta de configuración',
-                'Icono de telemetría',
                 'Icono de inventario',
                 'Icono de topología en grafo',
+                'Icono de cumplimiento de configuración',
+                'Icono de generación de configuración',
+                'Icono de ciclo cerrado de remediación',
+                'Icono de alta de servicio',
+                'Icono de conversación',
+                'Icono de seguridad de red',
+                'Icono de inventario de servicios',
                 'Icono de gemelo digital',
+                'Icono de política de firewall',
+                'Icono de direccionamiento IP',
                 'Icono de reportes',
-                'Icono de calendario y tareas'
+                'Icono de telemetría'
             ],
             showcaseImageAlts: [
                 'Tablero de cumplimiento general',
@@ -530,13 +532,13 @@
         },
         en: {
             htmlLang: 'en',
-            title: 'Oktavia',
-            metaDescription: 'Oktavia unifies discovery, compliance, and desired configuration generation with async jobs, versioned artifacts, and auditable operations for enterprise networks.',
+            title: 'Oktavia 2.0 — Multi-vendor network automation | Oktanet',
+            metaDescription: 'Oktavia 2.0 automates discovery, compliance, security, and verified remediation across multi-vendor networks: it finds the deviation, proposes the change, applies it with approval, and confirms the finding closed.',
             brandAria: 'Back to top',
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Platform', 'Services', 'Methodology', 'Use Cases', 'About us', 'Licensing'],
+            navLinks: ['Platform', 'Services', 'Methodology', 'Use Cases', 'About us', 'Licensing', 'Resources'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -552,87 +554,108 @@
             metricsEyebrow: 'Measurable impact',
             metricsTitle: 'Operational outcomes from the first adoption cycles.',
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
-            heroEyebrow: 'Secure and auditable network automation',
-            heroTitle: 'Standardize discovery, compliance, and desired configurations from one platform.',
-            heroBody: 'Oktavia is a network automation platform designed to automate network discovery, configuration compliance, and desired-state configuration generation across multi-vendor enterprise infrastructures.',
-            heroActions: ['Request a Demo', 'Explore Oktavia'],
-            heroBadgesAria: 'Platform highlights',
-            heroBadges: ['Multi-vendor ready', 'Continuous auditing', 'Guided automation'],
+            heroEyebrow: 'Oktavia 2.0 · Secure and auditable network automation',
+            heroTitle: 'From spotting the deviation to verified remediation, without leaving one platform.',
+            heroBody: 'Oktavia is an automation platform for multi-vendor networks. It discovers the network, checks it against your standard, proposes the change against declared intent and, once you approve, applies it and confirms the finding closed.',
+            heroActions: ['Request a Demo', 'Download the data sheet'],
             heroPoints: [
-                'Execution model based on async jobs that generate structured, versioned outputs (JSON, CSV, CFG).',
-                'No direct network changes: desired configurations are generated first.',
-                'Controlled remediation with validation and approval gates.'
+                'No change reaches the network without a person approving it: the desired configuration is generated first and the diff against live config is reviewed.',
+                'Every run leaves downloadable, versioned artifacts (JSON, CSV, CFG) and is recorded in the job history.',
+                'The full cycle uses each vendor safe primitive: commit confirmed on Junos, CMDB operations on FortiGate, diff and verification on IOS and FortiSwitch.'
             ],
             trustLabel: 'Compatible with multi-vendor infrastructure:',
-            platformEyebrow: 'Core Product',
-            platformTitle: 'Oktavia: Automation Engine + UI for continuous-control network operations.',
-            platformBody: 'Built for simple deployments and demos, with architecture ready for external backends, Oktavia unifies multi-vendor discovery, per-site/device compliance, and desired configuration generation in one console.',
+            platformEyebrow: 'Flagship product',
+            platformTitle: 'Oktavia 2.0: automation engine, web UI, and ChatOps for continuous-control network operations.',
+            platformBody: 'Oktavia unifies multi-vendor discovery, compliance by site, role, or device, desired configuration, network security, and verified remediation in one console. Argos, the ChatOps assistant, spans every module and states for each action whether it consumes the AI model or resolves deterministically.',
             platformChips: [
-                'Async jobs',
+                'Closed loop with approval',
+                'ChatOps with AI cost in plain sight',
                 'Versioned artifacts',
-                'Editable compliance rules',
+                'Multi-tenant',
                 'REST API with API key'
             ],
             servicesEyebrow: 'Platform capabilities',
-            servicesTitle: 'Modules built for discovery, compliance, and traceable operations.',
+            servicesTitle: 'Fifteen modules to discover, verify, remediate, and roll out new services.',
             serviceTitles: [
                 'Multi-vendor discovery',
-                'Compliance tests and rules',
-                'Desired Configuration Generator',
-                'Real-time telemetry',
-                'Network Inventory',
-                'Network Topology',
+                'Network inventory',
+                'Topology and path tracing',
+                'Configuration compliance',
+                'Scoped desired configuration',
+                'Closed-loop remediation',
+                'New service rollout',
+                'Argos, network ChatOps',
+                'Network security',
+                'Service inventory',
                 'Digital Twin',
-                'Advanced Reports',
-                'Task Orchestrator'
+                'Firewall policy analysis',
+                'IP Intelligence (IPAM)',
+                'Advanced reports',
+                'Telemetry and event automation'
             ],
             serviceBodies: [
-                'Brings together key network information so the whole team can work from the same operational baseline.',
-                'Checks whether the network meets your standards and highlights findings, priorities, and suggested actions.',
-                'Prepares configurations consistently for different sites, roles, and devices without relying on manual work.',
-                'Shows CPU, memory, and interfaces in real time so unusual behavior is easier to spot quickly.',
-                'Centralizes devices, sites, and roles to make search, segmentation, and export much easier.',
-                'Shows how devices are connected and how traffic flows so teams can better understand change impact.',
-                'Compares expected state with live state to catch drift before it turns into an incident.',
-                'Summarizes health, risk, capacity, and changes in clear reports for audits and decision-making.',
-                'Schedules recurring audits and validations to keep operations monitored with downloadable results.'
+                'Collects and normalizes network state in each vendor own model, instead of translating everything into Cisco syntax.',
+                'Centralizes devices, sites, roles, platforms, and metadata, with filters and export so the whole team works from the same baseline.',
+                'Physical and control-plane map with LLDP, CDP, OSPF, BGP, STP, and VRRP, plus the live path between two IP addresses, forward and return.',
+                'Checks the network against rules that are editable by site, role, or device, and returns findings with severity and the missing configuration lines.',
+                'Generates configuration from templates and service vars, with precedence by site, platform, model, role, and device.',
+                'Audit, propose, review the diff, approve, apply, and audit again to confirm the finding closed. With artifacts and a way back.',
+                'Tunnels between sites, advertising a network in OSPF and BGP, or DHCP per VLAN. Every service is proposed, edited, and ships with its rollback.',
+                'Ask in plain language and it answers with network data. Every action states, before you click it, whether it consumes AI or is deterministic.',
+                'Posture computed on the collected configuration across four domains: perimeter, management plane, identities, and segmentation, with evidence for each finding.',
+                'Answers what is configured on each device and how much of it is declared as intent, so blind spots close without touching the network.',
+                'Compares desired configuration against live configuration, detects drift, and backs the diff that gets approved before any change.',
+                'Which policy decides a flow at each hop, with its NAT and its logging. An object that cannot be resolved is reported as undetermined, never as a block.',
+                'Addressing map, detected subnets, overlaps, and the location of an IP down to the access port by crossing ARP with the MAC table.',
+                'Network health, configuration risk, drift, capacity, and ports, in downloadable reports ready for audit.',
+                'Real-time metrics and rules that react on their own to BGP or OSPF drops and CPU thresholds. Licensed separately.'
             ],
             showcaseTitle: 'A UI designed for complex workflows with simple operation.',
-            showcaseIntro: 'From compliance and config generation to topology, routing, and IP intelligence, each module produces actionable output.',
+            showcaseIntro: 'From compliance and desired configuration to topology, routing, security, and IP intelligence, each module produces actionable output.',
             showcaseCaptions: [
                 'Compliance by domain, site, and criticality with editable rules and tests.',
                 'Consolidated technical inventory with software, hardware, and metadata traceability.',
                 'Physical/control-plane topology and routing views (BGP/OSPF) for impact analysis.'
             ],
             featureFocusEyebrow: 'Highlighted capabilities',
-            featureFocusTitle: 'Telemetry, Digital Twin, and Desired Configuration Generator as core modules.',
-            featureFocusIntro: 'These three modules accelerate diagnosis, reduce change risk, and improve traceability in every run.',
+            featureFocusTitle: 'Closed loop, new services, and ChatOps: what sets Oktavia apart from an audit tool.',
+            featureFocusIntro: 'Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right.',
             featureFocusTitles: [
-                'Operational telemetry',
-                'Digital Twin and drift',
-                'Desired Configuration Generator'
+                'Verified closed-loop remediation',
+                'New services, not just fixes',
+                'Argos: ChatOps with the AI cost in plain sight'
             ],
             featureFocusBodies: [
-                'Centralizes metrics, trends, and history to detect anomalies and prioritize actions proactively.',
-                'Compares per-device snapshots to identify deviations, validate impact, and propose evidence-based changes.',
-                'Produces configurations from Jinja templates and service vars, preserving control before any remediation.'
+                'Audit, propose against declared intent, review the diff in the Digital Twin, approve, apply with the vendor safe primitive, and audit again to confirm it closed.',
+                'The same cycle rolls out a tunnel between sites, advertises a network in OSPF and BGP, or brings up DHCP on a VLAN, always with its rollback and prior approval.',
+                'Most queries never touch the model: they are reproducible calculations over data already collected. Every action carries its mark before you click it.'
             ],
             methodEyebrow: 'Execution model',
-            methodTitle: 'Operations based on async jobs, logs, records, and approvals.',
-            methodTitles: ['Discovery', 'Compliance', 'Desired Configurations', 'Validation and approval'],
+            methodTitle: 'Operations based on async jobs, artifacts, approval, and verification.',
+            methodTitles: ['Discovery', 'Compliance', 'Desired configuration', 'Approval and verification'],
             methodBodies: [
-                'Collect and normalize network state by site/device to build a reliable operational baseline.',
-                'Run tests against editable rules to identify deviations and prioritize controlled remediation.',
-                'Generate versioned logs and records (JSON/CSV/CFG) before any infrastructure change.',
-                'Apply changes only with operational control, full traceability, and drift follow-up.'
+                'Collect and normalize network state by site and device to build a reliable operational baseline.',
+                'Run tests against editable rules to identify deviations, rank them by severity, and pin down the evidence for each.',
+                'Generate the desired configuration and its diff against live config, with versioned artifacts, before any network change.',
+                'A person approves, Oktavia applies with the vendor safe primitive, and audits again to confirm the finding closed.'
             ],
             casesEyebrow: 'Use Cases',
             casesTitle: 'Real applications for enterprise network operations.',
-            caseTitles: ['Compliance audits', 'Desired configurations', 'Technical dashboards'],
+            caseTitles: [
+                'Compliance audits',
+                'Verified remediation',
+                'New service rollout',
+                'Network security',
+                'Flow and path analysis',
+                'Adopting what already exists'
+            ],
             caseBodies: [
-                'Evaluate compliance by site or device without manual processes and with exportable evidence.',
-                'Generate configs from templates and service vars to reduce operational change risk.',
-                'Visualize inventory, topology, routing, and trends to accelerate diagnosis and prioritization.'
+                'Evaluate compliance by site, role, or device in minutes, with evidence exportable for audits or public tenders.',
+                'Fix a deviation end to end: propose, approve, apply, and verify it closed, without leaving the tool.',
+                'Bring up a tunnel between two sites with its routes, or advertise a new network in OSPF and BGP with ping verification included.',
+                'Firewall and switch posture with the configuration line backing each finding and the fix in the vendor own CLI.',
+                'Trace the path between two IP addresses, forward and return, and which firewall policy decides the flow at each hop.',
+                'Declare the configuration a device already has as intent, so auditing can start without redesigning anything.'
             ],
             metricsBodies: [
                 'less time spent on manual compliance and configuration reviews.',
@@ -643,190 +666,158 @@
             aboutEyebrow: 'Architecture and approach',
             aboutTitle: 'Secure, auditable, and extensible automation for multi-vendor environments.',
             aboutParagraphs: [
-                'Oktavia is not meant to replace real-time monitoring NMS platforms. Its focus is to standardize discovery, compliance, and desired configuration generation through a controlled and traceable execution model.',
+                'Oktavia is not meant to replace real-time monitoring NMS platforms. Its focus is to standardize discovery, compliance, and desired configuration, and to close the loop through verified remediation with a controlled and traceable execution model.',
                 'The architecture separates UI and Automation Engine to support simple deployments and evolution to external backends without losing API compatibility or artifact traceability.'
             ],
             aboutCardTitles: [
                 'Vendor extensibility',
                 'Control and visibility in automation',
-                'Core / Pro licensing'
+                'Two licenses, no cut-down editions'
             ],
             aboutCardBodies: [
                 'Each vendor is integrated through a discovery adapter, normalizer, compliance rule set, and Jinja templates.',
                 'It prioritizes supervised remediation with approvals, avoiding opaque and non-auditable automation.',
-                'Core covers compliance and inventory; Pro adds advanced observability, scheduler, and Digital Twin.'
+                'Oktavia Pro includes the complete platform. Continuous telemetry and event orchestration are licensed separately because of their consumption profile.'
             ],
             licensingAria: 'Oktavia licensing',
             licensingEyebrow: 'Licensing',
-            licensingTitle: 'Oktavia Core and Oktavia Pro',
-            licensingIntro: 'Compare the modules included in each edition.',
+            licensingTitle: 'Two licenses, not three editions',
+            licensingIntro: 'Oktavia Pro is the complete platform. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
             licensingPlanLabels: [],
             licensingPlanTitles: [],
             licensingPlanBodies: [],
-            licensingHeaders: ['Module', 'Core', 'Pro'],
+            licensingHeaders: ['Oktavia module', 'Oktavia Pro', 'Telemetry and Events'],
             licensingIncludedLabel: 'Included',
             licensingUnavailableLabel: 'Not included',
             licensingIncludedMark: '✓',
             licensingUnavailableMark: '—',
             licensingRows: [
                 {
-                    module: 'Network Status Audit',
-                    description: 'Run a comprehensive analysis of the network’s current state in minutes, assessing inventory, connectivity, configuration, and compliance in a single operation.',
-                    core: true,
-                    pro: true
+                    module: 'Network state audit',
+                    description: 'End-to-end analysis of current network state in minutes: inventory, connectivity, configuration, and compliance from a single operation.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Network Inventory',
-                    description: 'Dynamic multi-vendor inventory with filters by site, role and platform',
-                    core: true,
-                    pro: true
+                    module: 'Network inventory',
+                    description: 'Dynamic multi-vendor inventory with filters by site, role, platform, vendor, model, and metadata.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Network Topology',
-                    description: 'Interactive topology map with physical, control plane, routing, OSPF, BGP and STP views',
-                    core: true,
-                    pro: true
+                    module: 'Topology and path tracing',
+                    description: 'Interactive map with physical, control-plane, and routing views (LLDP, CDP, OSPF, EIGRP, BGP, STP, VRRP), plus the live path between two IP addresses, forward and return.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Configuration Compliance',
-                    description: 'Configuration compliance validation with rules, tests and diagnostics',
-                    core: true,
-                    pro: true
+                    module: 'Configuration compliance',
+                    description: 'Verification against rules and tests editable by site, role, or device, with severity, evidence, and diagnosis.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Configuration Generator',
-                    description: 'Standard configuration generation using templates and service variables',
-                    core: true,
-                    pro: true
+                    module: 'Scoped desired configuration',
+                    description: 'Generation from templates and service vars, with precedence by site, site type, platform, model, role, and device.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Automation Orchestrator',
-                    description: 'Audit execution, inventory sync and scheduled jobs',
-                    core: true,
-                    pro: true
+                    module: 'Closed-loop remediation',
+                    description: 'Audit, propose the change against declared intent, review the diff, approve, apply with the vendor safe primitive, and audit again to confirm the finding closed.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Configuration Backups',
-                    description: 'Device configuration viewer and download',
-                    core: true,
-                    pro: true
+                    module: 'New service rollout',
+                    description: 'The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, each with its rollback.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'IP Intelligence (IPAM)',
-                    description: 'Network IP addressing map with detected subnets and routing peers',
-                    core: true,
-                    pro: true
+                    module: 'Argos — network ChatOps',
+                    description: 'Plain-language assistant embedded in every screen. Each action states, before you click it, whether it consumes the AI model or resolves deterministically.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'FinOps',
-                    description: 'Automation ROI calculator and operational cost analysis',
-                    core: true,
-                    pro: true
+                    module: 'Network security',
+                    description: 'Security posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, with evidence for each finding.',
+                    plans: [true, false]
                 },
                 {
-                    module: 'Real-time Telemetry',
-                    description: 'SNMP metrics (CPU, memory, interfaces) with time-series visualization',
-                    core: false,
-                    pro: true,
-                    advanced: true
+                    module: 'Service inventory',
+                    description: 'What is configured on each device and how much of it is declared as intent, classified as covered, blind spot, not applied, or not applicable.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Firewall policy analysis',
+                    description: 'Which policy decides a flow at each hop, with its NAT and its logging. An object that cannot be resolved is reported as undetermined, never as a block.',
+                    plans: [true, false]
                 },
                 {
                     module: 'Digital Twin',
-                    description: 'Network snapshots, intended vs running comparison and drift detection',
-                    core: false,
-                    pro: true,
+                    description: 'Network state snapshots, desired versus live configuration comparison, and configuration drift detection.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Configuration backups',
+                    description: 'View, compare, and download configuration files by device and date.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'IP Intelligence (IPAM)',
+                    description: 'Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP down to the access port.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Advanced reports',
+                    description: 'Network health, configuration risk, drift, capacity, ports, and topology, in downloadable reports ready for audit.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Provisioning and site management',
+                    description: 'Logical structure of site types, sites, and roles defined before the first discovery run.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Operations and scheduled audits',
+                    description: 'Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'FinOps',
+                    description: 'Automation return-on-investment calculator and operational savings analysis.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Multi-tenant management',
+                    description: 'Multi-organization, user management, and per-tenant data separation.',
+                    plans: [true, false]
+                },
+                {
+                    module: 'Real-time telemetry',
+                    description: 'SNMP and streaming metrics (CPU, memory, interfaces) stored as time series, with temporal visualization and thresholds.',
+                    plans: [false, true],
                     advanced: true
                 },
                 {
-                    module: 'AI Network Insights',
-                    description: 'Automated analysis of risk, configuration and capacity',
-                    core: false,
-                    pro: true,
+                    module: 'Telemetry dashboards and Grafana',
+                    description: 'Native telemetry dashboards; Oktavia time-series database is a direct Grafana datasource, with no extra ETL.',
+                    plans: [false, true],
                     advanced: true
                 },
                 {
-                    module: 'Advanced Reports',
-                    description: 'Network health, drift, capacity, port usage and configuration risk reports',
-                    core: false,
-                    pro: true,
-                    advanced: true
-                },
-                {
-                    module: 'Multi-tenant Management',
-                    description: 'Multi-organization platform with tenant data isolation',
-                    core: false,
-                    pro: true,
-                    advanced: true
-                }
-            ],
-            featureDetailsAria: 'Oktavia module details',
-            featureDetailsEyebrow: 'Module details',
-            featureDetailsTitle: 'Description by module',
-            featureDetailsIntro: 'Review the functional scope of each capability included in Oktavia.',
-            featureDetailsHeaders: ['Module', 'Description'],
-            featureDetailsRows: [
-                {
-                    feature: 'Network Status Audit',
-                    description: 'Run a comprehensive analysis of the network’s current state in minutes, assessing inventory, connectivity, configuration, and compliance in a single operation.'
-                },
-                {
-                    feature: 'Network Inventory',
-                    description: 'Dynamic multi-vendor inventory with filters by site, role and platform'
-                },
-                {
-                    feature: 'Network Topology',
-                    description: 'Interactive topology map with physical, control plane, routing, OSPF, BGP and STP views'
-                },
-                {
-                    feature: 'Configuration Compliance',
-                    description: 'Configuration compliance validation with rules, tests and diagnostics'
-                },
-                {
-                    feature: 'Configuration Generator',
-                    description: 'Standard configuration generation using templates and service variables'
-                },
-                {
-                    feature: 'Automation Orchestrator',
-                    description: 'Audit execution, inventory sync and scheduled jobs'
-                },
-                {
-                    feature: 'Configuration Backups',
-                    description: 'Device configuration viewer and download'
-                },
-                {
-                    feature: 'IP Intelligence (IPAM)',
-                    description: 'Network IP addressing map with detected subnets and routing peers'
-                },
-                {
-                    feature: 'FinOps',
-                    description: 'Automation ROI calculator and operational cost analysis'
-                },
-                {
-                    feature: 'Real-time Telemetry',
-                    description: 'SNMP metrics (CPU, memory, interfaces) with time-series visualization',
-                    advanced: true
-                },
-                {
-                    feature: 'Digital Twin',
-                    description: 'Network snapshots, intended vs running comparison and drift detection',
-                    advanced: true
-                },
-                {
-                    feature: 'AI Network Insights',
-                    description: 'Automated analysis of risk, configuration and capacity',
-                    advanced: true
-                },
-                {
-                    feature: 'Advanced Reports',
-                    description: 'Network health, drift, capacity, port usage and configuration risk reports',
-                    advanced: true
-                },
-                {
-                    feature: 'Multi-tenant Management',
-                    description: 'Multi-organization platform with tenant data isolation',
+                    module: 'Event automation engine',
+                    description: 'Condition-to-action rules that react on their own to BGP or OSPF drops, interfaces down, and CPU, memory, temperature, or error thresholds.',
+                    plans: [false, true],
                     advanced: true
                 }
             ],
+            resourcesAria: 'Oktavia resources and documentation',
+            resourcesEyebrow: 'Resources',
+            resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
+            resourcesIntro: 'The data sheet gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines into one document you can read online or download.',
+            resourceCardTitle: 'Oktavia 2.0 data sheet',
+            resourceCardBody: 'Commercial and technical document for the platform: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, the two-license model, use cases, and the implementation process with estimated timelines.',
+            resourceCardMeta: 'PDF · Spanish and English · Updated 2026',
+            resourceActions: ['Read online', 'Download PDF', 'Browse all documentation'],
+            resourceUpcomingLabel: 'In preparation:',
+            resourceUpcoming: ['Network automation guide', 'Service catalog', 'Multi-vendor integration guide'],
+            resourcePdfHref: 'docs/oktavia-2.0-datasheet-en.pdf',
+            resourceOnlineHref: 'docs/datasheet-en.html',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
@@ -840,14 +831,20 @@
             platformImageAlt: 'Configuration compliance view in Oktavia',
             serviceIconAlts: [
                 'Network visibility icon',
-                'Configuration icon',
-                'Configuration build icon',
-                'Telemetry icon',
                 'Inventory icon',
                 'Graph topology icon',
-                'Digital twin icon',
+                'Configuration compliance icon',
+                'Configuration generation icon',
+                'Closed-loop remediation icon',
+                'Service rollout icon',
+                'Conversation icon',
+                'Network security icon',
+                'Service inventory icon',
+                'Digital Twin icon',
+                'Firewall policy icon',
+                'IP addressing icon',
                 'Reports icon',
-                'Calendar and jobs icon'
+                'Telemetry icon'
             ],
             showcaseImageAlts: [
                 'General compliance dashboard',
@@ -925,6 +922,10 @@
             licensingSectionEl.setAttribute('aria-label', copy.licensingAria);
         }
 
+        if (resourcesSectionEl) {
+            resourcesSectionEl.setAttribute('aria-label', copy.resourcesAria);
+        }
+
         if (langToggle) {
             langToggle.setAttribute('aria-label', copy.langToggleAria);
         }
@@ -938,10 +939,6 @@
         setText(document.querySelector('.hero-copy h1'), copy.heroTitle);
         setText(document.querySelector('.hero-copy > p:not(.eyebrow)'), copy.heroBody);
         setTextList(document.querySelectorAll('.hero-actions a'), copy.heroActions);
-        if (heroBadgesContainer) {
-            heroBadgesContainer.setAttribute('aria-label', copy.heroBadgesAria);
-        }
-        setTextList(document.querySelectorAll('.hero-badges span'), copy.heroBadges);
         setTextList(document.querySelectorAll('.hero-points li'), copy.heroPoints);
 
         setText(document.querySelector('.trust-grid > p'), copy.trustLabel);
@@ -995,9 +992,27 @@
         setTextList(document.querySelectorAll('.licensing-plan p:last-child'), copy.licensingPlanBodies);
         renderLicensingTable(copy);
 
+        setText(document.querySelector('.resources-section .eyebrow'), copy.resourcesEyebrow);
+        setText(document.querySelector('.resources-section h2'), copy.resourcesTitle);
+        setText(document.querySelector('.resources-section .section-intro'), copy.resourcesIntro);
+        setText(document.querySelector('.resource-card h3'), copy.resourceCardTitle);
+        setText(document.querySelector('.resource-card .resource-body > p'), copy.resourceCardBody);
+        setText(document.querySelector('.resource-meta'), copy.resourceCardMeta);
+        setTextList(document.querySelectorAll('.resource-actions a'), copy.resourceActions);
+        setText(document.querySelector('.resource-upcoming-label'), copy.resourceUpcomingLabel);
+        setTextList(document.querySelectorAll('.resource-upcoming-list span'), copy.resourceUpcoming);
+
+        if (resourcePdfLink && typeof copy.resourcePdfHref === 'string') {
+            resourcePdfLink.setAttribute('href', copy.resourcePdfHref);
+        }
+
+        if (resourceOnlineLink && typeof copy.resourceOnlineHref === 'string') {
+            resourceOnlineLink.setAttribute('href', copy.resourceOnlineHref);
+        }
+
         setText(document.querySelector('.contact-copy .eyebrow'), copy.contactEyebrow);
         setText(document.querySelector('.contact-copy h2'), copy.contactTitle);
-        setText(document.querySelector('.contact-copy > p'), copy.contactBody);
+        setText(document.querySelector('.contact-copy > p:not(.eyebrow)'), copy.contactBody);
         setText(document.querySelector('.office-card h3'), copy.officeTitle);
         setTextList(document.querySelectorAll('.office-card p'), copy.officeLines);
         setTextList(document.querySelectorAll('.contact-form label'), copy.formLabels);
