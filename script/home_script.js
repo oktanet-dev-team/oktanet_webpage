@@ -383,7 +383,7 @@
             aboutCardBodies: [
                 'Cada fabricante se integra con adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas Jinja.',
                 'Prioriza remediación supervisada con aprobación, evitando automatizaciones opacas y no auditables.',
-                'Se despliega en tu infraestructura, el acceso entra por tu proveedor de identidad con Okta y segundo factor, y las credenciales van cifradas en reposo.',
+                'Se despliega en tu infraestructura, las credenciales van cifradas en reposo y el acceso se restringe por dirección IP o red.',
                 'Oktavia Pro incluye la plataforma completa. La telemetría continua y la orquestación de eventos se licencian aparte por su perfil de consumo.'
             ],
             licensingAria: 'Licenciamiento Oktavia',
@@ -772,7 +772,7 @@
             aboutCardBodies: [
                 'Each vendor is integrated through a discovery adapter, normalizer, compliance rule set, and Jinja templates.',
                 'It prioritizes supervised remediation with approvals, avoiding opaque and non-auditable automation.',
-                'It deploys on your own infrastructure, access goes through your identity provider with Okta and a second factor, and credentials are encrypted at rest.',
+                'It deploys on your own infrastructure, credentials are encrypted at rest, and access is restricted by IP address or network.',
                 'Oktavia Pro includes the complete platform. Continuous telemetry and event orchestration are licensed separately because of their consumption profile.'
             ],
             licensingAria: 'Oktavia licensing',
