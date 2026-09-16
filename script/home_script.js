@@ -176,7 +176,8 @@
             metricsTitle: 'Resultados operativos desde las primeras iteraciones de adopción.',
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
             heroTitle: 'tu red bajo control.',
-            heroTitleBrand: 'Oktanet:',
+            heroTitleBrand: 'Oktavia',
+            heroAttrib: 'Desarrollado por Oktanet',
             heroBody: 'Servicios profesionales de automatización de redes. Llevamos tu red multivendor a un estándar declarado, verificable y corregible, con Oktavia como plataforma y Argos como asistente. Diseño, implementación y operación, llave en mano.',
             heroActions: ['Solicitar una demostración', 'Ver la información', 'Descargar el PDF'],
             heroPoints: [
@@ -507,7 +508,7 @@
             officeLines: ['Torre de Oficinas, Downtown Reforma', 'Ciudad de México'],
             formLabels: ['Nombre completo', 'Correo electrónico', 'Empresa', '¿Qué deseas resolver?'],
             submitButton: 'Enviar solicitud',
-            footerTagline: 'Oktanet: tu red bajo control.',
+            footerTagline: 'Oktavia, tu red bajo control.',
             copyright: 'Todos los derechos reservados.',
             heroImageAlt: 'Centro de automatización de red de Oktavia con el cumplimiento global y la actividad reciente',
             platformImageAlt: 'Vista de cumplimiento de configuración en Oktavia',
@@ -565,7 +566,8 @@
             metricsTitle: 'Operational outcomes from the first adoption cycles.',
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
             heroTitle: 'your network under control.',
-            heroTitleBrand: 'Oktanet:',
+            heroTitleBrand: 'Oktavia',
+            heroAttrib: 'Powered by Oktanet',
             heroBody: 'Professional network automation services. We bring your multi-vendor network to a declared, verifiable, and fixable standard, with Oktavia as the platform and Argos as the assistant. Design, implementation, and operation, turnkey.',
             heroActions: ['Request a Demo', 'Read the information', 'Download the PDF'],
             heroPoints: [
@@ -896,7 +898,7 @@
             officeLines: ['Office Tower, Downtown Reforma', 'Mexico City'],
             formLabels: ['Full name', 'Email', 'Company', 'What do you need to solve?'],
             submitButton: 'Send Request',
-            footerTagline: 'Oktanet: your network under control.',
+            footerTagline: 'Oktavia, your network under control.',
             copyright: 'All rights reserved.',
             heroImageAlt: 'Oktavia network automation center showing global compliance and recent activity',
             platformImageAlt: 'Configuration compliance view in Oktavia',
@@ -1023,7 +1025,8 @@
             titular.appendChild(nombre);
             titular.appendChild(document.createTextNode(' ' + copy.heroTitle));
         }
-        setText(document.querySelector('.hero-copy > p'), copy.heroBody);
+        setText(document.querySelector('.hero-copy > p:not(.hero-attrib)'), copy.heroBody);
+        setText(document.querySelector('.hero-attrib'), copy.heroAttrib);
         setTextList(document.querySelectorAll('.hero-actions a'), copy.heroActions);
         renderHeroPoints(copy);
 
