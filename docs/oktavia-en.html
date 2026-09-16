@@ -398,7 +398,7 @@
 
             <h3>Access to the platform</h3>
             <p>
-                Session authentication with mandatory login. On top of that, an access allowlist by IP address or network, managed from the interface itself, with two modes: <strong>monitor</strong>, which logs rejections without blocking, and <strong>strict</strong>, which blocks. Switching to strict is guarded: it cannot be enabled if the operator own address is not covered. The same list applies to the web interface and to the automation engine.
+                Mandatory login, integrated with the corporate identity provider. On top of that, an access allowlist by IP address or network, managed from the interface itself, with two modes: <strong>monitor</strong>, which logs rejections without blocking, and <strong>strict</strong>, which blocks. Switching to strict is guarded: it cannot be enabled if the operator own address is not covered. The same list applies to the web interface and to the automation engine.
             </p>
 
             <h3>Data separation</h3>
@@ -416,9 +416,14 @@
                 This is a security property too, not only a process one: no action that writes to the network happens without a person approving it, and every application is recorded with its approver, its diff, and its artifact.
             </p>
 
+            <h3>Corporate identity and second factor</h3>
+            <p>
+                Login integrates with the customer identity provider. Oktavia supports <strong>Okta</strong>, with single sign-on and a second factor managed by the provider: user onboarding, offboarding, and password policy live where the rest of the corporate directory already lives, with no parallel user list to maintain.
+            </p>
+
             <div class="doc-callout">
                 <p>
-                    <strong>Confidentiality and corporate identity.</strong> Handling of customer information is governed by the confidentiality agreement signed at the start of the project. Integration with a corporate identity provider, for single sign-on and a second factor, is evaluated and implemented per project.
+                    <strong>Confidentiality.</strong> Handling of customer information is governed by the confidentiality agreement signed at the start of the project, with the scope, retention, and return or destruction of the data agreed there.
                 </p>
             </div>
         </section>

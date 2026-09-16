@@ -398,7 +398,7 @@
 
             <h3>Acceso a la plataforma</h3>
             <p>
-                Autenticación con sesión e inicio de sesión obligatorio. Sobre eso, una lista blanca de acceso por dirección IP o red, administrada desde la propia interfaz, con dos modos: <strong>monitor</strong>, que registra los rechazos sin bloquear, y <strong>estricto</strong>, que bloquea. El paso a estricto está protegido: no se puede activar si la dirección del propio operador no queda cubierta. La misma lista se aplica a la interfaz web y al motor de automatización.
+                Inicio de sesión obligatorio, con integración al proveedor de identidad corporativo. Sobre eso, una lista blanca de acceso por dirección IP o red, administrada desde la propia interfaz, con dos modos: <strong>monitor</strong>, que registra los rechazos sin bloquear, y <strong>estricto</strong>, que bloquea. El paso a estricto está protegido: no se puede activar si la dirección del propio operador no queda cubierta. La misma lista se aplica a la interfaz web y al motor de automatización.
             </p>
 
             <h3>Separación de datos</h3>
@@ -416,9 +416,14 @@
                 Es también una propiedad de seguridad, no sólo de proceso: ninguna acción que escriba en la red ocurre sin que una persona la apruebe, y cada aplicación queda registrada con su aprobador, su diff y su artefacto.
             </p>
 
+            <h3>Identidad corporativa y segundo factor</h3>
+            <p>
+                El inicio de sesión se integra con el proveedor de identidad del cliente. Oktavia soporta <strong>Okta</strong>, con inicio de sesión único y segundo factor gestionado por el proveedor: el alta, la baja y las políticas de contraseña de los usuarios viven donde ya vive el resto del directorio corporativo, y no hay un padrón de usuarios paralelo que mantener.
+            </p>
+
             <div class="doc-callout">
                 <p>
-                    <strong>Confidencialidad y identidad corporativa.</strong> El tratamiento de la información del cliente se rige por el acuerdo de confidencialidad que se firma al inicio del proyecto. La integración con un proveedor de identidad corporativo, para inicio de sesión único y segundo factor, se evalúa y se implementa por proyecto.
+                    <strong>Confidencialidad.</strong> El tratamiento de la información del cliente se rige por el acuerdo de confidencialidad que se firma al inicio del proyecto, con el alcance, la retención y la devolución o destrucción de los datos que ahí se acuerden.
                 </p>
             </div>
         </section>
