@@ -65,6 +65,33 @@ def claves(cuerpo: str) -> list[str]:
     return re.findall(r"^            ([A-Za-z][A-Za-z0-9]*):", cuerpo, re.M)
 
 
+def span_de_arreglo(cuerpo: str, clave: str) -> tuple[int | None, int | None]:
+    """Limites del arreglo de una clave, para inspeccionar su contenido."""
+    m = re.search(r"^            " + re.escape(clave) + r": \[", cuerpo, re.M)
+    if not m:
+        return None, None
+    i = m.end() - 1
+    prof, j, en_cadena, comilla = 0, i, False, ""
+    while j < len(cuerpo):
+        c = cuerpo[j]
+        if en_cadena:
+            if c == "\\":
+                j += 2
+                continue
+            if c == comilla:
+                en_cadena = False
+        elif c in "'\"":
+            en_cadena, comilla = True, c
+        elif c in "[{":
+            prof += 1
+        elif c in "]}":
+            prof -= 1
+            if prof == 0:
+                return i, j + 1
+        j += 1
+    return None, None
+
+
 def largo_de_arreglo(cuerpo: str, clave: str) -> int | None:
     """Cuenta los elementos de primer nivel de un arreglo de cadenas."""
     m = re.search(r"^            " + re.escape(clave) + r": \[", cuerpo, re.M)
@@ -126,13 +153,54 @@ def main() -> int:
     if largo_de_arreglo(es, "caseTitles") != casos:
         fallas.append(f"caseTitles tiene {largo_de_arreglo(es, 'caseTitles')} textos y el HTML {casos} casos")
 
-    # Cada fila de licencias debe marcar exactamente las dos columnas de la tabla.
-    columnas = len(re.findall(r"'[^']+'", re.search(r"licensingHeaders: \[([^\]]*)\]", es).group(1))) - 1
-    for idioma, cuerpo in (("espanol", es), ("ingles", en)):
-        for planes in re.findall(r"plans: \[([^\]]*)\]", cuerpo):
-            if len(planes.split(",")) != columnas:
-                fallas.append(f"licensingRows ({idioma}): una fila no tiene {columnas} columnas")
-                break
+    # Las licencias: tantas tarjetas en el HTML como entradas de copy, y la
+    # misma cantidad de modulos listados en cada idioma.
+    planes = html.count('class="licensing-plan ')
+    for clave in ("licensingPlanLabels", "licensingPlanTitles", "licensingPlanBodies"):
+        if largo_de_arreglo(es, clave) != planes:
+            fallas.append(f"{clave} tiene {largo_de_arreglo(es, clave)} textos y el HTML {planes} licencias")
+
+    def modulos_por_plan(cuerpo: str) -> list[int]:
+        a, b = span_de_arreglo(cuerpo, "licensingPlanItems")
+        if a is None:
+            return []
+        return [len(re.findall(r"module: '", g))
+                for g in re.findall(r"\[\s*\{.*?\}\s*\]", cuerpo[a:b], re.S)]
+
+    por_plan_es, por_plan_en = modulos_por_plan(es), modulos_por_plan(en)
+    if por_plan_es != por_plan_en:
+        fallas.append(f"licensingPlanItems: {por_plan_es} modulos en espanol y {por_plan_en} en ingles")
+    elif len(por_plan_es) != planes:
+        fallas.append(f"licensingPlanItems tiene {len(por_plan_es)} listas y el HTML {planes} licencias")
+    else:
+        seccion = html[html.index('class="licensing-plans"'):html.index("</section>", html.index('class="licensing-plans"'))]
+        if sum(por_plan_es) != seccion.count("<li><strong>"):
+            fallas.append(f"licensingPlanItems suma {sum(por_plan_es)} modulos y el HTML lista "
+                          f"{seccion.count('<li><strong>')}")
+
+    # Los videos: mismo numero de titulos, cuerpos y tarjetas en el HTML.
+    videos_html = html.count('class="video-item"')
+    for clave in ("videoTitulos", "videoCuerpos"):
+        n = largo_de_arreglo(es, clave)
+        if n != videos_html:
+            fallas.append(f"{clave} tiene {n} textos y el HTML {videos_html} videos")
+
+    ids_html = re.findall(r'data-video="([\w-]+)"', html)
+    if len(set(ids_html)) != len(ids_html):
+        fallas.append("hay identificadores de video repetidos en el HTML")
+
+    # Los puntos del hero tambien son objetos con entradilla y texto.
+    def puntos_del_hero(cuerpo: str) -> int:
+        a, b = span_de_arreglo(cuerpo, "heroPoints")
+        return 0 if a is None else len(re.findall(r"label: '", cuerpo[a:b]))
+
+    hero_es, hero_en = puntos_del_hero(es), puntos_del_hero(en)
+    hero_html = html.count("<li><strong>", html.index('class="hero-points"'),
+                           html.index("</ul>", html.index('class="hero-points"')))
+    if hero_es != hero_en:
+        fallas.append(f"heroPoints: {hero_es} puntos en espanol y {hero_en} en ingles")
+    elif hero_es != hero_html:
+        fallas.append(f"heroPoints tiene {hero_es} puntos y el HTML {hero_html}")
 
     if fallas:
         print("El copy tiene problemas:")
@@ -141,7 +209,9 @@ def main() -> int:
         return 1
 
     print(f"copy OK: {len(claves(es))} claves en ambos idiomas, "
-          f"{tarjetas} tarjetas de servicio, {casos} casos, {columnas} columnas de licencia")
+          f"{tarjetas} tarjetas de servicio, {casos} casos, "
+          f"{planes} licencias con {sum(por_plan_es)} modulos, {hero_es} puntos en el hero, "
+          f"{videos_html} videos")
     return 0
 
 

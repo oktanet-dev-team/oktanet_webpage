@@ -33,15 +33,15 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DOCUMENTOS = {
     "es": {
-        "pagina": "docs/datasheet.html",
-        "salida": "docs/oktavia-2.0-datasheet-es.pdf",
-        "pie": "Oktavia 2.0 · Data sheet · Oktanet",
+        "pagina": "docs/oktavia.html",
+        "salida": "docs/oktavia-es.pdf",
+        "pie": "Oktavia · Información de plataforma · Oktanet",
         "de": "de",
     },
     "en": {
-        "pagina": "docs/datasheet-en.html",
-        "salida": "docs/oktavia-2.0-datasheet-en.pdf",
-        "pie": "Oktavia 2.0 · Data Sheet · Oktanet",
+        "pagina": "docs/oktavia-en.html",
+        "salida": "docs/oktavia-en.pdf",
+        "pie": "Oktavia · Platform information · Oktanet",
         "de": "of",
     },
 }

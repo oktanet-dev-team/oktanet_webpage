@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plantilla de la imagen para compartir</title>
+<!--
+  Plantilla de la tarjeta que se ve al compartir el sitio en LinkedIn,
+  WhatsApp o cualquier otro sitio que lea Open Graph. No se publica: la
+  renderiza tools/build_og.py a 1200x630 y guarda el PNG en img/.
+  El idioma llega por la cadena de consulta: ?lang=es | ?lang=en
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        position: relative;
+        font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(150deg, #102337 0%, #0a1726 55%, #071120 100%);
+        color: #ffffff;
+    }
+
+    /* La misma retícula tenue que usa la portada, para que la tarjeta se
+       reconozca como parte del sitio y no como una imagen suelta. */
+    body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(90deg, rgba(140, 181, 214, 0.10) 0 1px, transparent 1px),
+            linear-gradient(rgba(140, 181, 214, 0.08) 0 1px, transparent 1px),
+            radial-gradient(circle at 12% 16%, rgba(37, 160, 216, 0.28) 0%, rgba(37, 160, 216, 0) 45%),
+            radial-gradient(circle at 88% 84%, rgba(24, 224, 255, 0.18) 0%, rgba(24, 224, 255, 0) 40%);
+        background-size: 76px 76px, 76px 76px, 100% 100%, 100% 100%;
+    }
+
+    .marco {
+        position: relative;
+        height: 100%;
+        padding: 64px 72px;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        grid-template-rows: 1fr auto;
+        column-gap: 56px;
+        align-items: center;
+    }
+
+    .simbolo {
+        grid-row: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: 300px;
+        border-radius: 46px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(146, 186, 224, 0.3);
+    }
+
+    .simbolo img { width: 212px; }
+
+    .texto { grid-row: 1; }
+
+    .producto {
+        font-size: 82px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+    }
+
+    .lema {
+        margin-top: 14px;
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+        color: #6fd7f5;
+    }
+
+    .apoyo {
+        margin-top: 22px;
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 1.35;
+        color: #c2d6ea;
+        max-width: 28ch;
+    }
+
+    .pie {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-top: 26px;
+        border-top: 1px solid rgba(146, 186, 224, 0.26);
+    }
+
+    .pie img { width: 42px; }
+
+    .pie span {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: #dceaf7;
+    }
+
+    .pie .dominio { margin-left: auto; color: #6fd7f5; }
+</style>
+</head>
+<body>
+    <div class="marco">
+        <div class="simbolo">
+            <img src="../img/LOGO_Oktanet.png" alt="">
+        </div>
+        <div class="texto">
+            <p class="producto">Oktanet</p>
+            <p class="lema" data-lema></p>
+            <p class="apoyo" data-apoyo></p>
+        </div>
+        <div class="pie">
+            <img src="../img/LOGO_Oktavia.png" alt="">
+            <span>Oktavia · Argos</span>
+            <span class="dominio">oktanet.io</span>
+        </div>
+    </div>
+
+    <script>
+        const textos = {
+            es: {
+                lema: 'Tu red bajo control.',
+                apoyo: 'Servicios profesionales de automatización de redes. Oktavia como plataforma, Argos como asistente.'
+            },
+            en: {
+                lema: 'Your network under control.',
+                apoyo: 'Professional network automation services. Oktavia as the platform, Argos as the assistant.'
+            }
+        };
+
+        const idioma = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'es';
+        document.documentElement.lang = idioma;
+        document.querySelector('[data-lema]').textContent = textos[idioma].lema;
+        document.querySelector('[data-apoyo]').textContent = textos[idioma].apoyo;
+    </script>
+</body>
+</html>
