@@ -1,0 +1,672 @@
+/* ---------------------------------------------------------------------------
+   Documentacion de Oktanet: indice y documentos largos (data sheet).
+
+   Hereda la paleta de la portada para que un PDF impreso desde aqui se vea
+   como la pagina. El bloque @media print es parte del entregable, no un
+   adorno: el data sheet se distribuye en licitaciones como PDF.
+   --------------------------------------------------------------------------- */
+
+:root {
+    --bg-main: #08131f;
+    --bg-elevated: #0d1319;
+    --bg-deep: #060f1b;
+    --text-main: #c8d5ec;
+    --text-muted: #a3b7d2;
+    --line-soft: #15202b;
+    --line-strong: #2a4159;
+    --brand: #2b8fd4;
+    --brand-strong: #99d1f9;
+    --brand-soft: #041322;
+    --highlight: #57c8ea;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+    --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.42);
+    --doc-width: min(920px, calc(100% - 40px));
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-main);
+    background: var(--bg-main);
+    line-height: 1.55;
+}
+
+a {
+    color: var(--brand);
+    text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ----------------------------- Barra superior ----------------------------- */
+
+.doc-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: linear-gradient(180deg, #0f4d78 0%, #0b3a5c 100%);
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.doc-header-inner {
+    width: var(--doc-width);
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+}
+
+.doc-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+}
+
+.doc-brand img {
+    width: 34px;
+    height: 34px;
+}
+
+.doc-header nav {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.doc-header nav a {
+    color: #dceaf7;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.doc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    background: transparent;
+    font-family: inherit;
+}
+
+.doc-btn:hover,
+.doc-btn:focus-visible {
+    background: rgba(255, 255, 255, 0.14);
+    text-decoration: none;
+}
+
+.doc-btn-solid {
+    background: #fff;
+    color: #0b4a78;
+    border-color: #fff;
+}
+
+.doc-btn-solid:hover,
+.doc-btn-solid:focus-visible {
+    background: #e7f1fb;
+}
+
+/* `.doc-header nav a` pesa mas que `.doc-btn-solid`, asi que el enlace de
+   descarga heredaba el azul palido de la navegacion sobre fondo blanco y
+   quedaba casi ilegible. Se reponen los colores con la especificidad que hace
+   falta, no subiendo la del resto. */
+.doc-header nav a.doc-btn {
+    color: #ffffff;
+}
+
+.doc-header nav a.doc-btn-solid {
+    color: #0b4a78;
+}
+
+/* --------------------------------- Cuerpo --------------------------------- */
+
+.doc-main {
+    width: var(--doc-width);
+    margin: 0 auto;
+    padding: 40px 0 72px;
+}
+
+.doc-cover {
+    padding: 34px 34px 30px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.doc-eyebrow {
+    margin: 0 0 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--highlight);
+}
+
+.doc-cover h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.15;
+}
+
+.doc-lede {
+    margin: 0 0 18px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 70ch;
+}
+
+.doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.doc-meta li {
+    padding: 5px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    background: #001326;
+}
+
+.doc-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-soft);
+}
+
+.doc-share-label {
+    margin-right: 4px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.doc-share-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #001326;
+    color: var(--brand-strong);
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.doc-share-link:hover,
+.doc-share-link:focus-visible {
+    background: var(--brand-soft);
+    border-color: var(--brand);
+    text-decoration: none;
+}
+
+.doc-share-link.is-done {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #0d1319;
+}
+
+.doc-toc {
+    margin: 26px 0 0;
+    padding: 20px 24px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-md);
+}
+
+.doc-toc h2 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.doc-toc ol {
+    margin: 0;
+    padding-left: 20px;
+    columns: 2;
+    column-gap: 28px;
+}
+
+.doc-toc li {
+    margin-bottom: 5px;
+    break-inside: avoid;
+}
+
+.doc-section {
+    margin-top: 30px;
+    padding: 28px 30px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+}
+
+.doc-section h2 {
+    margin: 0 0 14px;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--brand-soft);
+}
+
+.doc-section h3 {
+    margin: 22px 0 8px;
+    font-size: 1.1rem;
+    color: var(--brand-strong);
+}
+
+.doc-section p {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+}
+
+.doc-section ul,
+.doc-section ol {
+    margin: 0 0 12px;
+    padding-left: 22px;
+    color: var(--text-muted);
+}
+
+.doc-section li {
+    margin-bottom: 6px;
+}
+
+.doc-section strong {
+    color: var(--text-main);
+}
+
+.doc-table-wrap {
+    overflow-x: auto;
+    margin: 0 0 14px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-md);
+}
+
+table.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+table.doc-table th,
+table.doc-table td {
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+table.doc-table thead th {
+    background: linear-gradient(180deg, #0c5a91 0%, #073f67 100%);
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+table.doc-table tbody tr:nth-child(even) td {
+    background: #041322;
+}
+
+table.doc-table td {
+    color: var(--text-muted);
+}
+
+table.doc-table td strong {
+    color: var(--text-main);
+}
+
+.doc-callout {
+    margin: 0 0 14px;
+    padding: 14px 18px;
+    border-left: 4px solid var(--brand);
+    background: #051321;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.doc-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.doc-steps {
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+    counter-reset: paso;
+}
+
+.doc-steps li {
+    counter-increment: paso;
+    position: relative;
+    padding: 8px 0 8px 42px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-muted);
+}
+
+.doc-steps li:last-child {
+    border-bottom: 0;
+}
+
+.doc-steps li::before {
+    content: counter(paso);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-strong);
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.doc-footer {
+    margin-top: 34px;
+    padding: 22px 30px;
+    background: var(--bg-deep);
+    color: #c8daee;
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+}
+
+.doc-footer h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 1.05rem;
+}
+
+.doc-footer a {
+    color: #9fd0f2;
+}
+
+/* ------------------------- Indice de documentacion ------------------------ */
+
+.doc-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 26px;
+}
+
+.doc-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18px;
+    align-items: start;
+    padding: 22px 24px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+}
+
+.doc-item-icon {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--brand-soft);
+    color: var(--brand-strong);
+    font-size: 24px;
+}
+
+.doc-item h3 {
+    margin: 0 0 6px;
+    font-size: 1.15rem;
+}
+
+.doc-item p {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-size: 0.96rem;
+}
+
+.doc-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.doc-item-actions a {
+    padding: 8px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.doc-item-actions a:hover,
+.doc-item-actions a:focus-visible {
+    background: var(--brand-soft);
+    text-decoration: none;
+}
+
+.doc-item-actions a.is-primary {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #0d1319;
+}
+
+.doc-item-actions a.is-primary:hover,
+.doc-item-actions a.is-primary:focus-visible {
+    background: var(--brand-strong);
+}
+
+@media (max-width: 720px) {
+    .doc-toc ol {
+        columns: 1;
+    }
+
+    .doc-section {
+        padding: 22px 18px;
+    }
+
+    .doc-cover {
+        padding: 24px 20px;
+    }
+
+    .doc-item {
+        grid-template-columns: 1fr;
+    }
+}
+
+.doc-social {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 6px !important;
+}
+
+.doc-social a {
+    font-weight: 700;
+}
+
+/* --------------------------------- Impresion ------------------------------ */
+
+@media print {
+    /* El sitio es oscuro; el papel no. Se restituye la paleta clara con la que
+       se diseno el documento y todo lo que usa tokens la sigue. */
+    :root {
+        --bg-main: #ffffff;
+        --bg-elevated: #ffffff;
+        --bg-deep: #ffffff;
+        --text-main: #132037;
+        --text-muted: #4a5d7a;
+        --line-soft: #d4deea;
+        --line-strong: #a6bad5;
+        --brand: #0c5a91;
+        --brand-strong: #063e66;
+        --brand-soft: #deecfb;
+        --highlight: #167a9f;
+        --shadow-soft: none;
+    }
+
+    .doc-footer {
+        color: #132037;
+    }
+
+    /* Las pastillas de la portada llevan su color literal, no un token. */
+    .doc-meta li {
+        background: #f7fbff;
+        border-color: #a6bad5;
+        color: #4a5d7a;
+    }
+
+    @page {
+        size: A4;
+        margin: 16mm 14mm;
+    }
+
+    :root {
+        --doc-width: 100%;
+    }
+
+    body {
+        background: #fff;
+        font-size: 10.5pt;
+        line-height: 1.45;
+    }
+
+    .doc-header,
+    .doc-toc-actions,
+    .no-print {
+        display: none !important;
+    }
+
+    .doc-main {
+        width: 100%;
+        padding: 0;
+    }
+
+    .doc-cover,
+    .doc-section,
+    .doc-toc,
+    .doc-item {
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        background: #fff;
+        padding: 0;
+        margin-top: 0;
+    }
+
+    .doc-cover {
+        padding-bottom: 10mm;
+        border-bottom: 2px solid #0c5a91;
+    }
+
+    .doc-toc {
+        margin-top: 8mm;
+    }
+
+    /* Chrome colapsa el multicolumna al paginar: en impresion se pide una
+       reticula explicita para que el indice siga ocupando dos columnas. */
+    .doc-toc ol {
+        columns: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12mm;
+    }
+
+    .doc-section {
+        margin-top: 8mm;
+        break-inside: auto;
+    }
+
+    .doc-section h2 {
+        break-after: avoid;
+        font-size: 14pt;
+    }
+
+    .doc-section h3 {
+        break-after: avoid;
+        font-size: 11.5pt;
+    }
+
+    table.doc-table {
+        font-size: 9pt;
+    }
+
+    table.doc-table thead {
+        display: table-header-group;
+    }
+
+    table.doc-table tr {
+        break-inside: avoid;
+    }
+
+    .doc-table-wrap {
+        overflow: visible;
+        border: 1px solid #c9d8e7;
+    }
+
+    .doc-callout {
+        break-inside: avoid;
+        background: #f4f8fc;
+    }
+
+    .doc-footer {
+        background: #fff;
+        color: #132037;
+        border-top: 2px solid #0c5a91;
+        border-radius: 0;
+        padding: 6mm 0 0;
+        break-inside: avoid;
+    }
+
+    .doc-footer h3,
+    .doc-footer a {
+        color: #0c5a91;
+    }
+}
