@@ -83,6 +83,7 @@
                 <li><a href="#vendors">Cobertura por fabricante</a></li>
                 <li><a href="#integraciones">Integraciones</a></li>
                 <li><a href="#arquitectura">Arquitectura y modelo de operación</a></li>
+                <li><a href="#seguridad-plataforma">Seguridad de la plataforma</a></li>
                 <li><a href="#requisitos">Requisitos de integración</a></li>
                 <li><a href="#implementacion">Proceso de implementación</a></li>
                 <li><a href="#licenciamiento">Licenciamiento</a></li>
@@ -379,8 +380,59 @@
             </ul>
         </section>
 
+        <section class="doc-section" id="seguridad-plataforma">
+            <h2>13. Seguridad de la plataforma</h2>
+            <p>
+                Oktavia tiene acceso de lectura y, cuando el cliente lo autoriza, de cambio sobre su red. Su propia seguridad es parte del alcance, no un anexo.
+            </p>
+
+            <h3>Dónde viven los datos</h3>
+            <p>
+                La plataforma se despliega en la infraestructura del cliente, en sus instalaciones o en su nube privada. El inventario, las configuraciones y los artefactos no salen de ahí. La única excepción es el análisis con inteligencia artificial: cuando se ejecuta una acción que consume el modelo, el contenido necesario para esa consulta viaja al proveedor de IA. Argos declara antes de cada acción si va a consumirlo, así que la decisión es del operador caso por caso, y las capacidades deterministas cubren la mayor parte del trabajo sin enviar nada.
+            </p>
+
+            <h3>Credenciales de los equipos</h3>
+            <p>
+                Se guardan cifradas en reposo en la base de datos, con una llave que vive en la configuración del despliegue y no en el código. No se muestran en la interfaz ni se escriben en los registros. Se recomienda usar credenciales de sólo lectura para el descubrimiento, y credenciales de cambio separadas, únicamente si va a haber remediación.
+            </p>
+
+            <h3>Acceso a la plataforma</h3>
+            <p>
+                Inicio de sesión obligatorio, con integración al proveedor de identidad corporativo. Sobre eso, una lista blanca de acceso por dirección IP o red, administrada desde la propia interfaz, con dos modos: <strong>monitor</strong>, que registra los rechazos sin bloquear, y <strong>estricto</strong>, que bloquea. El paso a estricto está protegido: no se puede activar si la dirección del propio operador no queda cubierta. La misma lista se aplica a la interfaz web y al motor de automatización.
+            </p>
+
+            <h3>Separación de datos</h3>
+            <p>
+                Multi-tenant con separación a nivel de registro: toda consulta va acotada a la organización del usuario. Los datos de un cliente no son alcanzables desde la sesión de otro, ni por error de programación.
+            </p>
+
+            <h3>Entre componentes</h3>
+            <p>
+                La interfaz web y el motor de automatización se autentican con clave en cada llamada, en las dos direcciones. El motor no expone ninguna operación sin ella.
+            </p>
+
+            <h3>Ningún cambio sin aprobación</h3>
+            <p>
+                Es también una propiedad de seguridad, no sólo de proceso: ninguna acción que escriba en la red ocurre sin que una persona la apruebe, y cada aplicación queda registrada con su aprobador, su diff y su artefacto.
+            </p>
+
+            <h3>Identidad corporativa y segundo factor</h3>
+            <p>
+                El inicio de sesión se integra con el proveedor de identidad del cliente por OpenID Connect. Oktavia soporta <strong>Okta</strong>, y con él el inicio de sesión único y el segundo factor que la política del proveedor ya exija: el alta, la baja y las contraseñas de los usuarios viven donde ya vive el directorio corporativo, sin un padrón paralelo que mantener. Las contraseñas locales quedan reservadas para contingencia.
+            </p>
+            <p>
+                La plataforma puede además exigir que la autenticación sea reciente, y no sólo que exista una sesión abierta en el proveedor: pedir un evento de autenticación fresco, restringir los métodos aceptados, por ejemplo llave de acceso, y exigir un nivel de aseguramiento concreto, como el de doble factor de Okta. Es lo que hace que cerrar el navegador vuelva a pedir el segundo factor.
+            </p>
+
+            <div class="doc-callout">
+                <p>
+                    <strong>Confidencialidad.</strong> El tratamiento de la información del cliente se rige por el acuerdo de confidencialidad que se firma al inicio del proyecto, con el alcance, la retención y la devolución o destrucción de los datos que ahí se acuerden.
+                </p>
+            </div>
+        </section>
+
         <section class="doc-section" id="requisitos">
-            <h2>13. Requisitos de integración</h2>
+            <h2>14. Requisitos de integración</h2>
             <p>Para implementar Oktavia sobre una red existente pedimos al cliente:</p>
             <ul>
                 <li>Inventario base de dispositivos.</li>
@@ -410,7 +462,7 @@
         </section>
 
         <section class="doc-section" id="implementacion">
-            <h2>14. Proceso de implementación</h2>
+            <h2>15. Proceso de implementación</h2>
             <ol class="doc-steps">
                 <li><strong>Onboarding de datos.</strong> Recibir el inventario base, homologar nombres, roles, sitios, plataformas y modelos, y cargar el archivo inicial.</li>
                 <li><strong>Descubrimiento controlado.</strong> Validar alcanzabilidad, ejecutar el descubrimiento por lotes, recolectar respaldos y normalizar el inventario observado.</li>
@@ -440,7 +492,7 @@
         </section>
 
         <section class="doc-section" id="licenciamiento">
-            <h2>15. Licenciamiento</h2>
+            <h2>16. Licenciamiento</h2>
             <p>
                 La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
             </p>
@@ -455,7 +507,7 @@
         </section>
 
         <section class="doc-section" id="casos">
-            <h2>16. Casos de uso</h2>
+            <h2>17. Casos de uso</h2>
             <ul>
                 <li>Auditoría de cumplimiento de configuración sobre múltiples sitios en minutos.</li>
                 <li>Detección automática de desviación de configuración tras una ventana de mantenimiento.</li>

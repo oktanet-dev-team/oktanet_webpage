@@ -83,6 +83,7 @@
                 <li><a href="#vendors">Per-vendor coverage</a></li>
                 <li><a href="#integrations">Integrations</a></li>
                 <li><a href="#architecture">Architecture and operating model</a></li>
+                <li><a href="#platform-security">Platform security</a></li>
                 <li><a href="#requirements">Integration requirements</a></li>
                 <li><a href="#implementation">Implementation process</a></li>
                 <li><a href="#licensing">Licensing</a></li>
@@ -379,8 +380,59 @@
             </ul>
         </section>
 
+        <section class="doc-section" id="platform-security">
+            <h2>13. Platform security</h2>
+            <p>
+                Oktavia has read access and, when the customer authorizes it, change access to their network. Its own security is part of the scope, not an annex.
+            </p>
+
+            <h3>Where the data lives</h3>
+            <p>
+                The platform is deployed on the customer infrastructure, on premises or in their private cloud. Inventory, configurations, and artifacts do not leave it. The only exception is AI analysis: when an action that consumes the model runs, the content that query needs travels to the AI provider. Argos states before every action whether it will consume it, so the decision is the operator's, case by case, and the deterministic capabilities cover most of the work without sending anything.
+            </p>
+
+            <h3>Device credentials</h3>
+            <p>
+                They are stored encrypted at rest in the database, with a key that lives in the deployment configuration and not in the code. They are never shown in the interface nor written to logs. We recommend read-only credentials for discovery, and separate change credentials only if remediation is in scope.
+            </p>
+
+            <h3>Access to the platform</h3>
+            <p>
+                Mandatory login, integrated with the corporate identity provider. On top of that, an access allowlist by IP address or network, managed from the interface itself, with two modes: <strong>monitor</strong>, which logs rejections without blocking, and <strong>strict</strong>, which blocks. Switching to strict is guarded: it cannot be enabled if the operator own address is not covered. The same list applies to the web interface and to the automation engine.
+            </p>
+
+            <h3>Data separation</h3>
+            <p>
+                Multi-tenant with row-level separation: every query is scoped to the user organization. One customer data is not reachable from another customer session, not even through a programming mistake.
+            </p>
+
+            <h3>Between components</h3>
+            <p>
+                The web interface and the automation engine authenticate with a key on every call, in both directions. The engine exposes no operation without it.
+            </p>
+
+            <h3>No change without approval</h3>
+            <p>
+                This is a security property too, not only a process one: no action that writes to the network happens without a person approving it, and every application is recorded with its approver, its diff, and its artifact.
+            </p>
+
+            <h3>Corporate identity and second factor</h3>
+            <p>
+                Login integrates with the customer identity provider over OpenID Connect. Oktavia supports <strong>Okta</strong>, and with it single sign-on and whatever second factor the provider policy already enforces: onboarding, offboarding, and passwords live where the corporate directory already lives, with no parallel user list to maintain. Local passwords are kept for contingency only.
+            </p>
+            <p>
+                The platform can also require the authentication to be recent, not merely that a session exists at the provider: it can demand a fresh authentication event, restrict the accepted methods, a passkey for example, and require a specific assurance level, such as the Okta two-factor one. That is what makes closing the browser ask for the second factor again.
+            </p>
+
+            <div class="doc-callout">
+                <p>
+                    <strong>Confidentiality.</strong> Handling of customer information is governed by the confidentiality agreement signed at the start of the project, with the scope, retention, and return or destruction of the data agreed there.
+                </p>
+            </div>
+        </section>
+
         <section class="doc-section" id="requirements">
-            <h2>13. Integration requirements</h2>
+            <h2>14. Integration requirements</h2>
             <p>To deploy Oktavia over an existing network we ask the customer for:</p>
             <ul>
                 <li>Base device inventory.</li>
@@ -410,7 +462,7 @@
         </section>
 
         <section class="doc-section" id="implementation">
-            <h2>14. Implementation process</h2>
+            <h2>15. Implementation process</h2>
             <ol class="doc-steps">
                 <li><strong>Data onboarding.</strong> Receive the base inventory, normalize names, roles, sites, platforms, and models, and load the initial file.</li>
                 <li><strong>Controlled discovery.</strong> Validate reachability, run discovery in batches, collect backups, and normalize the observed inventory.</li>
@@ -440,7 +492,7 @@
         </section>
 
         <section class="doc-section" id="licensing">
-            <h2>15. Licensing</h2>
+            <h2>16. Licensing</h2>
             <p>
                 The complete platform is <strong>Oktavia Pro</strong>. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
             </p>
@@ -455,7 +507,7 @@
         </section>
 
         <section class="doc-section" id="usecases">
-            <h2>16. Use cases</h2>
+            <h2>17. Use cases</h2>
             <ul>
                 <li>Configuration compliance audit across multiple sites in minutes.</li>
                 <li>Automatic detection of configuration drift after a maintenance window.</li>
