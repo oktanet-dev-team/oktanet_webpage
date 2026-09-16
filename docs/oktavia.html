@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Data sheet de Oktavia 2.0 | Oktanet</title>
-    <meta name="description" content="Data sheet de Oktavia 2.0: módulos, cobertura por fabricante, integraciones, arquitectura, licenciamiento y proceso de implementación de la plataforma de automatización de redes de Oktanet.">
-    <link rel="canonical" href="https://oktanet.io/docs/datasheet.html">
+    <title>Información de Oktavia | Oktanet</title>
+    <meta name="description" content="Información de Oktavia: módulos, cobertura por fabricante, integraciones, arquitectura, licenciamiento y proceso de implementación de la plataforma de automatización de redes de Oktanet.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia.html">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:title" content="Data sheet de Oktavia 2.0">
+    <meta property="og:title" content="Información de Oktavia">
     <meta property="og:description" content="Módulos, cobertura por fabricante, integraciones, licenciamiento y proceso de implementación.">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://oktanet.io/docs/datasheet.html">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia.html">
     <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet, con el lema Tu red bajo control">
 
+    <meta name="theme-color" content="#081521">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,26 +38,34 @@
             <nav aria-label="Documento">
                 <a href="./">Documentación</a>
                 <a href="../#contacto">Contacto</a>
-                <a href="./datasheet-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <a href="./oktavia-en.html" data-doc-lang="en" hreflang="en">English</a>
                 <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
-                <a class="doc-btn doc-btn-solid" href="oktavia-2.0-datasheet-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="oktavia-es.pdf" download>Descargar PDF</a>
             </nav>
         </div>
     </header>
 
     <main class="doc-main">
         <section class="doc-cover">
-            <p class="doc-eyebrow">Data sheet · Plataforma</p>
-            <h1>Oktavia 2.0<br>Automatización de redes multivendor</h1>
+            <p class="doc-eyebrow">Información de plataforma</p>
+            <h1>Oktavia<br>Automatización de redes multivendor</h1>
             <p class="doc-lede">
                 Oktavia descubre la red, verifica que cumpla el estándar del cliente, propone el cambio contra la intención declarada y, con aprobación humana, lo aplica y confirma que el hallazgo cerró. Un solo ciclo, cuatro fabricantes en producción, cada acción con artefacto descargable.
             </p>
             <ul class="doc-meta">
-                <li>Versión 2.0</li>
                 <li>Desarrollado por Oktanet</li>
                 <li>México · 2026</li>
                 <li>Documento público</li>
             </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Compartir</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+            </div>
         </section>
 
         <nav class="doc-toc" aria-label="Contenido del documento">
@@ -85,7 +100,7 @@
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>Lo que distingue a la versión 2.0:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; seguridad de red con evidencia de configuración; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
+                    <strong>Lo que distingue a Oktavia:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; seguridad de red con evidencia de configuración; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
                 </p>
             </div>
         </section>
@@ -302,20 +317,19 @@
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
-                        <tr><th scope="col">Fabricante</th><th scope="col">Estado</th><th scope="col">Método de acceso</th><th scope="col">Cobertura</th></tr>
+                        <tr><th scope="col">Fabricante</th><th scope="col">Método de acceso</th><th scope="col">Cobertura</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>Producción</td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
-                        <tr><td><strong>Fortinet FortiGate</strong></td><td>Producción</td><td>API REST</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas de firewall</td></tr>
-                        <tr><td><strong>Fortinet FortiSwitch</strong></td><td>Producción</td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
-                        <tr><td><strong>Juniper Junos</strong></td><td>Producción</td><td>NETCONF</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas por zona</td></tr>
-                        <tr><td><strong>Ubiquiti</strong></td><td>En hoja de ruta</td><td>—</td><td>—</td></tr>
+                        <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
+                        <tr><td><strong>Fortinet FortiGate</strong></td><td>API REST</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas de firewall</td></tr>
+                        <tr><td><strong>Fortinet FortiSwitch</strong></td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
+                        <tr><td><strong>Juniper Junos</strong></td><td>NETCONF</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas por zona</td></tr>
                     </tbody>
                 </table>
             </div>
             <div class="doc-callout">
                 <p>
-                    <strong>Cómo se integra un fabricante nuevo.</strong> Cada fabricante tiene su propio modelo de configuración normalizado, no una traducción a sintaxis Cisco: dominios virtuales e interfaces en FortiOS, contextos y zonas en Junos. Integrar uno nuevo son cuatro piezas: adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas de generación. Es trabajo acotado y repetible, y es la vía por la que se amplía la cobertura según el parque instalado de cada cliente.
+                    <strong>La cobertura se amplía con cada proyecto.</strong> La arquitectura es multiplataforma por diseño: cada fabricante tiene su propio modelo de configuración normalizado, no una traducción a sintaxis Cisco. Dominios virtuales e interfaces en FortiOS, contextos y zonas en Junos. Integrar una plataforma nueva son cuatro piezas conocidas: adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas de generación. Es trabajo acotado y repetible, y se hace contra el parque instalado real del cliente, en pruebas de concepto y proyectos.
                 </p>
             </div>
         </section>
@@ -331,11 +345,10 @@
                     <tbody>
                         <tr><td><strong>SNMP y recolección de métricas</strong></td><td>Producción</td><td>Motor de telemetría nativo: sondeo y almacenamiento en base de series de tiempo.</td></tr>
                         <tr><td><strong>Grafana</strong></td><td>Compatible</td><td>La base de series de tiempo de Oktavia es fuente de datos directa de Grafana; el cliente construye sus tableros sobre las mismas métricas sin transformación adicional.</td></tr>
-                        <tr><td><strong>Zabbix y Prometheus</strong></td><td>Interoperable</td><td>Los dispositivos expuestos por SNMP pueden ser consumidos por Zabbix. Exportador compatible con Prometheus en hoja de ruta.</td></tr>
+                        <tr><td><strong>Zabbix y otros sistemas SNMP</strong></td><td>Interoperable</td><td>Los dispositivos expuestos por SNMP pueden ser consumidos por el sistema de monitoreo que el cliente ya opera.</td></tr>
                         <tr><td><strong>Correo electrónico (SMTP)</strong></td><td>Producción</td><td>Notificaciones y alertas por correo sobre cualquier servidor SMTP del cliente.</td></tr>
                         <tr><td><strong>Anthropic (Claude API)</strong></td><td>Producción</td><td>Motor de IA para análisis, recomendaciones y asistencia conversacional.</td></tr>
-                        <tr><td><strong>Webhooks HTTP</strong></td><td>Producción</td><td>Envío de eventos a cualquier punto de integración HTTP; base para herramientas de tickets y mensajería.</td></tr>
-                        <tr><td><strong>Gestión de tickets</strong></td><td>En hoja de ruta</td><td>Creación automática de tickets al dispararse una regla de evento.</td></tr>
+                        <tr><td><strong>Webhooks HTTP</strong></td><td>Producción</td><td>Envío de eventos a cualquier punto de integración HTTP, que es la vía para conectar herramientas de tickets y de mensajería.</td></tr>
                         <tr><td><strong>Fuente de verdad externa</strong></td><td>Opcional</td><td>Ingesta de inventario desde un sistema de registro externo si el cliente ya opera uno.</td></tr>
                         <tr><td><strong>CSV y API REST</strong></td><td>Producción</td><td>Import y export de inventario, catálogos y datos en todos los módulos; integración programática por API.</td></tr>
                     </tbody>
@@ -429,7 +442,7 @@
         <section class="doc-section" id="licenciamiento">
             <h2>15. Licenciamiento</h2>
             <p>
-                Dos licencias, no tres ediciones. La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
+                La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
             </p>
             <h3>Oktavia Pro</h3>
             <p>
@@ -471,7 +484,8 @@
             <p>
                 Para una demostración sobre su entorno, escríbanos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
             </p>
-            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia 2.0 · Documento público, sin información confidencial de clientes.</p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Documento público, sin información confidencial de clientes.</p>
         </footer>
     </main>
 

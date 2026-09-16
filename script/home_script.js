@@ -21,17 +21,17 @@
     const featureFocusSectionEl = document.querySelector('.feature-focus-section');
     const metricsSectionLabelEl = document.querySelector('.metrics-section');
     const licensingSectionEl = document.querySelector('.licensing-section');
+    const familySectionEl = document.querySelector('.family-section');
+    const argosSectionEl = document.querySelector('.argos-section');
+    const proSectionEl = document.querySelector('.pro-section');
+    const videoSectionEl = document.querySelector('.video-section');
     const resourcesSectionEl = document.querySelector('.resources-section');
-    const resourcePdfLink = document.querySelector('.resource-actions [data-resource="pdf"]');
-    const resourceOnlineLink = document.querySelector('.resource-actions [data-resource="online"]');
     const brandImage = document.querySelector('.brand img');
     const brandWordmark = document.querySelector('.brand-wordmark');
     const heroImage = document.querySelector('.hero-visual img');
     const platformImage = document.querySelector('.platform-visual img');
     const serviceIcons = document.querySelectorAll('.services-grid .service-card .service-icon');
     const showcaseImages = document.querySelectorAll('.showcase-grid img');
-    const licensingTableHeadRow = document.querySelector('.licensing-table thead tr');
-    const licensingTableBody = document.querySelector('.licensing-table tbody');
     const footerLogo = document.querySelector('.footer-brand img');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const globalAnimationDelayMs = 140;
@@ -88,134 +88,78 @@
         });
     };
 
-    const escapeHtml = function (value) {
-        return String(value)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#39;');
-    };
+    // Las dos licencias dejaron de ser comparables celda por celda: Oktavia Pro
+    // incluye diecinueve modulos y la otra tres. Una tabla de palomitas contra
+    // guiones ocupaba media pantalla para decir "casi todo esta en Pro". Cada
+    // licencia se lista con lo que trae, y cada modulo con lo que hace, que es
+    // lo que un evaluador necesita leer sin pasar el raton por encima.
+    const renderLicensingPlans = function (copy) {
+        const listas = document.querySelectorAll('.licensing-plan-list');
 
-    const licensingHoverCard = licensingTableBody ? document.createElement('div') : null;
-    let activeLicensingTrigger = null;
-
-    if (licensingHoverCard) {
-        licensingHoverCard.className = 'licensing-hover-card';
-        licensingHoverCard.setAttribute('role', 'tooltip');
-        body.appendChild(licensingHoverCard);
-    }
-
-    const hideLicensingHoverCard = function () {
-        if (!licensingHoverCard) {
+        if (!listas.length || !Array.isArray(copy.licensingPlanItems)) {
             return;
         }
 
-        licensingHoverCard.classList.remove('is-visible');
-        activeLicensingTrigger = null;
-    };
+        listas.forEach(function (lista, indice) {
+            const modulos = copy.licensingPlanItems[indice];
 
-    const positionLicensingHoverCard = function (trigger) {
-        if (!licensingHoverCard || !trigger) {
-            return;
-        }
-
-        const rect = trigger.getBoundingClientRect();
-        const viewportPadding = 16;
-        let left = rect.left;
-        let top = rect.bottom + 12;
-
-        licensingHoverCard.style.left = '0px';
-        licensingHoverCard.style.top = '0px';
-        licensingHoverCard.classList.add('is-visible');
-
-        const tooltipRect = licensingHoverCard.getBoundingClientRect();
-
-        if (left + tooltipRect.width > window.innerWidth - viewportPadding) {
-            left = window.innerWidth - tooltipRect.width - viewportPadding;
-        }
-
-        if (left < viewportPadding) {
-            left = viewportPadding;
-        }
-
-        if (top + tooltipRect.height > window.innerHeight - viewportPadding) {
-            top = rect.top - tooltipRect.height - 12;
-        }
-
-        if (top < viewportPadding) {
-            top = viewportPadding;
-        }
-
-        licensingHoverCard.style.left = left + 'px';
-        licensingHoverCard.style.top = top + 'px';
-    };
-
-    const showLicensingHoverCard = function (trigger) {
-        if (!licensingHoverCard || !trigger) {
-            return;
-        }
-
-        const description = trigger.getAttribute('data-licensing-description');
-
-        if (!description) {
-            hideLicensingHoverCard();
-            return;
-        }
-
-        activeLicensingTrigger = trigger;
-        licensingHoverCard.textContent = description;
-        positionLicensingHoverCard(trigger);
-    };
-
-    const renderLicensingStatus = function (isIncluded, includedLabel, unavailableLabel, includedMark, unavailableMark) {
-        return '<span class="license-status ' + (isIncluded ? 'is-included' : 'is-unavailable') + '" aria-label="' + (isIncluded ? includedLabel : unavailableLabel) + '"><span aria-hidden="true">' + (isIncluded ? includedMark : unavailableMark) + '</span></span>';
-    };
-
-    const renderLicensingTable = function (copy) {
-        if (!licensingTableHeadRow || !licensingTableBody || !copy.licensingHeaders || !copy.licensingRows) {
-            return;
-        }
-
-        licensingTableHeadRow.innerHTML = copy.licensingHeaders.map(function (header) {
-            return '<th scope="col">' + header + '</th>';
-        }).join('');
-
-        licensingTableBody.innerHTML = copy.licensingRows.map(function (row, index) {
-            const rowClasses = ['licensing-table-main'];
-
-            if (row.advanced) {
-                rowClasses.push('licensing-row-advanced');
+            if (!Array.isArray(modulos)) {
+                return;
             }
 
-            if (index % 2 === 1) {
-                rowClasses.push('is-even');
+            // Se arma por DOM y no concatenando HTML: el texto viene del
+            // diccionario, pero no hay razon para reintroducir un escape manual.
+            const fragmento = document.createDocumentFragment();
+
+            modulos.forEach(function (modulo) {
+                const item = document.createElement('li');
+                const nombre = document.createElement('strong');
+
+                nombre.textContent = modulo.module;
+                item.appendChild(nombre);
+                item.appendChild(document.createTextNode(modulo.description));
+                fragmento.appendChild(item);
+            });
+
+            lista.textContent = '';
+            lista.appendChild(fragmento);
+        });
+    };
+
+    // Cada punto abre con lo que hace la capacidad, en negrita, y sigue con el
+    // detalle. Se arma por DOM para no reintroducir un escape manual de HTML.
+    const renderHeroPoints = function (copy) {
+        const puntos = document.querySelectorAll('.hero-points li');
+
+        if (!puntos.length || !Array.isArray(copy.heroPoints)) {
+            return;
+        }
+
+        puntos.forEach(function (elemento, indice) {
+            const punto = copy.heroPoints[indice];
+
+            if (!punto || typeof punto.label !== 'string') {
+                return;
             }
 
-            // Las columnas salen de `row.plans`, no de campos fijos `core`/`pro`:
-            // el modelo de licenciamiento cambio una vez y va a volver a cambiar.
-            const plans = Array.isArray(row.plans) ? row.plans : [];
-
-            return '<tr class="' + rowClasses.join(' ') + '">' +
-                '<th scope="row" class="licensing-table-module"><button type="button" class="licensing-module-trigger" data-licensing-description="' + escapeHtml(row.description) + '">' + escapeHtml(row.module) + '</button></th>' +
-                plans.map(function (included) {
-                    return '<td class="licensing-table-status">' + renderLicensingStatus(included, copy.licensingIncludedLabel, copy.licensingUnavailableLabel, copy.licensingIncludedMark, copy.licensingUnavailableMark) + '</td>';
-                }).join('') +
-                '</tr>';
-        }).join('');
-        hideLicensingHoverCard();
+            const etiqueta = document.createElement('strong');
+            etiqueta.textContent = punto.label;
+            elemento.textContent = '';
+            elemento.appendChild(etiqueta);
+            elemento.appendChild(document.createTextNode(punto.text || ''));
+        });
     };
 
     const translations = {
         es: {
             htmlLang: 'es',
-            title: 'Oktavia 2.0 — Automatización de redes multivendor | Oktanet',
-            metaDescription: 'Oktavia 2.0 automatiza descubrimiento, cumplimiento, seguridad y remediación verificada en redes multivendor: detecta la desviación, propone el cambio, lo aplica con aprobación y confirma que cerró.',
+            title: 'Oktanet · Automatización de redes multivendor',
+            metaDescription: 'Oktanet presta servicios profesionales de automatización de redes: Oktavia como plataforma y Argos como asistente. Detecta la desviación, propone el cambio, lo aplica con aprobación y confirma que cerró.',
             brandAria: 'Ir al inicio',
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Plataforma', 'Servicios', 'Metodología', 'Casos de uso', 'Quiénes somos', 'Licencias', 'Recursos'],
+            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Recursos'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -231,18 +175,31 @@
             metricsEyebrow: 'Impacto medible',
             metricsTitle: 'Resultados operativos desde las primeras iteraciones de adopción.',
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
-            heroEyebrow: 'Oktavia 2.0 · Automatización de redes segura y auditable',
-            heroTitle: 'De detectar la desviación a remediarla verificada, sin salir de una sola plataforma.',
-            heroBody: 'Oktavia es una plataforma de automatización para redes multivendor. Descubre la red, verifica que cumpla tu estándar, propone el cambio contra la intención declarada y, con tu aprobación, lo aplica y confirma que el hallazgo cerró.',
-            heroActions: ['Solicitar una demostración', 'Descargar el data sheet'],
+            heroTitle: 'tu red bajo control.',
+            heroTitleBrand: 'Oktanet:',
+            heroBody: 'Servicios profesionales de automatización de redes. Llevamos tu red multivendor a un estándar declarado, verificable y corregible, con Oktavia como plataforma y Argos como asistente. Diseño, implementación y operación, llave en mano.',
+            heroActions: ['Solicitar una demostración', 'Ver la información', 'Descargar el PDF'],
             heroPoints: [
-                'Ningún cambio llega a la red sin que una persona lo apruebe: primero se genera la configuración deseada y se revisa el diff contra lo activo.',
-                'Cada ejecución deja artefactos descargables y versionables (JSON, CSV, CFG) y queda registrada en el historial de trabajos.',
-                'El ciclo completo usa la primitiva segura de cada fabricante: commit confirmed en Junos, operaciones CMDB en FortiGate, diff y verificación en IOS y FortiSwitch.'
+                {
+                    label: 'Descubre y audita.',
+                    text: ' Inventario, topología y cumplimiento de toda la red en minutos, sin revisar un solo equipo a mano.'
+                },
+                {
+                    label: 'Corrige y verifica.',
+                    text: ' Propone el cambio, lo aplica sólo con tu aprobación y vuelve a auditar para confirmar que el problema cerró.'
+                },
+                {
+                    label: 'Seguridad con evidencia.',
+                    text: ' La postura de tus firewalls y switches, con la línea de configuración que sustenta cada hallazgo.'
+                },
+                {
+                    label: 'Pregunta en tu idioma.',
+                    text: ' Argos responde con datos de tu red, y te dice antes de pulsar si la respuesta consume IA.'
+                }
             ],
-            trustLabel: 'Compatible con infraestructura multifabricante:',
-            platformEyebrow: 'Producto principal',
-            platformTitle: 'Oktavia 2.0: motor de automatización, interfaz web y ChatOps para operar la red con control continuo.',
+            trustLabel: 'Multivendor en producción, y más fabricantes se integran por proyecto:',
+            platformEyebrow: 'Oktavia · La plataforma',
+            platformTitle: 'Oktavia: motor de automatización, interfaz web y ChatOps para operar la red con control continuo.',
             platformBody: 'Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol o dispositivo, configuración deseada, seguridad de red y remediación verificada en una sola consola. Argos, el asistente de ChatOps, atraviesa todos los módulos y declara en cada acción si consume el modelo de IA o si se resuelve de forma determinista.',
             platformChips: [
                 'Ciclo cerrado con aprobación',
@@ -250,6 +207,74 @@
                 'Artefactos versionables',
                 'Multi-tenant',
                 'API REST con clave de API'
+            ],
+            videoAria: 'Oktavia en video',
+            videoEyebrow: 'Oktavia en video',
+            videoTitle: 'Ver la plataforma funcionando, sin pedir una demostración.',
+            videoIntro: 'Recorridos cortos por cada módulo, grabados sobre la plataforma real. El reproductor sólo se carga cuando pulsas, así que pasar por aquí no te rastrea.',
+            videoTitulo: 'Video de Oktavia',
+            videoTitulos: [
+                'Tu red bajo control',
+                'El centro de automatización',
+                'Descubrimiento de red',
+                'El inventario',
+                'De la visibilidad al cumplimiento',
+                'Gemelo digital: detectar y remediar'
+            ],
+            videoCuerpos: [
+                'El recorrido comercial de la plataforma, en dos minutos.',
+                'El panel principal: cumplimiento, dispositivos accesibles y actividad reciente.',
+                'Cómo se construye la fuente de verdad a partir de los equipos que ya tienes.',
+                'Equipos, sitios, roles y plataformas, con filtros y exportación.',
+                'La auditoría: qué falló, con qué severidad y qué líneas de configuración faltan.',
+                'El ciclo cerrado: proponer, aprobar, aplicar y verificar que el hallazgo cerró.'
+            ],
+            videoCanal: 'Ver el canal completo en YouTube',
+            familyAria: 'Oktanet, Oktavia y Argos',
+            familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
+            familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
+            familyNames: ['Oktavia', 'Argos', 'Servicios profesionales'],
+            familyRoles: ['La plataforma', 'El asistente', 'La implementación'],
+            familyBodies: [
+                'Descubre, audita, corrige y verifica sobre Cisco, Fortinet y Juniper. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.',
+                'ChatOps integrado en todas las pantallas de Oktavia. Responde con datos de la red y declara si consume IA antes de que pulses.',
+                'Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada.'
+            ],
+            familyLogoAlts: ['Logo de Oktavia', 'Logo de Argos', 'Logo de Oktanet'],
+            familyMore: 'Ver más',
+            argosAria: 'Argos, el ChatOps de red',
+            argosEyebrow: 'Argos · ChatOps de red',
+            argosTitle: 'Se le pregunta en lenguaje natural y responde con datos de tu red.',
+            argosIntro: 'Dos principios lo separan de un asistente genérico. Cada respuesta declara si consumió el modelo de IA o si se resolvió de forma determinista, así que el costo es visible antes de pulsar. Y ninguna acción que toque la red ocurre sin que una persona la apruebe.',
+            argosLogoAlt: 'Logo de Argos',
+            argosTitles: ['Entender', 'Investigar', 'Configurar', 'Cerrar el ciclo'],
+            argosBodies: [
+                'Estado de la red, cumplimiento, qué atender primero y el diagnóstico de un equipo o un sitio, sin abrir otra pantalla.',
+                'El camino entre dos direcciones IP con ida y regreso, la correlación de fallas contra la configuración y los equipos que no responden.',
+                'Se describe el servicio en lenguaje natural o se pega la configuración, y Argos la propone como intención declarada para que la edites antes de aplicar.',
+                'Auditar, ver el cumplimiento, llevarlo al Gemelo Digital, aprobar y verificar. Cada paso es un botón, no una frase que haya que teclear.'
+            ],
+            argosNote: 'La mayoría de lo que hace Argos no consume el modelo: son consultas y cálculos sobre datos ya recolectados, con resultado reproducible. El modelo entra cuando hay que redactar, priorizar o interpretar lenguaje libre, y nunca inventa hallazgos: trabaja con los que el cálculo produjo.',
+            proAria: 'Servicios profesionales de Oktanet',
+            proEyebrow: 'Servicios profesionales',
+            proTitle: 'La implementación llave en mano, no sólo la licencia.',
+            proIntro: 'Una plataforma de automatización no sirve si nadie carga el inventario, declara la intención y ajusta las reglas a cómo opera la red de verdad. Ese trabajo lo hacemos nosotros, contigo, hasta que tu equipo lo recorre solo.',
+            proLogoAlt: 'Logo de Oktanet',
+            proTitles: [
+                'Onboarding de datos',
+                'Discovery controlado',
+                'Revisión de intención',
+                'Validación y ajuste',
+                'Alta de servicios nuevos',
+                'Operación asistida'
+            ],
+            proBodies: [
+                'Recibimos tu inventario, homologamos nombres, roles, sitios, plataformas y modelos, y lo cargamos con el formato que la plataforma espera.',
+                'Validamos alcanzabilidad, ejecutamos el descubrimiento por lotes, recolectamos respaldos y normalizamos el inventario observado.',
+                'Revisamos el estándar que ya tienes, lo declaramos como intención por alcance y activamos las verificaciones de cumplimiento que corresponden.',
+                'Corremos la auditoría completa, revisamos los tableros contigo y ajustamos reglas y excepciones hasta que el resultado refleje tu operación.',
+                'Diseñamos e implementamos servicios sobre la plataforma: túneles entre sitios, publicación de redes, DHCP por VLAN, cada uno con su rollback.',
+                'Acompañamos las primeras remediaciones y el ciclo completo hasta que tu equipo lo recorre solo, con las ventanas y aprobadores que ya usas.'
             ],
             servicesEyebrow: 'Capacidades de la plataforma',
             servicesTitle: 'Quince módulos para descubrir, verificar, remediar y dar de alta servicios nuevos.',
@@ -287,25 +312,28 @@
                 'Salud de red, riesgo de configuración, desvíos, capacidad y puertos, en reportes descargables listos para auditoría.',
                 'Métricas en tiempo real y reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU. Se licencia por separado.'
             ],
-            showcaseTitle: 'Interfaz pensada para operar flujos complejos con una experiencia simple.',
-            showcaseIntro: 'Desde cumplimiento y configuración deseada hasta topología, enrutamiento, seguridad e inteligencia de IP, cada módulo produce resultados accionables.',
+            showcaseTitle: 'Una sola fuente de verdad, y una intención declarada sobre ella.',
+            showcaseIntro: 'El descubrimiento de red construye el inventario y la topología, que son la fuente de verdad. Sobre ella se declara la intención: lo que cada equipo debería tener configurado.',
             showcaseCaptions: [
-                'Cumplimiento por dominio, sitio y criticidad con reglas y pruebas editables.',
-                'Inventario técnico consolidado con trazabilidad de software, hardware y metadatos.',
-                'Topología física y plano de control, con vistas de enrutamiento (BGP/OSPF) para análisis de impacto.'
+                'El configurador: la herramienta de intención, siempre disponible para crear o editar un servicio a mano.',
+                'Inventario técnico consolidado, con trazabilidad de software, hardware y metadatos. Lo produce el descubrimiento.',
+                'Topología física y plano de control, con vistas de enrutamiento (BGP/OSPF) para analizar el impacto de un cambio.'
             ],
+            showcaseNotaAntes: 'El camino habitual para declarar o editar un servicio es pedírselo a ',
+            showcaseNotaEnlace: 'Argos',
+            showcaseNotaDespues: ', que propone el cambio conversando. El configurador sigue ahí para cuando prefieras hacerlo a mano.',
             featureFocusEyebrow: 'Capacidades destacadas',
-            featureFocusTitle: 'Ciclo cerrado, servicios nuevos y ChatOps: lo que separa a Oktavia de una herramienta de auditoría.',
-            featureFocusIntro: 'Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien.',
+            featureFocusTitle: 'Lo que separa a Oktavia de una herramienta de auditoría: cerrar el ciclo, no sólo señalarlo.',
+            featureFocusIntro: 'Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien. El mismo ciclo corrige desviaciones y da de alta servicios nuevos.',
             featureFocusTitles: [
                 'Ciclo cerrado de remediación verificada',
-                'Servicios nuevos, no sólo correcciones',
-                'Argos: ChatOps con el costo de la IA a la vista'
+                'Argos: ChatOps con el costo de la IA a la vista',
+                'Seguridad de red con la evidencia a la vista'
             ],
             featureFocusBodies: [
                 'Auditar, proponer contra la intención declarada, revisar el diff en el Gemelo Digital, aprobar, aplicar con la primitiva segura del fabricante y volver a auditar para confirmar que cerró.',
-                'El mismo ciclo da de alta un túnel entre sitios, publica una red en OSPF y BGP o levanta DHCP en una VLAN, siempre con su rollback y con aprobación previa.',
-                'La mayoría de las consultas no consumen el modelo: son cálculos reproducibles sobre datos ya recolectados. Cada acción lleva su marca antes de pulsarla.'
+                'La mayoría de las consultas no consumen el modelo: son cálculos reproducibles sobre datos ya recolectados. Cada acción lleva su marca antes de pulsarla.',
+                'Puntaje por perímetro, gestión, identidades y segmentación, calculado sobre la configuración real. Cada hallazgo trae la línea que lo sustenta y su corrección en la sintaxis del fabricante.'
             ],
             methodEyebrow: 'Modelo de ejecución',
             methodTitle: 'Operación basada en tareas asíncronas, artefactos, aprobación y verificación.',
@@ -349,7 +377,7 @@
             aboutCardTitles: [
                 'Extensibilidad por fabricante',
                 'Control y visibilidad en la automatización',
-                'Dos licencias, sin ediciones recortadas'
+                'Dos licencias'
             ],
             aboutCardBodies: [
                 'Cada fabricante se integra con adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas Jinja.',
@@ -358,143 +386,118 @@
             ],
             licensingAria: 'Licenciamiento Oktavia',
             licensingEyebrow: 'Licenciamiento',
-            licensingTitle: 'Dos licencias, no tres ediciones',
+            licensingTitle: 'Dos licencias',
             licensingIntro: 'Oktavia Pro es la plataforma completa. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
-            licensingPlanLabels: [],
-            licensingPlanTitles: [],
-            licensingPlanBodies: [],
-            licensingHeaders: ['Módulo Oktavia', 'Oktavia Pro', 'Telemetría y Eventos'],
-            licensingIncludedLabel: 'Incluido',
-            licensingUnavailableLabel: 'No incluido',
-            licensingIncludedMark: '✓',
-            licensingUnavailableMark: '—',
-            licensingRows: [
-                {
-                    module: 'Auditoría del estado de red',
-                    description: 'Análisis integral del estado actual de la red en minutos: inventario, conectividad, configuración y cumplimiento desde una sola operación.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Inventario de red',
-                    description: 'Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante, modelo y metadatos.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Topología y trazado de rutas',
-                    description: 'Mapa interactivo con vistas física, de plano de control y de enrutamiento (LLDP, CDP, OSPF, EIGRP, BGP, STP, VRRP), más el camino real entre dos direcciones IP con ida y regreso.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Cumplimiento de configuración',
-                    description: 'Verificación contra reglas y pruebas editables por sitio, rol o dispositivo, con severidad, evidencia y diagnóstico.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Configuración deseada por alcance',
-                    description: 'Generación desde plantillas y variables de servicio, con precedencia por sitio, tipo de sitio, plataforma, modelo, rol y equipo.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Ciclo cerrado de remediación',
-                    description: 'Auditar, proponer el cambio contra la intención declarada, revisar el diff, aprobar, aplicar con la primitiva segura del fabricante y volver a auditar para confirmar que el hallazgo cerró.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Alta de servicios nuevos',
-                    description: 'El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, cada uno con su rollback.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Argos — ChatOps de red',
-                    description: 'Asistente en lenguaje natural integrado en todas las pantallas. Cada acción declara antes de pulsarla si consume el modelo de IA o si se resuelve de forma determinista.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Seguridad de red',
-                    description: 'Postura de seguridad calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, con la evidencia de cada hallazgo.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Inventario de servicios',
-                    description: 'Qué hay configurado en cada equipo y cuánto de eso está declarado como intención, clasificado en cubierto, punto ciego, sin aplicar e inaplicable.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Análisis de políticas de firewall',
-                    description: 'Qué política decide un flujo en cada salto, con su NAT y su registro. Un objeto que no se puede resolver se reporta como indeterminado, nunca como bloqueo.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Gemelo digital',
-                    description: 'Capturas del estado de la red, comparación de configuración deseada contra activa y detección de desvíos de configuración.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Respaldos de configuración',
-                    description: 'Visualización, comparación y descarga de archivos de configuración por dispositivo y fecha.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Inteligencia IP (IPAM)',
-                    description: 'Mapa de direccionamiento, subredes detectadas, solapamientos, vecinos de enrutamiento y ubicación de una IP hasta el puerto de acceso.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Reportes avanzados',
-                    description: 'Salud de red, riesgo de configuración, desvíos, capacidad, puertos y topología, en reportes descargables listos para auditoría.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Provisioning y gestión de sitios',
-                    description: 'Estructura lógica de tipos de sitio, sitios y roles definida antes del primer descubrimiento.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Operaciones y auditorías programadas',
-                    description: 'Ejecución y programación de auditorías, descubrimiento, sincronización de inventario y validaciones de conectividad, con historial de trabajos y artefactos.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'FinOps',
-                    description: 'Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Gestión multi-tenant',
-                    description: 'Multi-organización, gestión de usuarios y separación de datos por tenant.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Telemetría en tiempo real',
-                    description: 'Métricas SNMP y de streaming (CPU, memoria, interfaces) almacenadas como series de tiempo, con visualización temporal y umbrales.',
-                    plans: [false, true],
-                    advanced: true
-                },
-                {
-                    module: 'Dashboards de telemetría y Grafana',
-                    description: 'Tableros de telemetría propios; la base de series de tiempo de Oktavia es datasource directo de Grafana, sin ETL adicional.',
-                    plans: [false, true],
-                    advanced: true
-                },
-                {
-                    module: 'Motor de automatización de eventos',
-                    description: 'Reglas condición→acción que reaccionan solas ante caídas de BGP u OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura o errores.',
-                    plans: [false, true],
-                    advanced: true
-                }
+            licensingPlanLabels: ['Licencia principal', 'Licencia adicional'],
+            licensingPlanTitles: ['Oktavia Pro', 'Telemetría y Orquestación de Eventos'],
+            licensingPlanBodies: [
+                'La plataforma completa. Todo lo necesario para descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios nuevos, con aprobación humana en cada cambio.',
+                'Se licencia aparte porque almacena series de tiempo y corre un evaluador permanente: tiene otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
+            ],
+            licensingPlanItems: [
+                [
+                    {
+                        module: 'Auditoría del estado de red',
+                        description: ' Inventario, conectividad, configuración y cumplimiento en una sola operación.'
+                    },
+                    {
+                        module: 'Inventario de red',
+                        description: ' Multifabricante, con filtros por sitio, rol, plataforma, modelo y metadatos.'
+                    },
+                    {
+                        module: 'Topología y trazado de rutas',
+                        description: ' Vistas física y de plano de control, y el camino real entre dos direcciones IP.'
+                    },
+                    {
+                        module: 'Cumplimiento de configuración',
+                        description: ' Reglas editables por sitio, rol o dispositivo, con severidad y evidencia.'
+                    },
+                    {
+                        module: 'Configuración deseada por alcance',
+                        description: ' Desde plantillas y variables, con precedencia por sitio, modelo, rol y equipo.'
+                    },
+                    {
+                        module: 'Ciclo cerrado de remediación',
+                        description: ' Proponer, revisar el diff, aprobar, aplicar y verificar que el hallazgo cerró.'
+                    },
+                    {
+                        module: 'Alta de servicios nuevos',
+                        description: ' Túneles, publicación de redes y DHCP, cada uno con su rollback.'
+                    },
+                    {
+                        module: 'Argos, ChatOps de red',
+                        description: ' El asistente completo, con la marca de qué consume IA y qué no.'
+                    },
+                    {
+                        module: 'Seguridad de red',
+                        description: ' Perímetro, gestión, identidades y segmentación, con evidencia por hallazgo.'
+                    },
+                    {
+                        module: 'Inventario de servicios',
+                        description: ' Qué hay configurado en cada equipo y cuánto está declarado como intención.'
+                    },
+                    {
+                        module: 'Análisis de políticas de firewall',
+                        description: ' Qué política decide un flujo en cada salto, con su NAT y su registro.'
+                    },
+                    {
+                        module: 'Gemelo digital',
+                        description: ' Configuración deseada contra activa, y el diff que se aprueba antes de aplicar.'
+                    },
+                    {
+                        module: 'Respaldos de configuración',
+                        description: ' Consulta, comparación y descarga por dispositivo y por fecha.'
+                    },
+                    {
+                        module: 'Inteligencia IP (IPAM)',
+                        description: ' Subredes, solapamientos y la ubicación de una IP hasta el puerto de acceso.'
+                    },
+                    {
+                        module: 'Reportes avanzados',
+                        description: ' Salud, riesgo, desvíos, capacidad y puertos, listos para auditoría.'
+                    },
+                    {
+                        module: 'Provisioning y gestión de sitios',
+                        description: ' Tipos de sitio, sitios y roles definidos antes del primer descubrimiento.'
+                    },
+                    {
+                        module: 'Operaciones y auditorías programadas',
+                        description: ' Ejecución y programación, con historial de trabajos y artefactos.'
+                    },
+                    {
+                        module: 'FinOps',
+                        description: ' Retorno de inversión de la automatización y análisis de ahorro operativo.'
+                    },
+                    {
+                        module: 'Gestión multi-tenant',
+                        description: ' Multi-organización, usuarios y separación de datos por cliente.'
+                    }
+                ],
+                [
+                    {
+                        module: 'Telemetría en tiempo real',
+                        description: ' CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias.'
+                    },
+                    {
+                        module: 'Dashboards y compatibilidad con Grafana',
+                        description: ' Tableros propios, y la base de métricas como fuente directa de Grafana.'
+                    },
+                    {
+                        module: 'Motor de automatización de eventos',
+                        description: ' Reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU.'
+                    }
+                ]
             ],
             resourcesAria: 'Recursos y documentación de Oktavia',
             resourcesEyebrow: 'Recursos',
             resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
-            resourcesIntro: 'El data sheet reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación en un documento que se puede leer en línea o descargar.',
-            resourceCardTitle: 'Data sheet de Oktavia 2.0',
+            resourcesIntro: 'El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.',
+            resourceCardTitle: 'Información de Oktavia',
             resourceCardBody: 'Documento comercial y técnico de la plataforma: los quince módulos con su alcance, las siete categorías de valor, cobertura y acceso por fabricante, integraciones con el ecosistema, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.',
-            resourceCardMeta: 'PDF · Español e inglés · Actualizado en 2026',
-            resourceActions: ['Ver en línea', 'Descargar PDF', 'Ver toda la documentación'],
-            resourceUpcomingLabel: 'En preparación:',
-            resourceUpcoming: ['Guía de network automation', 'Catálogo de servicios', 'Guía de integración multifabricante'],
-            resourcePdfHref: 'docs/oktavia-2.0-datasheet-es.pdf',
-            resourceOnlineHref: 'docs/datasheet.html',
+            resourceCardMeta: 'Documento de plataforma · PDF en español e inglés · Actualizado en 2026',
+            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación'],
+            resourceOnlineHref: 'docs/oktavia.html',
+            documentPdfHref: 'docs/oktavia-es.pdf',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
@@ -502,9 +505,9 @@
             officeLines: ['Torre de Oficinas, Downtown Reforma', 'Ciudad de México'],
             formLabels: ['Nombre completo', 'Correo electrónico', 'Empresa', '¿Qué deseas resolver?'],
             submitButton: 'Enviar solicitud',
-            footerTagline: 'Oktavia: automatización inteligente para redes empresariales.',
+            footerTagline: 'Oktanet: tu red bajo control.',
             copyright: 'Todos los derechos reservados.',
-            heroImageAlt: 'Tablero principal de monitoreo y auditoría de red',
+            heroImageAlt: 'Centro de automatización de red de Oktavia con el cumplimiento global y la actividad reciente',
             platformImageAlt: 'Vista de cumplimiento de configuración en Oktavia',
             serviceIconAlts: [
                 'Icono de visibilidad de red',
@@ -528,17 +531,22 @@
                 'Tablero de inventario',
                 'Tablero de topología'
             ],
+            featureFocusImageAlts: [
+                'Gemelo Digital de Oktavia con un cambio propuesto y sus botones de aprobar y ejecutar',
+                'Argos, el asistente de red de Oktavia, con sus acciones marcadas según consuman IA o no',
+                'Postura de seguridad de red en Oktavia, con puntaje por dominio y hallazgos por equipo'
+            ],
             footerLogoAlt: 'Símbolo de Oktanet'
         },
         en: {
             htmlLang: 'en',
-            title: 'Oktavia 2.0 — Multi-vendor network automation | Oktanet',
-            metaDescription: 'Oktavia 2.0 automates discovery, compliance, security, and verified remediation across multi-vendor networks: it finds the deviation, proposes the change, applies it with approval, and confirms the finding closed.',
+            title: 'Oktanet · Multi-vendor network automation',
+            metaDescription: 'Oktanet delivers professional network automation services: Oktavia as the platform and Argos as the assistant. It finds the deviation, proposes the change, applies it with approval, and confirms the finding closed.',
             brandAria: 'Back to top',
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Platform', 'Services', 'Methodology', 'Use Cases', 'About us', 'Licensing', 'Resources'],
+            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Resources'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -554,18 +562,31 @@
             metricsEyebrow: 'Measurable impact',
             metricsTitle: 'Operational outcomes from the first adoption cycles.',
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
-            heroEyebrow: 'Oktavia 2.0 · Secure and auditable network automation',
-            heroTitle: 'From spotting the deviation to verified remediation, without leaving one platform.',
-            heroBody: 'Oktavia is an automation platform for multi-vendor networks. It discovers the network, checks it against your standard, proposes the change against declared intent and, once you approve, applies it and confirms the finding closed.',
-            heroActions: ['Request a Demo', 'Download the data sheet'],
+            heroTitle: 'your network under control.',
+            heroTitleBrand: 'Oktanet:',
+            heroBody: 'Professional network automation services. We bring your multi-vendor network to a declared, verifiable, and fixable standard, with Oktavia as the platform and Argos as the assistant. Design, implementation, and operation, turnkey.',
+            heroActions: ['Request a Demo', 'Read the information', 'Download the PDF'],
             heroPoints: [
-                'No change reaches the network without a person approving it: the desired configuration is generated first and the diff against live config is reviewed.',
-                'Every run leaves downloadable, versioned artifacts (JSON, CSV, CFG) and is recorded in the job history.',
-                'The full cycle uses each vendor safe primitive: commit confirmed on Junos, CMDB operations on FortiGate, diff and verification on IOS and FortiSwitch.'
+                {
+                    label: 'Discover and audit.',
+                    text: ' Inventory, topology, and compliance across the whole network in minutes, without reviewing a single device by hand.'
+                },
+                {
+                    label: 'Fix and verify.',
+                    text: ' It proposes the change, applies it only with your approval, and audits again to confirm the problem closed.'
+                },
+                {
+                    label: 'Security with evidence.',
+                    text: ' The posture of your firewalls and switches, with the configuration line backing every finding.'
+                },
+                {
+                    label: 'Ask in plain language.',
+                    text: ' Argos answers with your own network data, and tells you before you click whether the answer consumes AI.'
+                }
             ],
-            trustLabel: 'Compatible with multi-vendor infrastructure:',
-            platformEyebrow: 'Flagship product',
-            platformTitle: 'Oktavia 2.0: automation engine, web UI, and ChatOps for continuous-control network operations.',
+            trustLabel: 'Multi-vendor in production, and more vendors are integrated per project:',
+            platformEyebrow: 'Oktavia · The platform',
+            platformTitle: 'Oktavia: automation engine, web UI, and ChatOps for continuous-control network operations.',
             platformBody: 'Oktavia unifies multi-vendor discovery, compliance by site, role, or device, desired configuration, network security, and verified remediation in one console. Argos, the ChatOps assistant, spans every module and states for each action whether it consumes the AI model or resolves deterministically.',
             platformChips: [
                 'Closed loop with approval',
@@ -573,6 +594,74 @@
                 'Versioned artifacts',
                 'Multi-tenant',
                 'REST API with API key'
+            ],
+            videoAria: 'Oktavia on video',
+            videoEyebrow: 'Oktavia on video',
+            videoTitle: 'See the platform working, without asking for a demo.',
+            videoIntro: 'Short walkthroughs of each module, recorded on the real platform. The player only loads when you click, so passing through here does not track you. Videos are in Spanish.',
+            videoTitulo: 'Oktavia video',
+            videoTitulos: [
+                'Your network under control',
+                'The automation center',
+                'Network discovery',
+                'The inventory',
+                'From visibility to compliance',
+                'Digital Twin: detect and remediate'
+            ],
+            videoCuerpos: [
+                'The commercial walkthrough of the platform, in two minutes.',
+                'The main dashboard: compliance, reachable devices, and recent activity.',
+                'How the source of truth is built from the devices you already have.',
+                'Devices, sites, roles, and platforms, with filters and export.',
+                'The audit: what failed, at what severity, and which configuration lines are missing.',
+                'The closed loop: propose, approve, apply, and verify the finding closed.'
+            ],
+            videoCanal: 'Browse the full channel on YouTube',
+            familyAria: 'Oktanet, Oktavia and Argos',
+            familyEyebrow: 'One platform, one assistant, one team that implements it',
+            familyTitle: 'Three fronts so the network does what its standard says.',
+            familyNames: ['Oktavia', 'Argos', 'Professional services'],
+            familyRoles: ['The platform', 'The assistant', 'The implementation'],
+            familyBodies: [
+                'It discovers, audits, fixes, and verifies across Cisco, Fortinet, and Juniper. Every run leaves a downloadable artifact and every change goes through a person.',
+                'ChatOps embedded in every Oktavia screen. It answers with network data and states whether it consumes AI before you click.',
+                'Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed.'
+            ],
+            familyLogoAlts: ['Oktavia logo', 'Argos logo', 'Oktanet logo'],
+            familyMore: 'See more',
+            argosAria: 'Argos, the network ChatOps',
+            argosEyebrow: 'Argos · network ChatOps',
+            argosTitle: 'You ask in plain language and it answers with your own network data.',
+            argosIntro: 'Two principles separate it from a generic assistant. Every answer states whether it consumed the AI model or resolved deterministically, so the cost is visible before you click. And no action that touches the network happens without a person approving it.',
+            argosLogoAlt: 'Argos logo',
+            argosTitles: ['Understand', 'Investigate', 'Configure', 'Close the loop'],
+            argosBodies: [
+                'Network state, compliance, what to address first, and the diagnosis of a device or a site, without opening another screen.',
+                'The path between two IP addresses forward and back, the correlation of failures against configuration, and the devices that do not answer.',
+                'Describe the service in plain language or paste the configuration, and Argos proposes it as declared intent for you to edit before applying.',
+                'Audit, read the compliance result, take it to the Digital Twin, approve, and verify. Each step is a button, not a sentence you have to type.'
+            ],
+            argosNote: 'Most of what Argos does never touches the model: they are queries and calculations over already collected data, with reproducible results. The model steps in when something has to be written, prioritized, or interpreted from free text, and it never invents findings: it works with the ones the calculation produced.',
+            proAria: 'Oktanet professional services',
+            proEyebrow: 'Professional services',
+            proTitle: 'Turnkey implementation, not just the license.',
+            proIntro: 'An automation platform is worthless if nobody loads the inventory, declares the intent, and tunes the rules to how the network actually runs. We do that work, with you, until your team walks it on its own.',
+            proLogoAlt: 'Oktanet logo',
+            proTitles: [
+                'Data onboarding',
+                'Controlled discovery',
+                'Intent review',
+                'Validation and tuning',
+                'New service rollout',
+                'Assisted operation'
+            ],
+            proBodies: [
+                'We take your inventory, normalize names, roles, sites, platforms, and models, and load it in the format the platform expects.',
+                'We validate reachability, run discovery in batches, collect backups, and normalize the observed inventory.',
+                'We review the standard you already have, declare it as intent per scope, and enable the compliance checks that apply.',
+                'We run the full audit, review the dashboards with you, and tune rules and exceptions until the result reflects your operation.',
+                'We design and implement services on the platform: tunnels between sites, network advertisement, DHCP per VLAN, each with its rollback.',
+                'We walk the first remediations and the full cycle with you until your team does it alone, with the windows and approvers you already use.'
             ],
             servicesEyebrow: 'Platform capabilities',
             servicesTitle: 'Fifteen modules to discover, verify, remediate, and roll out new services.',
@@ -610,25 +699,28 @@
                 'Network health, configuration risk, drift, capacity, and ports, in downloadable reports ready for audit.',
                 'Real-time metrics and rules that react on their own to BGP or OSPF drops and CPU thresholds. Licensed separately.'
             ],
-            showcaseTitle: 'A UI designed for complex workflows with simple operation.',
-            showcaseIntro: 'From compliance and desired configuration to topology, routing, security, and IP intelligence, each module produces actionable output.',
+            showcaseTitle: 'One source of truth, and a declared intent on top of it.',
+            showcaseIntro: 'Network discovery builds the inventory and the topology, which are the source of truth. Intent is declared on top of it: what each device should have configured.',
             showcaseCaptions: [
-                'Compliance by domain, site, and criticality with editable rules and tests.',
-                'Consolidated technical inventory with software, hardware, and metadata traceability.',
-                'Physical/control-plane topology and routing views (BGP/OSPF) for impact analysis.'
+                'The configurator: the intent tool, always available to create or edit a service by hand.',
+                'Consolidated technical inventory, with software, hardware, and metadata traceability. Discovery produces it.',
+                'Physical and control-plane topology, with routing views (BGP/OSPF) to analyze the impact of a change.'
             ],
+            showcaseNotaAntes: 'The usual path to declare or edit a service is to ask ',
+            showcaseNotaEnlace: 'Argos',
+            showcaseNotaDespues: ', which proposes the change by conversation. The configurator is still there for when you prefer to do it by hand.',
             featureFocusEyebrow: 'Highlighted capabilities',
-            featureFocusTitle: 'Closed loop, new services, and ChatOps: what sets Oktavia apart from an audit tool.',
-            featureFocusIntro: 'Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right.',
+            featureFocusTitle: 'What separates Oktavia from an audit tool: closing the loop, not just pointing at it.',
+            featureFocusIntro: 'Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right. The same cycle fixes deviations and rolls out new services.',
             featureFocusTitles: [
                 'Verified closed-loop remediation',
-                'New services, not just fixes',
-                'Argos: ChatOps with the AI cost in plain sight'
+                'Argos: ChatOps with the AI cost in plain sight',
+                'Network security with the evidence in plain sight'
             ],
             featureFocusBodies: [
                 'Audit, propose against declared intent, review the diff in the Digital Twin, approve, apply with the vendor safe primitive, and audit again to confirm it closed.',
-                'The same cycle rolls out a tunnel between sites, advertises a network in OSPF and BGP, or brings up DHCP on a VLAN, always with its rollback and prior approval.',
-                'Most queries never touch the model: they are reproducible calculations over data already collected. Every action carries its mark before you click it.'
+                'Most queries never touch the model: they are reproducible calculations over data already collected. Every action carries its mark before you click it.',
+                'A score for perimeter, management, identities, and segmentation, computed on the real configuration. Every finding carries the line that backs it and its fix in the vendor own syntax.'
             ],
             methodEyebrow: 'Execution model',
             methodTitle: 'Operations based on async jobs, artifacts, approval, and verification.',
@@ -672,7 +764,7 @@
             aboutCardTitles: [
                 'Vendor extensibility',
                 'Control and visibility in automation',
-                'Two licenses, no cut-down editions'
+                'Two licenses'
             ],
             aboutCardBodies: [
                 'Each vendor is integrated through a discovery adapter, normalizer, compliance rule set, and Jinja templates.',
@@ -681,143 +773,118 @@
             ],
             licensingAria: 'Oktavia licensing',
             licensingEyebrow: 'Licensing',
-            licensingTitle: 'Two licenses, not three editions',
+            licensingTitle: 'Two licenses',
             licensingIntro: 'Oktavia Pro is the complete platform. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
-            licensingPlanLabels: [],
-            licensingPlanTitles: [],
-            licensingPlanBodies: [],
-            licensingHeaders: ['Oktavia module', 'Oktavia Pro', 'Telemetry and Events'],
-            licensingIncludedLabel: 'Included',
-            licensingUnavailableLabel: 'Not included',
-            licensingIncludedMark: '✓',
-            licensingUnavailableMark: '—',
-            licensingRows: [
-                {
-                    module: 'Network state audit',
-                    description: 'End-to-end analysis of current network state in minutes: inventory, connectivity, configuration, and compliance from a single operation.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Network inventory',
-                    description: 'Dynamic multi-vendor inventory with filters by site, role, platform, vendor, model, and metadata.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Topology and path tracing',
-                    description: 'Interactive map with physical, control-plane, and routing views (LLDP, CDP, OSPF, EIGRP, BGP, STP, VRRP), plus the live path between two IP addresses, forward and return.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Configuration compliance',
-                    description: 'Verification against rules and tests editable by site, role, or device, with severity, evidence, and diagnosis.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Scoped desired configuration',
-                    description: 'Generation from templates and service vars, with precedence by site, site type, platform, model, role, and device.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Closed-loop remediation',
-                    description: 'Audit, propose the change against declared intent, review the diff, approve, apply with the vendor safe primitive, and audit again to confirm the finding closed.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'New service rollout',
-                    description: 'The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, each with its rollback.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Argos — network ChatOps',
-                    description: 'Plain-language assistant embedded in every screen. Each action states, before you click it, whether it consumes the AI model or resolves deterministically.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Network security',
-                    description: 'Security posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, with evidence for each finding.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Service inventory',
-                    description: 'What is configured on each device and how much of it is declared as intent, classified as covered, blind spot, not applied, or not applicable.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Firewall policy analysis',
-                    description: 'Which policy decides a flow at each hop, with its NAT and its logging. An object that cannot be resolved is reported as undetermined, never as a block.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Digital Twin',
-                    description: 'Network state snapshots, desired versus live configuration comparison, and configuration drift detection.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Configuration backups',
-                    description: 'View, compare, and download configuration files by device and date.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'IP Intelligence (IPAM)',
-                    description: 'Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP down to the access port.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Advanced reports',
-                    description: 'Network health, configuration risk, drift, capacity, ports, and topology, in downloadable reports ready for audit.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Provisioning and site management',
-                    description: 'Logical structure of site types, sites, and roles defined before the first discovery run.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Operations and scheduled audits',
-                    description: 'Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'FinOps',
-                    description: 'Automation return-on-investment calculator and operational savings analysis.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Multi-tenant management',
-                    description: 'Multi-organization, user management, and per-tenant data separation.',
-                    plans: [true, false]
-                },
-                {
-                    module: 'Real-time telemetry',
-                    description: 'SNMP and streaming metrics (CPU, memory, interfaces) stored as time series, with temporal visualization and thresholds.',
-                    plans: [false, true],
-                    advanced: true
-                },
-                {
-                    module: 'Telemetry dashboards and Grafana',
-                    description: 'Native telemetry dashboards; Oktavia time-series database is a direct Grafana datasource, with no extra ETL.',
-                    plans: [false, true],
-                    advanced: true
-                },
-                {
-                    module: 'Event automation engine',
-                    description: 'Condition-to-action rules that react on their own to BGP or OSPF drops, interfaces down, and CPU, memory, temperature, or error thresholds.',
-                    plans: [false, true],
-                    advanced: true
-                }
+            licensingPlanLabels: ['Main license', 'Add-on license'],
+            licensingPlanTitles: ['Oktavia Pro', 'Telemetry and Event Orchestration'],
+            licensingPlanBodies: [
+                'The complete platform. Everything needed to discover the network, verify it meets the standard, fix what does not, and roll out new services, with human approval on every change.',
+                'Licensed separately because it stores time series and runs a permanent evaluator: a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
+            ],
+            licensingPlanItems: [
+                [
+                    {
+                        module: 'Network state audit',
+                        description: ' Inventory, connectivity, configuration, and compliance in a single operation.'
+                    },
+                    {
+                        module: 'Network inventory',
+                        description: ' Multi-vendor, with filters by site, role, platform, model, and metadata.'
+                    },
+                    {
+                        module: 'Topology and path tracing',
+                        description: ' Physical and control-plane views, and the live path between two IP addresses.'
+                    },
+                    {
+                        module: 'Configuration compliance',
+                        description: ' Rules editable by site, role, or device, with severity and evidence.'
+                    },
+                    {
+                        module: 'Scoped desired configuration',
+                        description: ' From templates and variables, with precedence by site, model, role, and device.'
+                    },
+                    {
+                        module: 'Closed-loop remediation',
+                        description: ' Propose, review the diff, approve, apply, and verify the finding closed.'
+                    },
+                    {
+                        module: 'New service rollout',
+                        description: ' Tunnels, network advertisement, and DHCP, each with its rollback.'
+                    },
+                    {
+                        module: 'Argos, network ChatOps',
+                        description: ' The complete assistant, with the mark for what consumes AI and what does not.'
+                    },
+                    {
+                        module: 'Network security',
+                        description: ' Perimeter, management, identities, and segmentation, with evidence per finding.'
+                    },
+                    {
+                        module: 'Service inventory',
+                        description: ' What is configured on each device and how much is declared as intent.'
+                    },
+                    {
+                        module: 'Firewall policy analysis',
+                        description: ' Which policy decides a flow at each hop, with its NAT and its logging.'
+                    },
+                    {
+                        module: 'Digital Twin',
+                        description: ' Desired against live configuration, and the diff approved before applying.'
+                    },
+                    {
+                        module: 'Configuration backups',
+                        description: ' Lookup, comparison, and download by device and by date.'
+                    },
+                    {
+                        module: 'IP Intelligence (IPAM)',
+                        description: ' Subnets, overlaps, and the location of an IP down to the access port.'
+                    },
+                    {
+                        module: 'Advanced reports',
+                        description: ' Health, risk, drift, capacity, and ports, ready for audit.'
+                    },
+                    {
+                        module: 'Provisioning and site management',
+                        description: ' Site types, sites, and roles defined before the first discovery run.'
+                    },
+                    {
+                        module: 'Operations and scheduled audits',
+                        description: ' Running and scheduling, with job history and artifacts.'
+                    },
+                    {
+                        module: 'FinOps',
+                        description: ' Automation return on investment and operational savings analysis.'
+                    },
+                    {
+                        module: 'Multi-tenant management',
+                        description: ' Multi-organization, users, and per-customer data separation.'
+                    }
+                ],
+                [
+                    {
+                        module: 'Real-time telemetry',
+                        description: ' CPU, memory, and interfaces as time series, with thresholds and trends.'
+                    },
+                    {
+                        module: 'Dashboards and Grafana compatibility',
+                        description: ' Native dashboards, and the metrics store as a direct Grafana datasource.'
+                    },
+                    {
+                        module: 'Event automation engine',
+                        description: ' Rules that react on their own to BGP or OSPF drops and CPU thresholds.'
+                    }
+                ]
             ],
             resourcesAria: 'Oktavia resources and documentation',
             resourcesEyebrow: 'Resources',
             resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
-            resourcesIntro: 'The data sheet gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines into one document you can read online or download.',
-            resourceCardTitle: 'Oktavia 2.0 data sheet',
+            resourcesIntro: 'The document gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines, and can be read online or downloaded as a PDF.',
+            resourceCardTitle: 'Oktavia platform information',
             resourceCardBody: 'Commercial and technical document for the platform: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, the two-license model, use cases, and the implementation process with estimated timelines.',
-            resourceCardMeta: 'PDF · Spanish and English · Updated 2026',
-            resourceActions: ['Read online', 'Download PDF', 'Browse all documentation'],
-            resourceUpcomingLabel: 'In preparation:',
-            resourceUpcoming: ['Network automation guide', 'Service catalog', 'Multi-vendor integration guide'],
-            resourcePdfHref: 'docs/oktavia-2.0-datasheet-en.pdf',
-            resourceOnlineHref: 'docs/datasheet-en.html',
+            resourceCardMeta: 'Platform document · PDF in Spanish and English · Updated 2026',
+            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Browse all documentation'],
+            resourceOnlineHref: 'docs/oktavia-en.html',
+            documentPdfHref: 'docs/oktavia-en.pdf',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
@@ -825,9 +892,9 @@
             officeLines: ['Office Tower, Downtown Reforma', 'Mexico City'],
             formLabels: ['Full name', 'Email', 'Company', 'What do you need to solve?'],
             submitButton: 'Send Request',
-            footerTagline: 'Oktavia: intelligent automation for enterprise networks.',
+            footerTagline: 'Oktanet: your network under control.',
             copyright: 'All rights reserved.',
-            heroImageAlt: 'Main dashboard for network monitoring and auditing',
+            heroImageAlt: 'Oktavia network automation center showing global compliance and recent activity',
             platformImageAlt: 'Configuration compliance view in Oktavia',
             serviceIconAlts: [
                 'Network visibility icon',
@@ -850,6 +917,11 @@
                 'General compliance dashboard',
                 'Inventory dashboard',
                 'Topology dashboard'
+            ],
+            featureFocusImageAlts: [
+                'Oktavia Digital Twin showing a proposed change with its approve and execute buttons',
+                'Argos, the Oktavia network assistant, with each action marked by whether it consumes AI',
+                'Oktavia network security posture, with a score per domain and findings per device'
             ],
             footerLogoAlt: 'Oktanet symbol'
         }
@@ -935,11 +1007,21 @@
         setText(navCta, copy.navCta);
         setTextList(footerLinks, copy.navLinks);
 
-        setText(document.querySelector('.hero-copy .eyebrow'), copy.heroEyebrow);
-        setText(document.querySelector('.hero-copy h1'), copy.heroTitle);
-        setText(document.querySelector('.hero-copy > p:not(.eyebrow)'), copy.heroBody);
+        // El titular lleva el nombre en su propia linea: se arma por DOM porque
+        // textContent no admite el salto.
+        const titular = document.querySelector('.hero-copy h1');
+
+        if (titular && typeof copy.heroTitleBrand === 'string') {
+            const nombre = document.createElement('span');
+            nombre.className = 'hero-brandline';
+            nombre.textContent = copy.heroTitleBrand;
+            titular.textContent = '';
+            titular.appendChild(nombre);
+            titular.appendChild(document.createTextNode(' ' + copy.heroTitle));
+        }
+        setText(document.querySelector('.hero-copy > p'), copy.heroBody);
         setTextList(document.querySelectorAll('.hero-actions a'), copy.heroActions);
-        setTextList(document.querySelectorAll('.hero-points li'), copy.heroPoints);
+        renderHeroPoints(copy);
 
         setText(document.querySelector('.trust-grid > p'), copy.trustLabel);
 
@@ -947,6 +1029,53 @@
         setText(document.querySelector('.platform-copy h2'), copy.platformTitle);
         setText(document.querySelector('.platform-copy > p:not(.eyebrow)'), copy.platformBody);
         setTextList(document.querySelectorAll('.chip-list span'), copy.platformChips);
+
+        if (familySectionEl) {
+            familySectionEl.setAttribute('aria-label', copy.familyAria);
+        }
+
+        setText(document.querySelector('.family-section .eyebrow'), copy.familyEyebrow);
+        setText(document.querySelector('.family-section h2'), copy.familyTitle);
+        setTextList(document.querySelectorAll('.family-card h3'), copy.familyNames);
+        setTextList(document.querySelectorAll('.family-role'), copy.familyRoles);
+        setTextList(document.querySelectorAll('.family-card p:not(.family-role)'), copy.familyBodies);
+        setAltList(document.querySelectorAll('.family-logo img'), copy.familyLogoAlts);
+
+        setTextList(document.querySelectorAll('.family-ir'), [copy.familyMore, copy.familyMore, copy.familyMore]);
+
+        if (argosSectionEl) {
+            argosSectionEl.setAttribute('aria-label', copy.argosAria);
+        }
+
+        setText(document.querySelector('.argos-section .eyebrow'), copy.argosEyebrow);
+        setText(document.querySelector('.argos-section h2'), copy.argosTitle);
+        setText(document.querySelector('.argos-section .section-intro'), copy.argosIntro);
+        setTextList(document.querySelectorAll('.argos-card h3'), copy.argosTitles);
+        setTextList(document.querySelectorAll('.argos-card p'), copy.argosBodies);
+        setText(document.querySelector('.argos-nota'), copy.argosNote);
+        setAltList(document.querySelectorAll('.argos-section .section-mark img'), [copy.argosLogoAlt]);
+
+        if (proSectionEl) {
+            proSectionEl.setAttribute('aria-label', copy.proAria);
+        }
+
+        setText(document.querySelector('.pro-section .eyebrow'), copy.proEyebrow);
+        setText(document.querySelector('.pro-section h2'), copy.proTitle);
+        setText(document.querySelector('.pro-section .section-intro'), copy.proIntro);
+        setTextList(document.querySelectorAll('.pro-card h3'), copy.proTitles);
+        setTextList(document.querySelectorAll('.pro-card p'), copy.proBodies);
+        setAltList(document.querySelectorAll('.pro-section .section-mark img'), [copy.proLogoAlt]);
+
+        if (videoSectionEl) {
+            videoSectionEl.setAttribute('aria-label', copy.videoAria);
+        }
+
+        setText(document.querySelector('.video-section .eyebrow'), copy.videoEyebrow);
+        setText(document.querySelector('.video-section h2'), copy.videoTitle);
+        setText(document.querySelector('.video-section .section-intro'), copy.videoIntro);
+        setTextList(document.querySelectorAll('.video-item h3'), copy.videoTitulos);
+        setTextList(document.querySelectorAll('.video-item p'), copy.videoCuerpos);
+        setText(document.querySelector('.video-canal a'), copy.videoCanal);
 
         setText(document.querySelector('.services-section .eyebrow'), copy.servicesEyebrow);
         setText(document.querySelector('.services-section h2'), copy.servicesTitle);
@@ -956,6 +1085,18 @@
         setText(document.querySelector('.showcase-section h2'), copy.showcaseTitle);
         setText(document.querySelector('.showcase-section .section-intro'), copy.showcaseIntro);
         setTextList(document.querySelectorAll('.showcase-grid figcaption'), copy.showcaseCaptions);
+
+        // La nota lleva un enlace en medio: se arma por DOM para no perderlo.
+        const notaGaleria = document.querySelector('.showcase-nota');
+
+        if (notaGaleria && typeof copy.showcaseNotaAntes === 'string') {
+            const enlace = document.createElement('a');
+            enlace.href = '#argos';
+            enlace.textContent = copy.showcaseNotaEnlace;
+            notaGaleria.textContent = copy.showcaseNotaAntes;
+            notaGaleria.appendChild(enlace);
+            notaGaleria.appendChild(document.createTextNode(copy.showcaseNotaDespues));
+        }
 
         setText(document.querySelector('.feature-focus-section .eyebrow'), copy.featureFocusEyebrow);
         setText(document.querySelector('.feature-focus-section h2'), copy.featureFocusTitle);
@@ -989,8 +1130,8 @@
         setText(document.querySelector('.licensing-copy .section-intro'), copy.licensingIntro);
         setTextList(document.querySelectorAll('.licensing-plan-label'), copy.licensingPlanLabels);
         setTextList(document.querySelectorAll('.licensing-plan h3'), copy.licensingPlanTitles);
-        setTextList(document.querySelectorAll('.licensing-plan p:last-child'), copy.licensingPlanBodies);
-        renderLicensingTable(copy);
+        setTextList(document.querySelectorAll('.licensing-plan-body'), copy.licensingPlanBodies);
+        renderLicensingPlans(copy);
 
         setText(document.querySelector('.resources-section .eyebrow'), copy.resourcesEyebrow);
         setText(document.querySelector('.resources-section h2'), copy.resourcesTitle);
@@ -999,16 +1140,18 @@
         setText(document.querySelector('.resource-card .resource-body > p'), copy.resourceCardBody);
         setText(document.querySelector('.resource-meta'), copy.resourceCardMeta);
         setTextList(document.querySelectorAll('.resource-actions a'), copy.resourceActions);
-        setText(document.querySelector('.resource-upcoming-label'), copy.resourceUpcomingLabel);
-        setTextList(document.querySelectorAll('.resource-upcoming-list span'), copy.resourceUpcoming);
 
-        if (resourcePdfLink && typeof copy.resourcePdfHref === 'string') {
-            resourcePdfLink.setAttribute('href', copy.resourcePdfHref);
-        }
+        // El documento existe en dos idiomas: cada enlace apunta al que toca.
+        [['[data-doc-online]', copy.resourceOnlineHref],
+         ['[data-doc-pdf]', copy.documentPdfHref]].forEach(function (par) {
+            if (typeof par[1] !== 'string') {
+                return;
+            }
 
-        if (resourceOnlineLink && typeof copy.resourceOnlineHref === 'string') {
-            resourceOnlineLink.setAttribute('href', copy.resourceOnlineHref);
-        }
+            document.querySelectorAll(par[0]).forEach(function (enlace) {
+                enlace.setAttribute('href', par[1]);
+            });
+        });
 
         setText(document.querySelector('.contact-copy .eyebrow'), copy.contactEyebrow);
         setText(document.querySelector('.contact-copy h2'), copy.contactTitle);
@@ -1034,6 +1177,7 @@
         }
 
         setServiceIconLabels(serviceIcons, copy.serviceIconAlts);
+        setAltList(document.querySelectorAll('.feature-focus-shot img'), copy.featureFocusImageAlts);
         setAltList(showcaseImages, copy.showcaseImageAlts);
 
         if (footerLogo) {
@@ -1055,6 +1199,31 @@
             // Ignore storage errors in private mode or restricted contexts.
         }
     };
+
+    // El reproductor de YouTube, y con el su rastreo, solo se carga cuando
+    // alguien pulsa la caratula. Hasta entonces la pagina no habla con Google.
+    document.querySelectorAll('.video-caratula').forEach(function (caratula) {
+        caratula.addEventListener('click', function () {
+            const identificador = caratula.dataset.video;
+
+            if (!identificador) {
+                return;
+            }
+
+            const copia = translations[document.documentElement.lang] || translations.es;
+            const titulo = caratula.closest('.video-item').querySelector('h3');
+            const marco = document.createElement('iframe');
+
+            marco.className = 'video-iframe';
+            marco.src = 'https://www.youtube-nocookie.com/embed/' + identificador + '?autoplay=1&rel=0';
+            marco.title = titulo ? titulo.textContent : copia.videoTitulo;
+            marco.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+            marco.allowFullscreen = true;
+            marco.referrerPolicy = 'strict-origin-when-cross-origin';
+
+            caratula.replaceWith(marco);
+        });
+    });
 
     const closeLanguageMenu = function () {
         if (!langMenu || !langToggle) {
@@ -1199,93 +1368,9 @@
         '.services-section .service-card, .showcase-section .showcase-grid figure, ' +
         '.feature-focus-section .feature-focus-card, ' +
         '.cases-section .cases-grid article, .metrics-copy, .metrics-section .metrics-grid article, ' +
-        '.licensing-copy, .licensing-plan, .licensing-table-wrap, ' +
+        '.licensing-copy, .licensing-plan, ' +
         '.contact-copy, .contact-form, .footer-brand, .footer-links'
     );
-
-    if (licensingTableBody && licensingHoverCard) {
-        licensingTableBody.addEventListener('mouseover', function (event) {
-            if (!window.matchMedia('(hover: hover)').matches) {
-                return;
-            }
-
-            const trigger = event.target.closest('.licensing-module-trigger');
-
-            if (trigger) {
-                showLicensingHoverCard(trigger);
-            }
-        });
-
-        licensingTableBody.addEventListener('mouseout', function (event) {
-            if (!window.matchMedia('(hover: hover)').matches) {
-                return;
-            }
-
-            const trigger = event.target.closest('.licensing-module-trigger');
-
-            if (trigger && !trigger.contains(event.relatedTarget)) {
-                hideLicensingHoverCard();
-            }
-        });
-
-        licensingTableBody.addEventListener('focusin', function (event) {
-            if (window.matchMedia('(hover: none)').matches) {
-                return;
-            }
-
-            const trigger = event.target.closest('.licensing-module-trigger');
-
-            if (trigger) {
-                showLicensingHoverCard(trigger);
-            }
-        });
-
-        licensingTableBody.addEventListener('focusout', function (event) {
-            if (window.matchMedia('(hover: none)').matches) {
-                return;
-            }
-
-            const trigger = event.target.closest('.licensing-module-trigger');
-
-            if (trigger && !trigger.contains(event.relatedTarget)) {
-                hideLicensingHoverCard();
-            }
-        });
-
-        licensingTableBody.addEventListener('click', function (event) {
-            const trigger = event.target.closest('.licensing-module-trigger');
-
-            if (!trigger) {
-                return;
-            }
-
-            if (window.matchMedia('(hover: none)').matches && activeLicensingTrigger === trigger && licensingHoverCard.classList.contains('is-visible')) {
-                hideLicensingHoverCard();
-                trigger.blur();
-                return;
-            }
-
-            showLicensingHoverCard(trigger);
-        });
-
-        document.addEventListener('click', function (event) {
-            if (!event.target.closest('.licensing-module-trigger')) {
-                hideLicensingHoverCard();
-            }
-        });
-
-        window.addEventListener('scroll', function () {
-            if (activeLicensingTrigger) {
-                positionLicensingHoverCard(activeLicensingTrigger);
-            }
-        }, true);
-
-        window.addEventListener('resize', function () {
-            if (activeLicensingTrigger) {
-                positionLicensingHoverCard(activeLicensingTrigger);
-            }
-        });
-    }
 
     if (revealTargets.length > 0) {
         body.classList.add('anim-ready');

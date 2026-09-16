@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Página no encontrada · Oktanet</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#081521">
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        /* Página suelta: no carga la hoja del sitio para que un 404 no dependa
+           de que el resto esté bien. Los colores son los mismos. */
+        * { box-sizing: border-box; margin: 0; }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            font-family: "Manrope", "Segoe UI", Arial, sans-serif;
+            color: #c8d5ec;
+            background: linear-gradient(170deg, #0c1c2d 0%, #08131f 60%, #060f1b 100%);
+            line-height: 1.5;
+        }
+
+        .caja { width: min(620px, 100%); text-align: left; }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 34px;
+        }
+
+        .marca img { width: 44px; height: 44px; }
+
+        .marca span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            color: #6fd7f5;
+        }
+
+        .codigo {
+            margin-bottom: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #57c8ea;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            line-height: 1.12;
+            letter-spacing: -0.015em;
+            color: #ffffff;
+        }
+
+        p { margin-bottom: 12px; color: #a3b7d2; }
+
+        p.en { color: #7f95b4; font-size: 0.95rem; }
+
+        .acciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .acciones a {
+            display: inline-flex;
+            align-items: center;
+            padding: 11px 20px;
+            border-radius: 999px;
+            border: 1px solid #2a4159;
+            color: #c8d5ec;
+            font-weight: 700;
+            font-size: 0.94rem;
+            text-decoration: none;
+        }
+
+        .acciones a:hover,
+        .acciones a:focus-visible { border-color: #6fd7f5; color: #ffffff; }
+
+        .acciones a.principal {
+            background: #1668ad;
+            border-color: #1668ad;
+            color: #f2f7ff;
+        }
+
+        .acciones a.principal:hover,
+        .acciones a.principal:focus-visible { background: #2b8fd4; }
+    </style>
+</head>
+<body>
+    <main class="caja">
+        <div class="marca">
+            <picture>
+                <source srcset="/img/LOGO_Oktanet.webp" type="image/webp">
+                <img src="/img/LOGO_Oktanet.png" alt="Logo de Oktanet" width="44" height="44">
+            </picture>
+            <span>Oktanet</span>
+        </div>
+
+        <p class="codigo">Error 404</p>
+        <h1>Esta página no existe.</h1>
+        <p>El enlace que seguiste apunta a algo que se movió o que nunca estuvo aquí. Desde el inicio llegas a todo.</p>
+        <p class="en">This page does not exist. The link you followed points to something that moved or was never here.</p>
+
+        <div class="acciones">
+            <a class="principal" href="/">Ir al inicio</a>
+            <a href="/docs/">Documentación</a>
+            <a href="/#contacto">Contacto</a>
+        </div>
+    </main>
+</body>
+</html>

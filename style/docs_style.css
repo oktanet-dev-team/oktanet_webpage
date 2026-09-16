@@ -7,20 +7,20 @@
    --------------------------------------------------------------------------- */
 
 :root {
-    --bg-main: #f3f7fc;
-    --bg-elevated: #ffffff;
-    --bg-deep: #0f1d30;
-    --text-main: #132037;
-    --text-muted: #4a5d7a;
-    --line-soft: #d4deea;
-    --line-strong: #a6bad5;
-    --brand: #0c5a91;
-    --brand-strong: #063e66;
-    --brand-soft: #deecfb;
-    --highlight: #167a9f;
+    --bg-main: #08131f;
+    --bg-elevated: #0d1319;
+    --bg-deep: #060f1b;
+    --text-main: #c8d5ec;
+    --text-muted: #a3b7d2;
+    --line-soft: #15202b;
+    --line-strong: #2a4159;
+    --brand: #2b8fd4;
+    --brand-strong: #99d1f9;
+    --brand-soft: #041322;
+    --highlight: #57c8ea;
     --radius-lg: 18px;
     --radius-md: 12px;
-    --shadow-soft: 0 18px 40px rgba(15, 29, 48, 0.08);
+    --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.42);
     --doc-width: min(920px, calc(100% - 40px));
 }
 
@@ -129,13 +129,25 @@ img {
 
 .doc-btn-solid {
     background: #fff;
-    color: var(--brand-strong);
+    color: #0b4a78;
     border-color: #fff;
 }
 
 .doc-btn-solid:hover,
 .doc-btn-solid:focus-visible {
     background: #e7f1fb;
+}
+
+/* `.doc-header nav a` pesa mas que `.doc-btn-solid`, asi que el enlace de
+   descarga heredaba el azul palido de la navegacion sobre fondo blanco y
+   quedaba casi ilegible. Se reponen los colores con la especificidad que hace
+   falta, no subiendo la del resto. */
+.doc-header nav a.doc-btn {
+    color: #ffffff;
+}
+
+.doc-header nav a.doc-btn-solid {
+    color: #0b4a78;
 }
 
 /* --------------------------------- Cuerpo --------------------------------- */
@@ -191,7 +203,53 @@ img {
     border-radius: 999px;
     font-size: 0.84rem;
     color: var(--text-muted);
-    background: #f7fbff;
+    background: #001326;
+}
+
+.doc-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-soft);
+}
+
+.doc-share-label {
+    margin-right: 4px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.doc-share-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: #001326;
+    color: var(--brand-strong);
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.doc-share-link:hover,
+.doc-share-link:focus-visible {
+    background: var(--brand-soft);
+    border-color: var(--brand);
+    text-decoration: none;
+}
+
+.doc-share-link.is-done {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #0d1319;
 }
 
 .doc-toc {
@@ -294,7 +352,7 @@ table.doc-table thead th {
 }
 
 table.doc-table tbody tr:nth-child(even) td {
-    background: #f6fafe;
+    background: #041322;
 }
 
 table.doc-table td {
@@ -309,7 +367,7 @@ table.doc-table td strong {
     margin: 0 0 14px;
     padding: 14px 18px;
     border-left: 4px solid var(--brand);
-    background: #f2f8fd;
+    background: #051321;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
@@ -438,37 +496,12 @@ table.doc-table td strong {
 .doc-item-actions a.is-primary {
     background: var(--brand);
     border-color: var(--brand);
-    color: #fff;
+    color: #0d1319;
 }
 
 .doc-item-actions a.is-primary:hover,
 .doc-item-actions a.is-primary:focus-visible {
     background: var(--brand-strong);
-}
-
-.doc-item.is-soon {
-    box-shadow: none;
-    border-style: dashed;
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.doc-item.is-soon .doc-item-icon {
-    background: #eaf1f8;
-    color: #6d8098;
-}
-
-.doc-badge {
-    display: inline-block;
-    margin-left: 8px;
-    padding: 2px 10px;
-    border-radius: 999px;
-    background: #eaf1f8;
-    color: #56708c;
-    font-size: 0.74rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    vertical-align: middle;
 }
 
 @media (max-width: 720px) {
@@ -489,9 +522,47 @@ table.doc-table td strong {
     }
 }
 
+.doc-social {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 6px !important;
+}
+
+.doc-social a {
+    font-weight: 700;
+}
+
 /* --------------------------------- Impresion ------------------------------ */
 
 @media print {
+    /* El sitio es oscuro; el papel no. Se restituye la paleta clara con la que
+       se diseno el documento y todo lo que usa tokens la sigue. */
+    :root {
+        --bg-main: #ffffff;
+        --bg-elevated: #ffffff;
+        --bg-deep: #ffffff;
+        --text-main: #132037;
+        --text-muted: #4a5d7a;
+        --line-soft: #d4deea;
+        --line-strong: #a6bad5;
+        --brand: #0c5a91;
+        --brand-strong: #063e66;
+        --brand-soft: #deecfb;
+        --highlight: #167a9f;
+        --shadow-soft: none;
+    }
+
+    .doc-footer {
+        color: #132037;
+    }
+
+    /* Las pastillas de la portada llevan su color literal, no un token. */
+    .doc-meta li {
+        background: #f7fbff;
+        border-color: #a6bad5;
+        color: #4a5d7a;
+    }
+
     @page {
         size: A4;
         margin: 16mm 14mm;

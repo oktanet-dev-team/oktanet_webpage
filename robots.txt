@@ -1,0 +1,6 @@
+# Sitio público de Oktanet. Todo es indexable; el mapa del sitio lista las
+# páginas que importan, con sus versiones por idioma.
+User-agent: *
+Allow: /
+
+Sitemap: https://oktanet.io/sitemap.xml
