@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oktavia 2.0 Data Sheet | Oktanet</title>
+    <meta name="description" content="Oktavia 2.0 data sheet: modules, per-vendor coverage, integrations, architecture, licensing, and implementation process for Oktanet network automation platform.">
+    <link rel="canonical" href="https://oktanet.io/docs/datasheet-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Oktavia 2.0 Data Sheet">
+    <meta property="og:description" content="Modules, per-vendor coverage, integrations, licensing, and implementation process.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/datasheet-en.html">
+    <meta property="og:site_name" content="Oktanet">
+
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Document">
+                <a href="./index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./datasheet.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn doc-btn-solid" href="oktavia-2.0-datasheet-en.pdf" download>Download PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Data sheet · Platform</p>
+            <h1>Oktavia 2.0<br>Multi-vendor network automation</h1>
+            <p class="doc-lede">
+                Oktavia discovers the network, checks it against the customer standard, proposes the change against declared intent and, once a person approves, applies it and confirms the finding closed. One cycle, four vendors in production, every action with a downloadable artifact.
+            </p>
+            <ul class="doc-meta">
+                <li>Version 2.0</li>
+                <li>Built by Oktanet</li>
+                <li>Mexico · 2026</li>
+                <li>Public document</li>
+            </ul>
+        </section>
+
+        <nav class="doc-toc" aria-label="Document contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#summary">Executive summary</a></li>
+                <li><a href="#problem">The problem it solves</a></li>
+                <li><a href="#value">Value proposition</a></li>
+                <li><a href="#categories">Capability categories</a></li>
+                <li><a href="#modules">Platform modules</a></li>
+                <li><a href="#loop">The closed loop</a></li>
+                <li><a href="#services">New service rollout</a></li>
+                <li><a href="#argos">Argos, the network ChatOps</a></li>
+                <li><a href="#security">Security and service inventory</a></li>
+                <li><a href="#vendors">Per-vendor coverage</a></li>
+                <li><a href="#integrations">Integrations</a></li>
+                <li><a href="#architecture">Architecture and operating model</a></li>
+                <li><a href="#requirements">Integration requirements</a></li>
+                <li><a href="#implementation">Implementation process</a></li>
+                <li><a href="#licensing">Licensing</a></li>
+                <li><a href="#usecases">Use cases</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="summary">
+            <h2>1. Executive summary</h2>
+            <p>
+                Oktavia is a network automation platform for enterprise IT operations. It pairs an automation engine with a unified web interface to run audits, verify configuration compliance, visualize network state, and manage changes in a controlled and traceable way.
+            </p>
+            <p>
+                It is built for teams that need to move fast without giving up control. Every action produces versioned artifacts, every change requires prior validation, and everything lands in a searchable history.
+            </p>
+            <div class="doc-callout">
+                <p>
+                    <strong>What sets version 2.0 apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos; Argos as a ChatOps layer across the whole platform; network security with configuration evidence; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="problem">
+            <h2>2. The problem it solves</h2>
+            <p>Enterprise networks grow more complex faster than the teams that run them. The symptoms repeat across almost every customer:</p>
+            <ul>
+                <li><strong>Manual audits</strong> that take days and depend on nobody misreading a configuration.</li>
+                <li><strong>Configuration drift</strong> that goes unnoticed until there is an incident.</li>
+                <li><strong>Fragmented visibility</strong> across inventory, compliance, topology, and metrics, each in its own tool.</li>
+                <li><strong>No traceability</strong> on who changed what, when, and with whose approval.</li>
+                <li><strong>Reactive operations</strong>: the team acts when a user reports, not when the network drifts.</li>
+                <li><strong>Diagnosis without closure</strong>: audit tools find the problem, but fixing it stays manual work outside the tool.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="value">
+            <h2>3. Value proposition</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Benefit</th><th scope="col">Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>The full cycle, not just diagnosis</strong></td><td>Detect, propose, approve, apply, and verify the finding closed. Finding a problem is worthless if fixing it stays manual.</td></tr>
+                        <tr><td><strong>Audits in minutes, not days</strong></td><td>Full compliance across the whole network, a site, a role, or a single device in one operation.</td></tr>
+                        <tr><td><strong>Control without risk</strong></td><td>No change is ever applied without generated artifacts and prior validation. Each vendor is touched with its safest primitive.</td></tr>
+                        <tr><td><strong>End-to-end visibility</strong></td><td>Inventory, topology, compliance, security, addressing, and configurations in a single console.</td></tr>
+                        <tr><td><strong>Traceable automation</strong></td><td>Complete history of jobs, results, and downloadable artifacts in JSON, CSV, and CFG.</td></tr>
+                        <tr><td><strong>Genuinely multi-vendor</strong></td><td>Each vendor has its own normalized configuration model, not a translation into Cisco syntax.</td></tr>
+                        <tr><td><strong>Operating by conversation</strong></td><td>Argos audits, diagnoses, proposes configuration, and closes the loop from the chat, without switching screens.</td></tr>
+                        <tr><td><strong>AI with its cost in plain sight</strong></td><td>Every answer states whether it consumed the language model or resolved deterministically, before it runs.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="categories">
+            <h2>4. Capability categories</h2>
+            <p>Oktavia capabilities group into seven categories. It is the way to read the platform by problem solved, not by screen.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">#</th><th scope="col">Category</th><th scope="col">What it solves</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Network state and configuration</strong></td><td>Knowing at all times what exists, how it is connected, and how it is configured.</td></tr>
+                        <tr><td>2</td><td><strong>Compliance and configuration control</strong></td><td>Defining the standard and verifying the network meets it, with no blind changes.</td></tr>
+                        <tr><td>3</td><td><strong>Remediation and service rollout</strong></td><td>Closing the finding and rolling out new services with approval, verification, and rollback.</td></tr>
+                        <tr><td>4</td><td><strong>Network security</strong></td><td>Firewall and switch posture with the configuration evidence backing each finding.</td></tr>
+                        <tr><td>5</td><td><strong>Observability and event automation</strong></td><td>Seeing operational health in real time and reacting automatically to network conditions.</td></tr>
+                        <tr><td>6</td><td><strong>Intelligence and analysis</strong></td><td>Turning raw data into decisions: risk, drift, capacity, paths, and flows.</td></tr>
+                        <tr><td>7</td><td><strong>Governance and FinOps</strong></td><td>Proving the return on automation and operating multi-tenant with traceability.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="modules">
+            <h2>5. Platform modules</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Automation center</strong></td><td>Executive view of the network: global compliance score, devices reachable by ping and SSH, distribution by role, sites covered, active failures, and recent job activity.</td><td>Pro</td></tr>
+                        <tr><td><strong>Network inventory</strong></td><td>Dynamic multi-vendor inventory with filters by site, role, platform, vendor, and site type. Visual distribution, per-device detail, audit freshness, CSV import and export with non-destructive merge.</td><td>Pro</td></tr>
+                        <tr><td><strong>Topology and path tracing</strong></td><td>Interactive map with physical, control-plane, routing, OSPF, BGP autonomous system, and STP views. Per-node and per-site panels. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection.</td><td>Pro</td></tr>
+                        <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro</td></tr>
+                        <tr><td><strong>Desired configuration</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device. JSON and CSV export.</td><td>Pro</td></tr>
+                        <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
+                        <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, routing adjustments. Each with its rollback.</td><td>Pro</td></tr>
+                        <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro</td></tr>
+                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation. Global and per-device score, filters by domain and severity, evidence per finding.</td><td>Pro</td></tr>
+                        <tr><td><strong>Service inventory</strong></td><td>Cross-check between what is observed on the device, what is declared as intent, and the service catalog. Classifies each service as covered, blind spot, not applied, or not applicable, with its configuration scope.</td><td>Pro</td></tr>
+                        <tr><td><strong>Digital Twin</strong></td><td>Network state snapshots and comparison between desired and live configuration. Per-device drift detection, impact quantification, and an approval flow through successive states up to application.</td><td>Pro</td></tr>
+                        <tr><td><strong>Firewall policy analysis</strong></td><td>Which policy decides a flow at each hop along the path, with its address translation and its logging. Resolves object groups and application sets recursively.</td><td>Pro</td></tr>
+                        <tr><td><strong>IP Intelligence (IPAM)</strong></td><td>Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP address down to the access port by crossing the ARP table with the MAC table.</td><td>Pro</td></tr>
+                        <tr><td><strong>Configuration backups</strong></td><td>View, compare, and download configuration files by device and date.</td><td>Pro</td></tr>
+                        <tr><td><strong>Advanced reports</strong></td><td>Network health, configuration risk, drift, capacity, ports, and topology, in downloadable reports ready for audit.</td><td>Pro</td></tr>
+                        <tr><td><strong>Provisioning and site management</strong></td><td>Logical structure of site types, sites, and roles defined before the first discovery run. Executive per-site view with devices, management addresses, compliance, and network configuration.</td><td>Pro</td></tr>
+                        <tr><td><strong>Operations and scheduled audits</strong></td><td>Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.</td><td>Pro</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis.</td><td>Pro</td></tr>
+                        <tr><td><strong>Multi-tenant management</strong></td><td>Multi-organization, user management, and per-tenant data separation.</td><td>Pro</td></tr>
+                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, and interface metrics stored as time series, with temporal visualization, trends, and threshold alerts.</td><td>Telemetry and Events</td></tr>
+                        <tr><td><strong>Event automation</strong></td><td>Condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, or error thresholds.</td><td>Telemetry and Events</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="loop">
+            <h2>6. The closed loop</h2>
+            <p>
+                This is what separates Oktavia from an audit tool. Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right. The loop is a single path walked without leaving the platform:
+            </p>
+            <ol class="doc-steps">
+                <li><strong>Audit</strong> the chosen scope: a device, a role, a site, or the whole network.</li>
+                <li><strong>Read the compliance result</strong>: what failed, at what severity, and which configuration lines are missing.</li>
+                <li><strong>Propose the change</strong> against declared intent, not against a generic template.</li>
+                <li><strong>Review the diff</strong> between desired and live configuration in the Digital Twin, with estimated impact.</li>
+                <li><strong>Approve.</strong> A person, always. No change applies on its own.</li>
+                <li><strong>Apply</strong> using each vendor safe primitive.</li>
+                <li><strong>Verify</strong>: audit again and confirm the finding closed.</li>
+            </ol>
+            <p>Every step leaves a downloadable artifact and lands in the job history. If the result is not convincing, there is a way back.</p>
+
+            <h3>How it applies on each vendor</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Vendor</th><th scope="col">Apply primitive</th><th scope="col">Safety net</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Juniper Junos</strong></td><td>Deferred commit confirmation over NETCONF</td><td>The device rolls back on its own if nobody confirms within the window. A session that drops mid-apply does not leave the device unreachable.</td></tr>
+                        <tr><td><strong>Fortinet FortiGate</strong></td><td>Operations over the configuration API</td><td>Changes touching administrators and zones stay in permanent simulation, because moving a zone invalidates the policies referencing it.</td></tr>
+                        <tr><td><strong>Fortinet FortiSwitch · Cisco IOS</strong></td><td>Secure session with vault credentials</td><td>Diff before and verification after. The rollback is the inverse change, also reviewed and approved.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="services">
+            <h2>7. New service rollout</h2>
+            <p>The same cycle rolls out services, not just corrects deviations. You describe what you want and Oktavia proposes it as declared intent:</p>
+            <ul>
+                <li><strong>A tunnel between two sites</strong>, with the routes that run through it, and its complete teardown when the project ends.</li>
+                <li><strong>Advertising a network</strong>: logical interface, OSPF announcement, access control lists, and BGP on the site edge devices, with ping verification.</li>
+                <li><strong>Editing routing</strong>: router identifier from the logical interface, recommended site summarization.</li>
+                <li><strong>DHCP for a VLAN</strong>, with the range proposed from what Oktavia already knows about the segment.</li>
+                <li><strong>Adopting what exists</strong>: read a device backup and declare as intent what it already has configured, so auditing can start without redesigning anything.</li>
+            </ul>
+            <div class="doc-callout">
+                <p>Every service is proposed, edited before applying, and ships with its rollback. Nothing is written to the network without a person approving it.</p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="argos">
+            <h2>8. Argos, the network ChatOps</h2>
+            <p>
+                Argos is the assistant embedded in every Oktavia screen. You ask in plain language and it answers with network data, not generalities. It covers four moments of daily work:
+            </p>
+            <ul>
+                <li><strong>Understand</strong>: network state, compliance, what to address first, diagnosis of a device or a site.</li>
+                <li><strong>Investigate</strong>: path between two IP addresses forward and back, correlation of failures against configuration, anomaly and unreachable device detection.</li>
+                <li><strong>Configure</strong>: describe the service in plain language or paste the configuration, and Argos proposes it as declared intent for the operator to edit before applying.</li>
+                <li><strong>Close the loop</strong>: audit, read compliance, take it to the Digital Twin, approve, and verify. Each step is a button, not a sentence you have to type.</li>
+            </ul>
+            <p>
+                Two design principles separate it from a generic assistant. Every answer states whether it consumed the language model or resolved deterministically, so the cost is visible before you click. And no action that touches the network happens without a person approving it.
+            </p>
+
+            <h3>What uses AI and what does not</h3>
+            <p>
+                Most of what Argos does never touches the model: they are queries and calculations over already collected data, with reproducible results. The model steps in when something has to be written, prioritized, or interpreted from free text.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Capability</th><th scope="col">Engine</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Network state, compliance, diagnosis by device or site</td><td>Deterministic</td></tr>
+                        <tr><td>Service inventory and blind spots</td><td>Deterministic</td></tr>
+                        <tr><td>Security posture and its findings with evidence</td><td>Deterministic</td></tr>
+                        <tr><td>Path between two IP addresses, forward and back, with firewall policy per hop</td><td>Deterministic</td></tr>
+                        <tr><td>Locating an IP address down to the access port</td><td>Deterministic</td></tr>
+                        <tr><td>Importing a device configuration as declared intent</td><td>Deterministic</td></tr>
+                        <tr><td>Closing the loop: audit, compliance, Digital Twin, verify</td><td>Deterministic</td></tr>
+                        <tr><td>Interpreting an already computed path: architecture and troubleshooting findings</td><td>AI</td></tr>
+                        <tr><td>Explaining security: real priority and concrete per-vendor changes</td><td>AI</td></tr>
+                        <tr><td>Recommending what to declare first from the service inventory</td><td>AI</td></tr>
+                        <tr><td>BGP and OSPF routing analysis: state, risks, and recommendation</td><td>AI</td></tr>
+                        <tr><td>Configuring by conversation: describing a service in plain language</td><td>AI</td></tr>
+                        <tr><td>Starting from a ticket: reading the text and deciding what to audit</td><td>AI</td></tr>
+                        <tr><td>Correlating compliance failures with the configuration</td><td>AI only when there are findings</td></tr>
+                        <tr><td>Optimizing scopes and proposing a standard</td><td>AI on top of a deterministic calculation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The pattern repeats: the data is computed first, and the model only writes or prioritizes on that result. It never invents findings, it works with the ones the calculation produced.</p>
+        </section>
+
+        <section class="doc-section" id="security">
+            <h2>9. Security and service inventory</h2>
+            <h3>Network security</h3>
+            <p>
+                Security posture computed on the collected configuration of firewalls and switches, across four domains: perimeter, management plane, identities, and segmentation. Each finding carries the configuration line backing it and its recommendation in the vendor own syntax. It includes a global and per-device score, and filters by domain and severity.
+            </p>
+            <h3>Service inventory</h3>
+            <p>
+                It answers the question that comes before compliance: what is configured on each device, and how much of it is declared as intent. It cross-checks what is observed against what is declared and against the service catalog, and classifies each service into four states, along with the configuration scope that defines it.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">State</th><th scope="col">Meaning</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Covered</strong></td><td>The service is configured on the device and declared as intent. Oktavia audits it.</td></tr>
+                        <tr><td><strong>Blind spot</strong></td><td>It is configured on the device but nobody declared it. Nobody audits it, and a change to it goes unnoticed.</td></tr>
+                        <tr><td><strong>Not applied</strong></td><td>It is declared as intent but does not appear in the device configuration.</td></tr>
+                        <tr><td><strong>Not applicable</strong></td><td>It does not correspond to the platform or the role of that device.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>From the inventory itself, blind spots are declared as intent in a single step, without touching the network: what was already there simply starts being audited.</p>
+        </section>
+
+        <section class="doc-section" id="vendors">
+            <h2>10. Per-vendor coverage</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Vendor</th><th scope="col">Status</th><th scope="col">Access method</th><th scope="col">Coverage</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>Production</td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
+                        <tr><td><strong>Fortinet FortiGate</strong></td><td>Production</td><td>REST API</td><td>Discovery, compliance, desired configuration, remediation, firewall policies</td></tr>
+                        <tr><td><strong>Fortinet FortiSwitch</strong></td><td>Production</td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
+                        <tr><td><strong>Juniper Junos</strong></td><td>Production</td><td>NETCONF</td><td>Discovery, compliance, desired configuration, remediation, zone policies</td></tr>
+                        <tr><td><strong>Ubiquiti</strong></td><td>On the roadmap</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>How a new vendor is integrated.</strong> Each vendor has its own normalized configuration model, not a translation into Cisco syntax: virtual domains and interfaces in FortiOS, contexts and zones in Junos. Integrating a new one is four pieces: discovery adapter, normalizer, compliance rules, and generation templates. It is bounded, repeatable work, and it is how coverage expands to match each customer installed base.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="integrations">
+            <h2>11. Integrations</h2>
+            <p>Oktavia was designed to coexist with the customer ecosystem, not to replace it. It can feed and be fed by the tools already in operation.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Integration</th><th scope="col">Status</th><th scope="col">Use</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>SNMP and metric collection</strong></td><td>Production</td><td>Native telemetry engine: polling and storage in a time-series database.</td></tr>
+                        <tr><td><strong>Grafana</strong></td><td>Compatible</td><td>Oktavia time-series database is a direct Grafana datasource; the customer builds dashboards on the same metrics with no extra transformation.</td></tr>
+                        <tr><td><strong>Zabbix and Prometheus</strong></td><td>Interoperable</td><td>Devices exposed over SNMP can be consumed by Zabbix. A Prometheus-compatible exporter is on the roadmap.</td></tr>
+                        <tr><td><strong>Email (SMTP)</strong></td><td>Production</td><td>Notifications and alerts by email over any customer SMTP server.</td></tr>
+                        <tr><td><strong>Anthropic (Claude API)</strong></td><td>Production</td><td>AI engine for analysis, recommendations, and conversational assistance.</td></tr>
+                        <tr><td><strong>HTTP webhooks</strong></td><td>Production</td><td>Event delivery to any HTTP integration point; the basis for ticketing and messaging tools.</td></tr>
+                        <tr><td><strong>Ticketing</strong></td><td>On the roadmap</td><td>Automatic ticket creation when an event rule fires.</td></tr>
+                        <tr><td><strong>External source of truth</strong></td><td>Optional</td><td>Inventory ingestion from an external system of record if the customer already runs one.</td></tr>
+                        <tr><td><strong>CSV and REST API</strong></td><td>Production</td><td>Import and export of inventory, catalogs, and data across every module; programmatic integration over API.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Integration differentiator:</strong> Oktavia contributes the intent and compliance layer, the standard the network is compared against, which a metrics dashboard or a traditional monitoring system does not have. They measure; Oktavia also validates against a standard and automates the response.
+            </p>
+        </section>
+
+        <section class="doc-section" id="architecture">
+            <h2>12. Architecture and operating model</h2>
+            <p>
+                The platform separates the web interface from the automation engine. The interface owns the user experience, tenant organization, and persistence; the engine executes against the devices. They talk over a REST API authenticated with a key.
+            </p>
+            <ul>
+                <li><strong>Persistence:</strong> relational database with per-tenant data separation.</li>
+                <li><strong>Artifacts:</strong> JSON, CSV, and configuration files, downloadable and versioned.</li>
+                <li><strong>Deployment:</strong> orchestrated containers, on customer premises or in a private cloud.</li>
+                <li><strong>Device access:</strong> SSH, NETCONF, and native vendor API, with credentials encrypted in a vault.</li>
+            </ul>
+            <h3>Operating model</h3>
+            <ul>
+                <li>Everything runs as <strong>asynchronous jobs</strong> with complete history.</li>
+                <li>Every job produces <strong>versioned artifacts</strong>, downloadable.</li>
+                <li><strong>No direct changes are ever applied</strong> without generating and validating artifacts first.</li>
+                <li>Remediation actions are <strong>supervised and traceable</strong>, with an identified approver.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="requirements">
+            <h2>13. Integration requirements</h2>
+            <p>To deploy Oktavia over an existing network we ask the customer for:</p>
+            <ul>
+                <li>Base device inventory.</li>
+                <li>List of sites and site types.</li>
+                <li>Operational roles per device.</li>
+                <li>Vendor, platform, and version, where the data exists.</li>
+                <li>Management addresses and access method.</li>
+                <li>Read credentials for discovery.</li>
+                <li>Change credentials, if remediation is in scope.</li>
+                <li>Backups or available live configuration.</li>
+                <li>Current configuration standards.</li>
+                <li>Operational constraints and change windows.</li>
+                <li>Approvers and technical contacts.</li>
+            </ul>
+            <h3>Minimum data per device</h3>
+            <p>
+                Identity (hostname, management address, site, role), operating system and model, interfaces, layer 2 discovery neighbors, BGP and OSPF neighbors where they exist, live configuration or backup, and the baseline operational services: NTP, DNS, SNMP, SSH, banners, and time zone.
+            </p>
+            <h3>Preferred order for sourcing the data</h3>
+            <ol>
+                <li>Native vendor API.</li>
+                <li>NETCONF, RESTCONF, or remote procedure calls.</li>
+                <li>Structured vendor parsers.</li>
+                <li>Command-line output parsing.</li>
+                <li>Live configuration or backups.</li>
+            </ol>
+        </section>
+
+        <section class="doc-section" id="implementation">
+            <h2>14. Implementation process</h2>
+            <ol class="doc-steps">
+                <li><strong>Data onboarding.</strong> Receive the base inventory, normalize names, roles, sites, platforms, and models, and load the initial file.</li>
+                <li><strong>Controlled discovery.</strong> Validate reachability, run discovery in batches, collect backups, and normalize the observed inventory.</li>
+                <li><strong>Intent baseline.</strong> Define services per scope, load service variables, enable compliance checks, and configure the customer service catalog.</li>
+                <li><strong>Validation.</strong> Run the full audit, review the dashboards, and tune rules and exceptions.</li>
+                <li><strong>Operation and remediation.</strong> Propose the change, simulate it, approve it, apply it, and recompute compliance to confirm closure.</li>
+            </ol>
+
+            <h3>Estimated time to a working deployment</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Network size</th><th scope="col">Estimated time</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Small network</td><td>1 to 3 days</td></tr>
+                        <tr><td>Medium network</td><td>3 to 7 days</td></tr>
+                        <tr><td>Large or complex multi-vendor network</td><td>2 to 4 weeks</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    AI accelerates the preparation: inventory cleanup, role and platform normalization, parser prototyping, and catalog generation. Final validation of intent, compliance, and changes stays operational and human.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="licensing">
+            <h2>15. Licensing</h2>
+            <p>
+                Two licenses, not three editions. The complete platform is <strong>Oktavia Pro</strong>. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
+            </p>
+            <h3>Oktavia Pro</h3>
+            <p>
+                Multi-vendor discovery, inventory, configuration and state compliance, desired configuration per device and per scope, the full remediation cycle with Digital Twin, new service rollout with rollback, topology with path tracing and firewall policy analysis, network security, service inventory, IP Intelligence, configuration backups, advanced reports, provisioning, scheduled operations, FinOps, multi-tenant, and the complete Argos.
+            </p>
+            <h3>Telemetry and Event Orchestration</h3>
+            <p>
+                Real-time metrics, telemetry dashboards compatible with Grafana, and the event automation engine: condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, and error thresholds.
+            </p>
+        </section>
+
+        <section class="doc-section" id="usecases">
+            <h2>16. Use cases</h2>
+            <ul>
+                <li>Configuration compliance audit across multiple sites in minutes.</li>
+                <li>Automatic detection of configuration drift after a maintenance window.</li>
+                <li>Desired configuration generation for new devices by role and by site.</li>
+                <li>Live path trace between two points with next hop, egress interface, and asymmetry detection.</li>
+                <li>Capacity visibility on wide area interfaces before saturation.</li>
+                <li>Post-maintenance connectivity validation across the whole network.</li>
+                <li>Change control with a diff between desired and live configuration before applying.</li>
+                <li>Onboarding a new network with site types and sites configured before the first discovery run.</li>
+                <li>Firewall security posture with the configuration evidence backing each finding.</li>
+                <li>Discovering which services are configured and audited by nobody, and declaring them without touching the network.</li>
+                <li>Knowing whether a flow passes: which firewall policy decides it at each hop, with its address translation and its logging.</li>
+                <li>Locating an IP address down to the access port by crossing the ARP table with the MAC table.</li>
+                <li>Adopting the configuration a device already has as declared intent, to start auditing it without redesigning anything.</li>
+                <li>Fixing a deviation end to end: propose, approve, apply, and verify it closed.</li>
+                <li>Bringing up a tunnel between two sites with its routes, and tearing it down completely when the project ends.</li>
+                <li>Advertising a new network in OSPF and BGP on the site edge devices, with ping verification included.</li>
+            </ul>
+        </section>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments in Latin America.
+            </p>
+            <p>
+                For a demonstration on your own environment, reach us at <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia 2.0 · Public document, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js"></script>
+</body>
+</html>

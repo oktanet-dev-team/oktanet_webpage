@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data sheet de Oktavia 2.0 | Oktanet</title>
+    <meta name="description" content="Data sheet de Oktavia 2.0: módulos, cobertura por fabricante, integraciones, arquitectura, licenciamiento y proceso de implementación de la plataforma de automatización de redes de Oktanet.">
+    <link rel="canonical" href="https://oktanet.io/docs/datasheet.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Data sheet de Oktavia 2.0">
+    <meta property="og:description" content="Módulos, cobertura por fabricante, integraciones, licenciamiento y proceso de implementación.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/datasheet.html">
+    <meta property="og:site_name" content="Oktanet">
+
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documento">
+                <a href="./">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./datasheet-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn doc-btn-solid" href="oktavia-2.0-datasheet-es.pdf" download>Descargar PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Data sheet · Plataforma</p>
+            <h1>Oktavia 2.0<br>Automatización de redes multivendor</h1>
+            <p class="doc-lede">
+                Oktavia descubre la red, verifica que cumpla el estándar del cliente, propone el cambio contra la intención declarada y, con aprobación humana, lo aplica y confirma que el hallazgo cerró. Un solo ciclo, cuatro fabricantes en producción, cada acción con artefacto descargable.
+            </p>
+            <ul class="doc-meta">
+                <li>Versión 2.0</li>
+                <li>Desarrollado por Oktanet</li>
+                <li>México · 2026</li>
+                <li>Documento público</li>
+            </ul>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contenido del documento">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#resumen">Resumen ejecutivo</a></li>
+                <li><a href="#problema">El problema que resuelve</a></li>
+                <li><a href="#valor">Propuesta de valor</a></li>
+                <li><a href="#categorias">Categorías de capacidad</a></li>
+                <li><a href="#modulos">Módulos de la plataforma</a></li>
+                <li><a href="#ciclo">El ciclo cerrado</a></li>
+                <li><a href="#servicios">Alta de servicios nuevos</a></li>
+                <li><a href="#argos">Argos, el ChatOps de red</a></li>
+                <li><a href="#seguridad">Seguridad e inventario de servicios</a></li>
+                <li><a href="#vendors">Cobertura por fabricante</a></li>
+                <li><a href="#integraciones">Integraciones</a></li>
+                <li><a href="#arquitectura">Arquitectura y modelo de operación</a></li>
+                <li><a href="#requisitos">Requisitos de integración</a></li>
+                <li><a href="#implementacion">Proceso de implementación</a></li>
+                <li><a href="#licenciamiento">Licenciamiento</a></li>
+                <li><a href="#casos">Casos de uso</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="resumen">
+            <h2>1. Resumen ejecutivo</h2>
+            <p>
+                Oktavia es una plataforma de automatización de redes para operaciones de TI empresariales. Combina un motor de automatización con una interfaz web unificada para ejecutar auditorías, verificar cumplimiento de configuración, visualizar el estado de la red y gestionar cambios de forma controlada y trazable.
+            </p>
+            <p>
+                Está diseñada para equipos que necesitan operar con agilidad sin renunciar al control. Cada acción produce artefactos versionables, cada cambio requiere validación previa y todo queda registrado en un historial consultable.
+            </p>
+            <div class="doc-callout">
+                <p>
+                    <strong>Lo que distingue a la versión 2.0:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; seguridad de red con evidencia de configuración; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="problema">
+            <h2>2. El problema que resuelve</h2>
+            <p>Las redes empresariales crecen en complejidad más rápido que los equipos que las operan. Los síntomas se repiten en casi todos los clientes:</p>
+            <ul>
+                <li><strong>Auditorías manuales</strong> que toman días y dependen de que nadie se equivoque al leer una configuración.</li>
+                <li><strong>Desviaciones de configuración</strong> que nadie detecta hasta que hay un incidente.</li>
+                <li><strong>Visibilidad fragmentada</strong> entre inventario, cumplimiento, topología y métricas, cada una en su herramienta.</li>
+                <li><strong>Falta de trazabilidad</strong> sobre quién cambió qué, cuándo y con qué autorización.</li>
+                <li><strong>Operación reactiva</strong>: se actúa cuando el usuario reporta, no cuando la red se desvía.</li>
+                <li><strong>Diagnóstico sin cierre</strong>: las herramientas de auditoría encuentran el problema, pero corregirlo sigue siendo trabajo manual fuera de la herramienta.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="valor">
+            <h2>3. Propuesta de valor</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Beneficio</th><th scope="col">Descripción</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>El ciclo completo, no sólo el diagnóstico</strong></td><td>Detectar, proponer, aprobar, aplicar y verificar que el hallazgo cerró. Encontrar un problema no sirve si corregirlo sigue siendo manual.</td></tr>
+                        <tr><td><strong>Auditorías en minutos, no en días</strong></td><td>Cumplimiento completo sobre toda la red, un sitio, un rol o un dispositivo en una sola operación.</td></tr>
+                        <tr><td><strong>Control sin riesgo</strong></td><td>Nunca se aplica un cambio sin artefactos generados y validación previa. Cada fabricante se toca con su primitiva más segura.</td></tr>
+                        <tr><td><strong>Visibilidad de punta a punta</strong></td><td>Inventario, topología, cumplimiento, seguridad, direccionamiento y configuraciones en un solo panel.</td></tr>
+                        <tr><td><strong>Automatización trazable</strong></td><td>Historial completo de trabajos, resultados y artefactos descargables en JSON, CSV y CFG.</td></tr>
+                        <tr><td><strong>Multivendor de verdad</strong></td><td>Cada fabricante tiene su propio modelo de configuración normalizado, no una traducción a sintaxis Cisco.</td></tr>
+                        <tr><td><strong>Operación conversando</strong></td><td>Argos audita, diagnostica, propone configuración y cierra el ciclo desde el chat, sin cambiar de pantalla.</td></tr>
+                        <tr><td><strong>IA con el costo a la vista</strong></td><td>Cada respuesta declara si consumió el modelo de lenguaje o se resolvió de forma determinista, antes de ejecutarse.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="categorias">
+            <h2>4. Categorías de capacidad</h2>
+            <p>Las capacidades de Oktavia se agrupan en siete categorías. Es la forma de leer la plataforma por problema resuelto, no por pantalla.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">#</th><th scope="col">Categoría</th><th scope="col">Qué resuelve</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td><strong>Estado y configuración de la red</strong></td><td>Saber en todo momento qué hay, cómo está conectado y cómo está configurado.</td></tr>
+                        <tr><td>2</td><td><strong>Cumplimiento y control de configuración</strong></td><td>Definir el estándar y verificar que la red lo cumpla, sin cambios a ciegas.</td></tr>
+                        <tr><td>3</td><td><strong>Remediación y alta de servicios</strong></td><td>Cerrar el hallazgo y dar de alta servicios nuevos con aprobación, verificación y rollback.</td></tr>
+                        <tr><td>4</td><td><strong>Seguridad de red</strong></td><td>Postura de firewalls y switches con la evidencia de configuración que sustenta cada hallazgo.</td></tr>
+                        <tr><td>5</td><td><strong>Observabilidad y automatización de eventos</strong></td><td>Ver la salud operativa en tiempo real y reaccionar de forma automática ante condiciones de red.</td></tr>
+                        <tr><td>6</td><td><strong>Inteligencia y análisis</strong></td><td>Convertir datos crudos en decisiones: riesgo, desviación, capacidad, rutas y flujos.</td></tr>
+                        <tr><td>7</td><td><strong>Gobernanza y FinOps</strong></td><td>Demostrar el retorno de la automatización y operar multi-tenant con trazabilidad.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="modulos">
+            <h2>5. Módulos de la plataforma</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Módulo</th><th scope="col">Alcance funcional</th><th scope="col">Licencia</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Centro de automatización</strong></td><td>Vista ejecutiva de la red: puntaje de cumplimiento global, dispositivos accesibles por ping y SSH, distribución por rol, sitios cubiertos, fallas activas y actividad reciente de trabajos.</td><td>Pro</td></tr>
+                        <tr><td><strong>Inventario de red</strong></td><td>Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante y tipo de sitio. Distribución visual, detalle por dispositivo, frescura de auditoría, import y export en CSV con fusión no destructiva.</td><td>Pro</td></tr>
+                        <tr><td><strong>Topología y trazado de rutas</strong></td><td>Mapa interactivo con vistas física, de plano de control, enrutamiento, OSPF, sistemas autónomos BGP y STP. Panel por nodo y por sitio. Trazado de la ruta activa entre dos puntos con salto, siguiente salto, interfaz de salida y protocolo, ruta inversa y detección de asimetría.</td><td>Pro</td></tr>
+                        <tr><td><strong>Cumplimiento de configuración</strong></td><td>Puntaje global y por sitio, principales fallas y tendencias. Resultados por dispositivo con severidad, diagnóstico y plan de corrección. Catálogo de servicios y reglas editables con habilitación selectiva por rol, fabricante, plataforma o tipo de sitio.</td><td>Pro</td></tr>
+                        <tr><td><strong>Configuración deseada</strong></td><td>Generación de configuración a partir de variables de servicio y plantillas, con precedencia por valores por omisión, tipo de sitio, sitio, plataforma, modelo, rol y dispositivo. Exportación en JSON y CSV.</td><td>Pro</td></tr>
+                        <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
+                        <tr><td><strong>Alta de servicios nuevos</strong></td><td>El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, ajustes de enrutamiento. Cada uno con su rollback.</td><td>Pro</td></tr>
+                        <tr><td><strong>Argos — ChatOps de red</strong></td><td>Asistente en lenguaje natural integrado en todas las pantallas. Entiende, investiga, configura y cierra el ciclo. Cada acción declara si consume el modelo de IA antes de ejecutarse.</td><td>Pro</td></tr>
+                        <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Puntaje global y por equipo, filtros por dominio y severidad, evidencia por hallazgo.</td><td>Pro</td></tr>
+                        <tr><td><strong>Inventario de servicios</strong></td><td>Cruce entre lo observado en el equipo, lo declarado como intención y el catálogo de servicios. Clasifica cada servicio como cubierto, punto ciego, sin aplicar o inaplicable, con su alcance de configuración.</td><td>Pro</td></tr>
+                        <tr><td><strong>Gemelo digital</strong></td><td>Capturas del estado de la red y comparación entre configuración deseada y activa. Detección de desviación por dispositivo, cuantificación de impacto y flujo de aprobación con estados sucesivos hasta la aplicación.</td><td>Pro</td></tr>
+                        <tr><td><strong>Análisis de políticas de firewall</strong></td><td>Qué política decide un flujo en cada salto del camino, con su traducción de direcciones y su registro. Resuelve grupos de objetos y conjuntos de aplicaciones de forma recursiva.</td><td>Pro</td></tr>
+                        <tr><td><strong>Inteligencia IP (IPAM)</strong></td><td>Mapa de direccionamiento, subredes detectadas, solapamientos, vecinos de enrutamiento y ubicación de una dirección IP hasta el puerto de acceso cruzando la tabla ARP con la tabla MAC.</td><td>Pro</td></tr>
+                        <tr><td><strong>Respaldos de configuración</strong></td><td>Visualización, comparación y descarga de archivos de configuración por dispositivo y fecha.</td><td>Pro</td></tr>
+                        <tr><td><strong>Reportes avanzados</strong></td><td>Salud de red, riesgo de configuración, desviación, capacidad, puertos y topología, en reportes descargables listos para auditoría.</td><td>Pro</td></tr>
+                        <tr><td><strong>Provisioning y gestión de sitios</strong></td><td>Estructura lógica de tipos de sitio, sitios y roles definida antes del primer descubrimiento. Vista ejecutiva por sitio con dispositivos, direcciones de gestión, cumplimiento y configuración de red.</td><td>Pro</td></tr>
+                        <tr><td><strong>Operaciones y auditorías programadas</strong></td><td>Ejecución y programación de auditorías, descubrimiento, sincronización de inventario y validaciones de conectividad, con historial de trabajos y artefactos.</td><td>Pro</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo.</td><td>Pro</td></tr>
+                        <tr><td><strong>Gestión multi-tenant</strong></td><td>Multi-organización, gestión de usuarios y separación de datos por tenant.</td><td>Pro</td></tr>
+                        <tr><td><strong>Telemetría en tiempo real</strong></td><td>Métricas operativas de CPU, memoria e interfaces almacenadas como series de tiempo, con visualización temporal, tendencias y alertas por umbral.</td><td>Telemetría y Eventos</td></tr>
+                        <tr><td><strong>Automatización de eventos</strong></td><td>Reglas de condición a acción que reaccionan de forma automática ante caídas de sesión BGP, caídas de vecino OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura o errores.</td><td>Telemetría y Eventos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="ciclo">
+            <h2>6. El ciclo cerrado</h2>
+            <p>
+                Es lo que separa a Oktavia de una herramienta de auditoría. Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien. El ciclo es uno solo y se recorre sin salir de la plataforma:
+            </p>
+            <ol class="doc-steps">
+                <li><strong>Auditar</strong> el alcance elegido: un equipo, un rol, un sitio o toda la red.</li>
+                <li><strong>Ver el cumplimiento</strong>: qué falló, con qué severidad y qué líneas de configuración faltan.</li>
+                <li><strong>Proponer el cambio</strong> contra la intención declarada, no contra una plantilla genérica.</li>
+                <li><strong>Revisar el diff</strong> entre configuración deseada y activa en el Gemelo Digital, con el impacto estimado.</li>
+                <li><strong>Aprobar.</strong> Una persona, siempre. Ningún cambio se aplica solo.</li>
+                <li><strong>Aplicar</strong> con la primitiva segura de cada fabricante.</li>
+                <li><strong>Verificar</strong>: se vuelve a auditar y se confirma que el hallazgo cerró.</li>
+            </ol>
+            <p>Cada paso deja artefacto descargable y queda en el historial de trabajos. Si el resultado no convence, hay vuelta atrás.</p>
+
+            <h3>Cómo se aplica en cada fabricante</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Fabricante</th><th scope="col">Primitiva de aplicación</th><th scope="col">Red de seguridad</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Juniper Junos</strong></td><td>Confirmación diferida sobre NETCONF</td><td>El equipo revierte solo si nadie confirma dentro de la ventana. Una sesión que se corta a media aplicación no deja el equipo inalcanzable.</td></tr>
+                        <tr><td><strong>Fortinet FortiGate</strong></td><td>Operaciones sobre la API de configuración</td><td>Los cambios que tocan administradores y zonas quedan en simulación permanente, porque mover una zona invalida las políticas que la referencian.</td></tr>
+                        <tr><td><strong>Fortinet FortiSwitch · Cisco IOS</strong></td><td>Sesión segura con credenciales de bóveda</td><td>Diff previo y verificación posterior. El rollback es el cambio inverso, también revisado y aprobado.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="servicios">
+            <h2>7. Alta de servicios nuevos</h2>
+            <p>El mismo ciclo sirve para dar de alta servicios, no únicamente para corregir desviaciones. Se describe lo que se quiere y Oktavia lo propone como intención declarada:</p>
+            <ul>
+                <li><strong>Túnel entre dos sitios</strong>, con las rutas que van por él, y su baja completa cuando el proyecto termina.</li>
+                <li><strong>Publicar una red</strong>: interfaz lógica, anuncio en OSPF, listas de control de acceso y BGP en los equipos de borde del sitio, con verificación por ping.</li>
+                <li><strong>Editar el enrutamiento</strong>: identificador de router desde la interfaz lógica, sumarización del sitio recomendada.</li>
+                <li><strong>DHCP para una VLAN</strong>, con el rango propuesto a partir de lo que Oktavia ya sabe del segmento.</li>
+                <li><strong>Adoptar lo existente</strong>: leer el respaldo de un equipo y declarar como intención lo que ya tiene configurado, para empezar a auditarlo sin rediseñar nada.</li>
+            </ul>
+            <div class="doc-callout">
+                <p>Cada servicio se propone, se edita antes de aplicar y trae su rollback. Nada se escribe en la red sin que una persona lo apruebe.</p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="argos">
+            <h2>8. Argos, el ChatOps de red</h2>
+            <p>
+                Argos es el asistente integrado en todas las pantallas de Oktavia. Se le pregunta en lenguaje natural y responde con datos de la red, no con generalidades. Cubre cuatro momentos del trabajo diario:
+            </p>
+            <ul>
+                <li><strong>Entender</strong>: estado de la red, cumplimiento, qué atender primero, diagnóstico de un equipo o un sitio.</li>
+                <li><strong>Investigar</strong>: camino entre dos direcciones IP con ida y regreso, correlación de fallas contra la configuración, detección de anomalías y equipos caídos.</li>
+                <li><strong>Configurar</strong>: se describe el servicio en lenguaje natural o se pega la configuración, y Argos la propone como intención declarada para que el operador la edite antes de aplicar.</li>
+                <li><strong>Cerrar el ciclo</strong>: auditar, ver cumplimiento, llevarlo al Gemelo Digital, aprobar y verificar. Cada paso es un botón, no una frase que haya que teclear.</li>
+            </ul>
+            <p>
+                Dos principios de diseño lo separan de un asistente genérico. Cada respuesta declara si consumió el modelo de lenguaje o se resolvió de forma determinista, así que el costo es visible antes de pulsar. Y ninguna acción que toque la red ocurre sin que una persona la apruebe.
+            </p>
+
+            <h3>Qué usa IA y qué no</h3>
+            <p>
+                La mayoría de lo que hace Argos no consume el modelo: son consultas y cálculos sobre datos ya recolectados, con resultado reproducible. El modelo entra cuando hay que redactar, priorizar o interpretar lenguaje libre.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Capacidad</th><th scope="col">Motor</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Estado de la red, cumplimiento, diagnóstico por equipo o sitio</td><td>Determinista</td></tr>
+                        <tr><td>Inventario de servicios y puntos ciegos</td><td>Determinista</td></tr>
+                        <tr><td>Postura de seguridad y sus hallazgos con evidencia</td><td>Determinista</td></tr>
+                        <tr><td>Camino entre dos direcciones IP, ida y regreso, con políticas de firewall por salto</td><td>Determinista</td></tr>
+                        <tr><td>Ubicación de una dirección IP hasta el puerto de acceso</td><td>Determinista</td></tr>
+                        <tr><td>Importar la configuración de un equipo como intención declarada</td><td>Determinista</td></tr>
+                        <tr><td>Cerrar el ciclo: auditar, cumplimiento, Gemelo Digital, verificar</td><td>Determinista</td></tr>
+                        <tr><td>Interpretar un camino ya calculado: hallazgos de arquitectura y diagnóstico</td><td>IA</td></tr>
+                        <tr><td>Explicar la seguridad: prioridad real y cambios concretos por fabricante</td><td>IA</td></tr>
+                        <tr><td>Recomendar qué declarar primero del inventario de servicios</td><td>IA</td></tr>
+                        <tr><td>Análisis de enrutamiento BGP y OSPF: estado, riesgos y recomendación</td><td>IA</td></tr>
+                        <tr><td>Configurar conversando: describir un servicio en lenguaje natural</td><td>IA</td></tr>
+                        <tr><td>Empezar por un ticket: leer el texto y decidir qué auditar</td><td>IA</td></tr>
+                        <tr><td>Correlacionar fallas de cumplimiento con la configuración</td><td>IA sólo si hay hallazgos</td></tr>
+                        <tr><td>Optimizar alcances y proponer un estándar</td><td>IA sobre un cálculo determinista</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>El patrón se repite: primero se calcula con los datos, y el modelo sólo redacta o prioriza sobre ese resultado. Nunca inventa hallazgos, trabaja con los que el cálculo produjo.</p>
+        </section>
+
+        <section class="doc-section" id="seguridad">
+            <h2>9. Seguridad e inventario de servicios</h2>
+            <h3>Seguridad de red</h3>
+            <p>
+                Postura de seguridad calculada sobre la configuración recolectada de firewalls y switches, en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Cada hallazgo trae la línea de configuración que lo sustenta y su recomendación en la sintaxis del fabricante. Incluye puntaje global y por equipo, y filtros por dominio y severidad.
+            </p>
+            <h3>Inventario de servicios</h3>
+            <p>
+                Responde la pregunta previa al cumplimiento: qué hay configurado en cada equipo, y cuánto de eso está declarado como intención. Cruza lo observado con lo declarado y con el catálogo de servicios, y clasifica cada servicio en cuatro estados, junto con el alcance de configuración que lo define.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Estado</th><th scope="col">Significado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cubierto</strong></td><td>El servicio está configurado en el equipo y declarado como intención. Oktavia lo audita.</td></tr>
+                        <tr><td><strong>Punto ciego</strong></td><td>Está configurado en el equipo pero nadie lo declaró. Nadie lo audita, y un cambio en él pasa inadvertido.</td></tr>
+                        <tr><td><strong>Sin aplicar</strong></td><td>Está declarado como intención pero no aparece en la configuración del equipo.</td></tr>
+                        <tr><td><strong>Inaplicable</strong></td><td>No corresponde a la plataforma o al rol de ese equipo.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Desde el propio inventario, los puntos ciegos se declaran como intención en un solo paso, sin tocar la red: sólo se empieza a auditar lo que ya estaba ahí.</p>
+        </section>
+
+        <section class="doc-section" id="vendors">
+            <h2>10. Cobertura por fabricante</h2>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Fabricante</th><th scope="col">Estado</th><th scope="col">Método de acceso</th><th scope="col">Cobertura</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>Producción</td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
+                        <tr><td><strong>Fortinet FortiGate</strong></td><td>Producción</td><td>API REST</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas de firewall</td></tr>
+                        <tr><td><strong>Fortinet FortiSwitch</strong></td><td>Producción</td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
+                        <tr><td><strong>Juniper Junos</strong></td><td>Producción</td><td>NETCONF</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas por zona</td></tr>
+                        <tr><td><strong>Ubiquiti</strong></td><td>En hoja de ruta</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>Cómo se integra un fabricante nuevo.</strong> Cada fabricante tiene su propio modelo de configuración normalizado, no una traducción a sintaxis Cisco: dominios virtuales e interfaces en FortiOS, contextos y zonas en Junos. Integrar uno nuevo son cuatro piezas: adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas de generación. Es trabajo acotado y repetible, y es la vía por la que se amplía la cobertura según el parque instalado de cada cliente.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="integraciones">
+            <h2>11. Integraciones</h2>
+            <p>Oktavia se diseñó para convivir con el ecosistema del cliente, no para reemplazarlo. Puede alimentar y ser alimentada por las herramientas que ya están en operación.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Integración</th><th scope="col">Estado</th><th scope="col">Uso</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>SNMP y recolección de métricas</strong></td><td>Producción</td><td>Motor de telemetría nativo: sondeo y almacenamiento en base de series de tiempo.</td></tr>
+                        <tr><td><strong>Grafana</strong></td><td>Compatible</td><td>La base de series de tiempo de Oktavia es fuente de datos directa de Grafana; el cliente construye sus tableros sobre las mismas métricas sin transformación adicional.</td></tr>
+                        <tr><td><strong>Zabbix y Prometheus</strong></td><td>Interoperable</td><td>Los dispositivos expuestos por SNMP pueden ser consumidos por Zabbix. Exportador compatible con Prometheus en hoja de ruta.</td></tr>
+                        <tr><td><strong>Correo electrónico (SMTP)</strong></td><td>Producción</td><td>Notificaciones y alertas por correo sobre cualquier servidor SMTP del cliente.</td></tr>
+                        <tr><td><strong>Anthropic (Claude API)</strong></td><td>Producción</td><td>Motor de IA para análisis, recomendaciones y asistencia conversacional.</td></tr>
+                        <tr><td><strong>Webhooks HTTP</strong></td><td>Producción</td><td>Envío de eventos a cualquier punto de integración HTTP; base para herramientas de tickets y mensajería.</td></tr>
+                        <tr><td><strong>Gestión de tickets</strong></td><td>En hoja de ruta</td><td>Creación automática de tickets al dispararse una regla de evento.</td></tr>
+                        <tr><td><strong>Fuente de verdad externa</strong></td><td>Opcional</td><td>Ingesta de inventario desde un sistema de registro externo si el cliente ya opera uno.</td></tr>
+                        <tr><td><strong>CSV y API REST</strong></td><td>Producción</td><td>Import y export de inventario, catálogos y datos en todos los módulos; integración programática por API.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Diferenciador de integración:</strong> Oktavia aporta la capa de intención y cumplimiento, el estándar contra el que se compara la red, que un tablero de métricas o un sistema de monitoreo tradicional no tienen. Ellos miden; Oktavia además valida contra un estándar y automatiza la respuesta.
+            </p>
+        </section>
+
+        <section class="doc-section" id="arquitectura">
+            <h2>12. Arquitectura y modelo de operación</h2>
+            <p>
+                La plataforma separa la interfaz web del motor de automatización. La interfaz concentra la experiencia de usuario, la organización por tenant y la persistencia; el motor ejecuta contra los dispositivos. Se comunican por una API REST autenticada con clave.
+            </p>
+            <ul>
+                <li><strong>Persistencia:</strong> base de datos relacional con separación de datos por tenant.</li>
+                <li><strong>Artefactos:</strong> JSON, CSV y archivos de configuración, descargables y versionables.</li>
+                <li><strong>Despliegue:</strong> contenedores orquestados, en las instalaciones del cliente o en nube privada.</li>
+                <li><strong>Acceso a los dispositivos:</strong> SSH, NETCONF y API nativa del fabricante, con credenciales cifradas en bóveda.</li>
+            </ul>
+            <h3>Modelo de operación</h3>
+            <ul>
+                <li>Todo se ejecuta como <strong>trabajos asíncronos</strong> con historial completo.</li>
+                <li>Cada trabajo produce <strong>artefactos versionables</strong> y descargables.</li>
+                <li><strong>Nunca se aplican cambios directos</strong> sin generar y validar artefactos primero.</li>
+                <li>Las acciones de remediación son <strong>supervisadas y trazables</strong>, con aprobador identificado.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="requisitos">
+            <h2>13. Requisitos de integración</h2>
+            <p>Para implementar Oktavia sobre una red existente pedimos al cliente:</p>
+            <ul>
+                <li>Inventario base de dispositivos.</li>
+                <li>Lista de sitios y tipos de sitio.</li>
+                <li>Roles operativos por dispositivo.</li>
+                <li>Fabricante, plataforma y versión, si existe el dato.</li>
+                <li>Direcciones de gestión y método de acceso.</li>
+                <li>Credenciales de lectura para el descubrimiento.</li>
+                <li>Credenciales de cambio, si va a haber remediación.</li>
+                <li>Respaldos o configuración activa disponible.</li>
+                <li>Estándares actuales de configuración.</li>
+                <li>Restricciones operativas y ventanas de cambio.</li>
+                <li>Aprobadores y contactos técnicos.</li>
+            </ul>
+            <h3>Datos mínimos por dispositivo</h3>
+            <p>
+                Identidad (nombre, dirección de gestión, sitio, rol), sistema operativo y modelo, interfaces, vecinos de descubrimiento de capa 2, vecinos BGP y OSPF si existen, configuración activa o respaldo, y los servicios operativos base: NTP, DNS, SNMP, SSH, banners y zona horaria.
+            </p>
+            <h3>Orden de preferencia para obtener los datos</h3>
+            <ol>
+                <li>API nativa del fabricante.</li>
+                <li>NETCONF, RESTCONF o llamadas a procedimiento remoto.</li>
+                <li>Analizadores estructurados del fabricante.</li>
+                <li>Análisis de salida de línea de comandos.</li>
+                <li>Configuración activa o respaldos.</li>
+            </ol>
+        </section>
+
+        <section class="doc-section" id="implementacion">
+            <h2>14. Proceso de implementación</h2>
+            <ol class="doc-steps">
+                <li><strong>Onboarding de datos.</strong> Recibir el inventario base, homologar nombres, roles, sitios, plataformas y modelos, y cargar el archivo inicial.</li>
+                <li><strong>Descubrimiento controlado.</strong> Validar alcanzabilidad, ejecutar el descubrimiento por lotes, recolectar respaldos y normalizar el inventario observado.</li>
+                <li><strong>Línea base de intención.</strong> Definir los servicios por alcance, cargar las variables de servicio, activar las verificaciones de cumplimiento y configurar el catálogo de servicios del cliente.</li>
+                <li><strong>Validación.</strong> Correr la auditoría completa, revisar los tableros y ajustar reglas y excepciones.</li>
+                <li><strong>Operación y remediación.</strong> Proponer el cambio, simularlo, aprobarlo, aplicarlo y recalcular el cumplimiento para confirmar el cierre.</li>
+            </ol>
+
+            <h3>Tiempo estimado hasta dejar Oktavia operativa</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Tamaño de red</th><th scope="col">Tiempo estimado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Red pequeña</td><td>1 a 3 días</td></tr>
+                        <tr><td>Red mediana</td><td>3 a 7 días</td></tr>
+                        <tr><td>Red grande o multivendor complejo</td><td>2 a 4 semanas</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    La IA acelera la preparación: limpieza de inventario, homologación de roles y plataformas, prototipado de analizadores y generación de catálogos. La validación final de la intención, del cumplimiento y de los cambios sigue siendo operativa y humana.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="licenciamiento">
+            <h2>15. Licenciamiento</h2>
+            <p>
+                Dos licencias, no tres ediciones. La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
+            </p>
+            <h3>Oktavia Pro</h3>
+            <p>
+                Descubrimiento multifabricante, inventario, cumplimiento de configuración y de estado, configuración deseada por equipo y por alcance, ciclo completo de remediación con Gemelo Digital, alta de servicios nuevos con su rollback, topología con trazado de rutas y análisis de políticas de firewall, seguridad de red, inventario de servicios, inteligencia IP, respaldos de configuración, reportes avanzados, provisioning, operaciones programadas, FinOps, multi-tenant y Argos completo.
+            </p>
+            <h3>Telemetría y Orquestación de Eventos</h3>
+            <p>
+                Métricas en tiempo real, tableros de telemetría compatibles con Grafana, y el motor de automatización de eventos: reglas de condición a acción que reaccionan de forma automática ante caídas de sesión BGP, caídas de vecino OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura y errores.
+            </p>
+        </section>
+
+        <section class="doc-section" id="casos">
+            <h2>16. Casos de uso</h2>
+            <ul>
+                <li>Auditoría de cumplimiento de configuración sobre múltiples sitios en minutos.</li>
+                <li>Detección automática de desviación de configuración tras una ventana de mantenimiento.</li>
+                <li>Generación de configuración deseada para dispositivos nuevos por rol y por sitio.</li>
+                <li>Trazado de la ruta activa entre dos puntos con siguiente salto, interfaz de salida y detección de asimetría.</li>
+                <li>Visibilidad de capacidad en interfaces de área amplia antes de la saturación.</li>
+                <li>Validación de conectividad posterior al mantenimiento en toda la red.</li>
+                <li>Control de cambios con diff entre configuración deseada y activa antes de aplicar.</li>
+                <li>Onboarding de una red nueva con tipos de sitio y sitios configurados antes del primer descubrimiento.</li>
+                <li>Postura de seguridad de firewalls con la evidencia de configuración que sustenta cada hallazgo.</li>
+                <li>Descubrir qué servicios están configurados y nadie audita, y declararlos sin tocar la red.</li>
+                <li>Saber si un flujo pasa: qué política de firewall lo decide en cada salto, con su traducción de direcciones y su registro.</li>
+                <li>Ubicar una dirección IP hasta el puerto de acceso cruzando la tabla ARP con la tabla MAC.</li>
+                <li>Adoptar la configuración que un equipo ya tiene como intención declarada, para empezar a auditarla sin rediseñar nada.</li>
+                <li>Corregir una desviación de punta a punta: proponer, aprobar, aplicar y verificar que cerró.</li>
+                <li>Levantar un túnel entre dos sitios con sus rutas, y darlo de baja completo cuando el proyecto termina.</li>
+                <li>Publicar una red nueva en OSPF y BGP de los equipos de borde del sitio, con verificación por ping incluida.</li>
+            </ul>
+        </section>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p>
+                Para una demostración sobre su entorno, escríbanos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia 2.0 · Documento público, sin información confidencial de clientes.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js"></script>
+</body>
+</html>

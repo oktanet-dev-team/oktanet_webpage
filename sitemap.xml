@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
 <url>
 <loc>https://oktanet.io/</loc>
 <priority>1.0</priority>
+<changefreq>monthly</changefreq>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/</loc>
+<priority>0.8</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/index-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/index-en.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/index-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/datasheet.html</loc>
+<priority>0.9</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/datasheet.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/datasheet-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/datasheet-en.html</loc>
+<priority>0.8</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/datasheet.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/datasheet-en.html"/>
 </url>
 
 </urlset>
