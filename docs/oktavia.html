@@ -398,7 +398,7 @@
 
             <h3>Acceso a la plataforma</h3>
             <p>
-                Autenticación con sesión e inicio de sesión obligatorio. Sobre eso, una lista blanca de acceso por dirección IP o red, administrada desde la propia interfaz, con dos modos: <strong>monitor</strong>, que registra los rechazos sin bloquear, y <strong>estricto</strong>, que bloquea. El paso a estricto está protegido: no se puede activar si la dirección del propio operador no queda cubierta. La misma lista se aplica a la interfaz web y al motor de automatización.
+                Inicio de sesión obligatorio, con integración al proveedor de identidad corporativo. Sobre eso, una lista blanca de acceso por dirección IP o red, administrada desde la propia interfaz, con dos modos: <strong>monitor</strong>, que registra los rechazos sin bloquear, y <strong>estricto</strong>, que bloquea. El paso a estricto está protegido: no se puede activar si la dirección del propio operador no queda cubierta. La misma lista se aplica a la interfaz web y al motor de automatización.
             </p>
 
             <h3>Separación de datos</h3>
@@ -418,7 +418,10 @@
 
             <h3>Identidad corporativa y segundo factor</h3>
             <p>
-                La integración con el proveedor de identidad corporativo, para inicio de sesión único y segundo factor, se implementa por proyecto. El objetivo es que el alta, la baja y las políticas de contraseña de los usuarios de Oktavia vivan donde ya vive el directorio corporativo, sin un padrón de usuarios paralelo que mantener.
+                El inicio de sesión se integra con el proveedor de identidad del cliente por OpenID Connect. Oktavia soporta <strong>Okta</strong>, y con él el inicio de sesión único y el segundo factor que la política del proveedor ya exija: el alta, la baja y las contraseñas de los usuarios viven donde ya vive el directorio corporativo, sin un padrón paralelo que mantener. Las contraseñas locales quedan reservadas para contingencia.
+            </p>
+            <p>
+                La plataforma puede además exigir que la autenticación sea reciente, y no sólo que exista una sesión abierta en el proveedor: pedir un evento de autenticación fresco, restringir los métodos aceptados, por ejemplo llave de acceso, y exigir un nivel de aseguramiento concreto, como el de doble factor de Okta. Es lo que hace que cerrar el navegador vuelva a pedir el segundo factor.
             </p>
 
             <div class="doc-callout">
