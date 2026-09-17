@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+    <link rel="stylesheet" href="../style/docs_style.css?v=20b54ec6a0">
 </head>
 <body>
     <header class="doc-header no-print">
@@ -51,6 +51,7 @@
     <main class="doc-main">
         <article>
             <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="30" height="30" decoding="async">Por Oktanet</p>
                 <p class="doc-eyebrow">Telemetría</p>
                 <h1>La red se degrada semanas antes de que alguien llame</h1>
                 <p class="post-meta">
@@ -74,7 +75,7 @@
                 </div>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="alerta">
                 <h2>Se entera cuando llama el usuario</h2>
                 <p>
                     Pregunte en su organización cómo se enteran de que algo está mal en la red. La respuesta honesta, en la mayoría de los casos, es que alguien llama. El usuario del sitio sur reporta que la aplicación va lenta, y ahí empieza el trabajo: revisar interfaces, mirar utilización, buscar en registros, comparar con la semana pasada.
@@ -90,7 +91,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="grafica">
                 <h2>Qué agrega medir en el tiempo</h2>
                 <p>
                     Guardar métricas como serie de tiempo —procesador, memoria, temperatura, utilización y errores por interfaz— cambia el tipo de pregunta que se puede contestar:
@@ -106,7 +107,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="ciclo">
                 <h2>De medir a reaccionar</h2>
                 <p>
                     Tener la métrica y mirarla en un tablero sigue siendo operación reactiva, sólo que con mejor información. El salto siguiente es que la plataforma reaccione sola ante condiciones definidas.
@@ -125,7 +126,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="rayo">
                 <h2>Qué eventos vale la pena vigilar</h2>
                 <p>
                     Los que indican pérdida de redundancia o degradación progresiva, que son los que el usuario aún no reporta:
@@ -142,7 +143,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="marca">
                 <h2>Cómo lo resuelve Oktavia</h2>
                 <p>
                     La telemetría y la orquestación de eventos se licencian aparte del resto de Oktavia, y la razón es la que explicamos arriba: almacenan series de tiempo y corren un evaluador permanente, así que tienen otro perfil de consumo. No toda red las necesita desde el primer día, y la que las necesita las suma cuando quiere.
@@ -185,6 +186,6 @@
     </main>
 
     <script src="../script/docs_script.js?v=d364506dbd"></script>
-    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
 </body>
 </html>

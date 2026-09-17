@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+    <link rel="stylesheet" href="../style/docs_style.css?v=20b54ec6a0">
 </head>
 <body>
     <header class="doc-header no-print">
@@ -51,6 +51,7 @@
     <main class="doc-main">
         <article>
             <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="30" height="30" decoding="async">By Oktanet</p>
                 <p class="doc-eyebrow">Digital twin</p>
                 <h1>Detecting is easy. Closing the loop is the problem</h1>
                 <p class="post-meta">
@@ -74,7 +75,7 @@
                 </div>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="alerta">
                 <h2>Finding the problem is the easy part</h2>
                 <p>
                     Almost the entire network tooling industry stops at diagnosis. They tell you the device at the north site is missing its secondary time server, that the management access list still permits a range it should not, that the operating system version has fallen behind. That is useful, and it is where the product ends.
@@ -87,7 +88,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="escudo">
                 <h2>Why "just let it fix itself" is not the answer</h2>
                 <p>
                     The natural reaction is to ask the tool to correct things automatically. And that is exactly where care is needed, because a badly executed automatic change on the network does not raise a ticket: it raises a site visit.
@@ -105,7 +106,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="comparar">
                 <h2>The digital twin: compare before you touch</h2>
                 <p>
                     The term gets used for many things. Here it means something concrete and verifiable: a representation of how a device <em>should</em> be configured according to declared intent, which can be compared against how it is actually configured.
@@ -121,7 +122,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="escudo">
                 <h2>Every vendor has its own safe way to apply</h2>
                 <p>
                     Applying a change is not opening a session and pasting text. Each platform offers a primitive designed precisely so that a remote change does not lock you out, and using it is the difference between a controlled operation and a gamble.
@@ -136,7 +137,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="verificar">
                 <h2>The step that is almost always missing: verify</h2>
                 <p>
                     Applying is not closing. A device can accept the command and still not end up as expected: a dependency that did not exist, a referenced object that was not declared, a configuration that is accepted but does not take effect until a process restarts.
@@ -149,7 +150,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="marca">
                 <h2>How Oktavia handles it</h2>
                 <p>
                     Oktavia's Digital Twin generates a device's intended configuration from intent declared by scope and compares it against the running one. The diff is reviewed on screen, approved, and only then applied using the primitive that belongs to that vendor. Afterwards, a fresh audit against the same rules confirms whether the finding closed.
@@ -192,6 +193,6 @@
     </main>
 
     <script src="../script/docs_script.js?v=d364506dbd"></script>
-    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+    <link rel="stylesheet" href="../style/docs_style.css?v=20b54ec6a0">
 </head>
 <body>
     <header class="doc-header no-print">
@@ -51,6 +51,7 @@
     <main class="doc-main">
         <article>
             <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="30" height="30" decoding="async">By Oktanet</p>
                 <p class="doc-eyebrow">Telemetry</p>
                 <h1>Networks degrade for weeks before anyone calls</h1>
                 <p class="post-meta">
@@ -74,7 +75,7 @@
                 </div>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="alerta">
                 <h2>You find out when the user calls</h2>
                 <p>
                     Ask around your organisation how you learn that something is wrong on the network. The honest answer, in most cases, is that someone calls. A user at the south site reports the application is slow, and that is where the work starts: check interfaces, look at utilisation, search logs, compare against last week.
@@ -90,7 +91,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="grafica">
                 <h2>What measuring over time adds</h2>
                 <p>
                     Storing metrics as time series — processor, memory, temperature, utilisation, and errors per interface — changes the kind of question you can answer:
@@ -106,7 +107,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="ciclo">
                 <h2>From measuring to reacting</h2>
                 <p>
                     Having the metric and watching it on a dashboard is still reactive operation, just with better information. The next leap is for the platform to react on its own to defined conditions.
@@ -125,7 +126,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="rayo">
                 <h2>Which events are worth watching</h2>
                 <p>
                     The ones that indicate lost redundancy or progressive degradation, which are precisely the ones users do not report yet:
@@ -142,7 +143,7 @@
                 </p>
             </section>
 
-            <section class="doc-section">
+            <section class="doc-section" data-icono="marca">
                 <h2>How Oktavia handles it</h2>
                 <p>
                     Telemetry and event orchestration are licensed separately from the rest of Oktavia, for the reason explained above: they store time series and run a permanent evaluator, so they have a different consumption profile. Not every network needs them on day one, and those that do can add them whenever they choose.
@@ -185,6 +186,6 @@
     </main>
 
     <script src="../script/docs_script.js?v=d364506dbd"></script>
-    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
 </body>
 </html>

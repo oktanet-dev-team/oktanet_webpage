@@ -1080,7 +1080,20 @@
         if (titular && typeof copy.heroTitleBrand === 'string') {
             const nombre = document.createElement('span');
             nombre.className = 'hero-brandline';
-            nombre.textContent = copy.heroTitleBrand;
+
+            // El icono se crea aqui y no solo en el HTML: este bloque vacia el
+            // titular en cada cambio de idioma, asi que un <img> puesto a mano
+            // en el marcado desaparece en cuanto se aplica el primer idioma.
+            const marca = document.createElement('img');
+            marca.className = 'hero-brandmark';
+            marca.src = 'img/LOGO_Oktavia.png';
+            marca.alt = '';
+            marca.width = 96;
+            marca.height = 96;
+            marca.decoding = 'async';
+
+            nombre.appendChild(marca);
+            nombre.appendChild(document.createTextNode(copy.heroTitleBrand));
             titular.textContent = '';
             titular.appendChild(nombre);
             titular.appendChild(document.createTextNode(' ' + copy.heroTitle));
