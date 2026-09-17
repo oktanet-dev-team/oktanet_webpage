@@ -167,33 +167,7 @@ p {
     filter: saturate(1.06) brightness(1.08);
 }
 
-.brand-wordmark {
-    display: inline-block;
-    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(1.55rem, 2.15vw, 2.15rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: 0.045em;
-    white-space: nowrap;
-    max-width: 16ch;
-    overflow: hidden;
-    color: #19c4ff;
-    background: linear-gradient(90deg, #2b6fff 0%, #1aa9f2 52%, #18e0ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: max-width 220ms ease, opacity 180ms ease;
-}
 
-.nav-shell.nav-compact-brand .brand {
-    gap: 0;
-}
-
-.nav-shell.nav-compact-brand .brand-wordmark {
-    max-width: 0;
-    opacity: 0;
-}
 
 .main-nav {
     display: flex;
@@ -1780,11 +1754,6 @@ p {
     .brand img {
         width: 46px;
         height: 46px;
-    }
-
-    .brand-wordmark {
-        font-size: 1.05rem;
-        letter-spacing: 0.04em;
     }
 
     .nav-toggle {

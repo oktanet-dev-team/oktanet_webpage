@@ -29,7 +29,6 @@
     const contactIntent = document.getElementById('contact-intent');
     const resourcesSectionEl = document.querySelector('.resources-section');
     const brandImage = document.querySelector('.brand img');
-    const brandWordmark = document.querySelector('.brand-wordmark');
     const heroImage = document.querySelector('.hero-visual img');
     const platformImage = document.querySelector('.platform-visual img');
     const serviceIcons = document.querySelectorAll('.services-grid .service-card .service-icon');
@@ -1079,24 +1078,6 @@
         navToggle.setAttribute('aria-label', isOpen ? copy.navToggleClose : copy.navToggleOpen);
     };
 
-    const updateBrandWordmarkVisibility = function () {
-        if (!navShell || !brandWordmark) {
-            return;
-        }
-
-        // Keep the wordmark on mobile menu layout; collapse it only on desktop before overlap.
-        if (window.innerWidth <= 860) {
-            navShell.classList.remove('nav-compact-brand');
-            return;
-        }
-
-        navShell.classList.remove('nav-compact-brand');
-
-        if (navShell.scrollWidth > navShell.clientWidth + 10) {
-            navShell.classList.add('nav-compact-brand');
-        }
-    };
-
     // ── Cotizador ───────────────────────────────────────────────────────
     // Recoge y CALIFICA; no calcula ni muestra precio. El sitio es estatico:
     // cualquier tabla de precios que llegara al navegador quedaria publica
@@ -1788,7 +1769,6 @@
         });
 
         updateNavToggleLabel(selectedKey);
-        requestAnimationFrame(updateBrandWordmarkVisibility);
 
         try {
             window.localStorage.setItem(storageKey, selectedKey);
@@ -1894,7 +1874,6 @@
     }
 
     applyLanguage(initialLanguage);
-    requestAnimationFrame(updateBrandWordmarkVisibility);
 
     if (currentYear) {
         currentYear.textContent = String(new Date().getFullYear());
@@ -2062,14 +2041,6 @@
             if (window.innerWidth > 860) {
                 closeNav();
             }
-
-            updateBrandWordmarkVisibility();
-        });
-    }
-
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function () {
-            updateBrandWordmarkVisibility();
         });
     }
 
