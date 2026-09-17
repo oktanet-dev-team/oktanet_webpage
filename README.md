@@ -81,6 +81,20 @@ Así que una tabla de precios en el repo sería descargable por cualquiera que
 adivine la URL, y los rastreadores adivinan. No hay servidor donde esconder el
 cálculo: si la cifra se muestra en pantalla, los precios viajan al navegador.
 
+Los dos formularios del sitio postean a **Formspree**, que reenvía por correo:
+
+```
+#cotizar   -> formspree.io/f/xoevqpjw   (solicitudes comerciales)
+#contacto  -> formspree.io/f/mqarwnjw   (mensajes generales)
+```
+
+**A qué dirección reenvía cada uno se configura en el panel de Formspree, no
+aquí.** El campo del correo se llama `email` a propósito: es el nombre que
+Formspree busca para poner el `Reply-To`, y sin eso responderle al prospecto
+obliga a copiar su dirección del cuerpo del mensaje.
+
+Ojo con el plan: el gratuito de Formspree suele topar en 50 envíos al mes.
+
 Por eso **la lista de precios vive fuera de este repositorio**, en
 `~/Documents/Oktanet/cotizador/precios.yaml`. La cifra la manda una persona.
 
