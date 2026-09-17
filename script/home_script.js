@@ -1107,6 +1107,119 @@
     // una persona.
     const quoteForm = document.getElementById('quote-form');
 
+    // Formspree pinta UNA FILA POR CAMPO y no se puede cambiar su plantilla.
+    // Mandar el formulario en crudo daba un correo de quince filas, varias
+    // vacias, con los valores internos ('cisco_ios', 'arubaos') en vez de sus
+    // nombres. Aqui se compone lo que se envia: pocas filas, cada una con
+    // algo que leer, y ninguna vacia.
+    const componerEnvio = function () {
+        const idioma = document.documentElement.lang === 'en' ? 'en' : 'es';
+        const es = idioma === 'es';
+        const v = function (nombre) {
+            const campo = quoteForm.elements[nombre];
+            return campo ? String(campo.value || '').trim() : '';
+        };
+        const num = function (nombre) {
+            const n = parseInt(v(nombre), 10);
+            return isNaN(n) || n < 0 ? 0 : n;
+        };
+
+        const etiquetasDe = function (catalogo, campo) {
+            const marcadas = Array.prototype.filter.call(
+                quoteForm.querySelectorAll('input[name="' + campo + '"]'),
+                function (el) {
+                    const bloque = el.closest('.quote-conditional');
+                    return el.checked && !(bloque && bloque.hidden);
+                }
+            );
+            return marcadas.map(function (el) {
+                const opcion = catalogo.filter(function (o) { return o.id === el.value; })[0];
+                return opcion ? opcion[idioma] : el.value;
+            });
+        };
+
+        const gestores = etiquetasDe(GESTORES, 'plataformas_gestion');
+        const sistemas = etiquetasDe(SISTEMAS, 'sistemas');
+        const noIntegradas = GESTORES.concat(SISTEMAS).filter(function (o) {
+            return !o.integrada && (gestores.indexOf(o[idioma]) !== -1 || sistemas.indexOf(o[idioma]) !== -1);
+        }).map(function (o) { return o[idioma]; });
+
+        const total = num('routers') + num('switches') + num('firewalls') + num('wireless');
+        const desglose = [
+            [num('routers'), 'routers'],
+            [num('switches'), 'switches'],
+            [num('firewalls'), 'firewalls'],
+            [num('wireless'), es ? 'controladoras' : 'controllers']
+        ].filter(function (par) { return par[0] > 0; })
+         .map(function (par) { return par[0] + ' ' + par[1]; }).join(', ');
+
+        const modos = {
+            ninguna: es ? 'Equipo por equipo, sin plataforma' : 'Device by device, no platform',
+            todos: es ? 'Todo por plataforma de gestión' : 'All through a management platform',
+            algunos: es ? 'Mixto: plataforma y equipos sueltos' : 'Mixed: platform and standalone'
+        };
+
+        let gestion = modos[v('gestion')] || textoDe('gestion') || v('gestion');
+        if (gestores.length) {
+            gestion += ' — ' + gestores.join(', ');
+            if (v('gestor_otro')) {
+                gestion += ' (' + v('gestor_otro') + ')';
+            }
+            const enPlataforma = v('equipos_en_plataforma');
+            if (enPlataforma) {
+                gestion += es
+                    ? ' · ' + enPlataforma + ' de ' + total + ' por plataforma'
+                    : ' · ' + enPlataforma + ' of ' + total + ' via platform';
+            }
+        }
+
+        let listaSistemas = sistemas.join(', ');
+        if (listaSistemas && v('sistema_otro')) {
+            listaSistemas += ' (' + v('sistema_otro') + ')';
+        }
+
+        // El texto de la opcion elegida, no su valor interno: en el correo
+        // "24" no dice nada y "24 meses" si.
+        const textoDe = function (nombre) {
+            const select = quoteForm.elements[nombre];
+            if (!select || !select.options) {
+                return '';
+            }
+            const opcion = select.options[select.selectedIndex];
+            return opcion ? opcion.textContent.trim() : '';
+        };
+
+        const alcance = [
+            (es ? 'Telemetría: ' : 'Telemetry: ') + textoDe('telemetria'),
+            (es ? 'Plazo: ' : 'Term: ') + textoDe('plazo'),
+            (es ? 'Pago: ' : 'Payment: ') + textoDe('pago')
+        ].join(' · ');
+
+        const datos = new FormData();
+        // El asunto lleva empresa y tamano: se puede priorizar la bandeja sin
+        // abrir el correo.
+        datos.append('_subject', (es ? 'Cotización — ' : 'Quote — ')
+            + (v('empresa') || (es ? 'sin empresa' : 'no company'))
+            + ' · ' + total + (es ? ' equipos' : ' devices'));
+        datos.append(es ? 'Contacto' : 'Contact', v('nombre') + ' — ' + v('empresa'));
+        datos.append('email', v('email'));
+        if (v('telefono')) {
+            datos.append(es ? 'Teléfono' : 'Phone', v('telefono'));
+        }
+        datos.append(es ? 'Equipos' : 'Devices', total + (desglose ? ' (' + desglose + ')' : ''));
+        datos.append(es ? 'Cómo los administra' : 'How they manage them', gestion);
+        if (listaSistemas) {
+            datos.append(es ? 'Sistemas' : 'Systems', listaSistemas);
+        }
+        datos.append(es ? 'Alcance' : 'Scope', alcance);
+        if (noIntegradas.length) {
+            datos.append(es ? 'Atención' : 'Heads-up',
+                (es ? 'Sin integrar todavía: ' : 'Not integrated yet: ') + noIntegradas.join(', '));
+        }
+        datos.append(es ? 'Origen' : 'Source', es ? 'Cotizador del sitio' : 'Site quote form');
+        return datos;
+    };
+
     const dibujarLista = function (caja, catalogo, nombreCampo) {
         if (!caja) {
             return;
@@ -1333,7 +1446,7 @@
 
             window.fetch(quoteForm.action, {
                 method: 'POST',
-                body: new FormData(quoteForm),
+                body: componerEnvio(),
                 headers: { Accept: 'application/json' }
             }).then(function (respuesta) {
                 if (!respuesta.ok) {
