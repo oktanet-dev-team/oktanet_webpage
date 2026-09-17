@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The inventory nobody has | Oktanet</title>
+    <meta name="description" content="Why almost no network has a trustworthy inventory, the difference between an inventory and a source of truth, and what becomes possible once the network describes itself.">
+    <link rel="canonical" href="https://oktanet.io/blog/inventario-fuente-de-verdad-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="The inventory nobody has">
+    <meta property="og:description" content="The difference between a list of devices and a source of truth, and why multi-vendor is where most tools break.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/inventario-fuente-de-verdad-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-inventario-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-inventario-en.png">
+    <meta property="og:image:alt" content="The inventory nobody has, an Oktanet article on multi-vendor source of truth">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./inventario-fuente-de-verdad.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="inventario-fuente-de-verdad-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Source of truth</p>
+                <h1>The inventory nobody has</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Source of truth</span>
+                    <span class="post-tag">Multi-vendor</span>
+                    <span>17 September 2026</span>
+                    <span>·</span>
+                    <span>8 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    Almost every conversation we have with a network team starts the same way: they do not know for certain what is on their network. There is a spreadsheet, and nobody trusts it. This article is about why that happens, the difference between an inventory and a source of truth, and what becomes possible once the network finally describes itself.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>The spreadsheet nobody trusts</h2>
+                <p>
+                    The pattern repeats with a consistency that is hard to ignore. There is a file with the list of devices. It was built by someone who has since left, or built for an audit three years ago. It has columns for model, operating system version, site, and management address. And it invariably has three problems: devices that no longer exist, devices that exist and are not listed, and data that used to be true.
+                </p>
+                <p>
+                    The interesting part is not that the file is out of date. It is that <em>everyone knows</em> it is out of date, and it is still used to make decisions. A maintenance window is planned against that list. An audit is answered with that list. A technology refresh is sized with that list.
+                </p>
+                <p>
+                    The reason nobody fixes it is simple: fixing it by hand costs more than living with it wrong. A manual inventory of two hundred devices goes stale faster than one person can walk through it. This is not a discipline problem in the network team. The method does not scale, and no amount of human effort fixes that.
+                </p>
+                <p class="post-punch">
+                    An inventory that needs human effort to stay current was already out of date the day it was written.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>An inventory is not a source of truth</h2>
+                <p>
+                    The terms get used interchangeably, and they are not the same. The difference matters because it determines what you can build on top.
+                </p>
+                <p>
+                    An <strong>inventory</strong> answers the question <em>what is there?</em>. It is a list: devices, models, versions, locations. It is useful and it is the first step, but it is descriptive. It tells you what whoever compiled it happened to find.
+                </p>
+                <p>
+                    A <strong>source of truth</strong> answers a different question: <em>what should be there, and in what state?</em>. It is the declared reference against which reality is compared. It does not describe the network; it defines how the network is supposed to be. That difference is what turns a document into an operational tool.
+                </p>
+                <p>
+                    With an inventory you can say "we have forty switches in Mérida". With a source of truth you can say "we have forty switches in Mérida, thirty-eight meet the organisation's standard, and the two that do not fail on this specific configuration line". The second answer is the one that holds up in an audit, in a tender, and in a budget meeting.
+                </p>
+                <p>
+                    The gap between the two is not a matter of format. A source of truth requires that an intent has been declared: which services each device should have based on its site, role, platform, or model. Without that declaration there is nothing to compare against, and without comparison there is no compliance, only description.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Multi-vendor is where most tools break</h2>
+                <p>
+                    This is where most tools start telling you things that are not quite true, and it is worth understanding why.
+                </p>
+                <p>
+                    Every vendor models configuration differently, and not superficially. Cisco IOS expresses management access control as a standard list applied to the VTY lines. Junos protects its control plane with a firewall filter on the loopback interface, where term order decides the outcome because first match wins. FortiGate solves it with trusted hosts on the administrator profile. All three do the same thing conceptually. None of them does it the same way.
+                </p>
+                <p>
+                    The usual shortcut is to translate everything into one common syntax, almost always Cisco's, because that is what most people know. It works well enough to render a tidy table, and it fails at the moment that matters: when configuration has to be <em>generated</em> or <em>compared</em> against what is actually running. The translation discards exactly what makes each platform different, and what gets discarded is usually what decides whether a command applies or is rejected.
+                </p>
+                <p class="post-punch">
+                    A genuinely multi-vendor source of truth has a model per vendor, not a translation into a common dialect.
+                </p>
+                <p>
+                    The cost of doing it properly is real: it means maintaining the model, the templates, and the compliance rules for each platform separately. The benefit is that what the tool asserts about a Junos device is true in Junos terms, and not a convenient approximation.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>What becomes possible when the network describes itself</h2>
+                <p>
+                    A living source of truth — fed by discovery, not by manual entry — stops being a document and becomes the foundation for things that cannot be built without it:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Configuration compliance.</strong> Comparing what is there against what was declared, by site, role, or device, with the exact line that backs every finding.</li>
+                    <li><strong>Topology and path tracing.</strong> The real path between two addresses comes from collected routing tables, not from a hand-drawn diagram that has aged.</li>
+                    <li><strong>Addressing intelligence.</strong> Which subnets exist, which overlap, and which access port an address lives on, by cross-referencing the ARP table with the MAC table.</li>
+                    <li><strong>Answering audits.</strong> Evidence stops being assembled by hand the week before and becomes a query.</li>
+                    <li><strong>Integration with the rest of the ecosystem.</strong> This is the one most often underestimated, and it deserves its own paragraph.</li>
+                </ul>
+                <p>
+                    Security tooling, address management platforms such as Infoblox, ticketing systems, and executive dashboards all have something in common: <strong>they all need to know what is on the network, and none of them finds out on its own</strong>. Each maintains its own partial copy, fed by its own method, and no two copies agree.
+                </p>
+                <p>
+                    Once a source of truth exists that can be queried through an API, that problem changes shape. Instead of five inventories disagreeing, there is one that the others consume. The security team stops asking the network team which devices sit in a segment and queries it instead. And the argument over which of the two lists is correct simply goes away.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>But inventory alone closes nothing</h2>
+                <p>
+                    This is worth saying plainly, because it is where many projects stop, satisfied: having the source of truth is the beginning, not the end.
+                </p>
+                <p>
+                    A network can be perfectly inventoried, with its configuration meeting the standard one hundred per cent, and still be broken. A routing protocol's configuration can be exactly what was declared while three of the interfaces participating in it are down. Configuration compliance does not see it, because the configuration is fine. What is wrong is the state.
+                </p>
+                <p>
+                    That is the second leap, and the subject of the next article: the difference between configuration compliance and state compliance, why correlating them changes what you can credibly claim about your network, and why almost no tool does it.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>How Oktavia handles it</h2>
+                <p>
+                    Oktavia builds the source of truth through discovery across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos, with a normalised configuration model <em>per vendor</em> rather than a translation into a common syntax. Inventory, topology, addressing, and intended configuration live in the same base, queried from the interface or through an API.
+                </p>
+                <p>
+                    Intent is declared by scope — defaults, by site type, by site, by platform, by model, by role, and by device — so a standard is expressed once and applies to everything it covers, instead of being repeated device by device.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="bS2W2ZSfbJo">
+                        <img src="../img/video-bS2W2ZSfbJo.jpg" alt="Network discovery in Oktavia" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">Network discovery: how the inventory is built without manual entry.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>Want to see what your network looks like?</h2>
+                <p>
+                    To quote, all we need is roughly how many routers, switches, firewalls, and controllers you manage. No detailed inventory required — if you had one, you probably would not be reading this.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="../docs/oktavia-resumen-en.html">Executive summary</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

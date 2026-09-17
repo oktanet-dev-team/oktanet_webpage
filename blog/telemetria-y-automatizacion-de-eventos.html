@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La red se degrada semanas antes de que alguien llame | Oktanet</title>
+    <meta name="description" content="Por qué una auditoría es una fotografía y no basta, qué agrega medir en el tiempo, cómo se escribe una regla de evento que no termina silenciada, y qué eventos vale la pena vigilar.">
+    <link rel="canonical" href="https://oktanet.io/blog/telemetria-y-automatizacion-de-eventos.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="La red se degrada semanas antes de que alguien llame">
+    <meta property="og:description" content="Por qué una auditoría es una fotografía y no basta, qué agrega medir en el tiempo, cómo se escribe una regla de evento que no termina silenciada, y qué eventos vale la pena vigilar.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/telemetria-y-automatizacion-de-eventos.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-telemetria-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-telemetria-es.png">
+    <meta property="og:image:alt" content="La red se degrada semanas antes de que alguien llame — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Artículo">
+                <a href="./">Artículos</a>
+                <a href="../docs/">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./telemetria-y-automatizacion-de-eventos-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn" href="telemetria-y-automatizacion-de-eventos-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Cotizar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Telemetría</p>
+                <h1>La red se degrada semanas antes de que alguien llame</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Telemetría</span>
+                    <span class="post-tag">Eventos</span>
+                    <span>17 de septiembre de 2026</span>
+                    <span>·</span>
+                    <span>8 minutos de lectura</span>
+                </p>
+                <p class="doc-lede">
+                    En la mayoría de las organizaciones, la red se entera de que algo va mal cuando llama un usuario. Para entonces el evento ya pasó y sólo queda explicarlo. Este artículo trata de la diferencia entre una fotografía y una serie de tiempo, y de cómo escribir reglas de evento que no terminen silenciadas.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Compartir</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>Se entera cuando llama el usuario</h2>
+                <p>
+                    Pregunte en su organización cómo se enteran de que algo está mal en la red. La respuesta honesta, en la mayoría de los casos, es que alguien llama. El usuario del sitio sur reporta que la aplicación va lenta, y ahí empieza el trabajo: revisar interfaces, mirar utilización, buscar en registros, comparar con la semana pasada.
+                </p>
+                <p>
+                    Para cuando el equipo de redes confirma que hubo saturación en el enlace, el evento ya pasó. Se puede explicar. No se pudo evitar, y probablemente no se sepa desde cuándo venía degradándose.
+                </p>
+                <p>
+                    El problema de fondo es que la auditoría —incluso una que cubra configuración y estado— es una <em>fotografía</em>. Contesta muy bien qué pasa ahora. No contesta desde cuándo, ni con qué tendencia, ni si esto ya había ocurrido.
+                </p>
+                <p class="post-punch">
+                    Una auditoría le dice cómo está la red. Una serie de tiempo le dice hacia dónde va.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Qué agrega medir en el tiempo</h2>
+                <p>
+                    Guardar métricas como serie de tiempo —procesador, memoria, temperatura, utilización y errores por interfaz— cambia el tipo de pregunta que se puede contestar:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Desde cuándo.</strong> El procesador de ese equipo no está alto desde hoy: subió hace once días y no bajó. Eso apunta a un cambio, no a un pico.</li>
+                    <li><strong>Con qué tendencia.</strong> El enlace de área amplia va en setenta por ciento y crece cinco puntos por trimestre. La conversación de presupuesto deja de ser una opinión.</li>
+                    <li><strong>Si es normal.</strong> Ochenta por ciento de utilización un lunes a las nueve puede ser el comportamiento de siempre. Sin historia no hay forma de saberlo, y se persiguen falsas alarmas.</li>
+                    <li><strong>Qué pasó durante el incidente.</strong> La ventana ya cerró, pero los contadores quedaron. Se puede reconstruir en vez de depender de lo que alguien recuerde.</li>
+                </ul>
+                <p>
+                    Hay una consecuencia práctica importante: esto tiene un perfil de consumo distinto al resto de la plataforma. Almacenar series de tiempo crece con el número de equipos <em>multiplicado</em> por la frecuencia de muestreo, y eso es una decisión de infraestructura y de costo, no una casilla que se activa.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>De medir a reaccionar</h2>
+                <p>
+                    Tener la métrica y mirarla en un tablero sigue siendo operación reactiva, sólo que con mejor información. El salto siguiente es que la plataforma reaccione sola ante condiciones definidas.
+                </p>
+                <p>
+                    Una regla de evento es simple de enunciar: una condición y una acción. Lo difícil no es escribirla, es acotar bien las dos partes.
+                </p>
+                <p>
+                    <strong>La condición</strong> tiene que ser específica para no dispararse de más. «Procesador alto» genera ruido. «Procesador por encima del umbral durante más de diez minutos sostenidos en un equipo de distribución» es accionable. Una regla que se dispara seguido se silencia, y una regla silenciada es peor que no tenerla: da la sensación de cobertura sin darla.
+                </p>
+                <p>
+                    <strong>La acción</strong> tiene que ser proporcional al riesgo. Recolectar diagnóstico, abrir un registro o notificar es seguro y se puede automatizar sin reparos. Cambiar configuración de forma automática ante un evento es otra categoría: es exactamente el escenario que describimos en <a href="cerrar-el-ciclo-gemelo-digital.html">el artículo sobre cerrar el ciclo</a>, ahora sin nadie mirando y a las tres de la mañana.
+                </p>
+                <p>
+                    Nuestra postura es que la mayoría de las reglas deben recolectar evidencia y avisar, no modificar. El valor está en que cuando el ingeniero abra el caso, el diagnóstico ya esté hecho.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Qué eventos vale la pena vigilar</h2>
+                <p>
+                    Los que indican pérdida de redundancia o degradación progresiva, que son los que el usuario aún no reporta:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Caída de sesión del protocolo de puerta de enlace.</strong> Rara vez es cosmética: casi siempre significa que un camino desapareció.</li>
+                    <li><strong>Caída de vecino del protocolo interno.</strong> La red reconverge y sigue funcionando, y por eso nadie se entera de que se perdió un camino alterno. El próximo incidente ya no tiene por dónde recuperarse.</li>
+                    <li><strong>Interfaz abajo en un enlace redundante.</strong> El servicio no se cae. La redundancia sí.</li>
+                    <li><strong>Umbrales de procesador, memoria y temperatura.</strong> Los tres avisan antes de fallar, si alguien mira.</li>
+                    <li><strong>Errores crecientes en una interfaz.</strong> Un transceptor o un cable degradándose da señales durante semanas.</li>
+                </ul>
+                <p>
+                    Todos tienen algo en común: <strong>no producen una llamada del usuario</strong>. Son justamente los que sólo se detectan si algo los está vigilando.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Cómo lo resuelve Oktavia</h2>
+                <p>
+                    La telemetría y la orquestación de eventos se licencian aparte del resto de Oktavia, y la razón es la que explicamos arriba: almacenan series de tiempo y corren un evaluador permanente, así que tienen otro perfil de consumo. No toda red las necesita desde el primer día, y la que las necesita las suma cuando quiere.
+                </p>
+                <p>
+                    Lo que incluyen: métricas en tiempo real de procesador, memoria e interfaces como series de tiempo, con umbrales y tendencias; tableros propios y compatibilidad con Grafana, para que la métrica se consuma también desde las herramientas que la organización ya usa; y el motor de automatización de eventos, con reglas de condición a acción sobre caídas de sesión del protocolo de puerta de enlace, caídas de vecino del protocolo interno, interfaces abajo y umbrales de procesador, memoria, temperatura y errores.
+                </p>
+                <p>
+                    Todo sobre el mismo inventario y la misma fuente de verdad que el resto de la plataforma. Un evento sabe a qué equipo pertenece, en qué sitio está, qué rol cumple y cuál es su configuración deseada, sin que nadie tenga que mantener una segunda lista de equipos para el sistema de monitoreo.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="FGh8p9j2Wg0">
+                        <img src="../img/video-FGh8p9j2Wg0.jpg" alt="Oktavia, la plataforma de automatización de redes" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">Oktavia: la plataforma completa, en tres minutos.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>¿Cómo se entera hoy de que algo va mal?</h2>
+                <p>
+                    Si la respuesta es «cuando llaman», hay una ventana entre la degradación y el reporte que hoy no está cubierta. Para cotizar sólo necesitamos saber aproximadamente cuántos equipos administra.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Quiero una cotización</a>
+                    <a href="../#contacto">Solicitar una demostración</a>
+                    <a href="./">Ver todos los artículos</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Artículo público, sin información confidencial de clientes.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

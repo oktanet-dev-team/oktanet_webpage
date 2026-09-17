@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Su configuración cumple y su red sigue rota | Oktanet</title>
+    <meta name="description" content="La diferencia entre cumplimiento de configuración y cumplimiento de estado, por qué correlacionarlos cambia lo que puede afirmar sobre su red, y por qué casi ninguna herramienta lo hace.">
+    <link rel="canonical" href="https://oktanet.io/blog/cumplimiento-configuracion-y-estado.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Su configuración cumple y su red sigue rota">
+    <meta property="og:description" content="La diferencia entre cumplimiento de configuración y cumplimiento de estado, por qué correlacionarlos cambia lo que puede afirmar sobre su red, y por qué casi ninguna herramienta lo hace.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/cumplimiento-configuracion-y-estado.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-estado-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-estado-es.png">
+    <meta property="og:image:alt" content="Su configuración cumple y su red sigue rota — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Artículo">
+                <a href="./">Artículos</a>
+                <a href="../docs/">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./cumplimiento-configuracion-y-estado-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn" href="cumplimiento-configuracion-y-estado-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Cotizar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Cumplimiento</p>
+                <h1>Su configuración cumple y su red sigue rota</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Cumplimiento</span>
+                    <span class="post-tag">Estado de red</span>
+                    <span>17 de septiembre de 2026</span>
+                    <span>·</span>
+                    <span>9 minutos de lectura</span>
+                </p>
+                <p class="doc-lede">
+                    Una auditoría puede decir que el cien por ciento de la configuración cumple el estándar mientras tres interfaces están caídas. No es un error del informe: es que está contestando una pregunta distinta a la que usted tenía en mente. Este artículo trata de esa diferencia y de por qué correlacionar ambas dimensiones cambia lo que puede afirmar sobre su red.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Compartir</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>El informe que dice que todo está bien</h2>
+                <p>
+                    Imagine el resultado de una auditoría de cumplimiento sobre un switch de distribución. Ciento dieciséis pruebas de configuración, ciento dieciséis aprobadas. Cien por ciento. El estándar de la organización se cumple línea por línea: los servidores de tiempo son los correctos, la lista de acceso a la administración está aplicada, el protocolo de árbol de expansión tiene la prioridad que le toca, el registro de eventos apunta a donde debe.
+                </p>
+                <p>
+                    Ese mismo switch tiene tres interfaces caídas. Tres interfaces que participan en el protocolo de ruteo interno, declaradas en la configuración, presentes en el estándar, y abajo.
+                </p>
+                <p>
+                    La auditoría de configuración no las ve, y no es un defecto de la auditoría: es su definición. La configuración <em>está</em> bien. Lo que está mal es otra cosa.
+                </p>
+                <p class="post-punch">
+                    El cumplimiento de configuración responde «¿está bien escrito?». No responde «¿está funcionando?».
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Dos preguntas distintas sobre el mismo equipo</h2>
+                <p>
+                    Conviene separarlas con claridad, porque las herramientas del mercado casi siempre contestan una sola y dejan creer que contestaron las dos.
+                </p>
+                <p>
+                    El <strong>cumplimiento de configuración</strong> compara el texto de la configuración activa contra una intención declarada. Detecta lo que falta, lo que sobra y lo que difiere. Es una comparación estática y determinista: la línea está o no está. Sirve para auditorías, para control de cambios y para demostrar que un estándar se aplica de forma pareja en toda la red.
+                </p>
+                <p>
+                    El <strong>cumplimiento de estado</strong> compara la operación real contra lo que se espera de ella. Interfaces arriba, sesiones del protocolo de puerta de enlace establecidas, vecinos del protocolo interno formados, rutas presentes en la tabla, uso de procesador y memoria bajo umbral, alcanzabilidad confirmada. Es dinámico: la respuesta puede cambiar entre dos consultas seguidas sin que nadie haya tocado un comando.
+                </p>
+                <p>
+                    Una red puede aprobar la primera y reprobar la segunda. También al revés, que es menos intuitivo: un enlace puede estar arriba y pasando tráfico con una configuración que viola el estándar de seguridad de la organización. Funciona hoy y es un hallazgo de auditoría mañana.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Por qué correlacionarlas cambia lo que puede afirmar</h2>
+                <p>
+                    Cada una por separado deja un hueco que la otra llena, y ahí está el valor real.
+                </p>
+                <p>
+                    <strong>Un hallazgo de estado sin configuración es una alarma sin causa.</strong> «La sesión con el vecino 192.0.2.10 está caída» le dice que algo pasa, no por qué. Puede ser un enlace físico, una lista de acceso que filtra el puerto, una dirección de origen que dejó de coincidir, o el vecino que se reinició. Sin la configuración al lado, empieza la sesión de diagnóstico a mano que el sistema de monitoreo debía haberle ahorrado.
+                </p>
+                <p>
+                    <strong>Un hallazgo de configuración sin estado es una suposición.</strong> «Falta el servidor de tiempo secundario» es cierto, pero no dice si el primario está sincronizando. Puede ser irrelevante o puede ser que el equipo lleve semanas con la hora corrida y todos sus registros sean inútiles para una investigación.
+                </p>
+                <p>
+                    Juntas, la afirmación cambia de naturaleza. Deja de ser «hay un problema» y pasa a ser «esta interfaz está caída, participa en el protocolo interno según esta línea de configuración, y por eso estas tres redes no se están anunciando». Eso es un diagnóstico, y se puede accionar sin abrir una sesión contra el equipo.
+                </p>
+                <p class="post-punch">
+                    La configuración explica el estado. El estado valida la configuración. Por separado, cada una miente por omisión.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Por qué casi nadie lo hace</h2>
+                <p>
+                    No es por falta de ganas. Es que cuesta, y el costo está en tres lugares distintos.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Son dos recolecciones diferentes.</strong> La configuración se obtiene con un método —interfaz de programación, protocolo de gestión de red, respaldo— y el estado operativo con otro: comandos de consulta, contadores, tablas de vecinos. Sostener los dos caminos, en cada fabricante, es el doble de superficie que mantener.</li>
+                    <li><strong>Relacionarlas exige entender el modelo de cada plataforma.</strong> Para afirmar que una interfaz caída afecta a un protocolo hay que saber que esa interfaz está declarada en ese protocolo, y eso se dice distinto en cada fabricante. No basta con cruzar nombres.</li>
+                    <li><strong>El estado se degrada rápido.</strong> Un informe de configuración de la semana pasada sigue siendo mayormente válido. Un informe de estado de la semana pasada no vale nada. Obliga a una cadencia de recolección que un proceso manual no sostiene.</li>
+                </ul>
+                <p>
+                    Por eso la mayoría de las herramientas elige un lado. Las de gestión de configuración hacen muy bien lo primero y no miran lo segundo. Las de monitoreo hacen lo segundo y no saben nada de intención declarada. El operador queda con dos consolas y la tarea de correlacionar en la cabeza, que es justo lo que no escala a las tres de la mañana.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Qué se puede responder cuando están juntas</h2>
+                <p>
+                    Cuando la misma auditoría cubre las dos dimensiones, aparecen preguntas que antes requerían un ingeniero con sesión abierta:
+                </p>
+                <ul class="doc-list">
+                    <li>¿Qué equipos cumplen el estándar de configuración <em>y</em> además están operando como se espera?</li>
+                    <li>De los hallazgos abiertos, ¿cuáles afectan al servicio ahora mismo y cuáles son deuda de configuración sin impacto inmediato?</li>
+                    <li>Después de esa ventana de mantenimiento, ¿la red quedó como estaba, en configuración y en operación?</li>
+                    <li>Este equipo que reprueba, ¿reprueba porque está mal configurado o porque algo de su entorno cambió?</li>
+                </ul>
+                <p>
+                    La segunda pregunta es la que más cambia el día a día. Una lista de cien hallazgos sin priorizar se ignora. Una lista de cien hallazgos donde cuatro tienen impacto operativo confirmado se atiende esta tarde.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Cómo lo resuelve Oktavia</h2>
+                <p>
+                    Oktavia ejecuta ambas dimensiones en la misma auditoría y sobre el mismo inventario. El cumplimiento de configuración compara contra la intención declarada por alcance —sitio, rol, plataforma, modelo o equipo— y señala la línea exacta que sustenta cada hallazgo. El cumplimiento de estado consulta la operación real: interfaces, vecinos de los protocolos de ruteo, sesiones establecidas, árbol de expansión, tablas de direcciones, uso de procesador y memoria, y alcanzabilidad.
+                </p>
+                <p>
+                    El resultado se presenta por categorías, de modo que un puntaje de configuración en cien por ciento junto a un puntaje de estado por debajo es una señal legible y no una contradicción: dice exactamente que la red está bien escrita y no está funcionando como debería, que es la situación con la que abrimos este artículo.
+                </p>
+                <p>
+                    Cuando un equipo no se pudo recolectar, sus pruebas quedan marcadas como omitidas y no como incumplidas. Un equipo inalcanzable no es un equipo que incumple: es un equipo del que no sabemos nada, y confundirlos infla el problema y esconde los hallazgos reales.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="Tb6tp0IMpm0">
+                        <img src="../img/video-Tb6tp0IMpm0.jpg" alt="De la visibilidad al cumplimiento en Oktavia" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">De la visibilidad al cumplimiento: cómo se ejecuta y se lee una auditoría completa.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>¿Sabe si su red está bien escrita o funcionando?</h2>
+                <p>
+                    Son dos preguntas distintas y probablemente hoy sólo puede contestar una. Para cotizar sólo necesitamos saber aproximadamente cuántos routers, switches, firewalls y controladoras administra.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Quiero una cotización</a>
+                    <a href="../#contacto">Solicitar una demostración</a>
+                    <a href="inventario-fuente-de-verdad.html">Artículo anterior: la fuente de verdad</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Artículo público, sin información confidencial de clientes.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

@@ -142,10 +142,28 @@
             }
         };
 
-        const idioma = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'es';
+        const parametros = new URLSearchParams(location.search);
+        const idioma = parametros.get('lang') === 'en' ? 'en' : 'es';
         document.documentElement.lang = idioma;
-        document.querySelector('[data-lema]').textContent = textos[idioma].lema;
-        document.querySelector('[data-apoyo]').textContent = textos[idioma].apoyo;
+
+        // Un articulo pasa su propio titulo y bajada. Sin esto, cada entrada
+        // del blog compartiria la MISMA imagen en el feed de LinkedIn, y una
+        // tarjeta identica repetida no la abre nadie: el lector asume que ya
+        // vio ese enlace. El producto pasa a ser el rotulo de arriba.
+        const titulo = parametros.get('titulo');
+        const bajada = parametros.get('bajada');
+        const rotulo = parametros.get('rotulo');
+
+        document.querySelector('.producto').textContent = rotulo || 'Oktavia';
+        document.querySelector('[data-lema]').textContent = titulo || textos[idioma].lema;
+        document.querySelector('[data-apoyo]').textContent = bajada || textos[idioma].apoyo;
+
+        // Un titulo de articulo es mas largo que el lema del producto: si no
+        // se reduce, se sale del lienzo de 1200x630 y LinkedIn lo recorta.
+        if (titulo && titulo.length > 34) {
+            document.querySelector('[data-lema]').style.fontSize =
+                titulo.length > 52 ? '58px' : '68px';
+        }
     </script>
 </body>
 </html>

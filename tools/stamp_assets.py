@@ -35,7 +35,9 @@ def hash_de(ruta: pathlib.Path) -> str:
 
 
 def main() -> int:
-    paginas = sorted(RAIZ.glob("*.html")) + sorted(RAIZ.glob("docs/*.html"))
+    paginas = (sorted(RAIZ.glob("*.html"))
+               + sorted(RAIZ.glob("docs/*.html"))
+               + sorted(RAIZ.glob("blog/*.html")))
     if not paginas:
         print("no se encontro ninguna pagina HTML", file=sys.stderr)
         return 1

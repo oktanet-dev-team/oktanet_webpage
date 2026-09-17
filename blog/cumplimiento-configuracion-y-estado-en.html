@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your configuration passes and your network is still broken | Oktanet</title>
+    <meta name="description" content="The difference between configuration compliance and state compliance, why correlating them changes what you can claim about your network, and why almost no tool does it.">
+    <link rel="canonical" href="https://oktanet.io/blog/cumplimiento-configuracion-y-estado-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Your configuration passes and your network is still broken">
+    <meta property="og:description" content="The difference between configuration compliance and state compliance, why correlating them changes what you can claim about your network, and why almost no tool does it.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/cumplimiento-configuracion-y-estado-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-estado-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-estado-en.png">
+    <meta property="og:image:alt" content="Your configuration passes and your network is still broken — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./cumplimiento-configuracion-y-estado.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="cumplimiento-configuracion-y-estado-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Compliance</p>
+                <h1>Your configuration passes and your network is still broken</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Compliance</span>
+                    <span class="post-tag">Network state</span>
+                    <span>17 September 2026</span>
+                    <span>·</span>
+                    <span>9 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    An audit can report that one hundred per cent of the configuration meets the standard while three interfaces are down. That is not a reporting error: it is answering a different question from the one you had in mind. This article is about that difference, and why correlating both dimensions changes what you can credibly claim about your network.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>The report that says everything is fine</h2>
+                <p>
+                    Picture the result of a compliance audit on a distribution switch. One hundred and sixteen configuration checks, one hundred and sixteen passed. One hundred per cent. The organisation's standard is met line by line: the time servers are correct, the management access list is applied, spanning tree has the priority it should, logging points where it must.
+                </p>
+                <p>
+                    That same switch has three interfaces down. Three interfaces that participate in the interior routing protocol, declared in the configuration, present in the standard, and down.
+                </p>
+                <p>
+                    The configuration audit does not see them, and that is not a flaw in the audit: it is its definition. The configuration <em>is</em> correct. What is wrong is something else.
+                </p>
+                <p class="post-punch">
+                    Configuration compliance answers "is it written correctly?". It does not answer "is it working?".
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Two different questions about the same device</h2>
+                <p>
+                    It is worth separating them clearly, because tools on the market almost always answer one and let you believe they answered both.
+                </p>
+                <p>
+                    <strong>Configuration compliance</strong> compares the text of the running configuration against a declared intent. It detects what is missing, what is extra, and what differs. It is a static, deterministic comparison: the line is there or it is not. It serves audits, change control, and proving that a standard is applied evenly across the network.
+                </p>
+                <p>
+                    <strong>State compliance</strong> compares actual operation against what is expected of it. Interfaces up, border gateway sessions established, interior protocol neighbours formed, routes present in the table, processor and memory usage under threshold, reachability confirmed. It is dynamic: the answer can change between two consecutive queries without anyone touching a command.
+                </p>
+                <p>
+                    A network can pass the first and fail the second. It can also happen the other way round, which is less intuitive: a link can be up and carrying traffic on a configuration that violates the organisation's security standard. It works today and it is an audit finding tomorrow.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Why correlating them changes what you can claim</h2>
+                <p>
+                    Each one on its own leaves a gap that the other fills, and that is where the real value sits.
+                </p>
+                <p>
+                    <strong>A state finding without configuration is an alarm with no cause.</strong> "The session with neighbour 192.0.2.10 is down" tells you something is happening, not why. It could be a physical link, an access list filtering the port, a source address that stopped matching, or a neighbour that rebooted. Without the configuration alongside it, you begin the manual troubleshooting session that the monitoring system was supposed to spare you.
+                </p>
+                <p>
+                    <strong>A configuration finding without state is an assumption.</strong> "The secondary time server is missing" is true, but it does not say whether the primary is synchronising. It may be irrelevant, or the device may have been running with a skewed clock for weeks, making all of its logs useless for an investigation.
+                </p>
+                <p>
+                    Together, the claim changes in kind. It stops being "there is a problem" and becomes "this interface is down, it participates in the interior protocol according to this configuration line, and that is why these three networks are not being advertised". That is a diagnosis, and it can be acted on without opening a session to the device.
+                </p>
+                <p class="post-punch">
+                    Configuration explains state. State validates configuration. Apart, each one lies by omission.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Why almost nobody does it</h2>
+                <p>
+                    It is not for lack of interest. It is expensive, and the cost sits in three different places.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>They are two different collections.</strong> Configuration is obtained one way — an API, a network management protocol, a backup — and operational state another: show commands, counters, neighbour tables. Sustaining both paths, on every vendor, is twice the surface to maintain.</li>
+                    <li><strong>Relating them requires understanding each platform's model.</strong> To claim that a downed interface affects a protocol, you have to know that the interface is declared in that protocol, and that is expressed differently by every vendor. Matching names is not enough.</li>
+                    <li><strong>State decays quickly.</strong> A configuration report from last week is still mostly valid. A state report from last week is worthless. It forces a collection cadence that a manual process cannot sustain.</li>
+                </ul>
+                <p>
+                    That is why most tools pick a side. Configuration management tools do the first very well and never look at the second. Monitoring tools do the second and know nothing about declared intent. The operator is left with two consoles and the job of correlating in their head, which is exactly what does not scale at three in the morning.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>What you can answer when they sit together</h2>
+                <p>
+                    When a single audit covers both dimensions, questions become answerable that previously required an engineer with an open session:
+                </p>
+                <ul class="doc-list">
+                    <li>Which devices meet the configuration standard <em>and</em> are also operating as expected?</li>
+                    <li>Of the open findings, which affect service right now and which are configuration debt with no immediate impact?</li>
+                    <li>After that maintenance window, did the network come back as it was, in configuration and in operation?</li>
+                    <li>This device that fails — does it fail because it is misconfigured, or because something in its environment changed?</li>
+                </ul>
+                <p>
+                    The second question is the one that changes day-to-day work the most. A list of a hundred unprioritised findings gets ignored. A list of a hundred findings where four have confirmed operational impact gets handled this afternoon.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>How Oktavia handles it</h2>
+                <p>
+                    Oktavia runs both dimensions in the same audit and against the same inventory. Configuration compliance compares against intent declared by scope — site, role, platform, model, or device — and points to the exact line backing every finding. State compliance queries actual operation: interfaces, routing protocol neighbours, established sessions, spanning tree, address tables, processor and memory usage, and reachability.
+                </p>
+                <p>
+                    Results are presented by category, so a configuration score at one hundred per cent next to a lower state score reads as a signal rather than a contradiction: it says precisely that the network is well written and not working as it should, which is the situation this article opened with.
+                </p>
+                <p>
+                    When a device could not be collected, its checks are marked skipped, not failed. An unreachable device is not a device that fails compliance: it is a device we know nothing about, and conflating the two inflates the problem and hides the real findings.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="Tb6tp0IMpm0">
+                        <img src="../img/video-Tb6tp0IMpm0.jpg" alt="From visibility to compliance in Oktavia" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">From visibility to compliance: how a complete audit is run and read.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>Do you know whether your network is well written, or working?</h2>
+                <p>
+                    They are two different questions, and today you can probably only answer one. To quote, all we need is roughly how many routers, switches, firewalls, and controllers you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="inventario-fuente-de-verdad-en.html">Previous article: the source of truth</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

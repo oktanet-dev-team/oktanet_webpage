@@ -27,6 +27,7 @@ tools/                  Scripts de mantenimiento (no se publican)
   build_images.py       Recorta capturas y las exporta en WebP y PNG
   check_copy.py         Revisa que los dos idiomas de la portada calcen
   stamp_assets.py       Sella CSS y JS con el hash de su contenido (anti-caché)
+  check_datos.py        Falla si un artículo lleva direcciones o nombres reales
   build_og.py           Genera la imagen que se ve al compartir el enlace
   build_videos.py       Descarga las carátulas de los vídeos de YouTube
   to_dark.py            Convirtió la paleta a oscura (histórico, no se re-ejecuta)
@@ -63,6 +64,46 @@ contra `index.html`. Devuelve código distinto de cero si algo no calza.
 documentos largos y mantener dos arreglos paralelos de cien entradas se rompe en
 la primera corrección. Lo único que comparte con la portada es la preferencia de
 idioma guardada en el navegador, para que volver al inicio no cambie el idioma.
+
+## El blog
+
+Los artículos viven en `blog/`, uno por idioma, y **reusan `docs_style.css`**:
+portada, secciones, tablas, botones de compartir y la hoja de impresión. Eso no
+es ahorro de trabajo, es la razón por la que cada artículo también se descarga
+en PDF sin escribir nada extra — un comercial puede mandarlo como adjunto en vez
+de depender de que el cliente abra un enlace.
+
+```
+blog/index.html                        Índice (español)
+blog/index-en.html                     Índice (inglés)
+blog/<tema>.html                       Artículo (español)
+blog/<tema>-en.html                    Artículo (inglés)
+blog/<tema>-es.pdf, -en.pdf            Generados con build_pdf.py
+```
+
+A diferencia de la portada, el texto de un artículo **vive en el HTML**, no en el
+diccionario posicional. Son textos largos y mantener arreglos paralelos se rompe
+en la primera corrección; es el mismo criterio que ya se usa en `docs/`.
+
+### Antes de publicar un artículo
+
+```bash
+python3 tools/check_datos.py     # ¿se coló una IP o un nombre real?
+python3 tools/build_og.py        # imagen propia para el feed de LinkedIn
+python3 tools/build_pdf.py       # el PDF del artículo
+python3 tools/stamp_assets.py    # sella CSS y JS
+```
+
+**`check_datos.py` no es opcional.** Los artículos se escriben seguido y muchas
+veces copiando de una sesión real de laboratorio: ahí es donde se cuela la
+dirección de gestión o el nombre del equipo de un cliente, y una vez publicado ya
+lo indexó un buscador. La regla es que en material público sólo se usan los
+rangos reservados para documentar: `192.0.2.0/24`, `198.51.100.0/24` y
+`203.0.113.0/24`.
+
+Cada artículo necesita además su entrada en `ARTICULOS` de `build_og.py`. Sin
+ella comparte la imagen genérica del sitio, y en el feed de LinkedIn una tarjeta
+idéntica repetida no la abre nadie: el lector asume que ya vio ese enlace.
 
 ## Sellar los assets antes de publicar
 
