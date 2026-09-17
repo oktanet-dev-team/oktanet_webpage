@@ -940,3 +940,63 @@ table.doc-table td strong {
     background: rgba(12, 90, 145, 0.92);
     transform: translate(-50%, -50%) scale(1.06);
 }
+
+/* Icono al inicio de cada titulo de seccion de un articulo. Se dibuja con
+   trazo y no relleno para que se lea igual sobre el fondo oscuro de la web y
+   sobre el blanco del PDF, donde el color cambia a la tinta de marca. */
+.doc-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-section-icon {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: var(--highlight);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* La marca de Oktanet dentro del articulo, no solo en la barra superior. */
+.post-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 16px;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.post-brand img {
+    width: 30px;
+    height: 30px;
+}
+
+@media print {
+    .post-section-icon {
+        stroke: #0c5a91;
+    }
+
+    .post-brand {
+        color: #4a5d7a;
+    }
+}
+
+/* El icono en las tarjetas del indice: mismo juego que en las secciones, un
+   poco mas chico porque acompana a un h3 y no a un h2. */
+.post-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-card .post-section-icon {
+    width: 22px;
+    height: 22px;
+}

@@ -2766,3 +2766,22 @@ body.quote-modal-open {
         display: none !important;
     }
 }
+
+/* El icono de Oktavia junto al nombre en el titular. Se dimensiona con `em`
+   para que siga al tamano del titulo, que es fluido: con un tamano fijo se
+   veria enorme en movil y perdido en pantalla grande. */
+.hero-brandline {
+    display: flex;
+    align-items: center;
+    gap: 0.28em;
+}
+
+.hero-brandmark {
+    width: 1.05em;
+    height: 1.05em;
+    flex: 0 0 auto;
+    border-radius: 0.22em;
+    /* El PNG trae fondo oscuro propio; el halo lo despega del fondo de la
+       seccion sin recortarle nada. */
+    box-shadow: 0 0 0 1px rgba(111, 215, 245, 0.28), 0 8px 20px rgba(3, 18, 36, 0.5);
+}
