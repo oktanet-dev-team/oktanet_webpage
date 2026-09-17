@@ -57,6 +57,21 @@ DOCUMENTOS = {
         "pie": "Oktavia · Executive summary · Oktanet",
         "de": "of",
     },
+    # Los articulos del blog salen en PDF con la misma maquinaria: asi un
+    # comercial puede mandar el articulo como adjunto sin depender de que el
+    # cliente abra un enlace.
+    "blog-inventario-es": {
+        "pagina": "blog/inventario-fuente-de-verdad.html",
+        "salida": "blog/inventario-fuente-de-verdad-es.pdf",
+        "pie": "El inventario que nadie tiene · Oktanet",
+        "de": "de",
+    },
+    "blog-inventario-en": {
+        "pagina": "blog/inventario-fuente-de-verdad-en.html",
+        "salida": "blog/inventario-fuente-de-verdad-en.pdf",
+        "pie": "The inventory nobody has · Oktanet",
+        "de": "of",
+    },
 }
 
 PIE = """

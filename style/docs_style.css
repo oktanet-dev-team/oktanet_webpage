@@ -738,3 +738,205 @@ table.doc-table td strong {
         padding-top: 4mm;
     }
 }
+
+/* ================================ Blog ====================================
+   Los articulos reusan la maquinaria de la documentacion —portada, secciones,
+   tablas, compartir y la hoja de impresion— para que cada uno se pueda mandar
+   como PDF a un cliente sin trabajo extra. Lo unico propio es el indice y los
+   pocos elementos que un articulo tiene y un documento no: fecha, tiempo de
+   lectura, etiquetas y el cierre comercial.
+   -------------------------------------------------------------------------- */
+
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+}
+
+.post-meta .post-tag {
+    padding: 4px 11px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--brand-strong);
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* Frase suelta que sostiene el argumento del articulo. No es una cita de
+   nadie, asi que no lleva comillas ni <blockquote>: es enfasis tipografico. */
+.post-punch {
+    margin: 22px 0;
+    padding: 4px 0 4px 18px;
+    border-left: 3px solid var(--brand);
+    font-size: clamp(1.05rem, 2vw, 1.28rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--brand-strong);
+}
+
+/* El video va incrustado como caratula: no se carga nada de YouTube hasta
+   que el lector pulsa. Mismo criterio que la portada del sitio. */
+.post-video {
+    margin: 26px 0;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-deep);
+}
+
+.post-video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+}
+
+.post-video-frame img,
+.post-video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+}
+
+.post-video-caption {
+    padding: 12px 16px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+}
+
+/* El cierre comercial va separado del cuerpo a proposito: el articulo tiene
+   que servir aunque el lector nunca compre, y mezclarlo con el argumento
+   tecnico le quita credibilidad a las dos partes. */
+.post-cta {
+    margin-top: 34px;
+    padding: 24px 26px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--brand-soft);
+}
+
+.post-cta h2 {
+    margin: 0 0 12px;
+    font-size: 1.2rem;
+}
+
+.post-cta p {
+    margin: 0 0 14px;
+}
+
+.post-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.post-cta-actions a {
+    padding: 10px 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.post-cta-actions a.is-primary {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #f2f7ff;
+}
+
+/* ---------------------------- Indice del blog ----------------------------- */
+
+.post-list {
+    display: grid;
+    gap: 18px;
+    margin-top: 26px;
+}
+
+.post-card {
+    display: block;
+    padding: 24px 26px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    text-decoration: none;
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.post-card:hover,
+.post-card:focus-visible {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.post-card h3 {
+    margin: 10px 0 10px;
+    font-size: 1.22rem;
+    color: var(--text-main);
+}
+
+.post-card p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.post-card .post-meta {
+    margin: 0;
+}
+
+@media print {
+    /* Lo que existe solo para navegar no aporta nada en papel. */
+    .post-video,
+    .post-cta-actions {
+        display: none !important;
+    }
+
+    .post-punch {
+        color: #0c5a91;
+    }
+
+    .post-cta {
+        background: #f4f8fc;
+        break-inside: avoid;
+    }
+}
+
+/* Botón de reproducción de los vídeos del blog. Se crea desde JavaScript,
+   así que sin JavaScript queda la carátula y el artículo se lee igual. */
+.post-video-frame {
+    cursor: pointer;
+}
+
+.post-video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    padding: 0 0 0 4px;
+    border: 1px solid rgba(153, 209, 249, 0.5);
+    border-radius: 50%;
+    background: rgba(8, 21, 33, 0.78);
+    color: var(--brand-strong);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.post-video-play:hover,
+.post-video-play:focus-visible {
+    background: rgba(12, 90, 145, 0.92);
+    transform: translate(-50%, -50%) scale(1.06);
+}
