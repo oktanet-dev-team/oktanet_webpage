@@ -526,6 +526,7 @@
             quoteLabels: [
                 'Routers', 'Switches', 'Firewalls', 'Controladoras wireless',
                 '¿Usas una plataforma de gestión centralizada?',
+                'De los equipos de arriba, ¿cuántos administras a través de la plataforma?',
                 'Especifica cuál', 'Especifica cuál',
                 'Telemetría y eventos', 'Plazo', 'Forma de pago',
                 'Nombre completo', 'Empresa', 'Correo electrónico', 'Teléfono'
@@ -538,6 +539,8 @@
                 'Anual', 'Mensual', 'Por definir'
             ],
             quoteTotal: '{n} dispositivos en total.',
+            quoteSplit: '{plataforma} por plataforma · {sueltos} equipo por equipo.',
+            quoteSplitError: 'No pueden ser más de {total}, que es el total que capturaste arriba.',
             quoteWarning: 'Alguna de las plataformas que elegiste todavía no está integrada. Podemos cotizarte lo demás y platicar de esa por separado.',
             quoteFormNote: 'Te respondemos con una propuesta. No compartimos tus datos con nadie.',
             quoteSubmit: 'Enviar solicitud',
@@ -961,6 +964,7 @@
             quoteLabels: [
                 'Routers', 'Switches', 'Firewalls', 'Wireless controllers',
                 'Do you use a centralised management platform?',
+                'Of the devices above, how many do you manage through the platform?',
                 'Which one', 'Which one',
                 'Telemetry and events', 'Term', 'Payment',
                 'Full name', 'Company', 'Email', 'Phone'
@@ -973,6 +977,8 @@
                 'Annual', 'Monthly', 'To be defined'
             ],
             quoteTotal: '{n} devices in total.',
+            quoteSplit: '{plataforma} via platform · {sueltos} device by device.',
+            quoteSplitError: 'It cannot exceed {total}, the total you entered above.',
             quoteWarning: 'One of the platforms you selected is not integrated yet. We can quote the rest and discuss that one separately.',
             quoteFormNote: 'We reply with a proposal. We never share your details with anyone.',
             quoteSubmit: 'Send request',
@@ -1194,18 +1200,63 @@
         }
     };
 
+    const contarEquipos = function () {
+        if (!quoteForm) {
+            return 0;
+        }
+
+        return ['routers', 'switches', 'firewalls', 'wireless'].reduce(function (suma, campo) {
+            const valor = parseInt((quoteForm.elements[campo] || {}).value, 10);
+            return suma + (isNaN(valor) || valor < 0 ? 0 : valor);
+        }, 0);
+    };
+
     const actualizarTotal = function (copy) {
         const salida = document.querySelector('[data-quote-total]');
         if (!salida || !quoteForm) {
             return;
         }
 
-        const total = ['routers', 'switches', 'firewalls', 'wireless'].reduce(function (suma, campo) {
-            const valor = parseInt((quoteForm.elements[campo] || {}).value, 10);
-            return suma + (isNaN(valor) || valor < 0 ? 0 : valor);
-        }, 0);
-
+        const total = contarEquipos();
         salida.textContent = total ? copy.quoteTotal.replace('{n}', total) : '';
+        actualizarDesglose(copy, total);
+    };
+
+    // Con plataforma de gestion, el total no dice cuantos equipos van por la
+    // controladora y cuantos sueltos; en el caso mixto esa division es
+    // justamente lo que cambia la cotizacion. Se pregunta el numero y aqui se
+    // deriva el resto, para que el visitante no tenga que restar de cabeza.
+    const actualizarDesglose = function (copy, total) {
+        const nota = document.querySelector('[data-quote-split]');
+        const campo = quoteForm && quoteForm.elements.equipos_en_plataforma;
+        if (!nota || !campo) {
+            return;
+        }
+
+        const bloque = campo.closest('.quote-conditional');
+        if (bloque && bloque.hidden) {
+            nota.textContent = '';
+            return;
+        }
+
+        const enPlataforma = parseInt(campo.value, 10);
+        if (isNaN(enPlataforma) || enPlataforma < 0) {
+            nota.textContent = '';
+            nota.classList.remove('is-warning');
+            return;
+        }
+
+        if (total && enPlataforma > total) {
+            // Decirlo en vez de calcular un negativo silencioso.
+            nota.textContent = copy.quoteSplitError.replace('{total}', total);
+            nota.classList.add('is-warning');
+            return;
+        }
+
+        nota.classList.remove('is-warning');
+        nota.textContent = copy.quoteSplit
+            .replace('{plataforma}', enPlataforma)
+            .replace('{sueltos}', Math.max(0, total - enPlataforma));
     };
 
     if (quoteForm) {
@@ -1216,6 +1267,7 @@
         quoteForm.addEventListener('change', function (evento) {
             if (evento.target.name === 'gestion') {
                 aplicarCondicional();
+                actualizarTotal(copiaActual());
             }
             if (['gestion', 'plataformas_gestion', 'sistemas'].indexOf(evento.target.name) !== -1) {
                 revisarPlataformas(copiaActual());
@@ -1223,7 +1275,7 @@
         });
 
         quoteForm.addEventListener('input', function (evento) {
-            if (['routers', 'switches', 'firewalls', 'wireless'].indexOf(evento.target.name) !== -1) {
+            if (['routers', 'switches', 'firewalls', 'wireless', 'equipos_en_plataforma'].indexOf(evento.target.name) !== -1) {
                 actualizarTotal(copiaActual());
             }
         });

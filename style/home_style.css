@@ -2958,3 +2958,20 @@ body.quote-modal-open {
     font-weight: 600;
     color: var(--text-light);
 }
+
+/* Desglose entre equipos por plataforma y equipos sueltos. */
+.quote-split {
+    margin-top: 14px;
+}
+
+.quote-split-note {
+    margin: 8px 0 0;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--brand-strong);
+    min-height: 1.2em;
+}
+
+.quote-split-note.is-warning {
+    color: #f0c07a;
+}
