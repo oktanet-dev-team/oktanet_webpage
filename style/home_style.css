@@ -77,6 +77,7 @@ img {
 .argos-section .eyebrow,
 .pro-section .eyebrow,
 .licensing-section .eyebrow,
+.quote-section .eyebrow,
 .resources-section .eyebrow,
 .about-section .eyebrow {
     font-size: 0.82rem;
@@ -498,6 +499,17 @@ p {
     gap: 12px;
 }
 
+/* Cuatro botones no caben en una linea y el cuarto quedaba huerfano abajo.
+   En vez de dejar que el corte lo decida el ancho, se parte a proposito:
+   arriba las dos acciones de contacto, abajo los dos documentos. Es un
+   elemento vacio y no un contenedor aparte porque el diccionario recorre
+   `.hero-actions a` por posicion, y anidarlos cambiaria ese recorrido. */
+.hero-actions-break {
+    flex-basis: 100%;
+    height: 0;
+    margin: 0;
+}
+
 .hero-badges {
     margin: -6px 0 20px;
     display: flex;
@@ -525,23 +537,6 @@ p {
     margin-right: 8px;
     border-radius: 50%;
     background: linear-gradient(180deg, #1178bc 0%, #0b588d 100%);
-}
-
-/* Las tres acciones del hero son botones. El de descarga se distingue del
-   anterior por el icono, no por tener menos contraste. */
-.btn-descarga {
-    gap: 6px;
-    padding-left: 15px;
-}
-
-.btn-descarga .material-symbols-outlined {
-    font-size: 19px;
-    line-height: 1;
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 500,
-        'GRAD' 0,
-        'opsz' 20;
 }
 
 .hero-points {
@@ -705,6 +700,7 @@ p {
 .method-section,
 .cases-section,
 .licensing-section,
+.quote-section,
 .family-section,
 .video-section,
 .argos-section,
@@ -732,6 +728,7 @@ p {
 .argos-section h2,
 .pro-section h2,
 .licensing-section h2,
+.quote-section h2,
 .resources-section h2,
 .about-section h2,
 .contact-copy h2 {
@@ -2467,5 +2464,305 @@ p {
 @media (max-width: 640px) {
     .video-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* ------------------------------ Cotización -------------------------------
+   Va entre licenciamiento y recursos: la pregunta del precio aparece justo
+   despues de ver que trae cada licencia. El degradado enlaza el final de
+   licenciamiento (#031323) con el inicio de recursos (#0d1319) para que el
+   corte entre secciones no se note.
+   -------------------------------------------------------------------------- */
+
+.quote-section {
+    position: relative;
+    background: linear-gradient(180deg, #031323 0%, #0d1319 100%);
+    border-top: 1px solid var(--line-soft);
+}
+
+.quote-lead {
+    margin: 0 0 32px;
+    max-width: 46ch;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 600;
+    color: var(--text-light);
+    line-height: 1.45;
+}
+
+.quote-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.quote-ask,
+.quote-pitch {
+    padding: 26px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-soft);
+}
+
+.quote-ask-title {
+    margin: 0 0 18px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.quote-devices {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quote-devices li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--text-main);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.quote-devices .material-symbols-outlined {
+    font-size: 19px;
+    color: var(--highlight);
+}
+
+.quote-note,
+.quote-pitch p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.quote-pitch p + p {
+    margin-top: 14px;
+}
+
+/* La frase comercial es el gancho de la seccion: se separa del cuerpo con
+   una barra de marca en vez de solo poner el texto mas grande. */
+.quote-pitch-lead {
+    margin: 0 0 16px !important;
+    padding-left: 16px;
+    border-left: 3px solid var(--brand);
+    font-size: clamp(1.02rem, 1.8vw, 1.22rem);
+    font-weight: 700;
+    color: var(--brand-strong) !important;
+    line-height: 1.4;
+}
+
+.quote-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+/* Las mayusculas son de presentacion, no del contenido: el texto se queda
+   en caja normal para que un lector de pantalla no lo deletree. */
+.quote-cta {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 13px 26px;
+}
+
+.quote-cta:hover,
+.quote-cta:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-deep);
+}
+
+@media (max-width: 860px) {
+    .quote-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-actions .quote-cta {
+        flex: 1 1 100%;
+    }
+}
+
+/* ------------------------ Cotizar: aviso permanente -----------------------
+   Un enlace en el menu solo convierte a quien lo busca. El boton flotante
+   acompana toda la pagina y abre la informacion sin sacar al visitante de
+   donde iba leyendo.
+   Aparece despues del hero: encima del hero competiria con el CTA principal,
+   que ya dice lo mismo.
+   -------------------------------------------------------------------------- */
+
+.quote-fab {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border: 1px solid var(--brand);
+    border-radius: 999px;
+    background: var(--brand-solid);
+    color: #f2f7ff;
+    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow: 0 14px 30px rgba(3, 18, 36, 0.62);
+    /* Oculto hasta pasar el hero: se traslada en vez de cambiar `display`
+       para que la entrada y la salida se puedan animar. */
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 240ms ease, transform 240ms ease, background-color 200ms ease;
+}
+
+.quote-fab.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.quote-fab:hover,
+.quote-fab:focus-visible {
+    background: var(--brand);
+}
+
+.quote-fab .material-symbols-outlined {
+    font-size: 21px;
+}
+
+.quote-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* El atributo `hidden` del HTML vale `display: none`, pero lo pone la hoja
+   del navegador: CUALQUIER regla de autor con `display` le gana. Sin esta
+   linea el `display: flex` de arriba mantenia el dialogo encima de toda la
+   pagina desde que cargaba, y cerrarlo solo cambiaba el atributo — el panel
+   seguia ahi, tapando todo y sin forma de quitarlo. */
+.quote-modal[hidden] {
+    display: none !important;
+}
+
+.quote-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 12, 22, 0.76);
+    backdrop-filter: blur(3px);
+}
+
+.quote-modal-panel {
+    position: relative;
+    width: min(520px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 30px 32px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-deep);
+}
+
+.quote-modal-panel h2 {
+    margin: 10px 0 14px;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+.quote-modal-lead {
+    margin: 0 0 12px;
+    color: var(--text-light);
+    line-height: 1.55;
+}
+
+.quote-modal-note {
+    margin: 0 0 22px;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+
+.quote-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quote-modal-more {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--brand-strong);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.quote-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: var(--bg-main);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.quote-modal-close:hover,
+.quote-modal-close:focus-visible {
+    color: var(--brand-strong);
+    border-color: var(--brand);
+}
+
+/* El fondo no debe correr cuando el dialogo esta abierto. */
+body.quote-modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 620px) {
+    .quote-fab {
+        right: 16px;
+        bottom: 16px;
+        padding: 12px 18px;
+    }
+
+    .quote-modal-actions .quote-cta {
+        flex: 1 1 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quote-fab {
+        transition: opacity 1ms linear;
+        transform: none;
+    }
+}
+
+@media print {
+    .quote-fab,
+    .quote-modal {
+        display: none !important;
     }
 }
