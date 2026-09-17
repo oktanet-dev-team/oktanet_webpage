@@ -15,8 +15,10 @@ style/home_style.css    Estilos de la portada
 docs/                   Documentación pública
   index.html            Índice de documentos (español)
   index-en.html         Índice de documentos (inglés)
-  oktavia.html          Información de Oktavia (español)
-  oktavia-en.html       Información de Oktavia (inglés)
+  oktavia.html          Ficha técnica de Oktavia (español)
+  oktavia-en.html       Ficha técnica de Oktavia (inglés)
+  oktavia-resumen.html     Resumen ejecutivo, 2 páginas (español)
+  oktavia-resumen-en.html  Resumen ejecutivo, 2 páginas (inglés)
   *.pdf                 Los documentos generados, versionados en el repo
 script/docs_script.js   Utilidades de la documentación
 style/docs_style.css    Estilos de la documentación, incluida la hoja de impresión
@@ -24,6 +26,7 @@ tools/                  Scripts de mantenimiento (no se publican)
   build_pdf.py          Genera los PDF desde las páginas HTML
   build_images.py       Recorta capturas y las exporta en WebP y PNG
   check_copy.py         Revisa que los dos idiomas de la portada calcen
+  stamp_assets.py       Sella CSS y JS con el hash de su contenido (anti-caché)
   build_og.py           Genera la imagen que se ve al compartir el enlace
   build_videos.py       Descarga las carátulas de los vídeos de YouTube
   to_dark.py            Convirtió la paleta a oscura (histórico, no se re-ejecuta)
@@ -60,6 +63,23 @@ contra `index.html`. Devuelve código distinto de cero si algo no calza.
 documentos largos y mantener dos arreglos paralelos de cien entradas se rompe en
 la primera corrección. Lo único que comparte con la portada es la preferencia de
 idioma guardada en el navegador, para que volver al inicio no cambie el idioma.
+
+## Sellar los assets antes de publicar
+
+```bash
+python3 tools/stamp_assets.py
+```
+
+Reescribe `?v=<hash>` en cada referencia a un CSS o JS propio, con un hash de su
+contenido. Es idempotente: si nada cambió, no toca ningún archivo.
+
+No es cosmético. Los navegadores cachean `home_script.js` sin preguntar, y
+cuando el HTML cambia y el script no, el resultado **no es "se ve viejo": es una
+página rota de forma difícil de diagnosticar**, porque el diccionario se aplica
+por posición. Un arreglo viejo de cuatro textos sobre siete enlaces nuevos los
+reparte corridos, y aparecen etiquetas en botones a los que no pertenecen. Pasó
+en local y habría pasado igual en producción con un visitante que ya conocía el
+sitio.
 
 ## Regenerar los PDF
 
