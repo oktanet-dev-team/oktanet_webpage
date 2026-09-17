@@ -59,6 +59,7 @@
                 <a href="#metodologia">Metodología</a>
                 <a href="#casos">Casos de uso</a>
                 <a href="#licenciamiento">Licencias</a>
+                <a href="#cotizar">Cotizar</a>
                 <a href="#recursos">Recursos</a>
             </nav>
 
@@ -709,6 +710,35 @@
             </div>
         </section>
 
+        <section class="quote-section" id="cotizar" aria-label="Cotizar Oktavia">
+            <div class="container">
+                <p class="eyebrow">Cotización</p>
+                <h2>Cotizar Oktavia es más simple de lo que imaginas.</h2>
+                <p class="quote-lead">¿Quieres saber cuánto cuesta Oktavia? Solo necesitamos conocer el tamaño de tu red.</p>
+                <div class="quote-grid">
+                    <div class="quote-ask">
+                        <p class="quote-ask-title">Dinos aproximadamente cuántos dispositivos administras:</p>
+                        <ul class="quote-devices">
+                            <li><span class="material-symbols-outlined" aria-hidden="true">router</span>Routers</li>
+                            <li><span class="material-symbols-outlined" aria-hidden="true">lan</span>Switches</li>
+                            <li><span class="material-symbols-outlined" aria-hidden="true">security</span>Firewalls</li>
+                            <li><span class="material-symbols-outlined" aria-hidden="true">wifi</span>Controladoras Wireless</li>
+                        </ul>
+                        <p class="quote-note">No necesitas preparar un inventario detallado, arquitectura completa ni un largo proceso de levantamiento para recibir una primera propuesta.</p>
+                    </div>
+                    <div class="quote-pitch">
+                        <p class="quote-pitch-lead">Tu tecnología debe adaptarse a tu presupuesto. No al revés.</p>
+                        <p>Por eso ofrecemos esquemas comerciales flexibles, con opciones de pago mensual, anual o planes acordados durante la vigencia del contrato, a partir de 12 meses.</p>
+                        <p>Empieza con la capacidad que necesitas hoy y evoluciona conforme crece tu operación.</p>
+                    </div>
+                </div>
+                <div class="quote-actions">
+                    <a class="btn btn-primary quote-cta" href="#contacto" data-intent="cotizacion">Quiero una cotización</a>
+                    <a class="btn btn-secondary quote-cta" href="#contacto" data-intent="demo">Solicitar una demo</a>
+                </div>
+            </div>
+        </section>
+
         <section class="resources-section" id="recursos" aria-label="Recursos y documentación de Oktavia">
             <div class="container">
                 <p class="eyebrow">Recursos</p>
@@ -747,6 +777,7 @@
                 </div>
 
                 <form class="contact-form" action="https://formspree.io/f/mqarwnjw" method="post">
+                    <input type="hidden" name="interes" id="contact-intent" value="">
                     <label for="name">Nombre completo</label>
                     <input id="name" type="text" name="name" autocomplete="name" required>
 
@@ -755,6 +786,9 @@
 
                     <label for="company">Empresa</label>
                     <input id="company" type="text" name="company" autocomplete="organization" required>
+
+                    <label for="devices">Dispositivos aproximados</label>
+                    <input id="devices" type="text" name="devices" inputmode="numeric" autocomplete="off">
 
                     <label for="message">¿Qué deseas resolver?</label>
                     <textarea id="message" name="message" rows="5" required></textarea>

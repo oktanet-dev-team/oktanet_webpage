@@ -77,6 +77,7 @@ img {
 .argos-section .eyebrow,
 .pro-section .eyebrow,
 .licensing-section .eyebrow,
+.quote-section .eyebrow,
 .resources-section .eyebrow,
 .about-section .eyebrow {
     font-size: 0.82rem;
@@ -705,6 +706,7 @@ p {
 .method-section,
 .cases-section,
 .licensing-section,
+.quote-section,
 .family-section,
 .video-section,
 .argos-section,
@@ -732,6 +734,7 @@ p {
 .argos-section h2,
 .pro-section h2,
 .licensing-section h2,
+.quote-section h2,
 .resources-section h2,
 .about-section h2,
 .contact-copy h2 {
@@ -2467,5 +2470,131 @@ p {
 @media (max-width: 640px) {
     .video-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+
+/* ------------------------------ Cotización -------------------------------
+   Va entre licenciamiento y recursos: la pregunta del precio aparece justo
+   despues de ver que trae cada licencia. El degradado enlaza el final de
+   licenciamiento (#031323) con el inicio de recursos (#0d1319) para que el
+   corte entre secciones no se note.
+   -------------------------------------------------------------------------- */
+
+.quote-section {
+    position: relative;
+    background: linear-gradient(180deg, #031323 0%, #0d1319 100%);
+    border-top: 1px solid var(--line-soft);
+}
+
+.quote-lead {
+    margin: 0 0 32px;
+    max-width: 46ch;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 600;
+    color: var(--text-light);
+    line-height: 1.45;
+}
+
+.quote-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.quote-ask,
+.quote-pitch {
+    padding: 26px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-soft);
+}
+
+.quote-ask-title {
+    margin: 0 0 18px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.quote-devices {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quote-devices li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--text-main);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.quote-devices .material-symbols-outlined {
+    font-size: 19px;
+    color: var(--highlight);
+}
+
+.quote-note,
+.quote-pitch p {
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.quote-pitch p + p {
+    margin-top: 14px;
+}
+
+/* La frase comercial es el gancho de la seccion: se separa del cuerpo con
+   una barra de marca en vez de solo poner el texto mas grande. */
+.quote-pitch-lead {
+    margin: 0 0 16px !important;
+    padding-left: 16px;
+    border-left: 3px solid var(--brand);
+    font-size: clamp(1.02rem, 1.8vw, 1.22rem);
+    font-weight: 700;
+    color: var(--brand-strong) !important;
+    line-height: 1.4;
+}
+
+.quote-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+}
+
+/* Las mayusculas son de presentacion, no del contenido: el texto se queda
+   en caja normal para que un lector de pantalla no lo deletree. */
+.quote-cta {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 13px 26px;
+}
+
+.quote-cta:hover,
+.quote-cta:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-deep);
+}
+
+@media (max-width: 860px) {
+    .quote-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-actions .quote-cta {
+        flex: 1 1 100%;
     }
 }

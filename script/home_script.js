@@ -25,6 +25,8 @@
     const argosSectionEl = document.querySelector('.argos-section');
     const proSectionEl = document.querySelector('.pro-section');
     const videoSectionEl = document.querySelector('.video-section');
+    const quoteSectionEl = document.querySelector('.quote-section');
+    const contactIntent = document.getElementById('contact-intent');
     const resourcesSectionEl = document.querySelector('.resources-section');
     const brandImage = document.querySelector('.brand img');
     const brandWordmark = document.querySelector('.brand-wordmark');
@@ -159,7 +161,7 @@
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Recursos'],
+            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -491,6 +493,20 @@
                     }
                 ]
             ],
+            quoteAria: 'Cotizar Oktavia',
+            quoteEyebrow: 'Cotización',
+            quoteTitle: 'Cotizar Oktavia es más simple de lo que imaginas.',
+            quoteLead: '¿Quieres saber cuánto cuesta Oktavia? Solo necesitamos conocer el tamaño de tu red.',
+            quoteAskTitle: 'Dinos aproximadamente cuántos dispositivos administras:',
+            quoteDevices: ['Routers', 'Switches', 'Firewalls', 'Controladoras Wireless'],
+            quoteNote: 'No necesitas preparar un inventario detallado, arquitectura completa ni un largo proceso de levantamiento para recibir una primera propuesta.',
+            quotePitchLead: 'Tu tecnología debe adaptarse a tu presupuesto. No al revés.',
+            quotePitchBody: [
+                'Por eso ofrecemos esquemas comerciales flexibles, con opciones de pago mensual, anual o planes acordados durante la vigencia del contrato, a partir de 12 meses.',
+                'Empieza con la capacidad que necesitas hoy y evoluciona conforme crece tu operación.'
+            ],
+            quoteActions: ['Quiero una cotización', 'Solicitar una demo'],
+            quoteIntentLabels: { cotizacion: 'Cotización', demo: 'Demostración' },
             resourcesAria: 'Recursos y documentación de Oktavia',
             resourcesEyebrow: 'Recursos',
             resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
@@ -506,7 +522,7 @@
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
             officeTitle: 'Oficina principal',
             officeLines: ['Torre de Oficinas, Downtown Reforma', 'Ciudad de México'],
-            formLabels: ['Nombre completo', 'Correo electrónico', 'Empresa', '¿Qué deseas resolver?'],
+            formLabels: ['Nombre completo', 'Correo electrónico', 'Empresa', 'Dispositivos aproximados', '¿Qué deseas resolver?'],
             submitButton: 'Enviar solicitud',
             footerTagline: 'Oktavia, tu red bajo control.',
             copyright: 'Todos los derechos reservados.',
@@ -549,7 +565,7 @@
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Resources'],
+            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -881,6 +897,20 @@
                     }
                 ]
             ],
+            quoteAria: 'Oktavia pricing',
+            quoteEyebrow: 'Pricing',
+            quoteTitle: 'Getting a quote for Oktavia is simpler than you think.',
+            quoteLead: 'Want to know what Oktavia costs? All we need is the size of your network.',
+            quoteAskTitle: 'Tell us roughly how many devices you manage:',
+            quoteDevices: ['Routers', 'Switches', 'Firewalls', 'Wireless Controllers'],
+            quoteNote: 'You do not need a detailed inventory, a full architecture diagram, or a lengthy discovery process to receive a first proposal.',
+            quotePitchLead: 'Your technology should fit your budget. Not the other way around.',
+            quotePitchBody: [
+                'That is why we offer flexible commercial terms, with monthly or annual payment options, or plans agreed for the life of the contract, starting at 12 months.',
+                'Start with the capacity you need today and scale as your operation grows.'
+            ],
+            quoteActions: ['I want a quote', 'Request a demo'],
+            quoteIntentLabels: { cotizacion: 'Quote', demo: 'Demo' },
             resourcesAria: 'Oktavia resources and documentation',
             resourcesEyebrow: 'Resources',
             resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
@@ -896,7 +926,7 @@
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
             officeTitle: 'Head Office',
             officeLines: ['Office Tower, Downtown Reforma', 'Mexico City'],
-            formLabels: ['Full name', 'Email', 'Company', 'What do you need to solve?'],
+            formLabels: ['Full name', 'Email', 'Company', 'Approximate device count', 'What do you need to solve?'],
             submitButton: 'Send Request',
             footerTagline: 'Oktavia, your network under control.',
             copyright: 'All rights reserved.',
@@ -998,6 +1028,10 @@
 
         if (licensingSectionEl) {
             licensingSectionEl.setAttribute('aria-label', copy.licensingAria);
+        }
+
+        if (quoteSectionEl) {
+            quoteSectionEl.setAttribute('aria-label', copy.quoteAria);
         }
 
         if (resourcesSectionEl) {
@@ -1139,6 +1173,38 @@
         setTextList(document.querySelectorAll('.licensing-plan h3'), copy.licensingPlanTitles);
         setTextList(document.querySelectorAll('.licensing-plan-body'), copy.licensingPlanBodies);
         renderLicensingPlans(copy);
+
+        if (contactIntent && contactIntent.dataset.intent) {
+            const etiquetas = copy.quoteIntentLabels || {};
+            contactIntent.value = etiquetas[contactIntent.dataset.intent] || '';
+        }
+
+        setText(document.querySelector('.quote-section .eyebrow'), copy.quoteEyebrow);
+        setText(document.querySelector('.quote-section h2'), copy.quoteTitle);
+        setText(document.querySelector('.quote-lead'), copy.quoteLead);
+        setText(document.querySelector('.quote-ask-title'), copy.quoteAskTitle);
+        setText(document.querySelector('.quote-note'), copy.quoteNote);
+        setText(document.querySelector('.quote-pitch-lead'), copy.quotePitchLead);
+        setTextList(document.querySelectorAll('.quote-pitch p:not(.quote-pitch-lead)'), copy.quotePitchBody);
+        setTextList(document.querySelectorAll('.quote-actions a'), copy.quoteActions);
+
+        // Las pastillas traen un icono ademas del texto: reemplazar el nodo
+        // completo se lo llevaria. Solo se toca el ultimo nodo de texto.
+        if (Array.isArray(copy.quoteDevices)) {
+            document.querySelectorAll('.quote-devices li').forEach(function (pastilla, indice) {
+                const texto = copy.quoteDevices[indice];
+                if (typeof texto !== 'string') {
+                    return;
+                }
+
+                const ultimo = pastilla.lastChild;
+                if (ultimo && ultimo.nodeType === Node.TEXT_NODE) {
+                    ultimo.nodeValue = texto;
+                } else {
+                    pastilla.appendChild(document.createTextNode(texto));
+                }
+            });
+        }
 
         setText(document.querySelector('.resources-section .eyebrow'), copy.resourcesEyebrow);
         setText(document.querySelector('.resources-section h2'), copy.resourcesTitle);
@@ -1309,6 +1375,28 @@
     if (currentYear) {
         currentYear.textContent = String(new Date().getFullYear());
     }
+
+    document.querySelectorAll('.quote-actions a[data-intent]').forEach(function (boton) {
+        boton.addEventListener('click', function () {
+            if (!contactIntent) {
+                return;
+            }
+
+            contactIntent.dataset.intent = boton.dataset.intent;
+            const copia = translations[document.documentElement.lang] || translations.es;
+            const etiquetas = copia.quoteIntentLabels || {};
+            contactIntent.value = etiquetas[boton.dataset.intent] || '';
+
+            const nombre = document.getElementById('name');
+            if (nombre) {
+                // El salto por ancla deja la pagina en el formulario pero sin
+                // foco: sin esto hay que volver a buscar donde escribir.
+                window.setTimeout(function () {
+                    nombre.focus({ preventScroll: true });
+                }, 400);
+            }
+        });
+    });
 
     if (contactForm) {
         const clearFormIfSubmitted = function () {
