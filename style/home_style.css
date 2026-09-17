@@ -167,33 +167,7 @@ p {
     filter: saturate(1.06) brightness(1.08);
 }
 
-.brand-wordmark {
-    display: inline-block;
-    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: clamp(1.55rem, 2.15vw, 2.15rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: 0.045em;
-    white-space: nowrap;
-    max-width: 16ch;
-    overflow: hidden;
-    color: #19c4ff;
-    background: linear-gradient(90deg, #2b6fff 0%, #1aa9f2 52%, #18e0ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
-    transition: max-width 220ms ease, opacity 180ms ease;
-}
 
-.nav-shell.nav-compact-brand .brand {
-    gap: 0;
-}
-
-.nav-shell.nav-compact-brand .brand-wordmark {
-    max-width: 0;
-    opacity: 0;
-}
 
 .main-nav {
     display: flex;
@@ -1351,6 +1325,16 @@ p {
     margin: 0;
 }
 
+/* Las tarjetas entran desde 56px a la derecha, o sea desde FUERA de la
+   pantalla, y mientras esperan ahi ensanchan el area de scroll del
+   documento: en movil la pagina se podia arrastrar 37px de lado.
+   `overflow-x: clip` recorta ese desborde sin convertir la seccion en un
+   contenedor de scroll, que es lo que pasaria con `overflow-x: hidden`
+   —ese fuerza `overflow-y: auto` y puede meter una barra vertical interna. */
+.about-section {
+    overflow-x: clip;
+}
+
 .about-section.about-float-ready .about-pillars .about-card {
     opacity: 0;
     transform: translateX(56px) scale(0.985);
@@ -1756,7 +1740,12 @@ p {
     }
 }
 
-@media (max-width: 860px) {
+/* El menu pasa a hamburguesa en 1340px y no en 860px.
+   Con nueve enlaces mas el boton de demostracion y el selector de idioma, la
+   barra completa deja de caber alrededor de 1300px: entre 861 y 1280 se
+   desbordaba hasta 436px y la pagina se arrastraba de lado. El umbral
+   anterior venia de cuando el menu tenia menos enlaces. */
+@media (max-width: 1340px) {
     .nav-shell {
         grid-template-columns: auto auto auto;
         grid-template-areas:
@@ -1780,11 +1769,6 @@ p {
     .brand img {
         width: 46px;
         height: 46px;
-    }
-
-    .brand-wordmark {
-        font-size: 1.05rem;
-        letter-spacing: 0.04em;
     }
 
     .nav-toggle {
@@ -1872,6 +1856,12 @@ p {
         display: none;
     }
 
+}
+
+/* Estas dos NO son del menu: el relleno de las secciones y el ancho del
+   contenedor siguen cambiando a 860px, que es donde de verdad se angosta la
+   lectura. Se separan del bloque de arriba al subir el umbral del menu. */
+@media (max-width: 860px) {
     .container {
         width: min(1160px, calc(100% - 32px));
     }
@@ -2696,14 +2686,6 @@ p {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-}
-
-.quote-modal-more {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--brand-strong);
-    font-weight: 600;
-    font-size: 0.92rem;
 }
 
 .quote-modal-close {
