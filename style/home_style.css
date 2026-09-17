@@ -2772,3 +2772,170 @@ body.quote-modal-open {
        seccion sin recortarle nada. */
     box-shadow: 0 0 0 1px rgba(111, 215, 245, 0.28), 0 8px 20px rgba(3, 18, 36, 0.5);
 }
+
+/* ------------------------- Formulario del cotizador -----------------------
+   Recoge y califica; no calcula precio. El sitio es estatico y cualquier
+   tabla que llegara al navegador quedaria publica, asi que la cifra la manda
+   una persona. Ver tools/ y ~/Documents/Oktanet/cotizador/precios.yaml.
+   -------------------------------------------------------------------------- */
+
+.quote-form {
+    padding: 26px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-soft);
+}
+
+.quote-fieldset {
+    margin: 0 0 22px;
+    padding: 0;
+    border: 0;
+}
+
+.quote-fieldset legend {
+    padding: 0;
+    margin-bottom: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--highlight);
+}
+
+/* Los cuatro contadores en rejilla: en una sola fila la etiqueta
+   "Controladoras wireless" no cabe sin partirse. */
+.quote-counts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.quote-selects,
+.quote-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.quote-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.quote-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.quote-form input[type="number"],
+.quote-form input[type="text"],
+.quote-form input[type="email"],
+.quote-form input[type="tel"],
+.quote-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg-main);
+    color: var(--text-light);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.quote-form input:focus-visible,
+.quote-form select:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 1px;
+}
+
+/* Marca de campo obligatorio vacio. Se pone al enviar, no al escribir: en
+   vivo regana al usuario antes de que termine de teclear. */
+.quote-form .is-invalid {
+    border-color: #e06a6a;
+}
+
+.quote-total {
+    margin: 10px 0 0;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--brand-strong);
+    min-height: 1.2em;
+}
+
+.quote-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.quote-platform {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--brand-soft);
+    font-size: 0.88rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.quote-platform:has(input:checked) {
+    border-color: var(--brand);
+    color: var(--brand-strong);
+}
+
+.quote-platform input {
+    accent-color: var(--brand);
+    width: 15px;
+    height: 15px;
+    margin: 0;
+}
+
+.quote-other {
+    margin-top: 12px;
+}
+
+/* El atributo `hidden` lo pone la hoja del navegador como `display: none`, y
+   el `display: flex` de `.quote-form label` le gana: sin esta linea el campo
+   "especifica cual" se ve siempre. Es la misma trampa que dejaba el dialogo
+   de cotizacion encima de toda la pagina. */
+.quote-form label[hidden] {
+    display: none !important;
+}
+
+/* Aviso de plataforma no integrada. Amarillo y no rojo: no es un error del
+   usuario, es informacion que le ahorra una expectativa falsa. */
+.quote-warning {
+    margin: 12px 0 0;
+    padding: 10px 14px;
+    border-left: 3px solid #d9a441;
+    background: rgba(217, 164, 65, 0.09);
+    color: #f0d9a8;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.quote-form-note {
+    margin: 0 0 18px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+    .quote-counts,
+    .quote-selects,
+    .quote-contact {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-form {
+        padding: 22px 18px;
+    }
+}

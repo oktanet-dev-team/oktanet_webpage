@@ -65,6 +65,36 @@ documentos largos y mantener dos arreglos paralelos de cien entradas se rompe en
 la primera corrección. Lo único que comparte con la portada es la preferencia de
 idioma guardada en el navegador, para que volver al inicio no cambie el idioma.
 
+## El cotizador
+
+El formulario de `#cotizar` **recoge y califica; no calcula precio**, y eso es
+una decisión de arquitectura, no una funcionalidad pendiente.
+
+GitHub Pages sirve cualquier archivo del repositorio. Comprobado:
+
+```
+https://oktanet.io/README.md           -> 200
+https://oktanet.io/tools/build_pdf.py  -> 200
+```
+
+Así que una tabla de precios en el repo sería descargable por cualquiera que
+adivine la URL, y los rastreadores adivinan. No hay servidor donde esconder el
+cálculo: si la cifra se muestra en pantalla, los precios viajan al navegador.
+
+Por eso **la lista de precios vive fuera de este repositorio**, en
+`~/Documents/Oktanet/cotizador/precios.yaml`. La cifra la manda una persona.
+
+Lo único que el navegador conoce es el catálogo `PLATAFORMAS` de
+`script/home_script.js`: etiqueta e «integrada sí/no». Eso no es información
+comercial y es lo que decide el aviso cuando alguien elige una plataforma que
+todavía no soportamos — dicho **antes** de que llene sus datos, porque
+enterarse al final se siente a que le sacaron el contacto con falsas
+expectativas.
+
+**Al agregar una plataforma**: va en `PLATAFORMAS` (web) y en `plataformas`
+del YAML de precios (privado). Si sólo se agrega en uno de los dos, o el
+visitante la ve y no se puede cotizar, o se puede cotizar y nadie la ve.
+
 ## El blog
 
 Los artículos viven en `blog/`, uno por idioma, y **reusan `docs_style.css`**:

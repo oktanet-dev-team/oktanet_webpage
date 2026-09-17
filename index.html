@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=7adf25247c">
+    <link rel="stylesheet" href="style/home_style.css?v=2dd31149a9">
 </head>
 <body id="page-top">
     <header class="site-header" id="inicio">
@@ -718,25 +718,97 @@
                 <h2>Cotizar Oktavia es más simple de lo que imaginas.</h2>
                 <p class="quote-lead">¿Quieres saber cuánto cuesta Oktavia? Solo necesitamos conocer el tamaño de tu red.</p>
                 <div class="quote-grid">
-                    <div class="quote-ask">
-                        <p class="quote-ask-title">Dinos aproximadamente cuántos dispositivos administras:</p>
-                        <ul class="quote-devices">
-                            <li><span class="material-symbols-outlined" aria-hidden="true">router</span>Routers</li>
-                            <li><span class="material-symbols-outlined" aria-hidden="true">lan</span>Switches</li>
-                            <li><span class="material-symbols-outlined" aria-hidden="true">security</span>Firewalls</li>
-                            <li><span class="material-symbols-outlined" aria-hidden="true">wifi</span>Controladoras Wireless</li>
-                        </ul>
-                        <p class="quote-note">No necesitas preparar un inventario detallado, arquitectura completa ni un largo proceso de levantamiento para recibir una primera propuesta.</p>
-                    </div>
                     <div class="quote-pitch">
                         <p class="quote-pitch-lead">Tu tecnología debe adaptarse a tu presupuesto. No al revés.</p>
                         <p>Por eso ofrecemos esquemas comerciales flexibles, con opciones de pago mensual, anual o planes acordados durante la vigencia del contrato, a partir de 12 meses.</p>
                         <p>Empieza con la capacidad que necesitas hoy y evoluciona conforme crece tu operación.</p>
+                        <p class="quote-note">No necesitas preparar un inventario detallado, arquitectura completa ni un largo proceso de levantamiento para recibir una primera propuesta.</p>
                     </div>
-                </div>
-                <div class="quote-actions">
-                    <a class="btn btn-primary quote-cta" href="#contacto" data-intent="cotizacion">Quiero una cotización</a>
-                    <a class="btn btn-secondary quote-cta" href="#contacto" data-intent="demo">Solicitar una demo</a>
+
+                    <form class="quote-form" id="quote-form" action="https://formspree.io/f/mqarwnjw" method="post" novalidate>
+                        <input type="hidden" name="_subject" value="Solicitud de cotización — Oktavia">
+                        <input type="hidden" name="origen" value="Cotizador del sitio">
+
+                        <fieldset class="quote-fieldset">
+                            <legend>Tu red</legend>
+                            <div class="quote-counts">
+                                <label for="q-routers"><span class="quote-label">Routers</span>
+                                    <input id="q-routers" name="routers" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
+                                </label>
+                                <label for="q-switches"><span class="quote-label">Switches</span>
+                                    <input id="q-switches" name="switches" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
+                                </label>
+                                <label for="q-firewalls"><span class="quote-label">Firewalls</span>
+                                    <input id="q-firewalls" name="firewalls" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
+                                </label>
+                                <label for="q-wireless"><span class="quote-label">Controladoras wireless</span>
+                                    <input id="q-wireless" name="wireless" type="number" min="0" step="1" inputmode="numeric" placeholder="0">
+                                </label>
+                            </div>
+                            <p class="quote-total" data-quote-total aria-live="polite"></p>
+                        </fieldset>
+
+                        <fieldset class="quote-fieldset">
+                            <legend>Plataformas que administras</legend>
+                            <div class="quote-platforms" id="quote-platforms"></div>
+                            <label class="quote-other" for="q-otra" hidden><span class="quote-label">Especifica cuál</span>
+                                <input id="q-otra" name="plataforma_otra" type="text" autocomplete="off">
+                            </label>
+                            <p class="quote-warning" data-quote-warning hidden></p>
+                        </fieldset>
+
+                        <fieldset class="quote-fieldset">
+                            <legend>Alcance</legend>
+                            <div class="quote-selects">
+                                <label for="q-telemetria"><span class="quote-label">Telemetría y eventos</span>
+                                    <select id="q-telemetria" name="telemetria">
+                                        <option value="no">No por ahora</option>
+                                        <option value="si">Sí, me interesa</option>
+                                        <option value="no-se">No estoy seguro</option>
+                                    </select>
+                                </label>
+                                <label for="q-plazo"><span class="quote-label">Plazo</span>
+                                    <select id="q-plazo" name="plazo">
+                                        <option value="12">12 meses</option>
+                                        <option value="24">24 meses</option>
+                                        <option value="36">36 meses</option>
+                                        <option value="por-definir">Por definir</option>
+                                    </select>
+                                </label>
+                                <label for="q-pago"><span class="quote-label">Forma de pago</span>
+                                    <select id="q-pago" name="pago">
+                                        <option value="anual">Anual</option>
+                                        <option value="mensual">Mensual</option>
+                                        <option value="por-definir">Por definir</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="quote-fieldset">
+                            <legend>Cómo te contactamos</legend>
+                            <div class="quote-contact">
+                                <label for="q-nombre"><span class="quote-label">Nombre completo</span>
+                                    <input id="q-nombre" name="nombre" type="text" autocomplete="name" required>
+                                </label>
+                                <label for="q-empresa"><span class="quote-label">Empresa</span>
+                                    <input id="q-empresa" name="empresa" type="text" autocomplete="organization" required>
+                                </label>
+                                <label for="q-correo"><span class="quote-label">Correo electrónico</span>
+                                    <input id="q-correo" name="correo" type="email" autocomplete="email" required>
+                                </label>
+                                <label for="q-telefono"><span class="quote-label">Teléfono</span>
+                                    <input id="q-telefono" name="telefono" type="tel" autocomplete="tel">
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <p class="quote-form-note">Te respondemos con una propuesta. No compartimos tus datos con nadie.</p>
+                        <div class="quote-actions">
+                            <button class="btn btn-primary quote-cta" type="submit">Enviar solicitud</button>
+                            <a class="btn btn-secondary quote-cta" href="#contacto" data-intent="demo">Solicitar una demo</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -883,6 +955,6 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=f8605e948f"></script>
+    <script src="script/home_script.js?v=c674def04b"></script>
 </body>
 </html>

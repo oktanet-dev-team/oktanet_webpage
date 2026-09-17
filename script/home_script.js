@@ -40,6 +40,25 @@
     const storageKey = 'oktanet-language';
     const formSubmittedStorageKey = 'oktanet-contact-form-submitted';
 
+
+    // Plataformas que se ofrecen en el cotizador. Aqui NO hay precios ni
+    // escalones: solo la etiqueta y si la plataforma esta integrada. Eso es
+    // lo unico que el navegador necesita para decidir el aviso, y lo unico
+    // que puede viajar sin exponer la lista comercial.
+    const PLATAFORMAS = [
+        { id: 'cisco_ios', es: 'Cisco IOS / IOS-XE', en: 'Cisco IOS / IOS-XE', integrada: true },
+        { id: 'fortigate', es: 'Fortinet FortiGate', en: 'Fortinet FortiGate', integrada: true },
+        { id: 'fortiswitch', es: 'Fortinet FortiSwitch', en: 'Fortinet FortiSwitch', integrada: true },
+        { id: 'junos', es: 'Juniper Junos', en: 'Juniper Junos', integrada: true },
+        { id: 'standalone', es: 'Equipos sin plataforma (standalone)', en: 'Devices with no platform (standalone)', integrada: true },
+        { id: 'meraki', es: 'Cisco Meraki', en: 'Cisco Meraki', integrada: false },
+        { id: 'fortimanager', es: 'Fortinet FortiManager', en: 'Fortinet FortiManager', integrada: false },
+        { id: 'aruba', es: 'HPE Aruba', en: 'HPE Aruba', integrada: false },
+        { id: 'huawei', es: 'Huawei', en: 'Huawei', integrada: false },
+        { id: 'paloalto', es: 'Palo Alto Networks', en: 'Palo Alto Networks', integrada: false },
+        { id: 'otro', es: 'Otra', en: 'Other', integrada: false }
+    ];
+
     const setText = function (element, text) {
         if (element && typeof text === 'string') {
             element.textContent = text;
@@ -492,6 +511,22 @@
                     }
                 ]
             ],
+            quoteLegends: ['Tu red', 'Plataformas que administras', 'Alcance', 'Cómo te contactamos'],
+            quoteLabels: [
+                'Routers', 'Switches', 'Firewalls', 'Controladoras wireless',
+                'Especifica cuál',
+                'Telemetría y eventos', 'Plazo', 'Forma de pago',
+                'Nombre completo', 'Empresa', 'Correo electrónico', 'Teléfono'
+            ],
+            quoteOptions: [
+                'No por ahora', 'Sí, me interesa', 'No estoy seguro',
+                '12 meses', '24 meses', '36 meses', 'Por definir',
+                'Anual', 'Mensual', 'Por definir'
+            ],
+            quoteTotal: '{n} dispositivos en total.',
+            quoteWarning: 'Alguna de las plataformas que elegiste todavía no está integrada. Podemos cotizarte lo demás y platicar de esa por separado.',
+            quoteFormNote: 'Te respondemos con una propuesta. No compartimos tus datos con nadie.',
+            quoteSubmit: 'Enviar solicitud',
             quoteFab: 'Cotizar',
             quoteModalTitle: '¿Cuánto cuesta Oktavia?',
             quoteModalLead: 'Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.',
@@ -908,6 +943,22 @@
                     }
                 ]
             ],
+            quoteLegends: ['Your network', 'Platforms you manage', 'Scope', 'How we reach you'],
+            quoteLabels: [
+                'Routers', 'Switches', 'Firewalls', 'Wireless controllers',
+                'Which one',
+                'Telemetry and events', 'Term', 'Payment',
+                'Full name', 'Company', 'Email', 'Phone'
+            ],
+            quoteOptions: [
+                'Not for now', 'Yes, interested', 'Not sure',
+                '12 months', '24 months', '36 months', 'To be defined',
+                'Annual', 'Monthly', 'To be defined'
+            ],
+            quoteTotal: '{n} devices in total.',
+            quoteWarning: 'One of the platforms you selected is not integrated yet. We can quote the rest and discuss that one separately.',
+            quoteFormNote: 'We reply with a proposal. We never share your details with anyone.',
+            quoteSubmit: 'Send request',
             quoteFab: 'Get a quote',
             quoteModalTitle: 'What does Oktavia cost?',
             quoteModalLead: 'All we need is the size of your network: roughly how many routers, switches, firewalls, and controllers you manage.',
@@ -1014,6 +1065,144 @@
             navShell.classList.add('nav-compact-brand');
         }
     };
+
+    // ── Cotizador ───────────────────────────────────────────────────────
+    // Recoge y CALIFICA; no calcula ni muestra precio. El sitio es estatico:
+    // cualquier tabla de precios que llegara al navegador quedaria publica
+    // —comprobado que oktanet.io sirve cualquier archivo del repo—, asi que
+    // la lista de precios se queda del lado de Oktanet y la cifra la manda
+    // una persona.
+    const quoteForm = document.getElementById('quote-form');
+
+    const renderPlataformas = function (copy) {
+        const caja = document.getElementById('quote-platforms');
+        if (!caja) {
+            return;
+        }
+
+        const idioma = document.documentElement.lang === 'en' ? 'en' : 'es';
+        // Conservar lo que ya habia marcado: esto se vuelve a dibujar en cada
+        // cambio de idioma y perder la seleccion seria irritante.
+        const marcadas = new Set(
+            Array.prototype.map.call(
+                caja.querySelectorAll('input:checked'),
+                function (el) { return el.value; }
+            )
+        );
+
+        caja.textContent = '';
+        PLATAFORMAS.forEach(function (plataforma) {
+            const etiqueta = document.createElement('label');
+            etiqueta.className = 'quote-platform';
+
+            const casilla = document.createElement('input');
+            casilla.type = 'checkbox';
+            casilla.name = 'plataformas';
+            casilla.value = plataforma.id;
+            casilla.checked = marcadas.has(plataforma.id);
+            casilla.dataset.integrada = String(plataforma.integrada);
+
+            const texto = document.createElement('span');
+            texto.textContent = plataforma[idioma];
+
+            etiqueta.appendChild(casilla);
+            etiqueta.appendChild(texto);
+            caja.appendChild(etiqueta);
+        });
+
+        revisarPlataformas(copy);
+    };
+
+    const revisarPlataformas = function (copy) {
+        const caja = document.getElementById('quote-platforms');
+        const aviso = document.querySelector('[data-quote-warning]');
+        const otra = document.querySelector('.quote-other');
+        if (!caja || !aviso) {
+            return;
+        }
+
+        const elegidas = Array.prototype.filter.call(
+            caja.querySelectorAll('input'),
+            function (el) { return el.checked; }
+        );
+        const noIntegradas = elegidas.filter(function (el) {
+            return el.dataset.integrada !== 'true';
+        });
+        const eligioOtra = elegidas.some(function (el) { return el.value === 'otro'; });
+
+        if (otra) {
+            otra.hidden = !eligioOtra;
+        }
+
+        // Decirlo ANTES de que llene el resto: enterarse al final de que su
+        // plataforma no esta integrada, despues de dar sus datos, se siente
+        // a que le sacaron el contacto con falsas expectativas.
+        if (noIntegradas.length) {
+            aviso.textContent = copy.quoteWarning;
+            aviso.hidden = false;
+        } else {
+            aviso.hidden = true;
+        }
+    };
+
+    const actualizarTotal = function (copy) {
+        const salida = document.querySelector('[data-quote-total]');
+        if (!salida || !quoteForm) {
+            return;
+        }
+
+        const total = ['routers', 'switches', 'firewalls', 'wireless'].reduce(function (suma, campo) {
+            const valor = parseInt((quoteForm.elements[campo] || {}).value, 10);
+            return suma + (isNaN(valor) || valor < 0 ? 0 : valor);
+        }, 0);
+
+        salida.textContent = total ? copy.quoteTotal.replace('{n}', total) : '';
+    };
+
+    if (quoteForm) {
+        const copiaActual = function () {
+            return translations[document.documentElement.lang] || translations.es;
+        };
+
+        quoteForm.addEventListener('change', function (evento) {
+            if (evento.target.name === 'plataformas') {
+                revisarPlataformas(copiaActual());
+            }
+        });
+
+        quoteForm.addEventListener('input', function (evento) {
+            if (['routers', 'switches', 'firewalls', 'wireless'].indexOf(evento.target.name) !== -1) {
+                actualizarTotal(copiaActual());
+            }
+        });
+
+        quoteForm.addEventListener('submit', function (evento) {
+            // `novalidate` en el marcado para poder dar el mensaje en el
+            // idioma vigente; la validacion nativa lo daria en el del
+            // navegador, que no tiene por que coincidir.
+            const faltantes = Array.prototype.filter.call(
+                quoteForm.querySelectorAll('[required]'),
+                function (campo) { return !campo.value.trim(); }
+            );
+
+            if (faltantes.length) {
+                evento.preventDefault();
+                faltantes[0].focus();
+                faltantes[0].classList.add('is-invalid');
+                return;
+            }
+
+            try {
+                window.sessionStorage.setItem(formSubmittedStorageKey, '1');
+            } catch (_error) {
+                // Sin almacenamiento el formulario igual se envia.
+            }
+        });
+
+        quoteForm.addEventListener('input', function (evento) {
+            evento.target.classList.remove('is-invalid');
+        });
+    }
 
     const applyLanguage = function (languageKey) {
         const selectedKey = translations[languageKey] ? languageKey : 'es';
@@ -1215,6 +1404,13 @@
             contactIntent.value = etiquetas[contactIntent.dataset.intent] || '';
         }
 
+        renderPlataformas(copy);
+        actualizarTotal(copy);
+        setTextList(document.querySelectorAll('.quote-form legend'), copy.quoteLegends);
+        setTextList(document.querySelectorAll('.quote-form .quote-label'), copy.quoteLabels);
+        setText(document.querySelector('.quote-form-note'), copy.quoteFormNote);
+        setText(document.querySelector('.quote-form button[type="submit"]'), copy.quoteSubmit);
+        setTextList(document.querySelectorAll('.quote-form option'), copy.quoteOptions);
         setText(document.querySelector('.quote-fab-text'), copy.quoteFab);
         setText(document.getElementById('quote-modal-title'), copy.quoteModalTitle);
         setText(document.querySelector('.quote-modal-lead'), copy.quoteModalLead);
@@ -1234,7 +1430,7 @@
         setText(document.querySelector('.quote-note'), copy.quoteNote);
         setText(document.querySelector('.quote-pitch-lead'), copy.quotePitchLead);
         setTextList(document.querySelectorAll('.quote-pitch p:not(.quote-pitch-lead)'), copy.quotePitchBody);
-        setTextList(document.querySelectorAll('.quote-actions a'), copy.quoteActions);
+        setText(document.querySelector('.quote-actions a[data-intent="demo"]'), copy.quoteActions[1]);
 
         // Las pastillas traen un icono ademas del texto: reemplazar el nodo
         // completo se lo llevaria. Solo se toca el ultimo nodo de texto.
@@ -1532,6 +1728,7 @@
             }
         });
     });
+
 
     if (contactForm) {
         const clearFormIfSubmitted = function () {
