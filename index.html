@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=2dd31149a9">
+    <link rel="stylesheet" href="style/home_style.css?v=b26a63a654">
 </head>
 <body id="page-top">
     <header class="site-header" id="inicio">
@@ -749,11 +749,31 @@
                         </fieldset>
 
                         <fieldset class="quote-fieldset">
-                            <legend>Plataformas que administras</legend>
-                            <div class="quote-platforms" id="quote-platforms"></div>
-                            <label class="quote-other" for="q-otra" hidden><span class="quote-label">Especifica cuál</span>
-                                <input id="q-otra" name="plataforma_otra" type="text" autocomplete="off">
+                            <legend>Cómo administras tus equipos</legend>
+                            <label for="q-gestion"><span class="quote-label">¿Usas una plataforma de gestión centralizada?</span>
+                                <select id="q-gestion" name="gestion">
+                                    <option value="ninguna">No, administro equipo por equipo</option>
+                                    <option value="todos">Sí, todos mis equipos</option>
+                                    <option value="algunos">Sí, algunos; el resto equipo por equipo</option>
+                                </select>
                             </label>
+
+                            <div class="quote-conditional" data-si="plataforma" hidden>
+                                <p class="quote-sublabel">¿Cuál o cuáles?</p>
+                                <div class="quote-platforms" id="quote-gestores"></div>
+                                <label class="quote-other" for="q-gestor-otro" hidden><span class="quote-label">Especifica cuál</span>
+                                    <input id="q-gestor-otro" name="gestor_otro" type="text" autocomplete="off">
+                                </label>
+                            </div>
+
+                            <div class="quote-conditional" data-si="sueltos">
+                                <p class="quote-sublabel">¿Qué sistemas tienen los equipos que administras directamente?</p>
+                                <div class="quote-platforms" id="quote-sistemas"></div>
+                                <label class="quote-other" for="q-sistema-otro" hidden><span class="quote-label">Especifica cuál</span>
+                                    <input id="q-sistema-otro" name="sistema_otro" type="text" autocomplete="off">
+                                </label>
+                            </div>
+
                             <p class="quote-warning" data-quote-warning hidden></p>
                         </fieldset>
 
@@ -955,6 +975,6 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=c674def04b"></script>
+    <script src="script/home_script.js?v=6e98d945b0"></script>
 </body>
 </html>

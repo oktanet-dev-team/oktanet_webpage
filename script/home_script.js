@@ -41,22 +41,33 @@
     const formSubmittedStorageKey = 'oktanet-contact-form-submitted';
 
 
-    // Plataformas que se ofrecen en el cotizador. Aqui NO hay precios ni
-    // escalones: solo la etiqueta y si la plataforma esta integrada. Eso es
-    // lo unico que el navegador necesita para decidir el aviso, y lo unico
-    // que puede viajar sin exponer la lista comercial.
-    const PLATAFORMAS = [
+    // Dos catalogos, no uno: una plataforma de gestion y un equipo suelto no
+    // son la misma pregunta ni se licencian igual. Con una controladora de por
+    // medio se administra la plataforma; sin ella se administra cada equipo
+    // por su sistema. Mezclarlos en una sola lista hacia imposible cotizar.
+    //
+    // Aqui NO hay precios: solo etiqueta y si esta integrada. Eso es lo unico
+    // que el navegador necesita para el aviso, y lo unico que puede viajar sin
+    // exponer la lista comercial.
+    const GESTORES = [
+        { id: 'meraki', es: 'Cisco Meraki Dashboard', en: 'Cisco Meraki Dashboard', integrada: false },
+        { id: 'catalyst_center', es: 'Cisco Catalyst Center (DNA Center)', en: 'Cisco Catalyst Center (DNA Center)', integrada: false },
+        { id: 'fortimanager', es: 'Fortinet FortiManager', en: 'Fortinet FortiManager', integrada: false },
+        { id: 'aruba_central', es: 'HPE Aruba Central', en: 'HPE Aruba Central', integrada: false },
+        { id: 'panorama', es: 'Palo Alto Panorama', en: 'Palo Alto Panorama', integrada: false },
+        { id: 'mist', es: 'Juniper Mist', en: 'Juniper Mist', integrada: false },
+        { id: 'gestor_otro', es: 'Otra', en: 'Other', integrada: false }
+    ];
+
+    const SISTEMAS = [
         { id: 'cisco_ios', es: 'Cisco IOS / IOS-XE', en: 'Cisco IOS / IOS-XE', integrada: true },
-        { id: 'fortigate', es: 'Fortinet FortiGate', en: 'Fortinet FortiGate', integrada: true },
+        { id: 'fortios', es: 'Fortinet FortiGate (FortiOS)', en: 'Fortinet FortiGate (FortiOS)', integrada: true },
         { id: 'fortiswitch', es: 'Fortinet FortiSwitch', en: 'Fortinet FortiSwitch', integrada: true },
         { id: 'junos', es: 'Juniper Junos', en: 'Juniper Junos', integrada: true },
-        { id: 'standalone', es: 'Equipos sin plataforma (standalone)', en: 'Devices with no platform (standalone)', integrada: true },
-        { id: 'meraki', es: 'Cisco Meraki', en: 'Cisco Meraki', integrada: false },
-        { id: 'fortimanager', es: 'Fortinet FortiManager', en: 'Fortinet FortiManager', integrada: false },
-        { id: 'aruba', es: 'HPE Aruba', en: 'HPE Aruba', integrada: false },
-        { id: 'huawei', es: 'Huawei', en: 'Huawei', integrada: false },
-        { id: 'paloalto', es: 'Palo Alto Networks', en: 'Palo Alto Networks', integrada: false },
-        { id: 'otro', es: 'Otra', en: 'Other', integrada: false }
+        { id: 'cisco_nxos', es: 'Cisco NX-OS', en: 'Cisco NX-OS', integrada: false },
+        { id: 'arubaos', es: 'HPE ArubaOS', en: 'HPE ArubaOS', integrada: false },
+        { id: 'huawei_vrp', es: 'Huawei VRP', en: 'Huawei VRP', integrada: false },
+        { id: 'sistema_otro', es: 'Otro', en: 'Other', integrada: false }
     ];
 
     const setText = function (element, text) {
@@ -511,14 +522,17 @@
                     }
                 ]
             ],
-            quoteLegends: ['Tu red', 'Plataformas que administras', 'Alcance', 'Cómo te contactamos'],
+            quoteLegends: ['Tu red', 'Cómo administras tus equipos', 'Alcance', 'Cómo te contactamos'],
             quoteLabels: [
                 'Routers', 'Switches', 'Firewalls', 'Controladoras wireless',
-                'Especifica cuál',
+                '¿Usas una plataforma de gestión centralizada?',
+                'Especifica cuál', 'Especifica cuál',
                 'Telemetría y eventos', 'Plazo', 'Forma de pago',
                 'Nombre completo', 'Empresa', 'Correo electrónico', 'Teléfono'
             ],
+            quoteSublabels: ['¿Cuál o cuáles?', '¿Qué sistemas tienen los equipos que administras directamente?'],
             quoteOptions: [
+                'No, administro equipo por equipo', 'Sí, todos mis equipos', 'Sí, algunos; el resto equipo por equipo',
                 'No por ahora', 'Sí, me interesa', 'No estoy seguro',
                 '12 meses', '24 meses', '36 meses', 'Por definir',
                 'Anual', 'Mensual', 'Por definir'
@@ -943,14 +957,17 @@
                     }
                 ]
             ],
-            quoteLegends: ['Your network', 'Platforms you manage', 'Scope', 'How we reach you'],
+            quoteLegends: ['Your network', 'How you manage your devices', 'Scope', 'How we reach you'],
             quoteLabels: [
                 'Routers', 'Switches', 'Firewalls', 'Wireless controllers',
-                'Which one',
+                'Do you use a centralised management platform?',
+                'Which one', 'Which one',
                 'Telemetry and events', 'Term', 'Payment',
                 'Full name', 'Company', 'Email', 'Phone'
             ],
+            quoteSublabels: ['Which one, or which ones?', 'Which systems run on the devices you manage directly?'],
             quoteOptions: [
+                'No, device by device', 'Yes, all of them', 'Yes, some; the rest device by device',
                 'Not for now', 'Yes, interested', 'Not sure',
                 '12 months', '24 months', '36 months', 'To be defined',
                 'Annual', 'Monthly', 'To be defined'
@@ -1074,70 +1091,102 @@
     // una persona.
     const quoteForm = document.getElementById('quote-form');
 
-    const renderPlataformas = function (copy) {
-        const caja = document.getElementById('quote-platforms');
+    const dibujarLista = function (caja, catalogo, nombreCampo) {
         if (!caja) {
             return;
         }
 
         const idioma = document.documentElement.lang === 'en' ? 'en' : 'es';
-        // Conservar lo que ya habia marcado: esto se vuelve a dibujar en cada
-        // cambio de idioma y perder la seleccion seria irritante.
+        // Conservar lo marcado: esto se redibuja en cada cambio de idioma y
+        // perder la seleccion seria irritante.
         const marcadas = new Set(
-            Array.prototype.map.call(
-                caja.querySelectorAll('input:checked'),
-                function (el) { return el.value; }
-            )
+            Array.prototype.map.call(caja.querySelectorAll('input:checked'),
+                function (el) { return el.value; })
         );
 
         caja.textContent = '';
-        PLATAFORMAS.forEach(function (plataforma) {
+        catalogo.forEach(function (opcion) {
             const etiqueta = document.createElement('label');
             etiqueta.className = 'quote-platform';
 
             const casilla = document.createElement('input');
             casilla.type = 'checkbox';
-            casilla.name = 'plataformas';
-            casilla.value = plataforma.id;
-            casilla.checked = marcadas.has(plataforma.id);
-            casilla.dataset.integrada = String(plataforma.integrada);
+            casilla.name = nombreCampo;
+            casilla.value = opcion.id;
+            casilla.checked = marcadas.has(opcion.id);
+            casilla.dataset.integrada = String(opcion.integrada);
 
             const texto = document.createElement('span');
-            texto.textContent = plataforma[idioma];
+            texto.textContent = opcion[idioma];
 
             etiqueta.appendChild(casilla);
             etiqueta.appendChild(texto);
             caja.appendChild(etiqueta);
         });
+    };
 
+    const renderPlataformas = function (copy) {
+        dibujarLista(document.getElementById('quote-gestores'), GESTORES, 'plataformas_gestion');
+        dibujarLista(document.getElementById('quote-sistemas'), SISTEMAS, 'sistemas');
+        aplicarCondicional();
         revisarPlataformas(copy);
     };
 
-    const revisarPlataformas = function (copy) {
-        const caja = document.getElementById('quote-platforms');
-        const aviso = document.querySelector('[data-quote-warning]');
-        const otra = document.querySelector('.quote-other');
-        if (!caja || !aviso) {
+    // Que se pregunta depende de la primera respuesta: con plataforma de
+    // gestion se pregunta cual, sin ella se pregunta que sistemas tienen los
+    // equipos, y en el caso mixto las dos.
+    const aplicarCondicional = function () {
+        if (!quoteForm) {
             return;
         }
 
-        const elegidas = Array.prototype.filter.call(
-            caja.querySelectorAll('input'),
-            function (el) { return el.checked; }
-        );
-        const noIntegradas = elegidas.filter(function (el) {
-            return el.dataset.integrada !== 'true';
-        });
-        const eligioOtra = elegidas.some(function (el) { return el.value === 'otro'; });
+        const modo = (quoteForm.elements.gestion || {}).value || 'ninguna';
+        const muestra = {
+            plataforma: modo === 'todos' || modo === 'algunos',
+            sueltos: modo === 'ninguna' || modo === 'algunos'
+        };
 
-        if (otra) {
-            otra.hidden = !eligioOtra;
+        quoteForm.querySelectorAll('.quote-conditional').forEach(function (bloque) {
+            bloque.hidden = !muestra[bloque.dataset.si];
+        });
+    };
+
+    const revisarPlataformas = function (copy) {
+        const aviso = document.querySelector('[data-quote-warning]');
+        if (!quoteForm || !aviso) {
+            return;
         }
 
-        // Decirlo ANTES de que llene el resto: enterarse al final de que su
-        // plataforma no esta integrada, despues de dar sus datos, se siente
-        // a que le sacaron el contacto con falsas expectativas.
-        if (noIntegradas.length) {
+        let hayNoIntegrada = false;
+
+        [['quote-gestores', 'gestor_otro', '#q-gestor-otro'],
+         ['quote-sistemas', 'sistema_otro', '#q-sistema-otro']].forEach(function (par) {
+            const caja = document.getElementById(par[0]);
+            const bloque = caja ? caja.closest('.quote-conditional') : null;
+            if (!caja || !bloque) {
+                return;
+            }
+
+            const elegidas = Array.prototype.filter.call(caja.querySelectorAll('input'),
+                function (el) { return el.checked; });
+
+            // Lo de un bloque oculto no cuenta: si dijo que no usa plataforma,
+            // lo que marco antes en esa lista ya no es parte de su respuesta.
+            if (!bloque.hidden && elegidas.some(function (el) { return el.dataset.integrada !== 'true'; })) {
+                hayNoIntegrada = true;
+            }
+
+            const campoOtro = bloque.querySelector('.quote-other');
+            if (campoOtro) {
+                campoOtro.hidden = bloque.hidden || !elegidas.some(function (el) {
+                    return el.value === par[1];
+                });
+            }
+        });
+
+        // Decirlo ANTES de que llene sus datos: enterarse al final se siente a
+        // que le sacaron el contacto con falsas expectativas.
+        if (hayNoIntegrada) {
             aviso.textContent = copy.quoteWarning;
             aviso.hidden = false;
         } else {
@@ -1165,7 +1214,10 @@
         };
 
         quoteForm.addEventListener('change', function (evento) {
-            if (evento.target.name === 'plataformas') {
+            if (evento.target.name === 'gestion') {
+                aplicarCondicional();
+            }
+            if (['gestion', 'plataformas_gestion', 'sistemas'].indexOf(evento.target.name) !== -1) {
                 revisarPlataformas(copiaActual());
             }
         });
@@ -1408,6 +1460,7 @@
         actualizarTotal(copy);
         setTextList(document.querySelectorAll('.quote-form legend'), copy.quoteLegends);
         setTextList(document.querySelectorAll('.quote-form .quote-label'), copy.quoteLabels);
+        setTextList(document.querySelectorAll('.quote-form .quote-sublabel'), copy.quoteSublabels);
         setText(document.querySelector('.quote-form-note'), copy.quoteFormNote);
         setText(document.querySelector('.quote-form button[type="submit"]'), copy.quoteSubmit);
         setTextList(document.querySelectorAll('.quote-form option'), copy.quoteOptions);

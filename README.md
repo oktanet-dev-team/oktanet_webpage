@@ -91,9 +91,16 @@ todavía no soportamos — dicho **antes** de que llene sus datos, porque
 enterarse al final se siente a que le sacaron el contacto con falsas
 expectativas.
 
-**Al agregar una plataforma**: va en `PLATAFORMAS` (web) y en `plataformas`
-del YAML de precios (privado). Si sólo se agrega en uno de los dos, o el
-visitante la ve y no se puede cotizar, o se puede cotizar y nadie la ve.
+Son **dos catálogos, no uno**, porque no se licencian igual: con una
+plataforma de gestión de por medio Oktavia se integra contra esa plataforma —un
+punto—, y sin ella se integra contra cada equipo por su sistema operativo. La
+primera pregunta decide cuál de las dos listas se muestra, y el caso mixto
+muestra ambas.
+
+**Al agregar una opción**: va en `GESTORES` o `SISTEMAS` de
+`script/home_script.js`, y en `plataformas_gestion` o `sistemas_equipos` del
+YAML de precios. Si sólo se agrega en uno de los dos, o el visitante la ve y no
+se puede cotizar, o se puede cotizar y nadie la ve.
 
 ## El blog
 

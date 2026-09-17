@@ -2939,3 +2939,22 @@ body.quote-modal-open {
         padding: 22px 18px;
     }
 }
+
+/* Bloques que aparecen segun la primera respuesta del cotizador. El
+   `[hidden]` necesita `!important` porque el bloque es un contenedor y
+   cualquier `display` de autor le gana al del navegador — ya van tres veces
+   en este proyecto. */
+.quote-conditional {
+    margin-top: 16px;
+}
+
+.quote-conditional[hidden] {
+    display: none !important;
+}
+
+.quote-sublabel {
+    margin: 0 0 10px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
