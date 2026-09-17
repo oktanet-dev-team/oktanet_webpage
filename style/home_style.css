@@ -475,6 +475,17 @@ p {
     color: #6fd7f5;
 }
 
+/* La atribucion a la empresa va en pequeno bajo el lema, como en la propia
+   interfaz del producto: el lema es de Oktavia y la firma es de Oktanet. */
+.hero-attrib {
+    margin: -8px 0 18px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
 .hero-copy p {
     max-width: 60ch;
     font-size: 1.04rem;
