@@ -179,7 +179,6 @@
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
             heroTitle: 'Tu red bajo control',
             heroTitleBrand: 'Oktavia',
-            heroAttrib: 'Desarrollado por Oktanet',
             heroBody: 'La plataforma de automatización para redes multivendor. Descubre lo que hay en tu red, verifica que cumpla tu estándar y corrige lo que no cumple, con aprobación humana en cada cambio. Cisco, Fortinet y Juniper desde una sola consola.',
             heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Resumen ejecutivo', 'Ficha técnica'],
             heroPoints: [
@@ -596,7 +595,6 @@
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
             heroTitle: 'Your network under control',
             heroTitleBrand: 'Oktavia',
-            heroAttrib: 'Powered by Oktanet',
             heroBody: 'The automation platform for multi-vendor networks. It discovers what is on your network, checks it against your standard, and fixes what does not comply, with human approval on every change. Cisco, Fortinet, and Juniper from one console.',
             heroActions: ['Request a Demo', 'What does it cost?', 'Executive summary', 'Technical sheet'],
             heroPoints: [
@@ -1098,8 +1096,7 @@
             titular.appendChild(nombre);
             titular.appendChild(document.createTextNode(' ' + copy.heroTitle));
         }
-        setText(document.querySelector('.hero-copy > p:not(.hero-attrib)'), copy.heroBody);
-        setText(document.querySelector('.hero-attrib'), copy.heroAttrib);
+        setText(document.querySelector('.hero-copy > p'), copy.heroBody);
         setTextList(document.querySelectorAll('.hero-actions a'), copy.heroActions);
         renderHeroPoints(copy);
 
