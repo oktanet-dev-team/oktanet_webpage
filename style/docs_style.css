@@ -646,6 +646,16 @@ table.doc-table td strong {
         break-inside: avoid;
     }
 
+    /* El zebrado usa un color LITERAL, no un token, asi que la restitucion de
+       la paleta clara de arriba no lo alcanzaba: en el PDF las filas pares
+       salian con fondo casi negro mientras el texto ya venia en tinta oscura
+       (--text-muted #4a5d7a). Oscuro sobre oscuro: ilegibles. Es la misma
+       trampa que ya habia mordido a .doc-meta y .doc-callout, que se corrigen
+       con literales unas lineas mas arriba. */
+    table.doc-table tbody tr:nth-child(even) td {
+        background: #f4f8fc;
+    }
+
     .doc-table-wrap {
         overflow: visible;
         border: 1px solid #c9d8e7;
