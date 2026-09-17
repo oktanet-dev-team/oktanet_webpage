@@ -65,6 +65,57 @@ documentos largos y mantener dos arreglos paralelos de cien entradas se rompe en
 la primera corrección. Lo único que comparte con la portada es la preferencia de
 idioma guardada en el navegador, para que volver al inicio no cambie el idioma.
 
+## El cotizador
+
+El formulario de `#cotizar` **recoge y califica; no calcula precio**, y eso es
+una decisión de arquitectura, no una funcionalidad pendiente.
+
+GitHub Pages sirve cualquier archivo del repositorio. Comprobado:
+
+```
+https://oktanet.io/README.md           -> 200
+https://oktanet.io/tools/build_pdf.py  -> 200
+```
+
+Así que una tabla de precios en el repo sería descargable por cualquiera que
+adivine la URL, y los rastreadores adivinan. No hay servidor donde esconder el
+cálculo: si la cifra se muestra en pantalla, los precios viajan al navegador.
+
+Los dos formularios del sitio postean a **Formspree**, que reenvía por correo:
+
+```
+#cotizar   -> formspree.io/f/xoevqpjw   (solicitudes comerciales)
+#contacto  -> formspree.io/f/mqarwnjw   (mensajes generales)
+```
+
+**A qué dirección reenvía cada uno se configura en el panel de Formspree, no
+aquí.** El campo del correo se llama `email` a propósito: es el nombre que
+Formspree busca para poner el `Reply-To`, y sin eso responderle al prospecto
+obliga a copiar su dirección del cuerpo del mensaje.
+
+Ojo con el plan: el gratuito de Formspree suele topar en 50 envíos al mes.
+
+Por eso **la lista de precios vive fuera de este repositorio**, en
+`~/Documents/Oktanet/cotizador/precios.yaml`. La cifra la manda una persona.
+
+Lo único que el navegador conoce es el catálogo `PLATAFORMAS` de
+`script/home_script.js`: etiqueta e «integrada sí/no». Eso no es información
+comercial y es lo que decide el aviso cuando alguien elige una plataforma que
+todavía no soportamos — dicho **antes** de que llene sus datos, porque
+enterarse al final se siente a que le sacaron el contacto con falsas
+expectativas.
+
+Son **dos catálogos, no uno**, porque no se licencian igual: con una
+plataforma de gestión de por medio Oktavia se integra contra esa plataforma —un
+punto—, y sin ella se integra contra cada equipo por su sistema operativo. La
+primera pregunta decide cuál de las dos listas se muestra, y el caso mixto
+muestra ambas.
+
+**Al agregar una opción**: va en `GESTORES` o `SISTEMAS` de
+`script/home_script.js`, y en `plataformas_gestion` o `sistemas_equipos` del
+YAML de precios. Si sólo se agrega en uno de los dos, o el visitante la ve y no
+se puede cotizar, o se puede cotizar y nadie la ve.
+
 ## El blog
 
 Los artículos viven en `blog/`, uno por idioma, y **reusan `docs_style.css`**:

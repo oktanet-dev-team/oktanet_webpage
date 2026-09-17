@@ -40,6 +40,36 @@
     const storageKey = 'oktanet-language';
     const formSubmittedStorageKey = 'oktanet-contact-form-submitted';
 
+
+    // Dos catalogos, no uno: una plataforma de gestion y un equipo suelto no
+    // son la misma pregunta ni se licencian igual. Con una controladora de por
+    // medio se administra la plataforma; sin ella se administra cada equipo
+    // por su sistema. Mezclarlos en una sola lista hacia imposible cotizar.
+    //
+    // Aqui NO hay precios: solo etiqueta y si esta integrada. Eso es lo unico
+    // que el navegador necesita para el aviso, y lo unico que puede viajar sin
+    // exponer la lista comercial.
+    const GESTORES = [
+        { id: 'meraki', es: 'Cisco Meraki Dashboard', en: 'Cisco Meraki Dashboard', integrada: false },
+        { id: 'catalyst_center', es: 'Cisco Catalyst Center (DNA Center)', en: 'Cisco Catalyst Center (DNA Center)', integrada: false },
+        { id: 'fortimanager', es: 'Fortinet FortiManager', en: 'Fortinet FortiManager', integrada: false },
+        { id: 'aruba_central', es: 'HPE Aruba Central', en: 'HPE Aruba Central', integrada: false },
+        { id: 'panorama', es: 'Palo Alto Panorama', en: 'Palo Alto Panorama', integrada: false },
+        { id: 'mist', es: 'Juniper Mist', en: 'Juniper Mist', integrada: false },
+        { id: 'gestor_otro', es: 'Otra', en: 'Other', integrada: false }
+    ];
+
+    const SISTEMAS = [
+        { id: 'cisco_ios', es: 'Cisco IOS / IOS-XE', en: 'Cisco IOS / IOS-XE', integrada: true },
+        { id: 'fortios', es: 'Fortinet FortiGate (FortiOS)', en: 'Fortinet FortiGate (FortiOS)', integrada: true },
+        { id: 'fortiswitch', es: 'Fortinet FortiSwitch', en: 'Fortinet FortiSwitch', integrada: true },
+        { id: 'junos', es: 'Juniper Junos', en: 'Juniper Junos', integrada: true },
+        { id: 'cisco_nxos', es: 'Cisco NX-OS', en: 'Cisco NX-OS', integrada: false },
+        { id: 'arubaos', es: 'HPE ArubaOS', en: 'HPE ArubaOS', integrada: false },
+        { id: 'huawei_vrp', es: 'Huawei VRP', en: 'Huawei VRP', integrada: false },
+        { id: 'sistema_otro', es: 'Otro', en: 'Other', integrada: false }
+    ];
+
     const setText = function (element, text) {
         if (element && typeof text === 'string') {
             element.textContent = text;
@@ -492,6 +522,33 @@
                     }
                 ]
             ],
+            quoteLegends: ['Tu red', 'Cómo administras tus equipos', 'Alcance', 'Cómo te contactamos'],
+            quoteLabels: [
+                'Routers', 'Switches', 'Firewalls', 'Controladoras wireless',
+                '¿Usas una plataforma de gestión centralizada?',
+                'De los equipos de arriba, ¿cuántos administras a través de la plataforma?',
+                'Especifica cuál', 'Especifica cuál',
+                'Telemetría y eventos', 'Plazo', 'Forma de pago',
+                'Nombre completo', 'Empresa', 'Correo electrónico', 'Teléfono'
+            ],
+            quoteSublabels: ['¿Cuál o cuáles?', '¿Qué sistemas tienen los equipos que administras directamente?'],
+            quoteOptions: [
+                'No, administro equipo por equipo', 'Sí, todos mis equipos', 'Sí, algunos; el resto equipo por equipo',
+                'No por ahora', 'Sí, me interesa', 'No estoy seguro',
+                '12 meses', '24 meses', '36 meses', 'Por definir',
+                'Anual', 'Mensual', 'Por definir'
+            ],
+            quoteTotal: '{n} dispositivos en total.',
+            quoteSplit: '{plataforma} por plataforma · {sueltos} equipo por equipo.',
+            quoteSplitError: 'No pueden ser más de {total}, que es el total que capturaste arriba.',
+            quoteWarning: 'Alguna de las que elegiste todavía no está integrada — pero no es un obstáculo. Es negociable, y nos interesa platicarlo: saber qué usan nuestros clientes es lo que define nuestra hoja de ruta.',
+            quoteFormNote: 'Te respondemos con una propuesta. No compartimos tus datos con nadie.',
+            quoteSubmit: 'Enviar solicitud',
+            quoteSending: 'Enviando…',
+            quoteError: 'No se pudo enviar. Revisa tu conexión e inténtalo otra vez; no perdiste nada de lo que escribiste.',
+            quoteDoneTitle: 'Solicitud enviada',
+            quoteDoneBody: 'Gracias. Revisamos lo que nos compartiste y te respondemos con una propuesta. Si necesitamos algún dato más, te escribimos antes.',
+            quoteDoneAction: 'Mientras tanto, lee el resumen ejecutivo',
             quoteFab: 'Cotizar',
             quoteModalTitle: '¿Cuánto cuesta Oktavia?',
             quoteModalLead: 'Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.',
@@ -908,6 +965,33 @@
                     }
                 ]
             ],
+            quoteLegends: ['Your network', 'How you manage your devices', 'Scope', 'How we reach you'],
+            quoteLabels: [
+                'Routers', 'Switches', 'Firewalls', 'Wireless controllers',
+                'Do you use a centralised management platform?',
+                'Of the devices above, how many do you manage through the platform?',
+                'Which one', 'Which one',
+                'Telemetry and events', 'Term', 'Payment',
+                'Full name', 'Company', 'Email', 'Phone'
+            ],
+            quoteSublabels: ['Which one, or which ones?', 'Which systems run on the devices you manage directly?'],
+            quoteOptions: [
+                'No, device by device', 'Yes, all of them', 'Yes, some; the rest device by device',
+                'Not for now', 'Yes, interested', 'Not sure',
+                '12 months', '24 months', '36 months', 'To be defined',
+                'Annual', 'Monthly', 'To be defined'
+            ],
+            quoteTotal: '{n} devices in total.',
+            quoteSplit: '{plataforma} via platform · {sueltos} device by device.',
+            quoteSplitError: 'It cannot exceed {total}, the total you entered above.',
+            quoteWarning: 'One of the platforms you selected is not integrated yet — but that is not a blocker. It is negotiable, and we would like to discuss it: knowing what our customers run is what shapes our roadmap.',
+            quoteFormNote: 'We reply with a proposal. We never share your details with anyone.',
+            quoteSubmit: 'Send request',
+            quoteSending: 'Sending…',
+            quoteError: 'It could not be sent. Check your connection and try again; nothing you typed was lost.',
+            quoteDoneTitle: 'Request sent',
+            quoteDoneBody: 'Thank you. We will review what you shared and reply with a proposal. If we need anything else, we will write first.',
+            quoteDoneAction: 'In the meantime, read the executive summary',
             quoteFab: 'Get a quote',
             quoteModalTitle: 'What does Oktavia cost?',
             quoteModalLead: 'All we need is the size of your network: roughly how many routers, switches, firewalls, and controllers you manage.',
@@ -1014,6 +1098,389 @@
             navShell.classList.add('nav-compact-brand');
         }
     };
+
+    // ── Cotizador ───────────────────────────────────────────────────────
+    // Recoge y CALIFICA; no calcula ni muestra precio. El sitio es estatico:
+    // cualquier tabla de precios que llegara al navegador quedaria publica
+    // —comprobado que oktanet.io sirve cualquier archivo del repo—, asi que
+    // la lista de precios se queda del lado de Oktanet y la cifra la manda
+    // una persona.
+    const quoteForm = document.getElementById('quote-form');
+
+    // Formspree pinta UNA FILA POR CAMPO y no se puede cambiar su plantilla.
+    // Mandar el formulario en crudo daba un correo de quince filas, varias
+    // vacias, con los valores internos ('cisco_ios', 'arubaos') en vez de sus
+    // nombres. Aqui se compone lo que se envia: pocas filas, cada una con
+    // algo que leer, y ninguna vacia.
+    const componerEnvio = function () {
+        const idioma = document.documentElement.lang === 'en' ? 'en' : 'es';
+        const es = idioma === 'es';
+        const v = function (nombre) {
+            const campo = quoteForm.elements[nombre];
+            return campo ? String(campo.value || '').trim() : '';
+        };
+        const num = function (nombre) {
+            const n = parseInt(v(nombre), 10);
+            return isNaN(n) || n < 0 ? 0 : n;
+        };
+
+        const etiquetasDe = function (catalogo, campo) {
+            const marcadas = Array.prototype.filter.call(
+                quoteForm.querySelectorAll('input[name="' + campo + '"]'),
+                function (el) {
+                    const bloque = el.closest('.quote-conditional');
+                    return el.checked && !(bloque && bloque.hidden);
+                }
+            );
+            return marcadas.map(function (el) {
+                const opcion = catalogo.filter(function (o) { return o.id === el.value; })[0];
+                return opcion ? opcion[idioma] : el.value;
+            });
+        };
+
+        const gestores = etiquetasDe(GESTORES, 'plataformas_gestion');
+        const sistemas = etiquetasDe(SISTEMAS, 'sistemas');
+        const noIntegradas = GESTORES.concat(SISTEMAS).filter(function (o) {
+            return !o.integrada && (gestores.indexOf(o[idioma]) !== -1 || sistemas.indexOf(o[idioma]) !== -1);
+        }).map(function (o) { return o[idioma]; });
+
+        const total = num('routers') + num('switches') + num('firewalls') + num('wireless');
+        const desglose = [
+            [num('routers'), 'routers'],
+            [num('switches'), 'switches'],
+            [num('firewalls'), 'firewalls'],
+            [num('wireless'), es ? 'controladoras' : 'controllers']
+        ].filter(function (par) { return par[0] > 0; })
+         .map(function (par) { return par[0] + ' ' + par[1]; }).join(', ');
+
+        const modos = {
+            ninguna: es ? 'Equipo por equipo, sin plataforma' : 'Device by device, no platform',
+            todos: es ? 'Todo por plataforma de gestión' : 'All through a management platform',
+            algunos: es ? 'Mixto: plataforma y equipos sueltos' : 'Mixed: platform and standalone'
+        };
+
+        let gestion = modos[v('gestion')] || textoDe('gestion') || v('gestion');
+        if (gestores.length) {
+            gestion += ' — ' + gestores.join(', ');
+            if (v('gestor_otro')) {
+                gestion += ' (' + v('gestor_otro') + ')';
+            }
+            const enPlataforma = v('equipos_en_plataforma');
+            if (enPlataforma) {
+                gestion += es
+                    ? ' · ' + enPlataforma + ' de ' + total + ' por plataforma'
+                    : ' · ' + enPlataforma + ' of ' + total + ' via platform';
+            }
+        }
+
+        let listaSistemas = sistemas.join(', ');
+        if (listaSistemas && v('sistema_otro')) {
+            listaSistemas += ' (' + v('sistema_otro') + ')';
+        }
+
+        // El texto de la opcion elegida, no su valor interno: en el correo
+        // "24" no dice nada y "24 meses" si.
+        const textoDe = function (nombre) {
+            const select = quoteForm.elements[nombre];
+            if (!select || !select.options) {
+                return '';
+            }
+            const opcion = select.options[select.selectedIndex];
+            return opcion ? opcion.textContent.trim() : '';
+        };
+
+        const alcance = [
+            (es ? 'Telemetría: ' : 'Telemetry: ') + textoDe('telemetria'),
+            (es ? 'Plazo: ' : 'Term: ') + textoDe('plazo'),
+            (es ? 'Pago: ' : 'Payment: ') + textoDe('pago')
+        ].join(' · ');
+
+        const datos = new FormData();
+        // El asunto lleva empresa y tamano: se puede priorizar la bandeja sin
+        // abrir el correo.
+        datos.append('_subject', (es ? 'Cotización — ' : 'Quote — ')
+            + (v('empresa') || (es ? 'sin empresa' : 'no company'))
+            + ' · ' + total + (es ? ' equipos' : ' devices'));
+        datos.append(es ? 'Contacto' : 'Contact', v('nombre') + ' — ' + v('empresa'));
+        datos.append('email', v('email'));
+        if (v('telefono')) {
+            datos.append(es ? 'Teléfono' : 'Phone', v('telefono'));
+        }
+        datos.append(es ? 'Equipos' : 'Devices', total + (desglose ? ' (' + desglose + ')' : ''));
+        datos.append(es ? 'Cómo los administra' : 'How they manage them', gestion);
+        if (listaSistemas) {
+            datos.append(es ? 'Sistemas' : 'Systems', listaSistemas);
+        }
+        datos.append(es ? 'Alcance' : 'Scope', alcance);
+        if (noIntegradas.length) {
+            datos.append(es ? 'Atención' : 'Heads-up',
+                (es ? 'Sin integrar todavía: ' : 'Not integrated yet: ') + noIntegradas.join(', '));
+        }
+        datos.append(es ? 'Origen' : 'Source', es ? 'Cotizador del sitio' : 'Site quote form');
+        return datos;
+    };
+
+    const dibujarLista = function (caja, catalogo, nombreCampo) {
+        if (!caja) {
+            return;
+        }
+
+        const idioma = document.documentElement.lang === 'en' ? 'en' : 'es';
+        // Conservar lo marcado: esto se redibuja en cada cambio de idioma y
+        // perder la seleccion seria irritante.
+        const marcadas = new Set(
+            Array.prototype.map.call(caja.querySelectorAll('input:checked'),
+                function (el) { return el.value; })
+        );
+
+        caja.textContent = '';
+        catalogo.forEach(function (opcion) {
+            const etiqueta = document.createElement('label');
+            etiqueta.className = 'quote-platform';
+
+            const casilla = document.createElement('input');
+            casilla.type = 'checkbox';
+            casilla.name = nombreCampo;
+            casilla.value = opcion.id;
+            casilla.checked = marcadas.has(opcion.id);
+            casilla.dataset.integrada = String(opcion.integrada);
+
+            const texto = document.createElement('span');
+            texto.textContent = opcion[idioma];
+
+            etiqueta.appendChild(casilla);
+            etiqueta.appendChild(texto);
+            caja.appendChild(etiqueta);
+        });
+    };
+
+    const renderPlataformas = function (copy) {
+        dibujarLista(document.getElementById('quote-gestores'), GESTORES, 'plataformas_gestion');
+        dibujarLista(document.getElementById('quote-sistemas'), SISTEMAS, 'sistemas');
+        aplicarCondicional();
+        revisarPlataformas(copy);
+    };
+
+    // Que se pregunta depende de la primera respuesta: con plataforma de
+    // gestion se pregunta cual, sin ella se pregunta que sistemas tienen los
+    // equipos, y en el caso mixto las dos.
+    const aplicarCondicional = function () {
+        if (!quoteForm) {
+            return;
+        }
+
+        const modo = (quoteForm.elements.gestion || {}).value || 'ninguna';
+        const muestra = {
+            plataforma: modo === 'todos' || modo === 'algunos',
+            sueltos: modo === 'ninguna' || modo === 'algunos'
+        };
+
+        quoteForm.querySelectorAll('.quote-conditional').forEach(function (bloque) {
+            bloque.hidden = !muestra[bloque.dataset.si];
+        });
+    };
+
+    const revisarPlataformas = function (copy) {
+        const aviso = document.querySelector('[data-quote-warning]');
+        if (!quoteForm || !aviso) {
+            return;
+        }
+
+        let hayNoIntegrada = false;
+
+        [['quote-gestores', 'gestor_otro', '#q-gestor-otro'],
+         ['quote-sistemas', 'sistema_otro', '#q-sistema-otro']].forEach(function (par) {
+            const caja = document.getElementById(par[0]);
+            const bloque = caja ? caja.closest('.quote-conditional') : null;
+            if (!caja || !bloque) {
+                return;
+            }
+
+            const elegidas = Array.prototype.filter.call(caja.querySelectorAll('input'),
+                function (el) { return el.checked; });
+
+            // Lo de un bloque oculto no cuenta: si dijo que no usa plataforma,
+            // lo que marco antes en esa lista ya no es parte de su respuesta.
+            if (!bloque.hidden && elegidas.some(function (el) { return el.dataset.integrada !== 'true'; })) {
+                hayNoIntegrada = true;
+            }
+
+            const campoOtro = bloque.querySelector('.quote-other');
+            if (campoOtro) {
+                campoOtro.hidden = bloque.hidden || !elegidas.some(function (el) {
+                    return el.value === par[1];
+                });
+            }
+        });
+
+        // Decirlo ANTES de que llene sus datos: enterarse al final se siente a
+        // que le sacaron el contacto con falsas expectativas.
+        if (hayNoIntegrada) {
+            aviso.textContent = copy.quoteWarning;
+            aviso.hidden = false;
+        } else {
+            aviso.hidden = true;
+        }
+    };
+
+    const contarEquipos = function () {
+        if (!quoteForm) {
+            return 0;
+        }
+
+        return ['routers', 'switches', 'firewalls', 'wireless'].reduce(function (suma, campo) {
+            const valor = parseInt((quoteForm.elements[campo] || {}).value, 10);
+            return suma + (isNaN(valor) || valor < 0 ? 0 : valor);
+        }, 0);
+    };
+
+    const actualizarTotal = function (copy) {
+        const salida = document.querySelector('[data-quote-total]');
+        if (!salida || !quoteForm) {
+            return;
+        }
+
+        const total = contarEquipos();
+        salida.textContent = total ? copy.quoteTotal.replace('{n}', total) : '';
+        actualizarDesglose(copy, total);
+    };
+
+    // Con plataforma de gestion, el total no dice cuantos equipos van por la
+    // controladora y cuantos sueltos; en el caso mixto esa division es
+    // justamente lo que cambia la cotizacion. Se pregunta el numero y aqui se
+    // deriva el resto, para que el visitante no tenga que restar de cabeza.
+    const actualizarDesglose = function (copy, total) {
+        const nota = document.querySelector('[data-quote-split]');
+        const campo = quoteForm && quoteForm.elements.equipos_en_plataforma;
+        if (!nota || !campo) {
+            return;
+        }
+
+        const bloque = campo.closest('.quote-conditional');
+        if (bloque && bloque.hidden) {
+            nota.textContent = '';
+            return;
+        }
+
+        const enPlataforma = parseInt(campo.value, 10);
+        if (isNaN(enPlataforma) || enPlataforma < 0) {
+            nota.textContent = '';
+            nota.classList.remove('is-warning');
+            return;
+        }
+
+        if (total && enPlataforma > total) {
+            // Decirlo en vez de calcular un negativo silencioso.
+            nota.textContent = copy.quoteSplitError.replace('{total}', total);
+            nota.classList.add('is-warning');
+            return;
+        }
+
+        nota.classList.remove('is-warning');
+        nota.textContent = copy.quoteSplit
+            .replace('{plataforma}', enPlataforma)
+            .replace('{sueltos}', Math.max(0, total - enPlataforma));
+    };
+
+    if (quoteForm) {
+        const copiaActual = function () {
+            return translations[document.documentElement.lang] || translations.es;
+        };
+
+        quoteForm.addEventListener('change', function (evento) {
+            if (evento.target.name === 'gestion') {
+                aplicarCondicional();
+                actualizarTotal(copiaActual());
+            }
+            if (['gestion', 'plataformas_gestion', 'sistemas'].indexOf(evento.target.name) !== -1) {
+                revisarPlataformas(copiaActual());
+            }
+        });
+
+        quoteForm.addEventListener('input', function (evento) {
+            if (['routers', 'switches', 'firewalls', 'wireless', 'equipos_en_plataforma'].indexOf(evento.target.name) !== -1) {
+                actualizarTotal(copiaActual());
+            }
+        });
+
+        quoteForm.addEventListener('submit', function (evento) {
+            // `novalidate` en el marcado para poder dar el mensaje en el
+            // idioma vigente; la validacion nativa lo daria en el del
+            // navegador, que no tiene por que coincidir.
+            const faltantes = Array.prototype.filter.call(
+                quoteForm.querySelectorAll('[required]'),
+                function (campo) { return !campo.value.trim(); }
+            );
+
+            if (faltantes.length) {
+                evento.preventDefault();
+                faltantes[0].focus();
+                faltantes[0].classList.add('is-invalid');
+                return;
+            }
+
+            // Envio sin salir de la pagina. Sin esto, Formspree responde con su
+            // propia pantalla de "Thanks!" y el visitante termina fuera de
+            // oktanet.io, en una pagina con marca ajena, justo despues de
+            // dejar sus datos.
+            //
+            // Es mejora progresiva: el `action` del formulario sigue puesto,
+            // asi que sin JavaScript el envio ocurre igual por la via normal.
+            if (!window.fetch || !window.FormData) {
+                return;
+            }
+
+            evento.preventDefault();
+
+            const boton = quoteForm.querySelector('button[type="submit"]');
+            const error = document.querySelector('[data-quote-error]');
+            const copia = copiaActual();
+
+            if (boton) {
+                boton.disabled = true;
+                boton.textContent = copia.quoteSending;
+            }
+            if (error) {
+                error.hidden = true;
+            }
+
+            window.fetch(quoteForm.action, {
+                method: 'POST',
+                body: componerEnvio(),
+                headers: { Accept: 'application/json' }
+            }).then(function (respuesta) {
+                if (!respuesta.ok) {
+                    throw new Error('envio rechazado');
+                }
+
+                const hecho = document.getElementById('quote-done');
+                quoteForm.hidden = true;
+                if (hecho) {
+                    hecho.hidden = false;
+                    // El foco va al acuse: quien navega con teclado o lector de
+                    // pantalla no se entera si solo cambia lo que se ve.
+                    hecho.setAttribute('tabindex', '-1');
+                    hecho.focus();
+                }
+            }).catch(function () {
+                // No perder lo que escribio: se le dice que no salio y se deja
+                // el formulario tal cual para reintentar.
+                if (error) {
+                    error.textContent = copia.quoteError;
+                    error.hidden = false;
+                }
+            }).then(function () {
+                if (boton) {
+                    boton.disabled = false;
+                    boton.textContent = copia.quoteSubmit;
+                }
+            });
+        });
+
+        quoteForm.addEventListener('input', function (evento) {
+            evento.target.classList.remove('is-invalid');
+        });
+    }
 
     const applyLanguage = function (languageKey) {
         const selectedKey = translations[languageKey] ? languageKey : 'es';
@@ -1215,6 +1682,17 @@
             contactIntent.value = etiquetas[contactIntent.dataset.intent] || '';
         }
 
+        renderPlataformas(copy);
+        actualizarTotal(copy);
+        setTextList(document.querySelectorAll('.quote-form legend'), copy.quoteLegends);
+        setTextList(document.querySelectorAll('.quote-form .quote-label'), copy.quoteLabels);
+        setTextList(document.querySelectorAll('.quote-form .quote-sublabel'), copy.quoteSublabels);
+        setText(document.querySelector('.quote-form-note'), copy.quoteFormNote);
+        setText(document.querySelector('.quote-form button[type="submit"]'), copy.quoteSubmit);
+        setText(document.querySelector('#quote-done h3'), copy.quoteDoneTitle);
+        setText(document.querySelector('.quote-done-body'), copy.quoteDoneBody);
+        setText(document.querySelector('.quote-done-actions a'), copy.quoteDoneAction);
+        setTextList(document.querySelectorAll('.quote-form option'), copy.quoteOptions);
         setText(document.querySelector('.quote-fab-text'), copy.quoteFab);
         setText(document.getElementById('quote-modal-title'), copy.quoteModalTitle);
         setText(document.querySelector('.quote-modal-lead'), copy.quoteModalLead);
@@ -1234,7 +1712,7 @@
         setText(document.querySelector('.quote-note'), copy.quoteNote);
         setText(document.querySelector('.quote-pitch-lead'), copy.quotePitchLead);
         setTextList(document.querySelectorAll('.quote-pitch p:not(.quote-pitch-lead)'), copy.quotePitchBody);
-        setTextList(document.querySelectorAll('.quote-actions a'), copy.quoteActions);
+        setText(document.querySelector('.quote-actions a[data-intent="demo"]'), copy.quoteActions[1]);
 
         // Las pastillas traen un icono ademas del texto: reemplazar el nodo
         // completo se lo llevaria. Solo se toca el ultimo nodo de texto.
@@ -1532,6 +2010,7 @@
             }
         });
     });
+
 
     if (contactForm) {
         const clearFormIfSubmitted = function () {
