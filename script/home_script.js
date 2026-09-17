@@ -178,7 +178,7 @@
             heroTitle: 'tu red bajo control.',
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Desarrollado por Oktanet',
-            heroBody: 'Servicios profesionales de automatización de redes. Llevamos tu red multivendor a un estándar declarado, verificable y corregible, con Oktavia como plataforma y Argos como asistente. Diseño, implementación y operación, llave en mano.',
+            heroBody: 'La plataforma de automatización para redes multivendor. Descubre lo que hay en tu red, verifica que cumpla tu estándar y corrige lo que no cumple, con aprobación humana en cada cambio. Cisco, Fortinet y Juniper desde una sola consola.',
             heroActions: ['Solicitar una demostración', 'Ver la información', 'Descargar el PDF'],
             heroPoints: [
                 {
@@ -568,7 +568,7 @@
             heroTitle: 'your network under control.',
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Powered by Oktanet',
-            heroBody: 'Professional network automation services. We bring your multi-vendor network to a declared, verifiable, and fixable standard, with Oktavia as the platform and Argos as the assistant. Design, implementation, and operation, turnkey.',
+            heroBody: 'The automation platform for multi-vendor networks. It discovers what is on your network, checks it against your standard, and fixes what does not comply, with human approval on every change. Cisco, Fortinet, and Juniper from one console.',
             heroActions: ['Request a Demo', 'Read the information', 'Download the PDF'],
             heroPoints: [
                 {
