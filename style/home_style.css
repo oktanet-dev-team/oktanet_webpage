@@ -465,39 +465,23 @@ p {
 
 .hero-copy h1 {
     margin: 0 0 20px;
-    /* El tope baja de 3.6rem porque el titular pasa a ir en un solo renglon:
-       con el tamano anterior "Oktavia Tu red bajo control" no cabe en la
-       columna de 591px y se parte igual. En pantallas angostas SI se permite
-       que caiga a dos lineas — una sola linea a 430px es imposible. */
-    font-size: clamp(1.75rem, 3.05vw, 2.3rem);
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.1rem, 4.4vw, 3.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.015em;
 }
 
 .hero-brandline {
-    /* En linea y no en bloque: asi el nombre y el lema caben en un renglon.
-       `inline-flex` es lo que permite tener el icono dentro sin sacar la
-       marca de la linea de texto. */
-    display: inline-flex;
+    /* `flex` de nivel de bloque, no `inline-flex`: la marca ocupa su propio
+       renglon y el lema cae debajo. El flex es lo que sostiene el icono al
+       lado del nombre; con `block` el icono se saldria de la linea. */
+    display: flex;
     align-items: center;
     gap: 0.28em;
-    /* El espacio que sigue es un espacio de texto normal, y con la letra en
-       800 y `letter-spacing` negativo se lee demasiado pegado al lema. */
-    margin-right: 0.16em;
     color: #6fd7f5;
 }
 
 /* La atribucion a la empresa va en pequeno bajo el lema, como en la propia
    interfaz del producto: el lema es de Oktavia y la firma es de Oktanet. */
-.hero-attrib {
-    margin: -8px 0 18px;
-    font-size: 0.86rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
 .hero-copy p {
     max-width: 60ch;
     font-size: 1.04rem;
