@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Networks degrade for weeks before anyone calls | Oktanet</title>
+    <meta name="description" content="Why an audit is a snapshot and not enough, what measuring over time adds, how to write an event rule that does not end up silenced, and which events are worth watching.">
+    <link rel="canonical" href="https://oktanet.io/blog/telemetria-y-automatizacion-de-eventos-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Networks degrade for weeks before anyone calls">
+    <meta property="og:description" content="Why an audit is a snapshot and not enough, what measuring over time adds, how to write an event rule that does not end up silenced, and which events are worth watching.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/telemetria-y-automatizacion-de-eventos-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-telemetria-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-telemetria-en.png">
+    <meta property="og:image:alt" content="Networks degrade for weeks before anyone calls — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./telemetria-y-automatizacion-de-eventos.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="telemetria-y-automatizacion-de-eventos-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Telemetry</p>
+                <h1>Networks degrade for weeks before anyone calls</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Telemetry</span>
+                    <span class="post-tag">Events</span>
+                    <span>17 September 2026</span>
+                    <span>·</span>
+                    <span>8 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    In most organisations, the network finds out something is wrong when a user calls. By then the event is over and all that is left is explaining it. This article is about the difference between a snapshot and a time series, and how to write event rules that do not end up silenced.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>You find out when the user calls</h2>
+                <p>
+                    Ask around your organisation how you learn that something is wrong on the network. The honest answer, in most cases, is that someone calls. A user at the south site reports the application is slow, and that is where the work starts: check interfaces, look at utilisation, search logs, compare against last week.
+                </p>
+                <p>
+                    By the time the network team confirms there was saturation on the link, the event is over. It can be explained. It could not be prevented, and you probably do not know how long it had been degrading.
+                </p>
+                <p>
+                    The underlying problem is that an audit — even one covering configuration and state — is a <em>snapshot</em>. It answers what is happening now, very well. It does not answer since when, with what trend, or whether this had happened before.
+                </p>
+                <p class="post-punch">
+                    An audit tells you how the network is. A time series tells you where it is heading.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>What measuring over time adds</h2>
+                <p>
+                    Storing metrics as time series — processor, memory, temperature, utilisation, and errors per interface — changes the kind of question you can answer:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Since when.</strong> That device's processor is not high as of today: it rose eleven days ago and never came back down. That points to a change, not a spike.</li>
+                    <li><strong>With what trend.</strong> The wide area link is at seventy per cent and growing five points a quarter. The budget conversation stops being an opinion.</li>
+                    <li><strong>Whether it is normal.</strong> Eighty per cent utilisation on a Monday at nine may be the usual behaviour. Without history there is no way to know, and you chase false alarms.</li>
+                    <li><strong>What happened during the incident.</strong> The window has closed, but the counters remain. It can be reconstructed instead of relying on what someone remembers.</li>
+                </ul>
+                <p>
+                    There is an important practical consequence: this has a different consumption profile from the rest of the platform. Storing time series grows with the number of devices <em>multiplied</em> by the sampling frequency, and that is an infrastructure and cost decision, not a checkbox you tick.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>From measuring to reacting</h2>
+                <p>
+                    Having the metric and watching it on a dashboard is still reactive operation, just with better information. The next leap is for the platform to react on its own to defined conditions.
+                </p>
+                <p>
+                    An event rule is simple to state: a condition and an action. The hard part is not writing it, it is scoping both halves well.
+                </p>
+                <p>
+                    <strong>The condition</strong> has to be specific enough not to over-fire. "High processor" generates noise. "Processor above threshold for more than ten sustained minutes on a distribution device" is actionable. A rule that fires often gets silenced, and a silenced rule is worse than no rule: it creates the feeling of coverage without providing it.
+                </p>
+                <p>
+                    <strong>The action</strong> has to be proportional to the risk. Collecting diagnostics, opening a record, or notifying is safe and can be automated without hesitation. Changing configuration automatically in response to an event is another category: it is exactly the scenario described in <a href="cerrar-el-ciclo-gemelo-digital-en.html">the article on closing the loop</a>, now with nobody watching and at three in the morning.
+                </p>
+                <p>
+                    Our position is that most rules should collect evidence and notify, not modify. The value is that by the time the engineer opens the case, the diagnosis is already done.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Which events are worth watching</h2>
+                <p>
+                    The ones that indicate lost redundancy or progressive degradation, which are precisely the ones users do not report yet:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Border gateway session down.</strong> Rarely cosmetic: it almost always means a path disappeared.</li>
+                    <li><strong>Interior protocol neighbour down.</strong> The network reconverges and keeps working, which is why nobody notices an alternate path was lost. The next incident has nothing left to fall back on.</li>
+                    <li><strong>Interface down on a redundant link.</strong> The service stays up. The redundancy does not.</li>
+                    <li><strong>Processor, memory, and temperature thresholds.</strong> All three warn before failing, if someone is looking.</li>
+                    <li><strong>Rising errors on an interface.</strong> A degrading transceiver or cable gives signals for weeks.</li>
+                </ul>
+                <p>
+                    They all share something: <strong>none of them produces a user call</strong>. They are exactly the ones only detected if something is watching for them.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>How Oktavia handles it</h2>
+                <p>
+                    Telemetry and event orchestration are licensed separately from the rest of Oktavia, for the reason explained above: they store time series and run a permanent evaluator, so they have a different consumption profile. Not every network needs them on day one, and those that do can add them whenever they choose.
+                </p>
+                <p>
+                    What they include: real-time processor, memory, and interface metrics as time series, with thresholds and trends; native dashboards and Grafana compatibility, so metrics can also be consumed from the tools the organisation already uses; and the event automation engine, with condition-to-action rules covering border gateway session drops, interior protocol neighbour drops, interfaces down, and processor, memory, temperature, and error thresholds.
+                </p>
+                <p>
+                    All of it over the same inventory and the same source of truth as the rest of the platform. An event knows which device it belongs to, which site it is at, what role it plays, and what its intended configuration is, without anyone maintaining a second device list for the monitoring system.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="FGh8p9j2Wg0">
+                        <img src="../img/video-FGh8p9j2Wg0.jpg" alt="Oktavia, the network automation platform" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">Oktavia: the complete platform, in three minutes.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>How do you find out something is wrong today?</h2>
+                <p>
+                    If the answer is "when they call", there is a window between degradation and report that is currently uncovered. To quote, all we need is roughly how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="./index-en.html">See all articles</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

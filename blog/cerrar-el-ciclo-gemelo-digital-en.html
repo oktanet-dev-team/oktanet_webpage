@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Detecting is easy. Closing the loop is the problem | Oktanet</title>
+    <meta name="description" content="Why automatic remediation is dangerous, what a digital twin means in concrete terms, why every vendor has its own safe primitive for applying change, and why without verification the loop never closes.">
+    <link rel="canonical" href="https://oktanet.io/blog/cerrar-el-ciclo-gemelo-digital-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Detecting is easy. Closing the loop is the problem">
+    <meta property="og:description" content="Why automatic remediation is dangerous, what a digital twin means in concrete terms, why every vendor has its own safe primitive for applying change, and why without verification the loop never closes.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/cerrar-el-ciclo-gemelo-digital-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-ciclo-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-ciclo-en.png">
+    <meta property="og:image:alt" content="Detecting is easy. Closing the loop is the problem — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./cerrar-el-ciclo-gemelo-digital.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="cerrar-el-ciclo-gemelo-digital-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">Digital twin</p>
+                <h1>Detecting is easy. Closing the loop is the problem</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Digital twin</span>
+                    <span class="post-tag">Remediation</span>
+                    <span>17 September 2026</span>
+                    <span>·</span>
+                    <span>9 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    Almost the entire network tooling industry stops at diagnosis: it tells you what is wrong and the product ends there. This article is about what comes next, why \u201cjust let it fix itself\u201d is a bad idea, and what it takes for a finding to actually close rather than merely be documented.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>Finding the problem is the easy part</h2>
+                <p>
+                    Almost the entire network tooling industry stops at diagnosis. They tell you the device at the north site is missing its secondary time server, that the management access list still permits a range it should not, that the operating system version has fallen behind. That is useful, and it is where the product ends.
+                </p>
+                <p>
+                    What comes next is an engineer opening a session to each device, typing the commands by hand, hoping not to make a mistake, and noting somewhere that it is done. On a network of twenty devices it is tedious. On one of two hundred, the finding list grows faster than it gets closed, and the compliance report becomes a document nobody reads because it always says the same thing.
+                </p>
+                <p class="post-punch">
+                    A finding that cannot be closed from the same tool that found it is a to-do item, not a finding.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Why "just let it fix itself" is not the answer</h2>
+                <p>
+                    The natural reaction is to ask the tool to correct things automatically. And that is exactly where care is needed, because a badly executed automatic change on the network does not raise a ticket: it raises a site visit.
+                </p>
+                <p>
+                    There are three concrete risks, and they are different from each other:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>The command may be invalid.</strong> Correct syntax depends on the platform, the version, and sometimes the model. A command that works on one version is rejected on another, and if the change was half applied the device is left in an intermediate state nobody declared.</li>
+                    <li><strong>The command may be valid and wrong.</strong> Applying a management access list that omits the address you connect from is syntactically perfect and locks you out of the device.</li>
+                    <li><strong>The change may be correct and badly timed.</strong> Fixing a spanning tree priority is the right thing to do, and doing it at eleven on a working morning triggers a reconvergence nobody asked for.</li>
+                </ul>
+                <p>
+                    That is why closing the loop does not mean automatic. It means every step — propose, review, approve, apply, and verify — happens inside the same tool, with the person placed where their judgement actually contributes.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>The digital twin: compare before you touch</h2>
+                <p>
+                    The term gets used for many things. Here it means something concrete and verifiable: a representation of how a device <em>should</em> be configured according to declared intent, which can be compared against how it is actually configured.
+                </p>
+                <p>
+                    That comparison produces a diff: the lines to add, the lines to remove, and the ones that change. And that diff is the artefact reviewed <strong>before</strong> anything touches the network. It is not a promise of what the tool will do; it is the exact text it is going to send.
+                </p>
+                <p>
+                    The difference from approving a change described in prose is enormous. "Fix the device's time configuration" is an intention. The three concrete lines that will be sent, in the vendor's own syntax, are something an engineer can read in fifteen seconds and approve or reject on solid grounds.
+                </p>
+                <p>
+                    This is also where most multi-vendor tools fall down, for a reason we covered in <a href="inventario-fuente-de-verdad-en.html">the article on source of truth</a>: if the internal model is a translation into a common syntax, the diff you are shown is not the one that will be applied. It resembles it. And "resembles" is not a basis for approving a change in production.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>Every vendor has its own safe way to apply</h2>
+                <p>
+                    Applying a change is not opening a session and pasting text. Each platform offers a primitive designed precisely so that a remote change does not lock you out, and using it is the difference between a controlled operation and a gamble.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Junos</strong> has deferred confirmation: the change is applied and rolls back on its own unless someone confirms it within a time limit. If the change locked you out, the device returns to its previous state by itself.</li>
+                    <li><strong>IOS and IOS-XE</strong> have configuration archive and replace, which allows a return to a known state without rebuilding it by hand.</li>
+                    <li><strong>FortiGate</strong> is driven through an API, where the device's response confirms whether the object ended up as requested, instead of having to interpret terminal output.</li>
+                </ul>
+                <p>
+                    A tool that sends text over a terminal to all three alike wastes all three protections. Respecting each vendor's primitive costs more development effort, and it is the only way a remote change is genuinely reversible.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>The step that is almost always missing: verify</h2>
+                <p>
+                    Applying is not closing. A device can accept the command and still not end up as expected: a dependency that did not exist, a referenced object that was not declared, a configuration that is accepted but does not take effect until a process restarts.
+                </p>
+                <p>
+                    The loop only closes when the same device is audited again against the same rule and the finding is gone. That turns "the change was applied" — a claim about what the tool did — into "the finding is closed", which is a claim about the state of the network. They are different things, and only the second belongs in a report.
+                </p>
+                <p class="post-punch">
+                    Detect, propose, approve, apply, verify. Without the last step, the other four are a documented assumption.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>How Oktavia handles it</h2>
+                <p>
+                    Oktavia's Digital Twin generates a device's intended configuration from intent declared by scope and compares it against the running one. The diff is reviewed on screen, approved, and only then applied using the primitive that belongs to that vendor. Afterwards, a fresh audit against the same rules confirms whether the finding closed.
+                </p>
+                <p>
+                    The whole path leaves downloadable artefacts — the proposed configuration, the diff, the result of the application, and the follow-up audit — so evidence for an internal or regulatory audit is not assembled afterwards: it was produced while the work happened.
+                </p>
+                <p>
+                    The same applies to provisioning new services, not only to remediation: a tunnel between two sites, advertising a network into the routing protocols, dynamic address assignment. Each one with its rollback procedure defined before it is applied.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="HmoXtXVi-io">
+                        <img src="../img/video-HmoXtXVi-io.jpg" alt="Digital twin in Oktavia: detect and remediate" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">Digital twin: from finding to approved and verified change.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>How many open findings do you have today?</h2>
+                <p>
+                    If the answer is "I don't know" or "the same as last quarter", detection is not your problem. To quote, all we need is roughly how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="cumplimiento-configuracion-y-estado-en.html">Previous article: configuration and state</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>

@@ -72,6 +72,54 @@ DOCUMENTOS = {
         "pie": "The inventory nobody has · Oktanet",
         "de": "of",
     },
+    "blog-estado-es": {
+        "pagina": "blog/cumplimiento-configuracion-y-estado.html",
+        "salida": "blog/cumplimiento-configuracion-y-estado-es.pdf",
+        "pie": "Su configuracion cumple y su red sigue rota · Oktanet",
+        "de": "de",
+    },
+    "blog-estado-en": {
+        "pagina": "blog/cumplimiento-configuracion-y-estado-en.html",
+        "salida": "blog/cumplimiento-configuracion-y-estado-en.pdf",
+        "pie": "Your configuration passes and your network is still broken · Oktanet",
+        "de": "of",
+    },
+    "blog-ciclo-es": {
+        "pagina": "blog/cerrar-el-ciclo-gemelo-digital.html",
+        "salida": "blog/cerrar-el-ciclo-gemelo-digital-es.pdf",
+        "pie": "Detectar es facil. Cerrar el ciclo es el problema · Oktanet",
+        "de": "de",
+    },
+    "blog-ciclo-en": {
+        "pagina": "blog/cerrar-el-ciclo-gemelo-digital-en.html",
+        "salida": "blog/cerrar-el-ciclo-gemelo-digital-en.pdf",
+        "pie": "Detecting is easy. Closing the loop is the problem · Oktanet",
+        "de": "of",
+    },
+    "blog-chatops-es": {
+        "pagina": "blog/chatops-en-automatizacion-de-redes.html",
+        "salida": "blog/chatops-en-automatizacion-de-redes-es.pdf",
+        "pie": "ChatOps en redes · Oktanet",
+        "de": "de",
+    },
+    "blog-chatops-en": {
+        "pagina": "blog/chatops-en-automatizacion-de-redes-en.html",
+        "salida": "blog/chatops-en-automatizacion-de-redes-en.pdf",
+        "pie": "ChatOps for networks · Oktanet",
+        "de": "of",
+    },
+    "blog-telemetria-es": {
+        "pagina": "blog/telemetria-y-automatizacion-de-eventos.html",
+        "salida": "blog/telemetria-y-automatizacion-de-eventos-es.pdf",
+        "pie": "La red se degrada semanas antes de que alguien llame · Oktanet",
+        "de": "de",
+    },
+    "blog-telemetria-en": {
+        "pagina": "blog/telemetria-y-automatizacion-de-eventos-en.html",
+        "salida": "blog/telemetria-y-automatizacion-de-eventos-en.pdf",
+        "pie": "Networks degrade for weeks before anyone calls · Oktanet",
+        "de": "of",
+    },
 }
 
 PIE = """

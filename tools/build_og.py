@@ -45,6 +45,54 @@ ARTICULOS = {
             "bajada": "The difference between a list of devices and a source of truth, and why multi-vendor is where most tools break.",
         },
     },
+    "og-blog-estado": {
+        "es": {
+            "rotulo": "Cumplimiento",
+            "titulo": "Su configuracion cumple y su red sigue rota",
+            "bajada": "La diferencia entre cumplimiento de configuracion y cumplimiento de estado, y por que correlacionarlos cambia lo que puede afirmar.",
+        },
+        "en": {
+            "rotulo": "Compliance",
+            "titulo": "Your config passes, your network is broken",
+            "bajada": "The difference between configuration compliance and state compliance, and why correlating them changes what you can claim.",
+        },
+    },
+    "og-blog-ciclo": {
+        "es": {
+            "rotulo": "Gemelo digital",
+            "titulo": "Detectar es facil. Cerrar el ciclo no",
+            "bajada": "Por que la correccion automatica es peligrosa, y que hace falta para que un hallazgo se cierre de verdad.",
+        },
+        "en": {
+            "rotulo": "Digital twin",
+            "titulo": "Detecting is easy. Closing the loop is not",
+            "bajada": "Why automatic remediation is dangerous, and what it takes for a finding to actually close.",
+        },
+    },
+    "og-blog-chatops": {
+        "es": {
+            "rotulo": "ChatOps",
+            "titulo": "ChatOps util si declara lo que cuesta",
+            "bajada": "Por que buena parte de lo que se pregunta no necesita un modelo de lenguaje, y que barandillas hacen falta.",
+        },
+        "en": {
+            "rotulo": "ChatOps",
+            "titulo": "ChatOps that declares what it costs",
+            "bajada": "Why much of what operators ask needs no language model, and what guardrails a chat that changes config requires.",
+        },
+    },
+    "og-blog-telemetria": {
+        "es": {
+            "rotulo": "Telemetria",
+            "titulo": "La red se degrada antes de que llamen",
+            "bajada": "Por que una auditoria es una fotografia, y como escribir reglas de evento que no terminen silenciadas.",
+        },
+        "en": {
+            "rotulo": "Telemetry",
+            "titulo": "Networks degrade before anyone calls",
+            "bajada": "Why an audit is a snapshot, and how to write event rules that do not end up silenced.",
+        },
+    },
 }
 
 

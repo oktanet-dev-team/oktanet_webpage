@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ChatOps for networks: useful if it declares what it costs | Oktanet</title>
+    <meta name="description" content="What ChatOps means for networking and what it does not, why much of what operators ask needs no language model at all, and what guardrails a chat that can change configuration requires.">
+    <link rel="canonical" href="https://oktanet.io/blog/chatops-en-automatizacion-de-redes-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="ChatOps for networks: useful if it declares what it costs">
+    <meta property="og:description" content="What ChatOps means for networking and what it does not, why much of what operators ask needs no language model at all, and what guardrails a chat that can change configuration requires.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-17">
+    <meta property="og:url" content="https://oktanet.io/blog/chatops-en-automatizacion-de-redes-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-chatops-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-chatops-en.png">
+    <meta property="og:image:alt" content="ChatOps for networks: useful if it declares what it costs — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=5f43a8f3cd">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./chatops-en-automatizacion-de-redes.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="chatops-en-automatizacion-de-redes-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="doc-eyebrow">ChatOps</p>
+                <h1>ChatOps for networks: useful if it declares what it costs</h1>
+                <p class="post-meta">
+                    <span class="post-tag">ChatOps</span>
+                    <span class="post-tag">Operations</span>
+                    <span>17 September 2026</span>
+                    <span>·</span>
+                    <span>8 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    Network management platforms are bought for their capabilities and used for their main screen. ChatOps promises to fix that, and brings a problem of its own: an assistant that does not declare whether it consumes a language model turns your bill into a monthly surprise. This article is about doing it properly.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>The powerful tool nobody opens</h2>
+                <p>
+                    There is a familiar pattern in network management platforms: they are bought for their capabilities and used for their main screen. The rest of the modules exist, work, and nobody goes in. Not because they are badly built, but because reaching the answer requires knowing which tab it lives in, with which filters, and in what order.
+                </p>
+                <p>
+                    The operator who needs to know whether a device is compliant, or which path a flow takes, or what changed since yesterday, has the information available and still opens a session to the device. It is faster for them, even if it is worse for the organisation: it leaves no trace, it is not repeatable, and it does not scale to anyone without their experience.
+                </p>
+                <p class="post-punch">
+                    A capability that requires knowing where to look is only used by the people who already knew.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>What ChatOps is, and what it is not</h2>
+                <p>
+                    ChatOps means operating from a conversation: you ask in natural language and the platform answers with real data, runs the query, or proposes an action. The idea is old in the systems world and arrives late to networking.
+                </p>
+                <p>
+                    It is worth saying what it is <em>not</em>, because the confusion is everywhere. It is not a language model answering from memory about networks: that produces plausible answers about a network that is not yours. Nor is it a terminal by another name.
+                </p>
+                <p>
+                    A useful operations assistant does three distinct things, and they are worth separating because their risks are very different:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Query.</strong> Read the inventory, compliance, topology. No risk: it only reads.</li>
+                    <li><strong>Diagnose.</strong> Correlate several sources to explain something. Low risk, but it can be wrong, so it must show what it based the answer on.</li>
+                    <li><strong>Propose changes.</strong> Generate configuration. Here the risk is real, which is why the answer cannot be the action: it has to be a proposal that someone approves.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>The uncomfortable question: does this consume AI?</h2>
+                <p>
+                    Anyone who has put a language model into production knows the two concerns: what it costs, and what leaves the organisation.
+                </p>
+                <p>
+                    What almost nobody says is that <strong>a large share of what an operator asks does not need a language model at all</strong>. "How many devices are at the north site?" is a query. "Which devices fail the time server rule?" is a filter. "Which path does traffic take between these two addresses?" is a walk over routing tables. Solving those with a model is more expensive, slower, and less accurate than solving them deterministically.
+                </p>
+                <p>
+                    The model earns its place where it genuinely adds value: interpreting an ambiguous question, writing an explanation, proposing configuration from an intent described in words.
+                </p>
+                <p class="post-punch">
+                    An assistant that does not tell you whether it will consume the model before it runs turns your bill into a monthly surprise.
+                </p>
+                <p>
+                    Declaring it <em>before</em> execution changes two things. The first is cost, which stops being a mystery. The second is trust: knowing an answer came from a deterministic query rather than a model tells the operator how much verification it needs.
+                </p>
+            </section>
+
+            <section class="doc-section">
+                <h2>A chat that can change the network needs guardrails</h2>
+                <p>
+                    Conversing with the platform is convenient, and that convenience is precisely the risk: it lowers friction so much that requesting a change becomes as easy as asking the time. The protections have to be explicit.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Separate reading from writing.</strong> Querying is immediate; changing goes through the same approval flow as any other change, with its reviewable diff.</li>
+                    <li><strong>Show the source.</strong> An answer about the network must be able to point at where it came from: which device, which collection, from what date.</li>
+                    <li><strong>Respect the asker's permissions.</strong> The assistant cannot become a back door to data that user would not see in the interface.</li>
+                    <li><strong>Leave a trace.</strong> What was requested through conversation has to land in the same history as what was requested through the screen, or you lose the traceability that justified automating in the first place.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>How Oktavia handles it</h2>
+                <p>
+                    Argos is the conversation layer across the whole platform, not a separate module. It reaches inventory, compliance, topology, security, addressing, and remediation, so the question does not require knowing which screen the answer lives on.
+                </p>
+                <p>
+                    Every action declares, <strong>before it runs</strong>, whether it will consume the language model or resolve deterministically. The operator decides with the cost in plain sight, and knows what kind of answer they are about to receive.
+                </p>
+                <p>
+                    When Argos proposes configuration, it does not apply it: it produces the same proposal as the Digital Twin, with its reviewable diff and its approval, the flow described in <a href="cerrar-el-ciclo-gemelo-digital-en.html">the article on closing the loop</a>. Conversation changes how things are asked for, not the protections around them.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="WFgD9l0nNmo">
+                        <img src="../img/video-WFgD9l0nNmo.jpg" alt="Oktavia's automation centre with Argos" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">The automation centre: where Argos sits inside the platform.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>How many modules of your current platform do you actually use?</h2>
+                <p>
+                    If the answer is "two or three", capability is not your problem. To quote, all we need is roughly how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="cerrar-el-ciclo-gemelo-digital-en.html">Previous article: closing the loop</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/blog_script.js?v=e0ad21a9cb"></script>
+</body>
+</html>
