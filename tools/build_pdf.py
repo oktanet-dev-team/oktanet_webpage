@@ -8,8 +8,9 @@ pagina y no necesita la URL de la maquina de quien lo compilo. El protocolo de
 depuracion si acepta una plantilla de pie propia, asi que se usa esa via.
 
 Uso:
-    python3 tools/build_pdf.py            # genera los dos idiomas
-    python3 tools/build_pdf.py es         # solo uno
+    python3 tools/build_pdf.py                  # genera los cuatro PDF
+    python3 tools/build_pdf.py es               # solo la ficha tecnica en espanol
+    python3 tools/build_pdf.py resumen-es       # solo el resumen ejecutivo
 
 Requisitos: google-chrome en el PATH y el paquete `websocket-client`.
 El script levanta su propio servidor HTTP sobre el repo y lo apaga al terminar.
@@ -35,13 +36,25 @@ DOCUMENTOS = {
     "es": {
         "pagina": "docs/oktavia.html",
         "salida": "docs/oktavia-es.pdf",
-        "pie": "Oktavia · Información de plataforma · Oktanet",
+        "pie": "Oktavia · Ficha técnica · Oktanet",
         "de": "de",
     },
     "en": {
         "pagina": "docs/oktavia-en.html",
         "salida": "docs/oktavia-en.pdf",
-        "pie": "Oktavia · Platform information · Oktanet",
+        "pie": "Oktavia · Technical sheet · Oktanet",
+        "de": "of",
+    },
+    "resumen-es": {
+        "pagina": "docs/oktavia-resumen.html",
+        "salida": "docs/oktavia-resumen-es.pdf",
+        "pie": "Oktavia · Resumen ejecutivo · Oktanet",
+        "de": "de",
+    },
+    "resumen-en": {
+        "pagina": "docs/oktavia-resumen-en.html",
+        "salida": "docs/oktavia-resumen-en.pdf",
+        "pie": "Oktavia · Executive summary · Oktanet",
         "de": "of",
     },
 }
@@ -173,5 +186,8 @@ if __name__ == "__main__":
     pedidos = sys.argv[1:] or list(DOCUMENTOS)
     desconocidos = [i for i in pedidos if i not in DOCUMENTOS]
     if desconocidos:
-        raise SystemExit(f"idioma desconocido: {', '.join(desconocidos)} (usa: es, en)")
+        raise SystemExit(
+            f"documento desconocido: {', '.join(desconocidos)} "
+            f"(usa: {', '.join(DOCUMENTOS)})"
+        )
     main(pedidos)

@@ -680,3 +680,61 @@ table.doc-table td strong {
         color: #0c5a91;
     }
 }
+
+/* ------------------------- Resumen ejecutivo (2 pags) ---------------------
+   El resumen tiene que caber en dos hojas para cumplir lo que promete: un
+   documento "de dos paginas" que sale en tres deja de serlo. Se aprieta solo
+   la impresion de ESTE documento (`body.doc-compact`); en pantalla y en la
+   ficha tecnica no cambia nada.
+   -------------------------------------------------------------------------- */
+
+@media print {
+    body.doc-compact {
+        font-size: 9.6pt;
+        line-height: 1.38;
+    }
+
+    body.doc-compact .doc-cover {
+        padding-bottom: 5mm;
+    }
+
+    body.doc-compact .doc-cover h1 {
+        margin: 0 0 8px;
+        font-size: 1.7rem;
+    }
+
+    body.doc-compact .doc-lede {
+        margin: 0 0 10px;
+        font-size: 0.95rem;
+    }
+
+    body.doc-compact .doc-section {
+        margin-top: 5mm;
+    }
+
+    body.doc-compact .doc-section h2 {
+        margin: 0 0 6px;
+    }
+
+    body.doc-compact .doc-section p {
+        margin: 0 0 7px;
+    }
+
+    body.doc-compact table.doc-table {
+        font-size: 8.2pt;
+    }
+
+    body.doc-compact table.doc-table th,
+    body.doc-compact table.doc-table td {
+        padding: 5px 8px;
+    }
+
+    body.doc-compact .doc-callout {
+        padding: 8px 12px;
+        margin-bottom: 8px;
+    }
+
+    body.doc-compact .doc-footer {
+        padding-top: 4mm;
+    }
+}

@@ -181,7 +181,7 @@
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Desarrollado por Oktanet',
             heroBody: 'La plataforma de automatización para redes multivendor. Descubre lo que hay en tu red, verifica que cumpla tu estándar y corrige lo que no cumple, con aprobación humana en cada cambio. Cisco, Fortinet y Juniper desde una sola consola.',
-            heroActions: ['Solicitar una demostración', 'Ver la información', 'Descargar el PDF'],
+            heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Ver la información', 'Descargar el PDF'],
             heroPoints: [
                 {
                     label: 'Descubre y audita.',
@@ -493,6 +493,12 @@
                     }
                 ]
             ],
+            quoteFab: 'Cotizar',
+            quoteModalTitle: '¿Cuánto cuesta Oktavia?',
+            quoteModalLead: 'Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.',
+            quoteModalNote: 'Sin inventario detallado ni levantamiento previo. Esquemas de pago mensual, anual o acordados, desde 12 meses.',
+            quoteModalMore: 'Ver el detalle comercial',
+            quoteModalClose: 'Cerrar',
             quoteAria: 'Cotizar Oktavia',
             quoteEyebrow: 'Cotización',
             quoteTitle: 'Cotizar Oktavia es más simple de lo que imaginas.',
@@ -511,11 +517,18 @@
             resourcesEyebrow: 'Recursos',
             resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
             resourcesIntro: 'El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.',
-            resourceCardTitle: 'Información de Oktavia',
-            resourceCardBody: 'Documento comercial y técnico de la plataforma: los quince módulos con su alcance, las siete categorías de valor, cobertura y acceso por fabricante, integraciones con el ecosistema, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.',
-            resourceCardMeta: 'Documento de plataforma · PDF en español e inglés · Actualizado en 2026',
-            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación'],
+            resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia'],
+            resourceCardBodies: [
+                'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el modelo de dos licencias y los esquemas comerciales flexibles. Sin detalle de implementación.',
+                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.'
+            ],
+            resourceCardMetas: [
+                'Documento ejecutivo · 2 páginas · PDF en español e inglés',
+                'Documento técnico · 17 secciones · PDF en español e inglés'
+            ],
+            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación'],
             resourceOnlineHref: 'docs/oktavia.html',
+            resourceResumenHref: 'docs/oktavia-resumen.html',
             documentPdfHref: 'docs/oktavia-es.pdf',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
@@ -585,7 +598,7 @@
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Powered by Oktanet',
             heroBody: 'The automation platform for multi-vendor networks. It discovers what is on your network, checks it against your standard, and fixes what does not comply, with human approval on every change. Cisco, Fortinet, and Juniper from one console.',
-            heroActions: ['Request a Demo', 'Read the information', 'Download the PDF'],
+            heroActions: ['Request a Demo', 'What does it cost?', 'Read the information', 'Download the PDF'],
             heroPoints: [
                 {
                     label: 'Discover and audit.',
@@ -897,6 +910,12 @@
                     }
                 ]
             ],
+            quoteFab: 'Get a quote',
+            quoteModalTitle: 'What does Oktavia cost?',
+            quoteModalLead: 'All we need is the size of your network: roughly how many routers, switches, firewalls, and controllers you manage.',
+            quoteModalNote: 'No detailed inventory or prior discovery. Monthly, annual, or agreed payment terms, from 12 months.',
+            quoteModalMore: 'See the commercial detail',
+            quoteModalClose: 'Close',
             quoteAria: 'Oktavia pricing',
             quoteEyebrow: 'Pricing',
             quoteTitle: 'Getting a quote for Oktavia is simpler than you think.',
@@ -915,11 +934,18 @@
             resourcesEyebrow: 'Resources',
             resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
             resourcesIntro: 'The document gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines, and can be read online or downloaded as a PDF.',
-            resourceCardTitle: 'Oktavia platform information',
-            resourceCardBody: 'Commercial and technical document for the platform: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, the two-license model, use cases, and the implementation process with estimated timelines.',
-            resourceCardMeta: 'Platform document · PDF in Spanish and English · Updated 2026',
-            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Browse all documentation'],
+            resourceCardTitles: ['Oktavia executive summary', 'Oktavia technical sheet'],
+            resourceCardBodies: [
+                'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, the two-license model, and the flexible commercial terms. No implementation detail.',
+                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, the two-license model, use cases, and the implementation process with estimated timelines.'
+            ],
+            resourceCardMetas: [
+                'Executive document · 2 pages · PDF in Spanish and English',
+                'Technical document · 17 sections · PDF in Spanish and English'
+            ],
+            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation'],
             resourceOnlineHref: 'docs/oktavia-en.html',
+            resourceResumenHref: 'docs/oktavia-resumen-en.html',
             documentPdfHref: 'docs/oktavia-en.pdf',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
@@ -1179,6 +1205,18 @@
             contactIntent.value = etiquetas[contactIntent.dataset.intent] || '';
         }
 
+        setText(document.querySelector('.quote-fab-text'), copy.quoteFab);
+        setText(document.getElementById('quote-modal-title'), copy.quoteModalTitle);
+        setText(document.querySelector('.quote-modal-lead'), copy.quoteModalLead);
+        setText(document.querySelector('.quote-modal-note'), copy.quoteModalNote);
+        setText(document.querySelector('.quote-modal-more'), copy.quoteModalMore);
+        setText(document.querySelector('.quote-modal .eyebrow'), copy.quoteEyebrow);
+        setTextList(document.querySelectorAll('.quote-modal-actions a'), copy.quoteActions);
+        const cerrarModal = document.querySelector('.quote-modal-close');
+        if (cerrarModal && typeof copy.quoteModalClose === 'string') {
+            cerrarModal.setAttribute('aria-label', copy.quoteModalClose);
+        }
+
         setText(document.querySelector('.quote-section .eyebrow'), copy.quoteEyebrow);
         setText(document.querySelector('.quote-section h2'), copy.quoteTitle);
         setText(document.querySelector('.quote-lead'), copy.quoteLead);
@@ -1209,13 +1247,14 @@
         setText(document.querySelector('.resources-section .eyebrow'), copy.resourcesEyebrow);
         setText(document.querySelector('.resources-section h2'), copy.resourcesTitle);
         setText(document.querySelector('.resources-section .section-intro'), copy.resourcesIntro);
-        setText(document.querySelector('.resource-card h3'), copy.resourceCardTitle);
-        setText(document.querySelector('.resource-card .resource-body > p'), copy.resourceCardBody);
-        setText(document.querySelector('.resource-meta'), copy.resourceCardMeta);
+        setTextList(document.querySelectorAll('.resource-card h3'), copy.resourceCardTitles);
+        setTextList(document.querySelectorAll('.resource-card .resource-body > p:not(.resource-meta)'), copy.resourceCardBodies);
+        setTextList(document.querySelectorAll('.resource-meta'), copy.resourceCardMetas);
         setTextList(document.querySelectorAll('.resource-actions a'), copy.resourceActions);
 
         // El documento existe en dos idiomas: cada enlace apunta al que toca.
         [['[data-doc-online]', copy.resourceOnlineHref],
+         ['[data-doc-resumen-online]', copy.resourceResumenHref],
          ['[data-doc-pdf]', copy.documentPdfHref]].forEach(function (par) {
             if (typeof par[1] !== 'string') {
                 return;
@@ -1376,7 +1415,93 @@
         currentYear.textContent = String(new Date().getFullYear());
     }
 
-    document.querySelectorAll('.quote-actions a[data-intent]').forEach(function (boton) {
+    // ── Aviso permanente de cotizacion ──────────────────────────────────
+    const quoteFab = document.getElementById('quote-fab');
+    const quoteModal = document.getElementById('quote-modal');
+
+    if (quoteFab && quoteModal) {
+        const panel = quoteModal.querySelector('.quote-modal-panel');
+        const heroSection = document.querySelector('.hero-section');
+        let ultimoFoco = null;
+
+        const enfocables = function () {
+            return Array.prototype.filter.call(
+                panel.querySelectorAll('a[href], button:not([disabled])'),
+                function (el) { return el.offsetParent !== null; }
+            );
+        };
+
+        const abrir = function () {
+            ultimoFoco = document.activeElement;
+            quoteModal.hidden = false;
+            body.classList.add('quote-modal-open');
+            quoteFab.setAttribute('aria-expanded', 'true');
+            const primero = enfocables()[0];
+            if (primero) {
+                primero.focus();
+            }
+        };
+
+        const cerrar = function () {
+            quoteModal.hidden = true;
+            body.classList.remove('quote-modal-open');
+            quoteFab.setAttribute('aria-expanded', 'false');
+            // Devolver el foco a donde estaba: sin esto el lector de pantalla
+            // reaparece al inicio del documento.
+            if (ultimoFoco && typeof ultimoFoco.focus === 'function') {
+                ultimoFoco.focus();
+            }
+        };
+
+        quoteFab.addEventListener('click', abrir);
+
+        quoteModal.addEventListener('click', function (evento) {
+            if (evento.target.closest('[data-quote-close]')) {
+                cerrar();
+            }
+        });
+
+        document.addEventListener('keydown', function (evento) {
+            if (quoteModal.hidden) {
+                return;
+            }
+
+            if (evento.key === 'Escape') {
+                cerrar();
+                return;
+            }
+
+            // El foco no debe escaparse del dialogo mientras esta abierto.
+            if (evento.key === 'Tab') {
+                const lista = enfocables();
+                if (!lista.length) {
+                    return;
+                }
+
+                const primero = lista[0];
+                const ultimo = lista[lista.length - 1];
+                if (evento.shiftKey && document.activeElement === primero) {
+                    evento.preventDefault();
+                    ultimo.focus();
+                } else if (!evento.shiftKey && document.activeElement === ultimo) {
+                    evento.preventDefault();
+                    primero.focus();
+                }
+            }
+        });
+
+        // El boton aparece al pasar el hero: encima del hero competiria con
+        // el CTA principal, que ya ofrece lo mismo.
+        const alternarFab = function () {
+            const limite = heroSection ? heroSection.offsetHeight * 0.7 : 500;
+            quoteFab.classList.toggle('is-visible', window.scrollY > limite);
+        };
+
+        alternarFab();
+        window.addEventListener('scroll', alternarFab, { passive: true });
+    }
+
+    document.querySelectorAll('a[data-intent]').forEach(function (boton) {
         boton.addEventListener('click', function () {
             if (!contactIntent) {
                 return;

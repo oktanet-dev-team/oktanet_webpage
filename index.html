@@ -88,6 +88,7 @@
                     </p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="#contacto">Solicitar una demostración</a>
+                        <a class="btn btn-secondary" href="#cotizar">¿Cuánto cuesta?</a>
                         <a class="btn btn-secondary" data-doc-online href="docs/oktavia.html">Ver la información</a>
                         <a class="btn btn-secondary btn-descarga" data-doc-pdf href="docs/oktavia-es.pdf" download><span class="material-symbols-outlined" aria-hidden="true">download</span>Descargar el PDF</a>
                     </div>
@@ -745,11 +746,24 @@
                 <h2>Documentación abierta para evaluar Oktavia sin pedir permiso.</h2>
                 <p class="section-intro">El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.</p>
                 <article class="resource-card">
+                    <span class="material-symbols-outlined resource-icon" aria-hidden="true">summarize</span>
+                    <div class="resource-body">
+                        <h3>Resumen ejecutivo de Oktavia</h3>
+                        <p>Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el modelo de dos licencias y los esquemas comerciales flexibles. Sin detalle de implementación.</p>
+                        <p class="resource-meta">Documento ejecutivo · 2 páginas · PDF en español e inglés</p>
+                        <div class="resource-actions">
+                            <a class="btn btn-primary" data-doc-resumen-online href="docs/oktavia-resumen.html">Ver en línea</a>
+                            <a class="btn btn-secondary" href="docs/oktavia-resumen-es.pdf" download>PDF en español</a>
+                            <a class="btn btn-secondary" href="docs/oktavia-resumen-en.pdf" download>PDF in English</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="resource-card">
                     <span class="material-symbols-outlined resource-icon" aria-hidden="true">description</span>
                     <div class="resource-body">
-                        <h3>Información de Oktavia</h3>
-                        <p>Documento comercial y técnico de la plataforma: los quince módulos con su alcance, las siete categorías de valor, cobertura y acceso por fabricante, integraciones con el ecosistema, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.</p>
-                        <p class="resource-meta">Documento de plataforma · PDF en español e inglés · Actualizado en 2026</p>
+                        <h3>Ficha técnica de Oktavia</h3>
+                        <p>El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.</p>
+                        <p class="resource-meta">Documento técnico · 17 secciones · PDF en español e inglés</p>
                         <div class="resource-actions">
                             <a class="btn btn-primary" data-doc-online href="docs/oktavia.html">Ver en línea</a>
                             <a class="btn btn-secondary" href="docs/oktavia-es.pdf" download>PDF en español</a>
@@ -798,6 +812,29 @@
             </div>
         </section>
     </main>
+
+    <button class="quote-fab" id="quote-fab" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="quote-dialog">
+        <span class="material-symbols-outlined" aria-hidden="true">request_quote</span>
+        <span class="quote-fab-text">Cotizar</span>
+    </button>
+
+    <div class="quote-modal" id="quote-modal" hidden>
+        <div class="quote-modal-backdrop" data-quote-close></div>
+        <div class="quote-modal-panel" id="quote-dialog" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title">
+            <button class="quote-modal-close" type="button" data-quote-close aria-label="Cerrar">
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+            <p class="eyebrow">Cotización</p>
+            <h2 id="quote-modal-title">¿Cuánto cuesta Oktavia?</h2>
+            <p class="quote-modal-lead">Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.</p>
+            <p class="quote-modal-note">Sin inventario detallado ni levantamiento previo. Esquemas de pago mensual, anual o acordados, desde 12 meses.</p>
+            <div class="quote-modal-actions">
+                <a class="btn btn-primary quote-cta" href="#contacto" data-intent="cotizacion" data-quote-close>Quiero una cotización</a>
+                <a class="btn btn-secondary quote-cta" href="#contacto" data-intent="demo" data-quote-close>Solicitar una demo</a>
+            </div>
+            <a class="quote-modal-more" href="#cotizar" data-quote-close>Ver el detalle comercial</a>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container footer-grid">

@@ -2598,3 +2598,177 @@ p {
         flex: 1 1 100%;
     }
 }
+
+/* ------------------------ Cotizar: aviso permanente -----------------------
+   Un enlace en el menu solo convierte a quien lo busca. El boton flotante
+   acompana toda la pagina y abre la informacion sin sacar al visitante de
+   donde iba leyendo.
+   Aparece despues del hero: encima del hero competiria con el CTA principal,
+   que ya dice lo mismo.
+   -------------------------------------------------------------------------- */
+
+.quote-fab {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 60;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border: 1px solid var(--brand);
+    border-radius: 999px;
+    background: var(--brand-solid);
+    color: #f2f7ff;
+    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow: 0 14px 30px rgba(3, 18, 36, 0.62);
+    /* Oculto hasta pasar el hero: se traslada en vez de cambiar `display`
+       para que la entrada y la salida se puedan animar. */
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
+    transition: opacity 240ms ease, transform 240ms ease, background-color 200ms ease;
+}
+
+.quote-fab.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.quote-fab:hover,
+.quote-fab:focus-visible {
+    background: var(--brand);
+}
+
+.quote-fab .material-symbols-outlined {
+    font-size: 21px;
+}
+
+.quote-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* El atributo `hidden` del HTML vale `display: none`, pero lo pone la hoja
+   del navegador: CUALQUIER regla de autor con `display` le gana. Sin esta
+   linea el `display: flex` de arriba mantenia el dialogo encima de toda la
+   pagina desde que cargaba, y cerrarlo solo cambiaba el atributo — el panel
+   seguia ahi, tapando todo y sin forma de quitarlo. */
+.quote-modal[hidden] {
+    display: none !important;
+}
+
+.quote-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 12, 22, 0.76);
+    backdrop-filter: blur(3px);
+}
+
+.quote-modal-panel {
+    position: relative;
+    width: min(520px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 30px 32px 28px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-deep);
+}
+
+.quote-modal-panel h2 {
+    margin: 10px 0 14px;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+.quote-modal-lead {
+    margin: 0 0 12px;
+    color: var(--text-light);
+    line-height: 1.55;
+}
+
+.quote-modal-note {
+    margin: 0 0 22px;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+
+.quote-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.quote-modal-more {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--brand-strong);
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.quote-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    background: var(--bg-main);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.quote-modal-close:hover,
+.quote-modal-close:focus-visible {
+    color: var(--brand-strong);
+    border-color: var(--brand);
+}
+
+/* El fondo no debe correr cuando el dialogo esta abierto. */
+body.quote-modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 620px) {
+    .quote-fab {
+        right: 16px;
+        bottom: 16px;
+        padding: 12px 18px;
+    }
+
+    .quote-modal-actions .quote-cta {
+        flex: 1 1 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quote-fab {
+        transition: opacity 1ms linear;
+        transform: none;
+    }
+}
+
+@media print {
+    .quote-fab,
+    .quote-modal {
+        display: none !important;
+    }
+}
