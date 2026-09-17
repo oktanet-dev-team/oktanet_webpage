@@ -553,7 +553,6 @@
             quoteModalTitle: '¿Cuánto cuesta Oktavia?',
             quoteModalLead: 'Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.',
             quoteModalNote: 'Sin inventario detallado ni levantamiento previo. Esquemas de pago mensual, anual o acordados, desde 12 meses.',
-            quoteModalMore: 'Ver el detalle comercial',
             quoteModalClose: 'Cerrar',
             quoteAria: 'Cotizar Oktavia',
             quoteEyebrow: 'Cotización',
@@ -996,7 +995,6 @@
             quoteModalTitle: 'What does Oktavia cost?',
             quoteModalLead: 'All we need is the size of your network: roughly how many routers, switches, firewalls, and controllers you manage.',
             quoteModalNote: 'No detailed inventory or prior discovery. Monthly, annual, or agreed payment terms, from 12 months.',
-            quoteModalMore: 'See the commercial detail',
             quoteModalClose: 'Close',
             quoteAria: 'Oktavia pricing',
             quoteEyebrow: 'Pricing',
@@ -1697,7 +1695,6 @@
         setText(document.getElementById('quote-modal-title'), copy.quoteModalTitle);
         setText(document.querySelector('.quote-modal-lead'), copy.quoteModalLead);
         setText(document.querySelector('.quote-modal-note'), copy.quoteModalNote);
-        setText(document.querySelector('.quote-modal-more'), copy.quoteModalMore);
         setText(document.querySelector('.quote-modal .eyebrow'), copy.quoteEyebrow);
         setTextList(document.querySelectorAll('.quote-modal-actions a'), copy.quoteActions);
         const cerrarModal = document.querySelector('.quote-modal-close');
@@ -1991,21 +1988,25 @@
 
     document.querySelectorAll('a[data-intent]').forEach(function (boton) {
         boton.addEventListener('click', function () {
-            if (!contactIntent) {
-                return;
+            const alCotizador = (boton.getAttribute('href') || '').indexOf('#cotizar') !== -1;
+
+            if (contactIntent && !alCotizador) {
+                contactIntent.dataset.intent = boton.dataset.intent;
+                const copia = translations[document.documentElement.lang] || translations.es;
+                const etiquetas = copia.quoteIntentLabels || {};
+                contactIntent.value = etiquetas[boton.dataset.intent] || '';
             }
 
-            contactIntent.dataset.intent = boton.dataset.intent;
-            const copia = translations[document.documentElement.lang] || translations.es;
-            const etiquetas = copia.quoteIntentLabels || {};
-            contactIntent.value = etiquetas[boton.dataset.intent] || '';
+            // El salto por ancla deja la pagina en el formulario pero sin
+            // foco: sin esto hay que volver a buscar donde escribir. A que
+            // campo se va depende de a que formulario apunte el boton.
+            const destino = (boton.getAttribute('href') || '').indexOf('#cotizar') !== -1
+                ? document.getElementById('q-routers')
+                : document.getElementById('name');
 
-            const nombre = document.getElementById('name');
-            if (nombre) {
-                // El salto por ancla deja la pagina en el formulario pero sin
-                // foco: sin esto hay que volver a buscar donde escribir.
+            if (destino) {
                 window.setTimeout(function () {
-                    nombre.focus({ preventScroll: true });
+                    destino.focus({ preventScroll: true });
                 }, 400);
             }
         });

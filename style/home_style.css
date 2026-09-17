@@ -2698,14 +2698,6 @@ p {
     gap: 12px;
 }
 
-.quote-modal-more {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--brand-strong);
-    font-weight: 600;
-    font-size: 0.92rem;
-}
-
 .quote-modal-close {
     position: absolute;
     top: 14px;
