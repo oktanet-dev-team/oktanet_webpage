@@ -2975,3 +2975,62 @@ body.quote-modal-open {
 .quote-split-note.is-warning {
     color: #f0c07a;
 }
+
+/* Acuse de envio, dentro de la propia pagina. Sustituye al formulario en su
+   lugar para que la seccion no cambie de altura de golpe. */
+.quote-done {
+    padding: 34px 30px;
+    border: 1px solid var(--brand);
+    border-radius: var(--radius-lg);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+}
+
+.quote-done[hidden],
+.quote-form[hidden] {
+    display: none !important;
+}
+
+.quote-done:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 3px;
+}
+
+.quote-done-icon {
+    font-size: 46px;
+    color: var(--highlight);
+}
+
+.quote-done h3 {
+    margin: 12px 0 10px;
+    font-size: 1.35rem;
+}
+
+.quote-done-body {
+    margin: 0 auto 20px;
+    max-width: 44ch;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.quote-done-actions {
+    display: flex;
+    justify-content: center;
+}
+
+/* Fallo de envio. Rojo y no amarillo: aqui si es un problema, y hay que
+   reintentar. */
+.quote-error {
+    margin: 0 0 16px;
+    padding: 10px 14px;
+    border-left: 3px solid #e06a6a;
+    background: rgba(224, 106, 106, 0.1);
+    color: #f3c0c0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.quote-error[hidden] {
+    display: none !important;
+}

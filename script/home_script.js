@@ -544,6 +544,11 @@
             quoteWarning: 'Alguna de las plataformas que elegiste todavía no está integrada. Podemos cotizarte lo demás y platicar de esa por separado.',
             quoteFormNote: 'Te respondemos con una propuesta. No compartimos tus datos con nadie.',
             quoteSubmit: 'Enviar solicitud',
+            quoteSending: 'Enviando…',
+            quoteError: 'No se pudo enviar. Revisa tu conexión e inténtalo otra vez; no perdiste nada de lo que escribiste.',
+            quoteDoneTitle: 'Solicitud enviada',
+            quoteDoneBody: 'Gracias. Revisamos lo que nos compartiste y te respondemos con una propuesta. Si necesitamos algún dato más, te escribimos antes.',
+            quoteDoneAction: 'Mientras tanto, lee el resumen ejecutivo',
             quoteFab: 'Cotizar',
             quoteModalTitle: '¿Cuánto cuesta Oktavia?',
             quoteModalLead: 'Solo necesitamos conocer el tamaño de tu red: aproximadamente cuántos routers, switches, firewalls y controladoras administras.',
@@ -982,6 +987,11 @@
             quoteWarning: 'One of the platforms you selected is not integrated yet. We can quote the rest and discuss that one separately.',
             quoteFormNote: 'We reply with a proposal. We never share your details with anyone.',
             quoteSubmit: 'Send request',
+            quoteSending: 'Sending…',
+            quoteError: 'It could not be sent. Check your connection and try again; nothing you typed was lost.',
+            quoteDoneTitle: 'Request sent',
+            quoteDoneBody: 'Thank you. We will review what you shared and reply with a proposal. If we need anything else, we will write first.',
+            quoteDoneAction: 'In the meantime, read the executive summary',
             quoteFab: 'Get a quote',
             quoteModalTitle: 'What does Oktavia cost?',
             quoteModalLead: 'All we need is the size of your network: roughly how many routers, switches, firewalls, and controllers you manage.',
@@ -1296,11 +1306,62 @@
                 return;
             }
 
-            try {
-                window.sessionStorage.setItem(formSubmittedStorageKey, '1');
-            } catch (_error) {
-                // Sin almacenamiento el formulario igual se envia.
+            // Envio sin salir de la pagina. Sin esto, Formspree responde con su
+            // propia pantalla de "Thanks!" y el visitante termina fuera de
+            // oktanet.io, en una pagina con marca ajena, justo despues de
+            // dejar sus datos.
+            //
+            // Es mejora progresiva: el `action` del formulario sigue puesto,
+            // asi que sin JavaScript el envio ocurre igual por la via normal.
+            if (!window.fetch || !window.FormData) {
+                return;
             }
+
+            evento.preventDefault();
+
+            const boton = quoteForm.querySelector('button[type="submit"]');
+            const error = document.querySelector('[data-quote-error]');
+            const copia = copiaActual();
+
+            if (boton) {
+                boton.disabled = true;
+                boton.textContent = copia.quoteSending;
+            }
+            if (error) {
+                error.hidden = true;
+            }
+
+            window.fetch(quoteForm.action, {
+                method: 'POST',
+                body: new FormData(quoteForm),
+                headers: { Accept: 'application/json' }
+            }).then(function (respuesta) {
+                if (!respuesta.ok) {
+                    throw new Error('envio rechazado');
+                }
+
+                const hecho = document.getElementById('quote-done');
+                quoteForm.hidden = true;
+                if (hecho) {
+                    hecho.hidden = false;
+                    // El foco va al acuse: quien navega con teclado o lector de
+                    // pantalla no se entera si solo cambia lo que se ve.
+                    hecho.setAttribute('tabindex', '-1');
+                    hecho.focus();
+                }
+            }).catch(function () {
+                // No perder lo que escribio: se le dice que no salio y se deja
+                // el formulario tal cual para reintentar.
+                if (error) {
+                    error.textContent = copia.quoteError;
+                    error.hidden = false;
+                }
+            }).then(function () {
+                if (boton) {
+                    boton.disabled = false;
+                    boton.textContent = copia.quoteSubmit;
+                }
+            });
         });
 
         quoteForm.addEventListener('input', function (evento) {
@@ -1515,6 +1576,9 @@
         setTextList(document.querySelectorAll('.quote-form .quote-sublabel'), copy.quoteSublabels);
         setText(document.querySelector('.quote-form-note'), copy.quoteFormNote);
         setText(document.querySelector('.quote-form button[type="submit"]'), copy.quoteSubmit);
+        setText(document.querySelector('#quote-done h3'), copy.quoteDoneTitle);
+        setText(document.querySelector('.quote-done-body'), copy.quoteDoneBody);
+        setText(document.querySelector('.quote-done-actions a'), copy.quoteDoneAction);
         setTextList(document.querySelectorAll('.quote-form option'), copy.quoteOptions);
         setText(document.querySelector('.quote-fab-text'), copy.quoteFab);
         setText(document.getElementById('quote-modal-title'), copy.quoteModalTitle);
