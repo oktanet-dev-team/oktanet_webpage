@@ -2910,14 +2910,16 @@ body.quote-modal-open {
     display: none !important;
 }
 
-/* Aviso de plataforma no integrada. Amarillo y no rojo: no es un error del
-   usuario, es informacion que le ahorra una expectativa falsa. */
+/* Plataforma no integrada. Va en azul de marca y no en ambar: dejo de ser
+   una advertencia. Que alguien pida una plataforma que no tenemos es una
+   oportunidad —valida la hoja de ruta y abre la conversacion—, y pintarlo
+   como alerta hacia que el visitante leyera "aqui no encajo". */
 .quote-warning {
     margin: 12px 0 0;
     padding: 10px 14px;
-    border-left: 3px solid #d9a441;
-    background: rgba(217, 164, 65, 0.09);
-    color: #f0d9a8;
+    border-left: 3px solid var(--brand);
+    background: rgba(43, 143, 212, 0.1);
+    color: var(--brand-strong);
     font-size: 0.88rem;
     line-height: 1.5;
 }
