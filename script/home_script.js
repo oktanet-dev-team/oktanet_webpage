@@ -181,7 +181,7 @@
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Desarrollado por Oktanet',
             heroBody: 'La plataforma de automatización para redes multivendor. Descubre lo que hay en tu red, verifica que cumpla tu estándar y corrige lo que no cumple, con aprobación humana en cada cambio. Cisco, Fortinet y Juniper desde una sola consola.',
-            heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Ver la información', 'Descargar el PDF'],
+            heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Resumen ejecutivo', 'Ficha técnica'],
             heroPoints: [
                 {
                     label: 'Descubre y audita.',
@@ -529,7 +529,6 @@
             resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación'],
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
-            documentPdfHref: 'docs/oktavia-es.pdf',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
@@ -598,7 +597,7 @@
             heroTitleBrand: 'Oktavia',
             heroAttrib: 'Powered by Oktanet',
             heroBody: 'The automation platform for multi-vendor networks. It discovers what is on your network, checks it against your standard, and fixes what does not comply, with human approval on every change. Cisco, Fortinet, and Juniper from one console.',
-            heroActions: ['Request a Demo', 'What does it cost?', 'Read the information', 'Download the PDF'],
+            heroActions: ['Request a Demo', 'What does it cost?', 'Executive summary', 'Technical sheet'],
             heroPoints: [
                 {
                     label: 'Discover and audit.',
@@ -946,7 +945,6 @@
             resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation'],
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
-            documentPdfHref: 'docs/oktavia-en.pdf',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
@@ -1254,8 +1252,7 @@
 
         // El documento existe en dos idiomas: cada enlace apunta al que toca.
         [['[data-doc-online]', copy.resourceOnlineHref],
-         ['[data-doc-resumen-online]', copy.resourceResumenHref],
-         ['[data-doc-pdf]', copy.documentPdfHref]].forEach(function (par) {
+         ['[data-doc-resumen-online]', copy.resourceResumenHref]].forEach(function (par) {
             if (typeof par[1] !== 'string') {
                 return;
             }
