@@ -2038,7 +2038,9 @@
         }
 
         window.addEventListener('resize', function () {
-            if (window.innerWidth > 860) {
+            // Mismo umbral que el CSS del menu: por encima de 1340 la barra
+            // completa cabe y el menu desplegable no tiene sentido abierto.
+            if (window.innerWidth > 1340) {
                 closeNav();
             }
         });

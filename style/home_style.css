@@ -1325,6 +1325,16 @@ p {
     margin: 0;
 }
 
+/* Las tarjetas entran desde 56px a la derecha, o sea desde FUERA de la
+   pantalla, y mientras esperan ahi ensanchan el area de scroll del
+   documento: en movil la pagina se podia arrastrar 37px de lado.
+   `overflow-x: clip` recorta ese desborde sin convertir la seccion en un
+   contenedor de scroll, que es lo que pasaria con `overflow-x: hidden`
+   —ese fuerza `overflow-y: auto` y puede meter una barra vertical interna. */
+.about-section {
+    overflow-x: clip;
+}
+
 .about-section.about-float-ready .about-pillars .about-card {
     opacity: 0;
     transform: translateX(56px) scale(0.985);
@@ -1730,7 +1740,12 @@ p {
     }
 }
 
-@media (max-width: 860px) {
+/* El menu pasa a hamburguesa en 1340px y no en 860px.
+   Con nueve enlaces mas el boton de demostracion y el selector de idioma, la
+   barra completa deja de caber alrededor de 1300px: entre 861 y 1280 se
+   desbordaba hasta 436px y la pagina se arrastraba de lado. El umbral
+   anterior venia de cuando el menu tenia menos enlaces. */
+@media (max-width: 1340px) {
     .nav-shell {
         grid-template-columns: auto auto auto;
         grid-template-areas:
@@ -1841,6 +1856,12 @@ p {
         display: none;
     }
 
+}
+
+/* Estas dos NO son del menu: el relleno de las secciones y el ancho del
+   contenedor siguen cambiando a 860px, que es donde de verdad se angosta la
+   lectura. Se separan del bloque de arriba al subir el umbral del menu. */
+@media (max-width: 860px) {
     .container {
         width: min(1160px, calc(100% - 32px));
     }
