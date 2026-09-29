@@ -19,7 +19,8 @@ docs/                   Documentación pública
   oktavia-en.html       Ficha técnica de Oktavia (inglés)
   oktavia-resumen.html     Resumen ejecutivo, 2 páginas (español)
   oktavia-resumen-en.html  Resumen ejecutivo, 2 páginas (inglés)
-  curso-oktavia-fundamentos.html  Curso gratis «Oktavia Fundamentos», con registro suave (Formspree);
+  curso-oktavia-fundamentos.html  Curso gratis «Oktavia Fundamentos», sin registro (docs_script.js tiene un
+                           registro suave con data-course-gate, listo para reactivarlo);
                            preguntas en tools/preguntas-oktavia-fundamentos.json
   curso-preventa.html      Sólo redirige a la Academia: la preventa vive dentro de Oktavia (socios)
   aviso-de-privacidad.html Aviso de privacidad integral. tools/check_aviso.py falla mientras
