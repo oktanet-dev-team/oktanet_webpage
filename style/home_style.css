@@ -3045,3 +3045,30 @@ body.quote-modal-open {
     text-decoration: underline;
     text-underline-offset: 2px;
 }
+
+/* Lo que incluye toda licencia: soporte, parches de seguridad y novedades. */
+.licensing-support {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 24px;
+    padding: 20px 24px;
+    border: 1px solid rgba(52, 211, 153, 0.35);
+    border-radius: 16px;
+    background: rgba(52, 211, 153, 0.06);
+}
+
+.licensing-support-icon {
+    color: #34d399;
+    font-size: 32px;
+}
+
+.licensing-support h3 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+}
+
+.licensing-support p {
+    margin: 0;
+    color: var(--text-muted, #a3b7d2);
+}

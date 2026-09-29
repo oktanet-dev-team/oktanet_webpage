@@ -421,6 +421,8 @@
             licensingEyebrow: 'Licenciamiento',
             licensingTitle: 'Dos licencias',
             licensingIntro: 'Oktavia Pro es la plataforma completa. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
+            licensingSupportTitle: 'Incluido en toda licencia: soporte y actualizaciones',
+            licensingSupportBody: 'Mientras la licencia está vigente, cualquier instalación de Oktavia recibe los parches de seguridad, las actualizaciones y las funciones nuevas de la plataforma, sin costo adicional.',
             licensingPlanLabels: ['Licencia principal', 'Licencia adicional'],
             licensingPlanTitles: ['Oktavia Pro', 'Telemetría y Orquestación de Eventos'],
             licensingPlanBodies: [
@@ -866,6 +868,8 @@
             licensingEyebrow: 'Licensing',
             licensingTitle: 'Two licenses',
             licensingIntro: 'Oktavia Pro is the complete platform. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
+            licensingSupportTitle: 'Included with every license: support and updates',
+            licensingSupportBody: "While the license is active, every Oktavia deployment receives the platform's security patches, updates and new features, at no extra cost.",
             licensingPlanLabels: ['Main license', 'Add-on license'],
             licensingPlanTitles: ['Oktavia Pro', 'Telemetry and Event Orchestration'],
             licensingPlanBodies: [
@@ -1657,6 +1661,8 @@
         setText(document.querySelector('.licensing-copy .eyebrow'), copy.licensingEyebrow);
         setText(document.querySelector('.licensing-copy h2'), copy.licensingTitle);
         setText(document.querySelector('.licensing-copy .section-intro'), copy.licensingIntro);
+        setText(document.querySelector('.licensing-support h3'), copy.licensingSupportTitle);
+        setText(document.querySelector('.licensing-support p'), copy.licensingSupportBody);
         setTextList(document.querySelectorAll('.licensing-plan-label'), copy.licensingPlanLabels);
         setTextList(document.querySelectorAll('.licensing-plan h3'), copy.licensingPlanTitles);
         setTextList(document.querySelectorAll('.licensing-plan-body'), copy.licensingPlanBodies);
