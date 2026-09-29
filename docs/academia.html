@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Academia Oktanet · Cursos de automatización de redes</title>
-    <meta name="description" content="Academia Oktanet: un curso gratuito de fundamentos de automatización de redes y las rutas de Oktavia para preventa, técnicos y socios.">
+    <meta name="description" content="Academia Oktanet: dos cursos gratuitos (fundamentos de automatización de redes y Oktavia Fundamentos) y las certificaciones Oktavia Asociado y Profesional.">
     <link rel="canonical" href="https://oktanet.io/docs/academia.html">
     <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/academia.html">
     <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/academy-en.html">
     <meta name="robots" content="index, follow">
 
     <meta property="og:title" content="Academia Oktanet">
-    <meta property="og:description" content="Un curso gratis de fundamentos de automatización de redes, de la CLI a los agentes de IA, y las rutas de Oktavia para preventa y técnicos.">
+    <meta property="og:description" content="Dos cursos gratis y las certificaciones Oktavia Asociado y Profesional: de los fundamentos de la automatización de redes al ciclo cerrado.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://oktanet.io/docs/academia.html">
     <meta property="og:site_name" content="Oktanet">
@@ -29,7 +29,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=a301075f51">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <style>
+        /* La pirámide de la Academia: los niveles se angostan hacia arriba. */
+        .doc-section .academy-pyramid { list-style: none; margin: 18px 0 8px; padding: 0; display: grid; gap: 8px; justify-items: center; }
+        .academy-pyramid li { box-sizing: border-box; padding: 12px 16px; border-radius: 10px; text-align: center; color: #fff;
+            background: linear-gradient(135deg, #0b4a78, #2b8fd4); display: flex; flex-direction: column; gap: 2px; }
+        .academy-pyramid .lvl-4 { width: 46%; background: linear-gradient(135deg, #0a3657, #1d6fa8); }
+        .academy-pyramid .lvl-3 { width: 62%; background: linear-gradient(135deg, #0b4a78, #2482c2); }
+        .academy-pyramid .lvl-2 { width: 80%; background: linear-gradient(135deg, #0f6b8f, #2fb0c9); }
+        .academy-pyramid .lvl-1 { width: 100%; background: linear-gradient(135deg, #12806f, #34c3a0); }
+        .academy-pyramid .lvl-name { font-weight: 800; }
+        .academy-pyramid .lvl-tag { font-size: 0.85rem; opacity: 0.9; }
+        .academy-side { margin: 14px 0 0; text-align: center; color: var(--text-muted); }
+        @media (max-width: 640px) {
+            .academy-pyramid .lvl-4, .academy-pyramid .lvl-3, .academy-pyramid .lvl-2 { width: 100%; }
+        }
+    </style>
 </head>
 <body>
     <header class="doc-header no-print">
@@ -52,17 +68,28 @@
             <p class="doc-eyebrow">Academia Oktanet</p>
             <h1>Aprende automatización de redes</h1>
             <p class="doc-lede">
-                Empieza gratis con los fundamentos de la automatización de redes, sin depender de ningún producto. Después, las rutas de Oktavia: una para presentarla desde la preventa y dos técnicas para instalarla, operarla, configurarla a fondo y automatizarla. Cada curso trae ejercicios y un examen interactivo.
+                Una ruta en cuatro niveles. Los dos primeros son gratis: los fundamentos de la automatización de redes, sin depender de ningún producto y sin registro, y Oktavia Fundamentos, cómo funciona la automatización con ciclo cerrado en una plataforma real, con un registro breve. Los dos de arriba son las certificaciones Oktavia Asociado y Profesional, con laboratorio y evaluación.
             </p>
+        </section>
+
+        <section class="doc-section academy-path" aria-label="La ruta de la Academia">
+            <h2>La ruta</h2>
+            <ol class="academy-pyramid">
+                <li class="lvl-4"><span class="lvl-name">Certificación Oktavia Profesional</span><span class="lvl-tag">Configurar a fondo, automatizar e integrar</span></li>
+                <li class="lvl-3"><span class="lvl-name">Certificación Oktavia Asociado</span><span class="lvl-tag">Instalar, poner en marcha y operar</span></li>
+                <li class="lvl-2"><span class="lvl-name">Oktavia Fundamentos</span><span class="lvl-tag">Gratis, con registro · Cómo funciona y qué gana la empresa</span></li>
+                <li class="lvl-1"><span class="lvl-name">Fundamentos de automatización de redes</span><span class="lvl-tag">Gratis y sin registro · Las tecnologías de base, sin producto</span></li>
+            </ol>
+            <p class="academy-side"><strong>Ruta comercial para socios:</strong> preventa y ventas de Oktavia, dentro de la Academia de la propia plataforma.</p>
         </section>
 
         <div class="doc-list">
             <article class="doc-item">
                 <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">school</span>
                 <div>
-                    <h3>Fundamentos de automatización de redes · Gratis</h3>
+                    <h3>Nivel 1 · Fundamentos de automatización de redes · Gratis</h3>
                     <p>
-                        El curso para empezar: CLI, SNMP, APIs, NETCONF, RESTCONF y gNMI; YANG y plantillas Jinja2; Python con Netmiko, NAPALM y Nornir; Ansible; fuente de verdad, validación y CI; telemetría; automatización en enterprise, centro de datos, proveedores y nube; scripts contra plataformas; buenas prácticas; IA y agentes de IA. Catorce módulos, ejercicios con código y examen interactivo. <strong>Gratis y sin registro.</strong>
+                        El curso para empezar, sin depender de ningún producto: CLI, SNMP, APIs, NETCONF, RESTCONF y gNMI; YANG y plantillas Jinja2; Python con Netmiko, NAPALM y Nornir; Ansible; fuente de verdad, validación y CI; telemetría; automatización en enterprise, centro de datos, proveedores y nube; scripts contra plataformas; buenas prácticas; IA y agentes de IA. Catorce módulos, ejercicios con código y examen interactivo.
                     </p>
                     <div class="doc-item-actions">
                         <a class="is-primary" href="curso-automatizacion-redes.html">Tomar el curso gratis</a>
@@ -72,15 +99,14 @@
             </article>
 
             <article class="doc-item">
-                <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">campaign</span>
+                <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">auto_mode</span>
                 <div>
-                    <h3>Preventa · Nivel Asociado</h3>
+                    <h3>Nivel 2 · Oktavia Fundamentos · Gratis, con registro</h3>
                     <p>
-                        Para quien presenta Oktavia a un cliente: qué es la plataforma, los conceptos que hay que dominar, cómo calificar una oportunidad, cómo responder objeciones y cómo dar la demostración. Ocho módulos, seis laboratorios y un examen interactivo. <strong>Abierto a todos.</strong>
+                        Para ingenieros, gerentes, seguridad y quien evalúa la plataforma: el ciclo cerrado, dónde encaja Oktavia entre las herramientas que ya tienes, cómo funciona, sus conceptos, multivendor, Argos y la IA, la seguridad de la plataforma, qué gana la empresa y cómo se adopta. Diez módulos y examen interactivo.
                     </p>
                     <div class="doc-item-actions">
-                        <a class="is-primary" href="curso-preventa.html">Tomar el curso</a>
-                        <a href="curso-preventa-es.pdf" download>PDF en español</a>
+                        <a class="is-primary" href="curso-oktavia-fundamentos.html">Registrarme y tomar el curso</a>
                     </div>
                 </div>
             </article>
@@ -88,7 +114,7 @@
             <article class="doc-item">
                 <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">construction</span>
                 <div>
-                    <h3>Técnico · Nivel Asociado: instalar, poner en marcha y operar</h3>
+                    <h3>Nivel 3 · Certificación Oktavia Asociado: instalar, poner en marcha y operar</h3>
                     <p>
                         Para el ingeniero que instala Oktavia en la infraestructura de un cliente y la opera día a día. Nueve módulos y siete laboratorios:
                     </p>
@@ -100,7 +126,7 @@
                         <li>Argos para el operador.</li>
                         <li>Mantenimiento, respaldo, actualización y troubleshooting de la plataforma.</li>
                     </ul>
-                    <p><strong>Para socios de Oktanet</strong>, con acceso a un laboratorio remoto.</p>
+                    <p><strong>Certificación:</strong> el curso, su examen y una práctica en laboratorio remoto evaluada por un ingeniero de Oktanet. Para socios y equipos de clientes.</p>
                     <div class="doc-item-actions">
                         <a class="is-primary" href="../#contacto">Solicitar acceso</a>
                     </div>
@@ -110,9 +136,9 @@
             <article class="doc-item">
                 <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">hub</span>
                 <div>
-                    <h3>Técnico · Nivel Profesional: configurar a fondo, automatizar e integrar</h3>
+                    <h3>Nivel 4 · Certificación Oktavia Profesional: configurar a fondo, automatizar e integrar</h3>
                     <p>
-                        Para el ingeniero que diseña la intención de una red completa, la adapta y la automatiza. Requiere el Nivel Asociado.
+                        Para el ingeniero que diseña la intención de una red completa, la adapta y la automatiza. Requiere la certificación Asociado.
                     </p>
                     <ul>
                         <li>La intención declarada a fondo: alcances, precedencia, catálogo de servicios y plantillas por fabricante.</li>
@@ -127,7 +153,21 @@
                         <li>Automatizar y orquestar Oktavia con su API, Python y Ansible.</li>
                         <li>Integración con fuentes de verdad, monitoreo, ticketing y seguridad.</li>
                     </ul>
-                    <p><strong>Para socios de Oktanet</strong>, con acceso a un laboratorio remoto.</p>
+                    <p><strong>Certificación:</strong> el curso, su examen y una práctica en laboratorio remoto evaluada por un ingeniero de Oktanet.</p>
+                    <div class="doc-item-actions">
+                        <a class="is-primary" href="../#contacto">Solicitar acceso</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="doc-item">
+                <span class="material-symbols-outlined doc-item-icon" aria-hidden="true">campaign</span>
+                <div>
+                    <h3>Ruta comercial · Preventa de Oktavia</h3>
+                    <p>
+                        Para socios que presentan Oktavia a un cliente: explicarla en treinta segundos y en treinta minutos, los conceptos que hay que dominar, cómo calificar una oportunidad, cómo responder las objeciones de redes y de seguridad, y cómo dar la demostración. Ocho módulos, seis laboratorios y un examen interactivo.
+                    </p>
+                    <p><strong>Para socios de Oktanet</strong>, dentro de la Academia de Oktavia.</p>
                     <div class="doc-item-actions">
                         <a class="is-primary" href="../#contacto">Solicitar acceso</a>
                     </div>
@@ -138,7 +178,7 @@
         <footer class="doc-footer">
             <h3>¿Quieres ser socio de Oktavia?</h3>
             <p>
-                Los cursos técnicos incluyen un laboratorio con acceso remoto y la revisión de un ingeniero de Oktanet. Escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                Las certificaciones incluyen un laboratorio con acceso remoto y la evaluación de un ingeniero de Oktanet. Escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
             </p>
             <p>
                 <strong>¿Ya eres socio?</strong> Entra a Oktavia con tu usuario y abre <strong>Academia</strong> en el menú de usuario.
@@ -148,6 +188,6 @@
         </footer>
     </main>
 
-    <script src="../script/docs_script.js?v=4fd06069c8"></script>
+    <script src="../script/docs_script.js?v=8d7c016fae"></script>
 </body>
 </html>

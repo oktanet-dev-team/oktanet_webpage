@@ -127,11 +127,11 @@ DOCUMENTOS = {
         "pie": "Fundamentos de automatización de redes · Academia Oktanet",
         "de": "de",
     },
-    # El curso de preventa sale en PDF para mandarlo a un socio como adjunto.
-    "curso-preventa-es": {
-        "pagina": "docs/curso-preventa.html",
-        "salida": "docs/curso-preventa-es.pdf",
-        "pie": "Oktavia · Curso de preventa · Oktanet",
+    # Oktavia Fundamentos: el segundo nivel gratuito de la Academia.
+    "curso-oktavia-fundamentos-es": {
+        "pagina": "docs/curso-oktavia-fundamentos.html",
+        "salida": "docs/curso-oktavia-fundamentos-es.pdf",
+        "pie": "Oktavia Fundamentos · Academia Oktanet",
         "de": "de",
     },
 }
