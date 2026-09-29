@@ -3032,3 +3032,16 @@ body.quote-modal-open {
 .quote-error[hidden] {
     display: none !important;
 }
+
+/* Enlace al aviso de privacidad bajo el formulario de contacto y en el pie. */
+.form-privacy {
+    margin: 10px 0 0;
+    font-size: 0.85rem;
+}
+
+.form-privacy a,
+.copyright a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
