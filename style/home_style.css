@@ -2417,6 +2417,31 @@ p {
     background: #2b8fd4;
 }
 
+/* El video de Argos va dentro de su seccion: caratula a la izquierda y el
+   texto al lado; en telefono se apilan. */
+.argos-video {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: center;
+}
+
+.argos-video h3 {
+    margin-top: 0;
+}
+
+@media (max-width: 760px) {
+    .argos-video {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .argos-video h3 {
+        margin-top: 14px;
+    }
+}
+
 .video-canal {
     margin: 26px 0 0;
     font-size: 0.96rem;
