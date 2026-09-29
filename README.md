@@ -20,7 +20,10 @@ docs/                   Documentación pública
   oktavia-resumen.html     Resumen ejecutivo, 2 páginas (español)
   oktavia-resumen-en.html  Resumen ejecutivo, 2 páginas (inglés)
   curso-preventa.html      Curso de preventa, nivel Asociado (sólo español)
-  entrenamiento.html       Rutas de entrenamiento (menú Entrenamiento); training-en.html en inglés
+  academia.html            Academia Oktanet (menú Academia); academy-en.html en inglés.
+                           entrenamiento.html y training-en.html sólo redirigen (URL viejas)
+  curso-automatizacion-redes.html  Curso gratuito de fundamentos (preguntas en tools/preguntas-automatizacion.json,
+                           se insertan con tools/quiz.py)
   *.pdf                 Los documentos generados, versionados en el repo
 script/docs_script.js   Utilidades de la documentación
 style/docs_style.css    Estilos de la documentación, incluida la hoja de impresión

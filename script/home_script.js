@@ -190,7 +190,7 @@
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Artículos', 'Entrenamiento'],
+            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Artículos', 'Academia'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -571,20 +571,22 @@
             resourcesEyebrow: 'Recursos',
             resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
             resourcesIntro: 'El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.',
-            resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia'],
+            resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia', 'Curso gratis: fundamentos de automatización de redes'],
             resourceCardBodies: [
                 'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el modelo de dos licencias y los esquemas comerciales flexibles. Sin detalle de implementación.',
-                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.'
+                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.',
+                'De la CLI a los agentes de IA: métodos de acceso, YANG y plantillas, Python y Ansible, fuente de verdad, validación y CI, telemetría, enterprise, centro de datos, proveedores y nube, scripts contra plataformas y buenas prácticas. Sin depender de ningún producto.'
             ],
             resourceCardMetas: [
                 'Documento ejecutivo · 2 páginas · PDF en español e inglés',
-                'Documento técnico · 17 secciones · PDF en español e inglés'
+                'Documento técnico · 17 secciones · PDF en español e inglés',
+                'Academia Oktanet · 14 módulos · Examen interactivo · Gratis y sin registro'
             ],
-            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación'],
+            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Tomar el curso gratis', 'PDF en español'],
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
             blogHref: 'blog/',
-            trainingHref: 'docs/entrenamiento.html',
+            trainingHref: 'docs/academia.html',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
@@ -633,7 +635,7 @@
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Articles', 'Training'],
+            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Articles', 'Academy'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -1014,20 +1016,22 @@
             resourcesEyebrow: 'Resources',
             resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
             resourcesIntro: 'The document gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines, and can be read online or downloaded as a PDF.',
-            resourceCardTitles: ['Oktavia executive summary', 'Oktavia technical sheet'],
+            resourceCardTitles: ['Oktavia executive summary', 'Oktavia technical sheet', 'Free course: network automation fundamentals'],
             resourceCardBodies: [
                 'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, the two-license model, and the flexible commercial terms. No implementation detail.',
-                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, the two-license model, use cases, and the implementation process with estimated timelines.'
+                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, the two-license model, use cases, and the implementation process with estimated timelines.',
+                'From the CLI to AI agents: access methods, YANG and templates, Python and Ansible, source of truth, validation and CI, telemetry, enterprise, data center, service provider and cloud, scripts versus platforms, and best practices. Independent of any product. In Spanish.'
             ],
             resourceCardMetas: [
                 'Executive document · 2 pages · PDF in Spanish and English',
-                'Technical document · 17 sections · PDF in Spanish and English'
+                'Technical document · 17 sections · PDF in Spanish and English',
+                'Oktanet Academy · 14 modules · Interactive exam · Free, no sign-up'
             ],
-            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation'],
+            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Take the free course', 'PDF in Spanish'],
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
             blogHref: 'blog/index-en.html',
-            trainingHref: 'docs/training-en.html',
+            trainingHref: 'docs/academy-en.html',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
