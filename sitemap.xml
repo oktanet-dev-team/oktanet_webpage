@@ -17,6 +17,12 @@
 </url>
 
 <url>
+<loc>https://oktanet.io/docs/curso-preventa.html</loc>
+<priority>0.6</priority>
+<changefreq>monthly</changefreq>
+</url>
+
+<url>
 <loc>https://oktanet.io/docs/index-en.html</loc>
 <priority>0.7</priority>
 <changefreq>monthly</changefreq>

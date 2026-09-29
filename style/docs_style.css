@@ -270,7 +270,8 @@ img {
 
 .doc-toc ol {
     margin: 0;
-    padding-left: 20px;
+    /* 28px: con 20 el "1" de los números de dos cifras quedaba cortado. */
+    padding-left: 28px;
     columns: 2;
     column-gap: 28px;
 }

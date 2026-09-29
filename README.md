@@ -19,6 +19,7 @@ docs/                   Documentación pública
   oktavia-en.html       Ficha técnica de Oktavia (inglés)
   oktavia-resumen.html     Resumen ejecutivo, 2 páginas (español)
   oktavia-resumen-en.html  Resumen ejecutivo, 2 páginas (inglés)
+  curso-preventa.html      Curso de preventa, nivel Asociado (sólo español)
   *.pdf                 Los documentos generados, versionados en el repo
 script/docs_script.js   Utilidades de la documentación
 style/docs_style.css    Estilos de la documentación, incluida la hoja de impresión

@@ -120,6 +120,13 @@ DOCUMENTOS = {
         "pie": "Networks degrade for weeks before anyone calls · Oktanet",
         "de": "of",
     },
+    # El curso de preventa sale en PDF para mandarlo a un socio como adjunto.
+    "curso-preventa-es": {
+        "pagina": "docs/curso-preventa.html",
+        "salida": "docs/curso-preventa-es.pdf",
+        "pie": "Oktavia · Curso de preventa · Oktanet",
+        "de": "de",
+    },
 }
 
 PIE = """

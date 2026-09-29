@@ -206,9 +206,9 @@
             metricsEyebrow: 'Impacto medible',
             metricsTitle: 'Resultados operativos desde las primeras iteraciones de adopción.',
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
-            heroTitle: 'Tu red bajo control',
+            heroTitle: 'Automatización de redes con ciclo cerrado',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'La plataforma de automatización para redes multivendor. Descubre lo que hay en tu red, verifica que cumpla tu estándar y corrige lo que no cumple, con aprobación humana en cada cambio. Cisco, Fortinet y Juniper desde una sola consola.',
+            heroBody: 'Audita tu red multivendor contra tu estándar, propone la corrección en un gemelo digital, la aplica sólo con tu aprobación y vuelve a auditar para demostrar que quedó bien. Cisco, Fortinet y Juniper desde una sola consola.',
             heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Resumen ejecutivo', 'Ficha técnica'],
             heroPoints: [
                 {
@@ -224,8 +224,8 @@
                     text: ' La postura de tus firewalls y switches, con la línea de configuración que sustenta cada hallazgo.'
                 },
                 {
-                    label: 'Pregunta en tu idioma.',
-                    text: ' Argos responde con datos de tu red, y te dice antes de pulsar si la respuesta consume IA.'
+                    label: 'Opérala conversando.',
+                    text: ' Argos, la capa de ChatOps de Oktavia, recorre el ciclo con un botón o en tu idioma. Te dice antes si la acción usa IA, y la IA nunca decide si algo cumple.'
                 }
             ],
             trustLabel: 'Multivendor en producción, y más fabricantes se integran por proyecto:',
@@ -265,10 +265,10 @@
             familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
             familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
-            familyRoles: ['La plataforma', 'El asistente', 'Servicios profesionales'],
+            familyRoles: ['La plataforma', 'La capa de ChatOps', 'Servicios profesionales'],
             familyBodies: [
                 'Descubre, audita, corrige y verifica sobre Cisco, Fortinet y Juniper. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.',
-                'ChatOps integrado en todas las pantallas de Oktavia. Responde con datos de la red y declara si consume IA antes de que pulses.',
+                'La forma de operar Oktavia: conversando o con un botón, desde cualquier pantalla. Cada acción declara si usa IA antes de ejecutarse, y ningún cambio se aplica sin aprobación.',
                 'Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada.'
             ],
             familyLogoAlts: ['Logo de Oktavia', 'Logo de Argos', 'Logo de Oktanet'],
@@ -648,9 +648,9 @@
             metricsEyebrow: 'Measurable impact',
             metricsTitle: 'Operational outcomes from the first adoption cycles.',
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
-            heroTitle: 'Your network under control',
+            heroTitle: 'Closed-loop network automation',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'The automation platform for multi-vendor networks. It discovers what is on your network, checks it against your standard, and fixes what does not comply, with human approval on every change. Cisco, Fortinet, and Juniper from one console.',
+            heroBody: 'It audits your multi-vendor network against your standard, proposes the fix in a digital twin, applies it only with your approval, and audits again to prove it worked. Cisco, Fortinet, and Juniper from one console.',
             heroActions: ['Request a Demo', 'What does it cost?', 'Executive summary', 'Technical sheet'],
             heroPoints: [
                 {
@@ -666,8 +666,8 @@
                     text: ' The posture of your firewalls and switches, with the configuration line backing every finding.'
                 },
                 {
-                    label: 'Ask in plain language.',
-                    text: ' Argos answers with your own network data, and tells you before you click whether the answer consumes AI.'
+                    label: 'Run it by conversation.',
+                    text: ' Argos, the ChatOps layer of Oktavia, runs the loop with a button or in plain language. It tells you beforehand whether an action uses AI, and AI never decides whether something complies.'
                 }
             ],
             trustLabel: 'Multi-vendor in production, and more vendors are integrated per project:',
@@ -707,10 +707,10 @@
             familyEyebrow: 'One platform, one assistant, one team that implements it',
             familyTitle: 'Three fronts so the network does what its standard says.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
-            familyRoles: ['The platform', 'The assistant', 'Professional services'],
+            familyRoles: ['The platform', 'The ChatOps layer', 'Professional services'],
             familyBodies: [
                 'It discovers, audits, fixes, and verifies across Cisco, Fortinet, and Juniper. Every run leaves a downloadable artifact and every change goes through a person.',
-                'ChatOps embedded in every Oktavia screen. It answers with network data and states whether it consumes AI before you click.',
+                'The way to run Oktavia: by conversation or with a button, from any screen. Every action states whether it uses AI before it runs, and no change is applied without approval.',
                 'Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed.'
             ],
             familyLogoAlts: ['Oktavia logo', 'Argos logo', 'Oktanet logo'],
