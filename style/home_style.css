@@ -1745,6 +1745,20 @@ p {
    barra completa deja de caber alrededor de 1300px: entre 861 y 1280 se
    desbordaba hasta 436px y la pagina se arrastraba de lado. El umbral
    anterior venia de cuando el menu tenia menos enlaces. */
+/* Con diez enlaces (entró Entrenamiento) la barra completa ya no cabe
+   hasta ~1600px con el espaciado normal: entre 1341 y 1600 se aprieta el
+   espacio entre enlaces en vez de adelantar el menú de hamburguesa. */
+@media (min-width: 1341px) and (max-width: 1600px) {
+    .main-nav {
+        gap: 8px;
+    }
+
+    .main-nav a {
+        padding: 6px 7px;
+        font-size: 0.86rem;
+    }
+}
+
 @media (max-width: 1340px) {
     .nav-shell {
         grid-template-columns: auto auto auto;
