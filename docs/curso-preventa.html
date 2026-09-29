@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=83a3477833">
+    <link rel="stylesheet" href="../style/docs_style.css?v=340c0e88c6">
 </head>
 <body>
     <header class="doc-header no-print">
@@ -83,7 +83,7 @@
                 <li><a href="#labs">Laboratorios</a></li>
                 <li><a href="#evaluacion">Evaluación</a></li>
                 <li><a href="#glosario">Glosario</a></li>
-                <li><a href="#respuestas">Respuestas de la evaluación</a></li>
+                <li class="print-only"><a href="#respuestas">Respuestas de la evaluación</a></li>
             </ol>
         </nav>
 
@@ -239,7 +239,7 @@
                         <tr><td><strong>1. Estado y configuración</strong></td><td>Centro de automatización, inventario, topología y trazado de rutas, respaldos, inteligencia IP</td><td>«¿Qué tengo, cómo está conectado y dónde está esta IP?»</td></tr>
                         <tr><td><strong>2. Cumplimiento y control</strong></td><td>Cumplimiento de configuración, configuración deseada, inventario de servicios</td><td>«¿Mi red cumple mi estándar, y qué no estoy auditando?»</td></tr>
                         <tr><td><strong>3. Remediación y alta de servicios</strong></td><td>Ciclo cerrado, gemelo digital, alta de servicios nuevos con rollback</td><td>«¿Cómo lo corrijo o doy de alta algo nuevo sin riesgo?»</td></tr>
-                        <tr><td><strong>4. Seguridad de red</strong></td><td>Postura de seguridad, análisis de políticas de firewall</td><td>«¿Qué tan expuestos están mis firewalls y switches, y qué política decide este flujo?»</td></tr>
+                        <tr><td><strong>4. Seguridad de red</strong></td><td>Postura de seguridad con evidencia por hallazgo</td><td>«¿Qué tan expuestos están mis firewalls y switches, y qué línea lo sustenta?»</td></tr>
                         <tr><td><strong>5. Observabilidad y eventos</strong></td><td>Telemetría en tiempo real, automatización de eventos</td><td>«¿Me entero y reacciono cuando se cae una sesión BGP?»</td></tr>
                         <tr><td><strong>6. Inteligencia y análisis</strong></td><td>Reportes avanzados, análisis de rutas, Argos</td><td>«¿Qué atiendo primero y cuál es el riesgo real?»</td></tr>
                         <tr><td><strong>7. Gobernanza y FinOps</strong></td><td>FinOps, multi-tenant, operaciones programadas, historial de trabajos</td><td>«¿Cuánto ahorro, y quién cambió qué, cuándo y con qué autorización?»</td></tr>
@@ -280,9 +280,9 @@
                     <tbody>
                         <tr><td>Estado de la red y cumplimiento</td><td>Interpretar un camino ya calculado</td></tr>
                         <tr><td>Postura de seguridad con evidencia</td><td>Explicar la seguridad y priorizar cambios</td></tr>
-                        <tr><td>Camino entre dos IP con políticas por salto</td><td>Análisis de enrutamiento BGP y OSPF</td></tr>
+                        <tr><td>Camino entre dos IP, ida y regreso, con las ACL de cada salto</td><td>Análisis de enrutamiento BGP y OSPF</td></tr>
                         <tr><td>Ubicar una IP hasta el puerto de acceso</td><td>Configurar conversando</td></tr>
-                        <tr><td>Cerrar el ciclo completo</td><td>Empezar por el texto de un ticket</td></tr>
+                        <tr><td>Empezar por un ticket y cerrar el ciclo</td><td>Explicar las líneas de un cambio en el gemelo digital</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -529,28 +529,217 @@
             </p>
 
             <h3>Preguntas</h3>
-            <ol>
-                <li>¿Cuál es la mejor definición de Oktavia?<br>a) Un asistente de IA para redes. b) Una plataforma de automatización de redes multivendor que cierra el ciclo de auditar, proponer, aprobar, aplicar y verificar. c) Un sistema de monitoreo SNMP. d) Un gestor de firewalls.</li>
-                <li>¿Qué es Argos?<br>a) El motor de cumplimiento. b) La capa de ChatOps con la que se opera Oktavia. c) Un módulo de telemetría. d) Una licencia aparte.</li>
-                <li>¿Quién decide si una configuración cumple?<br>a) El modelo de IA. b) El operador, a mano. c) El cálculo contra la intención declarada. d) El fabricante.</li>
-                <li>¿Cuál es el último paso del ciclo cerrado?<br>a) Aplicar. b) Aprobar. c) Verificar volviendo a auditar. d) Generar el reporte.</li>
-                <li>¿Qué es la intención declarada?<br>a) El respaldo más reciente del equipo. b) Lo que la red debe tener, escrito como datos. c) Una política de firewall. d) El historial de cambios.</li>
-                <li>En la precedencia de alcances, ¿cuál gana?<br>a) Valores por omisión. b) Sitio. c) Rol. d) Dispositivo.</li>
-                <li>Un servicio configurado en el equipo que nadie declaró es:<br>a) Cubierto. b) Punto ciego. c) Sin aplicar. d) Inaplicable.</li>
-                <li>¿Qué distingue al cumplimiento de estado del de configuración?<br>a) Verifica que la red funcione, no sólo que tenga las líneas. b) Usa IA. c) Sólo aplica a firewalls. d) No hay diferencia.</li>
-                <li>¿Dónde se revisa el diff antes de aplicar un cambio?<br>a) En el inventario. b) En la topología. c) En el gemelo digital. d) En el correo.</li>
-                <li>¿Cómo aplica Oktavia los cambios en Juniper Junos?<br>a) Por SNMP. b) Con confirmación diferida por NETCONF. c) Copiando un archivo por TFTP. d) No aplica cambios.</li>
-                <li>¿Qué pasa con los cambios de FortiGate que tocan administradores y zonas?<br>a) Se aplican directo. b) Quedan en simulación permanente. c) Se rechazan siempre. d) Se envían al fabricante.</li>
-                <li>¿Cuándo salen datos hacia el proveedor de IA?<br>a) Siempre. b) Nunca. c) Sólo cuando el operador elige una acción marcada con IA. d) Una vez al día.</li>
-                <li>¿Qué necesita Oktanet para una primera cotización?<br>a) Un inventario detallado. b) La arquitectura completa. c) Aproximadamente cuántos equipos de cada tipo y de qué marcas. d) Las credenciales.</li>
-                <li>¿Qué incluye Oktavia Pro?<br>a) Sólo inventario. b) La plataforma completa, incluido Argos. c) Sólo telemetría. d) Sólo reportes.</li>
-                <li>El cliente dice «no tenemos un estándar escrito». ¿Qué respondes?<br>a) Que primero lo escriba. b) Que se adopta lo existente como intención, sin tocar la red. c) Que Oktavia trae uno genérico. d) Que no es posible.</li>
-                <li>El cliente dice «ya tenemos monitoreo». ¿Cuál es el mejor argumento?<br>a) Que lo reemplace. b) Que el monitoreo mide y Oktavia compara contra un estándar y cierra el hallazgo; conviven. c) Que Oktavia es más barata. d) Que el monitoreo no sirve.</li>
-                <li>En una demostración, ¿qué nunca se recorta?<br>a) El inventario. b) La topología. c) La verificación posterior. d) La pregunta con IA.</li>
-                <li>¿Qué tipo de falla conviene preparar para la demostración?<br>a) Una que agregue configuración de más. b) Una que quite una línea que el estándar exige. c) Dos fallas a la vez. d) Una caída de energía.</li>
-                <li>¿Qué trae cada alta de servicio nuevo?<br>a) Una licencia. b) Su rollback, que también pasa por aprobación. c) Una plantilla genérica. d) Un reinicio del equipo.</li>
-                <li>¿Qué deja cada ejecución de Oktavia?<br>a) Nada. b) Un correo. c) Artefactos descargables y registro en el historial. d) Sólo una notificación.</li>
-            </ol>
+            <form class="quiz" id="quiz" data-pass="16" novalidate>
+                <p class="quiz-intro no-print">Elige tus respuestas y pulsa <strong>Calificar</strong>. Las preguntas marcadas como «selecciona todas las que apliquen» cuentan sólo si eliges exactamente las correctas. Después puedes ver, si quieres, la respuesta y su explicación.</p>
+                <ol class="quiz-list">
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Cuál es la mejor definición de Oktavia?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="a"><span class="quiz-letter">a)</span> <span>Un asistente de IA para redes.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="b"><span class="quiz-letter">b)</span> <span>Una plataforma de automatización de redes multivendor que cierra el ciclo de auditar, proponer, aprobar, aplicar y verificar.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="c"><span class="quiz-letter">c)</span> <span>Un sistema de monitoreo SNMP.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q1" value="d"><span class="quiz-letter">d)</span> <span>Un gestor de firewalls.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Oktavia es la plataforma y su diferencia es el ciclo cerrado. Argos es la forma de operarla. <a href="#m1">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué es Argos?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="a"><span class="quiz-letter">a)</span> <span>El motor de cumplimiento.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="b"><span class="quiz-letter">b)</span> <span>La capa de ChatOps con la que se opera Oktavia.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="c"><span class="quiz-letter">c)</span> <span>Un módulo de telemetría.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q2" value="d"><span class="quiz-letter">d)</span> <span>Una licencia aparte.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Argos pone el ciclo de Oktavia en una conversación y en botones; el trabajo lo hace la plataforma. <a href="#m1">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="c">
+                        <fieldset>
+                            <legend>¿Quién decide si una configuración cumple?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="a"><span class="quiz-letter">a)</span> <span>El modelo de IA.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="b"><span class="quiz-letter">b)</span> <span>El operador, a mano.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="c"><span class="quiz-letter">c)</span> <span>El cálculo contra la intención declarada.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q3" value="d"><span class="quiz-letter">d)</span> <span>El fabricante.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: c.</strong> El cumplimiento es determinista. La IA sólo redacta o prioriza sobre un resultado ya calculado. <a href="#m4">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="c">
+                        <fieldset>
+                            <legend>¿Cuál es el último paso del ciclo cerrado?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="a"><span class="quiz-letter">a)</span> <span>Aplicar.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="b"><span class="quiz-letter">b)</span> <span>Aprobar.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="c"><span class="quiz-letter">c)</span> <span>Verificar volviendo a auditar.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q4" value="d"><span class="quiz-letter">d)</span> <span>Generar el reporte.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: c.</strong> Verificar es lo que demuestra que el hallazgo cerró, y lo que distingue a Oktavia de una herramienta de auditoría. <a href="#m1">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué es la intención declarada?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q5" value="a"><span class="quiz-letter">a)</span> <span>El respaldo más reciente del equipo.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q5" value="b"><span class="quiz-letter">b)</span> <span>Lo que la red debe tener, escrito como datos.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q5" value="c"><span class="quiz-letter">c)</span> <span>Una política de firewall.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q5" value="d"><span class="quiz-letter">d)</span> <span>El historial de cambios.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Es la fuente de verdad contra la que se compara toda la red. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="d">
+                        <fieldset>
+                            <legend>En la precedencia de alcances, ¿cuál gana?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q6" value="a"><span class="quiz-letter">a)</span> <span>Valores por omisión.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q6" value="b"><span class="quiz-letter">b)</span> <span>Sitio.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q6" value="c"><span class="quiz-letter">c)</span> <span>Rol.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q6" value="d"><span class="quiz-letter">d)</span> <span>Dispositivo.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: d.</strong> La capa más específica gana, y la más específica es el dispositivo. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>Un servicio configurado en el equipo que nadie declaró es:</legend>
+                            <label class="quiz-opt"><input type="radio" name="q7" value="a"><span class="quiz-letter">a)</span> <span>Cubierto.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q7" value="b"><span class="quiz-letter">b)</span> <span>Punto ciego.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q7" value="c"><span class="quiz-letter">c)</span> <span>Sin aplicar.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q7" value="d"><span class="quiz-letter">d)</span> <span>Inaplicable.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Está en la red pero nadie lo audita: un cambio en él pasa inadvertido. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="a">
+                        <fieldset>
+                            <legend>¿Qué distingue al cumplimiento de estado del de configuración?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q8" value="a"><span class="quiz-letter">a)</span> <span>Verifica que la red funcione, no sólo que tenga las líneas.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q8" value="b"><span class="quiz-letter">b)</span> <span>Usa IA.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q8" value="c"><span class="quiz-letter">c)</span> <span>Sólo aplica a firewalls.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q8" value="d"><span class="quiz-letter">d)</span> <span>No hay diferencia.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: a.</strong> Una configuración correcta no garantiza vecinos arriba ni sesiones establecidas. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="c">
+                        <fieldset>
+                            <legend>¿Dónde se revisa el diff antes de aplicar un cambio?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q9" value="a"><span class="quiz-letter">a)</span> <span>En el inventario.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q9" value="b"><span class="quiz-letter">b)</span> <span>En la topología.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q9" value="c"><span class="quiz-letter">c)</span> <span>En el gemelo digital.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q9" value="d"><span class="quiz-letter">d)</span> <span>En el correo.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: c.</strong> Nada llega al equipo sin pasar por el gemelo digital, con su diff e impacto. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Cómo aplica Oktavia los cambios en Juniper Junos?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q10" value="a"><span class="quiz-letter">a)</span> <span>Por SNMP.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q10" value="b"><span class="quiz-letter">b)</span> <span>Con confirmación diferida por NETCONF.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q10" value="c"><span class="quiz-letter">c)</span> <span>Copiando un archivo por TFTP.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q10" value="d"><span class="quiz-letter">d)</span> <span>No aplica cambios.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Si nadie confirma dentro de la ventana, el equipo revierte solo. <a href="#m5">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué pasa con los cambios de FortiGate que tocan administradores y zonas?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q11" value="a"><span class="quiz-letter">a)</span> <span>Se aplican directo.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q11" value="b"><span class="quiz-letter">b)</span> <span>Quedan en simulación permanente.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q11" value="c"><span class="quiz-letter">c)</span> <span>Se rechazan siempre.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q11" value="d"><span class="quiz-letter">d)</span> <span>Se envían al fabricante.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Mover una zona invalida las políticas que la referencian, así que esos cambios no se aplican solos. <a href="#m5">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="c">
+                        <fieldset>
+                            <legend>¿Cuándo salen datos hacia el proveedor de IA?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q12" value="a"><span class="quiz-letter">a)</span> <span>Siempre.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q12" value="b"><span class="quiz-letter">b)</span> <span>Nunca.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q12" value="c"><span class="quiz-letter">c)</span> <span>Sólo cuando el operador elige una acción marcada con IA.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q12" value="d"><span class="quiz-letter">d)</span> <span>Una vez al día.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: c.</strong> Las acciones deterministas no envían nada; cada botón avisa antes si usa IA. <a href="#m4">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="ab">
+                        <fieldset>
+                            <legend>¿Qué necesita Oktanet para una primera cotización? Selecciona todas las que apliquen. <span class="quiz-multi">Varias respuestas</span></legend>
+                            <label class="quiz-opt"><input type="checkbox" name="q13" value="a"><span class="quiz-letter">a)</span> <span>Aproximadamente cuántos routers, switches, firewalls y controladoras administra.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q13" value="b"><span class="quiz-letter">b)</span> <span>De qué marcas son.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q13" value="c"><span class="quiz-letter">c)</span> <span>Las credenciales de los equipos.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q13" value="d"><span class="quiz-letter">d)</span> <span>La arquitectura completa de la red.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: a, b.</strong> Basta el tamaño de la red y las marcas. Ni credenciales ni un levantamiento largo. <a href="#m6">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué incluye Oktavia Pro?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q14" value="a"><span class="quiz-letter">a)</span> <span>Sólo inventario.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q14" value="b"><span class="quiz-letter">b)</span> <span>La plataforma completa, incluido Argos.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q14" value="c"><span class="quiz-letter">c)</span> <span>Sólo telemetría.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q14" value="d"><span class="quiz-letter">d)</span> <span>Sólo reportes.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Telemetría y Orquestación de Eventos es la única pieza que se licencia aparte. <a href="#m6">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>El cliente dice «no tenemos un estándar escrito». ¿Qué respondes?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q15" value="a"><span class="quiz-letter">a)</span> <span>Que primero lo escriba.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q15" value="b"><span class="quiz-letter">b)</span> <span>Que se adopta lo existente como intención, sin tocar la red.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q15" value="c"><span class="quiz-letter">c)</span> <span>Que Oktavia trae uno genérico.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q15" value="d"><span class="quiz-letter">d)</span> <span>Que no es posible.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Oktavia lee la configuración y la declara como intención para empezar a auditar sin rediseñar. <a href="#m7">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>El cliente dice «ya tenemos monitoreo». ¿Cuál es el mejor argumento?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q16" value="a"><span class="quiz-letter">a)</span> <span>Que lo reemplace.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q16" value="b"><span class="quiz-letter">b)</span> <span>Que el monitoreo mide y Oktavia compara contra un estándar y cierra el hallazgo; conviven.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q16" value="c"><span class="quiz-letter">c)</span> <span>Que Oktavia es más barata.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q16" value="d"><span class="quiz-letter">d)</span> <span>Que el monitoreo no sirve.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> No se compite con el monitoreo: se le agrega el estándar y el cierre verificado. <a href="#m7">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="c">
+                        <fieldset>
+                            <legend>En una demostración, ¿qué nunca se recorta?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q17" value="a"><span class="quiz-letter">a)</span> <span>El inventario.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q17" value="b"><span class="quiz-letter">b)</span> <span>La topología.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q17" value="c"><span class="quiz-letter">c)</span> <span>La verificación posterior.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q17" value="d"><span class="quiz-letter">d)</span> <span>La pregunta con IA.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: c.</strong> Si el tiempo se acaba, se recorta el contexto, nunca la verificación. <a href="#m8">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué tipo de falla conviene preparar para la demostración?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q18" value="a"><span class="quiz-letter">a)</span> <span>Una que agregue configuración de más.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q18" value="b"><span class="quiz-letter">b)</span> <span>Una que quite una línea que el estándar exige.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q18" value="c"><span class="quiz-letter">c)</span> <span>Dos fallas a la vez.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q18" value="d"><span class="quiz-letter">d)</span> <span>Una caída de energía.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Una línea requerida que falta se ve en el cumplimiento y se cierra con el ciclo. <a href="#m8">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="b">
+                        <fieldset>
+                            <legend>¿Qué trae cada alta de servicio nuevo?</legend>
+                            <label class="quiz-opt"><input type="radio" name="q19" value="a"><span class="quiz-letter">a)</span> <span>Una licencia.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q19" value="b"><span class="quiz-letter">b)</span> <span>Su rollback, que también pasa por aprobación.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q19" value="c"><span class="quiz-letter">c)</span> <span>Una plantilla genérica.</span></label>
+                            <label class="quiz-opt"><input type="radio" name="q19" value="d"><span class="quiz-letter">d)</span> <span>Un reinicio del equipo.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: b.</strong> Cada alta tiene su baja, y la baja recorre el mismo gemelo digital y la misma aprobación. <a href="#m3">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                    <li class="quiz-q" data-answer="ab">
+                        <fieldset>
+                            <legend>¿Qué deja cada ejecución de Oktavia? Selecciona todas las que apliquen. <span class="quiz-multi">Varias respuestas</span></legend>
+                            <label class="quiz-opt"><input type="checkbox" name="q20" value="a"><span class="quiz-letter">a)</span> <span>Artefactos descargables en JSON, CSV o CFG.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q20" value="b"><span class="quiz-letter">b)</span> <span>Un registro en el historial de trabajos.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q20" value="c"><span class="quiz-letter">c)</span> <span>Un reinicio del equipo.</span></label>
+                            <label class="quiz-opt"><input type="checkbox" name="q20" value="d"><span class="quiz-letter">d)</span> <span>Un cambio aplicado sin aprobación.</span></label>
+                            <p class="quiz-why" hidden><strong>Respuesta: a, b.</strong> Artefactos e historial son la evidencia; nada se aplica sin aprobación. <a href="#m2">Repasar el módulo</a></p>
+                        </fieldset>
+                    </li>
+                </ol>
+                <div class="quiz-bar no-print">
+                    <button class="quiz-btn quiz-btn-solid" type="submit">Calificar</button>
+                    <button class="quiz-btn" type="button" data-quiz-reveal hidden aria-pressed="false">Ver respuestas</button>
+                    <button class="quiz-btn" type="reset" data-quiz-reset hidden>Volver a empezar</button>
+                    <p class="quiz-result" role="status" aria-live="polite"></p>
+                </div>
+            </form>
 
             <h3>Rúbrica de la demostración</h3>
             <div class="doc-table-wrap">
@@ -597,10 +786,10 @@
             </div>
         </section>
 
-        <section class="doc-section" id="respuestas">
+        <section class="doc-section print-only" id="respuestas">
             <h2>Respuestas de la evaluación</h2>
             <p>
-                1 b · 2 b · 3 c · 4 c · 5 b · 6 d · 7 b · 8 a · 9 c · 10 b · 11 b · 12 c · 13 c · 14 b · 15 b · 16 b · 17 c · 18 b · 19 b · 20 c
+                1 b · 2 b · 3 c · 4 c · 5 b · 6 d · 7 b · 8 a · 9 c · 10 b · 11 b · 12 c · 13 a, b · 14 b · 15 b · 16 b · 17 c · 18 b · 19 b · 20 a, b
             </p>
         </section>
 
@@ -617,6 +806,6 @@
         </footer>
     </main>
 
-    <script src="../script/docs_script.js?v=d364506dbd"></script>
+    <script src="../script/docs_script.js?v=4fd06069c8"></script>
 </body>
 </html>

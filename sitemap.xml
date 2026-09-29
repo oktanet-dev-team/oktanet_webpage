@@ -17,6 +17,22 @@
 </url>
 
 <url>
+<loc>https://oktanet.io/docs/entrenamiento.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/entrenamiento.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/training-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/training-en.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/entrenamiento.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/training-en.html"/>
+</url>
+
+<url>
 <loc>https://oktanet.io/docs/curso-preventa.html</loc>
 <priority>0.6</priority>
 <changefreq>monthly</changefreq>

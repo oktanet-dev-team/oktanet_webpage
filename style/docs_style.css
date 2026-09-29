@@ -1001,3 +1001,206 @@ table.doc-table td strong {
     width: 22px;
     height: 22px;
 }
+
+/* ---- Examen interactivo (curso de preventa) --------------------------------
+   Las preguntas viven en el HTML: el mismo marcado se imprime como examen en
+   papel. En pantalla, la clave de respuestas (.print-only) no se ve; la
+   respuesta de cada pregunta aparece sólo si el alumno la pide al calificar. */
+.print-only {
+    display: none;
+}
+
+.quiz-intro {
+    color: var(--text-muted);
+}
+
+/* El número va dentro del enunciado: con el marcador de la lista quedaba a
+   media altura, porque el enunciado flota para quedar dentro del recuadro. */
+.quiz-list {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    counter-reset: quiz;
+}
+
+.quiz-q {
+    margin: 0 0 14px;
+    counter-increment: quiz;
+}
+
+.quiz-q legend::before {
+    content: counter(quiz) ". ";
+    color: var(--text-muted);
+}
+
+.quiz-q fieldset {
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--line-soft);
+    border-left: 3px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-deep);
+}
+
+.quiz-q legend {
+    float: left;
+    width: 100%;
+    margin: 0 0 8px;
+    padding: 0;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.quiz-multi {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--brand-strong);
+    vertical-align: middle;
+}
+
+.quiz-opt {
+    clear: both;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.quiz-opt:hover {
+    background: rgba(87, 200, 234, 0.07);
+}
+
+.quiz-opt input {
+    accent-color: var(--brand);
+    flex: none;
+    transform: translateY(2px);
+}
+
+.quiz-letter {
+    flex: none;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.quiz-why {
+    margin: 10px 0 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: rgba(43, 143, 212, 0.1);
+    color: var(--text-main);
+}
+
+.quiz-q.is-correct fieldset {
+    border-left-color: #34d399;
+}
+
+.quiz-q.is-wrong fieldset {
+    border-left-color: #f87171;
+}
+
+.quiz-revealed .quiz-opt.is-answer {
+    background: rgba(52, 211, 153, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.5);
+}
+
+.quiz-revealed .quiz-opt.is-chosen-wrong {
+    background: rgba(248, 113, 113, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.5);
+}
+
+.quiz-graded .quiz-opt {
+    cursor: default;
+}
+
+.quiz-bar {
+    position: sticky;
+    bottom: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-soft);
+}
+
+.quiz-btn {
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--text-main);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.quiz-btn:hover,
+.quiz-btn:focus-visible {
+    border-color: var(--brand);
+}
+
+.quiz-btn-solid {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.quiz-btn-solid:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.quiz-result {
+    flex: 1 1 240px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.quiz-result.is-pass {
+    color: #34d399;
+}
+
+.quiz-result.is-fail {
+    color: #f87171;
+}
+
+@media print {
+    .print-only {
+        display: block;
+    }
+
+    li.print-only {
+        display: list-item;
+    }
+
+    .quiz-q {
+        break-inside: avoid;
+    }
+
+    .quiz-q fieldset {
+        padding: 6px 0;
+        border: 0;
+        background: none;
+    }
+
+    .quiz-opt {
+        padding: 1px 0;
+    }
+
+    .quiz-opt input,
+    .quiz-why,
+    .quiz-multi {
+        display: none;
+    }
+}

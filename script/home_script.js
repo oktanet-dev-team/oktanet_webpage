@@ -190,7 +190,7 @@
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Artículos'],
+            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Artículos', 'Entrenamiento'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -584,6 +584,7 @@
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
             blogHref: 'blog/',
+            trainingHref: 'docs/entrenamiento.html',
             contactEyebrow: 'Conversemos',
             contactTitle: 'Evalúa Oktavia en un entorno controlado y orientado a resultados.',
             contactBody: 'Comparte tu contexto técnico para diseñar un inicio rápido de descubrimiento, cumplimiento y generación de configuraciones en tu entorno actual.',
@@ -632,7 +633,7 @@
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Articles'],
+            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Articles', 'Training'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -1026,6 +1027,7 @@
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
             blogHref: 'blog/index-en.html',
+            trainingHref: 'docs/training-en.html',
             contactEyebrow: 'Let\'s talk',
             contactTitle: 'Evaluate Oktavia in a controlled, outcome-driven setup.',
             contactBody: 'Share your technical context to design a quickstart for discovery, compliance, and config generation in your current environment.',
@@ -1721,7 +1723,8 @@
         // El documento existe en dos idiomas: cada enlace apunta al que toca.
         [['[data-doc-online]', copy.resourceOnlineHref],
          ['[data-doc-resumen-online]', copy.resourceResumenHref],
-         ['[data-blog]', copy.blogHref]].forEach(function (par) {
+         ['[data-blog]', copy.blogHref],
+         ['[data-training]', copy.trainingHref]].forEach(function (par) {
             if (typeof par[1] !== 'string') {
                 return;
             }
