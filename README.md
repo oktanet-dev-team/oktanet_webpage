@@ -19,7 +19,11 @@ docs/                   Documentación pública
   oktavia-en.html       Ficha técnica de Oktavia (inglés)
   oktavia-resumen.html     Resumen ejecutivo, 2 páginas (español)
   oktavia-resumen-en.html  Resumen ejecutivo, 2 páginas (inglés)
-  curso-preventa.html      Curso de preventa, nivel Asociado (sólo español)
+  curso-oktavia-fundamentos.html  Curso gratis «Oktavia Fundamentos», con registro suave (Formspree);
+                           preguntas en tools/preguntas-oktavia-fundamentos.json
+  curso-preventa.html      Sólo redirige a la Academia: la preventa vive dentro de Oktavia (socios)
+  aviso-de-privacidad.html Aviso de privacidad integral. tools/check_aviso.py falla mientras
+                           quede algún «[POR COMPLETAR: …]» (razón social, domicilio, correo, fecha)
   academia.html            Academia Oktanet (menú Academia); academy-en.html en inglés.
                            entrenamiento.html y training-en.html sólo redirigen (URL viejas)
   curso-automatizacion-redes.html  Curso gratuito de fundamentos (preguntas en tools/preguntas-automatizacion.json,

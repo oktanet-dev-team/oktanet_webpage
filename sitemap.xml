@@ -39,7 +39,13 @@
 </url>
 
 <url>
-<loc>https://oktanet.io/docs/curso-preventa.html</loc>
+<loc>https://oktanet.io/docs/aviso-de-privacidad.html</loc>
+<priority>0.3</priority>
+<changefreq>yearly</changefreq>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/curso-oktavia-fundamentos.html</loc>
 <priority>0.6</priority>
 <changefreq>monthly</changefreq>
 </url>

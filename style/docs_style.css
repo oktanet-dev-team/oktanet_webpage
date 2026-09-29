@@ -1224,3 +1224,57 @@ pre {
         break-inside: auto;
     }
 }
+
+
+/* Registro de un curso gratuito (Academia): sólo en pantalla. El contenido se
+   imprime completo aunque no haya registro, para que el PDF salga entero. */
+.course-gate .gate-form {
+    display: grid;
+    gap: 12px;
+    max-width: 520px;
+}
+
+.course-gate label {
+    display: grid;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.course-gate input[type="text"],
+.course-gate input[type="email"],
+.course-gate select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font: inherit;
+}
+
+.course-gate .gate-consent {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.course-gate .gate-error {
+    color: #f87171;
+    margin: 0;
+}
+
+@media print {
+    [data-gated][hidden] {
+        display: block !important;
+    }
+}
+
+/* Un botón (display: inline-flex) le gana al atributo hidden: sin esto el
+   PDF de un curso con registro se veía antes de registrarse. */
+@media screen {
+    [data-gated][hidden] {
+        display: none !important;
+    }
+}

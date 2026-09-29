@@ -100,6 +100,62 @@
         });
     });
 
+    // Registro de un curso gratuito de la Academia. Es un registro suave: el
+    // contenido va en el HTML (buscadores, sin JavaScript, impresión) y aquí
+    // sólo se oculta en pantalla hasta que la persona se registra. El registro
+    // viaja a Formspree como cualquier formulario del sitio, y el navegador lo
+    // recuerda para no volver a pedirlo.
+    const puerta = document.querySelector('[data-course-gate]');
+    if (puerta) {
+        const clave = 'oktanet-academia:' + puerta.dataset.courseGate;
+        const cerrados = Array.prototype.slice.call(document.querySelectorAll('[data-gated]'));
+        const abrir = function () {
+            puerta.hidden = true;
+            cerrados.forEach(function (el) { el.hidden = false; });
+        };
+        let registrado = false;
+        try {
+            registrado = window.localStorage.getItem(clave) === '1';
+        } catch (_error) {
+            // Almacenamiento bloqueado: se pide el registro en esta visita.
+        }
+        if (!registrado) {
+            puerta.hidden = false;
+            cerrados.forEach(function (el) { el.hidden = true; });
+            const forma = puerta.querySelector('form');
+            const aviso = puerta.querySelector('.gate-error');
+            const boton = forma.querySelector('[type="submit"]');
+            forma.addEventListener('submit', function (evento) {
+                evento.preventDefault();
+                if (!forma.reportValidity()) {
+                    return;
+                }
+                boton.disabled = true;
+                aviso.hidden = true;
+                window.fetch(forma.action, {
+                    method: 'POST',
+                    body: new FormData(forma),
+                    headers: { Accept: 'application/json' }
+                }).then(function (respuesta) {
+                    if (!respuesta.ok) {
+                        throw new Error('envio rechazado');
+                    }
+                    try {
+                        window.localStorage.setItem(clave, '1');
+                    } catch (_error) {
+                        // Sin almacenamiento: queda abierto sólo en esta visita.
+                    }
+                    abrir();
+                    window.scrollTo({ top: 0 });
+                }).catch(function () {
+                    aviso.hidden = false;
+                }).then(function () {
+                    boton.disabled = false;
+                });
+            });
+        }
+    }
+
     // Examen del curso de preventa. La clave vive en data-answer de cada
     // pregunta ("b", o "ab" si lleva varias respuestas): una pregunta de varias
     // cuenta solo si se eligen exactamente las correctas. Calificar no revela
