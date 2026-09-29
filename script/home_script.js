@@ -250,7 +250,8 @@
                 'Descubrimiento de red',
                 'El inventario',
                 'De la visibilidad al cumplimiento',
-                'Gemelo digital: detectar y remediar'
+                'Gemelo digital: detectar y remediar',
+                'Argos en acción: una loopback desde cero'
             ],
             videoCuerpos: [
                 'El recorrido comercial de la plataforma, en dos minutos.',
@@ -258,7 +259,8 @@
                 'Cómo se construye la fuente de verdad a partir de los equipos que ya tienes.',
                 'Equipos, sitios, roles y plataformas, con filtros y exportación.',
                 'La auditoría: qué falló, con qué severidad y qué líneas de configuración faltan.',
-                'El ciclo cerrado: proponer, aprobar, aplicar y verificar que el hallazgo cerró.'
+                'El ciclo cerrado: proponer, aprobar, aplicar y verificar que el hallazgo cerró.',
+                'Se le pide el servicio conversando y Argos lo propone como intención declarada. El cambio se revisa en el Gemelo Digital y sólo se aplica cuando alguien lo aprueba.'
             ],
             videoCanal: 'Ver el canal completo en YouTube',
             familyAria: 'Oktanet, Oktavia y Argos',
@@ -697,7 +699,8 @@
                 'Network discovery',
                 'The inventory',
                 'From visibility to compliance',
-                'Digital Twin: detect and remediate'
+                'Digital Twin: detect and remediate',
+                'Argos in action: a loopback from scratch'
             ],
             videoCuerpos: [
                 'The commercial walkthrough of the platform, in two minutes.',
@@ -705,7 +708,8 @@
                 'How the source of truth is built from the devices you already have.',
                 'Devices, sites, roles, and platforms, with filters and export.',
                 'The audit: what failed, at what severity, and which configuration lines are missing.',
-                'The closed loop: propose, approve, apply, and verify the finding closed.'
+                'The closed loop: propose, approve, apply, and verify the finding closed.',
+                'You ask for the service in conversation and Argos proposes it as declared intent. The change is reviewed in the Digital Twin and only applied once someone approves it. Video in Spanish.'
             ],
             videoCanal: 'Browse the full channel on YouTube',
             familyAria: 'Oktanet, Oktavia and Argos',

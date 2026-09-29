@@ -179,7 +179,9 @@ def main() -> int:
                           f"{seccion.count('<li><strong>')}")
 
     # Los videos: mismo numero de titulos, cuerpos y tarjetas en el HTML.
-    videos_html = html.count('class="video-item"')
+    # Cuenta tambien los que llevan otra clase (el de la seccion de Argos):
+    # la traduccion los recorre a todos por posicion.
+    videos_html = len(re.findall(r'class="video-item[" ]', html))
     for clave in ("videoTitulos", "videoCuerpos"):
         n = largo_de_arreglo(es, clave)
         if n != videos_html:
