@@ -120,6 +120,13 @@ DOCUMENTOS = {
         "pie": "Networks degrade for weeks before anyone calls · Oktanet",
         "de": "of",
     },
+    # El curso gratuito de la Academia: el gancho que se comparte fuera.
+    "curso-automatizacion-es": {
+        "pagina": "docs/curso-automatizacion-redes.html",
+        "salida": "docs/curso-automatizacion-redes-es.pdf",
+        "pie": "Fundamentos de automatización de redes · Academia Oktanet",
+        "de": "de",
+    },
     # El curso de preventa sale en PDF para mandarlo a un socio como adjunto.
     "curso-preventa-es": {
         "pagina": "docs/curso-preventa.html",

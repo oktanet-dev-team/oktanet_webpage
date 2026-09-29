@@ -1204,3 +1204,23 @@ table.doc-table td strong {
         display: none;
     }
 }
+
+/* Bloques de código (curso de automatización): se ajustan al ancho. Una línea
+   más ancha que la página hace que Chrome encoja todo el PDF. */
+pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: 12px 14px;
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius-md);
+    background: var(--bg-deep);
+    font-size: 0.82rem;
+}
+
+@media print {
+    pre {
+        background: none;
+        font-size: 8.5pt;
+        break-inside: auto;
+    }
+}
