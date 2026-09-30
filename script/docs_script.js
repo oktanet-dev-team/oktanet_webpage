@@ -156,7 +156,7 @@
         }
     }
 
-    // Examen del curso de preventa. La clave vive en data-answer de cada
+    // Examen interactivo de los cursos. La clave vive en data-answer de cada
     // pregunta ("b", o "ab" si lleva varias respuestas): una pregunta de varias
     // cuenta solo si se eligen exactamente las correctas. Calificar no revela
     // nada; la respuesta y su explicacion aparecen solo si el alumno las pide.
