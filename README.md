@@ -22,7 +22,7 @@ docs/                   Documentación pública
   curso-oktavia-fundamentos.html  Curso gratis «Oktavia Fundamentos», sin registro (docs_script.js tiene un
                            registro suave con data-course-gate, listo para reactivarlo);
                            preguntas en tools/preguntas-oktavia-fundamentos.json
-  curso-preventa.html      Sólo redirige a la Academia: la preventa vive dentro de Oktavia (socios)
+  curso-preventa.html      Dirección vieja: sólo redirige a la Academia
   aviso-de-privacidad.html Aviso de privacidad integral. tools/check_aviso.py falla mientras
                            quede algún «[POR COMPLETAR: …]» (razón social, domicilio, correo, fecha)
   academia.html            Academia Oktanet (menú Academia); academy-en.html en inglés.
