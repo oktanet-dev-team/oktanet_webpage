@@ -474,6 +474,57 @@
                 <li>Análisis de salida de línea de comandos.</li>
                 <li>Configuración activa o respaldos.</li>
             </ol>
+
+            <h3 id="servidor">Servidor para Oktavia</h3>
+            <p>
+                Oktavia se instala en un solo servidor Linux x86_64 (Ubuntu 22.04 o 24.04 LTS recomendado) con Docker y Docker Compose v2, físico o virtual, on-premise o en la nube del cliente. Las cifras son estimaciones para dimensionar la máquina: dependen del número de interfaces por equipo, de la frecuencia de auditoría y de cuánto tiempo se guarda la telemetría.
+            </p>
+            <p>
+                <strong>Oktavia Pro</strong> incluye inventario y descubrimiento, cumplimiento de configuración y estado, Gemelo Digital con remediación aprobada, respaldos y Argos.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Equipos</th><th scope="col">vCPU</th><th scope="col">RAM</th><th scope="col">Disco SSD</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hasta 20 (prueba de concepto)</td><td>4</td><td>8 GB</td><td>60 GB</td></tr>
+                        <tr><td>20 a 100</td><td>4</td><td>16 GB</td><td>100 GB</td></tr>
+                        <tr><td>100 a 300</td><td>8</td><td>16 GB</td><td>150 GB</td></tr>
+                        <tr><td>300 a 1,000</td><td>16</td><td>32 GB</td><td>250 GB</td></tr>
+                        <tr><td>Más de 1,000</td><td colspan="3">Se dimensiona con el cliente (trabajadores de auditoría y base de datos aparte)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Oktavia Pro con Telemetría y Orquestación de Eventos</strong> agrega la recolección SNMP cada 30 segundos, la recepción de syslog, la base de series de tiempo con 7 días de retención y el evaluador permanente de eventos.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Equipos</th><th scope="col">vCPU</th><th scope="col">RAM</th><th scope="col">Disco SSD</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Hasta 20 (prueba de concepto)</td><td>4</td><td>8 GB</td><td>80 GB</td></tr>
+                        <tr><td>20 a 100</td><td>8</td><td>16 GB</td><td>150 GB</td></tr>
+                        <tr><td>100 a 300</td><td>8</td><td>32 GB</td><td>250 GB</td></tr>
+                        <tr><td>300 a 1,000</td><td>16</td><td>64 GB</td><td>500 GB</td></tr>
+                        <tr><td>Más de 1,000</td><td colspan="3">Se dimensiona con el cliente (base de series de tiempo aparte)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>Prueba de concepto de 10 o 20 equipos:</strong> una sola máquina virtual de 4 vCPU, 8 GB de RAM y 80 GB de disco SSD cubre Oktavia Pro y la telemetría. Con 10 equipos queda margen de sobra. En nuestro laboratorio la plataforma completa en reposo usa cerca de 1.5 GB de RAM; el resto es margen para las auditorías en paralelo, el sistema operativo y el crecimiento.
+                </p>
+            </div>
+            <h3>Consideraciones</h3>
+            <ul>
+                <li>El disco de telemetría crece con las interfaces por equipo y con la retención: guardar 30 días en lugar de 7 multiplica por cuatro esa parte.</li>
+                <li>Los respaldos y resultados de auditoría crecen con la frecuencia de auditoría; la política de retención se acuerda en la implementación.</li>
+                <li>Argos con un proveedor de IA en la nube no requiere recursos adicionales. Un modelo local requiere al menos 16 GB de RAM extra y, de preferencia, una GPU.</li>
+                <li>Conectividad: el servidor necesita alcanzar la gestión de los equipos (SSH, HTTPS/API, NETCONF y SNMP según el fabricante) y recibir syslog (UDP 514) si se activa la telemetría. Los usuarios entran a la consola por HTTPS.</li>
+            </ul>
         </section>
 
         <section class="doc-section" id="implementacion">
