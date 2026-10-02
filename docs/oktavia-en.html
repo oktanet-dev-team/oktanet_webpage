@@ -474,6 +474,57 @@
                 <li>Command-line output parsing.</li>
                 <li>Live configuration or backups.</li>
             </ol>
+
+            <h3 id="server">Server for Oktavia</h3>
+            <p>
+                Oktavia runs on a single Linux x86_64 server (Ubuntu 22.04 or 24.04 LTS recommended) with Docker and Docker Compose v2, physical or virtual, on premises or in the customer's cloud. The figures are estimates for sizing the machine: they depend on the number of interfaces per device, how often audits run, and how long telemetry is kept.
+            </p>
+            <p>
+                <strong>Oktavia Pro</strong> includes inventory and discovery, configuration and state compliance, the Digital Twin with approved remediation, backups, and Argos.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Devices</th><th scope="col">vCPU</th><th scope="col">RAM</th><th scope="col">SSD disk</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Up to 20 (proof of concept)</td><td>4</td><td>8 GB</td><td>60 GB</td></tr>
+                        <tr><td>20 to 100</td><td>4</td><td>16 GB</td><td>100 GB</td></tr>
+                        <tr><td>100 to 300</td><td>8</td><td>16 GB</td><td>150 GB</td></tr>
+                        <tr><td>300 to 1,000</td><td>16</td><td>32 GB</td><td>250 GB</td></tr>
+                        <tr><td>More than 1,000</td><td colspan="3">Sized with the customer (separate audit workers and database)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                <strong>Oktavia Pro with Telemetry and Event Orchestration</strong> adds SNMP collection every 30 seconds, syslog reception, the time-series database with 7 days of retention, and the always-on event evaluator.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Devices</th><th scope="col">vCPU</th><th scope="col">RAM</th><th scope="col">SSD disk</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Up to 20 (proof of concept)</td><td>4</td><td>8 GB</td><td>80 GB</td></tr>
+                        <tr><td>20 to 100</td><td>8</td><td>16 GB</td><td>150 GB</td></tr>
+                        <tr><td>100 to 300</td><td>8</td><td>32 GB</td><td>250 GB</td></tr>
+                        <tr><td>300 to 1,000</td><td>16</td><td>64 GB</td><td>500 GB</td></tr>
+                        <tr><td>More than 1,000</td><td colspan="3">Sized with the customer (separate time-series database)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>Proof of concept with 10 or 20 devices:</strong> a single virtual machine with 4 vCPU, 8 GB of RAM, and an 80 GB SSD covers Oktavia Pro and telemetry. With 10 devices there is plenty of headroom. In our lab the full platform uses about 1.5 GB of RAM at rest; the rest is headroom for parallel audits, the operating system, and growth.
+                </p>
+            </div>
+            <h3>Considerations</h3>
+            <ul>
+                <li>Telemetry disk grows with the interfaces per device and with retention: keeping 30 days instead of 7 multiplies that part by four.</li>
+                <li>Backups and audit results grow with audit frequency; the retention policy is agreed during implementation.</li>
+                <li>Argos with a cloud AI provider needs no extra resources. A local model needs at least 16 GB of additional RAM and, preferably, a GPU.</li>
+                <li>Connectivity: the server must reach the devices' management plane (SSH, HTTPS/API, NETCONF, and SNMP depending on the vendor) and receive syslog (UDP 514) if telemetry is enabled. Users reach the console over HTTPS.</li>
+            </ul>
         </section>
 
         <section class="doc-section" id="implementation">
