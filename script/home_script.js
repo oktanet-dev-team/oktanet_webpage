@@ -33,7 +33,6 @@
     const platformImage = document.querySelector('.platform-visual img');
     const serviceIcons = document.querySelectorAll('.services-grid .service-card .service-icon');
     const showcaseImages = document.querySelectorAll('.showcase-grid img');
-    const footerLogo = document.querySelector('.footer-brand img');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const globalAnimationDelayMs = 140;
     const storageKey = 'oktanet-language';
@@ -194,7 +193,7 @@
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
-            brandLogoAlt: 'Logo de Oktanet',
+            brandLogoAlt: 'Logo de Oktavia',
             langOptionLabels: {
                 es: 'Español',
                 en: 'English'
@@ -628,8 +627,7 @@
                 'Gemelo Digital de Oktavia con un cambio propuesto y sus botones de aprobar y ejecutar',
                 'Argos, el asistente de red de Oktavia, con sus acciones marcadas según consuman IA o no',
                 'Postura de seguridad de red en Oktavia, con puntaje por dominio y hallazgos por equipo'
-            ],
-            footerLogoAlt: 'Símbolo de Oktanet'
+            ]
         },
         en: {
             htmlLang: 'en',
@@ -643,7 +641,7 @@
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
-            brandLogoAlt: 'Oktanet logo',
+            brandLogoAlt: 'Oktavia logo',
             langOptionLabels: {
                 es: 'Spanish',
                 en: 'English'
@@ -1077,8 +1075,7 @@
                 'Oktavia Digital Twin showing a proposed change with its approve and execute buttons',
                 'Argos, the Oktavia network assistant, with each action marked by whether it consumes AI',
                 'Oktavia network security posture, with a score per domain and findings per device'
-            ],
-            footerLogoAlt: 'Oktanet symbol'
+            ]
         }
     };
 
@@ -1774,10 +1771,6 @@
         setServiceIconLabels(serviceIcons, copy.serviceIconAlts);
         setAltList(document.querySelectorAll('.feature-focus-shot img'), copy.featureFocusImageAlts);
         setAltList(showcaseImages, copy.showcaseImageAlts);
-
-        if (footerLogo) {
-            footerLogo.alt = copy.footerLogoAlt;
-        }
 
         langOptions.forEach(function (option) {
             const optionLang = option.dataset.lang;
