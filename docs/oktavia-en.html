@@ -264,7 +264,7 @@
                 <li><strong>Site creation</strong>: the design of its site type is cloned, with proposed and editable addressing, the hub side (BGP, tunnel, subinterface, VLAN), and the lab nodes and test PCs.</li>
                 <li><strong>Site removal</strong>: cleans the hub in order (BGP <code>no neighbor</code>, tunnels, subinterfaces, VLANs and trunks), cleans Oktavia and the lab, and validates that nothing of the site is left. Create, remove and create again is repeatable.</li>
                 <li><strong>Device onboarding</strong>: access with the vault credential, discovery and audit, configuration from intent, telemetry, loop and verification.</li>
-                <li><strong>Device replacement</strong>: a different model under the same name, editable port mapping, link cutover, and the old device retired only after the new one is verified. The new SSH key is accepted only with operator confirmation.</li>
+                <li><strong>Device replacement</strong>: a different model under the same name, editable port mapping, link cutover, and the old device retired once the new one is powered on and in service (the practice is to verify it before retiring the old one). The new SSH key is accepted only with operator confirmation.</li>
                 <li><strong>Device retirement</strong>: a downloadable archive package without secrets, and cleanup of intent, inventory, compliance and telemetry.</li>
             </ul>
             <p>On Cisco SD-WAN the same loop goes through the Manager: edge onboarding with its Config Group and bootstrap, and creation and removal of LAN segments. The details are in the article <a href="../blog/red-de-pruebas-cml-y-sd-wan-en.html">Test before you touch production: the Oktavia test network</a>.</p>

@@ -182,7 +182,7 @@
                 <ul class="doc-list">
                     <li><strong>Prepare.</strong> Oktavia reads the current device's ports, suggests the mapping to the new model and lets you edit it. The preview shows which intent ports would be left uncovered and how many references change. The new node is created with its day 0, unwired, while the old one stays in service.</li>
                     <li><strong>Cut over.</strong> Each link of the old device moves to the equivalent port on the new one, and the old one is powered off. The operator powers on the new one and its configuration arrives through the loop.</li>
-                    <li><strong>Finish.</strong> The old device is retired only once the new one has passed its verification.</li>
+                    <li><strong>Finish.</strong> The old device is removed from the lab once the new one is powered on; the practice is to do it after its verification.</li>
                 </ul>
                 <p>
                     A replacement changes the device's SSH identity: same address, different key. Oktavia stores known keys per tenant and rejects a changed key until the operator explicitly confirms it. It is never accepted on its own, because a key that changed can also be an impersonated device.
