@@ -93,6 +93,7 @@
                 <li><a href="#modules">Platform modules</a></li>
                 <li><a href="#loop">The closed loop</a></li>
                 <li><a href="#services">New service rollout</a></li>
+                <li><a href="#lifecycle">Site and device lifecycle</a></li>
                 <li><a href="#argos">Argos, the network ChatOps</a></li>
                 <li><a href="#security">Security and service inventory</a></li>
                 <li><a href="#vendors">Per-vendor coverage</a></li>
@@ -256,8 +257,21 @@
             </div>
         </section>
 
+        <section class="doc-section" id="lifecycle">
+            <h2>8. Site and device lifecycle</h2>
+            <p>Opening and closing sites, and onboarding, replacing and retiring devices, are one-button flows with preview, approval and verification. Each is first rehearsed on the test network (Cisco Modeling Labs), where Oktavia creates the nodes with a minimal day 0 and wires them; powering them on is always the operator's call.</p>
+            <ul>
+                <li><strong>Site creation</strong>: the design of its site type is cloned, with proposed and editable addressing, the hub side (BGP, tunnel, subinterface, VLAN), and the lab nodes and test PCs.</li>
+                <li><strong>Site removal</strong>: cleans the hub in order (BGP <code>no neighbor</code>, tunnels, subinterfaces, VLANs and trunks), cleans Oktavia and the lab, and validates that nothing of the site is left. Create, remove and create again is repeatable.</li>
+                <li><strong>Device onboarding</strong>: access with the vault credential, discovery and audit, configuration from intent, telemetry, loop and verification.</li>
+                <li><strong>Device replacement</strong>: a different model under the same name, editable port mapping, link cutover, and the old device retired once the new one is powered on and in service (the practice is to verify it before retiring the old one). The new SSH key is accepted only with operator confirmation.</li>
+                <li><strong>Device retirement</strong>: a downloadable archive package without secrets, and cleanup of intent, inventory, compliance and telemetry.</li>
+            </ul>
+            <p>On Cisco SD-WAN the same loop goes through the Manager: edge onboarding with its Config Group and bootstrap, and creation and removal of LAN segments. The details are in the article <a href="../blog/red-de-pruebas-cml-y-sd-wan-en.html">Test before you touch production: the Oktavia test network</a>.</p>
+        </section>
+
         <section class="doc-section" id="argos">
-            <h2>8. Argos, the network ChatOps</h2>
+            <h2>9. Argos, the network ChatOps</h2>
             <p>
                 Argos is the assistant embedded in every Oktavia screen. You ask in plain language and it answers with network data, not generalities. It covers four moments of daily work:
             </p>
@@ -303,10 +317,14 @@
         </section>
 
         <section class="doc-section" id="security">
-            <h2>9. Security and service inventory</h2>
+            <h2>10. Security and service inventory</h2>
             <h3>Network security</h3>
             <p>
                 Security posture computed on the collected configuration of firewalls and switches, across four domains: perimeter, management plane, identities, and segmentation. Each finding carries the configuration line backing it and its recommendation in the vendor own syntax. It includes a global and per-device score, and filters by domain and severity.
+            </p>
+            <h3>Vulnerabilities by version</h3>
+            <p>
+                Each device's software version is matched against NVD, CISA KEV and FIRST EPSS: actively exploited vulnerabilities first, with a rating per device, site and tenant, the minimum safe version per model that feeds the software standard, and a printable CVE report per network or site. Lab images are marked as approximate and do not count as real exposure. More in the article <a href="../blog/seguridad-en-oktavia-y-argos-en.html">Security in Oktavia and Argos</a>.
             </p>
             <h3>Service inventory</h3>
             <p>
@@ -329,7 +347,7 @@
         </section>
 
         <section class="doc-section" id="vendors">
-            <h2>10. Per-vendor coverage</h2>
+            <h2>11. Per-vendor coverage</h2>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -351,7 +369,7 @@
         </section>
 
         <section class="doc-section" id="integrations">
-            <h2>11. Integrations</h2>
+            <h2>12. Integrations</h2>
             <p>Oktavia was designed to coexist with the customer ecosystem, not to replace it. It can feed and be fed by the tools already in operation.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -376,7 +394,7 @@
         </section>
 
         <section class="doc-section" id="architecture">
-            <h2>12. Architecture and operating model</h2>
+            <h2>13. Architecture and operating model</h2>
             <p>
                 The platform separates the web interface from the automation engine. The interface owns the user experience, tenant organization, and persistence; the engine executes against the devices. They talk over a REST API authenticated with a key.
             </p>
@@ -396,7 +414,7 @@
         </section>
 
         <section class="doc-section" id="platform-security">
-            <h2>13. Platform security</h2>
+            <h2>14. Platform security</h2>
             <p>
                 Oktavia has read access and, when the customer authorizes it, change access to their network. Its own security is part of the scope, not an annex.
             </p>
@@ -447,7 +465,7 @@
         </section>
 
         <section class="doc-section" id="requirements">
-            <h2>14. Integration requirements</h2>
+            <h2>15. Integration requirements</h2>
             <p>To deploy Oktavia over an existing network we ask the customer for:</p>
             <ul>
                 <li>Base device inventory.</li>
@@ -528,7 +546,7 @@
         </section>
 
         <section class="doc-section" id="implementation">
-            <h2>15. Implementation process</h2>
+            <h2>16. Implementation process</h2>
             <ol class="doc-steps">
                 <li><strong>Data onboarding.</strong> Receive the base inventory, normalize names, roles, sites, platforms, and models, and load the initial file.</li>
                 <li><strong>Controlled discovery.</strong> Validate reachability, run discovery in batches, collect backups, and normalize the observed inventory.</li>
@@ -558,7 +576,7 @@
         </section>
 
         <section class="doc-section" id="licensing">
-            <h2>16. Licensing</h2>
+            <h2>17. Licensing</h2>
             <p>
                 The complete platform is <strong>Oktavia Pro</strong>. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
             </p>
@@ -577,7 +595,7 @@
         </section>
 
         <section class="doc-section" id="usecases">
-            <h2>17. Use cases</h2>
+            <h2>18. Use cases</h2>
             <ul>
                 <li>Configuration compliance audit across multiple sites in minutes.</li>
                 <li>Automatic detection of configuration drift after a maintenance window.</li>

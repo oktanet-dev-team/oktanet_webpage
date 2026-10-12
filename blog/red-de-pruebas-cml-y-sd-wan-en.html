@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test before you touch production: the Oktavia test network | Oktanet</title>
+    <meta name="description" content="How Oktavia rehearses every change on a test network before it reaches production: site creation and removal, device onboarding, replacement and removal in Cisco Modeling Labs, connectivity tests built from intent, and the same loop on Cisco SD-WAN.">
+    <link rel="canonical" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Test before you touch production: the Oktavia test network">
+    <meta property="og:description" content="How Oktavia rehearses every change on a test network before it reaches production: site creation and removal, device onboarding, replacement and removal in Cisco Modeling Labs, connectivity tests built from intent, and the same loop on Cisco SD-WAN.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-11">
+    <meta property="og:url" content="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-red-de-pruebas-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-red-de-pruebas-en.png">
+    <meta property="og:image:alt" content="Test before you touch production: the Oktavia test network — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./red-de-pruebas-cml-y-sd-wan.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="red-de-pruebas-cml-y-sd-wan-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="30" height="30" decoding="async">Oktanet Team</p>
+                <p class="doc-eyebrow">Test network</p>
+                <h1>Test before you touch production: the Oktavia test network</h1>
+                <p class="post-meta">
+                    <span class="post-tag">CML</span>
+                    <span class="post-tag">Cisco SD-WAN</span>
+                    <span class="post-tag">Lifecycle</span>
+                    <span>11 October 2026</span>
+                    <span>·</span>
+                    <span>11 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    Opening a site, moving a router to a new model or closing a branch are changes almost nobody rehearses, because rehearsing them costs as much as doing them. This article explains how Oktavia uses a test network in Cisco Modeling Labs and the Cisco SD-WAN Manager so that each of those changes is designed against intent, tested, approved, applied and verified, always in that order.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>The change nobody rehearsed</h2>
+                <p>
+                    Small configuration changes have a procedure: a window, a review, a backup. Large changes, oddly, almost never do. Opening a branch, swapping a site's routers for a new model or closing an office happen a few times a year, each time with a different engineer, and what was learned last time lives in an email or in someone's memory.
+                </p>
+                <p>
+                    The outcome is familiar. The new site comes up, but with hand-made addressing and an access list copied from another site that no longer applied. The new router boots, but one port ended up on the wrong card. The closed branch keeps showing on the hub as a down BGP neighbor for months, because nobody removed its side of the tunnel.
+                </p>
+                <p class="post-punch">
+                    A lifecycle change that cannot be rehearsed runs for the first time in production, every time.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>The idea: design against intent, test on a twin, and only then apply</h2>
+                <p>
+                    Oktavia starts from a source of truth: the inventory and topology the network describes about itself, and on top of them the declared intent of what each device should have configured. Every change, from a VLAN to a whole site, is first expressed as a change to that intent, not as commands.
+                </p>
+                <p>
+                    From there, the same path applies to everything:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Design.</strong> The change is proposed from what already exists —the design of the other sites, the equivalent port on the new model, the free addressing— and a person edits it before moving on.</li>
+                    <li><strong>Test.</strong> The digital twin renders the configuration that results from that intent and compares it with the device. When the change involves new devices, the test network brings them up so it can be rehearsed end to end.</li>
+                    <li><strong>Approve.</strong> A person reviews the exact diff that will be sent. Nothing is applied without that approval.</li>
+                    <li><strong>Apply.</strong> With each vendor's safe primitive.</li>
+                    <li><strong>Verify.</strong> A new audit, and connectivity tests when needed, confirm the network ended up as declared. It is what we call closing the loop in <a href="cerrar-el-ciclo-gemelo-digital-en.html">the article on the digital twin</a>.</li>
+                </ul>
+                <p>
+                    Two design decisions hold this together. First: Oktavia does not improvise configuration. What is sent to a device comes from intent and deterministic templates, and it can be read before it is approved. Second: artificial intelligence is optional and never writes to the network. When used, it explains or diagnoses over a bounded summary of the device or site, never over full configurations.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="red">
+                <h2>The test network: what Oktavia does in CML and what it leaves to the operator</h2>
+                <p>
+                    Today the Oktavia test network is Cisco Modeling Labs (CML). That is where Oktavia builds the devices of a change before they exist in production, under agreed rules so there is never doubt about who did what:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>It creates nodes with a minimal day 0.</strong> Only what is needed to log in over SSH: hostname, management interface and the user from the credential vault, the same one production will use. The day-0 configuration, which stays stored in the lab, carries only the password hash, never the clear-text password. Everything else —VLANs, routing, services, hardening— arrives later through the loop, with testing and approval.</li>
+                    <li><strong>It wires them.</strong> It connects the new node to its neighbors according to the design, and can add a test PC per access port to check that users get an address and can reach out.</li>
+                    <li><strong>It never powers a node on.</strong> Powering on is always the operator's call. Oktavia does power off, but only the device leaving in a replacement or a removal.</li>
+                    <li><strong>It records every operation.</strong> The state of each operation is stored per tenant, so an interrupted operation can be resumed where it stopped, or undone if it failed halfway.</li>
+                    <li><strong>It tags what it creates.</strong> Each node carries the <code>oktavia:device=</code> tag with the name of the device it represents. Even if someone moves or renames nodes in the lab, Oktavia knows which is which, and a removal takes exactly what is its own and nothing else.</li>
+                </ul>
+                <p>
+                    Before touching the lab, Oktavia confirms CML is up and ready. It looks like a detail, and it is what prevents half-done operations against a lab that was still booting.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="capas">
+                <h2>Site and device lifecycle</h2>
+                <p>
+                    This is the heart of it. In Oktavia, opening and closing sites, and onboarding, replacing and retiring devices, are not craft projects: they are one-button flows, each with its preview, its approval and its verification. The examples use a lab with IOS branches in CDMX and Monterrey and a hub in Guadalajara (GDL).
+                </p>
+
+                <h3>Creating a new site</h3>
+                <p>
+                    A new site is not designed from scratch: it is cloned from the design of its site type. For example, a «Querétaro» branch with the same design as the existing ones: two WAN routers and one LAN switch, each router with a GRE tunnel and eBGP to its hub.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Proposed, editable addressing.</strong> Oktavia proposes free addresses, VLANs, autonomous system and tunnels, translated from the reference site. The person reviews them and changes them if needed; the proposal is checked against what is already in use before it is saved.</li>
+                    <li><strong>Intent for the three devices and the hub.</strong> The site's intent is saved and, on the hub side, what belongs to it: its BGP neighbor, its tunnel, its subinterface and the VLAN on the transport switches. That side is applied through the hub's own loop, with its own diff.</li>
+                    <li><strong>Nodes in the lab.</strong> Oktavia creates the three nodes with their minimal day 0, wires them and adds test PCs. The operator powers them on, and each device goes through its own onboarding.</li>
+                </ul>
+
+                <h3>Removing a site</h3>
+                <p>
+                    Removal mirrors creation, and it is where the difference from doing it by hand shows most:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>It cleans the hub in order.</strong> It builds the removal lines in the sequence that leaves nothing dangling: first <code>no neighbor</code> in BGP, then routes, tunnel and subinterface; on the layer 2 side, access port, trunk, VLAN interface and VLAN.</li>
+                    <li><strong>It cleans Oktavia.</strong> It archives each device and then removes its intent, inventory, compliance results, rules, telemetry and known SSH keys.</li>
+                    <li><strong>It cleans the lab.</strong> It removes the site's nodes and their test PCs, identified by their tag.</li>
+                    <li><strong>It validates that nothing is left.</strong> At the end it checks Oktavia, the lab and the hub's running configuration, and reports any remnant of the site.</li>
+                </ul>
+                <p>
+                    Because creation and removal are exact, the cycle is idempotent: create, remove and create Querétaro again can be repeated before every demo, and the network ends up the same each time.
+                </p>
+
+                <h3>Onboarding a device</h3>
+                <p>
+                    A new device, in a new or an existing site, goes through a series of visible steps: access (ping, SSH port and login with the vault credential), discovery and full audit, telemetry enabled if requested, loop closure with the digital twin, and a final verification with its routing state and compliance. The bring-up configuration comes from intent —banners, access lists and the console line included— and only includes the ports the model actually has.
+                </p>
+
+                <h3>Replacing a device</h3>
+                <p>
+                    Swapping a device for another model under the same name, such as an IOSv router for a Catalyst 8000v or an access switch for a 16-port one, takes three steps:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Prepare.</strong> Oktavia reads the current device's ports, suggests the mapping to the new model and lets you edit it. The preview shows which intent ports would be left uncovered and how many references change. The new node is created with its day 0, unwired, while the old one stays in service.</li>
+                    <li><strong>Cut over.</strong> Each link of the old device moves to the equivalent port on the new one, and the old one is powered off. The operator powers on the new one and its configuration arrives through the loop.</li>
+                    <li><strong>Finish.</strong> The old device is removed from the lab once the new one is powered on; the practice is to do it after its verification.</li>
+                </ul>
+                <p>
+                    A replacement changes the device's SSH identity: same address, different key. Oktavia stores known keys per tenant and rejects a changed key until the operator explicitly confirms it. It is never accepted on its own, because a key that changed can also be an impersonated device.
+                </p>
+
+                <h3>Retiring a device</h3>
+                <p>
+                    Retiring a device starts by archiving it: a downloadable package with its inventory, intent, last backed-up configuration and compliance, without secrets. Then its intent, inventory, compliance results and telemetry are removed, so it stops showing up as a down device on the dashboards.
+                </p>
+
+                <div class="doc-table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th scope="col">Flow</th><th scope="col">What Oktavia proposes</th><th scope="col">What the person decides</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Site creation</strong></td><td>Clone of the site-type design, free addressing, hub side, test nodes</td><td>Final addressing, approval of each change, powering on the nodes</td></tr>
+                            <tr><td><strong>Site removal</strong></td><td>Ordered removal lines, Oktavia and lab cleanup, final validation</td><td>Approval of the hub change</td></tr>
+                            <tr><td><strong>Device onboarding</strong></td><td>Minimal day 0, configuration from intent, telemetry</td><td>Approval of the loop</td></tr>
+                            <tr><td><strong>Device replacement</strong></td><td>Port mapping, new node, link cutover</td><td>Final mapping, power-on, confirmation of the new SSH key</td></tr>
+                            <tr><td><strong>Device retirement</strong></td><td>Archive package and cleanup</td><td>Confirming the retirement</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>Connectivity tests built from intent</h2>
+                <p>
+                    An audit says whether configuration and state match what was declared. For a site that just came up, the user's question also matters: does it work? Oktavia builds the tests from intent, without inventing targets:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Per site:</strong> users get an address over DHCP and respond, the default route is present, the other sites are reachable and, for information only, so is the internet.</li>
+                    <li><strong>Per device:</strong> each declared interface is up, each tunnel answers at the far end, OSPF and BGP neighbors are established and the default route exists.</li>
+                </ul>
+                <p>
+                    They are optional buttons, not a mandatory step of the loop, on purpose: the first pings of a new site fail while routing converges and the PCs request addresses. That is why they can be repeated, or left running until they pass, instead of flagging as broken something that was only starting up.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="marca">
+                <h2>Cisco SD-WAN: the same loop, through the Manager</h2>
+                <p>
+                    In a Cisco SD-WAN network configuration is not written device by device: it lives in the Manager. That is why Oktavia integrates with the API of the lab's Manager instead of logging in to the edges over CLI, and the logic is the same:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Overlay state.</strong> Oktavia collects control connections, BFD sessions and OMP peers, and audits them like any other state rule.</li>
+                    <li><strong>Onboarding an edge or a site.</strong> The new edge is attached to its Config Group with variables proposed from a reference edge of the same design, and Oktavia generates the bootstrap it boots with. Credentials are taken server side and never appear in the preview.</li>
+                    <li><strong>LAN segments.</strong> A new segment is declared as intent and the twin creates it in the Config Group; its removal takes it out of every edge in the group, protecting what is still in use.</li>
+                </ul>
+                <p>
+                    Design, test, approve, apply and verify: the primitive changes —the Manager instead of the CLI— and the loop does not.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="grafica">
+                <h2>Why it matters</h2>
+                <ul class="doc-list">
+                    <li><strong>Rehearsals you can repeat.</strong> A lifecycle change can be rehearsed as many times as needed, and undone, without rebuilding the lab by hand.</li>
+                    <li><strong>Honest demos.</strong> What is shown is the same flow used in production, with the same diff and the same approval, not a staged presentation.</li>
+                    <li><strong>Production rehearsed on its own design.</strong> The test site is a clone of the real design, so what fails in the lab is what would have failed in production.</li>
+                    <li><strong>Nothing left halfway.</strong> Validated creations and removals avoid the leftovers that pollute compliance for months.</li>
+                </ul>
+                <p class="post-punch">
+                    Rehearsal stops being a separate project and becomes the first step of every change.
+                </p>
+            </section>
+
+            <div class="post-cta">
+                <h2>When did you last rehearse opening a site?</h2>
+                <p>
+                    If the answer is «never» or «we did it live», we can show you the full creation and removal of a branch in a demo. To quote, we only need a rough idea of how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="seguridad-en-oktavia-y-argos-en.html">Next: security in Oktavia and Argos</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
+</body>
+</html>

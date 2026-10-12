@@ -93,6 +93,7 @@
                 <li><a href="#modulos">Módulos de la plataforma</a></li>
                 <li><a href="#ciclo">El ciclo cerrado</a></li>
                 <li><a href="#servicios">Alta de servicios nuevos</a></li>
+                <li><a href="#ciclo-de-vida">Ciclo de vida de sitios y equipos</a></li>
                 <li><a href="#argos">Argos, el ChatOps de red</a></li>
                 <li><a href="#seguridad">Seguridad e inventario de servicios</a></li>
                 <li><a href="#vendors">Cobertura por fabricante</a></li>
@@ -256,8 +257,21 @@
             </div>
         </section>
 
+        <section class="doc-section" id="ciclo-de-vida">
+            <h2>8. Ciclo de vida de sitios y equipos</h2>
+            <p>Abrir y cerrar sitios, y dar de alta, reemplazar y retirar equipos, son flujos de un botón con vista previa, aprobación y verificación. Cada uno se ensaya primero en la red de pruebas (Cisco Modeling Labs), donde Oktavia crea los nodos con un día 0 mínimo y los cablea; encenderlos es siempre decisión del operador.</p>
+            <ul>
+                <li><strong>Alta de sitio</strong>: se clona el diseño de su tipo de sitio, con numeración propuesta y editable, el lado del concentrador (BGP, túnel, subinterfaz, VLAN) y los nodos y PCs de prueba en el laboratorio.</li>
+                <li><strong>Baja de sitio</strong>: limpia el concentrador en orden (BGP <code>no neighbor</code>, túneles, subinterfaces, VLAN y troncales), limpia Oktavia y el laboratorio, y valida que no quedó nada del sitio. Crear, quitar y volver a crear es repetible.</li>
+                <li><strong>Alta de equipo</strong>: acceso con la credencial de la bóveda, descubrimiento y auditoría, configuración desde la intención, telemetría, ciclo y verificación.</li>
+                <li><strong>Reemplazo de equipo</strong>: otro modelo con el mismo nombre, mapeo de puertos editable, cambio de enlaces y retiro del equipo viejo una vez que el nuevo está encendido y en servicio (la práctica es verificarlo antes de retirar el viejo). La llave SSH nueva se acepta sólo con confirmación del operador.</li>
+                <li><strong>Baja de equipo</strong>: paquete de archivo descargable sin secretos y limpieza de intención, inventario, cumplimiento y telemetría.</li>
+            </ul>
+            <p>En Cisco SD-WAN el mismo ciclo pasa por el Manager: alta de edges con su Config Group y su bootstrap, y alta y baja de segmentos LAN. El detalle está en el artículo <a href="../blog/red-de-pruebas-cml-y-sd-wan.html">Probar antes de tocar producción: la red de pruebas de Oktavia</a>.</p>
+        </section>
+
         <section class="doc-section" id="argos">
-            <h2>8. Argos, el ChatOps de red</h2>
+            <h2>9. Argos, el ChatOps de red</h2>
             <p>
                 Argos es el asistente integrado en todas las pantallas de Oktavia. Se le pregunta en lenguaje natural y responde con datos de la red, no con generalidades. Cubre cuatro momentos del trabajo diario:
             </p>
@@ -303,10 +317,14 @@
         </section>
 
         <section class="doc-section" id="seguridad">
-            <h2>9. Seguridad e inventario de servicios</h2>
+            <h2>10. Seguridad e inventario de servicios</h2>
             <h3>Seguridad de red</h3>
             <p>
                 Postura de seguridad calculada sobre la configuración recolectada de firewalls y switches, en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Cada hallazgo trae la línea de configuración que lo sustenta y su recomendación en la sintaxis del fabricante. Incluye puntaje global y por equipo, y filtros por dominio y severidad.
+            </p>
+            <h3>Vulnerabilidades por versión</h3>
+            <p>
+                La versión de software de cada equipo se cruza con NVD, CISA KEV y FIRST EPSS: primero lo que se está explotando activamente, con calificación por equipo, sitio y organización, la versión mínima segura por modelo que alimenta la norma de software, y un reporte de CVE imprimible por red o por sitio. Las imágenes de laboratorio se marcan como aproximadas y no cuentan como exposición real. Más en el artículo <a href="../blog/seguridad-en-oktavia-y-argos.html">Seguridad en Oktavia y Argos</a>.
             </p>
             <h3>Inventario de servicios</h3>
             <p>
@@ -329,7 +347,7 @@
         </section>
 
         <section class="doc-section" id="vendors">
-            <h2>10. Cobertura por fabricante</h2>
+            <h2>11. Cobertura por fabricante</h2>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -351,7 +369,7 @@
         </section>
 
         <section class="doc-section" id="integraciones">
-            <h2>11. Integraciones</h2>
+            <h2>12. Integraciones</h2>
             <p>Oktavia se diseñó para convivir con el ecosistema del cliente, no para reemplazarlo. Puede alimentar y ser alimentada por las herramientas que ya están en operación.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -376,7 +394,7 @@
         </section>
 
         <section class="doc-section" id="arquitectura">
-            <h2>12. Arquitectura y modelo de operación</h2>
+            <h2>13. Arquitectura y modelo de operación</h2>
             <p>
                 La plataforma separa la interfaz web del motor de automatización. La interfaz concentra la experiencia de usuario, la organización por tenant y la persistencia; el motor ejecuta contra los dispositivos. Se comunican por una API REST autenticada con clave.
             </p>
@@ -396,7 +414,7 @@
         </section>
 
         <section class="doc-section" id="seguridad-plataforma">
-            <h2>13. Seguridad de la plataforma</h2>
+            <h2>14. Seguridad de la plataforma</h2>
             <p>
                 Oktavia tiene acceso de lectura y, cuando el cliente lo autoriza, de cambio sobre su red. Su propia seguridad es parte del alcance, no un anexo.
             </p>
@@ -447,7 +465,7 @@
         </section>
 
         <section class="doc-section" id="requisitos">
-            <h2>14. Requisitos de integración</h2>
+            <h2>15. Requisitos de integración</h2>
             <p>Para implementar Oktavia sobre una red existente pedimos al cliente:</p>
             <ul>
                 <li>Inventario base de dispositivos.</li>
@@ -528,7 +546,7 @@
         </section>
 
         <section class="doc-section" id="implementacion">
-            <h2>15. Proceso de implementación</h2>
+            <h2>16. Proceso de implementación</h2>
             <ol class="doc-steps">
                 <li><strong>Onboarding de datos.</strong> Recibir el inventario base, homologar nombres, roles, sitios, plataformas y modelos, y cargar el archivo inicial.</li>
                 <li><strong>Descubrimiento controlado.</strong> Validar alcanzabilidad, ejecutar el descubrimiento por lotes, recolectar respaldos y normalizar el inventario observado.</li>
@@ -558,7 +576,7 @@
         </section>
 
         <section class="doc-section" id="licenciamiento">
-            <h2>16. Licenciamiento</h2>
+            <h2>17. Licenciamiento</h2>
             <p>
                 La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
             </p>
@@ -577,7 +595,7 @@
         </section>
 
         <section class="doc-section" id="casos">
-            <h2>17. Casos de uso</h2>
+            <h2>18. Casos de uso</h2>
             <ul>
                 <li>Auditoría de cumplimiento de configuración sobre múltiples sitios en minutos.</li>
                 <li>Detección automática de desviación de configuración tras una ventana de mantenimiento.</li>

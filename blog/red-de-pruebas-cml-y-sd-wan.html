@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Probar antes de tocar producción: la red de pruebas de Oktavia | Oktanet</title>
+    <meta name="description" content="Cómo Oktavia ensaya cada cambio en una red de pruebas antes de llevarlo a producción: alta y baja de sitios, alta, reemplazo y baja de equipos en Cisco Modeling Labs, pruebas de conectividad desde la intención, y el mismo ciclo en Cisco SD-WAN.">
+    <link rel="canonical" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Probar antes de tocar producción: la red de pruebas de Oktavia">
+    <meta property="og:description" content="Cómo Oktavia ensaya cada cambio en una red de pruebas antes de llevarlo a producción: alta y baja de sitios, alta, reemplazo y baja de equipos en Cisco Modeling Labs, pruebas de conectividad desde la intención, y el mismo ciclo en Cisco SD-WAN.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-11">
+    <meta property="og:url" content="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-red-de-pruebas-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-red-de-pruebas-es.png">
+    <meta property="og:image:alt" content="Probar antes de tocar producción: la red de pruebas de Oktavia — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Artículo">
+                <a href="./">Artículos</a>
+                <a href="../docs/">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./red-de-pruebas-cml-y-sd-wan-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn" href="red-de-pruebas-cml-y-sd-wan-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Cotizar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="30" height="30" decoding="async">Equipo de Oktanet</p>
+                <p class="doc-eyebrow">Red de pruebas</p>
+                <h1>Probar antes de tocar producción: la red de pruebas de Oktavia</h1>
+                <p class="post-meta">
+                    <span class="post-tag">CML</span>
+                    <span class="post-tag">Cisco SD-WAN</span>
+                    <span class="post-tag">Ciclo de vida</span>
+                    <span>11 de octubre de 2026</span>
+                    <span>·</span>
+                    <span>11 minutos de lectura</span>
+                </p>
+                <p class="doc-lede">
+                    Dar de alta un sitio, cambiar un router de modelo o retirar una sucursal son cambios que casi nadie ensaya, porque ensayarlos cuesta tanto como hacerlos. Este artículo explica cómo Oktavia usa una red de pruebas en Cisco Modeling Labs y el Manager de Cisco SD-WAN para que cada uno de esos cambios se diseñe contra la intención, se pruebe, se apruebe, se aplique y se verifique, siempre en ese orden.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Compartir</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>El cambio que nadie ensayó</h2>
+                <p>
+                    Los cambios pequeños de configuración tienen procedimiento: ventana, revisión, respaldo. Los cambios grandes, curiosamente, casi nunca. Abrir una sucursal, cambiar los routers de un sitio por un modelo nuevo o cerrar una oficina se hacen pocas veces al año, cada vez con un ingeniero distinto, y lo que se aprendió la vez anterior está en un correo o en la memoria de alguien.
+                </p>
+                <p>
+                    El resultado es conocido. El sitio nuevo queda arriba, pero con la numeración a mano y una lista de acceso copiada de otro sitio que ya no correspondía. El router nuevo arranca, pero un puerto quedó en la tarjeta equivocada. La sucursal cerrada sigue apareciendo en el concentrador como un vecino BGP caído durante meses, porque nadie quitó su lado del túnel.
+                </p>
+                <p class="post-punch">
+                    Un cambio de ciclo de vida que no se puede ensayar se ejecuta por primera vez en producción, todas las veces.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>La idea: diseñar contra la intención, probar en un gemelo, y sólo después aplicar</h2>
+                <p>
+                    Oktavia parte de una fuente de verdad: el inventario y la topología que la red describe de sí misma, y sobre ellos la intención declarada de lo que cada equipo debería tener configurado. Todo cambio, desde una VLAN hasta un sitio completo, se expresa primero como un cambio a esa intención, no como comandos.
+                </p>
+                <p>
+                    De ahí sale el mismo recorrido para todo:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Diseñar.</strong> El cambio se propone a partir de lo que ya existe —el diseño de los otros sitios, el puerto equivalente del modelo nuevo, la numeración libre— y la persona lo edita antes de seguir.</li>
+                    <li><strong>Probar.</strong> El gemelo digital genera la configuración que resulta de esa intención y la compara contra la del equipo. Cuando el cambio implica equipos nuevos, la red de pruebas los levanta para ensayarlo completo.</li>
+                    <li><strong>Aprobar.</strong> Una persona revisa el diferencial exacto que se va a enviar. Nada se aplica sin esa aprobación.</li>
+                    <li><strong>Aplicar.</strong> Con la primitiva segura de cada fabricante.</li>
+                    <li><strong>Verificar.</strong> Una nueva auditoría, y si hace falta pruebas de conectividad, confirman que la red quedó como se declaró. Es lo que en <a href="cerrar-el-ciclo-gemelo-digital.html">el artículo sobre el gemelo digital</a> llamamos cerrar el ciclo.</li>
+                </ul>
+                <p>
+                    Dos decisiones de diseño sostienen esto. La primera: Oktavia no improvisa configuración. Lo que se envía a un equipo sale de la intención y de plantillas deterministas, y se puede leer antes de aprobarlo. La segunda: la inteligencia artificial es opcional y nunca escribe en la red. Cuando se usa, explica o diagnostica sobre un resumen acotado del equipo o del sitio, no sobre configuraciones completas.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="red">
+                <h2>La red de pruebas: qué hace Oktavia en CML y qué deja al operador</h2>
+                <p>
+                    La red de pruebas de Oktavia hoy es Cisco Modeling Labs (CML). Ahí Oktavia arma los equipos de un cambio antes de que existan en producción, con reglas acordadas para que nunca haya duda de quién hizo qué:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Crea nodos con un día 0 mínimo.</strong> Sólo lo necesario para entrar por SSH: nombre, interfaz de gestión y el usuario de la bóveda de credenciales, el mismo que usará en producción. En la configuración de día 0, que queda guardada en el laboratorio, va únicamente el hash de la contraseña, nunca la contraseña en claro. Todo lo demás —VLANs, ruteo, servicios, hardening— llega después por el ciclo, con prueba y aprobación.</li>
+                    <li><strong>Cablea.</strong> Conecta el nodo nuevo a sus vecinos según el diseño, y puede agregar un PC de prueba por puerto de acceso para comprobar que los usuarios reciben dirección y salen.</li>
+                    <li><strong>Nunca enciende un nodo.</strong> Prender es siempre decisión del operador. Oktavia sí apaga, pero sólo el equipo que sale en un reemplazo o en una baja.</li>
+                    <li><strong>Lleva registro de cada operación.</strong> El estado de cada operación se guarda por organización, de modo que una operación interrumpida se puede reanudar donde quedó, o deshacer si falló a medias.</li>
+                    <li><strong>Etiqueta lo que crea.</strong> Cada nodo lleva la etiqueta <code>oktavia:device=</code> con el nombre del equipo que representa. Así, aunque alguien mueva o renombre nodos en el laboratorio, Oktavia sabe cuál es cuál, y una baja quita exactamente lo suyo y nada más.</li>
+                </ul>
+                <p>
+                    Antes de tocar el laboratorio, Oktavia confirma que CML está encendido y listo. Parece un detalle, y es lo que evita operaciones a medias contra un laboratorio que todavía estaba arrancando.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="capas">
+                <h2>Ciclo de vida de sitios y equipos</h2>
+                <p>
+                    Aquí está el centro del asunto. En Oktavia, abrir y cerrar sitios, y dar de alta, reemplazar y retirar equipos, no son proyectos artesanales: son flujos de un botón, cada uno con su vista previa, su aprobación y su verificación. Los ejemplos usan un laboratorio con sucursales IOS en CDMX y Monterrey y un concentrador en Guadalajara (GDL).
+                </p>
+
+                <h3>Alta de un sitio nuevo</h3>
+                <p>
+                    Un sitio nuevo no se diseña desde cero: se clona del diseño de su tipo de sitio. Por ejemplo, una sucursal «Querétaro» con el mismo diseño que las existentes: dos routers WAN y un switch LAN, cada router con un túnel GRE y eBGP hacia su concentrador.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Numeración propuesta y editable.</strong> Oktavia propone direcciones, VLANs, sistema autónomo y túneles libres, traducidos del sitio de referencia. La persona los revisa y los cambia si quiere; la propuesta se valida contra lo que ya está en uso antes de guardarse.</li>
+                    <li><strong>Intención de los tres equipos y del concentrador.</strong> Se guarda la intención del sitio y, del lado del concentrador, lo que le corresponde: su vecino BGP, su túnel, su subinterfaz y la VLAN en los switches de transporte. Ese lado se aplica por el ciclo del concentrador, con su propio diferencial.</li>
+                    <li><strong>Nodos en el laboratorio.</strong> Oktavia crea los tres nodos con su día 0 mínimo, los cablea y agrega PCs de prueba. El operador los enciende, y cada equipo entra por su alta de equipo.</li>
+                </ul>
+
+                <h3>Baja de un sitio</h3>
+                <p>
+                    La baja es el espejo del alta, y es donde más se nota la diferencia con hacerlo a mano:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Limpia el concentrador en orden.</strong> Arma las líneas de baja en la secuencia que no deja nada colgado: primero <code>no neighbor</code> en BGP, luego rutas, túnel y subinterfaz; del lado de capa 2, puerto de acceso, troncal, interfaz de VLAN y VLAN.</li>
+                    <li><strong>Limpia Oktavia.</strong> Archiva cada equipo y luego quita su intención, su inventario, sus resultados de cumplimiento, sus reglas, su telemetría y sus llaves SSH conocidas.</li>
+                    <li><strong>Limpia el laboratorio.</strong> Quita los nodos del sitio y sus PCs de prueba, identificados por su etiqueta.</li>
+                    <li><strong>Valida que no quedó nada.</strong> Al final revisa Oktavia, el laboratorio y la configuración activa del concentrador, y reporta cualquier resto del sitio.</li>
+                </ul>
+                <p>
+                    Como el alta y la baja son exactas, el ciclo es idempotente: crear, quitar y volver a crear Querétaro se puede repetir antes de cada demostración, y la red queda igual que antes cada vez.
+                </p>
+
+                <h3>Alta de un equipo</h3>
+                <p>
+                    Un equipo nuevo, en un sitio nuevo o en uno existente, entra por un recorrido de pasos visibles: acceso (ping, puerto SSH e inicio de sesión con la credencial de la bóveda), descubrimiento y auditoría completa, encendido de la telemetría si se pide, cierre del ciclo con el gemelo digital y una verificación final con el estado de su ruteo y su cumplimiento. La configuración de puesta en marcha sale de la intención —incluidos banners, listas de acceso y la línea de consola— y sólo incluye los puertos que el modelo realmente tiene.
+                </p>
+
+                <h3>Reemplazo de un equipo</h3>
+                <p>
+                    Cambiar un equipo por otro modelo con el mismo nombre, como un router IOSv por un Catalyst 8000v o un switch de acceso por uno de 16 puertos, se hace en tres pasos:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Preparar.</strong> Oktavia lee los puertos del equipo actual, sugiere el mapeo al modelo nuevo y lo deja editar. La vista previa muestra qué puertos de la intención quedarían sin cubrir y cuántas referencias cambian. El nodo nuevo se crea con su día 0, sin cablear, mientras el viejo sigue en servicio.</li>
+                    <li><strong>Cambiar.</strong> Cada enlace del equipo viejo pasa al puerto equivalente del nuevo, y el viejo se apaga. El operador enciende el nuevo y su configuración llega por el ciclo.</li>
+                    <li><strong>Terminar.</strong> El equipo viejo se retira del laboratorio cuando el nuevo ya está encendido; la práctica es hacerlo después de su verificación.</li>
+                </ul>
+                <p>
+                    Un reemplazo cambia la identidad SSH del equipo: misma dirección, otra llave. Oktavia guarda las llaves conocidas por organización y rechaza una llave distinta hasta que el operador confirma el cambio de forma explícita. Nunca se acepta sola, porque una llave que cambió también puede ser un equipo suplantado.
+                </p>
+
+                <h3>Baja de un equipo</h3>
+                <p>
+                    Retirar un equipo empieza por archivarlo: un paquete descargable con su inventario, su intención, su última configuración respaldada y su cumplimiento, sin secretos. Después se quita su intención, su inventario, sus resultados de cumplimiento y su telemetría, de modo que deja de aparecer como un equipo caído en los tableros.
+                </p>
+
+                <div class="doc-table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th scope="col">Flujo</th><th scope="col">Qué propone Oktavia</th><th scope="col">Qué decide la persona</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Alta de sitio</strong></td><td>Clon del diseño del tipo de sitio, numeración libre, lado del concentrador, nodos de prueba</td><td>Numeración final, aprobación de cada cambio, encendido de los nodos</td></tr>
+                            <tr><td><strong>Baja de sitio</strong></td><td>Líneas de baja en orden, limpieza de Oktavia y del laboratorio, validación final</td><td>Aprobación del cambio del concentrador</td></tr>
+                            <tr><td><strong>Alta de equipo</strong></td><td>Día 0 mínimo, configuración desde la intención, telemetría</td><td>Aprobación del ciclo</td></tr>
+                            <tr><td><strong>Reemplazo de equipo</strong></td><td>Mapeo de puertos, nodo nuevo, cambio de enlaces</td><td>Mapeo final, encendido, confirmación de la llave SSH nueva</td></tr>
+                            <tr><td><strong>Baja de equipo</strong></td><td>Paquete de archivo y limpieza</td><td>Confirmar la baja</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>Pruebas de conectividad que salen de la intención</h2>
+                <p>
+                    Una auditoría dice si la configuración y el estado coinciden con lo declarado. Para un sitio recién levantado hace falta también la pregunta del usuario: ¿funciona? Oktavia arma las pruebas desde la intención, sin inventar destinos:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Por sitio:</strong> los usuarios reciben dirección por DHCP y responden, la ruta por defecto está presente, se alcanzan los otros sitios y, de forma informativa, internet.</li>
+                    <li><strong>Por equipo:</strong> cada interfaz declarada está arriba, cada túnel responde al otro extremo, los vecinos OSPF y BGP están establecidos y la ruta por defecto existe.</li>
+                </ul>
+                <p>
+                    Son botones opcionales, no un paso obligatorio del ciclo, y es a propósito: los primeros pings de un sitio nuevo fallan mientras el ruteo converge y los PCs piden dirección. Por eso se pueden repetir, o dejar corriendo hasta que pasen, en lugar de marcar como roto algo que sólo estaba arrancando.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="marca">
+                <h2>Cisco SD-WAN: el mismo ciclo, a través del Manager</h2>
+                <p>
+                    En una red Cisco SD-WAN la configuración no se escribe equipo por equipo: vive en el Manager. Por eso Oktavia se integra con la interfaz de programación del Manager del laboratorio en lugar de entrar por CLI a los edges, y la lógica es la misma:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Estado del overlay.</strong> Oktavia recoge las conexiones de control, las sesiones BFD y los pares OMP, y los audita como cualquier otra regla de estado.</li>
+                    <li><strong>Alta de un edge o de un sitio.</strong> El edge nuevo se asocia a su Config Group con variables propuestas a partir de un edge de referencia del mismo diseño, y Oktavia genera el bootstrap con el que arranca. Las credenciales se toman del lado del servidor y nunca aparecen en la vista previa.</li>
+                    <li><strong>Segmentos LAN.</strong> Un segmento nuevo se declara como intención y el gemelo lo crea en el Config Group; su baja lo quita de todos los edges del grupo, protegiendo lo que todavía está en uso.</li>
+                </ul>
+                <p>
+                    Diseñar, probar, aprobar, aplicar y verificar: cambia la primitiva —el Manager en lugar de la CLI— y no cambia el ciclo.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="grafica">
+                <h2>Por qué importa</h2>
+                <ul class="doc-list">
+                    <li><strong>Ensayos que se repiten.</strong> Un cambio de ciclo de vida se puede ensayar tantas veces como haga falta, y deshacer, sin rehacer el laboratorio a mano.</li>
+                    <li><strong>Demostraciones honestas.</strong> Lo que se muestra es el mismo flujo que se usa en producción, con el mismo diferencial y la misma aprobación, no una presentación preparada.</li>
+                    <li><strong>Producción ensayada sobre su propio diseño.</strong> El sitio de prueba es un clon del diseño real, así que lo que falla en el laboratorio es lo que habría fallado en producción.</li>
+                    <li><strong>Nada queda a medias.</strong> Altas y bajas validadas evitan los restos que ensucian el cumplimiento durante meses.</li>
+                </ul>
+                <p class="post-punch">
+                    El ensayo deja de ser un proyecto aparte y pasa a ser el primer paso de cada cambio.
+                </p>
+            </section>
+
+            <div class="post-cta">
+                <h2>¿Cuándo fue la última vez que ensayó la apertura de un sitio?</h2>
+                <p>
+                    Si la respuesta es «nunca» o «la hicimos directo», le podemos mostrar el ciclo completo de alta y baja de una sucursal en una demostración. Para cotizar sólo necesitamos saber aproximadamente cuántos equipos administra.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Quiero una cotización</a>
+                    <a href="../#contacto">Solicitar una demostración</a>
+                    <a href="seguridad-en-oktavia-y-argos.html">Siguiente: seguridad en Oktavia y Argos</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Artículo público, sin información confidencial de clientes.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
+</body>
+</html>

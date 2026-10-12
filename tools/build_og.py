@@ -93,6 +93,30 @@ ARTICULOS = {
             "bajada": "Why an audit is a snapshot, and how to write event rules that do not end up silenced.",
         },
     },
+    "og-blog-red-de-pruebas": {
+        "es": {
+            "rotulo": "Red de pruebas",
+            "titulo": "Probar antes de tocar producción",
+            "bajada": "Alta y baja de sitios y equipos ensayadas en una red de pruebas, con el mismo ciclo en Cisco SD-WAN.",
+        },
+        "en": {
+            "rotulo": "Test network",
+            "titulo": "Test before you touch production",
+            "bajada": "Site and device lifecycle rehearsed on a test network, with the same loop on Cisco SD-WAN.",
+        },
+    },
+    "og-blog-seguridad": {
+        "es": {
+            "rotulo": "Seguridad",
+            "titulo": "Seguridad en Oktavia y Argos",
+            "bajada": "Vulnerabilidades con KEV primero, postura con evidencia y hardening por rol, sin secretos para la IA.",
+        },
+        "en": {
+            "rotulo": "Security",
+            "titulo": "Security in Oktavia and Argos",
+            "bajada": "Vulnerabilities with KEV first, posture with evidence and per-role hardening, with no secrets sent to AI.",
+        },
+    },
 }
 
 

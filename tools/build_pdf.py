@@ -120,6 +120,30 @@ DOCUMENTOS = {
         "pie": "Networks degrade for weeks before anyone calls · Oktanet",
         "de": "of",
     },
+    "blog-red-de-pruebas-es": {
+        "pagina": "blog/red-de-pruebas-cml-y-sd-wan.html",
+        "salida": "blog/red-de-pruebas-cml-y-sd-wan-es.pdf",
+        "pie": "Probar antes de tocar producción · Oktanet",
+        "de": "de",
+    },
+    "blog-red-de-pruebas-en": {
+        "pagina": "blog/red-de-pruebas-cml-y-sd-wan-en.html",
+        "salida": "blog/red-de-pruebas-cml-y-sd-wan-en.pdf",
+        "pie": "Test before you touch production · Oktanet",
+        "de": "of",
+    },
+    "blog-seguridad-es": {
+        "pagina": "blog/seguridad-en-oktavia-y-argos.html",
+        "salida": "blog/seguridad-en-oktavia-y-argos-es.pdf",
+        "pie": "Seguridad en Oktavia y Argos · Oktanet",
+        "de": "de",
+    },
+    "blog-seguridad-en": {
+        "pagina": "blog/seguridad-en-oktavia-y-argos-en.html",
+        "salida": "blog/seguridad-en-oktavia-y-argos-en.pdf",
+        "pie": "Security in Oktavia and Argos · Oktanet",
+        "de": "of",
+    },
     # El curso gratuito de la Academia: el gancho que se comparte fuera.
     "curso-automatizacion-es": {
         "pagina": "docs/curso-automatizacion-redes.html",
