@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Seguridad en Oktavia y Argos | Oktanet</title>
+    <meta name="description" content="Vulnerabilidades por versión con NVD, CISA KEV y EPSS; postura de seguridad con evidencia por equipo y sitio; hardening por rol como intención; y cómo Argos diagnostica la salud de la red sin enviar configuraciones ni secretos a un modelo de lenguaje.">
+    <link rel="canonical" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Seguridad en Oktavia y Argos">
+    <meta property="og:description" content="Vulnerabilidades por versión con NVD, CISA KEV y EPSS; postura de seguridad con evidencia por equipo y sitio; hardening por rol como intención; y cómo Argos diagnostica la salud de la red sin enviar configuraciones ni secretos a un modelo de lenguaje.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-11">
+    <meta property="og:url" content="https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-seguridad-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-seguridad-es.png">
+    <meta property="og:image:alt" content="Seguridad en Oktavia y Argos — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Artículo">
+                <a href="./">Artículos</a>
+                <a href="../docs/">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./seguridad-en-oktavia-y-argos-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn" href="seguridad-en-oktavia-y-argos-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Cotizar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="30" height="30" decoding="async">Equipo de Oktanet</p>
+                <p class="doc-eyebrow">Seguridad</p>
+                <h1>Seguridad en Oktavia y Argos</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Vulnerabilidades</span>
+                    <span class="post-tag">Hardening</span>
+                    <span class="post-tag">Argos</span>
+                    <span>11 de octubre de 2026</span>
+                    <span>·</span>
+                    <span>10 minutos de lectura</span>
+                </p>
+                <p class="doc-lede">
+                    La seguridad de una red no se resuelve con una lista de CVE ni con un puntaje. Se resuelve sabiendo qué equipo está expuesto y por qué, qué se cambia para corregirlo, y con la certeza de que la herramienta que lo encontró no se convirtió en un riesgo nuevo. Este artículo explica cómo lo hacen Oktavia y su asistente, Argos.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Compartir</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>Cientos de CVE y ninguna decisión</h2>
+                <p>
+                    Cualquier escáner le entrega cientos de vulnerabilidades por cada versión de sistema operativo. Ordenadas por puntaje CVSS, la lista dice que todo es urgente, y cuando todo es urgente nada lo es. Lo que el responsable de red necesita saber es otra cosa: cuáles se están explotando hoy, en qué equipos, a qué versión hay que subir y si esa versión ya es parte del estándar.
+                </p>
+                <p>
+                    Lo mismo pasa con la configuración. Un hallazgo de «SSH expuesto» sin la línea que lo sustenta, ni el cambio que lo corrige, es una conversación, no una tarea.
+                </p>
+                <p class="post-punch">
+                    Un hallazgo de seguridad sirve cuando trae su evidencia, su prioridad real y su corrección.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>Vulnerabilidades por versión de software</h2>
+                <p>
+                    Oktavia toma la plataforma y la versión que el descubrimiento obtuvo de cada equipo, y las cruza con tres catálogos públicos:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>NVD (CVE API 2.0)</strong>, la base del NIST: los CVE que afectan esa versión, con su severidad y las versiones que los corrigen.</li>
+                    <li><strong>CISA KEV</strong>: el catálogo de vulnerabilidades que se están explotando activamente.</li>
+                    <li><strong>FIRST EPSS</strong>: la probabilidad estimada de que una vulnerabilidad se explote en los próximos treinta días.</li>
+                </ul>
+                <p>
+                    El orden de prioridad es explícito: primero lo que está en KEV, luego la severidad, la probabilidad de explotación y el puntaje. De ahí sale una calificación por equipo, por sitio y por organización, y la explicación de cada una: cuántas vulnerabilidades explotadas activamente, cuántas críticas, cuál es la probabilidad más alta.
+                </p>
+                <p>
+                    Para cada equipo, Oktavia sugiere la versión mínima segura dentro del mismo tren de software —no le propone saltar de IOS a IOS XE para corregir un CVE— y dice cuántas de las vulnerabilidades graves corrige. Esa versión mínima se puede llevar, con una acción explícita, a la norma de software por modelo, y desde entonces el cumplimiento la evalúa en cada auditoría como cualquier otra regla.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Imágenes de laboratorio y nodos virtuales.</strong> Se marcan como aproximados: su versión no permite un cruce exacto y no representan exposición real, así que se listan pero no cuentan en la calificación.</li>
+                    <li><strong>Cuándo corre.</strong> Con cada auditoría completa y a diario con el programador de tareas. Un reemplazo de equipo cambia la versión, y el análisis se actualiza en la auditoría siguiente.</li>
+                    <li><strong>Qué sale de su red.</strong> A los catálogos sólo se consulta producto y versión, o identificadores de CVE. Nada que identifique a su organización ni a sus equipos.</li>
+                    <li><strong>Reporte imprimible.</strong> Un reporte de CVE por red o por sitio, listo para imprimir a PDF, con los equipos ordenados por exposición. El envío semanal automático estará disponible próximamente.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="llave">
+                <h2>Postura de seguridad con evidencia</h2>
+                <p>
+                    La postura de seguridad se calcula sobre la configuración recolectada, de forma determinista, por equipo y por sitio, en cuatro dominios:
+                </p>
+                <div class="doc-table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th scope="col">Dominio</th><th scope="col">Qué revisa</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Perímetro</strong></td><td>Qué entra y sale sin filtro: políticas demasiado permisivas, listas de acceso abiertas, servicios expuestos a internet.</td></tr>
+                            <tr><td><strong>Plano de gestión</strong></td><td>SSH y HTTPS alcanzables desde la WAN, telnet o HTTP habilitados, líneas virtuales sin lista de acceso, SNMP con valores por omisión.</td></tr>
+                            <tr><td><strong>Identidades</strong></td><td>Cuentas de administración sin origen restringido o sin segundo factor, cuentas privilegiadas con contraseña sin cifrar.</td></tr>
+                            <tr><td><strong>Segmentación</strong></td><td>Zonas sin protección, políticas sin registro, puertos de acceso sin endurecer, objetos huérfanos.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Cada hallazgo trae la línea o el objeto que lo sustenta y la recomendación concreta. En FortiGate y Junos se agrega el análisis de políticas de firewall: reglas permisivas y qué queda expuesto hacia internet. La cobertura es multivendor: Cisco IOS e IOS XE, FortiGate, Junos, FortiSwitch y Cisco SD-WAN, cada uno leído con su propio modelo, no con una traducción común.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>Hardening por rol, como intención</h2>
+                <p>
+                    Detectar una debilidad es la mitad del trabajo. La otra mitad es que no vuelva. Por eso en Oktavia el hardening no es un documento aparte: es un estándar por rol que vive en la misma intención que el resto de la configuración, y que un equipo nuevo hereda al darse de alta.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Línea base.</strong> Lo mínimo por plataforma: acceso de gestión restringido, servidores de tiempo y de registro, SNMP sin valores por omisión, tiempos de sesión.</li>
+                    <li><strong>Valores débiles.</strong> Lo que el estándar declara y contradice la línea base, como telnet en las líneas virtuales, con su corrección.</li>
+                    <li><strong>Excepciones.</strong> Los equipos que se apartan del estándar de su rol, visibles para decidir si se justifican o se limpian.</li>
+                    <li><strong>Líneas prohibidas en IOS.</strong> Configuración que no debe existir en el equipo, aunque nadie la haya declarado. Es la única configuración de más que el cumplimiento señala.</li>
+                </ul>
+                <p>
+                    Guardar el estándar no toca la red. Llevarlo a los equipos pasa por el mismo ciclo cerrado que cualquier cambio: gemelo digital, aprobación, aplicación y verificación. Oktavia nunca propone secretos: comunidades, usuarios, contraseñas y llaves los define una persona.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="chat">
+                <h2>Argos: salud de la red y diagnóstico sin ticket</h2>
+                <p>
+                    Argos, el asistente de Oktavia, junta en un solo análisis la salud de un sitio, de un equipo o de toda la red, en cinco dimensiones: estado de la red, recursos, hardware y software (incluidos CVE y KEV), seguridad, y configuración contra la intención.
+                </p>
+                <p>
+                    Lo que lo hace útil es la correlación. Cada falla de estado se cruza con la configuración y se clasifica en una de tres causas:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>La configuración del propio equipo</strong> se desvió de la intención en el servicio que falla.</li>
+                    <li><strong>La configuración de un vecino</strong> explica la falla: el otro extremo del túnel o del vecino BGP.</li>
+                    <li><strong>Operación</strong>: la configuración está bien y la causa es el enlace, el proveedor o el equipo remoto.</li>
+                </ul>
+                <p>
+                    Con eso Argos arma un diagnóstico que no necesita un ticket para empezar: agrupa las fallas en incidentes con una causa y varios síntomas, y los ordena por impacto —sitio aislado, usuarios afectados, redundancia degradada, sin impacto en usuarios—. Cada incidente propone lo que sigue: cerrar el ciclo donde está la causa, probar conectividad o diagnosticar el equipo.
+                </p>
+                <p>
+                    Todo esto es determinista. La inteligencia artificial entra sólo cuando la persona la pide, y sólo sobre un resumen acotado del equipo o del sitio. Nunca recibe configuraciones completas ni secretos.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>Que la herramienta no sea el riesgo</h2>
+                <p>
+                    Una plataforma que entra a todos los equipos de la red es, por definición, un objetivo atractivo. Las decisiones que la protegen:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Credenciales en una bóveda</strong>, con precedencia por equipo, sitio u organización. En la red de pruebas, el día 0 lleva sólo el hash de la contraseña.</li>
+                    <li><strong>Aislamiento por organización.</strong> Cada organización ve sólo su inventario, sus resultados y sus análisis.</li>
+                    <li><strong>Verificación de la identidad SSH.</strong> Las llaves conocidas se guardan por organización, y una llave que cambió se rechaza hasta que el operador la confirma.</li>
+                    <li><strong>Exportaciones sin secretos.</strong> Las exportaciones a CSV omiten las líneas que llevan contraseñas, comunidades o llaves, y los paquetes de baja de un equipo se archivan sin secretos.</li>
+                    <li><strong>Nada sensible al modelo de lenguaje.</strong> Sólo resúmenes acotados, y sólo a petición.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>Los principios detrás</h2>
+                <ul class="doc-list">
+                    <li><strong>Cambio mínimo.</strong> Se corrige lo que falta o lo que está prohibido, no se reescribe la configuración completa.</li>
+                    <li><strong>Aprobación humana.</strong> Ningún cambio llega a la red sin que una persona revise el diferencial exacto.</li>
+                    <li><strong>Trazabilidad.</strong> Cada cambio queda como un ticket del gemelo digital, con lo propuesto, lo aprobado, lo aplicado y la verificación.</li>
+                    <li><strong>Ningún secreto a la IA.</strong> Lo que el modelo no recibe, no lo puede filtrar.</li>
+                </ul>
+                <p class="post-punch">
+                    Seguridad con evidencia, corrección por el mismo ciclo que todo lo demás, y una herramienta que no agrega superficie de ataque.
+                </p>
+            </section>
+
+            <div class="post-cta">
+                <h2>¿Sabe hoy qué equipos corren una versión con vulnerabilidades explotadas activamente?</h2>
+                <p>
+                    Si la respuesta tarda más de un minuto, vale la pena verlo en su propia red. Para cotizar sólo necesitamos saber aproximadamente cuántos equipos administra.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Quiero una cotización</a>
+                    <a href="../#contacto">Solicitar una demostración</a>
+                    <a href="red-de-pruebas-cml-y-sd-wan.html">Artículo anterior: la red de pruebas</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Artículo público, sin información confidencial de clientes.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
+</body>
+</html>

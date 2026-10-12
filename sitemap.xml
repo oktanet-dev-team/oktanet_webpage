@@ -74,4 +74,52 @@
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/oktavia-en.html"/>
 </url>
 
+<url>
+<loc>https://oktanet.io/blog/</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/index-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/index-en.html</loc>
+<priority>0.6</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/index-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan-en.html</loc>
+<priority>0.6</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/red-de-pruebas-cml-y-sd-wan-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html</loc>
+<priority>0.6</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html"/>
+</url>
+
 </urlset>

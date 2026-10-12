@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Security in Oktavia and Argos | Oktanet</title>
+    <meta name="description" content="Vulnerabilities by software version with NVD, CISA KEV and EPSS; security posture with evidence per device and site; per-role hardening as intent; and how Argos diagnoses network health without sending configurations or secrets to a language model.">
+    <link rel="canonical" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Security in Oktavia and Argos">
+    <meta property="og:description" content="Vulnerabilities by software version with NVD, CISA KEV and EPSS; security posture with evidence per device and site; per-role hardening as intent; and how Argos diagnoses network health without sending configurations or secrets to a language model.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-11">
+    <meta property="og:url" content="https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-seguridad-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-seguridad-en.png">
+    <meta property="og:image:alt" content="Security in Oktavia and Argos — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./seguridad-en-oktavia-y-argos.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="seguridad-en-oktavia-y-argos-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="30" height="30" decoding="async">Oktanet Team</p>
+                <p class="doc-eyebrow">Security</p>
+                <h1>Security in Oktavia and Argos</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Vulnerabilities</span>
+                    <span class="post-tag">Hardening</span>
+                    <span class="post-tag">Argos</span>
+                    <span>11 October 2026</span>
+                    <span>·</span>
+                    <span>10 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    Network security is not solved with a list of CVEs or a score. It is solved by knowing which device is exposed and why, what to change to fix it, and being sure the tool that found it has not become a new risk itself. This article explains how Oktavia and its assistant, Argos, do it.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>Hundreds of CVEs and no decision</h2>
+                <p>
+                    Any scanner hands you hundreds of vulnerabilities for every operating system version. Sorted by CVSS score, the list says everything is urgent, and when everything is urgent nothing is. What a network lead needs to know is something else: which ones are being exploited today, on which devices, which version to move to, and whether that version is already part of the standard.
+                </p>
+                <p>
+                    The same goes for configuration. An «SSH exposed» finding without the line that backs it, or the change that fixes it, is a conversation, not a task.
+                </p>
+                <p class="post-punch">
+                    A security finding is useful when it comes with its evidence, its real priority and its fix.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>Vulnerabilities by software version</h2>
+                <p>
+                    Oktavia takes the platform and version that discovery obtained from each device and matches them against three public catalogs:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>NVD (CVE API 2.0)</strong>, the NIST database: the CVEs affecting that version, with their severity and the versions that fix them.</li>
+                    <li><strong>CISA KEV</strong>: the catalog of vulnerabilities being actively exploited.</li>
+                    <li><strong>FIRST EPSS</strong>: the estimated probability that a vulnerability will be exploited in the next thirty days.</li>
+                </ul>
+                <p>
+                    The priority order is explicit: KEV first, then severity, exploit probability and score. From that comes a rating per device, per site and per tenant, along with the reason for each: how many actively exploited vulnerabilities, how many critical ones, the highest probability.
+                </p>
+                <p>
+                    For each device, Oktavia suggests the minimum safe version within the same software train —it will not propose jumping from IOS to IOS XE to fix a CVE— and says how many of the severe vulnerabilities it fixes. That minimum version can be promoted, through an explicit action, to the per-model software standard, and from then on compliance evaluates it in every audit like any other rule.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Lab images and virtual nodes.</strong> They are marked as approximate: their version does not allow an exact match and they do not represent real exposure, so they are listed but do not count toward the rating.</li>
+                    <li><strong>When it runs.</strong> With every full audit and daily through the task scheduler. A device replacement changes the version, and the analysis is updated on the next audit.</li>
+                    <li><strong>What leaves your network.</strong> The catalogs are only queried with product and version, or CVE identifiers. Nothing that identifies your organization or your devices.</li>
+                    <li><strong>Printable report.</strong> A CVE report per network or per site, ready to print to PDF, with devices sorted by exposure. Automatic weekly delivery is coming soon.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="llave">
+                <h2>Security posture with evidence</h2>
+                <p>
+                    Security posture is computed from the collected configuration, deterministically, per device and per site, in four domains:
+                </p>
+                <div class="doc-table-wrap">
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th scope="col">Domain</th><th scope="col">What it checks</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Perimeter</strong></td><td>What goes in and out unfiltered: overly permissive policies, open access lists, services exposed to the internet.</td></tr>
+                            <tr><td><strong>Management plane</strong></td><td>SSH and HTTPS reachable from the WAN, telnet or HTTP enabled, virtual lines without an access list, SNMP with default values.</td></tr>
+                            <tr><td><strong>Identities</strong></td><td>Admin accounts without a restricted source or second factor, privileged accounts with an unencrypted password.</td></tr>
+                            <tr><td><strong>Segmentation</strong></td><td>Unprotected zones, policies without logging, unhardened access ports, orphan objects.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Each finding comes with the line or object that backs it and a concrete recommendation. On FortiGate and Junos, firewall policy analysis is added: permissive rules and what is exposed to the internet. Coverage is multi-vendor: Cisco IOS and IOS XE, FortiGate, Junos, FortiSwitch and Cisco SD-WAN, each read with its own model, not through a common translation.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>Per-role hardening, as intent</h2>
+                <p>
+                    Detecting a weakness is half the job. The other half is making sure it does not come back. That is why hardening in Oktavia is not a separate document: it is a per-role standard that lives in the same intent as the rest of the configuration, and that a new device inherits when it is onboarded.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Baseline.</strong> The minimum per platform: restricted management access, time and logging servers, SNMP without defaults, session timeouts.</li>
+                    <li><strong>Weak values.</strong> What the standard declares that contradicts the baseline, such as telnet on the virtual lines, with its fix.</li>
+                    <li><strong>Exceptions.</strong> Devices that depart from their role's standard, visible so you can decide whether they are justified or should be cleaned up.</li>
+                    <li><strong>Forbidden lines on IOS.</strong> Configuration that must not exist on the device, even if nobody declared it. It is the only extra configuration compliance flags.</li>
+                </ul>
+                <p>
+                    Saving the standard does not touch the network. Taking it to the devices goes through the same closed loop as any change: digital twin, approval, apply and verify. Oktavia never proposes secrets: communities, users, passwords and keys are defined by a person.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="chat">
+                <h2>Argos: network health and diagnosis without a ticket</h2>
+                <p>
+                    Argos, the Oktavia assistant, brings together in a single analysis the health of a site, a device or the whole network, across five dimensions: network state, resources, hardware and software (including CVE and KEV), security, and configuration against intent.
+                </p>
+                <p>
+                    What makes it useful is correlation. Every state failure is matched against configuration and classified into one of three causes:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>The device's own configuration</strong> drifted from intent in the failing service.</li>
+                    <li><strong>A neighbor's configuration</strong> explains the failure: the far end of the tunnel or of the BGP session.</li>
+                    <li><strong>Operational</strong>: the configuration is fine and the cause is the link, the carrier or the remote device.</li>
+                </ul>
+                <p>
+                    With that, Argos builds a diagnosis that does not need a ticket to start: it groups failures into incidents with one cause and several symptoms, and sorts them by impact —isolated site, affected users, degraded redundancy, no user impact—. Each incident proposes what comes next: close the loop where the cause is, test connectivity, or diagnose the device.
+                </p>
+                <p>
+                    All of this is deterministic. Artificial intelligence comes in only when the person asks for it, and only over a bounded summary of the device or site. It never receives full configurations or secrets.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>Keeping the tool from becoming the risk</h2>
+                <p>
+                    A platform that logs in to every device in the network is, by definition, an attractive target. The decisions that protect it:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Credentials in a vault</strong>, with precedence per device, site or tenant. On the test network, day 0 carries only the password hash.</li>
+                    <li><strong>Per-tenant isolation.</strong> Each organization sees only its own inventory, results and analyses.</li>
+                    <li><strong>SSH identity verification.</strong> Known keys are stored per tenant, and a changed key is rejected until the operator confirms it.</li>
+                    <li><strong>Exports without secrets.</strong> CSV exports leave out the lines carrying passwords, communities or keys, and a retired device's archive package is stored without secrets.</li>
+                    <li><strong>Nothing sensitive to the language model.</strong> Only bounded summaries, and only on request.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>The principles behind it</h2>
+                <ul class="doc-list">
+                    <li><strong>Least change.</strong> What is missing or forbidden is fixed; the full configuration is not rewritten.</li>
+                    <li><strong>Human approval.</strong> No change reaches the network without a person reviewing the exact diff.</li>
+                    <li><strong>Traceability.</strong> Every change is kept as a digital twin change ticket, with what was proposed, approved, applied and verified.</li>
+                    <li><strong>No secrets to AI.</strong> What the model never receives, it cannot leak.</li>
+                </ul>
+                <p class="post-punch">
+                    Security with evidence, fixes through the same loop as everything else, and a tool that adds no attack surface.
+                </p>
+            </section>
+
+            <div class="post-cta">
+                <h2>Do you know today which devices run a version with actively exploited vulnerabilities?</h2>
+                <p>
+                    If the answer takes more than a minute, it is worth seeing on your own network. To quote, we only need a rough idea of how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="red-de-pruebas-cml-y-sd-wan-en.html">Previous article: the test network</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/blog_script.js?v=502dc659f0"></script>
+</body>
+</html>

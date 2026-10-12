@@ -384,7 +384,10 @@
                 'Alta de servicios nuevos',
                 'Seguridad de red',
                 'Análisis de flujos y rutas',
-                'Adopción de lo existente'
+                'Adopción de lo existente',
+                'Alta y baja de sitios',
+                'Reemplazo y baja de equipos',
+                'Ensayo en la red de pruebas'
             ],
             caseBodies: [
                 'Evalúa cumplimiento por sitio, rol o dispositivo en minutos, con evidencia exportable para auditoría o licitación.',
@@ -392,7 +395,10 @@
                 'Levanta un túnel entre dos sitios con sus rutas, o publica una red nueva en OSPF y BGP con verificación por ping incluida.',
                 'Postura de firewalls y switches con la línea de configuración que sustenta cada hallazgo y la corrección en CLI del fabricante.',
                 'Traza el camino entre dos direcciones IP con ida y regreso, y qué política de firewall decide el flujo en cada salto.',
-                'Declara como intención la configuración que un equipo ya tiene, para empezar a auditarla sin rediseñar nada.'
+                'Declara como intención la configuración que un equipo ya tiene, para empezar a auditarla sin rediseñar nada.',
+                'Abre una sucursal clonada del diseño de su tipo de sitio, o retírala limpiando el concentrador y validando que no quedó nada.',
+                'Cambia un equipo de modelo con mapeo de puertos y verificación, o retíralo con su paquete de archivo y sin restos en los tableros.',
+                'Cada alta, reemplazo o baja se ensaya primero en Cisco Modeling Labs, con nodos que crea Oktavia y que enciende el operador.'
             ],
             metricsBodies: [
                 'menos tiempo en revisiones manuales de cumplimiento y configuración.',
@@ -832,7 +838,10 @@
                 'New service rollout',
                 'Network security',
                 'Flow and path analysis',
-                'Adopting what already exists'
+                'Adopting what already exists',
+                'Site creation and removal',
+                'Device replacement and retirement',
+                'Rehearsal on the test network'
             ],
             caseBodies: [
                 'Evaluate compliance by site, role, or device in minutes, with evidence exportable for audits or public tenders.',
@@ -840,7 +849,10 @@
                 'Bring up a tunnel between two sites with its routes, or advertise a new network in OSPF and BGP with ping verification included.',
                 'Firewall and switch posture with the configuration line backing each finding and the fix in the vendor own CLI.',
                 'Trace the path between two IP addresses, forward and return, and which firewall policy decides the flow at each hop.',
-                'Declare the configuration a device already has as intent, so auditing can start without redesigning anything.'
+                'Declare the configuration a device already has as intent, so auditing can start without redesigning anything.',
+                'Open a branch cloned from its site-type design, or retire it by cleaning the hub and validating nothing is left behind.',
+                'Move a device to a new model with port mapping and verification, or retire it with its archive package and no leftovers on the dashboards.',
+                'Every creation, replacement, or removal is rehearsed first in Cisco Modeling Labs, with nodes Oktavia creates and the operator powers on.'
             ],
             metricsBodies: [
                 'less time spent on manual compliance and configuration reviews.',
