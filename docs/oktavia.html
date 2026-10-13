@@ -217,14 +217,16 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Centro de automatización</strong></td><td>Vista ejecutiva de la red: puntaje de cumplimiento global, dispositivos accesibles por ping y SSH, distribución por rol, sitios cubiertos, fallas activas y actividad reciente de trabajos.</td><td>Pro</td></tr>
+                        <tr><td><strong>Consolas por dominio</strong></td><td>Una consola por dominio de la red —Campus, WAN, Seguridad y Gestión—, al estilo de una consola de servicios en la nube: resumen, intención, reglas, cumplimiento, cambios, flujos de Argos y telemetría del dominio en un solo lugar, con el sitio como alcance. Las vistas de toda la red siguen disponibles con su filtro de dominio.</td><td>Pro</td></tr>
                         <tr><td><strong>Inventario de red</strong></td><td>Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante y tipo de sitio. Distribución visual, detalle por dispositivo, frescura de auditoría, import y export en CSV con fusión no destructiva.</td><td>Pro</td></tr>
                         <tr><td><strong>Topología y trazado de rutas</strong></td><td>Mapa interactivo con vistas física, de plano de control, enrutamiento, OSPF, sistemas autónomos BGP y STP. Panel por nodo y por sitio. Trazado de la ruta activa entre dos puntos con salto, siguiente salto, interfaz de salida y protocolo, ruta inversa y detección de asimetría.</td><td>Pro</td></tr>
                         <tr><td><strong>Cumplimiento de configuración</strong></td><td>Puntaje global y por sitio, principales fallas y tendencias. Resultados por dispositivo con severidad, diagnóstico y plan de corrección. Catálogo de servicios y reglas editables con habilitación selectiva por rol, fabricante, plataforma o tipo de sitio.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuración deseada</strong></td><td>Generación de configuración a partir de variables de servicio y plantillas, con precedencia por valores por omisión, tipo de sitio, sitio, plataforma, modelo, rol y dispositivo. Exportación en JSON y CSV.</td><td>Pro</td></tr>
+                        <tr><td><strong>Estándar de hardening por rol</strong></td><td>El estándar de seguridad vive en el rol del equipo y un equipo nuevo lo hereda al darse de alta: syslog, SNMP, NTP, acceso de gestión y servicios de los cuatro fabricantes. En Cisco IOS, además de lo que falta, detecta lo que sobra —servidor HTTP, comunidad pública, acceso remoto sin SSH— y el Gemelo Digital propone quitarlo.</td><td>Pro</td></tr>
                         <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
                         <tr><td><strong>Alta de servicios nuevos</strong></td><td>El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, ajustes de enrutamiento. Cada uno con su rollback.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — ChatOps de red</strong></td><td>Asistente en lenguaje natural integrado en todas las pantallas. Entiende, investiga, configura y cierra el ciclo. Cada acción declara si consume el modelo de IA antes de ejecutarse.</td><td>Pro</td></tr>
-                        <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Puntaje global y por equipo, filtros por dominio y severidad, evidencia por hallazgo.</td><td>Pro</td></tr>
+                        <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, más las vulnerabilidades por versión de software (NVD, CISA KEV y FIRST EPSS). Puntaje global y por equipo, filtros por dominio y severidad, evidencia por hallazgo y qué atender primero.</td><td>Pro</td></tr>
                         <tr><td><strong>Inventario de servicios</strong></td><td>Cruce entre lo observado en el equipo, lo declarado como intención y el catálogo de servicios. Clasifica cada servicio como cubierto, punto ciego, sin aplicar o inaplicable, con su alcance de configuración.</td><td>Pro</td></tr>
                         <tr><td><strong>Gemelo digital</strong></td><td>Capturas del estado de la red y comparación entre configuración deseada y activa. Detección de desviación por dispositivo, cuantificación de impacto y flujo de aprobación con estados sucesivos hasta la aplicación.</td><td>Pro</td></tr>
                         <tr><td><strong>Análisis de políticas de firewall</strong></td><td>Qué política decide un flujo en cada salto del camino, con su traducción de direcciones y su registro. Resuelve grupos de objetos y conjuntos de aplicaciones de forma recursiva.</td><td>Pro</td></tr>
@@ -233,9 +235,9 @@
                         <tr><td><strong>Reportes avanzados</strong></td><td>Salud de red, riesgo de configuración, desviación, capacidad, puertos y topología, en reportes descargables listos para auditoría.</td><td>Pro</td></tr>
                         <tr><td><strong>Provisioning y gestión de sitios</strong></td><td>Estructura lógica de tipos de sitio, sitios y roles definida antes del primer descubrimiento. Vista ejecutiva por sitio con dispositivos, direcciones de gestión, cumplimiento y configuración de red.</td><td>Pro</td></tr>
                         <tr><td><strong>Operaciones y auditorías programadas</strong></td><td>Ejecución y programación de auditorías, descubrimiento, sincronización de inventario y validaciones de conectividad, con historial de trabajos y artefactos.</td><td>Pro</td></tr>
-                        <tr><td><strong>FinOps</strong></td><td>Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo.</td><td>Pro</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo, con el costo estimado de la red por equipo, por sitio y por dominio.</td><td>Pro</td></tr>
                         <tr><td><strong>Gestión multi-tenant</strong></td><td>Multi-organización, gestión de usuarios y separación de datos por tenant.</td><td>Pro</td></tr>
-                        <tr><td><strong>Telemetría en tiempo real</strong></td><td>Métricas operativas de CPU, memoria e interfaces almacenadas como series de tiempo, con visualización temporal, tendencias y alertas por umbral.</td><td>Telemetría y Eventos</td></tr>
+                        <tr><td><strong>Telemetría en tiempo real</strong></td><td>Métricas operativas de CPU, memoria, interfaces y vecinos de enrutamiento almacenadas como series de tiempo, con visualización temporal, tendencias y alertas por umbral. Por sondeo SNMP en cualquier fabricante y, en Cisco IOS XE, por streaming: el equipo empuja sus datos cada diez segundos sin ser consultado. Se enciende desde Argos y se aplica por el Gemelo Digital.</td><td>Telemetría y Eventos</td></tr>
                         <tr><td><strong>Automatización de eventos</strong></td><td>Reglas de condición a acción que reaccionan de forma automática ante caídas de sesión BGP, caídas de vecino OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura o errores.</td><td>Telemetría y Eventos</td></tr>
                     </tbody>
                 </table>
@@ -357,6 +359,14 @@
             <p>
                 La versión de software de cada equipo se cruza con NVD, CISA KEV y FIRST EPSS: primero lo que se está explotando activamente, con calificación por equipo, sitio y organización, la versión mínima segura por modelo que alimenta la norma de software, y un reporte de CVE imprimible por red o por sitio. Las imágenes de laboratorio se marcan como aproximadas y no cuentan como exposición real. Más en el artículo <a href="../blog/seguridad-en-oktavia-y-argos.html">Seguridad en Oktavia y Argos</a>.
             </p>
+            <h3>Qué atender primero</h3>
+            <p>
+                Una lista de CVE no es una decisión. Argos cruza cada vulnerabilidad explotada o probable con la configuración activa del equipo —si la función vulnerable está encendida— y con su rol en la red, y la clasifica en <strong>actuar ya</strong>, <strong>planear</strong>, <strong>vigilar</strong> o <strong>confirmar versión</strong>. Un equipo de borde con la función expuesta va primero; uno interno con la función apagada, después.
+            </p>
+            <h3>Estándar de hardening por rol</h3>
+            <p>
+                El estándar de seguridad se declara una vez, en el rol, y lo heredan todos los equipos con ese rol, los existentes y los nuevos: registro hacia el colector, SNMP de sólo lectura restringido, NTP, acceso de gestión sólo por SSH y servicios innecesarios apagados. Los demás alcances guardan sólo lo que varía por sitio o por equipo. El cumplimiento verifica lo que falta y, en Cisco IOS, también lo que sobra; el Gemelo Digital propone la corrección y una persona la aprueba.
+            </p>
             <h3>Inventario de servicios</h3>
             <p>
                 Responde la pregunta previa al cumplimiento: qué hay configurado en cada equipo, y cuánto de eso está declarado como intención. Cruza lo observado con lo declarado y con el catálogo de servicios, y clasifica cada servicio en cuatro estados, junto con el alcance de configuración que lo define.
@@ -409,6 +419,8 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>SNMP y recolección de métricas</strong></td><td>Producción</td><td>Motor de telemetría nativo: sondeo y almacenamiento en base de series de tiempo.</td></tr>
+                        <tr><td><strong>Telemetría por streaming (model-driven)</strong></td><td>Producción</td><td>Cisco IOS XE empuja interfaces, vecinos BGP, CPU y memoria al colector de Oktavia por gRPC cada diez segundos. Se integra a las mismas gráficas que el sondeo SNMP, sin duplicar series.</td></tr>
+                        <tr><td><strong>Servidor MCP</strong></td><td>Producción</td><td>El motor expone por Model Context Protocol, en sólo lectura, el inventario, el cumplimiento y los artefactos de la organización, para Argos y para asistentes como Claude Desktop.</td></tr>
                         <tr><td><strong>Grafana</strong></td><td>Compatible</td><td>La base de series de tiempo de Oktavia es fuente de datos directa de Grafana; el cliente construye sus tableros sobre las mismas métricas sin transformación adicional.</td></tr>
                         <tr><td><strong>Zabbix y otros sistemas SNMP</strong></td><td>Interoperable</td><td>Los dispositivos expuestos por SNMP pueden ser consumidos por el sistema de monitoreo que el cliente ya opera.</td></tr>
                         <tr><td><strong>Correo electrónico (SMTP)</strong></td><td>Producción</td><td>Notificaciones y alertas por correo sobre cualquier servidor SMTP del cliente.</td></tr>
@@ -473,6 +485,10 @@
             <h3>Entre componentes</h3>
             <p>
                 La interfaz web y el motor de automatización se autentican con clave en cada llamada, en las dos direcciones. El motor no expone ninguna operación sin ella.
+            </p>
+            <h3>Claves de API con alcance</h3>
+            <p>
+                Una integración externa nunca recibe la clave de la interfaz: recibe una clave propia, acotada a una organización, de lectura o de escritura y a una lista cerrada de operaciones. Se revoca sin tocar las demás.
             </p>
 
             <h3>Ningún cambio sin aprobación</h3>

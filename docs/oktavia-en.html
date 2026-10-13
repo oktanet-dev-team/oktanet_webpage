@@ -186,14 +186,16 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Automation center</strong></td><td>Executive view of the network: global compliance score, devices reachable by ping and SSH, distribution by role, sites covered, active failures, and recent job activity.</td><td>Pro</td></tr>
+                        <tr><td><strong>Domain consoles</strong></td><td>One console per network domain —Campus, WAN, Security and Management—, in the style of a cloud services console: summary, intent, rules, compliance, changes, Argos workflows and telemetry for the domain in one place, with the site as scope. Network-wide views remain available with their domain filter.</td><td>Pro</td></tr>
                         <tr><td><strong>Network inventory</strong></td><td>Dynamic multi-vendor inventory with filters by site, role, platform, vendor, and site type. Visual distribution, per-device detail, audit freshness, CSV import and export with non-destructive merge.</td><td>Pro</td></tr>
                         <tr><td><strong>Topology and path tracing</strong></td><td>Interactive map with physical, control-plane, routing, OSPF, BGP autonomous system, and STP views. Per-node and per-site panels. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro</td></tr>
                         <tr><td><strong>Desired configuration</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device. JSON and CSV export.</td><td>Pro</td></tr>
+                        <tr><td><strong>Hardening standard by role</strong></td><td>The security standard lives in the device role and a new device inherits it when onboarded: syslog, SNMP, NTP, management access and services across the four vendors. On Cisco IOS, besides what is missing, it detects what is extra —HTTP server, public community, remote access without SSH— and the Digital Twin proposes removing it.</td><td>Pro</td></tr>
                         <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
                         <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, routing adjustments. Each with its rollback.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro</td></tr>
-                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation. Global and per-device score, filters by domain and severity, evidence per finding.</td><td>Pro</td></tr>
+                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain and severity, evidence per finding, and what to address first.</td><td>Pro</td></tr>
                         <tr><td><strong>Service inventory</strong></td><td>Cross-check between what is observed on the device, what is declared as intent, and the service catalog. Classifies each service as covered, blind spot, not applied, or not applicable, with its configuration scope.</td><td>Pro</td></tr>
                         <tr><td><strong>Digital Twin</strong></td><td>Network state snapshots and comparison between desired and live configuration. Per-device drift detection, impact quantification, and an approval flow through successive states up to application.</td><td>Pro</td></tr>
                         <tr><td><strong>Firewall policy analysis</strong></td><td>Which policy decides a flow at each hop along the path, with its address translation and its logging. Resolves object groups and application sets recursively.</td><td>Pro</td></tr>
@@ -202,9 +204,9 @@
                         <tr><td><strong>Advanced reports</strong></td><td>Network health, configuration risk, drift, capacity, ports, and topology, in downloadable reports ready for audit.</td><td>Pro</td></tr>
                         <tr><td><strong>Provisioning and site management</strong></td><td>Logical structure of site types, sites, and roles defined before the first discovery run. Executive per-site view with devices, management addresses, compliance, and network configuration.</td><td>Pro</td></tr>
                         <tr><td><strong>Operations and scheduled audits</strong></td><td>Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.</td><td>Pro</td></tr>
-                        <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis.</td><td>Pro</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis, with the estimated network cost per device, per site and per domain.</td><td>Pro</td></tr>
                         <tr><td><strong>Multi-tenant management</strong></td><td>Multi-organization, user management, and per-tenant data separation.</td><td>Pro</td></tr>
-                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, and interface metrics stored as time series, with temporal visualization, trends, and threshold alerts.</td><td>Telemetry and Events</td></tr>
+                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, interface and routing-neighbor metrics stored as time series, with temporal visualization, trends, and threshold alerts. Through SNMP polling on any vendor and, on Cisco IOS XE, through streaming: the device pushes its data every ten seconds without being polled. Enabled from Argos and applied through the Digital Twin.</td><td>Telemetry and Events</td></tr>
                         <tr><td><strong>Event automation</strong></td><td>Condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, or error thresholds.</td><td>Telemetry and Events</td></tr>
                     </tbody>
                 </table>
@@ -326,6 +328,14 @@
             <p>
                 Each device's software version is matched against NVD, CISA KEV and FIRST EPSS: actively exploited vulnerabilities first, with a rating per device, site and tenant, the minimum safe version per model that feeds the software standard, and a printable CVE report per network or site. Lab images are marked as approximate and do not count as real exposure. More in the article <a href="../blog/seguridad-en-oktavia-y-argos-en.html">Security in Oktavia and Argos</a>.
             </p>
+            <h3>What to address first</h3>
+            <p>
+                A list of CVEs is not a decision. Argos crosses each exploited or likely vulnerability with the device's running configuration —whether the vulnerable feature is enabled— and with its role in the network, and classifies it as <strong>act now</strong>, <strong>plan</strong>, <strong>watch</strong> or <strong>confirm version</strong>. An edge device with the feature exposed goes first; an internal one with the feature off, later.
+            </p>
+            <h3>Hardening standard by role</h3>
+            <p>
+                The security standard is declared once, in the role, and every device with that role inherits it, existing and new: logging to the collector, restricted read-only SNMP, NTP, management access over SSH only, and unnecessary services turned off. Other scopes keep only what varies per site or per device. Compliance checks what is missing and, on Cisco IOS, also what is extra; the Digital Twin proposes the fix and a person approves it.
+            </p>
             <h3>Service inventory</h3>
             <p>
                 It answers the question that comes before compliance: what is configured on each device, and how much of it is declared as intent. It cross-checks what is observed against what is declared and against the service catalog, and classifies each service into four states, along with the configuration scope that defines it.
@@ -378,6 +388,8 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>SNMP and metric collection</strong></td><td>Production</td><td>Native telemetry engine: polling and storage in a time-series database.</td></tr>
+                        <tr><td><strong>Streaming telemetry (model-driven)</strong></td><td>Production</td><td>Cisco IOS XE pushes interfaces, BGP neighbors, CPU and memory to the Oktavia collector over gRPC every ten seconds. It feeds the same charts as SNMP polling, without duplicating series.</td></tr>
+                        <tr><td><strong>MCP server</strong></td><td>Production</td><td>The engine exposes, read-only over the Model Context Protocol, the tenant inventory, compliance and artifacts, for Argos and for assistants such as Claude Desktop.</td></tr>
                         <tr><td><strong>Grafana</strong></td><td>Compatible</td><td>Oktavia time-series database is a direct Grafana datasource; the customer builds dashboards on the same metrics with no extra transformation.</td></tr>
                         <tr><td><strong>Zabbix and other SNMP systems</strong></td><td>Interoperable</td><td>Devices exposed over SNMP can be consumed by whichever monitoring system the customer already runs.</td></tr>
                         <tr><td><strong>Email (SMTP)</strong></td><td>Production</td><td>Notifications and alerts by email over any customer SMTP server.</td></tr>
@@ -442,6 +454,10 @@
             <h3>Between components</h3>
             <p>
                 The web interface and the automation engine authenticate with a key on every call, in both directions. The engine exposes no operation without it.
+            </p>
+            <h3>Scoped API keys</h3>
+            <p>
+                An external integration never receives the interface key: it gets its own key, scoped to one organization, read or write, and to a closed list of operations. It is revoked without touching the others.
             </p>
 
             <h3>No change without approval</h3>
