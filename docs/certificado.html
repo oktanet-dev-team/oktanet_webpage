@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificado | Academia Oktanet</title>
+    <meta name="description" content="Certificado de aprobación de un curso gratuito de la Academia Oktanet, generado al aprobar la evaluación en línea.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=d2045f5589">
+</head>
+<body class="cert-page">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Certificado">
+                <a href="./academia.html">Academia</a>
+                <a href="./academia.html" data-cert-curso-link>Volver al curso</a>
+                <button class="doc-btn doc-btn-solid" type="button" data-doc-print>Imprimir / Guardar PDF</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <div class="cert-actions no-print">
+            <p>Para guardarlo como PDF: pulsa <strong>Imprimir / Guardar PDF</strong> y elige «Guardar como PDF» como destino, en horizontal. El nombre del archivo ya trae tu nombre y el curso.</p>
+            <button class="quiz-btn quiz-btn-solid" type="button" data-doc-print>Imprimir / Guardar PDF</button>
+        </div>
+
+        <article class="cert-sheet" data-certificado hidden aria-labelledby="cert-titulo">
+            <img class="cert-logo" src="../img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="512" height="499">
+            <p class="cert-academy">Academia Oktanet</p>
+            <h1 class="cert-title" id="cert-titulo">Certificado de aprobación</h1>
+            <p class="cert-lead">Academia Oktanet otorga el presente certificado a</p>
+            <p class="cert-name" data-cert="nombre"></p>
+            <p class="cert-course-label">por aprobar la evaluación del curso</p>
+            <p class="cert-course" data-cert="curso"></p>
+            <p class="cert-level"><span data-cert="nivel"></span> de la ruta de la Academia Oktanet</p>
+            <p class="cert-validation">
+                Validamos que aprobó la evaluación del curso con <strong><span data-cert="calificacion"></span> aciertos</strong>, por encima del mínimo de <span data-cert="minimo"></span> requerido para aprobar.
+            </p>
+            <ul class="cert-facts">
+                <li><span class="cert-fact-label">Calificación</span><span class="cert-fact-value" data-cert="calificacion"></span></li>
+                <li><span class="cert-fact-label">Fecha</span><span class="cert-fact-value" data-cert="fecha"></span></li>
+                <li><span class="cert-fact-label">Folio</span><span class="cert-fact-value" data-cert="folio"></span></li>
+            </ul>
+            <div class="cert-signature">
+                <p class="cert-signer">Academia Oktanet</p>
+                <p class="cert-signer-role">Oktanet · Automatización de redes</p>
+            </div>
+            <p class="cert-fine">
+                Certificado del curso gratuito de la Academia Oktanet, generado al aprobar la evaluación en línea en <a href="https://oktanet.io/docs/academia.html">oktanet.io/docs/academia.html</a>. El folio resume el curso, la fecha y la calificación. No equivale a las certificaciones Oktavia Asociado, Profesional ni Arquitecto, que incluyen laboratorio y la evaluación de un ingeniero de Oktanet.
+            </p>
+        </article>
+
+        <section class="cert-invalid" data-certificado-invalido hidden>
+            <h2>Este certificado no es válido</h2>
+            <p>Los datos del enlace no coinciden con el folio, o la calificación no alcanza el mínimo para aprobar. El certificado se genera desde el examen del curso, al aprobarlo.</p>
+            <p><a href="academia.html">Ir a la Academia Oktanet</a></p>
+        </section>
+
+        <noscript>
+            <section class="cert-invalid">
+                <h2>El certificado necesita JavaScript</h2>
+                <p>Los datos del certificado se arman en el navegador. Activa JavaScript y vuelve a abrir el enlace desde el examen del curso.</p>
+                <p><a href="academia.html">Ir a la Academia Oktanet</a></p>
+            </section>
+        </noscript>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+</body>
+</html>
