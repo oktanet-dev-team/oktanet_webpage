@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/docs_style.css?v=d2045f5589">
 </head>
 <body>
     <header class="doc-header no-print">
@@ -54,7 +54,7 @@
             </p>
             <ul class="doc-meta">
                 <li>Gratis y sin registro</li>
-                <li>Diez módulos · Examen interactivo</li>
+                <li>Diez módulos · Examen interactivo · Certificado al aprobar</li>
                 <li>Academia Oktanet · 2026</li>
             </ul>
             <div class="doc-share no-print">
@@ -544,6 +544,18 @@
                 </div>
             </form>
             <!-- QUIZ:END -->
+            <div class="quiz-cert no-print" data-quiz-cert data-course="oktavia-fundamentos" hidden>
+                <h3>Certificado de aprobación</h3>
+                <p>Aprobaste la evaluación. Escribe tu nombre tal como quieres que aparezca y genera tu certificado.</p>
+                <form class="quiz-cert-form" novalidate>
+                    <label>
+                        Nombre para el certificado
+                        <input name="nombre" type="text" required minlength="3" maxlength="80" autocomplete="name" placeholder="Nombre y apellidos">
+                    </label>
+                    <button class="quiz-btn quiz-btn-solid" type="submit">Generar certificado</button>
+                </form>
+                <p class="quiz-cert-note">Se abre en una pestaña nueva, listo para imprimir o guardar como PDF desde el navegador. Lleva tu nombre, el curso, la calificación, la fecha y un folio.</p>
+            </div>
         </section>
 
         <section class="doc-section print-only" id="respuestas">
@@ -562,6 +574,6 @@
         </footer>
     </main>
 
-    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
 </body>
 </html>
