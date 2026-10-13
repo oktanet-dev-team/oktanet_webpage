@@ -9,26 +9,10 @@
 </url>
 
 <url>
-<loc>https://oktanet.io/docs/</loc>
-<priority>0.8</priority>
-<changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/"/>
-<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/index-en.html"/>
-</url>
-
-<url>
-<loc>https://oktanet.io/docs/academia.html</loc>
-<priority>0.7</priority>
-<changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/academia.html"/>
-<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/academy-en.html"/>
-</url>
-
-<url>
 <loc>https://oktanet.io/docs/academy-en.html</loc>
 <priority>0.7</priority>
 <changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/academia.html"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs.html"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/academy-en.html"/>
 </url>
 
@@ -54,7 +38,7 @@
 <loc>https://oktanet.io/docs/index-en.html</loc>
 <priority>0.7</priority>
 <changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs.html"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/index-en.html"/>
 </url>
 
@@ -75,18 +59,10 @@
 </url>
 
 <url>
-<loc>https://oktanet.io/blog/</loc>
-<priority>0.7</priority>
-<changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/"/>
-<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/index-en.html"/>
-</url>
-
-<url>
 <loc>https://oktanet.io/blog/index-en.html</loc>
 <priority>0.6</priority>
 <changefreq>monthly</changefreq>
-<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/"/>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs.html"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/index-en.html"/>
 </url>
 

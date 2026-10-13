@@ -843,3 +843,19 @@ table.doc-table tr[hidden] {
         color: #063e66;
     }
 }
+
+/* La pirámide de la Academia (antes en docs/academia.html, que ahora redirige
+   al bloque Academia del portal): los niveles se angostan hacia arriba. */
+.academy-pyramid { list-style: none; margin: 18px 0 20px; padding: 0; display: grid; gap: 8px; justify-items: center; }
+.academy-pyramid li { box-sizing: border-box; padding: 12px 16px; border-radius: 10px; text-align: center; color: #fff;
+    background: linear-gradient(135deg, #0b4a78, #2b8fd4); display: flex; flex-direction: column; gap: 2px; }
+.academy-pyramid .lvl-5 { width: 34%; background: linear-gradient(135deg, #3b1d6e, #7c4dcc); }
+.academy-pyramid .lvl-4 { width: 50%; background: linear-gradient(135deg, #0a3657, #1d6fa8); }
+.academy-pyramid .lvl-3 { width: 66%; background: linear-gradient(135deg, #0b4a78, #2482c2); }
+.academy-pyramid .lvl-2 { width: 83%; background: linear-gradient(135deg, #0f6b8f, #2fb0c9); }
+.academy-pyramid .lvl-1 { width: 100%; background: linear-gradient(135deg, #12806f, #34c3a0); }
+.academy-pyramid .lvl-name { font-weight: 800; }
+.academy-pyramid .lvl-tag { font-size: 0.85rem; opacity: 0.9; }
+@media (max-width: 640px) {
+    .academy-pyramid .lvl-5, .academy-pyramid .lvl-4, .academy-pyramid .lvl-3, .academy-pyramid .lvl-2 { width: 100%; }
+}

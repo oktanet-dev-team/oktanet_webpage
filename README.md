@@ -32,7 +32,12 @@ docs/                   Documentación pública
   *.pdf                 Los documentos generados, versionados en el repo
 script/docs_script.js   Utilidades de la documentación
 style/docs_style.css    Estilos de la documentación, incluida la hoja de impresión
-docs/oktavia-docs*.html Documentación de Oktavia: el portal técnico de la Academia
+docs/oktavia-docs*.html Documentación de Oktavia: LA documentación (portal único). Dentro viven
+                        también la Academia (cursos), la ficha técnica y el resumen, y los
+                        artículos: se dan de alta en el catálogo (secciones academia, producto,
+                        articulos) y tools/portalize.py les pone menú, ruta, barra lateral y
+                        paginador del portal. docs/index.html, docs/academia.html y
+                        blog/index.html sólo redirigen al portal (URL viejas)
 script/oktavia_docs_data.js  Catálogo del portal: secciones, documentos y tablas de campos
 script/oktavia_docs.js       Buscador, árbol lateral, tarjetas y tablas del portal
 style/oktavia_docs_style.css Estilos propios del portal (se carga después de docs_style.css)
@@ -41,6 +46,8 @@ tools/                  Scripts de mantenimiento (no se publican)
   build_images.py       Recorta capturas y las exporta en WebP y PNG
   check_copy.py         Revisa que los dos idiomas de la portada calcen
   stamp_assets.py       Sella CSS y JS con el hash de su contenido (anti-caché)
+  portalize.py          Mete cursos, ficha, resumen y artículos en el portal (idempotente);
+                        correrlo al agregar una página de esas, y después stamp_assets.py
   check_datos.py        Falla si un artículo lleva direcciones o nombres reales
   build_og.py           Genera la imagen que se ve al compartir el enlace
   build_videos.py       Descarga las carátulas de los vídeos de YouTube

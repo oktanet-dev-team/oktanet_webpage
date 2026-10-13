@@ -27,6 +27,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=3c40b7db23">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -42,16 +44,18 @@
     initApollo();
     </script>
 </head>
-<body>
+<body class="docs-portal" data-docs-page="oktavia.html">
     <header class="doc-header no-print">
         <div class="doc-header-inner">
             <a class="doc-brand" href="../">
                 <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
                 <span>Oktanet</span>
             </a>
-            <nav aria-label="Documento">
-                <a href="./">Documentación</a>
-                <a href="./oktavia-resumen.html">Resumen ejecutivo</a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="../">Inicio</a>
+                <a href="oktavia-docs.html">Documentación</a>
+                <a href="oktavia-docs.html#academia">Academia</a>
+                <a href="oktavia-docs.html#articulos">Artículos</a>
                 <a href="../#contacto">Contacto</a>
                 <a href="./oktavia-en.html" data-doc-lang="en" hreflang="en">English</a>
                 <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
@@ -61,6 +65,33 @@
     </header>
 
     <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><a href="oktavia-docs.html#producto">Ficha técnica y resumen</a></li>
+                <li><span aria-current="page">Ficha técnica</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
         <section class="doc-cover">
             <p class="doc-eyebrow">Ficha técnica</p>
             <h1>Oktavia<br>Automatización de redes multivendor</h1>
@@ -616,6 +647,8 @@
             </ul>
         </section>
 
+        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>
+
         <footer class="doc-footer">
             <h3>Acerca de Oktanet</h3>
             <p>
@@ -627,8 +660,12 @@
             <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
             <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Documento público, sin información confidencial de clientes.</p>
         </footer>
+            </div>
+        </div>
     </main>
 
     <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

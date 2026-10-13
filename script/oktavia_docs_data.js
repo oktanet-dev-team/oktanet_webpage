@@ -151,6 +151,58 @@ window.OKTAVIA_DOCS = (function () {
                 { id: 'migrar-sot', title: 'Cómo migrar desde CSV y YAML hacia la fuente de verdad', summary: 'Pasar del inventario en archivos al inventario por tenant de la UI sin perder auditorías.', keywords: ['migración', 'csv', 'yaml', 'sot', 'organización'] },
                 { id: 'evidencia-compliance', title: 'Cómo preparar evidencia para compliance', summary: 'Qué artefactos conservar, cómo exportarlos y cómo presentarlos a un auditor.', keywords: ['evidencia', 'auditoría', 'csv', 'compliance_results.json', 'exportar', 'reporte'] }
             ]
+        },
+        /* Lo que antes vivía en páginas sueltas (Academia, Documentación y
+           Artículos) ahora es parte del portal: una sola Documentación de
+           Oktavia. Estas secciones no tienen página propia: su `page` es su
+           bloque en la portada, y cada documento abre su propia página
+           (`href`, relativo a docs/), que lleva la misma barra lateral. */
+        {
+            id: 'academia',
+            title: 'Academia',
+            kind: 'Curso',
+            icon: 'school',
+            page: 'oktavia-docs.html#academia',
+            summary: 'La ruta de aprendizaje en cinco niveles. Los dos primeros cursos son gratis y sin registro.',
+            keywords: ['academia', 'curso', 'aprender', 'certificación', 'entrenamiento', 'training'],
+            docs: [
+                { id: 'curso-automatizacion-redes', href: 'curso-automatizacion-redes.html', title: 'Nivel 1 · Fundamentos de automatización de redes', summary: 'Gratis y sin producto: CLI, SNMP, APIs, NETCONF, RESTCONF, gNMI, YANG, Jinja2, Python, Ansible, fuente de verdad, validación y telemetría.', keywords: ['curso gratis', 'netmiko', 'napalm', 'nornir', 'ansible', 'yang', 'jinja2', 'gnmi'] },
+                { id: 'curso-oktavia-fundamentos', href: 'curso-oktavia-fundamentos.html', title: 'Nivel 2 · Oktavia Fundamentos', summary: 'Gratis: el ciclo cerrado, dónde encaja Oktavia, cómo funciona, sus conceptos, Argos y la IA, y la seguridad de la plataforma.', keywords: ['curso gratis', 'ciclo cerrado', 'argos', 'ia', 'evaluación'] },
+                { id: 'certificacion-asociado', title: 'Nivel 3 · Certificación Oktavia Asociado', summary: 'Instalar, poner en marcha y operar la plataforma.', keywords: ['certificación', 'asociado', 'operar'], status: 'soon' },
+                { id: 'certificacion-profesional', title: 'Nivel 4 · Certificación Oktavia Profesional', summary: 'Configurar a fondo, automatizar e integrar.', keywords: ['certificación', 'profesional', 'integrar'], status: 'soon' },
+                { id: 'certificacion-arquitecto', title: 'Nivel 5 · Certificación Oktavia Arquitecto', summary: 'Diseñar y entregar automatización llave en mano.', keywords: ['certificación', 'arquitecto', 'diseño'], status: 'soon' }
+            ]
+        },
+        {
+            id: 'producto',
+            title: 'Ficha técnica y resumen',
+            kind: 'Ficha técnica',
+            icon: 'description',
+            page: 'oktavia-docs.html#producto',
+            summary: 'Para evaluar la plataforma: el resumen ejecutivo de dos páginas y la ficha técnica completa, en línea y en PDF.',
+            keywords: ['ficha técnica', 'data sheet', 'datasheet', 'resumen ejecutivo', 'pdf', 'licencias', 'evaluar'],
+            docs: [
+                { id: 'resumen-ejecutivo', href: 'oktavia-resumen.html', title: 'Resumen ejecutivo', summary: 'Dos páginas para decidir si Oktavia encaja: el problema que resuelve, para quién, beneficios con métricas de referencia y el modelo de licencias.', keywords: ['resumen', 'beneficios', 'licencias', 'pdf'] },
+                { id: 'ficha-tecnica', href: 'oktavia.html', title: 'Ficha técnica', summary: 'Los módulos con su alcance, las categorías de capacidad, la cobertura y el método de acceso por fabricante, integraciones y requisitos.', keywords: ['data sheet', 'módulos', 'capacidades', 'fabricantes', 'requisitos', 'pdf'] }
+            ]
+        },
+        {
+            id: 'articulos',
+            title: 'Artículos',
+            kind: 'Artículo',
+            icon: 'article',
+            page: 'oktavia-docs.html#articulos',
+            summary: 'Tecnologías de red, explicadas: lo que usamos todos los días y por qué lo hacemos así.',
+            keywords: ['blog', 'artículos', 'tecnología', 'opinión'],
+            docs: [
+                { id: 'seguridad-en-oktavia-y-argos', href: '../blog/seguridad-en-oktavia-y-argos.html', title: 'Seguridad en Oktavia y Argos', summary: 'Vulnerabilidades por versión con NVD, CISA KEV y EPSS, postura con evidencia, hardening por rol como intención y un diagnóstico que no envía configuraciones ni secretos a la IA.', keywords: ['vulnerabilidades', 'hardening', 'nvd', 'kev', 'epss', 'seguridad'], date: '11 de octubre de 2026', minutes: 10 },
+                { id: 'red-de-pruebas-cml-y-sd-wan', href: '../blog/red-de-pruebas-cml-y-sd-wan.html', title: 'Probar antes de tocar producción: la red de pruebas de Oktavia', summary: 'Alta y baja de sitios y equipos ensayados en Cisco Modeling Labs, pruebas de conectividad desde la intención y el mismo ciclo en Cisco SD-WAN.', keywords: ['red de pruebas', 'cml', 'sd-wan', 'ciclo de vida', 'laboratorio'], date: '11 de octubre de 2026', minutes: 11 },
+                { id: 'telemetria-y-automatizacion-de-eventos', href: '../blog/telemetria-y-automatizacion-de-eventos.html', title: 'La red se degrada semanas antes de que alguien llame', summary: 'Por qué una auditoría es una fotografía, qué agrega medir en el tiempo y cómo se escribe una regla de evento que no termina silenciada.', keywords: ['telemetría', 'eventos', 'alertas', 'snmp'], date: '17 de septiembre de 2026', minutes: 8 },
+                { id: 'chatops-en-automatizacion-de-redes', href: '../blog/chatops-en-automatizacion-de-redes.html', title: 'ChatOps en redes: útil si declara lo que cuesta', summary: 'Qué es ChatOps aplicado a redes, por qué mucho de lo que se pregunta no necesita un modelo de lenguaje y qué barandillas necesita un chat que cambia configuración.', keywords: ['chatops', 'operación', 'argos', 'ia'], date: '17 de septiembre de 2026', minutes: 8 },
+                { id: 'cerrar-el-ciclo-gemelo-digital', href: '../blog/cerrar-el-ciclo-gemelo-digital.html', title: 'Detectar es fácil. Cerrar el ciclo es el problema', summary: 'Por qué la corrección automática es peligrosa, qué es un gemelo digital en concreto y por qué sin verificación el ciclo no cierra.', keywords: ['gemelo digital', 'remediación', 'ciclo cerrado'], date: '17 de septiembre de 2026', minutes: 9 },
+                { id: 'cumplimiento-configuracion-y-estado', href: '../blog/cumplimiento-configuracion-y-estado.html', title: 'Su configuración cumple y su red sigue rota', summary: 'La diferencia entre cumplimiento de configuración y de estado, y por qué correlacionarlos cambia lo que puede afirmar sobre su red.', keywords: ['cumplimiento', 'estado de red', 'compliance'], date: '17 de septiembre de 2026', minutes: 9 },
+                { id: 'inventario-fuente-de-verdad', href: '../blog/inventario-fuente-de-verdad.html', title: 'El inventario que nadie tiene', summary: 'Por qué el inventario manual nace desactualizado, la diferencia con una fuente de verdad y por qué multivendor es donde casi todas las herramientas se rompen.', keywords: ['fuente de verdad', 'inventario', 'multivendor', 'sot'], date: '17 de septiembre de 2026', minutes: 8 }
+            ]
         }
     ];
 
