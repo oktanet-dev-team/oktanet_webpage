@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guías de instalación · Documentación de Oktavia</title>
+    <meta name="description" content="Levantar Oktavia en una máquina de trabajo o en un servidor: prerrequisitos, Docker Compose, variables, bóveda de credenciales y los tropiezos típicos con su corrección.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-instalacion.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Guías de instalación · Documentación de Oktavia">
+    <meta property="og:description" content="Levantar Oktavia en una máquina de trabajo o en un servidor: prerrequisitos, Docker Compose, variables, bóveda de credenciales y los tropiezos típicos con su corrección.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-instalacion.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-instalacion.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Guías de instalación</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Instalación</p>
+                    <h1>Guías de instalación</h1>
+                    <p class="doc-lede">Levantar Oktavia en una máquina de trabajo o en un servidor: prerrequisitos, Docker Compose, variables, bóveda de credenciales y los tropiezos típicos con su corrección.</p>
+                    <ul class="doc-meta">
+                <li>Guía de instalación</li>
+                <li>Para quien implementa</li>
+                <li>Requiere Docker y Python 3.12</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#instalacion-local">Instalación local</a></li>
+                <li><a href="#docker-compose">Docker Compose</a></li>
+                <li><a href="#variables-entorno">Variables de entorno</a></li>
+                <li><a href="#vault-credenciales">Bóveda de credenciales</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="instalacion-local">
+                    <h2>Instalación local</h2>
+                    <p>
+                        La instalación recomendada es con contenedores, incluso en una máquina de trabajo. Esta guía cubre los prerrequisitos comunes y el arranque sin contenedores, que sirve para desarrollar sobre la plataforma. Los comandos exactos y las versiones probadas están en la guía de instalación que se entrega con el software.
+                    </p>
+                    <h3>Prerrequisitos</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Requisito</th><th scope="col">Para qué</th></tr></thead>
+                            <tbody>
+                                <tr><td>Docker con Compose v2</td><td>Los contenedores de los dos componentes y de sus servicios de apoyo</td></tr>
+                                <tr><td>Git</td><td>Obtener los dos componentes</td></tr>
+                                <tr><td>Python 3 en la versión indicada en la guía</td><td>Entorno del motor y sus herramientas de línea de comandos</td></tr>
+                                <tr><td>PostgreSQL</td><td>Base de datos de la interfaz (incluido en sus contenedores)</td></tr>
+                                <tr><td>Node.js (opcional)</td><td>Herramientas MCP de escritorio</td></tr>
+                                <tr><td>Ollama (opcional)</td><td>Modelo local para Argos; alternativa a la API de Anthropic</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Instalar juntos</h3>
+                    <p>Los dos componentes deben quedar en el mismo directorio padre, porque sus contenedores comparten almacenamiento:</p>
+<pre><code>oktavia/
+├── motor/        # Engine
+└── interfaz/     # UI</code></pre>
+                    <h3>Interfaz sin contenedores (desarrollo)</h3>
+                    <ol class="doc-steps">
+                        <li>Crea un entorno virtual e instala las dependencias.</li>
+                        <li>Parte de la configuración de ejemplo y apunta la conexión de base de datos a un PostgreSQL. Es el único motor soportado; no hay alternativa SQLite.</li>
+                        <li>Aplica las migraciones y crea el usuario administrador.</li>
+                        <li>Opcional: crea una organización propia y asígnale usuarios; importa inventario y resultados si ya hay artefactos del motor.</li>
+                        <li>Arranca el servidor de desarrollo.</li>
+                    </ol>
+                    <h3>Motor sin contenedores (desarrollo)</h3>
+                    <ol class="doc-steps">
+                        <li>Crea el entorno con la versión de Python indicada e instala las dependencias.</li>
+                        <li>Genera la configuración con la herramienta del motor. Si el componente de interfaz ya está instalado junto a él, la herramienta alinea los tres secretos compartidos y siembra las variables de servicio iniciales.</li>
+                        <li>Carga el inventario desde el CSV de equipos con la herramienta de línea de comandos.</li>
+                        <li>Arranca la API y, por separado, el ejecutor de jobs y el programador. Para correr el pipeline completo desde la línea de comandos hay un script que encadena discovery, respaldo, inventario, generación y compliance.</li>
+                    </ol>
+                    <div class="docs-aside">
+                        <h4>Producción</h4>
+                        <p>Fuera de desarrollo: modo de depuración apagado, secreto de la aplicación persistente, hosts permitidos explícitos, clave de cifrado de la bóveda compartida y respaldada, servidor de aplicación con varios workers y la siembra del laboratorio de demostración desactivada.</p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="docker-compose">
+                    <h2>Docker Compose</h2>
+                    <p>Cada componente trae su propio Compose y se levantan en orden: primero el motor, después la interfaz.</p>
+                    <h3>Procesos del motor</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Proceso</th><th scope="col">Función</th></tr></thead>
+                            <tbody>
+                                <tr><td>API</td><td>Recibe las peticiones de la UI y de integraciones</td></tr>
+                                <tr><td>Ejecutor de jobs</td><td>Toma los jobs de la cola y los corre; recupera los que quedaron en cola si se reinicia</td></tr>
+                                <tr><td>Programador</td><td>Tareas programadas con ingesta automática a la UI</td></tr>
+                                <tr><td>Cola</td><td>Cola de jobs</td></tr>
+                                <tr><td>Series de tiempo</td><td>InfluxDB para las métricas</td></tr>
+                                <tr><td>Recolector</td><td>Telegraf para SNMP y syslog, una instancia por organización</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Procesos de la interfaz</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Proceso</th><th scope="col">Función</th></tr></thead>
+                            <tbody>
+                                <tr><td>Base de datos</td><td>PostgreSQL</td></tr>
+                                <tr><td>Caché</td><td>Compartida entre los procesos de la aplicación</td></tr>
+                                <tr><td>Aplicación</td><td>La UI</td></tr>
+                                <tr><td>Evaluador de automatización</td><td>Evalúa periódicamente las reglas de automatización de eventos</td></tr>
+                                <tr><td>Worker de Argos</td><td>Avanza los ciclos de Argos</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Hay variantes del Compose para depuración, para incluir un modelo de lenguaje local y para desplegar con imagen preconstruida.</p>
+                    <h3>Arranque</h3>
+                    <ol class="doc-steps">
+                        <li>Configura los dos componentes a partir de sus configuraciones de ejemplo (ver <a href="#variables-entorno">Variables de entorno</a>).</li>
+                        <li>Levanta el motor y valida que su verificación de salud responde.</li>
+                        <li>Levanta la interfaz y espera a que la base de datos esté sana y la aplicación en marcha. Al arrancar, aplica migraciones, importa artefactos si se le pidió y recoge los estáticos.</li>
+                        <li><strong>Punto de control obligatorio:</strong> crea el usuario administrador con el comando de gestión de la UI e inicia sesión.</li>
+                        <li>Sigue con la <a href="#vault-credenciales">bóveda de credenciales</a> y con la <a href="oktavia-docs-operacion.html#auditorias">primera auditoría</a>.</li>
+                    </ol>
+                    <div class="doc-callout">
+                        <p><strong>Si la aplicación no arranca por autenticación de base de datos</strong>, hay un volumen de PostgreSQL de una instalación anterior con otra contraseña. En una instalación nueva se eliminan los volúmenes y se vuelve a levantar. En una existente, no: eso borra la base.</p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="variables-entorno">
+                    <h2>Variables de entorno</h2>
+                    <p>
+                        Cada repositorio trae un <code>.env.example</code> con todas sus variables comentadas; esa es la referencia completa y se entrega con el código. Aquí va lo que hay que decidir antes del primer arranque. Por política de publicación, los nombres de las variables que contienen secretos no se documentan en este sitio.
+                    </p>
+                    <h3>Las tres parejas</h3>
+                    <p>Tres secretos deben coincidir entre la UI y el Engine. Si alguno difiere, la instalación arranca pero no funciona, y el síntoma no siempre apunta a la causa.</p>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Pareja</th><th scope="col">Qué protege</th><th scope="col">Si no coincide</th></tr></thead>
+                            <tbody>
+                                <tr><td>Clave de API UI→Engine</td><td>Las llamadas de la UI al Engine</td><td>El Engine rechaza todas las llamadas de la UI</td></tr>
+                                <tr><td>Token Engine→UI</td><td>La lectura de la fuente de verdad y la ingesta de resultados</td><td>La auditoría no encuentra inventario o la UI no recibe resultados</td></tr>
+                                <tr><td>Clave de cifrado de la bóveda</td><td>Las credenciales de los equipos</td><td>Las conexiones a los equipos fallan</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>La herramienta del motor genera los tres y, si el componente de interfaz está instalado junto a él, alinea también su configuración. Si se hace a mano, la clave de cifrado es una clave aleatoria de 32 bytes en base64 segura para URL.</p>
+                    <h3>Qué más decidir en la UI</h3>
+                    <ul>
+                        <li>La URL del motor.</li>
+                        <li>La conexión a PostgreSQL.</li>
+                        <li>En producción: modo de depuración apagado, secreto de la aplicación persistente, hosts permitidos y orígenes CSRF explícitos.</li>
+                        <li>El tenant por omisión para los scripts de arranque.</li>
+                        <li>La siembra del laboratorio de demostración, apagada en producción.</li>
+                    </ul>
+                    <h3>Qué más decidir en el Engine</h3>
+                    <ul>
+                        <li>La URL de la UI, para resolver el inventario por tenant.</li>
+                        <li>El token de InfluxDB, que debe existir <strong>antes</strong> del primer arranque porque InfluxDB se inicializa con él.</li>
+                        <li>La credencial SNMP para Telegraf, o su equivalente en la bóveda.</li>
+                        <li>Las banderas de remediación por carril (FortiGate, FortiSwitch, Junos, Meraki, SD-WAN): todas apagadas por omisión. Se encienden a conciencia, cuando el carril ya se validó en dry-run.</li>
+                        <li>La bandera que activa las plantillas por servicio (v2) en lugar de las legadas por rol.</li>
+                    </ul>
+                    <div class="docs-aside">
+                        <h4>Qué nunca va al repositorio</h4>
+                        <p>Los archivos de configuración con secretos y cualquier archivo con credenciales. El motor acepta credenciales legadas en archivos locales y variables de entorno sólo como ruta de migración hacia la bóveda.</p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="vault-credenciales">
+                    <h2>Bóveda de credenciales</h2>
+                    <p>Las credenciales con que el Engine entra a los equipos se administran en la UI, en <strong>Integraciones → Credenciales</strong>, y viajan cifradas al Engine. El modelo está explicado en <a href="oktavia-docs-introduccion.html#seguridad-credenciales">Seguridad y credenciales</a>; aquí va la operación.</p>
+                    <h3>Dar de alta una credencial</h3>
+                    <ol class="doc-steps">
+                        <li>Elige el <strong>tipo</strong>: <code>ssh</code> (Cisco, FortiSwitch), <code>snmp</code> (Telegraf), <code>fortigate</code> (token de API), <code>meraki</code> (clave de Dashboard), <code>bgp</code> (contraseña de vecinos), <code>sdwan</code> (Manager), <code>cml</code> (red de pruebas).</li>
+                        <li>Elige el <strong>alcance</strong>: <code>global</code> para toda la organización, <code>site</code> con el código de sitio, o <code>device</code> con el nombre del equipo. En la resolución gana la más específica.</li>
+                        <li>Captura usuario y secreto. En los tipos de API agrega los metadatos: URL base, verificación TLS y, si el carril va a aplicar cambios, el permiso de escritura.</li>
+                        <li>Guarda. La UI entrega la bóveda cifrada al motor de inmediato; el motor la detecta sin reiniciar.</li>
+                    </ol>
+                    <p>Una credencial es única por organización, tipo, alcance y valor de alcance. Se puede desactivar sin borrarla y la UI registra la última rotación.</p>
+                    <h3>Migrar desde credenciales en archivos</h3>
+                    <p>Si la instalación venía de la etapa en que las credenciales estaban en variables de entorno o en archivos locales del inventario, la UI trae un comando de gestión que las importa a la bóveda: lee la credencial SNMP, la contraseña BGP, el usuario y contraseña SSH y los tokens de FortiGate referenciados en el inventario. Se ejecuta primero en modo de prueba para revisar el resumen y después en firme. Está documentado en la guía que se entrega con el software, junto con los comandos para forzar la exportación y rotar tokens de FortiGate.</p>
+                    <h3>Cuando el carril va a escribir</h3>
+                    <ul>
+                        <li>FortiGate: token con permiso de escritura, permiso de escritura en la credencial y la bandera de remediación del carril en el Engine. El apply exige dry-run previo y un respaldo lógico reciente; sólo hace upserts, nunca borra.</li>
+                        <li>Junos: usuario con permiso de configuración y la bandera de NETCONF; el <em>commit confirmed</em> de 10 minutos por omisión revierte si nadie confirma.</li>
+                        <li>Meraki y SD-WAN: clave con escritura, permiso de escritura en la credencial y la bandera de cada carril. Meraki nunca ejecuta <code>DELETE</code>.</li>
+                        <li>Cisco por SSH: el mismo usuario del discovery si tiene privilegio para configurar; el diff se muestra antes de aplicar.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="troubleshooting">
+                    <h2>Troubleshooting</h2>
+                    <p>Síntomas frecuentes en la instalación y su corrección. Cuando un síntoma apunta a los secretos, revisa primero las <a href="#variables-entorno">tres parejas</a>.</p>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Síntoma</th><th scope="col">Causa</th><th scope="col">Corrección</th></tr></thead>
+                            <tbody>
+                                <tr><td>Error de archivo o directorio inexistente al levantar un componente</td><td>Los dos componentes no están instalados en el mismo directorio padre</td><td>Instalarlos juntos</td></tr>
+                                <tr><td>La UI no puede hablar con el motor (error de autenticación)</td><td>La credencial de integración no coincide entre UI y motor</td><td>Igualarla y reiniciar</td></tr>
+                                <tr><td>Las conexiones SSH o de API a los equipos fallan sin error claro</td><td>La clave de cifrado de la bóveda no coincide</td><td>Misma clave en ambos componentes; volver a guardar una credencial para reexportar</td></tr>
+                                <tr><td>La auditoría se rechaza porque no hay reglas de la organización</td><td>La organización no tiene intención sincronizada</td><td>Guardar una regla desde la UI</td></tr>
+                                <tr><td>El motor está sano, pero la auditoría no encuentra el inventario de la organización</td><td>El motor no alcanza la UI por red (frecuente en Linux)</td><td>Revisar la resolución de nombres entre contenedores según la guía de instalación</td></tr>
+                                <tr><td>Editar el inventario en archivos del motor no cambia nada</td><td>Existe un inventario de la organización con prioridad</td><td>Editar el inventario en la UI y sincronizar</td></tr>
+                                <tr><td>Tableros vacíos tras iniciar sesión</td><td>La UI aún no ingirió artefactos</td><td>Reiniciar la UI o pulsar «Sincronizar resultados»</td></tr>
+                                <tr><td>La aplicación no arranca por autenticación de base de datos</td><td>Volumen de PostgreSQL de otra instalación</td><td>En instalación nueva, eliminar los volúmenes y volver a levantar</td></tr>
+                                <tr><td>Telegraf no recolecta</td><td>SNMP apagado, credencial errónea, ACL o alcance</td><td>Probar la recolección en modo prueba; revisar la credencial SNMP, timeouts y que el OID exista en ese fabricante</td></tr>
+                                <tr><td>InfluxDB no recibe datos</td><td>Token inválido o definido después del primer arranque</td><td>Verificar el token y el bucket; el token va antes del primer arranque</td></tr>
+                                <tr><td>El programador no ejecuta</td><td>Proceso caído o configuración inválida</td><td>Revisar su estado en la UI y los registros del proceso</td></tr>
+                                <tr><td>Un servicio v2 nunca aparece en la configuración generada</td><td>Las plantillas por servicio no están activadas</td><td>Activar la bandera correspondiente en el motor</td></tr>
+                                <tr><td>Timeouts de discovery en equipos virtuales lentos</td><td>Tiempo de lectura corto</td><td>Aumentar el timeout de lectura en las opciones de conexión del inventario</td></tr>
+                                <tr><td>«data missing» tras reemplazar un equipo con la misma IP</td><td>Cambió la llave SSH del host</td><td>Aceptar la nueva llave desde la UI; el motor guarda las llaves conocidas por organización</td></tr>
+                                <tr><td>Falsos negativos en reglas sobre interfaces</td><td>Nombres cortos en la regla, largos en el snapshot</td><td>Escribir <code>GigabitEthernet0/1</code>, no <code>gi0/1</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

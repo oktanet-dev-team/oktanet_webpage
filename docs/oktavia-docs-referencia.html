@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Referencia técnica · Documentación de Oktavia</title>
+    <meta name="description" content="APIs del Engine y de la UI, capas del inventario, variables de entorno, artefactos que deja cada job y todos los formatos CSV, YAML y JSON que la plataforma importa o exporta.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-referencia.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Referencia técnica · Documentación de Oktavia">
+    <meta property="og:description" content="APIs del Engine y de la UI, capas del inventario, variables de entorno, artefactos que deja cada job y todos los formatos CSV, YAML y JSON que la plataforma importa o exporta.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-referencia.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-referencia.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Referencia técnica</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Referencia</p>
+                    <h1>Referencia técnica</h1>
+                    <p class="doc-lede">APIs del Engine y de la UI, capas del inventario, variables de entorno, artefactos que deja cada job y todos los formatos CSV, YAML y JSON que la plataforma importa o exporta.</p>
+                    <ul class="doc-meta">
+                <li>Referencia</li>
+                <li>Para integradores y desarrolladores</li>
+                <li>Sin pasos: sólo contratos</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#api-engine">API del Engine</a></li>
+                <li><a href="#api-ui">API de la UI</a></li>
+                <li><a href="#campos-inventario">Campos de inventario</a></li>
+                <li><a href="#variables-entorno">Variables de entorno</a></li>
+                <li><a href="#artefactos-generados">Artefactos generados</a></li>
+                <li><a href="#formatos-soportados">CSV, YAML y JSON soportados</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="api-engine">
+                    <h2>API del Engine</h2>
+                    <p>
+                        El motor expone una API REST autenticada con credenciales de integración: la credencial maestra de la instalación o claves por organización con acceso de lectura o escritura y un conjunto acotado de operaciones. La especificación OpenAPI completa, con interfaz interactiva, se consulta dentro de la instalación y es la referencia exacta de la versión instalada. Las operaciones de auditoría son asíncronas: devuelven el identificador y el estado de un job, y el resultado se consulta después.
+                    </p>
+                    <div class="docs-aside">
+                        <h4>Errores comunes</h4>
+                        <ul>
+                            <li><strong>No autorizado</strong>: credencial ausente o inválida.</li>
+                            <li><strong>Petición inválida</strong>: cuerpo incompleto, por ejemplo <code>scope=site</code> sin <code>site</code>.</li>
+                            <li><strong>Servicio no disponible</strong>: la organización no tiene reglas de intención sincronizadas.</li>
+                        </ul>
+                    </div>
+                    <h3>Áreas de la API</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Área</th><th scope="col">Qué permite</th><th scope="col">Notas</th></tr></thead><tbody>
+                        <tr><td>Salud y metadatos</td><td>Verificación de salud; catálogo de tipos de check con el esquema de su <code>expected</code>; carriles de remediación y si el apply está habilitado; estado del programador</td><td>—</td></tr>
+                        <tr><td>Auditorías</td><td>Auditoría completa; compliance en seco; cada paso por separado; verificación de acceso; sincronización de Telegraf; medición de latencia; exportables CSV; discovery y compliance de Meraki y SD-WAN</td><td>Todas reciben la <a href="oktavia-docs-datos.html#api-jobs">petición de auditoría</a> y devuelven un job</td></tr>
+                        <tr><td>Jobs</td><td>Listar jobs por estado y organización; detalle de un job con pasos, tiempos y errores; estado por equipo; lista y descarga de artefactos</td><td>Estados: <code>queued</code>, <code>running</code>, <code>completed</code>, <code>completed_with_errors</code>, <code>failed</code>, <code>timeout</code></td></tr>
+                        <tr><td>Inventario y discovery</td><td>Inventario canónico vigente; reconstruirlo desde el caché; alta y baja de un equipo; importar y exportar CSV; resolver nombres; snapshot vigente de un equipo; resumen de incorporación</td><td>El alta acepta los campos de <a href="oktavia-docs-datos.html#inventario-base">Inventario base</a></td></tr>
+                        <tr><td>Operaciones en vivo</td><td>Limpiar contadores, verificar un servicio y comprobar acceso (las usa Argos); gestión de llaves SSH conocidas por organización</td><td>Devuelven un job consultable</td></tr>
+                        <tr><td>Compliance e intención</td><td>Resultados y resumen por sitio; leer y escribir el archivo de reglas completo, con validación; reglas en CSV; mapa servicio → plantilla y checks; análisis de vulnerabilidades</td><td>El archivo de reglas se describe en <a href="oktavia-docs-datos.html#compliance-intended">Compliance / Intended</a></td></tr>
+                        <tr><td>Config Generator</td><td>Leer y escribir los archivos de variables (<code>service_vars.json</code>, <code>device_inventory.json</code>, etiquetas); CSV del generador; generar configuración por sitio, equipo, rol, plataforma o tipo de sitio; registrar un equipo de día 0; descargar la configuración deseada por equipo o por sitio en ZIP</td><td>—</td></tr>
+                        <tr><td>Respaldos</td><td>Running config por equipo o por sitio en ZIP; respaldo estructurado; respaldo lógico de FortiGate; propuesta de variables de servicio a partir del respaldo</td><td>La propuesta no aplica a SD-WAN</td></tr>
+                        <tr><td>Topología</td><td>Snapshot de topología y reconstrucción; vecinos e impacto de un equipo; puntos únicos de falla; inconsistencias (por ejemplo áreas OSPF)</td><td>—</td></tr>
+                        <tr><td>Métricas y telemetría</td><td>CPU, memoria, interfaces, salud, latencia y ambiente del plano de datos; vecinos BGP, OSPF y EIGRP y tabla de rutas del plano de control; anomalías y consulta genérica; túneles y eventos SD-WAN; vista previa y sincronización de Telegraf</td><td>Aceptan equipo, sitio, ventana de tiempo, agregación y organización</td></tr>
+                        <tr><td>Digital Twin</td><td>Crear y listar snapshots; diff de un equipo contra un snapshot; crear, consultar y actualizar cambios; vista previa, aprobación, ejecución, confirmación y reversión; vigilante de cambios sin confirmar</td><td>Flujo en <a href="oktavia-docs-operacion.html#digital-twin">Digital Twin</a></td></tr>
+                        <tr><td>Programador</td><td>Leer y escribir la configuración de tareas programadas</td><td>Formato en <a href="oktavia-docs-operacion.html#scheduler">Scheduler</a></td></tr>
+                        <tr><td>Integraciones</td><td>FortiGate (snapshot, prueba de conexión, rotación de token); Meraki (estado, validación, sincronización, sondeo de cámaras, registro y bitácora de webhooks); SD-WAN (validación, sincronización, aprovisionamiento, telemetría); red de pruebas en CML (estado, laboratorio, operaciones, sincronización, respaldos)</td><td>—</td></tr>
+                        <tr><td>Insights</td><td>Resumen compacto por categoría para asistentes</td><td>Prueba de concepto</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="doc-section" id="api-ui">
+                    <h2>API de la UI</h2>
+                    <p>
+                        La UI expone sus propias rutas, con sesión de usuario, para todo lo que sus vistas hacen, y un conjunto aparte para el motor, autenticado con la credencial de integración compartida. Su especificación OpenAPI se genera de las rutas y se consulta dentro de la instalación, junto con la del motor.
+                    </p>
+                    <h3>Lo que consume el motor</h3>
+                    <ul>
+                        <li>La <strong>fuente de verdad</strong> de cada organización: inventario, topología, IPAM, resultados de compliance, variables de servicio y estado de los servicios del catálogo.</li>
+                        <li>La <strong>ingesta</strong>: el motor o el programador entregan el identificador de un job terminado y la UI lo importa.</li>
+                        <li>La <strong>verificación de salud</strong>, que resume el estado de la UI, del motor y del programador.</li>
+                    </ul>
+                    <h3>Lo que usan las vistas (con sesión)</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Área</th><th scope="col">Operaciones</th></tr></thead><tbody>
+                        <tr><td>Jobs</td><td>Lanzar, consultar estado, listar y descargar artefactos; verificación de acceso; limpiar contadores; configuración del programador</td></tr>
+                        <tr><td>Inventario</td><td>Exportar e importar CSV (con opción de reemplazo), alta manual, sincronización con el motor, datos y autocompletado para las vistas, vista previa de equipos</td></tr>
+                        <tr><td>Intención</td><td>Leer, exportar (JSON y tres variantes CSV) e importar variables de servicio; registro de alcances; catálogo del Configurador; estado de los servicios; generar configuración</td></tr>
+                        <tr><td>Reglas</td><td>Reglas de cumplimiento con exportación e importación CSV (vista previa y aplicación), derivación desde el Configurador, catálogo de reglas de estado y plantillas</td></tr>
+                        <tr><td>Gemelo</td><td>Cambios con aprobación, ejecución, reintento, confirmación, reversión y vista previa por equipo</td></tr>
+                        <tr><td>Reportes</td><td>Puertos, capacidad, topología, riesgo, salud y drift en JSON y CSV; recolección bajo demanda; sincronización de la línea base</td></tr>
+                        <tr><td>Automatización</td><td>Reglas, eventos, notificaciones y carga de reglas por omisión</td></tr>
+                        <tr><td>Argos e IA</td><td>Chat del asistente, conversaciones, ciclos y las operaciones de análisis asistido (explicar diff, revisar cambio, resumir cumplimiento, redactar remediación, analizar enrutamiento o camino, proponer variables, correlacionar eventos)</td></tr>
+                        <tr><td>Integraciones</td><td>Configuración y pruebas de SMTP, proveedor de IA y SSO; credenciales; Meraki; SD-WAN; CML</td></tr>
+                        <tr><td>Provisioning y organización</td><td>Organizaciones, tipos de sitio, roles, sitios y equipos; paquetes y versiones de organización</td></tr>
+                        <tr><td>Red de pruebas</td><td>Estado, laboratorio, agregar, reemplazar y quitar equipos, auditoría, sincronización, configuración de nodos y respaldos</td></tr>
+                        <tr><td>Eventos push de Meraki</td><td>Rutas de ingreso para webhooks, ubicación y MV Sense, con token propio por organización y límites de tamaño y tasa; se obtienen al registrar la integración</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="doc-section" id="campos-inventario">
+                    <h2>Campos de inventario</h2>
+                    <p>El inventario tiene tres capas y cada una tiene su tabla de campos en la <a href="oktavia-docs-datos.html">Referencia de datos</a>.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Capa</th><th scope="col">Dónde vive</th><th scope="col">Quién la escribe</th><th scope="col">Tabla</th></tr></thead><tbody>
+                        <tr><td><strong>Base</strong> (declarada)</td><td>CSV de equipos e inventario interno del Engine; inventario de la organización en la UI</td><td>Una persona, por CSV o en la UI</td><td><a href="oktavia-docs-datos.html#inventario-base">Inventario base</a></td></tr>
+                        <tr><td><strong>Canónica</strong> (construida)</td><td><code>device_inventory.json</code> más <code>device_tags.json</code> e <code>interface_tags.json</code></td><td>El Engine, tras el discovery; editable por API</td><td><a href="oktavia-docs-datos.html#device-inventory">Device Inventory</a></td></tr>
+                        <tr><td><strong>Observada</strong> (espejo)</td><td>Modelo, serie, versión, interfaces, vecinos LLDP y telemetría por interfaz en la UI</td><td>La ingesta de cada job</td><td>Resumen en <a href="oktavia-docs-datos.html#device-inventory">Device Inventory</a></td></tr>
+                    </tbody></table></div>
+                    <p>Los catálogos globales que validan esos campos: tipos de sitio (<code>slug</code>, <code>label</code>, <code>default_services</code>), roles (<code>slug</code>, <code>category</code> en router, switch, firewall u otro, <code>compliance_groups</code>) y plataformas con su fabricante y método de acceso (<code>ios</code>, <code>iosxe</code>, <code>nxos</code>, <code>meraki</code>, <code>sdwan</code>, <code>fortigate</code>, <code>fortiswitch</code>, <code>junos</code>).</p>
+                </section>
+
+                <section class="doc-section" id="variables-entorno">
+                    <h2>Variables de entorno</h2>
+                    <p>La referencia completa de variables, con nombres y valores por omisión, está en la configuración de ejemplo de cada componente y se entrega con el software. Por política de publicación, este sitio no documenta los nombres de las variables que contienen secretos ni los valores por omisión relacionados con autenticación. Lo que sigue es el mapa de qué se configura dónde.</p>
+                    <h3>Motor (Engine)</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Qué configura</th><th scope="col">Notas</th></tr></thead><tbody>
+                        <tr><td>Autenticación</td><td>Clave de API maestra; archivo de claves con alcance; token hacia la fuente de verdad</td><td>Secretos. Sin la clave maestra el Engine no arranca fuera de un entorno de desarrollo</td></tr>
+                        <tr><td>Fuente de verdad</td><td>URL de la UI; tenant por omisión</td><td>—</td></tr>
+                        <tr><td>Bóveda</td><td>Clave de cifrado; ubicación de la bóveda; modo «sólo bóveda»</td><td>La clave es secreta e idéntica a la de la UI</td></tr>
+                        <tr><td>Intención y artefactos</td><td>Ubicación del archivo de reglas compartido; directorio de exportación; temporales</td><td>En el almacenamiento compartido</td></tr>
+                        <tr><td>Render</td><td>Activación de las plantillas por servicio (v2)</td><td>Apagada por omisión</td></tr>
+                        <tr><td>Discovery y jobs</td><td>Timeout por equipo; paralelismo de la API y del ejecutor de jobs; umbral de job estancado</td><td>—</td></tr>
+                        <tr><td>Programador</td><td>URL del motor; URL de ingesta de la UI</td><td>—</td></tr>
+                        <tr><td>Inventario legado</td><td>Ubicación del inventario interno; credenciales legadas</td><td>Las credenciales legadas son secretos y sólo existen como ruta de migración</td></tr>
+                        <tr><td>Telemetría</td><td>Credencial SNMP (v2c o v3); conexión, retención y token de InfluxDB; recarga de Telegraf</td><td>El token de InfluxDB se fija antes del primer arranque; retención configurable</td></tr>
+                        <tr><td>Carriles por fabricante</td><td>Bandera de remediación de FortiGate, FortiSwitch, Junos, Meraki y SD-WAN; verificación TLS y timeouts de FortiGate; minutos del <em>commit confirmed</em>, antigüedad máxima del respaldo e intervalo del vigilante en Junos; registro de webhooks en Meraki; intervalo de telemetría en SD-WAN</td><td>Todas las remediaciones apagadas por omisión</td></tr>
+                        <tr><td>Vulnerabilidades</td><td>Clave de la API de NVD (opcional); directorio de caché de catálogos</td><td>Con clave, NVD admite más consultas por minuto</td></tr>
+                        <tr><td>Servidor MCP</td><td>Organizaciones permitidas; transporte; registro de evidencia; etiqueta del cliente</td><td>—</td></tr>
+                        <tr><td>Varios</td><td>Lista blanca de acceso; zona horaria</td><td>—</td></tr>
+                    </tbody></table></div>
+                    <h3>Interfaz (UI)</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Grupo</th><th scope="col">Qué configura</th><th scope="col">Notas</th></tr></thead><tbody>
+                        <tr><td>Motor</td><td>URL del motor; credenciales de integración en ambos sentidos; timeouts de salud, lectura, job, artefacto y operación larga</td><td>Las credenciales son secretas</td></tr>
+                        <tr><td>Bóveda</td><td>Clave de cifrado</td><td>Secreta; obligatoria en producción</td></tr>
+                        <tr><td>Aplicación web</td><td>Secreto de la aplicación; modo de depuración; hosts permitidos; orígenes CSRF; política de sesión y cabeceras de seguridad</td><td>El secreto no se versiona; en producción los hosts se declaran explícitamente</td></tr>
+                        <tr><td>Base de datos y caché</td><td>Conexión a PostgreSQL (modo TLS, pooling); conexión, prefijo y tiempo de la caché</td><td>Sin caché externa, se usa memoria local</td></tr>
+                        <tr><td>Arranque</td><td>Tenant por omisión; importaciones automáticas de inventario y compliance; siembra del laboratorio de demostración</td><td>Siembra apagada en producción</td></tr>
+                        <tr><td>Artefactos</td><td>Ubicación de inventario, resultados y resumen; línea base de reportes; archivo de reglas</td><td>En el almacenamiento compartido</td></tr>
+                        <tr><td>Auditoría por omisión</td><td>Cuerpo del botón «Run Audit»</td><td><code>{"scope":"all","max_workers":6,"output_format":"both"}</code></td></tr>
+                        <tr><td>Identidad</td><td>Emisor, cliente, secreto, redirección, scopes y claims de OIDC; exigencias de MFA; login local de emergencia</td><td>El secreto del cliente no se documenta</td></tr>
+                        <tr><td>Acceso</td><td>Redes siempre permitidas; desactivación de la lista blanca; proxies de confianza</td><td>—</td></tr>
+                        <tr><td>Servidor</td><td>Workers, hilos y timeout del servidor de aplicación</td><td>—</td></tr>
+                        <tr><td>Workers</td><td>Intervalo del evaluador de reglas; intervalo del worker de Argos; límite de tokens del modelo; frescura de la ingesta</td><td>—</td></tr>
+                        <tr><td>IA</td><td>Proveedor (Anthropic u Ollama); clave de API; modelo; conexión y timeout de Ollama; servidor, herramientas permitidas y timeout del cliente MCP</td><td>La configuración por organización en la UI gana sobre el entorno; la clave es secreta</td></tr>
+                        <tr><td>Correo</td><td>Backend, host, puerto, TLS, usuario, contraseña y remitente SMTP</td><td>Respaldo; lo normal es configurar SMTP por organización en la UI</td></tr>
+                        <tr><td>Eventos push de Meraki</td><td>URL pública; tasa de ingreso; retención de eventos, ubicación y cámaras; reintentos de recolección; clave de hash de clientes</td><td>Retención configurable</td></tr>
+                        <tr><td>Varios</td><td>Passphrase de paquetes de organización; clave de administración de tokens; URL pública; laboratorio CML; zona horaria</td><td>Las dos primeras son secretas</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="doc-section" id="artefactos-generados">
+                    <h2>Artefactos generados</h2>
+                    <p>Todo job deja archivos en su propio espacio de trabajo, listados en su detalle con ruta relativa, tamaño, fecha y formato (<code>json</code>, <code>csv</code>, <code>cfg</code>). Al terminar, se fusionan con la copia vigente de la organización, por equipo y por sitio. El motor no genera XLSX, HTML ni Markdown.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Paso</th><th scope="col">Artefacto</th><th scope="col">Formato</th><th scope="col">Contenido</th></tr></thead><tbody>
+                        <tr><td>discovery</td><td>Salida cruda y snapshot normalizado por equipo</td><td>JSON</td><td>Lo recolectado, en bruto y con forma común</td></tr>
+                        <tr><td>backup_config</td><td>Respaldo por equipo</td><td>CFG, JSON</td><td>Running config; respaldo estructurado; respaldo lógico de FortiGate</td></tr>
+                        <tr><td>build_inventory</td><td><code>device_inventory.json</code></td><td>JSON</td><td>Inventario canónico</td></tr>
+                        <tr><td>build_topology</td><td>Snapshot de topología</td><td>JSON</td><td>Nodos, enlaces CDP y LLDP, vecinos BGP, OSPF y EIGRP, HSRP y VRRP, rutas, túneles, circuitos WAN, BFD de SD-WAN</td></tr>
+                        <tr><td>render_configs</td><td>Configuración deseada por equipo</td><td>CFG</td><td>El resultado de aplicar las plantillas a la intención</td></tr>
+                        <tr><td>compliance</td><td><code>compliance_results.json</code>, <code>summary_by_site.json</code>, resultado por equipo</td><td>JSON</td><td>Resultados por sitio y equipo, resúmenes por categoría y tipo de prueba, puntajes</td></tr>
+                        <tr><td>vulnerabilities</td><td>Reporte de vulnerabilidades</td><td>JSON</td><td>Cruce de versiones con NVD, KEV y EPSS</td></tr>
+                        <tr><td>export_*_csv</td><td><code>device_inventory.csv</code>, <code>compliance_tests.csv</code>, <code>device_summary.csv</code>, <code>site_summary.csv</code></td><td>CSV</td><td>Exportables para evidencia</td></tr>
+                        <tr><td>ping_ssh_check</td><td>Tabla de alcance</td><td>CSV</td><td>ICMP y TCP/22 por equipo</td></tr>
+                        <tr><td>intended_from_csv · csv_to_vars</td><td>Reglas y variables convertidas</td><td>JSON, CSV</td><td>—</td></tr>
+                        <tr><td>meraki_* · sdwan_*</td><td>Snapshots normalizados y resumen de discovery</td><td>JSON</td><td>Discovery por API</td></tr>
+                        <tr><td>telegraf_sync</td><td>Configuración SNMP por organización</td><td>TOML</td><td>Entradas SNMP más un reporte de objetivos incluidos y omitidos</td></tr>
+                        <tr><td>Gemelo</td><td>Snapshots congelados y solicitudes de cambio</td><td>JSON</td><td>—</td></tr>
+                        <tr><td>MCP · red de pruebas</td><td>Registro de evidencia; bitácora y respaldos del laboratorio</td><td>JSONL, YAML</td><td>Cada llamada MCP; actividad del laboratorio y sus respaldos con historial</td></tr>
+                        <tr><td>Exportación</td><td>Copia por job</td><td>JSON, CFG</td><td>Inventario, resumen, resultados y configuraciones cuando se pide <code>output_path</code> o existe un directorio de exportación configurado</td></tr>
+                    </tbody></table></div>
+                    <p>Los respaldos y las configuraciones deseadas se descargan también por sitio, en ZIP. Cada job conserva además su registro de ejecución.</p>
+                </section>
+
+                <section class="doc-section" id="formatos-soportados">
+                    <h2>CSV, YAML y JSON soportados</h2>
+                    <p>Todo lo que la plataforma importa o exporta, con sus columnas o claves. Las listas dentro de un CSV se separan con <code>|</code>; los booleanos aceptan <code>true</code>, <code>1</code>, <code>yes</code>, <code>y</code>.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Archivo</th><th scope="col">Formato</th><th scope="col">Columnas o claves</th><th scope="col">Dónde</th></tr></thead><tbody>
+                        <tr><td>Inventario base</td><td>CSV</td><td><code>name, hostname, platform, group, os, type, site, site_type, role, vendor</code> y opcionales <code>ssh_options, ping_source</code>; el motor lo convierte en su inventario interno</td><td>Motor (herramienta de línea de comandos); UI: Inventario → Importar (acepta además <code>model, serial_number, os_version</code>)</td></tr>
+                        <tr><td>Inventario exportado</td><td>CSV</td><td><code>device, role, location, site_type, platform, vendor, ip_address, model, serial_number, os_version, bgp_asn, tags</code></td><td>UI: Inventario → Exportar; API del motor</td></tr>
+                        <tr><td>Inventario canónico</td><td>JSON</td><td><code>{devices: {nombre: {...}}}</code>, ver <a href="oktavia-docs-datos.html#device-inventory">Device Inventory</a></td><td><code>device_inventory.json</code></td></tr>
+                        <tr><td>Etiquetas</td><td>JSON</td><td><code>{device_tags: {equipo: [tag]}}</code>; <code>{rules: [{tag, match, mode, interfaces}]}</code> con <code>mode</code> en <code>prefix</code>, <code>contains</code> o <code>custom</code></td><td><code>device_tags.json</code>, <code>interface_tags.json</code></td></tr>
+                        <tr><td>Intención</td><td>JSON, CSV</td><td>JSON por alcances (<a href="oktavia-docs-datos.html#service-vars">Service Vars</a>); CSV <code>scope, key, payload_json</code> en tres variantes: <code>csv</code>, <code>csv_detailed</code>, <code>csv_review</code></td><td><code>service_vars.json</code>; UI: Configurador → exportar e importar</td></tr>
+                        <tr><td>Reglas (archivo)</td><td>JSON, YAML</td><td><code>version, metadata, checks[]</code>, ver <a href="oktavia-docs-datos.html#compliance-intended">Compliance / Intended</a></td><td><code>intended.json</code>, <code>intended.yaml</code></td></tr>
+                        <tr><td>Reglas (motor)</td><td>CSV</td><td><code>config_checks.csv</code>: <code>id, service_id, category, vendors, platforms, roles, devices, score, remediation_type, remediation_ticket, severity</code>; <code>network_checks.csv</code> sin <code>service_id</code>; <code>hardware_checks.csv</code> añade <code>max_percent, max_errors, include_discards</code></td><td>API del motor (reglas en CSV)</td></tr>
+                        <tr><td>Reglas de estado (UI)</td><td>CSV</td><td><code>rule_id, test_type, check_type, category, service_id, label, severity, enabled, score, apply_to_all, description, remediation_type, roles, target_devices, target_site_types, target_vendors, target_platforms, required_lines, forbidden_lines, thresholds</code></td><td>Cumplimiento → Reglas → importar y exportar</td></tr>
+                        <tr><td>Catálogo de servicios</td><td>CSV, JSON</td><td>CSV: <code>service_id, label, category, severity, platforms, device_models, roles, apply_to_all, required_lines, forbidden_lines, description, enabled</code>; JSON del catálogo con <code>categories[]</code> y <code>services{}</code></td><td>Configurador → Catálogo</td></tr>
+                        <tr><td>Programador</td><td>YAML</td><td><code>version, poll_interval, jobs[] {name, enabled, organization_slug, schedule{}, steps[]}</code>, más la conexión al motor y a la ingesta de la UI</td><td>Operaciones → Programación; API del motor</td></tr>
+                        <tr><td>Resultados</td><td>JSON</td><td><code>compliance_results.json</code>: <code>sites[] {site, site_type, summary, summary_by_category, summary_by_test_type, devices[]}</code>; <code>summary_by_site.json</code>: <code>checks_total, checks_passed, checks_failed, score_awarded, score_total, status, severity</code></td><td>Artefactos de compliance</td></tr>
+                        <tr><td>Reportes de la UI</td><td>CSV, JSON</td><td><code>ports.csv</code> (equipo, sitio, interfaz, estados, VLAN, modo, descripción, vecino LLDP, utilización, PoE, severidad, recomendación), <code>health_findings.csv</code>, <code>risk_findings.csv</code>, <code>drift.csv</code>, <code>capacity_hotspots.csv</code>, <code>capacity_forecast.csv</code>, <code>topology.csv</code></td><td>Reportes</td></tr>
+                        <tr><td>FinOps</td><td>CSV</td><td>Por equipo: <code>device, site, role, model, vendor, capex_mxn, license_mxn_year, support_mxn_year, lifecycle_years, avg_power_watts</code>; por sitio: <code>site, internet_mxn_month, noc_mxn_month, provider_support_mxn_month, notes</code></td><td>FinOps → importar (descarga una plantilla)</td></tr>
+                        <tr><td>Paquete de organización</td><td>ZIP</td><td>Manifiesto con <code>counts</code>, <code>secrets</code>, <code>state</code>; passphrase opcional; con límite de tamaño</td><td>Exportar e importar organización</td></tr>
+                        <tr><td>Bóveda</td><td>JSON cifrado</td><td>Por organización y tipo: alcance, valor de alcance, usuario, secreto cifrado y metadatos</td><td>Entrega UI → motor</td></tr>
+                        <tr><td>Laboratorio CML</td><td>YAML</td><td>Topología del laboratorio; respaldos con fecha e historial</td><td>Red de pruebas</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

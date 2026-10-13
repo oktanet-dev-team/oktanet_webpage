@@ -32,6 +32,10 @@ docs/                   Documentación pública
   *.pdf                 Los documentos generados, versionados en el repo
 script/docs_script.js   Utilidades de la documentación
 style/docs_style.css    Estilos de la documentación, incluida la hoja de impresión
+docs/oktavia-docs*.html Documentación de Oktavia: el portal técnico de la Academia
+script/oktavia_docs_data.js  Catálogo del portal: secciones, documentos y tablas de campos
+script/oktavia_docs.js       Buscador, árbol lateral, tarjetas y tablas del portal
+style/oktavia_docs_style.css Estilos propios del portal (se carga después de docs_style.css)
 tools/                  Scripts de mantenimiento (no se publican)
   build_pdf.py          Genera los PDF desde las páginas HTML
   build_images.py       Recorta capturas y las exporta en WebP y PNG
@@ -279,6 +283,44 @@ Los logos los recorta `tools/build_images.py`. Vienen como trazos brillantes
 sobre un fondo casi negro sin transparencia: el script recupera el canal alfa
 usando la luminancia, para que se puedan poner sobre cualquier superficie oscura
 sin que se les vea el cuadro.
+
+## La Documentación de Oktavia (portal técnico)
+
+Dentro de la Academia vive un portal de documentación para quien implementa u
+opera Oktavia: `docs/oktavia-docs.html` es la portada y cada sección es una
+página (`docs/oktavia-docs-<seccion>.html`): inicio, introducción, instalación,
+operación, referencia, referencia de datos, integraciones y decisiones.
+
+Hay **dos lugares donde vive el texto**, y conviene saber cuál es cuál:
+
+- **El contenido de cada documento está en el HTML de su página**, en una
+  `<section class="doc-section" id="...">`, como el resto de la documentación.
+  Así lo indexan los buscadores, se imprime y se lee sin JavaScript.
+- **El catálogo está en `script/oktavia_docs_data.js`**: cada documento se da de
+  alta una vez (título, resumen, palabras clave y estado) y de ahí salen el
+  buscador, las tarjetas de la portada, el árbol de la barra lateral y el
+  paginador. Las tablas de la **Referencia de datos** también viven ahí, una
+  fila por campo, porque son datos y no prosa.
+
+Para agregar un documento: escribir su `<section>` en la página de la sección,
+con el `id` que se va a usar, y darlo de alta en `docs` de esa sección en el
+catálogo con el mismo `id`. Si todavía no está escrito, se marca con
+`status: 'soon'` y aparece como «Próximamente» en lugar de prometer una página
+vacía. Para agregar una sección nueva, copiar la estructura de cualquier
+`docs/oktavia-docs-<seccion>.html` (barra lateral, migas y paginador son los
+mismos en todas) y darla de alta en `sections`.
+
+El contenido se extrajo de los repositorios de la plataforma (`okta-nae-ui` y
+`oktanet-nae`) y describe sólo lo que existe en su código. Aplican las mismas
+reglas que al resto del sitio: `check_datos.py` revisa estas páginas y ningún
+ejemplo lleva direcciones, nombres de equipo ni identificadores reales.
+
+Antes de publicar:
+
+```bash
+python3 tools/check_datos.py
+python3 tools/stamp_assets.py
+```
 
 ## Al agregar un documento nuevo
 

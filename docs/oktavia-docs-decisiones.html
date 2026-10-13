@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guías de decisión · Documentación de Oktavia</title>
+    <meta name="description" content="Cuando hay más de una forma de hacerlo: qué auditoría ejecutar, cómo modelar la intención, qué alcance usar, cómo clasificar campos, cómo migrar a la fuente de verdad y cómo preparar evidencia.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-decisiones.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Guías de decisión · Documentación de Oktavia">
+    <meta property="og:description" content="Cuando hay más de una forma de hacerlo: qué auditoría ejecutar, cómo modelar la intención, qué alcance usar, cómo clasificar campos, cómo migrar a la fuente de verdad y cómo preparar evidencia.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-decisiones.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-decisiones.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Guías de decisión</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Decisiones</p>
+                    <h1>Guías de decisión</h1>
+                    <p class="doc-lede">Cuando hay más de una forma de hacerlo: qué auditoría ejecutar, cómo modelar la intención, qué alcance usar, cómo clasificar campos, cómo migrar a la fuente de verdad y cómo preparar evidencia.</p>
+                    <ul class="doc-meta">
+                <li>Guía de decisión</li>
+                <li>Criterios y consecuencias</li>
+                <li>Seis decisiones</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#que-auditoria">Qué auditoría ejecutar</a></li>
+                <li><a href="#modelar-intencion">Cómo modelar la intención</a></li>
+                <li><a href="#scopes">Cuándo usar defaults, by_site, by_role, by_platform o by_device</a></li>
+                <li><a href="#clasificar-campos">Cómo clasificar campos</a></li>
+                <li><a href="#migrar-sot">Cómo migrar desde CSV y YAML hacia la fuente de verdad</a></li>
+                <li><a href="#evidencia-compliance">Cómo preparar evidencia para compliance</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="que-auditoria">
+                    <h2>Qué auditoría ejecutar</h2>
+                    <p>El Engine ofrece la auditoría completa, una en seco, pasos sueltos y una verificación de acceso. Elegir bien ahorra tiempo de los equipos y evita leer resultados viejos como si fueran nuevos.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Situación</th><th scope="col">Ejecuta</th><th scope="col">Por qué</th></tr></thead><tbody>
+                        <tr><td>Primera vez, o después de cambios en la red</td><td><code>run_all</code> con <code>scope=all</code></td><td>Necesitas estado fresco de todo: discovery, respaldo, inventario, topología, render, compliance y vulnerabilidades.</td></tr>
+                        <tr><td>Cambiaste o agregaste reglas</td><td><code>compliance_dry</code></td><td>Evalúa las reglas nuevas sobre el snapshot que ya tienes, sin tocar equipos. Segundos en lugar de minutos.</td></tr>
+                        <tr><td>Acabas de aplicar un cambio en un equipo</td><td><code>run_all</code> con <code>scope=device</code>, o <code>service_check</code> desde Argos</td><td>Verifica sólo lo que cambió; el <code>service_check</code> confirma en vivo interfaz, ping, OSPF o ruta por defecto.</td></tr>
+                        <tr><td>Hay equipos sin respuesta o la bóveda cambió</td><td><code>ping_ssh_check</code></td><td>Separa «no alcanzable» de «credencial incorrecta» antes de gastar un discovery completo.</td></tr>
+                        <tr><td>Editaste la intención y quieres ver la configuración resultante</td><td><code>render_configs</code></td><td>Regenera la configuración deseada sin recolectar nada.</td></tr>
+                        <tr><td>Quieres un respaldo antes de una ventana de cambio</td><td><code>backup_config</code> con el alcance del sitio</td><td>Deja los <code>.cfg</code> o JSON lógicos de ese sitio sin correr compliance.</td></tr>
+                        <tr><td>Un sitio con Meraki o SD-WAN</td><td>Lanza desde la UI</td><td>La UI parte el alcance por plataforma y lanza <code>meraki_compliance</code> o <code>sdwan_compliance</code> como acompañantes.</td></tr>
+                        <tr><td>Operación diaria</td><td>Scheduler: <code>run_all</code> nocturno con <code>ingest: true</code> más <code>ping_ssh_check</code></td><td>Resultados frescos cada mañana sin intervención, y vulnerabilidades en un job aparte por tenant.</td></tr>
+                    </tbody></table></div>
+                    <h3>Cómo acotar</h3>
+                    <ul>
+                        <li>Usa <code>scope=site</code> o <code>site_type</code> para auditorías rutinarias de una región o un arquetipo; <code>devices</code> para una lista concreta.</li>
+                        <li>Los filtros <code>filter_roles</code>, <code>filter_platforms</code> y <code>lifecycle</code> recortan dentro del alcance. <code>lifecycle=active</code> excluye equipos en preparación o en baja.</li>
+                        <li><code>max_workers</code> alto acelera, pero cada worker es una sesión SSH simultánea: empieza en 3 o 4 en redes con enlaces lentos.</li>
+                        <li><code>completed_with_errors</code> es terminal: revisa el estado por equipo del job para ver qué equipos fallaron y por qué, y vuelve a lanzar sólo esos.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="modelar-intencion">
+                    <h2>Cómo modelar la intención</h2>
+                    <p>La intención es el estándar de la red escrito de forma que una máquina lo compare con la realidad. La regla de diseño de la plataforma es <strong>intención primero</strong>: el Configurador define el estado deseado; el discovery observa y sugiere, no decide.</p>
+                    <ol class="doc-steps">
+                        <li><strong>Empieza por lo que ya es estándar.</strong> DNS, NTP, syslog, SNMP, SSH, VTY, banners, reloj. Son los servicios que casi todos los equipos comparten; van en <code>defaults</code> y producen cumplimiento visible desde la primera auditoría.</li>
+                        <li><strong>Declara en el alcance más amplio que sea cierto.</strong> Si todos los switches de acceso llevan el mismo blindaje de puertos, va en <code>by_role.lan_switch</code>, no en cada equipo. Ver <a href="#scopes">Cuándo usar cada alcance</a>.</li>
+                        <li><strong>Usa los servicios del catálogo, no líneas sueltas.</strong> Un servicio trae plantilla por plataforma, formulario y checks. Una línea suelta en una regla manual no genera configuración ni se adapta al fabricante.</li>
+                        <li><strong>Parte del respaldo cuando no sepas el valor.</strong> La plataforma propone un bloque <code>services</code> desde el running. Revísalo y promueve lo que sea estándar; lo que sea excepción, déjalo como excepción consciente.</li>
+                        <li><strong>Cierra con las reglas de estado.</strong> Cuando la configuración ya cumple, declara los vecinos BGP y OSPF esperados, las VLAN del trunk y la raíz STP: así compliance detecta fallas de operación y no sólo de configuración.</li>
+                        <li><strong>Habilita y deshabilita por catálogo.</strong> Un servicio deshabilitado en el catálogo del tenant apaga sus checks en cascada. Es la forma correcta de «todavía no auditamos esto».</li>
+                    </ol>
+                    <div class="doc-callout">
+                        <p><strong>Las listas se reemplazan, no se suman.</strong> Si <code>defaults</code> declara tres servidores NTP y <code>by_site</code> declara uno, el sitio queda con uno. Si querías cuatro, escribe los cuatro en el sitio.</p>
+                    </div>
+                    <p>Dos trampas documentadas: los carriles de API (FortiGate, Junos, Meraki, SD-WAN) en modo estricto consideran drift lo que sobra, así que una intención parcial produce fallos esperables; y el <code>targets</code> vacío de una regla ya no significa «todos los equipos», hay que marcar <code>apply_to_all</code>.</p>
+                </section>
+
+                <section class="doc-section" id="scopes">
+                    <h2>Cuándo usar defaults, by_site, by_role, by_platform o by_device</h2>
+                    <p>Los alcances se fusionan en este orden y el último gana: <code>defaults</code> → <code>by_site</code> → <code>by_site_type</code> → <code>by_role</code> → <code>by_platform</code> → <code>by_model</code> → <code>by_tag</code> → <code>by_filter</code> → <code>by_device</code>. La fusión es recursiva para diccionarios; las listas se reemplazan completas.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Alcance</th><th scope="col">Úsalo para</th><th scope="col">Ejemplo</th><th scope="col">Evita</th></tr></thead><tbody>
+                        <tr><td><code>defaults</code></td><td>El estándar de toda la organización</td><td>Dominio, servidores NTP corporativos, política de SSH, banner legal</td><td>Valores que cambian por región o por equipo</td></tr>
+                        <tr><td><code>by_site</code></td><td>Lo que depende de dónde está el equipo</td><td>DNS y syslog locales, zona horaria, VLAN propias del sitio</td><td>Repetir lo mismo en veinte sitios: eso es <code>by_site_type</code></td></tr>
+                        <tr><td><code>by_site_type</code></td><td>Diseños por arquetipo: oficina, centro de datos, punto de venta</td><td>Hardening de puertos más estricto en punto de venta; redistribución distinta en centro de datos</td><td>Confundirlo con rol: el arquetipo es del sitio, no del equipo</td></tr>
+                        <tr><td><code>by_role</code></td><td>Lo que distingue la función del equipo</td><td><code>bgp</code>, <code>gre_tunnels</code> e <code>ip_sla</code> en <code>wan_router</code>; <code>vlan_database</code> y <code>port_hardening</code> en <code>lan_switch</code></td><td>Declarar en rol algo que en realidad depende del sistema operativo</td></tr>
+                        <tr><td><code>by_platform</code></td><td>Lo que depende del sistema operativo</td><td>Banners con sintaxis de IOS; ajustes que sólo existen en IOS-XE</td><td>Usarlo para distinguir modelos: existe <code>by_model</code></td></tr>
+                        <tr><td><code>by_model</code></td><td>Diferencias de hardware</td><td>Modelos sin PoE o sin storm-control</td><td>Casi siempre lo cubren las capacidades de plataforma automáticas</td></tr>
+                        <tr><td><code>by_tag</code></td><td>Grupos transversales que no son sitio, rol ni plataforma</td><td><code>Primary_router</code> y <code>Secondary_router</code> con prioridades HSRP distintas</td><td>Etiquetas que nadie mantiene</td></tr>
+                        <tr><td><code>by_filter</code></td><td>Combinaciones con nombre</td><td>«Routers WAN de oficinas en IOS-XE»</td><td>Filtros que se solapan sin un orden claro</td></tr>
+                        <tr><td><code>by_device</code></td><td>La excepción</td><td>ASN y vecinos BGP, direcciones de interfaces, un túnel único</td><td>Convertirlo en el lugar donde vive todo: si veinte equipos tienen el mismo override, factoriza</td></tr>
+                    </tbody></table></div>
+                    <h3>Regla práctica</h3>
+                    <p>Pregunta «¿qué tendría que cambiar para que este valor cambie?». Si la respuesta es «la organización», va en <code>defaults</code>; «el sitio», en <code>by_site</code>; «el tipo de sitio», en <code>by_site_type</code>; «la función del equipo», en <code>by_role</code>; «el sistema operativo», en <code>by_platform</code>; «este equipo en particular», en <code>by_device</code>. La herramienta de <strong>estandarización</strong> del Configurador factoriza automáticamente los servicios idénticos de varios equipos al alcance más amplio que los contiene, sólo si todos coinciden.</p>
+                </section>
+
+                <section class="doc-section" id="clasificar-campos">
+                    <h2>Cómo clasificar campos</h2>
+                    <p>Antes de agregar un dato a la plataforma conviene decidir de qué naturaleza es. Cada naturaleza tiene su archivo, su dueño y su forma de cambiar.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Naturaleza</th><th scope="col">Pregunta que lo identifica</th><th scope="col">Dónde va</th><th scope="col">Quién lo cambia</th><th scope="col">Ejemplos</th></tr></thead><tbody>
+                        <tr><td><strong>Identidad</strong></td><td>¿Sin esto no sabemos qué equipo es ni cómo llegar?</td><td>Inventario base</td><td>Una persona, al dar de alta</td><td><code>name</code>, <code>hostname</code>, <code>platform</code>, <code>vendor</code>, <code>group</code></td></tr>
+                        <tr><td><strong>Clasificación</strong></td><td>¿Decide qué estándar aplica?</td><td>Inventario base y catálogos globales</td><td>Una persona, con los catálogos de roles y tipos de sitio</td><td><code>site</code>, <code>site_type</code>, <code>role</code>, <code>lifecycle</code>, etiquetas</td></tr>
+                        <tr><td><strong>Intención</strong></td><td>¿Es lo que queremos que el equipo tenga?</td><td><code>service_vars.json</code> por alcance</td><td>Una persona, en el Configurador</td><td>Servidores NTP, comunidad SNMP, VLAN, vecinos BGP esperados, blindaje de puertos</td></tr>
+                        <tr><td><strong>Regla</strong></td><td>¿Es cómo comprobamos que lo tiene?</td><td><code>intended.json</code></td><td>El Configurador la genera; las de estado se editan en Cumplimiento</td><td>Líneas requeridas, vecinos esperados, umbrales de CPU</td></tr>
+                        <tr><td><strong>Observado</strong></td><td>¿Lo dice el equipo?</td><td>Snapshot normalizado y <code>device_inventory.json</code></td><td>Nadie: lo trae el discovery</td><td><code>model</code>, <code>serial_number</code>, <code>os_version</code>, interfaces, vecinos, rutas, CPU</td></tr>
+                        <tr><td><strong>Derivado</strong></td><td>¿Lo calcula la plataforma a partir de otros?</td><td><code>capabilities</code>, <code>device_caps</code>, resúmenes</td><td>El Engine</td><td><code>config_render</code>, <code>poe_supported</code>, <code>score_awarded</code></td></tr>
+                        <tr><td><strong>Secreto</strong></td><td>¿Permite entrar al equipo o a un servicio?</td><td>Bóveda de credenciales</td><td>Un administrador de la organización</td><td>Usuario y contraseña SSH, comunidad SNMP, token de API</td></tr>
+                    </tbody></table></div>
+                    <h3>Casos que confunden</h3>
+                    <ul>
+                        <li><strong>La IP de gestión</strong> es identidad (<code>hostname</code> del inventario base) aunque también aparezca observada (<code>ip_address</code>). La declarada manda para conectarse; la observada sirve para detectar que alguien la cambió.</li>
+                        <li><strong>La comunidad SNMP</strong> es intención (se configura en el equipo) <em>y</em> secreto (Telegraf la usa para leer). Va en la intención como servicio y en la bóveda como credencial <code>snmp</code>; los reportes la redactan.</li>
+                        <li><strong>El ASN y los vecinos BGP</strong> son intención por equipo (<code>by_device</code>), pero la plataforma también los observa. La regla <code>state_bgp_neighbors</code> compara ambos.</li>
+                        <li><strong>La versión de software</strong> es observada, pero la <em>versión mínima</em> es intención: el servicio <code>software_version</code> y la norma de versión en Cumplimiento → Software.</li>
+                        <li><strong>Las etiquetas</strong> son clasificación cuando una persona las pone (<code>device_tags.json</code>) y derivadas cuando salen de una regla (<code>interface_tags.json</code> con <code>prefix</code> o <code>contains</code>).</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="migrar-sot">
+                    <h2>Cómo migrar desde CSV y YAML hacia la fuente de verdad</h2>
+                    <p>Muchas instalaciones empiezan con el inventario en archivos del Engine (el CSV de equipos y el inventario interno) y credenciales en archivos locales o variables de entorno. El destino es el inventario por tenant en la UI y la bóveda. Se puede hacer sin perder historial.</p>
+                    <ol class="doc-steps">
+                        <li><strong>Congela el punto de partida.</strong> Corre una auditoría completa y guarda un snapshot del Gemelo con una nota («antes de migrar»). Es la referencia para comparar después.</li>
+                        <li><strong>Crea la organización</strong> en la UI y asigna a los usuarios. Si vienes de una instalación de un solo tenant, el slug <code>default</code> ya existe.</li>
+                        <li><strong>Da de alta los catálogos</strong> en Provisioning: tipos de sitio, roles y sitios con los mismos códigos que usa el CSV. Un rol que no exista en el catálogo hará que la importación rechace el equipo.</li>
+                        <li><strong>Importa el CSV</strong> en Inventario → Importar, en modo fusión. Revisa <code>devices_without_management_ip</code> y corrige los equipos cuyo <code>hostname</code> era un FQDN que la UI no pudo convertir en IP.</li>
+                        <li><strong>Migra las credenciales</strong> con el comando de importación a la bóveda de la UI, primero en modo de prueba (<code>--dry-run</code>), revisa el resumen y repite en firme. Comprueba en Integraciones → Credenciales que el alcance de cada una sea el que esperas (global, sitio o equipo).</li>
+                        <li><strong>Sincroniza el inventario</strong> con «Sincronizar inventario»: el Engine genera el inventario de la organización desde la fuente de verdad. A partir de aquí, el inventario de la UI manda y los archivos del Engine dejan de afectar las auditorías.</li>
+                        <li><strong>Mueve la intención.</strong> Si tenías <code>service_vars.json</code> en el Engine, impórtalo en el Configurador (JSON o CSV). Si tenías reglas de estado en <code>intended.json</code>, impórtalas en Cumplimiento → Reglas en CSV. Las reglas de configuración se regeneran al guardar los servicios.</li>
+                        <li><strong>Audita de nuevo y compara</strong> con el snapshot del paso 1. Las diferencias deberían ser cero o explicables (por ejemplo, un equipo que quedó sin IP de gestión).</li>
+                        <li><strong>Cierra la puerta trasera.</strong> Activa en el Engine el modo «sólo bóveda», que rechaza credenciales de archivos o variables, y borra los archivos locales y las variables legadas que las contenían.</li>
+                    </ol>
+                    <div class="docs-aside">
+                        <h4>Qué se conserva</h4>
+                        <p>Los jobs y artefactos anteriores se conservan, igual que la copia vigente de la organización; los snapshots del Gemelo no se tocan. Lo único que cambia de dueño es el inventario y las credenciales.</p>
+                    </div>
+                    <p>Para instalaciones con varios tenants, el <strong>paquete de tenant</strong> (ZIP con vista previa) mueve una organización completa entre instalaciones sin repetir los pasos.</p>
+                </section>
+
+                <section class="doc-section" id="evidencia-compliance">
+                    <h2>Cómo preparar evidencia para compliance</h2>
+                    <p>Un auditor externo quiere tres cosas: cuál era el estándar, qué se midió contra él y cuándo. Oktavia produce las tres como artefactos; el trabajo es elegirlos y conservarlos.</p>
+                    <h3>Qué conservar de cada corte</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Pregunta del auditor</th><th scope="col">Artefacto</th><th scope="col">Cómo obtenerlo</th></tr></thead><tbody>
+                        <tr><td>¿Cuál era el estándar vigente?</td><td><code>intended.json</code> del tenant y <code>service_vars.json</code></td><td>Cumplimiento → Reglas y Configurador → exportar (JSON o <code>csv_review</code>, que cruza con inventario)</td></tr>
+                        <tr><td>¿Qué equipos estaban en alcance?</td><td><code>device_inventory.csv</code></td><td><code>export_inventory_csv</code> o Inventario → Exportar</td></tr>
+                        <tr><td>¿Qué se midió y con qué resultado?</td><td><code>compliance_results.json</code>, <code>compliance_tests.csv</code>, <code>device_summary.csv</code>, <code>site_summary.csv</code></td><td>Artefactos del job; <code>export_*_csv</code></td></tr>
+                        <tr><td>¿Cuál era la configuración real?</td><td>El respaldo <code>.cfg</code> de cada equipo o su respaldo lógico JSON</td><td>Respaldos → descargar por sitio (ZIP)</td></tr>
+                        <tr><td>¿Qué se corrigió, quién lo aprobó y cuándo?</td><td>Cambios del Gemelo (<code>CHG-…</code>) con aprobador, ticket y resultado</td><td>Job Reports → Cambios del Gemelo</td></tr>
+                        <tr><td>¿Quién accedió a qué?</td><td>Eventos de auditoría de seguridad; registro de evidencia del MCP</td><td>Seguridad → Acceso; registro de evidencia por organización</td></tr>
+                    </tbody></table></div>
+                    <h3>Procedimiento recomendado</h3>
+                    <ol class="doc-steps">
+                        <li>Programa la auditoría del corte con el scheduler y <code>output_path</code> hacia un directorio de evidencia: el Engine copia inventario, resumen, resultados y configuraciones en un directorio por job.</li>
+                        <li>Agrega al mismo job los pasos <code>export_compliance_csv</code>, <code>export_device_summary_csv</code> y <code>export_site_summary_csv</code>.</li>
+                        <li>Congela un snapshot del Gemelo con el <code>job_id</code> del corte y la nota del periodo. Queda inmutable y sirve para el diff del siguiente corte.</li>
+                        <li>Exporta la intención vigente ese día; sin ella los resultados no se pueden reproducir.</li>
+                        <li>Conserva el <code>job_id</code>: enlaza inventario, reglas, resultados y configuraciones del mismo instante.</li>
+                    </ol>
+                    <h3>Cómo presentarlo</h3>
+                    <ul>
+                        <li><code>site_summary.csv</code> abre la conversación: puntaje por sitio con total, pasados y fallados.</li>
+                        <li><code>compliance_tests.csv</code> responde el detalle: cada prueba con equipo, regla, severidad, resultado, tipo de remediación, ticket y fecha de ejecución.</li>
+                        <li>Separa las tres clases de no cumplimiento: <code>compliance_failure</code> es hallazgo; <code>data_missing</code> y <code>pipeline_inconsistency</code> son limitaciones de medición y se explican aparte.</li>
+                        <li>Los artefactos ya vienen redactados (sin contraseñas ni comunidades). No compartas los snapshots crudos del discovery.</li>
+                        <li>Para un hallazgo corregido, la cadena completa es: prueba fallida en el corte N, cambio <code>CHG-…</code> aprobado con ticket, prueba pasada en el corte N+1.</li>
+                    </ul>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>
