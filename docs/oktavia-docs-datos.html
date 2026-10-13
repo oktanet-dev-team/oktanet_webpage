@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Referencia de datos · Documentación de Oktavia</title>
+    <meta name="description" content="Tablas de campos con tipo, obligatoriedad, alcance, fuente y descripción: inventario base, inventario de equipos, petición y detalle de jobs, reglas de cumplimiento y variables de servicio.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-datos.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Referencia de datos · Documentación de Oktavia">
+    <meta property="og:description" content="Tablas de campos con tipo, obligatoriedad, alcance, fuente y descripción: inventario base, inventario de equipos, petición y detalle de jobs, reglas de cumplimiento y variables de servicio.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-datos.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-datos.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Referencia de datos</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Referencia de datos</p>
+                    <h1>Referencia de datos</h1>
+                    <p class="doc-lede">Tablas de campos con tipo, obligatoriedad, alcance, fuente y descripción: inventario base, inventario de equipos, petición y detalle de jobs, reglas de cumplimiento y variables de servicio.</p>
+                    <ul class="doc-meta">
+                <li>Referencia de datos</li>
+                <li>Cinco tablas</li>
+                <li>Con filtro por campo</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#como-leer">Cómo leer estas tablas</a></li>
+                <li><a href="#inventario-base">Inventario base</a></li>
+                <li><a href="#device-inventory">Device Inventory</a></li>
+                <li><a href="#api-jobs">API / Jobs</a></li>
+                <li><a href="#compliance-intended">Compliance / Intended</a></li>
+                <li><a href="#service-vars">Service Vars</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="como-leer">
+                    <h2>Cómo leer estas tablas</h2>
+                    <p>Cada tabla describe un archivo o un contrato de la plataforma, una fila por campo, con las mismas seis columnas. Se generan del catálogo del portal y tienen un filtro para encontrar un campo sin desplazarse.</p>
+                    <dl class="docs-dl">
+                        <dt>Campo</dt><dd>El nombre tal como aparece en el archivo o en la API.</dd>
+                        <dt>Tipo</dt><dd>Tipo de dato y, cuando es una enumeración, sus valores.</dd>
+                        <dt>Obligatorio</dt><dd><strong>Sí</strong>, <strong>No</strong>, <strong>Práctico</strong> (el archivo lo acepta vacío pero la plataforma no funciona bien sin él), <strong>Derivado</strong> (lo calcula el Engine) o la condición que lo hace obligatorio.</dd>
+                        <dt>Scope</dt><dd>A qué aplica o dónde vive: el equipo, la petición, la regla, un alcance de la intención, o el objeto padre cuando el campo es anidado.</dd>
+                        <dt>Fuente</dt><dd>El archivo, modelo o módulo que lo define.</dd>
+                        <dt>Descripción</dt><dd>Qué significa y qué efecto tiene en la plataforma.</dd>
+                    </dl>
+                </section>
+
+                <section class="doc-section" id="inventario-base">
+                    <h2>Inventario base</h2>
+                    <p>Columnas del CSV de equipos (<code>devices.csv</code>) que el Engine convierte en su inventario interno, y que la UI acepta en su importación. Es la semilla operativa: lo que el discovery después enriquece. Guía: <a href="oktavia-docs-operacion.html#inventario">Inventario</a>.</p>
+                    <div data-docs-fields="inventario-base"></div>
+                </section>
+
+                <section class="doc-section" id="device-inventory">
+                    <h2>Device Inventory</h2>
+                    <p>Campos de <code>device_inventory.json</code>, el inventario canónico que construye el Engine a partir del discovery (más <code>device_tags.json</code> e <code>interface_tags.json</code>) y que consumen el Config Generator, compliance y la UI. Los cinco últimos campos viven dentro de <code>capabilities</code>.</p>
+                    <div data-docs-fields="device-inventory"></div>
+                </section>
+
+                <section class="doc-section" id="api-jobs">
+                    <h2>API / Jobs</h2>
+                    <p>Campos de la petición de auditoría que aceptan todas las operaciones de auditoría de la API del Engine, y del detalle de job que devuelve la consulta de un job. Guía: <a href="oktavia-docs-operacion.html#auditorias">Auditorías</a>; referencia: <a href="oktavia-docs-referencia.html#api-engine">API del Engine</a>.</p>
+                    <div data-docs-fields="api-jobs"></div>
+                </section>
+
+                <section class="doc-section" id="compliance-intended">
+                    <h2>Compliance / Intended</h2>
+                    <p>Estructura de <code>intended.json</code> (y de <code>intended.yaml</code>, idéntica): el archivo de reglas que el Engine evalúa contra el snapshot normalizado y el respaldo. Por organización lo escribe la UI y no se edita a mano. Guía: <a href="oktavia-docs-operacion.html#compliance">Compliance</a>.</p>
+                    <div data-docs-fields="compliance-intended"></div>
+                </section>
+
+                <section class="doc-section" id="service-vars">
+                    <h2>Service Vars</h2>
+                    <p>Estructura de <code>service_vars.json</code>: los alcances en los que se declara la intención y los servicios que se configuran dentro de cada uno. El Configurador es su editor; el Engine lo consume al renderizar. Precedencia de menor a mayor: <code>defaults</code>, <code>by_site</code>, <code>by_site_type</code>, <code>by_role</code>, <code>by_platform</code>, <code>by_model</code>, <code>by_tag</code>, <code>by_filter</code>, <code>by_device</code>. Los servicios de la tabla son los de Cisco IOS; los de FortiGate, Junos y FortiSwitch llevan los prefijos <code>fgt_</code>, <code>jnpr_</code> y <code>fsw_</code> y están en <a href="oktavia-docs-integraciones.html">Integraciones</a>. Guía: <a href="oktavia-docs-decisiones.html#scopes">Cuándo usar cada alcance</a>.</p>
+                    <div data-docs-fields="service-vars"></div>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

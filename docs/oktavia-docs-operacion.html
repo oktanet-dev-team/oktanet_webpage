@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guías operativas · Documentación de Oktavia</title>
+    <meta name="description" content="Cómo se usa cada módulo en el día a día: inventario, discovery, auditorías, compliance, Config Generator, Digital Twin, telemetría, scheduler y Argos.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-operacion.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Guías operativas · Documentación de Oktavia">
+    <meta property="og:description" content="Cómo se usa cada módulo en el día a día: inventario, discovery, auditorías, compliance, Config Generator, Digital Twin, telemetría, scheduler y Argos.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-operacion.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-operacion.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Guías operativas</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Operación</p>
+                    <h1>Guías operativas</h1>
+                    <p class="doc-lede">Cómo se usa cada módulo en el día a día: inventario, discovery, auditorías, compliance, Config Generator, Digital Twin, telemetría, scheduler y Argos.</p>
+                    <ul class="doc-meta">
+                <li>Guía operativa</li>
+                <li>Para quien opera la red con Oktavia</li>
+                <li>Nueve módulos</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#inventario">Inventario</a></li>
+                <li><a href="#discovery">Discovery</a></li>
+                <li><a href="#auditorias">Auditorías</a></li>
+                <li><a href="#compliance">Compliance</a></li>
+                <li><a href="#config-generator">Config Generator</a></li>
+                <li><a href="#digital-twin">Digital Twin</a></li>
+                <li><a href="#telemetria">Telemetría</a></li>
+                <li><a href="#scheduler">Scheduler</a></li>
+                <li><a href="#argos-mcp">Argos y MCP</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="inventario">
+                    <h2>Inventario</h2>
+                    <div class="docs-aside">
+                        <h4>En una línea</h4>
+                        <p>El inventario base es lo que una persona declara: qué equipos existen, dónde están, qué rol cumplen y cómo se llega a ellos. Todo lo demás lo observa el discovery.</p>
+                    </div>
+                    <h3>Antes de cargar equipos</h3>
+                    <p>Los sitios, los tipos de sitio y los roles se definen antes, en <strong>Provisioning</strong>. Los tipos de sitio y los roles son globales de la instalación (sembrados: <code>oficina</code>, <code>data_center</code>, <code>laboratorio</code>, <code>punto_de_venta</code>; <code>wan_router</code>, <code>core_switch</code>, <code>lan_switch</code>, <code>firewall</code>…); los sitios pertenecen al tenant. Un rol que no exista en el catálogo no se acepta en un equipo.</p>
+                    <h3>Cargar por CSV</h3>
+                    <ol class="doc-steps">
+                        <li>Prepara un CSV con las columnas de <a href="oktavia-docs-datos.html#inventario-base">Inventario base</a>. <code>name</code> es obligatorio; <code>hostname</code> debe ser la IP de gestión para que el equipo sea auditable.</li>
+                        <li>En <strong>Inventario → Importar CSV</strong> sube el archivo. Por omisión la importación <strong>fusiona</strong> sin borrar; la opción «reemplazar todo» elimina los equipos que no vienen en el archivo.</li>
+                        <li>Revisa la respuesta: la lista <code>devices_without_management_ip</code> son equipos que quedaron sin IP y no se auditarán.</li>
+                        <li>Pulsa <strong>Sincronizar inventario</strong> o lanza una auditoría: el Engine lee el inventario de la organización desde la fuente de verdad.</li>
+                    </ol>
+                    <p>Alias aceptados: <code>site</code> se guarda como <code>location</code>; <code>junos_version</code> se acepta como <code>os_version</code>. En Junos la fuente de verdad agrega automáticamente el acceso NETCONF por el puerto 830.</p>
+                    <h3>Alta manual</h3>
+                    <p>Inventario → Agregar equipo. Al elegir la plataforma se rellenan fabricante y método de acceso desde el catálogo (<code>ios</code>, <code>iosxe</code>, <code>nxos</code> y <code>fortiswitch</code> por SSH; <code>junos</code> por NETCONF; <code>fortigate</code> por API). Los equipos Meraki y SD-WAN no se dan de alta a mano: se sincronizan desde Integraciones.</p>
+                    <h3>En el Engine, sin UI</h3>
+                    <p>El inventario también puede cargarse directamente en el Engine desde el CSV de equipos con su herramienta de línea de comandos, para instalaciones sin UI o para pruebas. En una instalación con UI, el inventario de la organización tiene prioridad sobre cualquier archivo del Engine.</p>
+                    <h3>Exportar y revisar</h3>
+                    <ul>
+                        <li><strong>Exportar CSV</strong> desde la UI: equipo, rol, sitio, tipo de sitio, plataforma, fabricante, IP, modelo, serie, versión, ASN y etiquetas.</li>
+                        <li>La vista de cada equipo muestra lo observado (modelo, serie, versión, interfaces) y la frescura: <code>last_audited_at</code> sólo lo estampa una auditoría real, no una importación.</li>
+                        <li><strong>Port Intelligence</strong> y <strong>Capacidad</strong> trabajan sobre las interfaces observadas: puertos en err-disabled, sin uso en 30 días, descripción que no coincide con el vecino LLDP, saturación, PoE y pronóstico de agotamiento.</li>
+                    </ul>
+                    <p>Para pasar de un inventario en archivos al de la UI, ver <a href="oktavia-docs-decisiones.html#migrar-sot">Cómo migrar desde CSV y YAML hacia la fuente de verdad</a>.</p>
+                </section>
+
+                <section class="doc-section" id="discovery">
+                    <h2>Discovery</h2>
+                    <div class="docs-aside">
+                        <h4>Qué es y qué no es</h4>
+                        <p>El discovery recolecta estado y configuración de los equipos <strong>ya declarados</strong> en el inventario. No hace barridos de red ni descubre equipos nuevos por CDP o LLDP: los vecinos se recolectan, pero para dibujar la topología.</p>
+                    </div>
+                    <h3>Cómo decide el método</h3>
+                    <p>Cada equipo tiene un método de acceso (<code>ssh</code>, <code>api</code>, <code>netconf</code>) explícito o inferido de su plataforma. Los equipos se agrupan por método y se recolectan en paralelo, hasta <code>max_workers</code> a la vez.</p>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Plataformas</th><th scope="col">Cómo recolecta</th></tr></thead>
+                            <tbody>
+                                <tr><td>Cisco IOS, IOS-XE</td><td>SSH: facts, interfaces, LLDP y CDP, configuración, direcciones y contadores, más el estado de BGP, OSPF, EIGRP, rutas, ARP, MAC, VLAN, VTP, STP, port-security, DHCP, CPU, memoria, logging, SSH y VRF</td></tr>
+                                <tr><td>FortiGate</td><td>API REST por VDOM, con respaldo lógico en JSON</td></tr>
+                                <tr><td>FortiSwitch</td><td>SSH, con lectura de la configuración completa</td></tr>
+                                <tr><td>Junos</td><td>NETCONF, con operaciones nativas y snapshot de configuración</td></tr>
+                                <tr><td>Meraki</td><td>Dashboard API: organizaciones, redes, equipos, VLAN, firewall, SSID, STP, puertos, topología</td></tr>
+                                <tr><td>Cisco SD-WAN</td><td>API del Manager: estado, interfaces, conexiones de control, BFD, OMP, configuración</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Qué deja</h3>
+                    <ul>
+                        <li>La salida cruda de cada comando o llamada, por equipo.</li>
+                        <li>El <strong>snapshot normalizado</strong>, con la misma forma para todos los fabricantes: <code>device_info</code>, <code>facts</code>, <code>interfaces</code>, vecinos CDP y LLDP, <code>bgp</code>, <code>ospf</code>, <code>eigrp</code>, <code>routes</code>, <code>arp</code>, <code>mac_table</code>, <code>cpu</code>, <code>memory</code>, <code>config.running</code>, <code>config_model</code>, <code>capabilities</code>, <code>status</code>, <code>errors</code>.</li>
+                        <li>El estado por equipo en el detalle del job y el snapshot vigente de cada equipo, consultables desde la UI y desde la API.</li>
+                    </ul>
+                    <p>Un discovery puede terminar bien, parcial (hubo equipos que fallaron y el job queda <code>completed_with_errors</code>) o fatal. El caché normalizado no se pisa con un snapshot fallido: si un equipo no respondió, se conserva el último bueno.</p>
+                    <h3>Antes del primer discovery</h3>
+                    <p>El paso <code>ping_ssh_check</code> comprueba ICMP y TCP/22 de todo el inventario y deja una tabla CSV. Es la forma rápida de separar «el equipo no responde» de «la credencial está mal». Si un equipo cambió de llave SSH (reemplazo con la misma IP), hay que aceptar la nueva llave desde la UI.</p>
+                </section>
+
+                <section class="doc-section" id="auditorias">
+                    <h2>Auditorías</h2>
+                    <p>Una auditoría es un job del Engine. La completa (<code>run_all</code>) encadena discovery, respaldo, sincronización del caché, inventario canónico, topología, generación, compliance y vulnerabilidades. Cada paso corre sólo en los equipos cuyas <code>capabilities</code> lo permiten.</p>
+                    <h3>Lanzar la primera auditoría</h3>
+                    <ol class="doc-steps">
+                        <li>Confirma que hay inventario con IP de gestión, credenciales en la bóveda y al menos una regla guardada (para que exista la intención de la organización).</li>
+                        <li>En el tablero pulsa <strong>Run Audit</strong>. La UI pide <code>{"scope":"all","max_workers":6,"output_format":"both"}</code> por omisión. Si la organización tiene Meraki o SD-WAN, parte el alcance por plataforma y lanza los jobs acompañantes.</li>
+                        <li>Sigue el job en <strong>Operaciones</strong>: estado, paso en curso, equipos con error. Por API, con la consulta de detalle del job.</li>
+                        <li>Al terminar, el Engine notifica a la UI y ésta ingiere inventario, resultados y topología. Si no, <strong>Sincronizar resultados</strong>.</li>
+                        <li>Lee el tablero: puntaje global, equipos alcanzables, fallas activas y, en Cumplimiento, el detalle por sitio, categoría y equipo.</li>
+                    </ol>
+                    <p>El mismo lanzamiento por API, desde cualquier cliente autenticado, es una petición de auditoría con este cuerpo:</p>
+<pre><code>{"scope": "site", "site": "CDMX-01", "max_workers": 4, "output_format": "both", "organization_slug": "mi-org"}</code></pre>
+                    <h3>Variantes</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Operación</th><th scope="col">Qué hace</th><th scope="col">Cuándo</th></tr></thead>
+                            <tbody>
+                                <tr><td>Auditoría completa (<code>run_all</code>)</td><td>Pipeline completo</td><td>Auditoría periódica o después de un cambio</td></tr>
+                                <tr><td>Compliance en seco (<code>compliance_dry</code>)</td><td>Compliance sobre el snapshot actual, sin tocar equipos</td><td>Cambiaste reglas y quieres ver el efecto ya</td></tr>
+                                <tr><td>Un paso suelto (<code>discovery</code>, <code>backup_config</code>, <code>build_inventory</code>, <code>render_configs</code>, <code>compliance</code>)</td><td>Ese paso solamente</td><td>Depurar o regenerar algo puntual</td></tr>
+                                <tr><td>Verificación de acceso (<code>ping_ssh_check</code>)</td><td>Alcance ICMP y TCP/22</td><td>Antes del primer discovery o cuando hay equipos sin respuesta</td></tr>
+                                <tr><td>Exportables (<code>export_*_csv</code>)</td><td>CSV de inventario, pruebas y resúmenes</td><td>Evidencia para un auditor</td></tr>
+                                <tr><td>Carriles de API (<code>meraki_compliance</code>, <code>sdwan_compliance</code>)</td><td>Discovery y compliance por API</td><td>Los lanza la UI junto con la auditoría completa</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>El alcance se acota con <code>scope</code> (<code>all</code>, <code>site</code>, <code>site_type</code>, <code>device</code>, <code>devices</code>) y con los filtros por sitio, rol, plataforma y ciclo de vida. Los campos están en <a href="oktavia-docs-datos.html#api-jobs">API / Jobs</a>; los criterios para elegir, en <a href="oktavia-docs-decisiones.html#que-auditoria">Qué auditoría ejecutar</a>.</p>
+                    <h3>Artefactos y descarga</h3>
+                    <p>Cada job lista sus artefactos con ruta relativa, tamaño y formato, y cada uno se descarga desde el detalle del job en la UI o por API. <strong>Job Reports</strong> conserva el historial, con las fallas por equipo y los cambios del Gemelo asociados.</p>
+                </section>
+
+                <section class="doc-section" id="compliance">
+                    <h2>Compliance</h2>
+                    <p>El cumplimiento compara lo observado con lo declarado. Las reglas viven en <code>intended.json</code> del tenant, que la UI escribe desde su base de datos; no se edita a mano.</p>
+                    <h3>Dos familias de reglas</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Familia</th><th scope="col">Dónde se definen</th><th scope="col">Qué comprueban</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Configuración</strong> (<code>test_type: config</code>)</td><td>En el Configurador: activar un servicio genera sus checks (<code>cfg_&lt;servicio&gt;_&lt;equipo&gt;_auto</code>)</td><td>Cisco: líneas requeridas y prohibidas en el running (<code>config_contains</code>). Carriles de API: coincidencia de objetos contra el modelo normalizado (<code>config_object_match</code>); en modo estricto, lo que sobra también es drift</td></tr>
+                                <tr><td><strong>Estado y hardware</strong> (<code>network_service_state</code>, <code>hardware</code>, <code>software</code>)</td><td>En Cumplimiento → Reglas: catálogo local más los tipos de check que publica el Engine</td><td>Vecinos BGP, OSPF y EIGRP esperados, interfaces arriba, VLAN presentes, VLAN del trunk, raíz STP, CPU, memoria, disco, errores de interfaz, ping, versión de software, modelo</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Cada regla lleva identificador, categoría, severidad, puntaje, objetivos (fabricantes, plataformas, roles, tipos de sitio, sitios, equipos), tipo de remediación y ticket. Un <code>targets</code> vacío no significa «todos»: hay que marcar <code>apply_to_all</code>. El detalle de campos está en <a href="oktavia-docs-datos.html#compliance-intended">Compliance / Intended</a>.</p>
+                    <h3>Cómo leer un resultado</h3>
+                    <ul>
+                        <li><strong>Puntaje</strong>: <code>score_awarded</code> sobre <code>score_total</code>, por sitio y global, con desglose por categoría (<code>security</code>, <code>lan</code>, <code>wan</code>, <code>hardware</code>, <code>ops</code>, <code>system</code>, <code>software</code>) y por tipo de prueba.</li>
+                        <li><strong>Tres clases de no cumplimiento</strong>: <code>compliance_failure</code> (el equipo no cumple), <code>data_missing</code> (el dato no existe, por ejemplo la interfaz no está) y <code>pipeline_inconsistency</code> (algo falló al recolectar). Sólo la primera es un hallazgo de red.</li>
+                        <li>Un tipo de check que el Engine no implementa se omite con <code>skip_reason</code>, nunca cuenta como fallo. Para equipos SD-WAN sólo aplica un subconjunto de tipos.</li>
+                        <li>Cada prueba trae severidad, tipo de remediación, ticket y fecha de ejecución.</li>
+                    </ul>
+                    <h3>Compliance de configuración con diff</h3>
+                    <p>En Cumplimiento → Configuración, cada equipo muestra la configuración deseada frente a la observada con el diff resaltado y, si hay un proveedor de IA configurado, el botón «Explicar con IA». La norma de versión de software vive aparte, en Cumplimiento → Software.</p>
+                    <h3>Importar y exportar reglas</h3>
+                    <p>Las reglas de estado se importan y exportan en CSV (listas separadas por <code>|</code>), con vista previa antes de aplicar y registro de importaciones. Las reglas de configuración no entran a la base de datos: se derivan del Configurador. Columnas en <a href="oktavia-docs-referencia.html#formatos-soportados">CSV, YAML y JSON soportados</a>.</p>
+                    <p>Para armar la evidencia de una auditoría externa, ver <a href="oktavia-docs-decisiones.html#evidencia-compliance">Cómo preparar evidencia para compliance</a>.</p>
+                </section>
+
+                <section class="doc-section" id="config-generator">
+                    <h2>Config Generator</h2>
+                    <p>El Configurador es donde se declara la intención. Edita <code>service_vars.json</code> por alcances, genera la configuración deseada de cada equipo y activa automáticamente los checks de compliance de cada servicio.</p>
+                    <h3>Las piezas</h3>
+                    <ul>
+                        <li><strong>Catálogo de servicios</strong>: 99 servicios en ocho categorías (sistema, enrutamiento, alta disponibilidad, seguridad, ACL, capa 2, servicios L3, inalámbrico). Cada tenant habilita o deshabilita servicios; deshabilitar uno en cascada apaga sus checks.</li>
+                        <li><strong>Alcances</strong>: <code>defaults</code>, <code>by_site</code>, <code>by_site_type</code>, <code>by_role</code>, <code>by_platform</code>, <code>by_model</code>, <code>by_tag</code>, <code>by_filter</code>, <code>by_device</code>. Se fusionan en ese orden y el último gana; las listas se reemplazan completas.</li>
+                        <li><strong>Plantillas v2</strong> en el Engine: un snippet por servicio y plataforma más un esqueleto por plataforma, compuestos en el orden del manifest. Cisco IOS e IOS-XE tienen 43 servicios con render; FortiGate 16, Junos 16, FortiSwitch 12. Meraki y SD-WAN son de intención solamente.</li>
+                        <li><strong>Capacidades de plataforma</strong> (<code>device_caps</code>) derivadas del modelo y la versión: si el equipo no soporta <code>ntp vrf</code> o storm-control, el snippet lo omite.</li>
+                    </ul>
+                    <h3>Flujo de trabajo</h3>
+                    <ol class="doc-steps">
+                        <li>En <strong>Configurador</strong> elige el alcance (empieza por <code>defaults</code>) y el servicio. El formulario viene del catálogo: campos, tipos, ayuda y valor por omisión.</li>
+                        <li>Guarda. La UI actualiza <code>service_vars.json</code> del tenant, genera o actualiza los checks del servicio en <code>intended.json</code> y, para los servicios con estado, las reglas canónicas (<code>state_bgp_neighbors</code>, <code>state_vlans_present</code>, <code>state_ospf_neighbors</code>…).</li>
+                        <li>Genera la configuración deseada por sitio, equipo, rol, plataforma o tipo de sitio. El resultado se descarga por equipo o por sitio como ZIP.</li>
+                        <li>Compara con lo observado en <strong>Desired Configs</strong> o en Cumplimiento → Configuración. Si hay diferencia, el Gemelo la convierte en un cambio.</li>
+                    </ol>
+                    <h3>Herramientas de apoyo</h3>
+                    <ul>
+                        <li><strong>Desde el respaldo a la intención</strong>: la plataforma propone un bloque <code>services</code> a partir del running. Es una propuesta para revisar, no intención.</li>
+                        <li><strong>Estandarización</strong>: factoriza servicios idénticos de varios equipos al alcance más amplio que los contiene, sólo si todos coinciden. Con proveedor de IA, «optimizar alcances» sugiere la factorización.</li>
+                        <li><strong>Blindaje por rol</strong> (<code>port_hardening</code>) y <strong>día 0</strong>: se puede registrar un equipo nuevo sin discovery para generar su configuración inicial.</li>
+                        <li><strong>CSV</strong>: la intención se exporta e importa en tres variantes (<code>csv</code>, <code>csv_detailed</code>, <code>csv_review</code> cruzada con inventario).</li>
+                    </ul>
+                    <p>Cómo decidir en qué alcance va cada variable: <a href="oktavia-docs-decisiones.html#scopes">Cuándo usar defaults, by_site, by_role, by_platform o by_device</a>. Estructura del archivo: <a href="oktavia-docs-datos.html#service-vars">Service Vars</a>.</p>
+                </section>
+
+                <section class="doc-section" id="digital-twin">
+                    <h2>Digital Twin</h2>
+                    <p>El Gemelo Digital es la capa de operación de cambios. No edita la intención (eso es del Configurador): toma la diferencia entre lo deseado y lo observado y la lleva, con control, hasta el equipo.</p>
+                    <h3>Snapshots y drift</h3>
+                    <p>Un snapshot congela el estado de un job con una nota. El diff de un equipo compara su running actual contra ese snapshot. Cada equipo se marca <code>drift</code>, <code>ok</code> o <code>unknown</code>.</p>
+                    <h3>Una solicitud de cambio</h3>
+                    <ol class="doc-steps">
+                        <li><strong>Crear</strong>: destino (equipo o sitio), carril (<code>cli</code>, <code>fortigate</code>, <code>juniper</code>, <code>fortiswitch</code>, <code>meraki</code>, <code>sdwan</code>), diff propuesto, impacto, responsable y comentario. La UI asigna un ticket <code>CHG-0001</code> y el estado <code>draft</code>.</li>
+                        <li><strong>Vista previa</strong> (<code>preview</code>, modo <code>live</code> o <code>snapshot</code>): en Cisco calcula la remediación CLI línea a línea; en los carriles de API genera un plan de operaciones determinista (qué objetos se crean o actualizan).</li>
+                        <li><strong>Revisar y aprobar</strong> (<code>review</code> → <code>approved</code>) con nombre de quien aprueba y ticket. Rechazar deja <code>rejected</code>.</li>
+                        <li><strong>Ejecutar</strong> (<code>execute</code>) en modo <code>dry_run</code> o <code>apply</code>. Sólo cambios aprobados con alcance de un equipo. El carril debe tener su bandera de remediación encendida.</li>
+                        <li><strong>Confirmar o revertir</strong>: en Junos el apply es un <em>commit confirmed</em>; el cambio queda en <code>pending_confirm</code> hasta que una persona lo confirma. Si nadie lo hace, el vigilante del scheduler lo revierte y queda <code>expired</code>. <code>rollback</code> está disponible antes del plazo.</li>
+                        <li><strong>Verificar</strong>: una nueva auditoría o un <code>service_check</code> confirma que el hallazgo cerró.</li>
+                    </ol>
+                    <h3>Guardas por carril</h3>
+                    <ul>
+                        <li><strong>FortiGate</strong>: dry-run obligatorio, respaldo lógico reciente, sólo upserts. Dos servicios (<code>fgt_admins</code>, <code>fgt_security_zones</code>) sólo en dry-run.</li>
+                        <li><strong>Junos</strong>: <code>load merge</code>, <code>commit check</code>, <code>commit confirmed</code> de 10 minutos por omisión; respaldo no mayor a 24 horas.</li>
+                        <li><strong>Meraki</strong>: nunca <code>DELETE</code>; apply sólo con bandera y credencial con escritura.</li>
+                        <li><strong>SD-WAN</strong>: cambios por Config Groups (variables de equipo, segmentos LAN, OSPF LAN, bloqueo de servicios de transporte).</li>
+                        <li><strong>Cisco CLI</strong>: diff mostrado antes de aplicar; aplicación por SSH.</li>
+                    </ul>
+                    <p>La UI muestra qué carriles tienen el apply habilitado en esa instalación; <strong>Job Reports → Cambios del Gemelo</strong> es el historial.</p>
+                </section>
+
+                <section class="doc-section" id="telemetria">
+                    <h2>Telemetría</h2>
+                    <p>Oktavia separa dos planos. El <strong>plano de datos</strong> (CPU, memoria, almacenamiento, interfaces, temperatura, fuentes, ventiladores) lo recolecta Telegraf por SNMP cada 30 segundos y lo guarda InfluxDB con 7 días de retención. El <strong>plano de control</strong> (BGP, OSPF, EIGRP, rutas, drift) sale de las auditorías y se deriva como mediciones.</p>
+                    <h3>Poner a recolectar un equipo</h3>
+                    <ol class="doc-steps">
+                        <li>Declara <code>services.snmp</code> en la intención (comunidad, ACL, contacto, ubicación) y aplícalo; o verifica que el equipo ya responda SNMP.</li>
+                        <li>Da de alta la credencial <code>snmp</code> en la bóveda.</li>
+                        <li>Ejecuta <strong>Sincronizar Telegraf</strong> en Métricas (o el paso <code>telegraf_sync</code> de una auditoría). Con <code>probe</code> activo, primero valida que cada equipo responda a un <code>get</code> o <code>walk</code>.</li>
+                        <li>Revisa el reporte: <code>targets</code> incluidos, <code>skipped</code> con su razón y <code>restart_required</code>. Telegraf recarga sólo el proceso del tenant afectado.</li>
+                    </ol>
+                    <p>Criterios de inclusión: el equipo existe en el inventario canónico, tiene <code>services.snmp</code> habilitado, su <code>lifecycle</code> es <code>active</code> (o <code>production</code>), su IP resuelve y su fabricante tiene perfil (<code>cisco_ios_router</code>, <code>cisco_ios_switch</code>, <code>fortinet_fortigate</code>, <code>fortinet_fortiswitch</code>, <code>juniper_junos</code>). Meraki y SD-WAN se excluyen: su telemetría llega por API.</p>
+                    <h3>Lo que se ve en la UI</h3>
+                    <ul>
+                        <li><strong>Métricas</strong>: CPU, memoria, interfaces, enlaces, BGP, OSPF, EIGRP, rutas, latencia, túneles y eventos SD-WAN, salud. Gráficas de tendencia con umbrales.</li>
+                        <li><strong>Syslog</strong>: Telegraf recibe syslog y guarda la medición <code>syslog</code> con origen, severidad, facility y aplicación.</li>
+                        <li><strong>Anomalías</strong>: cambios de estado en BGP y OSPF, y desviaciones (z-score) en CPU y conteo de rutas, consultables desde Métricas.</li>
+                        <li><strong>Latencia</strong>: <code>latency_collect</code> mide ICMP hacia los destinos declarados en la intención y escribe en InfluxDB.</li>
+                        <li><strong>Reportes</strong>: Telemetry Health (anomalías de CPU, memoria, interfaces y latencia), Config Risk, Config Drift y Topology Health, con exportación JSON y CSV.</li>
+                    </ul>
+                    <h3>Automatización de eventos</h3>
+                    <p>En <strong>Automatización</strong> se definen reglas métrica → acción: vecino BGP caído, vecino OSPF caído, interfaz caída, CPU alta (80 %), memoria alta (85 %), temperatura alta (75 °C), errores de interfaz. Acciones: correr compliance, recolectar diagnóstico, notificar por webhook, correo o dentro de la UI. Un evaluador independiente las revisa periódicamente.</p>
+                    <p>Detalle de InfluxDB, Telegraf y perfiles SNMP en <a href="oktavia-docs-integraciones.html#influxdb-telegraf">InfluxDB / Telegraf</a>.</p>
+                </section>
+
+                <section class="doc-section" id="scheduler">
+                    <h2>Scheduler</h2>
+                    <p>El programador del Engine ejecuta trabajos a horas fijas, espera a que terminen y, si se le indica, entrega el resultado a la UI para que lo ingiera. Se configura desde <strong>Operaciones → Programación</strong> en la UI o editando su archivo de configuración YAML a través de la API.</p>
+                    <h3>Estructura de un job programado</h3>
+<pre><code>version: 2
+poll_interval: 5
+jobs:
+  - name: auditoria-diaria
+    enabled: true
+    organization_slug: mi-org
+    schedule:
+      type: frequency
+      frequency: daily
+      time: "02:00"
+    steps:
+      - label: Auditoría completa
+        operation: auditoria_completa
+        payload: {"scope": "all", "max_workers": 4, "output_format": "both"}
+        wait: true
+        ingest: true
+      - label: Alcance
+        operation: ping_ssh_check
+        payload: {"scope": "all"}
+        wait: true</code></pre>
+                    <p>Cada paso indica la operación del Engine, su cuerpo, si se espera a que termine y si el resultado se entrega a la UI. La guía entregada con el software documenta la sintaxis exacta de la operación.</p>
+                    <h3>Tipos de programación</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col"><code>schedule.type</code></th><th scope="col">Campos</th><th scope="col">Ejemplo</th></tr></thead>
+                            <tbody>
+                                <tr><td><code>frequency</code></td><td><code>frequency</code> (<code>daily</code>, <code>weekly</code>, <code>monthly</code>, <code>once</code>), <code>time</code>, <code>day_of_week</code>, <code>day_of_month</code></td><td>Semanal los lunes a las 02:00</td></tr>
+                                <tr><td><code>cron</code></td><td><code>value</code> con crontab de cinco campos</td><td><code>0 */6 * * *</code></td></tr>
+                                <tr><td><code>interval</code></td><td>Periodo</td><td>Cada 15 minutos</td></tr>
+                                <tr><td><code>datetime</code></td><td><code>value</code> con fecha y hora</td><td>Una sola vez en una ventana de cambio</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Un job puede ejecutarse al arrancar el programador o recuperarse si el programador arrancó poco después de su hora. El programador mantiene además tareas internas propias: el vigilante del <em>commit confirmed</em> de Junos y el sondeo de telemetría SD-WAN.</p>
+                    <p>La UI muestra el estado del programador junto con el del Engine. Aparte, la UI tiene dos tareas de mantenimiento de eventos Meraki que conviene programar con el planificador del sistema.</p>
+                </section>
+
+                <section class="doc-section" id="argos-mcp">
+                    <h2>Argos y MCP</h2>
+                    <p><strong>Argos</strong> es el asistente de operación de la UI. Recibe una petición en lenguaje natural, la enruta a un flujo y devuelve una respuesta con intención detectada, razón, confianza, si usó un modelo de IA, el resultado de la acción y sugerencias.</p>
+                    <h3>Dos marcas, dos modos</h3>
+                    <ul>
+                        <li><strong>IAOps</strong>: flujos deterministas que no consumen modelo. Diagnóstico de un equipo, reemplazo o baja, onboarding, túnel GRE, publicar una red, DHCP por VLAN, segmento SD-WAN, switch de sucursal, pegado de CLI, triage de ticket, telemetría. Son los que lanzan operaciones en vivo del Engine: limpiar contadores, verificar un servicio, comprobar acceso.</li>
+                        <li><strong>IA</strong>: lo que sí usa un modelo de lenguaje. Explicar un diff, revisar un cambio, resumir cumplimiento, redactar una remediación, analizar enrutamiento o un camino, proponer variables de servicio desde un respaldo, correlacionar eventos. Proveedor configurable por organización: API de Anthropic o un modelo local con Ollama. El uso de tokens se mide por organización.</li>
+                    </ul>
+                    <h3>Ciclos</h3>
+                    <p>Un flujo largo se convierte en un <strong>ciclo</strong> persistente que avanza el worker de Argos: <code>pending</code> → <code>running</code> → <code>waiting_apply</code> (espera la aprobación humana) → <code>verifying</code> → <code>closed</code>, con los estados <code>attention</code>, <code>failed</code> y <code>canceled</code>. Se consultan y reanudan desde la UI.</p>
+                    <div class="doc-callout">
+                        <p><strong>Argos nunca aplica.</strong> Prepara el cambio, lo deja en el Gemelo y espera la aprobación. Después verifica en vivo. Lo mismo vale para el servidor MCP: es de solo lectura.</p>
+                    </div>
+                    <h3>El servidor MCP</h3>
+                    <p>El Engine expone un servidor <em>Model Context Protocol</em> de solo lectura sobre los artefactos de la organización, pensado para Argos y para asistentes de escritorio como Claude Desktop. Herramientas: <code>query_inventory</code>, <code>get_device_state</code>, <code>diff_snapshots</code>, <code>get_compliance_results</code>, <code>get_routing_table</code>, <code>list_snapshots</code>, <code>get_topology_neighbors</code>, <code>get_topology_impact</code>, <code>get_recent_jobs</code>, <code>triage_device</code>. Recursos por organización y tres prompts: <code>drift-triage</code>, <code>audit-narrative</code>, <code>pre-change-check</code>.</p>
+                    <ul>
+                        <li>Toda llamada exige una organización permitida; no hay herramientas de escritura, acceso a equipos ni a la bóveda; se redactan secretos por clave y por línea; cada llamada queda en un registro de evidencia por organización.</li>
+                        <li>Argos, del lado de la UI, también puede actuar como cliente MCP de otros servidores, con una lista de herramientas permitidas.</li>
+                    </ul>
+                    <p>Cómo conectarlo, en <a href="oktavia-docs-integraciones.html#mcp-argos">MCP / Argos</a>.</p>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

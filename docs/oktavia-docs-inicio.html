@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inicio · Documentación de Oktavia</title>
+    <meta name="description" content="Qué es Oktavia, cómo está armada, el camino más corto hasta la primera auditoría y el glosario de toda la documentación.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-inicio.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Inicio · Documentación de Oktavia">
+    <meta property="og:description" content="Qué es Oktavia, cómo está armada, el camino más corto hasta la primera auditoría y el glosario de toda la documentación.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-inicio.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-inicio.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Inicio</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Inicio</p>
+                    <h1>Inicio</h1>
+                    <p class="doc-lede">Qué es Oktavia, cómo está armada, el camino más corto hasta la primera auditoría y el glosario de toda la documentación.</p>
+                    <ul class="doc-meta">
+                <li>Orientación</li>
+                <li>Para implementadores y operadores</li>
+                <li>Lectura: 15 minutos</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#que-es-oktavia">Qué es Oktavia</a></li>
+                <li><a href="#arquitectura-general">Arquitectura general</a></li>
+                <li><a href="#quickstart">Quickstart</a></li>
+                <li><a href="#glosario">Glosario</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="que-es-oktavia">
+                    <h2>Qué es Oktavia</h2>
+                    <p>
+                        Oktavia es la plataforma de automatización de redes de Oktanet. Combina un motor de automatización, el <strong>Engine</strong> (NAE, <em>Network Automation Engine</em>), con una <strong>interfaz web</strong> que funciona como fuente de verdad de la red. Con ella un equipo de operaciones audita sus equipos, verifica que cumplan el estándar declarado, genera la configuración deseada, propone cambios contra esa intención y, con aprobación humana, los aplica y comprueba que el hallazgo cerró.
+                    </p>
+                    <div class="docs-aside">
+                        <h4>Para quién es esta documentación</h4>
+                        <p>Para quien implementa u opera Oktavia: ingenieros de red, equipos de NOC, socios que la instalan en un cliente y desarrolladores que la integran por API. Si lo que buscas es entender el producto o evaluarlo, empieza por la <a href="oktavia.html">ficha técnica</a> o por el curso gratuito <a href="curso-oktavia-fundamentos.html">Oktavia Fundamentos</a>.</p>
+                    </div>
+                    <h3>Lo que hace</h3>
+                    <ul>
+                        <li><strong>Discovery</strong> multivendor desde un inventario declarado: recolecta estado y configuración por SSH, NETCONF o API y lo normaliza a un mismo formato.</li>
+                        <li><strong>Inventario</strong> por organización, con sitios, tipos de sitio, roles y plataformas; se carga por CSV o se da de alta en la UI.</li>
+                        <li><strong>Compliance</strong> de configuración y de estado contra reglas declaradas, con puntaje por sitio, categoría y severidad.</li>
+                        <li><strong>Config Generator</strong>: la intención se declara por alcances (organización, sitio, rol, plataforma, equipo) y se renderiza con plantillas por fabricante.</li>
+                        <li><strong>Digital Twin</strong>: snapshots, detección de drift y solicitudes de cambio con vista previa, aprobación y ejecución controlada.</li>
+                        <li><strong>Topología</strong>, enrutamiento, capa 2, IPAM y seguridad de red, todo a partir del mismo snapshot.</li>
+                        <li><strong>Telemetría</strong> SNMP y syslog con Telegraf e InfluxDB, y reglas que disparan acciones ante eventos.</li>
+                        <li><strong>Argos</strong>, el asistente de operación, y un servidor <strong>MCP</strong> de solo lectura para asistentes de IA.</li>
+                    </ul>
+                    <h3>Fabricantes en producción</h3>
+                    <p>
+                        Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos tienen discovery, respaldo, generación de configuración, compliance, telemetría y carril de cambios. Cisco Meraki y Cisco SD-WAN se integran por sus APIs de gestión con intención estructurada, sin generación de CLI. El detalle por función está en <a href="oktavia-docs-integraciones.html">Integraciones</a>.
+                    </p>
+                    <div class="doc-callout">
+                        <p><strong>Una regla que atraviesa toda la plataforma:</strong> Oktavia nunca aplica un cambio sin aprobación humana. Argos propone, el Gemelo previsualiza, una persona aprueba, el Engine ejecuta y una nueva auditoría verifica.</p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="arquitectura-general">
+                    <h2>Arquitectura general</h2>
+                    <p>
+                        Oktavia se entrega como dos componentes que se despliegan juntos, cada uno con su propio conjunto de contenedores: el <strong>componente de interfaz</strong> (la UI, que es la fuente de verdad) y el <strong>motor de automatización</strong> (el Engine, que toca los equipos). Alrededor de ellos hay servicios de apoyo que el cliente aprovisiona o que vienen incluidos en los contenedores.
+                    </p>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead>
+                                <tr><th scope="col">Componente</th><th scope="col">Responsabilidad</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Interfaz (UI)</strong></td><td>Fuente de verdad por organización: inventario, intención, reglas, catálogo de servicios, bóveda de credenciales, tableros, Gemelo Digital y Argos. Incluye dos procesos de fondo: el evaluador de reglas de automatización y el que avanza los ciclos de Argos.</td></tr>
+                                <tr><td>Base de datos relacional</td><td>PostgreSQL, con alcance por organización en cada fila.</td></tr>
+                                <tr><td>Caché</td><td>Compartida entre los procesos de la interfaz.</td></tr>
+                                <tr><td><strong>Motor (Engine)</strong></td><td>API de automatización: auditorías como jobs, discovery, respaldos, inventario canónico, generación de configuración, compliance, topología, métricas, Gemelo y servidor MCP. Incluye un ejecutor de jobs y un programador de tareas.</td></tr>
+                                <tr><td>Cola de jobs</td><td>Los jobs se encolan y un ejecutor dedicado los corre de forma asíncrona.</td></tr>
+                                <tr><td>Series de tiempo</td><td>InfluxDB, para las métricas del plano de datos con retención configurable.</td></tr>
+                                <tr><td>Recolector</td><td>Telegraf, para SNMP y syslog, con una instancia por organización.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Cómo se hablan</h3>
+                    <ul>
+                        <li>La <strong>UI llama al Engine</strong> por una API REST autenticada con una credencial de integración compartida.</li>
+                        <li>El <strong>Engine llama a la UI</strong> para leer la fuente de verdad de la organización y para entregar los resultados de cada job, con una segunda credencial de integración.</li>
+                        <li>Comparten un <strong>almacenamiento</strong>: la UI deja ahí la intención, las reglas y la bóveda cifrada; el Engine las lee y deja los artefactos de auditoría por organización. La clave de cifrado de la bóveda debe ser idéntica en ambos lados.</li>
+                        <li>El Engine llega a los equipos por SSH (Cisco, FortiSwitch), NETCONF (Junos) o API REST (FortiGate, Meraki, SD-WAN, CML) con las credenciales de la bóveda.</li>
+                    </ul>
+                    <p>El detalle de qué hace cada componente y por qué se separan está en <a href="oktavia-docs-introduccion.html#ui-vs-engine">UI vs Engine</a>.</p>
+                </section>
+
+                <section class="doc-section" id="quickstart">
+                    <h2>Quickstart</h2>
+                    <p>
+                        El camino más corto hasta una primera auditoría con contenedores. Cada etapa tiene su guía en <a href="oktavia-docs-instalacion.html">Guías de instalación</a>; aquí sólo está el orden y el porqué. Los comandos exactos están en la guía de instalación que se entrega con el software.
+                    </p>
+                    <div class="docs-aside">
+                        <h4>Antes de empezar</h4>
+                        <ul>
+                            <li>Docker con Compose v2, Git y Python 3 en la máquina donde se instala.</li>
+                            <li>Acceso de gestión a por lo menos un equipo soportado, con un usuario de solo lectura para el primer discovery.</li>
+                            <li>Los dos componentes de Oktavia, la interfaz y el motor, que Oktanet entrega a socios y clientes.</li>
+                        </ul>
+                    </div>
+                    <ol class="doc-steps">
+                        <li><strong>Instala los dos componentes juntos</strong>, en el mismo directorio padre: sus contenedores comparten almacenamiento y la instalación lo da por hecho.</li>
+                        <li><strong>Prepara el motor</strong>: crea su entorno, instala dependencias y genera su configuración. La herramienta del motor genera también los tres secretos compartidos y fija el token de la base de series de tiempo antes del primer arranque.</li>
+                        <li><strong>Prepara la interfaz</strong>: parte de su configuración de ejemplo, corre el script de datos iniciales y asegúrate de que la clave de cifrado de la bóveda sea la misma que en el motor.</li>
+                        <li><strong>Verifica las tres parejas</strong>: la credencial de integración UI→Engine, la credencial Engine→UI y la clave de cifrado de la bóveda deben coincidir en los dos componentes.</li>
+                        <li><strong>Carga un inventario mínimo</strong>: un CSV con las columnas de <a href="oktavia-docs-datos.html#inventario-base">Inventario base</a>, desde la UI o con la herramienta del motor.</li>
+                        <li><strong>Levanta el motor</strong> y confirma que su verificación de salud responde.</li>
+                        <li><strong>Levanta la interfaz</strong> y espera a que la base de datos esté sana y la aplicación en marcha.</li>
+                        <li><strong>Crea el usuario administrador</strong> e inicia sesión. Es un punto de control obligatorio: sin usuario no hay forma de seguir.</li>
+                        <li><strong>Da de alta las credenciales</strong> de los equipos en Integraciones → Credenciales. Cada cambio se entrega cifrado al motor.</li>
+                        <li><strong>Sincroniza la intención de la organización</strong>: guarda cualquier regla desde la UI para que exista su archivo de reglas. Sin él, la auditoría se rechaza.</li>
+                        <li><strong>Lanza la primera auditoría</strong> desde el botón «Run Audit» del tablero. Al terminar, la UI ingiere los artefactos y el tablero muestra el puntaje de cumplimiento.</li>
+                    </ol>
+                    <p>Si algo no sale, <a href="oktavia-docs-instalacion.html#troubleshooting">Troubleshooting</a> recoge los síntomas frecuentes de instalación con su corrección.</p>
+                </section>
+
+                <section class="doc-section" id="glosario">
+                    <h2>Glosario</h2>
+                    <p>Los términos que aparecen en toda la documentación, con la definición que usa la plataforma.</p>
+                    <dl class="docs-dl">
+                        <dt>Oktavia</dt><dd>La plataforma completa: Engine más UI.</dd>
+                        <dt>NAE</dt><dd><em>Network Automation Engine</em>, el motor de automatización. Expone una API REST autenticada.</dd>
+                        <dt>UI / SoT</dt><dd>El componente de interfaz, que actúa como fuente de verdad (<em>Source of Truth</em>) del inventario y de la intención.</dd>
+                        <dt>Tenant / organización</dt><dd>Unidad de aislamiento de datos. Toda fila de la UI y todo job del Engine llevan una organización; se identifica por <code>organization_slug</code>.</dd>
+                        <dt>Inventario base</dt><dd>La semilla declarada: qué equipos existen, dónde están y cómo se accede a ellos. Viene de un CSV o de la UI.</dd>
+                        <dt>Discovery</dt><dd>Recolección de estado y configuración desde el inventario declarado. No descubre equipos nuevos: observa los que ya están dados de alta.</dd>
+                        <dt>Collector</dt><dd>El carril de recolección según el tipo de acceso: SSH, NETCONF o API REST, con un collector por fabricante.</dd>
+                        <dt>Snapshot normalizado</dt><dd>El JSON por equipo con la misma forma sin importar el fabricante: facts, interfaces, vecinos, protocolos, rutas, configuración y capacidades.</dd>
+                        <dt>Capabilities</dt><dd>Banderas por equipo (<code>inventory</code>, <code>config_backup</code>, <code>config_render</code>, <code>topology</code>, <code>compliance</code>) que deciden qué pasos del pipeline corren para él.</dd>
+                        <dt>Intención / intended</dt><dd>El estado deseado declarado en el Configurador. Se materializa como <code>service_vars.json</code> (variables por alcance), configuraciones renderizadas e <code>intended.json</code> (reglas).</dd>
+                        <dt>Observado / running</dt><dd>Lo que el equipo tiene en realidad: la configuración en ejecución y el estado recolectado.</dd>
+                        <dt>Drift</dt><dd>La diferencia entre lo deseado y lo observado, o entre dos snapshots.</dd>
+                        <dt>Alcance (scope)</dt><dd>El nivel al que se declara una variable de intención: <code>defaults</code>, <code>by_site</code>, <code>by_site_type</code>, <code>by_role</code>, <code>by_platform</code>, <code>by_model</code>, <code>by_tag</code>, <code>by_filter</code>, <code>by_device</code>. El último gana.</dd>
+                        <dt>Servicio</dt><dd>Una unidad de configuración con nombre (<code>ntp</code>, <code>snmp</code>, <code>bgp</code>, <code>fgt_dns</code>…) que tiene plantilla por plataforma, campos en el Configurador y checks de compliance asociados.</dd>
+                        <dt>Manifest v2</dt><dd>El registro de servicios por plataforma en el Engine. Es la fuente de verdad del catálogo; la UI y los checks sembrados son proyecciones y la integración continua falla si divergen.</dd>
+                        <dt>Carril (vendor lane)</dt><dd>La ruta de remediación por fabricante: <code>cli</code> (Cisco), <code>fortigate</code>, <code>juniper</code>, <code>fortiswitch</code>, <code>meraki</code>, <code>sdwan</code>. Las plataformas de API no generan CLI: su intención se evalúa como objetos.</dd>
+                        <dt>Job</dt><dd>Una ejecución asíncrona del Engine, con estados <code>queued</code>, <code>running</code>, <code>completed</code>, <code>completed_with_errors</code>, <code>failed</code>, <code>timeout</code>, y artefactos descargables.</dd>
+                        <dt>Artefacto</dt><dd>Un archivo que deja un job: JSON, CSV o CFG. Todo lo que Oktavia afirma está respaldado por uno.</dd>
+                        <dt>Latest del tenant</dt><dd>La copia vigente y fusionada de los artefactos de cada organización, que es lo que la UI y el MCP consultan.</dd>
+                        <dt>Digital Twin / Gemelo</dt><dd>La capa de operación de cambios: snapshots congelados, diff y solicitudes de cambio con vista previa, aprobación, ejecución y, en Junos, confirmación.</dd>
+                        <dt>Cerrar el ciclo</dt><dd>Auditar, ver el cumplimiento, proponer, revisar el diff, aprobar, aplicar y verificar con una nueva auditoría.</dd>
+                        <dt>Argos</dt><dd>El asistente de operación de la UI. Enruta intenciones a flujos deterministas (marca «IAOps») o a un modelo de lenguaje (marca «IA»). Nunca aplica sin aprobación.</dd>
+                        <dt>MCP</dt><dd><em>Model Context Protocol</em>. El Engine expone un servidor MCP de solo lectura sobre los artefactos del tenant; Argos y Claude Desktop lo consumen.</dd>
+                        <dt>Bóveda de credenciales</dt><dd>Las credenciales de los equipos cifradas en la UI y entregadas al Engine por el volumen compartido. Resolución: equipo, luego sitio, luego global.</dd>
+                        <dt>Red de pruebas</dt><dd>Un laboratorio en Cisco Modeling Labs que Oktavia administra para validar cambios antes de producción. Encender nodos es siempre del operador.</dd>
+                    </dl>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

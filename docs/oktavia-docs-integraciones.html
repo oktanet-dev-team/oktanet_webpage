@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Integraciones · Documentación de Oktavia</title>
+    <meta name="description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-integraciones.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Integraciones · Documentación de Oktavia">
+    <meta property="og:description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-integraciones.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-integraciones.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Integraciones</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Integraciones</p>
+                    <h1>Integraciones</h1>
+                    <p class="doc-lede">Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.</p>
+                    <ul class="doc-meta">
+                <li>Integración</li>
+                <li>Sólo lo implementado en el código</li>
+                <li>Siete integraciones</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#cobertura">Cobertura por función</a></li>
+                <li><a href="#cisco-ios">Cisco IOS / IOS-XE</a></li>
+                <li><a href="#fortigate">FortiGate</a></li>
+                <li><a href="#fortiswitch">FortiSwitch</a></li>
+                <li><a href="#juniper">Juniper Junos</a></li>
+                <li><a href="#meraki">Meraki</a></li>
+                <li><a href="#influxdb-telegraf">InfluxDB / Telegraf</a></li>
+                <li><a href="#mcp-argos">MCP / Argos</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="cobertura">
+                    <h2>Cobertura por función</h2>
+                    <p>Lo que está implementado en la plataforma, por fabricante y por función. Para fabricantes que no aparecen aquí, consulta a Oktanet.</p>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Función</th><th scope="col">Cisco IOS / IOS-XE</th><th scope="col">FortiGate</th><th scope="col">FortiSwitch</th><th scope="col">Junos</th><th scope="col">Meraki</th><th scope="col">Cisco SD-WAN</th></tr></thead><tbody>
+                        <tr><td>Acceso</td><td>SSH</td><td>API REST</td><td>SSH</td><td>NETCONF 830</td><td>Dashboard API</td><td>API del Manager</td></tr>
+                        <tr><td>Discovery</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td>Respaldo</td><td>.cfg</td><td>JSON lógico por VDOM</td><td>.cfg</td><td>Snapshot y JSON</td><td>JSON estructurado</td><td>.cfg y JSON</td></tr>
+                        <tr><td>Config Generator</td><td>43 servicios</td><td>16 servicios</td><td>12 servicios</td><td>16 servicios</td><td>Intención sin render (7 servicios)</td><td>Intención sin render (9 servicios)</td></tr>
+                        <tr><td>Compliance</td><td>Todos los tipos</td><td>Objetos y métricas</td><td>Sí</td><td>Sí</td><td>Carril propio</td><td>Subconjunto de tipos</td></tr>
+                        <tr><td>Topología</td><td>CDP, LLDP, BGP, OSPF, EIGRP, FHRP, GRE</td><td>Participa</td><td>LLDP</td><td>BGP</td><td>No</td><td>BFD</td></tr>
+                        <tr><td>Telemetría SNMP</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Por API</td><td>Por API cada 5 min</td></tr>
+                        <tr><td>Gemelo: vista previa</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td>Gemelo: aplicar</td><td>SSH con diff</td><td>Con bandera</td><td>Con bandera</td><td>Con bandera, commit confirmed</td><td>Con bandera, sin DELETE</td><td>Con bandera, Config Groups</td></tr>
+                        <tr><td>Red de pruebas CML</td><td>Sí</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Edge C8000V</td></tr>
+                    </tbody></table></div>
+                </section>
+
+                <section class="doc-section" id="cisco-ios">
+                    <h2>Cisco IOS / IOS-XE</h2>
+                    <p>El carril más completo. Las plataformas <code>ios</code> e <code>iosxe</code> comparten plantillas y se acceden por SSH.</p>
+                    <ul>
+                        <li><strong>Discovery</strong>: facts, interfaces, LLDP y CDP, configuración, direcciones y contadores, más el estado de BGP, OSPF, EIGRP, rutas, ARP, tabla MAC, VLAN, VTP, STP, port-security, DHCP, CPU, memoria, logging, SSH, VRF y protocolos.</li>
+                        <li><strong>Config Generator</strong>: 43 servicios con plantilla, desde <code>hostname</code> y <code>aaa</code> hasta <code>bgp</code>, <code>ospf</code>, <code>eigrp</code>, <code>acl_*</code>, <code>interface_acl</code>, <code>ip_sla</code>, <code>hsrp</code>, <code>vrrp</code>, <code>gre_tunnels</code>, <code>nat</code>, <code>port_hardening</code>, <code>vty_ssh</code>, <code>ntp</code>, <code>snmp</code>, <code>banners</code>. Los de switch (<code>vlan_database</code>, <code>spanning_tree</code>, <code>port_hardening</code>…) y los de router (<code>bgp</code>, <code>gre_tunnels</code>, <code>nat</code>, <code>ip_sla</code>…) se restringen por rol. Las capacidades de plataforma ajustan la sintaxis por modelo y versión (por ejemplo <code>ntp vrf</code> o storm-control).</li>
+                        <li><strong>Compliance</strong>: <code>config_contains</code> sobre el running más todos los tipos de check de estado.</li>
+                        <li><strong>Remediación</strong>: carril <code>cli</code>. La vista previa calcula la configuración de remediación línea a línea (deseado contra running); el apply va por SSH y muestra el diff antes.</li>
+                        <li><strong>Telemetría</strong>: SNMP de router y de switch: CPU a 5 segundos, 1 y 5 minutos, memoria, interfaces de 64 bits, temperatura, sensores y BGP.</li>
+                        <li><strong>Operaciones de Argos</strong>: limpiar contadores con verificación y comprobación de servicio en vivo.</li>
+                        <li><strong>Red de pruebas</strong>: imágenes IOSv, IOSvL2, IOL, Cat8000v y CSR1000v en CML con día 0 generado.</li>
+                        <li><strong>Vulnerabilidades</strong>: normalización de versión de IOS e IOS-XE para el cruce con NVD, KEV y EPSS.</li>
+                    </ul>
+                    <p>Credencial: tipo <code>ssh</code>. En equipos virtuales lentos conviene aumentar el timeout de lectura en las opciones de conexión del inventario.</p>
+                </section>
+
+                <section class="doc-section" id="fortigate">
+                    <h2>FortiGate</h2>
+                    <p>Plataforma <code>fortigate</code>, carril <code>fortigate</code>. Oktavia habla con FortiOS por su API REST (configuración y monitor), por VDOM.</p>
+                    <ul>
+                        <li><strong>Discovery y respaldo</strong>: snapshot por VDOM y respaldo lógico en JSON de la CMDB, además del modelo normalizado <code>config_model</code>.</li>
+                        <li><strong>Intención</strong>: 16 servicios <code>fgt_*</code>: <code>fgt_system_global</code>, <code>fgt_dns</code>, <code>fgt_ntp</code>, <code>fgt_admins</code>, <code>fgt_snmp</code>, <code>fgt_syslog</code>, <code>fgt_interfaces</code>, <code>fgt_security_zones</code>, <code>fgt_address_objects</code>, <code>fgt_service_objects</code>, <code>fgt_firewall_policies</code>, <code>fgt_nat_policy_baseline</code>, <code>fgt_default_route</code>, <code>fgt_static_routes</code>, <code>fgt_bgp</code>, <code>fgt_ospf</code>. Se renderizan como objetos, no como CLI.</li>
+                        <li><strong>Compliance</strong>: <code>config_object_match</code> contra el modelo normalizado; en modo estricto, lo que sobra también es drift. Las métricas de CPU y memoria aplican por objetivos explícitos. El perfil de capacidades marca <code>compliance=false</code> para el paso genérico.</li>
+                        <li><strong>Remediación</strong>: con la bandera de remediación del carril y una credencial con permiso de escritura. Dry-run obligatorio, respaldo lógico reciente, sólo upserts (nunca borra). 13 de los 16 servicios son remediables; <code>fgt_admins</code> y <code>fgt_security_zones</code> sólo en dry-run.</li>
+                        <li><strong>Telemetría</strong>: SNMP de CPU, memoria, sesiones e interfaces.</li>
+                        <li><strong>Token</strong>: credencial tipo <code>fortigate</code> con URL base y verificación TLS; rotación y prueba de conexión desde Integraciones.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="fortiswitch">
+                    <h2>FortiSwitch</h2>
+                    <p>Plataforma <code>fortiswitch</code>, carril <code>fortiswitch</code>. Acceso por SSH, con lectura de la configuración completa.</p>
+                    <ul>
+                        <li><strong>Intención</strong>: 12 servicios <code>fsw_*</code>: <code>fsw_lldp</code>, <code>fsw_interfaces</code>, <code>fsw_poe</code>, <code>fsw_vlans</code>, <code>fsw_trunks</code>, <code>fsw_stp</code>, <code>fsw_mgmt_access</code>, <code>fsw_admins</code>, <code>fsw_dns</code>, <code>fsw_snmp</code>, <code>fsw_ntp</code>, <code>fsw_syslog</code>. Tienen plantilla en el Engine y se auditan como objetos.</li>
+                        <li><strong>Topología</strong>: vecinos LLDP.</li>
+                        <li><strong>Remediación</strong>: por SSH, con la bandera de remediación del carril.</li>
+                        <li><strong>Telemetría</strong>: SNMP de sistema e interfaces.</li>
+                        <li><strong>Detalle</strong>: la regla de reloj lee <code>clock_valid</code> porque un FortiSwitch sin NTP desde la interfaz de gestión reporta 1969.</li>
+                    </ul>
+                    <p>Credencial: tipo <code>ssh</code>.</p>
+                </section>
+
+                <section class="doc-section" id="juniper">
+                    <h2>Juniper Junos</h2>
+                    <p>Plataforma <code>junos</code> (validado en SRX), carril <code>juniper</code>. La fuente de verdad publica el acceso como NETCONF por el puerto 830 de forma automática.</p>
+                    <ul>
+                        <li><strong>Discovery</strong>: operaciones nativas de NETCONF y snapshot de configuración.</li>
+                        <li><strong>Intención</strong>: 16 servicios <code>jnpr_*</code>: <code>jnpr_management_hardening</code>, <code>jnpr_system_services</code>, <code>jnpr_login_users</code>, <code>jnpr_dns</code>, <code>jnpr_ntp</code>, <code>jnpr_syslog</code>, <code>jnpr_interfaces</code>, <code>jnpr_security_zones</code>, <code>jnpr_address_book</code>, <code>jnpr_applications</code>, <code>jnpr_security_policies</code>, <code>jnpr_nat</code>, <code>jnpr_snmp</code>, <code>jnpr_static_routes</code>, <code>jnpr_bgp</code>, <code>jnpr_ospf</code>.</li>
+                        <li><strong>Remediación</strong>: <code>load merge</code> → <code>commit check</code> → <code>commit confirmed</code> (10 minutos por omisión). El cambio queda <code>pending_confirm</code>; confirmarlo es siempre de una persona. Si nadie confirma, el vigilante del scheduler revierte y el cambio queda <code>expired</code>. Exige la bandera de remediación del carril y un respaldo reciente.</li>
+                        <li><strong>Topología</strong>: vecinos BGP. <strong>Telemetría</strong>: SNMP de CPU, memoria, alarmas e interfaces.</li>
+                    </ul>
+                    <p>Credencial: tipo <code>ssh</code> (NETCONF usa las mismas credenciales); el usuario debe tener permiso de configuración si el carril va a aplicar.</p>
+                </section>
+
+                <section class="doc-section" id="meraki">
+                    <h2>Meraki</h2>
+                    <p>Plataforma <code>meraki</code>, carril <code>meraki</code>. Los equipos no se dan de alta a mano: se sincronizan desde <strong>Integraciones → Meraki</strong> con la clave de Dashboard; cada red Meraki aparece como un sitio.</p>
+                    <ul>
+                        <li><strong>Discovery</strong>: organizaciones, redes, equipos MX, MS y MR, VLAN, firewall L3 y L7, SSID, STP, puertos de switch y topología de capa de enlace. Cámaras MV y sensores MT sólo como fuentes transversales.</li>
+                        <li><strong>Intención</strong>: siete servicios sin render: <code>mx_vlans</code>, <code>mx_l3_firewall</code>, <code>ms_switch_ports</code>, <code>ms_stp</code>, <code>mr_ssids</code>, <code>meraki_firmware_baseline</code>, <code>meraki_device_tags</code>. Se evalúan como objetos (<code>config_object_match</code>) en el job <code>meraki_compliance</code>, que la UI lanza junto con la auditoría.</li>
+                        <li><strong>Remediación</strong>: plan de operaciones determinista en la vista previa; apply sólo con la bandera de remediación del carril y una credencial con permiso de escritura. Nunca se ejecuta <code>DELETE</code>.</li>
+                        <li><strong>Eventos push</strong>: webhooks, ubicación (<em>location scanning</em>) y MV Sense llegan a rutas de ingreso de la UI con token propio por organización, límites de tamaño y de tasa, y retención configurable. El registro de webhooks en Meraki se activa por bandera. Dos tareas de mantenimiento se programan con el planificador del sistema.</li>
+                        <li><strong>Telemetría</strong>: no entra a Telegraf; sus métricas llegan por API.</li>
+                    </ul>
+                    <p>Credencial: tipo <code>meraki</code>.</p>
+                </section>
+
+                <section class="doc-section" id="influxdb-telegraf">
+                    <h2>InfluxDB / Telegraf</h2>
+                    <p>La telemetría del plano de datos corre sobre dos servicios incluidos con el motor. Telegraf recolecta por SNMP (v2c, o v3 recomendado en producción) a intervalos cortos y recibe syslog; InfluxDB guarda las series con retención configurable.</p>
+                    <h3>Una instancia por organización</h3>
+                    <p>El recolector mantiene una configuración por organización y recarga sólo la que cambió, sin reiniciar las demás. Cada serie lleva la etiqueta <code>tenant</code> con la organización.</p>
+                    <h3>Sincronización desde el inventario</h3>
+                    <p><code>telegraf_sync</code> genera la configuración SNMP a partir del inventario canónico y la intención (<code>services.snmp</code>). Incluye al equipo si existe, tiene SNMP habilitado, su <code>lifecycle</code> es activo, su IP resuelve y su fabricante está soportado; con <code>probe</code> además valida que responda a <code>get</code> o <code>walk</code>. La salida es idempotente y el reporte lista objetivos, omitidos con razón y si hace falta reiniciar. Hay una vista previa sin escribir desde Métricas.</p>
+                    <h3>Qué recolecta por fabricante</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Fabricante</th><th scope="col">Qué recolecta</th></tr></thead><tbody>
+                        <tr><td>Cisco IOS e IOS-XE (router y switch)</td><td>CPU a 5 segundos, 1 y 5 minutos; memoria; interfaces con contadores de 64 bits; temperatura y sensores; estado BGP</td></tr>
+                        <tr><td>FortiGate</td><td>CPU, memoria, sesiones e interfaces</td></tr>
+                        <tr><td>FortiSwitch</td><td>Sistema e interfaces</td></tr>
+                        <tr><td>Junos</td><td>CPU y memoria por componente, alarmas e interfaces</td></tr>
+                    </tbody></table></div>
+                    <h3>Syslog y otras fuentes</h3>
+                    <ul>
+                        <li>Syslog por UDP en el puerto estándar, en modo tolerante; medición <code>syslog</code> con etiquetas de origen, severidad, facility y aplicación.</li>
+                        <li>Latencia ICMP (<code>latency_collect</code>) y telemetría SD-WAN (<code>sdwan_tunnel</code>, <code>sdwan_event</code>) se escriben en la misma base.</li>
+                        <li>Las anomalías (cambios de estado BGP y OSPF, desviaciones de CPU y de conteo de rutas) se calculan en el motor y se consultan desde Métricas.</li>
+                    </ul>
+                    <h3>Consumir las métricas</h3>
+                    <p>La UI consulta a través del motor, por organización. Grafana puede apuntar al mismo InfluxDB como fuente de datos; no requiere nada de Oktavia. La API del motor admite también consultas Flux propias. El mapa de variables de telemetría está en la <a href="oktavia-docs-referencia.html#variables-entorno">referencia</a>; los tropiezos típicos, en <a href="oktavia-docs-instalacion.html#troubleshooting">Troubleshooting</a>.</p>
+                </section>
+
+                <section class="doc-section" id="mcp-argos">
+                    <h2>MCP / Argos</h2>
+                    <p>El motor expone un servidor <em>Model Context Protocol</em> de <strong>solo lectura</strong> sobre los artefactos de la organización. Lo consumen Argos desde la UI y asistentes de escritorio como Claude Desktop o el MCP Inspector.</p>
+                    <h3>Conectarlo</h3>
+                    <ul>
+                        <li>Se lanza como proceso del motor en transporte <strong>stdio</strong> (la forma de registrarlo en Claude Desktop) o como servicio HTTP, según la configuración. La guía entregada con el software trae el comando exacto.</li>
+                        <li>Toda llamada exige una organización válida y permitida; los resultados tienen un límite de filas.</li>
+                    </ul>
+                    <h3>Lo que expone</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Tipo</th><th scope="col">Nombre</th><th scope="col">Para qué</th></tr></thead><tbody>
+                        <tr><td>Tool</td><td><code>query_inventory</code></td><td>Equipos de la organización con filtros</td></tr>
+                        <tr><td>Tool</td><td><code>get_device_state</code></td><td>Estado normalizado de un equipo</td></tr>
+                        <tr><td>Tool</td><td><code>diff_snapshots</code> · <code>list_snapshots</code></td><td>Comparar y listar snapshots del Gemelo</td></tr>
+                        <tr><td>Tool</td><td><code>get_compliance_results</code></td><td>Resultados de cumplimiento</td></tr>
+                        <tr><td>Tool</td><td><code>get_routing_table</code></td><td>Tabla de rutas observada</td></tr>
+                        <tr><td>Tool</td><td><code>get_topology_neighbors</code> · <code>get_topology_impact</code></td><td>Vecinos e impacto de un equipo</td></tr>
+                        <tr><td>Tool</td><td><code>get_recent_jobs</code></td><td>Jobs recientes</td></tr>
+                        <tr><td>Tool</td><td><code>triage_device</code></td><td>Diagnóstico resumido de un equipo</td></tr>
+                        <tr><td>Resource</td><td>Inventario, topología, resultados de compliance, snapshots y reglas vigentes de la organización</td><td>Artefactos como recursos</td></tr>
+                        <tr><td>Prompt</td><td><code>drift-triage</code> · <code>audit-narrative</code> · <code>pre-change-check</code></td><td>Plantillas de análisis</td></tr>
+                    </tbody></table></div>
+                    <h3>Salvaguardas</h3>
+                    <ul>
+                        <li>Sin herramientas de escritura, sin acceso a equipos, sin acceso a la bóveda.</li>
+                        <li>Redacción por clave (<code>secret</code>, <code>password</code>, <code>community</code>…) y por línea de configuración; los blobs de configuración se eliminan.</li>
+                        <li>Cada llamada queda en un registro de evidencia por organización, con la etiqueta del cliente que la hizo; las rechazadas se registran aparte.</li>
+                    </ul>
+                    <h3>Argos como cliente</h3>
+                    <p>Del lado de la UI, Argos consume este servidor y puede conectarse a otros servidores MCP con una lista de herramientas permitidas. El proveedor de lenguaje se elige por organización: API de Anthropic o un modelo local con Ollama. Cómo trabaja Argos está en <a href="oktavia-docs-operacion.html#argos-mcp">Argos y MCP</a>.</p>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

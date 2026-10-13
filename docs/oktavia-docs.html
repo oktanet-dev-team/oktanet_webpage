@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Documentación de Oktavia · Academia Oktanet</title>
+    <meta name="description" content="Documentación técnica de Oktavia NAE: guías de instalación y operación, referencia de la API del Engine y de la UI, campos de inventario, intención y cumplimiento, integraciones por fabricante y guías de decisión.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Documentación de Oktavia">
+    <meta property="og:description" content="Guías, referencias, APIs y mejores prácticas para operar Oktavia NAE.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="../">Inicio</a>
+                <a href="academia.html">Academia</a>
+                <a href="./">Documentación</a>
+                <a href="../#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><span aria-current="page">Documentación de Oktavia</span></li>
+            </ol>
+        </nav>
+
+        <section class="doc-cover docs-hero">
+            <div>
+                <p class="doc-eyebrow">Academia Oktanet · Portal técnico</p>
+                <h1>Documentación de Oktavia</h1>
+                <p class="doc-lede">
+                    Guías, referencias, APIs y mejores prácticas para operar Oktavia NAE.
+                </p>
+            </div>
+            <div class="docs-search" data-docs-search>
+                <form class="docs-search-form" role="search">
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    <input type="search" name="q" placeholder="Busca un tema: inventario, intended, API, Junos…" aria-label="Buscar en la documentación" autocomplete="off">
+                    <button type="submit">Buscar</button>
+                </form>
+                <p class="docs-search-hint">
+                    Busca por título, resumen o nombre de campo. También puedes recorrer las categorías de abajo o abrir la <a href="oktavia-docs-datos.html">referencia de datos</a>.
+                </p>
+            </div>
+        </section>
+
+        <section class="docs-block" aria-labelledby="destacado">
+            <div class="docs-block-head">
+                <h2 id="destacado">Contenido destacado</h2>
+                <p>Lo que más consulta quien llega por primera vez: qué es la plataforma, cómo levantarla y la primera auditoría de punta a punta.</p>
+            </div>
+            <ul class="docs-cards" data-docs-featured></ul>
+        </section>
+
+        <section class="docs-block" aria-labelledby="introduccion">
+            <div class="docs-block-head">
+                <h2 id="introduccion">Introducción para nuevos usuarios</h2>
+                <a class="docs-block-link" href="oktavia-docs-introduccion.html">Leer la introducción completa</a>
+                <p>Los conceptos que hacen falta antes de operar: cómo se reparten la UI y el Engine, el flujo de punta a punta, las organizaciones y las credenciales.</p>
+            </div>
+            <ul class="docs-linklist" data-docs-linklist="introduccion"></ul>
+        </section>
+
+        <section class="docs-block" aria-labelledby="catalogo">
+            <div class="docs-block-head">
+                <h2 id="catalogo">Guías por tarea</h2>
+                <p>Primero cómo instalar, después cómo operar cada módulo. Cada guía dice para quién es, qué necesita y qué deja como resultado.</p>
+            </div>
+            <ul class="docs-catalog" data-docs-catalog="instalacion operacion"></ul>
+        </section>
+
+        <section class="docs-block" aria-labelledby="referencia">
+            <div class="docs-block-head">
+                <h2 id="referencia">Referencia técnica</h2>
+                <p>Separada de las guías a propósito: aquí no se explica cómo operar, se describen las APIs, los archivos, los campos y los artefactos tal como son.</p>
+            </div>
+            <ul class="docs-catalog" data-docs-catalog="referencia datos"></ul>
+        </section>
+
+        <section class="docs-block" aria-labelledby="integraciones">
+            <div class="docs-block-head">
+                <h2 id="integraciones">Integraciones y guías de decisión</h2>
+                <p>Qué hace Oktavia con cada fabricante y herramienta, y cómo elegir entre las opciones cuando hay más de una forma de modelar la red.</p>
+            </div>
+            <ul class="docs-catalog" data-docs-catalog="integraciones decisiones"></ul>
+        </section>
+
+        <footer class="doc-footer">
+            <h3>¿Buscas algo que no está documentado?</h3>
+            <p>
+                Este portal se publica por etapas y lo marcado como «Próximamente» está en preparación. Si necesitas un detalle para una evaluación o una implementación, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>. Para aprender la plataforma de forma guiada, la <a href="academia.html">Academia</a> tiene dos cursos gratuitos.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+            <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>

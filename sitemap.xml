@@ -122,4 +122,67 @@
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/seguridad-en-oktavia-y-argos-en.html"/>
 </url>
 
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs.html</loc>
+<priority>0.8</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-inicio.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-inicio.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-introduccion.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-introduccion.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-instalacion.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-instalacion.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-operacion.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-operacion.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-referencia.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-referencia.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-datos.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-datos.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-integraciones.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-integraciones.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-docs-decisiones.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-docs-decisiones.html"/>
+</url>
+
 </urlset>

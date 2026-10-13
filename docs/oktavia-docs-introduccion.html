@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Introducción · Documentación de Oktavia</title>
+    <meta name="description" content="Los conceptos que conviene tener claros antes de operar: intención y observado, el reparto entre UI y Engine, el flujo de punta a punta, las organizaciones y la seguridad.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-introduccion.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Introducción · Documentación de Oktavia">
+    <meta property="og:description" content="Los conceptos que conviene tener claros antes de operar: intención y observado, el reparto entre UI y Engine, el flujo de punta a punta, las organizaciones y la seguridad.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-introduccion.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=a8f4cb55c8">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8290bca411">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-docs-introduccion.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="academia.html">Academia</a>
+                <a href="oktavia-docs.html">Documentación de Oktavia</a>
+                <a href="../#contacto">Contacto</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="academia.html">Academia</a></li>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><span aria-current="page">Introducción</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+                <section class="doc-cover">
+                    <p class="doc-eyebrow">Documentación de Oktavia · Introducción</p>
+                    <h1>Introducción</h1>
+                    <p class="doc-lede">Los conceptos que conviene tener claros antes de operar: intención y observado, el reparto entre UI y Engine, el flujo de punta a punta, las organizaciones y la seguridad.</p>
+                    <ul class="doc-meta">
+                <li>Conceptos</li>
+                <li>Para quien llega a la plataforma</li>
+                <li>Lectura: 20 minutos</li>
+                    </ul>
+                </section>
+
+                <nav class="doc-toc" aria-label="En esta página">
+                    <h2>En esta página</h2>
+                    <ol>
+                <li><a href="#conceptos-clave">Conceptos clave</a></li>
+                <li><a href="#ui-vs-engine">UI vs Engine</a></li>
+                <li><a href="#flujo-end-to-end">Flujo de punta a punta</a></li>
+                <li><a href="#multi-tenant">Multi-tenant</a></li>
+                <li><a href="#seguridad-credenciales">Seguridad y credenciales</a></li>
+                    </ol>
+                </nav>
+
+                <section class="doc-section" id="conceptos-clave">
+                    <h2>Conceptos clave</h2>
+                    <p>
+                        Oktavia separa con cuidado cuatro cosas que en la operación manual se confunden: lo que se <strong>declara</strong>, lo que se <strong>observa</strong>, lo que se <strong>genera</strong> y lo que se <strong>ejecuta</strong>. Casi todo el diseño de la plataforma se entiende a partir de esa separación.
+                    </p>
+                    <dl class="docs-dl">
+                        <dt>Intención (intended)</dt><dd>El estado deseado, declarado por una persona en el Configurador. Se guarda como variables por alcance en <code>service_vars.json</code> y se traduce a dos cosas: configuraciones renderizadas por equipo y reglas de cumplimiento en <code>intended.json</code>. El Configurador es la única fuente de verdad de la intención; el discovery sólo observa y sugiere.</dd>
+                        <dt>Observado (running)</dt><dd>Lo que el equipo tiene en realidad cuando el Engine lo visita: configuración en ejecución, interfaces, vecinos, protocolos, rutas, CPU y memoria. Queda en el snapshot normalizado, con la misma forma para todos los fabricantes.</dd>
+                        <dt>Renderizado</dt><dd>La configuración que resulta de aplicar las plantillas a la intención y al inventario canónico de un equipo. En Cisco, FortiGate, FortiSwitch y Junos es texto por equipo; en Meraki y SD-WAN no hay render, la intención se evalúa como objetos contra la API.</dd>
+                        <dt>Drift</dt><dd>La diferencia entre lo deseado y lo observado. Un check de compliance que falla es un drift con nombre, severidad y puntaje. El Gemelo lo muestra como diff y propone cerrarlo.</dd>
+                        <dt>Fuente de verdad (SoT)</dt><dd>La UI, por organización. Guarda el inventario operativo, la intención, las reglas, el catálogo de servicios habilitados y la bóveda de credenciales. El Engine la consulta al inicio de cada job y vuelve a ella con los resultados.</dd>
+                        <dt>Inventario base y canónico</dt><dd>El inventario <em>base</em> es la semilla declarada (CSV o UI): nombre, dirección de gestión, plataforma, sitio, rol. El inventario <em>canónico</em> (<code>device_inventory.json</code>) es el que construye el Engine después del discovery, con modelo, versión, interfaces, etiquetas y capacidades; es el que alimenta el render y compliance.</dd>
+                        <dt>Job y artefacto</dt><dd>Toda acción del Engine es un job asíncrono con identificador, estado y artefactos descargables (JSON, CSV, CFG). La UI no muestra nada que no venga de un artefacto.</dd>
+                        <dt>Carril por fabricante</dt><dd>La forma en que un cambio llega al equipo: SSH con diff previo en Cisco, API REST con operaciones idempotentes en FortiGate, NETCONF con <em>commit confirmed</em> en Junos, SSH en FortiSwitch, Dashboard API en Meraki y Config Groups en SD-WAN. Cada carril tiene su bandera de habilitación y sus guardas.</dd>
+                        <dt>Aprobación humana</dt><dd>Ningún carril aplica sin un cambio aprobado por una persona. Argos y el Gemelo preparan y previsualizan; aplicar es una decisión explícita, registrada con quién y con qué ticket.</dd>
+                    </dl>
+                </section>
+
+                <section class="doc-section" id="ui-vs-engine">
+                    <h2>UI vs Engine</h2>
+                    <p>
+                        Son dos componentes con responsabilidades distintas. Entender el reparto evita buscar una función en el lugar equivocado.
+                    </p>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead>
+                                <tr><th scope="col"></th><th scope="col">Interfaz (UI)</th><th scope="col">Motor (Engine)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong>Qué es</strong></td><td>Aplicación web con base de datos relacional</td><td>Servicio de automatización con API REST, ejecutor de jobs y programador</td></tr>
+                                <tr><td><strong>Guarda</strong></td><td>Organizaciones y usuarios, inventario operativo, sitios, tipos de sitio y roles, intención, reglas, catálogo de servicios, bóveda de credenciales, integraciones, cambios del Gemelo, conversaciones y ciclos de Argos, costos (FinOps)</td><td>Snapshots crudos y normalizados, respaldos, inventario canónico, configuraciones generadas, resultados de compliance, topología, jobs y sus artefactos, snapshots y cambios del Gemelo</td></tr>
+                                <tr><td><strong>Hace</strong></td><td>Presenta, edita, aprueba, orquesta jobs e ingiere resultados. Expone la fuente de verdad de cada organización al motor.</td><td>Toca los equipos. Ejecuta discovery, respaldo, generación, compliance, topología, vulnerabilidades, telemetría, remediación y la red de pruebas.</td></tr>
+                                <tr><td><strong>Autenticación</strong></td><td>Sesión de usuario, local o con SSO; credencial de integración para las llamadas que recibe del motor</td><td>Credencial de integración maestra y claves por organización con acceso de lectura o escritura</td></tr>
+                                <tr><td><strong>Documentación de su API</strong></td><td>Especificación OpenAPI generada, consultable dentro de la instalación</td><td>Especificación OpenAPI con interfaz interactiva, dentro de la instalación</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>Lo que comparten</h3>
+                    <ul>
+                        <li>Un <strong>almacenamiento común</strong>: intención, reglas, bóveda cifrada y, por organización, la copia vigente de los artefactos de auditoría.</li>
+                        <li><strong>Tres secretos</strong> que deben coincidir: la credencial de integración UI→Engine, la credencial Engine→UI y la clave de cifrado de la bóveda.</li>
+                        <li>El <strong>catálogo de servicios</strong>: el registro del motor es la fuente de verdad; los formularios de la UI y los checks sembrados son proyecciones, y la integración continua de Oktanet falla si divergen.</li>
+                    </ul>
+                    <div class="doc-callout">
+                        <p><strong>Por qué se instalan juntos.</strong> Los contenedores de un componente montan el almacenamiento del otro. Si no se instalan en el mismo directorio padre, ese almacenamiento no existe y el primer síntoma es un error de archivo o directorio inexistente al arrancar.</p>
+                    </div>
+                </section>
+
+                <section class="doc-section" id="flujo-end-to-end">
+                    <h2>Flujo de punta a punta</h2>
+                    <p>Así recorre la plataforma un hallazgo desde que se detecta hasta que se comprueba que cerró. Es el ciclo que todas las guías operativas dan por sabido.</p>
+                    <ol class="doc-steps">
+                        <li><strong>Declarar.</strong> El inventario base está cargado y la intención, declarada en el Configurador. Guardar la intención deja las variables de servicio y el archivo de reglas de la organización listos para el motor.</li>
+                        <li><strong>Auditar.</strong> La UI (o el programador) pide una auditoría. El motor resuelve el inventario de la organización desde la fuente de verdad, encola el job y el ejecutor corre el pipeline: discovery, respaldo, sincronización del caché, inventario canónico, topología, generación, compliance y vulnerabilidades. Cada paso corre sólo en los equipos cuyas capacidades lo permiten.</li>
+                        <li><strong>Producir artefactos.</strong> El job deja el inventario canónico, los resultados de compliance, el resumen por sitio, el snapshot de topología, los respaldos y las configuraciones generadas. Al terminar se fusionan con la copia vigente de la organización, por equipo y por sitio.</li>
+                        <li><strong>Ingerir.</strong> El motor avisa a la UI, o el operador pulsa «Sincronizar resultados». La UI espeja inventario, resultados y topología en su base de datos.</li>
+                        <li><strong>Revisar.</strong> Tableros de cumplimiento por sitio, categoría y severidad; compliance de configuración con el diff entre lo deseado y lo observado; topología, enrutamiento, capa 2 e IPAM desde el mismo snapshot.</li>
+                        <li><strong>Proponer.</strong> Desde un hallazgo, desde el Gemelo o desde Argos se crea una solicitud de cambio con destino, carril y diff. La vista previa calcula la remediación: en Cisco, la configuración CLI línea a línea; en los carriles de API, un plan de operaciones determinista.</li>
+                        <li><strong>Aprobar.</strong> Una persona aprueba, con su nombre y un ticket. Sólo un cambio aprobado y con alcance de un equipo se puede ejecutar.</li>
+                        <li><strong>Aplicar.</strong> El motor ejecuta por el carril del fabricante, siempre con su bandera de remediación encendida: SSH en Cisco, API en FortiGate, <em>commit confirmed</em> en Junos (que una persona confirma o que el vigilante revierte), Dashboard API en Meraki, Config Groups en SD-WAN.</li>
+                        <li><strong>Verificar.</strong> Una nueva auditoría (completa, en seco o de un solo equipo) confirma que el check pasa. Argos puede encadenar la verificación en vivo con <code>service_check</code>: interfaz arriba, ping, adyacencia OSPF, ruta por defecto.</li>
+                    </ol>
+                    <p>Las guías de <a href="oktavia-docs-operacion.html#auditorias">Auditorías</a>, <a href="oktavia-docs-operacion.html#compliance">Compliance</a> y <a href="oktavia-docs-operacion.html#digital-twin">Digital Twin</a> detallan los pasos 2, 5 y 6 a 9.</p>
+                </section>
+
+                <section class="doc-section" id="multi-tenant">
+                    <h2>Multi-tenant</h2>
+                    <p>
+                        Oktavia opera varias organizaciones en una sola instalación. La <strong>organización</strong> (tenant) es la unidad de aislamiento: tiene nombre, un identificador corto (<em>slug</em>) único, y todo dato de negocio lleva su identificador.
+                    </p>
+                    <h3>En la UI</h3>
+                    <ul>
+                        <li>Todo modelo de negocio tiene alcance por organización: las consultas filtran por la organización activa.</li>
+                        <li>Un usuario puede pertenecer a varias organizaciones con un rol por cada una (<code>member</code> o <code>admin</code>) y una marcada como predeterminada. Cambia de organización desde el menú de usuario sin ser superusuario.</li>
+                        <li>Las mutaciones sensibles (integraciones, catálogo, credenciales) exigen ser administrador de la organización o superusuario.</li>
+                        <li>Hay comandos de gestión para crear organizaciones y asignar usuarios; las importaciones aceptan la organización destino.</li>
+                        <li>Un <strong>paquete de organización</strong> exporta la organización completa a un ZIP (con passphrase opcional) e importa en la misma o en otra instalación, con vista previa antes de aplicar.</li>
+                    </ul>
+                    <h3>En el almacenamiento y en el motor</h3>
+                    <ul>
+                        <li>La UI mantiene por organización sus reglas, intención, inventario, resultados, topología e insights.</li>
+                        <li>El motor recibe <code>organization_slug</code> (u <code>organization_id</code>) en cada job. Con él resuelve el inventario desde la fuente de verdad y, al terminar, guarda los artefactos en el almacenamiento de esa organización.</li>
+                        <li>Telegraf genera una configuración por organización y etiqueta cada serie con <code>tenant</code>; el servidor MCP exige una organización permitida en cada llamada.</li>
+                    </ul>
+                </section>
+
+                <section class="doc-section" id="seguridad-credenciales">
+                    <h2>Seguridad y credenciales</h2>
+                    <h3>Quién entra y cómo</h3>
+                    <div class="doc-table-wrap">
+                        <table class="doc-table">
+                            <thead><tr><th scope="col">Mecanismo</th><th scope="col">Para qué</th><th scope="col">Notas</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sesión de usuario</td><td>Toda la UI</td><td>Caducidad configurable por tiempo de vida e inactividad; cookies seguras en producción; política de contraseñas</td></tr>
+                                <tr><td>SSO con OIDC (Okta)</td><td>Inicio de sesión federado con MFA exigible</td><td>Se puede obligar a reautenticar y a presentar MFA en cada inicio</td></tr>
+                                <tr><td>Login local</td><td>Acceso de respaldo cuando el SSO no está disponible</td><td>Se desactiva cuando el SSO está en producción</td></tr>
+                                <tr><td>Credenciales de integración</td><td>Las llamadas entre la UI y el motor, en ambos sentidos</td><td>Compartidas entre los dos componentes; si faltan, el acceso queda cerrado</td></tr>
+                                <tr><td>Claves por organización (motor)</td><td>Integraciones externas con el motor</td><td>Una organización, acceso de lectura o escritura y un conjunto acotado de operaciones; nunca se guardan en claro</td></tr>
+                                <tr><td>Lista blanca por IP o red</td><td>Limitar desde dónde se usa la plataforma</td><td>Modos monitor y estricto; la misma lista aplica a la UI y al motor</td></tr>
+                                <tr><td>Auditoría de seguridad</td><td>Quién hizo qué</td><td>Eventos con acción, objeto, resultado, origen y agente de usuario</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3>La bóveda de credenciales</h3>
+                    <p>
+                        Las credenciales de los equipos viven en la UI, cifradas con cifrado simétrico autenticado. Cada credencial tiene un tipo (<code>ssh</code>, <code>snmp</code>, <code>fortigate</code>, <code>meraki</code>, <code>bgp</code>, <code>sdwan</code>, <code>cml</code>), un alcance (<code>device</code>, <code>site</code> o <code>global</code>), usuario, secreto y metadatos como URL base, verificación TLS o permiso de escritura. Se resuelve de lo más específico a lo más general: equipo, luego sitio, luego global.
+                    </p>
+                    <ul>
+                        <li>El secreto nunca vuelve al navegador: en la UI se muestra enmascarado.</li>
+                        <li>Cada cambio se entrega cifrado al motor, que lo descifra con la misma clave. Si las claves difieren, las conexiones a los equipos fallan: es el primer lugar donde mirar.</li>
+                        <li>En producción la UI no arranca sin la clave de cifrado. Rotarla invalida todos los secretos; no hay recifrado automático.</li>
+                        <li>El motor puede configurarse para usar únicamente la bóveda y rechazar credenciales legadas en archivos o variables de entorno.</li>
+                        <li>Los secretos de integraciones (SMTP, proveedor de IA, eventos push) se cifran con la misma clave en la configuración por organización.</li>
+                    </ul>
+                    <h3>Reglas que protegen la evidencia</h3>
+                    <ul>
+                        <li>Los diffs, respaldos y reportes se redactan antes de guardarse o mostrarse: contraseñas, comunidades SNMP y claves se sustituyen.</li>
+                        <li>El servidor MCP es de solo lectura, no tiene acceso a equipos ni a la bóveda, redacta por clave y por línea, y registra cada llamada en un registro de evidencia por organización.</li>
+                        <li>Las remediaciones por API están apagadas por omisión en cada carril y se encienden con una bandera de configuración más un permiso de escritura en la credencial.</li>
+                    </ul>
+                    <p>El alta de credenciales y la migración desde configuraciones anteriores están en <a href="oktavia-docs-instalacion.html#vault-credenciales">Bóveda de credenciales</a>.</p>
+                </section>
+
+                <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
+
+                <footer class="doc-footer">
+                    <h3>¿Encontraste algo desactualizado?</h3>
+                    <p>
+                        Esta documentación describe la plataforma tal como está en los repositorios de Oktavia. Lo marcado como «Próximamente» o «En preparación» todavía no se publica. Si necesitas un detalle que no está, escríbenos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+                    </p>
+                    <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+                    <p>© <span id="doc-year">2026</span> Oktanet. Todos los derechos reservados.</p>
+                    <p><a href="aviso-de-privacidad.html">Aviso de privacidad</a></p>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6564c5c18f"></script>
+    <script src="../script/oktavia_docs_data.js?v=0113114d93"></script>
+    <script src="../script/oktavia_docs.js?v=bc7e77a358"></script>
+</body>
+</html>
