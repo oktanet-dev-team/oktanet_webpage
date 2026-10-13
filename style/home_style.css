@@ -173,7 +173,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 26px;
+    gap: 14px;
 }
 
 .main-nav a {
@@ -183,7 +183,7 @@ p {
     font-size: 0.9rem;
     font-weight: 600;
     color: #ffffff;
-    padding: 6px 10px;
+    padding: 6px 8px;
     border-radius: 999px;
     white-space: nowrap;
     transition: color 220ms ease;
@@ -1740,22 +1740,17 @@ p {
     }
 }
 
-/* El menu pasa a hamburguesa en 1340px y no en 860px.
-   Con nueve enlaces mas el boton de demostracion y el selector de idioma, la
-   barra completa deja de caber alrededor de 1300px: entre 861 y 1280 se
-   desbordaba hasta 436px y la pagina se arrastraba de lado. El umbral
-   anterior venia de cuando el menu tenia menos enlaces. */
-/* Con diez enlaces (entró Entrenamiento) la barra completa ya no cabe
-   hasta ~1600px con el espaciado normal: entre 1341 y 1600 se aprieta el
-   espacio entre enlaces en vez de adelantar el menú de hamburguesa. */
+/* El menu pasa a hamburguesa en 1340px. Con once enlaces mas el boton de
+   demostracion y el selector de idioma, el rango compacto mantiene la barra
+   en una sola linea antes de llegar al menu desplegable. */
 @media (min-width: 1341px) and (max-width: 1600px) {
     .main-nav {
-        gap: 8px;
+        gap: 6px;
     }
 
     .main-nav a {
-        padding: 6px 7px;
-        font-size: 0.86rem;
+        padding: 6px 6px;
+        font-size: 0.84rem;
     }
 }
 

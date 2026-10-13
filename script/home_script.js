@@ -189,7 +189,7 @@
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Artículos', 'Academia'],
+            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Documentación', 'Artículos', 'Academia'],
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -594,6 +594,7 @@
             resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Tomar el curso gratis', 'PDF en español'],
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
+            docsHref: 'docs/index.html',
             blogHref: 'blog/',
             trainingHref: 'docs/academia.html',
             contactEyebrow: 'Conversemos',
@@ -643,7 +644,7 @@
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Articles', 'Academy'],
+            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Documentation', 'Articles', 'Academy'],
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -1048,6 +1049,7 @@
             resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Take the free course', 'PDF in Spanish'],
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
+            docsHref: 'docs/index-en.html',
             blogHref: 'blog/index-en.html',
             trainingHref: 'docs/academy-en.html',
             contactEyebrow: 'Let\'s talk',
@@ -1746,6 +1748,7 @@
         // El documento existe en dos idiomas: cada enlace apunta al que toca.
         [['[data-doc-online]', copy.resourceOnlineHref],
          ['[data-doc-resumen-online]', copy.resourceResumenHref],
+         ['[data-docs]', copy.docsHref],
          ['[data-blog]', copy.blogHref],
          ['[data-training]', copy.trainingHref]].forEach(function (par) {
             if (typeof par[1] !== 'string') {
