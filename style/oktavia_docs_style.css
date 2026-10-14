@@ -239,7 +239,7 @@ body.docs-portal {
    tipo. Cuatro por fila en escritorio, dos en tableta, una en móvil. */
 .docs-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 14px;
     margin: 0;
     padding: 0;
@@ -305,7 +305,9 @@ body.docs-portal {
    documentos. Listas, no tarjetas: se leen de arriba abajo de un vistazo. */
 .docs-catalog {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* auto-fit: las categorías de un bloque llenan la fila. Con auto-fill
+       quedaban dos tarjetas angostas y el resto de la fila vacío. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
     margin: 0;
     padding: 0;
@@ -359,6 +361,11 @@ body.docs-portal {
     margin: 0;
     padding: 0;
     list-style: none;
+    /* En una tarjeta ancha los vínculos se reparten en columnas en vez de
+       una lista larga y angosta. */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    column-gap: 24px;
 }
 
 .docs-category li {
@@ -848,7 +855,7 @@ table.doc-table tr[hidden] {
    al bloque Academia del portal): los niveles se angostan hacia arriba. */
 /* Compacta y centrada: a todo el ancho se veía demasiado grande frente a las
    tarjetas de los cursos que van debajo. */
-.academy-pyramid { list-style: none; margin: 14px auto 18px; padding: 0; display: grid; gap: 5px; justify-items: center;
+.academy-pyramid { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: 5px; justify-items: center;
     max-width: 680px; }
 .academy-pyramid li { box-sizing: border-box; padding: 7px 12px; border-radius: 8px; text-align: center; color: #fff;
     background: linear-gradient(135deg, #0b4a78, #2b8fd4); display: flex; flex-direction: column; gap: 2px; }
@@ -861,4 +868,33 @@ table.doc-table tr[hidden] {
 .academy-pyramid .lvl-tag { font-size: 0.74rem; opacity: 0.9; line-height: 1.25; }
 @media (max-width: 640px) {
     .academy-pyramid .lvl-5, .academy-pyramid .lvl-4, .academy-pyramid .lvl-3, .academy-pyramid .lvl-2 { width: 100%; }
+}
+
+/* Academia: la descripción a la izquierda y la pirámide a la derecha, en la
+   misma fila; apiladas en pantallas angostas. Quita el hueco que dejaba la
+   pirámide sola entre el texto y las tarjetas. */
+.academy-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 18px 36px;
+    align-items: center;
+    margin: 0 0 16px;
+}
+
+.academy-intro .docs-block-head {
+    margin: 0;
+}
+
+.academy-intro .academy-pyramid {
+    width: 100%;
+}
+
+.academy-intro .docs-block-head p {
+    margin-top: 6px;
+}
+
+@media (max-width: 960px) {
+    .academy-intro {
+        grid-template-columns: 1fr;
+    }
 }
