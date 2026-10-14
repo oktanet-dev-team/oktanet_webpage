@@ -19,7 +19,14 @@
     }
 
     const sections = data.sections;
+    // La página actual tal como la nombra el catálogo (relativa a docs/).
     const page = document.body.dataset.docsPage || '';
+    // Las páginas fuera de docs/ (los artículos en blog/) declaran cómo llegar
+    // a docs/: todas las rutas del catálogo son relativas a docs/.
+    const base = document.body.dataset.docsBase || '';
+    const ruta = function (href) {
+        return /^(https?:|\/|#)/.test(href) ? href : base + href;
+    };
 
     /* ------------------------------ Utilidades ----------------------------- */
 
@@ -59,7 +66,19 @@
     };
 
     const docHref = function (section, doc) {
-        return section.page + '#' + doc.id;
+        // Documento con página propia (curso, ficha, artículo) o ancla dentro
+        // de la página de su sección. Uno «Próximamente» de una sección sin
+        // página propia lleva al bloque de la sección en la portada.
+        if (doc.href) {
+            return ruta(doc.href);
+        }
+        if (section.page.indexOf('#') >= 0) {
+            return ruta(section.page);
+        }
+        return ruta(section.page + '#' + doc.id);
+    };
+    const sectionHref = function (section) {
+        return ruta(section.page);
     };
 
     const sectionById = function (id) {
@@ -93,7 +112,7 @@
             title: section.title,
             path: 'Sección',
             summary: section.summary,
-            href: section.page,
+            href: sectionHref(section),
             texto: plano([section.title, section.summary, (section.keywords || []).join(' ')].join(' '))
         });
         section.docs.forEach(function (doc) {
@@ -231,6 +250,25 @@
         });
     }
 
+    // Tarjetas con todos los documentos de una sección (Artículos, Academia).
+    document.querySelectorAll('[data-docs-cards]').forEach(function (lista) {
+        const section = sectionById(lista.dataset.docsCards);
+        if (!section) {
+            return;
+        }
+        section.docs.forEach(function (doc) {
+            const pie = doc.date ? doc.date + (doc.minutes ? ' · ' + doc.minutes + ' min' : '') : section.kind;
+            lista.appendChild(el('li', {}, [
+                el('a', { class: 'docs-card', href: docHref(section, doc) }, [
+                    icon(doc.icon || section.icon),
+                    el('h3', {}, [doc.title, badge(doc.status)]),
+                    el('p', { text: doc.summary }),
+                    el('span', { class: 'docs-card-kind', text: pie })
+                ])
+            ]));
+        });
+    });
+
     document.querySelectorAll('[data-docs-linklist]').forEach(function (lista) {
         const section = sectionById(lista.dataset.docsLinklist);
         if (!section) {
@@ -260,11 +298,12 @@
             catalogo.appendChild(el('li', { class: 'docs-category' }, [
                 el('div', { class: 'docs-category-head' }, [
                     icon(section.icon),
-                    el('h3', {}, [el('a', { href: section.page, text: section.title })])
+                    el('h3', {}, [el('a', { href: sectionHref(section), text: section.title })])
                 ]),
                 el('p', { text: section.summary }),
                 el('ul', {}, items),
-                el('a', { class: 'docs-category-more', href: section.page, text: 'Ver la sección completa' })
+                section.page.indexOf('#') >= 0 ? null
+                    : el('a', { class: 'docs-category-more', href: sectionHref(section), text: 'Ver la sección completa' })
             ]));
         });
     });
@@ -275,17 +314,19 @@
     if (lateral) {
         const arbol = el('ul', { class: 'docs-tree' });
         arbol.appendChild(el('li', {}, [
-            el('a', { href: data.homePage }, [icon('home'), 'Inicio del portal'])
+            el('a', { href: ruta(data.homePage) }, [icon('home'), 'Inicio del portal'])
         ]));
         sections.forEach(function (section) {
-            const esActual = section.page === page;
+            const propia = section.docs.some(function (doc) { return doc.href && doc.href === page; });
+            const esActual = section.page === page || propia;
             const hijos = el('ul', {}, section.docs.map(function (doc) {
-                return el('li', { 'data-doc': doc.id }, [
-                    el('a', { href: docHref(section, doc) }, [doc.title, badge(doc.status)])
+                const aqui = Boolean(doc.href) && doc.href === page;
+                return el('li', { 'data-doc': doc.id, class: aqui ? 'is-active' : null }, [
+                    el('a', { href: docHref(section, doc), 'aria-current': aqui ? 'page' : null }, [doc.title, badge(doc.status)])
                 ]);
             }));
             arbol.appendChild(el('li', { class: esActual ? 'is-current' : null }, [
-                el('a', { href: section.page }, [icon(section.icon), section.title]),
+                el('a', { href: sectionHref(section) }, [icon(section.icon), section.title]),
                 hijos
             ]));
         });
@@ -338,17 +379,46 @@
     }
 
     const paginador = document.querySelector('[data-docs-pager]');
-    if (paginador) {
-        const orden = sections.map(function (s) { return { title: s.title, page: s.page }; });
+    // En la página propia de un documento (curso, ficha, artículo) el
+    // paginador recorre los documentos de SU sección; en las páginas de
+    // sección, las secciones con página.
+    const delDocumento = (function () {
+        for (let i = 0; i < sections.length; i += 1) {
+            const docs = sections[i].docs.filter(function (d) { return d.href; });
+            const idx = docs.map(function (d) { return d.href; }).indexOf(page);
+            if (idx >= 0) {
+                return { section: sections[i], docs: docs, idx: idx };
+            }
+        }
+        return null;
+    })();
+    if (paginador && delDocumento) {
+        const docs = delDocumento.docs;
+        const ant = docs[delDocumento.idx - 1];
+        const sig = docs[delDocumento.idx + 1];
+        paginador.appendChild(el('a', { href: ant ? ruta(ant.href) : sectionHref(delDocumento.section) }, [
+            el('span', { text: 'Anterior' }),
+            el('strong', { text: ant ? ant.title : delDocumento.section.title })
+        ]));
+        if (sig) {
+            paginador.appendChild(el('a', { href: ruta(sig.href), class: 'is-next' }, [
+                el('span', { text: 'Siguiente' }),
+                el('strong', { text: sig.title })
+            ]));
+        }
+    } else if (paginador) {
+        const orden = sections
+            .filter(function (s) { return s.page.indexOf('#') < 0; })
+            .map(function (s) { return { title: s.title, page: s.page }; });
         const indiceActual = orden.map(function (o) { return o.page; }).indexOf(page);
         const anterior = indiceActual > 0 ? orden[indiceActual - 1] : { title: 'Inicio del portal', page: data.homePage };
         const siguiente = indiceActual >= 0 && indiceActual < orden.length - 1 ? orden[indiceActual + 1] : null;
-        paginador.appendChild(el('a', { href: anterior.page }, [
+        paginador.appendChild(el('a', { href: ruta(anterior.page) }, [
             el('span', { text: 'Anterior' }),
             el('strong', { text: anterior.title })
         ]));
         if (siguiente) {
-            paginador.appendChild(el('a', { href: siguiente.page, class: 'is-next' }, [
+            paginador.appendChild(el('a', { href: ruta(siguiente.page), class: 'is-next' }, [
                 el('span', { text: 'Siguiente' }),
                 el('strong', { text: siguiente.title })
             ]));
