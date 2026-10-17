@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Local AI with your company's context | Oktanet</title>
+    <meta name="description" content="Argos, Oktavia's assistant, answers with an open model running on your own server and reads the vendor guides, your network design, your standard and your procedures. It cites source and page, never indexes secrets, and no change reaches the network without approval.">
+    <link rel="canonical" href="https://oktanet.io/blog/ia-local-contexto-empresarial-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Local AI with your company's context: Argos answers without your information leaving">
+    <meta property="og:description" content="Argos, Oktavia's assistant, answers with an open model running on your own server and reads the vendor guides, your network design, your standard and your procedures. It cites source and page, never indexes secrets, and no change reaches the network without approval.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-16">
+    <meta property="og:url" content="https://oktanet.io/blog/ia-local-contexto-empresarial-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-ia-local-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-ia-local-en.png">
+    <meta property="og:image:alt" content="Local AI with your company's context — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=d2045f5589">
+    <style>
+        /* Diagram of the local AI flow: specific to this article. */
+        .rag-figure { margin: 26px auto 8px; max-width: 580px; }
+        .rag-figure svg { display: block; width: 100%; height: auto; }
+        .rag-figure figcaption { margin-top: 10px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; text-align: center; }
+        .rag-box { fill: #0d1d2c; stroke: #2a4159; stroke-width: 1.5; }
+        .rag-box-accent { fill: #041322; stroke: #2b8fd4; stroke-width: 2; }
+        .rag-chip { fill: #041322; stroke: #1d3a55; stroke-width: 1; }
+        .rag-perimeter { fill: none; stroke: #57c8ea; stroke-width: 1.5; stroke-dasharray: 6 5; }
+        .rag-title { fill: #c8d5ec; font: 700 17px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-text { fill: #c8d5ec; font: 600 13.5px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-muted { fill: #a3b7d2; font: 500 13px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-label { fill: #57c8ea; font: 700 13px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-arrow { stroke: #2b8fd4; stroke-width: 2; fill: none; }
+        .rag-head { fill: #2b8fd4; }
+        @media print {
+            .rag-figure { break-inside: avoid; }
+            .rag-box, .rag-chip { fill: #ffffff; stroke: #a6bad5; }
+            .rag-box-accent { fill: #f4f8fc; stroke: #0c5a91; }
+            .rag-perimeter { stroke: #0c5a91; }
+            .rag-title, .rag-text { fill: #132037; }
+            .rag-muted { fill: #4a5d7a; }
+            .rag-label { fill: #0c5a91; }
+            .rag-figure figcaption { color: #4a5d7a; }
+        }
+    </style>
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Article">
+                <a href="./index-en.html">Articles</a>
+                <a href="../docs/index-en.html">Documentation</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./ia-local-contexto-empresarial.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="ia-local-contexto-empresarial-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Oktanet logo" width="30" height="30" decoding="async">Oktanet Team</p>
+                <p class="doc-eyebrow">Artificial intelligence</p>
+                <h1>Local AI with your company's context: Argos answers without your information leaving</h1>
+                <p class="post-meta">
+                    <span class="post-tag">Local AI</span>
+                    <span class="post-tag">Argos</span>
+                    <span class="post-tag">Documentation</span>
+                    <span>16 October 2026</span>
+                    <span>·</span>
+                    <span>10 minute read</span>
+                </p>
+                <p class="doc-lede">
+                    An AI assistant is only useful in network operations if it knows the network it operates, and if using it does not expose what it knows about that network. This article explains how Argos, Oktavia's assistant, answers with a model that runs on your own server, using vendor guides and your company's documents, and cites where every answer comes from.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Share</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>A generic assistant does not know your network</h2>
+                <p>
+                    Ask a general-purpose assistant how to restrict SSH on a router and you get an answer that is correct in the abstract: the one from an average manual, for any version, without knowing which access list your organisation uses for management, which networks it is administered from, or what your change procedure says. It sounds right and cannot be applied as is.
+                </p>
+                <p>
+                    The obvious fix is to give it context: paste the configuration, the design, the inventory. That is where the second problem appears. A full configuration carries SNMP communities, tunnel keys, users and the whole network topology. Sending it to a cloud model means that information leaves your organisation, falls under a third party's retention policies and, in many sectors, runs straight into the security policy or the regulator.
+                </p>
+                <p class="post-punch">
+                    Either the assistant knows nothing about your network, or it knows too much and lives outside it. Neither works.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="marca">
+                <h2>What Oktavia does: an AI agent that runs on your server</h2>
+                <p>
+                    Oktavia includes a local AI agent: an open language model that runs on the same Oktavia server you install, together with an index of your documentation. When someone asks a question, Argos searches that index for the passages on the topic, hands them to the model and asks it to answer from them only. The technique is known as retrieval-augmented generation (RAG): the model does not need to "know" your network, it looks it up every time.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Nothing leaves the server.</strong> Documents, index, question and answer stay on your infrastructure.</li>
+                    <li><strong>No per-question cost.</strong> There are no tokens to pay a provider for each query; the cost is the server you already run.</li>
+                    <li><strong>It does not train on your data.</strong> The model is not retrained with your information. Documents are looked up, not memorised, and removing them from the index is enough to stop them being used.</li>
+                </ul>
+
+                <figure class="rag-figure">
+                    <svg viewBox="0 0 560 524" role="img" aria-labelledby="rag-en-title rag-en-desc">
+                        <title id="rag-en-title">Oktavia's local AI flow</title>
+                        <desc id="rag-en-desc">Vendor guides, the per-site technical report, the standard and its rules, the documentation kit, change reports and documents you upload are indexed without secrets on your Oktavia server. Argos answers with a local model, cites source and page, and whatever it proposes goes to the digital twin for human approval and verification.</desc>
+                        <defs>
+                            <marker id="rag-en-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path class="rag-head" d="M0 0 10 5 0 10z"/>
+                            </marker>
+                        </defs>
+                        <text class="rag-label" x="12" y="17">Your Oktavia server · none of this leaves</text>
+                        <rect class="rag-perimeter" x="4" y="26" width="552" height="378" rx="16"/>
+
+                        <rect class="rag-box" x="16" y="40" width="528" height="150" rx="12"/>
+                        <text class="rag-title" x="32" y="66">Sources it reads</text>
+                        <rect class="rag-chip" x="32" y="80" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="100">Vendor guides</text>
+                        <rect class="rag-chip" x="288" y="80" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="100">Per-site technical report</text>
+                        <rect class="rag-chip" x="32" y="116" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="136">Standard and audit rules</text>
+                        <rect class="rag-chip" x="288" y="116" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="136">Documentation kit</text>
+                        <rect class="rag-chip" x="32" y="152" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="172">Closed-loop change reports</text>
+                        <rect class="rag-chip" x="288" y="152" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="172">Documents you upload</text>
+
+                        <path class="rag-arrow" d="M280 190v28" marker-end="url(#rag-en-head)"/>
+                        <text class="rag-muted" x="292" y="210">text without secrets</text>
+
+                        <rect class="rag-box" x="16" y="222" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="250">Local index</text>
+                        <text class="rag-muted" x="32" y="274">Passages and embeddings, per device and per site</text>
+
+                        <path class="rag-arrow" d="M280 290v28" marker-end="url(#rag-en-head)"/>
+                        <text class="rag-muted" x="292" y="310">scoped question</text>
+
+                        <rect class="rag-box-accent" x="16" y="322" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="350">Argos with a local open model</text>
+                        <text class="rag-muted" x="32" y="374">Answers only from what was retrieved, citing source and page</text>
+
+                        <path class="rag-arrow" d="M280 390v46" marker-end="url(#rag-en-head)"/>
+                        <text class="rag-muted" x="292" y="426">commands verbatim from the source</text>
+
+                        <rect class="rag-box" x="16" y="440" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="468">Digital twin</text>
+                        <text class="rag-muted" x="32" y="492">Draft, human approval, apply and verify</text>
+                    </svg>
+                    <figcaption>What goes into the index, how Argos answers, and the path a change takes before it touches the network.</figcaption>
+                </figure>
+            </section>
+
+            <section class="doc-section" data-icono="capas">
+                <h2>What it reads: your company's context</h2>
+                <p>
+                    A local model is only as good as what it can look up. The value is in the corpus, which is why Oktavia builds much of it for you. Every answer cites the document and page it came from.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Official vendor guides</strong> for the platforms in your inventory: the Cisco IOS XE hardening guide, those for FortiOS, Junos and Meraki, and general guides such as the NSA network infrastructure security guide. They are downloaded automatically when the vendor allows it; otherwise they are uploaded as PDF, HTML or Markdown.</li>
+                    <li><strong>Your network's technical report</strong>, per site, which Oktavia generates from the real discovered topology: devices, links, routing neighbours, services. It is the design document almost nobody keeps current, and here it comes from the network, not from someone's memory.</li>
+                    <li><strong>Your configuration standard</strong>: the intent declared in the Configurator and what each compliance rule audits. Oktavia generates it, with secrets masked.</li>
+                    <li><strong>Your team's documents</strong>, from a documentation kit with templates: design standard (HLD), troubleshooting runbooks, change procedure, security policy, and circuits and providers. Mandatory sections are validated on upload, and each template comes with a filled example.</li>
+                    <li><strong>Every closed-loop change report</strong>: what was requested, what was applied, and the before and after. That way Argos learns from previous changes on your own network, not someone else's.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="chat">
+                <h2>Where it is used</h2>
+                <p>
+                    The local agent is not a separate chat window. It shows up where the operator is already working:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Diagnosis per incident.</strong> In each incident Argos builds, the "What the documentation says" section summarises what to check, in which order and with which verification commands, based on your runbooks and the vendor guides for that device.</li>
+                    <li><strong>CVE remediation.</strong> Argos reads the vendor's security advisory and only accepts commands that appear verbatim in it. With that it prepares urgent changes as drafts in the Digital Twin, or proposes them to the standard in the Configurator so new devices are born fixed.</li>
+                    <li><strong>Questions about your network.</strong> "According to the documentation, how do I restrict SSH on this device?" is answered with the vendor guide for that platform, the management access list from your standard, and a citation for each part.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>The guardrails</h2>
+                <p>
+                    A language model can make things up with great confidence. In network operations that is not a matter of style: an invented command is a truck roll. So the agent works under rules that do not depend on the model behaving well:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>It answers only from what was retrieved.</strong> If the passages do not cover the question, it says so, and every statement carries its citation.</li>
+                    <li><strong>Verbatim commands only.</strong> A command is accepted only if it appears exactly in a cited source. Anything the model "fills in" on its own is discarded.</li>
+                    <li><strong>Secrets are never indexed.</strong> Lines with communities, keys or passwords are dropped before entering the index. What is not in the index cannot appear in an answer.</li>
+                    <li><strong>Scope per device and per site.</strong> Retrieval is limited to the device or site in question and its organisation; an answer never mixes one customer's network with another's.</li>
+                    <li><strong>Changes still go through the loop.</strong> Nothing is applied from an answer. Every change goes to the Digital Twin, a person approves the exact diff, and the closed loop verifies before and after.</li>
+                </ul>
+                <p class="post-punch">
+                    AI proposes and cites. People approve. The network confirms.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>Good practices</h2>
+                <ul class="doc-list">
+                    <li><strong>Curate the corpus.</strong> Official guides, current versions. An old document answers with old syntax.</li>
+                    <li><strong>Prefer text PDFs.</strong> A scanned PDF is an image and needs character recognition before it is useful.</li>
+                    <li><strong>Fill in the kit's mandatory sections.</strong> They are there because they are what the diagnosis looks up.</li>
+                    <li><strong>Name runbooks after the symptom.</strong> "Tunnel down between sites" gets found; "Procedure 14" does not.</li>
+                    <li><strong>Regenerate Oktavia's part after a big change.</strong> A new site or a migration changes the technical report and the standard.</li>
+                    <li><strong>Size the server.</strong> On CPU an answer takes about a minute; with a GPU, seconds.</li>
+                    <li><strong>Escalate to a cloud model only explicitly.</strong> If you ever need it, let it be at a person's request and with a bounded summary of the device or site, never with full configurations.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>From incident to resolution</h2>
+                <p>
+                    The local agent is one piece of the same path described in <a href="cerrar-el-ciclo-gemelo-digital-en.html">the article on closing the loop</a>: detect, propose, approve, apply and verify. And it follows the same principles as <a href="seguridad-en-oktavia-y-argos-en.html">security in Oktavia and Argos</a>: no secrets to AI, and a tool that adds no attack surface.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="Wq8VockarFo" data-start="33">
+                        <img src="../img/video-Wq8VockarFo.jpg" alt="From incident to resolution in minutes: troubleshooting BGP and GRE with Argos" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">From incident to resolution in minutes: troubleshooting BGP and GRE with Argos (video in Spanish).</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>What would an assistant tell you today about your own network?</h2>
+                <p>
+                    If the answer is "nothing I could apply" or "we don't let it see the configuration", it is worth seeing with your own documentation. To quote, we only need a rough idea of how many devices you manage.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Get a quote</a>
+                    <a href="../#contacto">Request a demo</a>
+                    <a href="seguridad-en-oktavia-y-argos-en.html">Previous article: security in Oktavia and Argos</a>
+                </div>
+            </div>
+        </article>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments across Latin America.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public article, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+    <script src="../script/blog_script.js?v=dd806a03d2"></script>
+</body>
+</html>

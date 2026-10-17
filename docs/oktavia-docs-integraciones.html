@@ -97,6 +97,7 @@
                 <li><a href="#meraki">Meraki</a></li>
                 <li><a href="#influxdb-telegraf">InfluxDB / Telegraf</a></li>
                 <li><a href="#mcp-argos">MCP / Argos</a></li>
+                <li><a href="#ia-local">IA local (RAG)</a></li>
                     </ol>
                 </nav>
 
@@ -239,6 +240,42 @@
                     <p>Del lado de la UI, Argos consume este servidor y puede conectarse a otros servidores MCP con una lista de herramientas permitidas. El proveedor de lenguaje se elige por organización: API de Anthropic o un modelo local con Ollama. Cómo trabaja Argos está en <a href="oktavia-docs-operacion.html#argos-mcp">Argos y MCP</a>.</p>
                 </section>
 
+                <section class="doc-section" id="ia-local">
+                    <h2>IA local (RAG)</h2>
+                    <p>Recuperación aumentada que corre completa en el servidor de Oktavia. Los modelos son abiertos y los sirve Ollama: <code>bge-m3</code> para los vectores y <code>qwen2.5</code> de 7B para la respuesta, por omisión. Los vectores se guardan en la misma base PostgreSQL de la plataforma. Nada sale del servidor y no hay costo por pregunta. Se administra en <strong>Integraciones → IA local</strong>.</p>
+                    <h3>Cómo responde</h3>
+                    <ul>
+                        <li>Sólo con los fragmentos recuperados, citando documento, sección y, en los PDF, página.</li>
+                        <li>Un comando de configuración se acepta sólo si aparece literal en un fragmento citado.</li>
+                        <li>Alcance por equipo, por sitio o de toda la red.</li>
+                        <li>En CPU una respuesta toma alrededor de un minuto; con GPU, mucho menos.</li>
+                    </ul>
+                    <h3>Corpus</h3>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Fuente</th><th scope="col">Cómo entra</th></tr></thead><tbody>
+                        <tr><td>Guías oficiales del fabricante</td><td>Se seleccionan por las familias de plataforma del inventario, de fuentes verificadas con descarga permitida: hardening de Cisco IOS XE (centro de seguridad de Cisco), hardening y troubleshooting de FortiOS 7.2, troubleshooting de OSPF y BGP y políticas de seguridad de Junos, troubleshooting de Meraki MX y la guía de seguridad de infraestructura de red de la NSA. Lo de www.cisco.com, rfc-editor.org y nist.gov, que bloquean la descarga automática, lo sube un administrador.</td></tr>
+                        <tr><td>Subidas</td><td>PDF con texto (no escaneado), hasta 80 MB, indexado en segundo plano; HTML y Markdown.</td></tr>
+                        <tr><td>Por URL</td><td>Sólo dominios de documentación de fabricantes en lista permitida, por https, y nunca si el nombre resuelve a una dirección privada.</td></tr>
+                        <tr><td>Memoria técnica (LLD)</td><td>Una por sitio; se vuelve a indexar cuando se pregunta por ese sitio.</td></tr>
+                        <tr><td>Documentación de Oktavia</td><td>Los artículos de este portal.</td></tr>
+                        <tr><td>Reportes de cambios</td><td>Cada veredicto del ciclo cerrado de Argos.</td></tr>
+                    </tbody></table></div>
+                    <h3>Kit de documentación</h3>
+                    <p>Una lista de nueve elementos. Oktavia genera tres: el estándar de configuración desde la intención (con los campos secretos enmascarados), qué audita cada regla de cumplimiento y la memoria técnica por sitio. El equipo escribe cinco con plantillas en Markdown cuyas secciones «(obligatoria)» se validan al subir: estándar de diseño (HLD), runbooks de troubleshooting, procedimiento de cambios, política de seguridad de red, y circuitos y escalamiento con proveedores. El noveno son las guías del fabricante. Hay ejemplos llenos para tres redes de prueba: Cisco IOS hub-and-spoke, Cisco SD-WAN y multivendor (FortiGate, Junos y Cisco).</p>
+                    <h3>Salvaguardas</h3>
+                    <ul>
+                        <li>Los secretos nunca se indexan: se descartan las líneas que mencionan comunidades, llaves o contraseñas.</li>
+                        <li>Agregar por URL está limitado a la lista permitida y bloquea direcciones privadas.</li>
+                        <li>Pasar una pregunta al modelo en la nube es siempre una acción explícita, marcada <strong>✦ IA</strong>, con un resumen acotado al equipo o al sitio.</li>
+                    </ul>
+                    <h3>Buenas prácticas</h3>
+                    <ul>
+                        <li>Fuentes oficiales y vigentes para las versiones en la red; PDF con texto, no escaneados.</li>
+                        <li>Llenar las secciones obligatorias del kit y nombrar los runbooks por el síntoma («vecino BGP caído»).</li>
+                        <li>Regenerar la parte de Oktavia después de un cambio grande de diseño.</li>
+                        <li>Para uso diario, dimensionar con GPU; en CPU funciona, más lento.</li>
+                    </ul>
+                </section>
+
                 <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
 
                 <footer class="doc-footer">
@@ -255,7 +292,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

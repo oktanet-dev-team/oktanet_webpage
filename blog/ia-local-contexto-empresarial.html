@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IA local con el contexto de su empresa | Oktanet</title>
+    <meta name="description" content="Argos, el asistente de Oktavia, responde con un modelo abierto que corre en su propio servidor y lee las guías de los fabricantes, el diseño de su red, su estándar y sus procedimientos. Cita la fuente y la página, no indexa secretos y ningún cambio llega a la red sin aprobación.">
+    <link rel="canonical" href="https://oktanet.io/blog/ia-local-contexto-empresarial.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="IA local con el contexto de su empresa: Argos responde sin que su información salga">
+    <meta property="og:description" content="Argos, el asistente de Oktavia, responde con un modelo abierto que corre en su propio servidor y lee las guías de los fabricantes, el diseño de su red, su estándar y sus procedimientos. Cita la fuente y la página, no indexa secretos y ningún cambio llega a la red sin aprobación.">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-10-16">
+    <meta property="og:url" content="https://oktanet.io/blog/ia-local-contexto-empresarial.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-blog-ia-local-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-blog-ia-local-es.png">
+    <meta property="og:image:alt" content="IA local con el contexto de su empresa — Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=d2045f5589">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8e9a9c17d2">
+    <style>
+        /* Diagrama del flujo de la IA local: propio de este artículo. */
+        .rag-figure { margin: 26px auto 8px; max-width: 580px; }
+        .rag-figure svg { display: block; width: 100%; height: auto; }
+        .rag-figure figcaption { margin-top: 10px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; text-align: center; }
+        .rag-box { fill: #0d1d2c; stroke: #2a4159; stroke-width: 1.5; }
+        .rag-box-accent { fill: #041322; stroke: #2b8fd4; stroke-width: 2; }
+        .rag-chip { fill: #041322; stroke: #1d3a55; stroke-width: 1; }
+        .rag-perimeter { fill: none; stroke: #57c8ea; stroke-width: 1.5; stroke-dasharray: 6 5; }
+        .rag-title { fill: #c8d5ec; font: 700 17px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-text { fill: #c8d5ec; font: 600 13.5px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-muted { fill: #a3b7d2; font: 500 13px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-label { fill: #57c8ea; font: 700 13px Manrope, "Segoe UI", Arial, sans-serif; }
+        .rag-arrow { stroke: #2b8fd4; stroke-width: 2; fill: none; }
+        .rag-head { fill: #2b8fd4; }
+        @media print {
+            .rag-figure { break-inside: avoid; }
+            .rag-box, .rag-chip { fill: #ffffff; stroke: #a6bad5; }
+            .rag-box-accent { fill: #f4f8fc; stroke: #0c5a91; }
+            .rag-perimeter { stroke: #0c5a91; }
+            .rag-title, .rag-text { fill: #132037; }
+            .rag-muted { fill: #4a5d7a; }
+            .rag-label { fill: #0c5a91; }
+            .rag-figure figcaption { color: #4a5d7a; }
+        }
+    </style>
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body class="docs-portal" data-docs-page="../blog/ia-local-contexto-empresarial.html" data-docs-base="../docs/">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="34" height="34">
+                <span>Oktanet</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="../">Inicio</a>
+                <a href="../docs/oktavia-docs.html">Documentación</a>
+                <a href="../docs/oktavia-docs.html#academia">Academia</a>
+                <a href="../docs/oktavia-docs.html#articulos">Artículos</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./ia-local-contexto-empresarial-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn" href="ia-local-contexto-empresarial-es.pdf" download>Descargar PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Cotizar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="../docs/oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><a href="../docs/oktavia-docs.html#articulos">Artículos</a></li>
+                <li><span aria-current="page">IA local con el contexto de su empresa</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+        <article>
+            <section class="doc-cover">
+                <p class="post-brand"><img src="../img/Oktanet_Logo_Textless.png" alt="Logo de Oktanet" width="30" height="30" decoding="async">Equipo de Oktanet</p>
+                <p class="doc-eyebrow">Inteligencia artificial</p>
+                <h1>IA local con el contexto de su empresa: Argos responde sin que su información salga</h1>
+                <p class="post-meta">
+                    <span class="post-tag">IA local</span>
+                    <span class="post-tag">Argos</span>
+                    <span class="post-tag">Documentación</span>
+                    <span>16 de octubre de 2026</span>
+                    <span>·</span>
+                    <span>10 minutos de lectura</span>
+                </p>
+                <p class="doc-lede">
+                    Un asistente de inteligencia artificial sólo sirve en operación de redes si conoce la red que opera y si usarlo no expone lo que sabe de ella. Este artículo explica cómo Argos, el asistente de Oktavia, responde con un modelo que corre en su propio servidor, a partir de las guías de los fabricantes y de los documentos de su empresa, citando de dónde sale cada respuesta.
+                </p>
+                <div class="doc-share no-print">
+                    <span class="doc-share-label">Compartir</span>
+                    <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                    <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                    <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                    <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                    <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+                </div>
+            </section>
+
+            <section class="doc-section" data-icono="alerta">
+                <h2>Un asistente genérico no conoce su red</h2>
+                <p>
+                    Pregúntele a un asistente de uso general cómo restringir SSH en un router y le dará una respuesta correcta en abstracto: la de un manual promedio, para una versión cualquiera, sin saber qué lista de acceso usa su organización para la gestión, desde qué redes se administra ni qué dice su procedimiento de cambios. La respuesta suena bien y no se puede aplicar tal cual.
+                </p>
+                <p>
+                    La salida obvia es darle contexto: pegarle la configuración, el diseño, el inventario. Ahí aparece el segundo problema. Una configuración completa lleva comunidades SNMP, llaves de túneles, usuarios y la topología entera de la red. Enviarla a un modelo en la nube significa que esa información sale de su organización, queda sujeta a las políticas de retención de un tercero y, en muchos sectores, choca de frente con la política de seguridad o con el regulador.
+                </p>
+                <p class="post-punch">
+                    O el asistente no sabe nada de su red, o sabe demasiado y vive fuera de ella. Ninguna de las dos sirve.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="marca">
+                <h2>Qué hace Oktavia: un agente de IA que corre en su servidor</h2>
+                <p>
+                    Oktavia incluye un agente de IA local: un modelo de lenguaje abierto que corre en el mismo servidor de Oktavia que usted instala, junto con un índice de su documentación. Cuando alguien hace una pregunta, Argos busca en ese índice los fragmentos que tratan del tema, se los entrega al modelo y le pide que responda sólo con eso. La técnica se conoce como generación aumentada por recuperación (RAG, por sus siglas en inglés): el modelo no tiene que «saber» su red, la consulta cada vez.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Nada sale del servidor.</strong> Los documentos, el índice, la pregunta y la respuesta se quedan en su infraestructura.</li>
+                    <li><strong>Sin costo por pregunta.</strong> No hay tokens que pagar a un proveedor por cada consulta; el costo es el del servidor que ya opera.</li>
+                    <li><strong>No entrena con sus datos.</strong> El modelo no se reentrena con su información. Los documentos se consultan, no se memorizan, y retirarlos del índice basta para que dejen de usarse.</li>
+                </ul>
+
+                <figure class="rag-figure">
+                    <svg viewBox="0 0 560 524" role="img" aria-labelledby="rag-es-title rag-es-desc">
+                        <title id="rag-es-title">Flujo de la IA local de Oktavia</title>
+                        <desc id="rag-es-desc">Las guías de fabricante, el reporte técnico por sitio, el estándar y sus reglas, el kit de documentación, los reportes de cambios y los documentos que usted sube se indexan sin secretos en su servidor Oktavia. Argos responde con un modelo local, cita fuente y página, y lo que propone pasa al gemelo digital para aprobación humana y verificación.</desc>
+                        <defs>
+                            <marker id="rag-es-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path class="rag-head" d="M0 0 10 5 0 10z"/>
+                            </marker>
+                        </defs>
+                        <text class="rag-label" x="12" y="17">Su servidor Oktavia · nada de esto sale</text>
+                        <rect class="rag-perimeter" x="4" y="26" width="552" height="378" rx="16"/>
+
+                        <rect class="rag-box" x="16" y="40" width="528" height="150" rx="12"/>
+                        <text class="rag-title" x="32" y="66">Fuentes que lee</text>
+                        <rect class="rag-chip" x="32" y="80" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="100">Guías de los fabricantes</text>
+                        <rect class="rag-chip" x="288" y="80" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="100">Reporte técnico por sitio</text>
+                        <rect class="rag-chip" x="32" y="116" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="136">Estándar y reglas de auditoría</text>
+                        <rect class="rag-chip" x="288" y="116" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="136">Kit de documentación</text>
+                        <rect class="rag-chip" x="32" y="152" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="44" y="172">Reportes de cambios cerrados</text>
+                        <rect class="rag-chip" x="288" y="152" width="240" height="30" rx="8"/>
+                        <text class="rag-text" x="300" y="172">Documentos que usted sube</text>
+
+                        <path class="rag-arrow" d="M280 190v28" marker-end="url(#rag-es-head)"/>
+                        <text class="rag-muted" x="292" y="210">texto sin secretos</text>
+
+                        <rect class="rag-box" x="16" y="222" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="250">Índice local</text>
+                        <text class="rag-muted" x="32" y="274">Fragmentos y embeddings, por equipo y por sitio</text>
+
+                        <path class="rag-arrow" d="M280 290v28" marker-end="url(#rag-es-head)"/>
+                        <text class="rag-muted" x="292" y="310">pregunta acotada</text>
+
+                        <rect class="rag-box-accent" x="16" y="322" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="350">Argos con modelo abierto local</text>
+                        <text class="rag-muted" x="32" y="374">Responde sólo con lo recuperado y cita fuente y página</text>
+
+                        <path class="rag-arrow" d="M280 390v46" marker-end="url(#rag-es-head)"/>
+                        <text class="rag-muted" x="292" y="426">comandos textuales de la fuente</text>
+
+                        <rect class="rag-box" x="16" y="440" width="528" height="68" rx="12"/>
+                        <text class="rag-title" x="32" y="468">Gemelo digital</text>
+                        <text class="rag-muted" x="32" y="492">Borrador, aprobación humana, aplicación y verificación</text>
+                    </svg>
+                    <figcaption>Lo que entra al índice, cómo responde Argos y por dónde pasa un cambio antes de tocar la red.</figcaption>
+                </figure>
+            </section>
+
+            <section class="doc-section" data-icono="capas">
+                <h2>Qué lee: el contexto de su empresa</h2>
+                <p>
+                    Un modelo local es tan bueno como lo que tiene para consultar. El valor está en el corpus, y por eso Oktavia arma buena parte de él por usted. Cada respuesta cita el documento y la página de donde salió.
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Las guías oficiales de los fabricantes</strong> de las plataformas que hay en su inventario: la guía de hardening de Cisco IOS XE, las de FortiOS, Junos y Meraki, y guías generales como la de seguridad de infraestructura de red de la NSA. Se descargan solas cuando el fabricante lo permite; si no, se suben en PDF, HTML o Markdown.</li>
+                    <li><strong>El reporte técnico de su red</strong>, por sitio, que Oktavia genera a partir de la topología real descubierta: equipos, enlaces, vecinos de ruteo, servicios. Es el documento de diseño que casi nadie mantiene al día, y aquí sale de la red, no de la memoria de alguien.</li>
+                    <li><strong>Su estándar de configuración</strong>: la intención declarada en el Configurador y lo que audita cada regla de cumplimiento. Lo genera Oktavia, con los secretos enmascarados.</li>
+                    <li><strong>Los documentos de su equipo</strong>, a partir de un kit de documentación con plantillas: estándar de diseño (HLD), runbooks de diagnóstico, procedimiento de cambios, política de seguridad, y circuitos y proveedores. Al subir un documento se valida que tenga sus secciones obligatorias, y cada plantilla trae un ejemplo lleno.</li>
+                    <li><strong>Cada reporte de cambio de ciclo cerrado</strong>: lo que se pidió, lo que se aplicó y el antes y el después. Así Argos aprende de los cambios anteriores de su propia red, no de la de otros.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="chat">
+                <h2>Dónde se usa</h2>
+                <p>
+                    El agente local no es una ventana de chat aparte. Aparece donde el operador ya está trabajando:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Diagnóstico por incidente.</strong> En cada incidente que Argos arma, la sección «Qué dice la documentación» resume qué revisar, en qué orden y con qué comandos de verificación, según sus runbooks y las guías del fabricante de ese equipo.</li>
+                    <li><strong>Remediación de CVE.</strong> Argos lee el aviso de seguridad del fabricante y sólo acepta comandos que aparecen textualmente en él. Con eso prepara los cambios urgentes como borrador en el Gemelo Digital o los propone al estándar del Configurador, para que los equipos nuevos ya nazcan corregidos.</li>
+                    <li><strong>Preguntas sobre su red.</strong> «Según la documentación, ¿cómo restrinjo SSH en este equipo?» se responde con la guía del fabricante para esa plataforma, la lista de acceso de gestión de su estándar y la cita de cada parte.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="escudo">
+                <h2>Las barandillas</h2>
+                <p>
+                    Un modelo de lenguaje puede inventar con mucha seguridad. En operación de redes eso no es un detalle de estilo: un comando inventado es una salida a sitio. Por eso el agente trabaja con reglas que no dependen de que el modelo se porte bien:
+                </p>
+                <ul class="doc-list">
+                    <li><strong>Responde sólo con lo recuperado.</strong> Si los fragmentos no cubren la pregunta, lo dice, y cada afirmación lleva su cita.</li>
+                    <li><strong>Comandos sólo textuales.</strong> Un comando se acepta únicamente si aparece tal cual en una fuente citada. Lo que el modelo «complete» por su cuenta se descarta.</li>
+                    <li><strong>Los secretos nunca se indexan.</strong> Las líneas con comunidades, llaves o contraseñas se eliminan antes de entrar al índice. Lo que no está en el índice no puede aparecer en una respuesta.</li>
+                    <li><strong>Alcance por equipo y por sitio.</strong> La búsqueda se acota al equipo o sitio en cuestión y a su organización; la respuesta no mezcla la red de un cliente con la de otro.</li>
+                    <li><strong>Los cambios siguen pasando por el ciclo.</strong> Nada se aplica desde una respuesta. Todo cambio va al Gemelo Digital, una persona aprueba el diferencial exacto y el ciclo cerrado verifica el antes y el después.</li>
+                </ul>
+                <p class="post-punch">
+                    La IA propone y cita. Las personas aprueban. La red confirma.
+                </p>
+            </section>
+
+            <section class="doc-section" data-icono="verificar">
+                <h2>Buenas prácticas</h2>
+                <ul class="doc-list">
+                    <li><strong>Cure el corpus.</strong> Guías oficiales y en su versión vigente. Un documento viejo responde con la sintaxis vieja.</li>
+                    <li><strong>Prefiera PDF con texto.</strong> Un PDF escaneado es una imagen y necesita reconocimiento de caracteres antes de servir.</li>
+                    <li><strong>Llene las secciones obligatorias del kit.</strong> Están ahí porque son las que el diagnóstico consulta.</li>
+                    <li><strong>Nombre los runbooks como el síntoma.</strong> «Túnel caído entre sitios» se encuentra; «Procedimiento 14» no.</li>
+                    <li><strong>Regenere la parte de Oktavia tras un cambio grande.</strong> Un sitio nuevo o una migración cambian el reporte técnico y el estándar.</li>
+                    <li><strong>Dimensione el servidor.</strong> En CPU una respuesta tarda alrededor de un minuto; con una GPU, segundos.</li>
+                    <li><strong>Escale a un modelo en la nube sólo de forma explícita.</strong> Si alguna vez lo necesita, que sea a petición de una persona y con un resumen acotado del equipo o del sitio, nunca con configuraciones completas.</li>
+                </ul>
+            </section>
+
+            <section class="doc-section" data-icono="ciclo">
+                <h2>Del incidente a la resolución</h2>
+                <p>
+                    El agente local es una pieza del mismo recorrido que describimos en <a href="cerrar-el-ciclo-gemelo-digital.html">el artículo sobre cerrar el ciclo</a>: detectar, proponer, aprobar, aplicar y verificar. Y sigue los mismos principios de <a href="seguridad-en-oktavia-y-argos.html">seguridad en Oktavia y Argos</a>: ningún secreto a la IA y una herramienta que no agrega superficie de ataque.
+                </p>
+                <div class="post-video">
+                    <div class="post-video-frame" data-video="Wq8VockarFo" data-start="33">
+                        <img src="../img/video-Wq8VockarFo.jpg" alt="De la incidencia a la resolución en minutos: troubleshooting de BGP y GRE con Argos" loading="lazy" decoding="async">
+                    </div>
+                    <p class="post-video-caption">De la incidencia a la resolución en minutos: troubleshooting de BGP y GRE con Argos.</p>
+                </div>
+            </section>
+
+            <div class="post-cta">
+                <h2>¿Qué le respondería hoy un asistente sobre su propia red?</h2>
+                <p>
+                    Si la respuesta es «nada que pueda aplicar» o «no lo dejamos ver la configuración», vale la pena verlo con su documentación. Para cotizar sólo necesitamos saber aproximadamente cuántos equipos administra.
+                </p>
+                <div class="post-cta-actions">
+                    <a class="is-primary" href="../#cotizar">Quiero una cotización</a>
+                    <a href="../#contacto">Solicitar una demostración</a>
+                    <a href="seguridad-en-oktavia-y-argos.html">Artículo anterior: seguridad en Oktavia y Argos</a>
+                </div>
+            </div>
+        </article>
+
+        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Artículo público, sin información confidencial de clientes.</p>
+        </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
+    <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
+    <script src="../script/blog_script.js?v=dd806a03d2"></script>
+</body>
+</html>

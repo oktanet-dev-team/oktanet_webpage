@@ -32,6 +32,7 @@ ENVUELTAS = {
     "curso-oktavia-fundamentos.html": ("Academia", "Oktavia Fundamentos"),
     "oktavia-resumen.html": ("Ficha técnica y resumen", "Resumen ejecutivo"),
     "oktavia.html": ("Ficha técnica y resumen", "Ficha técnica"),
+    "../blog/ia-local-contexto-empresarial.html": ("Artículos", "IA local con el contexto de su empresa"),
     "../blog/seguridad-en-oktavia-y-argos.html": ("Artículos", "Seguridad en Oktavia y Argos"),
     "../blog/red-de-pruebas-cml-y-sd-wan.html": ("Artículos", "La red de pruebas de Oktavia"),
     "../blog/telemetria-y-automatizacion-de-eventos.html": ("Artículos", "Telemetría y eventos"),

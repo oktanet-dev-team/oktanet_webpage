@@ -272,6 +272,13 @@
                         <li><strong>Cisco CLI</strong>: diff mostrado antes de aplicar; aplicación por SSH.</li>
                     </ul>
                     <p>La UI muestra qué carriles tienen el apply habilitado en esa instalación; <strong>Job Reports → Cambios del Gemelo</strong> es el historial.</p>
+                    <h3>Parches de seguridad</h3>
+                    <p>Los cambios que corrigen un CVE van en la categoría <strong>Parches de seguridad</strong>, con su propio tablero: <code>propuesto</code> → <code>aprobado</code> → <code>aplicado</code> → <code>verificado</code> (las líneas del cambio ya aparecen en el respaldo) → <code>corregido</code> (el CVE desaparece del cruce por versión). Se originan de tres formas:</p>
+                    <ul>
+                        <li><strong>Cambio urgente</strong> desde el CVE, después de «Cómo remediar», que lee el aviso del fabricante con la IA local. Queda como borrador.</li>
+                        <li><strong>Declarar en el Configurador</strong>: si la línea de mitigación es un campo del estándar (servidor HTTP apagado, SSH v2, VTY sólo SSH, vistas SNMP, cifrado de contraseñas, modo de spanning-tree, <code>logging trap</code>), se escribe en la intención del equipo y el cumplimiento la audita como cualquier otra regla. Las líneas con un secreto quedan pendientes para la bóveda.</li>
+                        <li><strong>Flujo de parches de seguridad</strong> (botón, o Argos con «prepara los parches de seguridad»): toma los CVE explotados o críticos cuya función está encendida en la running, prepara los borradores y las propuestas al estándar y notifica. Nunca aplica; la aprobación sigue siendo humana.</li>
+                    </ul>
                 </section>
 
                 <section class="doc-section" id="telemetria">
@@ -342,13 +349,15 @@ jobs:
                 <section class="doc-section" id="argos-mcp">
                     <h2>Argos y MCP</h2>
                     <p><strong>Argos</strong> es el asistente de operación de la UI. Recibe una petición en lenguaje natural, la enruta a un flujo y devuelve una respuesta con intención detectada, razón, confianza, si usó un modelo de IA, el resultado de la acción y sugerencias.</p>
-                    <h3>Dos marcas, dos modos</h3>
+                    <h3>Tres marcas, tres modos</h3>
                     <ul>
                         <li><strong>IAOps</strong>: flujos deterministas que no consumen modelo. Diagnóstico de un equipo, reemplazo o baja, onboarding, túnel GRE, publicar una red, DHCP por VLAN, segmento SD-WAN, switch de sucursal, pegado de CLI, triage de ticket, telemetría. Son los que lanzan operaciones en vivo del Engine: limpiar contadores, verificar un servicio, comprobar acceso.</li>
-                        <li><strong>IA</strong>: lo que sí usa un modelo de lenguaje. Explicar un diff, revisar un cambio, resumir cumplimiento, redactar una remediación, analizar enrutamiento o un camino, proponer variables de servicio desde un respaldo, correlacionar eventos. Proveedor configurable por organización: API de Anthropic o un modelo local con Ollama. El uso de tokens se mide por organización.</li>
+                        <li><strong>IA</strong>: lo que sí usa un modelo de lenguaje. Explicar un diff, revisar un cambio, resumir cumplimiento, redactar una remediación, analizar enrutamiento o un camino, proponer variables de servicio desde un respaldo, correlacionar eventos. Proveedor configurable por organización: API de Anthropic o un modelo local con Ollama. El uso de tokens se mide por organización. En la UI se marca <strong>✦ IA</strong>.</li>
+                        <li><strong>IA local</strong> (<strong>◆ IA local</strong>): respuestas desde la documentación indexada en el servidor de Oktavia, sin tokens ni salida de datos: preguntas «según la documentación…», «Qué dice la documentación» por incidente en el diagnóstico y «Cómo remediar · IA local» en cada CVE. Detalle en <a href="oktavia-docs-integraciones.html#ia-local">IA local (RAG)</a>.</li>
                     </ul>
                     <h3>Ciclos</h3>
                     <p>Un flujo largo se convierte en un <strong>ciclo</strong> persistente que avanza el worker de Argos: <code>pending</code> → <code>running</code> → <code>waiting_apply</code> (espera la aprobación humana) → <code>verifying</code> → <code>closed</code>, con los estados <code>attention</code>, <code>failed</code> y <code>canceled</code>. Se consultan y reanudan desde la UI.</p>
+                    <p>«Cerrar el ciclo» acepta también un cambio que ya existe en el Gemelo, por ejemplo un parche de seguridad preparado por el flujo. El veredicto compara las pruebas de cada equipo antes y después del cambio y las separa en <strong>corregidas</strong>, <strong>regresiones</strong>, <strong>fallas nuevas</strong> y <strong>siguen fallando</strong>. Una regresión impide pasar a <code>closed</code>; las fallas de estado que ya existían antes del cambio se listan aparte y no bloquean. Un parche verificado se marca «verificado» en su tablero, y cada veredicto se indexa en la IA local como reporte de cambio.</p>
                     <div class="doc-callout">
                         <p><strong>Argos nunca aplica.</strong> Prepara el cambio, lo deja en el Gemelo y espera la aprobación. Después verifica en vivo. Lo mismo vale para el servidor MCP: es de solo lectura.</p>
                     </div>
@@ -377,7 +386,7 @@ jobs:
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

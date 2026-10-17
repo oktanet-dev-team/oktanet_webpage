@@ -117,6 +117,18 @@ ARTICULOS = {
             "bajada": "Vulnerabilities with KEV first, posture with evidence and per-role hardening, with no secrets sent to AI.",
         },
     },
+    "og-blog-ia-local": {
+        "es": {
+            "rotulo": "IA local",
+            "titulo": "IA local con el contexto de su empresa",
+            "bajada": "Argos responde desde su propio servidor con las guías de los fabricantes y sus documentos, cita la fuente y no indexa secretos.",
+        },
+        "en": {
+            "rotulo": "Local AI",
+            "titulo": "Local AI with your company's context",
+            "bajada": "Argos answers from your own server using vendor guides and your documents, cites the source and never indexes secrets.",
+        },
+    },
 }
 
 

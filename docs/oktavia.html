@@ -126,6 +126,7 @@
                 <li><a href="#servicios">Alta de servicios nuevos</a></li>
                 <li><a href="#ciclo-de-vida">Ciclo de vida de sitios y equipos</a></li>
                 <li><a href="#argos">Argos, el ChatOps de red</a></li>
+                <li><a href="#ia-local">IA local y documentación</a></li>
                 <li><a href="#seguridad">Seguridad e inventario de servicios</a></li>
                 <li><a href="#vendors">Cobertura por fabricante</a></li>
                 <li><a href="#integraciones">Integraciones</a></li>
@@ -148,7 +149,7 @@
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>Lo que distingue a Oktavia:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; seguridad de red con evidencia de configuración; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
+                    <strong>Lo que distingue a Oktavia:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; IA local que responde con la documentación del cliente sin que nada salga del servidor; seguridad de red con evidencia de configuración, reporte PCI DSS por sitio y parches de seguridad preparados para aprobar; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
                 </p>
             </div>
         </section>
@@ -223,12 +224,13 @@
                         <tr><td><strong>Cumplimiento de configuración</strong></td><td>Puntaje global y por sitio, principales fallas y tendencias. Resultados por dispositivo con severidad, diagnóstico y plan de corrección. Catálogo de servicios y reglas editables con habilitación selectiva por rol, fabricante, plataforma o tipo de sitio.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuración deseada</strong></td><td>Generación de configuración a partir de variables de servicio y plantillas, con precedencia por valores por omisión, tipo de sitio, sitio, plataforma, modelo, rol y dispositivo. Exportación en JSON y CSV.</td><td>Pro</td></tr>
                         <tr><td><strong>Estándar de hardening por rol</strong></td><td>El estándar de seguridad vive en el rol del equipo y un equipo nuevo lo hereda al darse de alta: syslog, SNMP, NTP, acceso de gestión y servicios de los cuatro fabricantes. En Cisco IOS, además de lo que falta, detecta lo que sobra —servidor HTTP, comunidad pública, acceso remoto sin SSH— y el Gemelo Digital propone quitarlo.</td><td>Pro</td></tr>
-                        <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
+                        <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. El veredicto compara las pruebas de cada equipo antes y después del cambio: lo que se corrigió, lo que se rompió y lo que sigue fallando; una regresión impide cerrar. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
                         <tr><td><strong>Alta de servicios nuevos</strong></td><td>El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, ajustes de enrutamiento. Cada uno con su rollback.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — ChatOps de red</strong></td><td>Asistente en lenguaje natural integrado en todas las pantallas. Entiende, investiga, configura y cierra el ciclo. Cada acción declara si consume el modelo de IA antes de ejecutarse.</td><td>Pro</td></tr>
-                        <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, más las vulnerabilidades por versión de software (NVD, CISA KEV y FIRST EPSS). Puntaje global y por equipo, filtros por dominio y severidad, evidencia por hallazgo y qué atender primero.</td><td>Pro</td></tr>
+                        <tr><td><strong>IA local (RAG)</strong></td><td>Modelos abiertos servidos en el propio servidor de Oktavia que responden sólo con fragmentos recuperados de la documentación —guías oficiales del fabricante, memoria técnica por sitio, estándares y procedimientos del equipo, reportes de cambios anteriores—, con cita de documento, sección y página. Nada sale del servidor y no hay costo por pregunta. Incluye el kit de documentación con plantillas y validación.</td><td>Pro</td></tr>
+                        <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, más las vulnerabilidades por versión de software (NVD, CISA KEV y FIRST EPSS). Puntaje global y por equipo, filtros por dominio, severidad, sitio y equipo, evidencia por hallazgo y qué atender primero. Reporte de red PCI DSS v4.0.1 por sitio y parches de seguridad: cómo remediar cada CVE, cambio urgente en el Gemelo Digital y flujo automático que prepara los borradores sin aplicarlos.</td><td>Pro</td></tr>
                         <tr><td><strong>Inventario de servicios</strong></td><td>Cruce entre lo observado en el equipo, lo declarado como intención y el catálogo de servicios. Clasifica cada servicio como cubierto, punto ciego, sin aplicar o inaplicable, con su alcance de configuración.</td><td>Pro</td></tr>
-                        <tr><td><strong>Gemelo digital</strong></td><td>Capturas del estado de la red y comparación entre configuración deseada y activa. Detección de desviación por dispositivo, cuantificación de impacto y flujo de aprobación con estados sucesivos hasta la aplicación.</td><td>Pro</td></tr>
+                        <tr><td><strong>Gemelo digital</strong></td><td>Capturas del estado de la red y comparación entre configuración deseada y activa. Detección de desviación por dispositivo, cuantificación de impacto y flujo de aprobación con estados sucesivos hasta la aplicación. La categoría «Parches de seguridad» sigue cada cambio hasta verificado en el respaldo y corregido cuando el CVE desaparece.</td><td>Pro</td></tr>
                         <tr><td><strong>Análisis de políticas de firewall</strong></td><td>Qué política decide un flujo en cada salto del camino, con su traducción de direcciones y su registro. Resuelve grupos de objetos y conjuntos de aplicaciones de forma recursiva.</td><td>Pro</td></tr>
                         <tr><td><strong>Inteligencia IP (IPAM)</strong></td><td>Mapa de direccionamiento, subredes detectadas, solapamientos, vecinos de enrutamiento y ubicación de una dirección IP hasta el puerto de acceso cruzando la tabla ARP con la tabla MAC.</td><td>Pro</td></tr>
                         <tr><td><strong>Respaldos de configuración</strong></td><td>Visualización, comparación y descarga de archivos de configuración por dispositivo y fecha.</td><td>Pro</td></tr>
@@ -259,6 +261,14 @@
                 <li><strong>Verificar</strong>: se vuelve a auditar y se confirma que el hallazgo cerró.</li>
             </ol>
             <p>Cada paso deja artefacto descargable y queda en el historial de trabajos. Si el resultado no convence, hay vuelta atrás.</p>
+
+            <h3>Verificación antes y después</h3>
+            <p>
+                El veredicto no es sólo «la regla ya pasa». Oktavia compara los resultados de las pruebas de cada equipo antes y después del cambio y los separa en <strong>corregidos</strong>, <strong>regresiones</strong>, <strong>fallas nuevas</strong> y <strong>siguen fallando</strong>. Una regresión impide cerrar el ciclo. Las fallas de estado que ya existían antes del cambio se muestran aparte y no lo bloquean, porque no las causó.
+            </p>
+            <p>
+                Argos cierra el ciclo también sobre cambios que ya existen en el Gemelo Digital, como un parche de seguridad preparado por el flujo automático; un parche verificado se marca como tal. Cada veredicto se indexa como reporte de cambio en la IA local, así que el siguiente cambio parecido parte de lo que ya se aprendió.
+            </p>
 
             <h3>Cómo se aplica en cada fabricante</h3>
             <div class="doc-table-wrap">
@@ -343,14 +353,69 @@
                         <tr><td>Configurar conversando: describir un servicio en lenguaje natural</td><td>IA</td></tr>
                         <tr><td>Correlacionar fallas de cumplimiento con la configuración</td><td>IA sólo si hay hallazgos</td></tr>
                         <tr><td>Optimizar alcances y proponer un estándar</td><td>IA sobre un cálculo determinista</td></tr>
+                        <tr><td>Preguntas «según la documentación…», «Qué dice la documentación» por incidente y «Cómo remediar» un CVE</td><td>IA local, en el servidor del cliente</td></tr>
+                        <tr><td>Preparar los parches de seguridad: borradores en el Gemelo Digital y propuestas al estándar, sin aplicar</td><td>Determinista</td></tr>
                     </tbody>
                 </table>
             </div>
             <p>El patrón se repite: primero se calcula con los datos, y el modelo sólo redacta o prioriza sobre ese resultado. Nunca inventa hallazgos, trabaja con los que el cálculo produjo.</p>
+            <p>Cada acción lleva una marca visible antes de pulsarla: <strong>⚙ IAOps</strong> es determinista, <strong>◆ IA local</strong> corre en el servidor de Oktavia sin enviar nada ni consumir tokens, y <strong>✦ IA</strong> usa el modelo en la nube con su costo por consulta.</p>
+        </section>
+
+        <section class="doc-section" id="ia-local">
+            <h2>10. IA local y documentación</h2>
+            <p>
+                Argos responde con los datos de la red; la IA local le agrega lo que dice la documentación. Es un sistema de recuperación aumentada (RAG) que corre completo en el servidor de Oktavia del cliente: los modelos son abiertos y se sirven con Ollama —bge-m3 para los vectores y qwen2.5 de 7B para la respuesta, por omisión— y los vectores se guardan en la misma base PostgreSQL de la plataforma. Nada sale del servidor y no hay tokens por pregunta.
+            </p>
+            <p>La versión comercial, con el diagrama del flujo y un video de Argos: <a href="../blog/ia-local-contexto-empresarial.html">IA local con el contexto de su empresa</a>.</p>
+            <h3>Cómo responde</h3>
+            <ul>
+                <li><strong>Sólo con lo recuperado.</strong> La respuesta se arma con los fragmentos recuperados y los cita: documento, sección y, en los PDF, página.</li>
+                <li><strong>Comandos sólo textuales.</strong> Un comando de configuración se acepta únicamente si aparece literal en un fragmento citado; no se inventa sintaxis.</li>
+                <li><strong>Alcance acotado.</strong> La pregunta se hace sobre un equipo, un sitio o toda la red, y la recuperación se limita a ese alcance.</li>
+                <li><strong>Los secretos nunca se indexan.</strong> Las líneas que mencionan comunidades, llaves o contraseñas se descartan, y el estándar de configuración se genera con los campos secretos enmascarados.</li>
+                <li><strong>Tiempo de respuesta.</strong> En CPU una respuesta toma alrededor de un minuto; con GPU es mucho más rápida.</li>
+            </ul>
+            <h3>Qué indexa</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Corpus</th><th scope="col">Contenido</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Guías oficiales del fabricante</strong></td><td>Se seleccionan por las familias de plataforma del inventario, de fuentes verificadas que permiten descarga: guía de hardening de Cisco IOS XE del centro de seguridad de Cisco, hardening y troubleshooting de FortiOS 7.2, troubleshooting de OSPF y BGP y políticas de seguridad de Junos, troubleshooting de Meraki MX y la guía de seguridad de infraestructura de red de la NSA. Los sitios que bloquean la descarga automática (www.cisco.com, rfc-editor.org, nist.gov) los sube un administrador.</td></tr>
+                        <tr><td><strong>Documentos subidos</strong></td><td>PDF con texto, no escaneado, de hasta 80 MB e indexado en segundo plano; HTML y Markdown. Agregar por URL sólo acepta una lista de dominios de documentación de fabricantes, por https y nunca hacia direcciones privadas.</td></tr>
+                        <tr><td><strong>Memoria técnica de la red</strong></td><td>El reporte técnico (LLD) de cada sitio, que se vuelve a indexar cuando se pregunta por ese sitio.</td></tr>
+                        <tr><td><strong>Documentación de Oktavia</strong></td><td>Los artículos del portal de documentación de la plataforma.</td></tr>
+                        <tr><td><strong>Reportes de cambios</strong></td><td>Cada veredicto del ciclo cerrado de Argos, para que aprenda de los cambios anteriores.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Kit de documentación</h3>
+            <p>
+                En Integraciones → IA local, una lista de nueve elementos dice qué documentación tiene la red y qué le falta. Una parte la genera Oktavia: el estándar de configuración desde la intención, qué audita cada regla de cumplimiento y la memoria técnica por sitio. Otra la escribe el equipo con plantillas en Markdown cuyas secciones «(obligatoria)» se validan al subir: estándar de diseño (HLD), runbooks de troubleshooting, procedimiento de cambios, política de seguridad de red, y circuitos y escalamiento con proveedores. El noveno son las guías del fabricante. El kit trae ejemplos llenos para tres redes de prueba: Cisco IOS hub-and-spoke, Cisco SD-WAN y multivendor con FortiGate, Junos y Cisco.
+            </p>
+            <h3>Dónde se usa</h3>
+            <ul>
+                <li>Preguntas a Argos que empiezan con «según la documentación…».</li>
+                <li>«Qué dice la documentación» por cada incidente del diagnóstico.</li>
+                <li>«Cómo remediar · IA local» en cada CVE: lee el aviso del fabricante y extrae la corrección y las mitigaciones.</li>
+            </ul>
+            <h3>Buenas prácticas</h3>
+            <ul>
+                <li><strong>Curar las fuentes.</strong> Guías oficiales y vigentes para las versiones que corren en la red; un documento viejo o de terceros produce respuestas viejas o ajenas.</li>
+                <li><strong>PDF con texto.</strong> Un PDF escaneado no tiene texto que recuperar; se convierte antes de subirlo.</li>
+                <li><strong>Llenar las secciones obligatorias del kit.</strong> Son las que más preguntas responden y las que se validan al subir.</li>
+                <li><strong>Nombrar los runbooks por el síntoma</strong> («vecino BGP caído», «túnel sin tráfico»), que es como se pregunta durante un incidente.</li>
+                <li><strong>Regenerar la parte de Oktavia</strong> —estándar, reglas y memoria técnica— después de un cambio grande de diseño.</li>
+                <li><strong>Dimensionar.</strong> En CPU funciona y tarda alrededor de un minuto por respuesta; si se va a usar a diario, conviene una GPU.</li>
+                <li><strong>Escalar a la nube sólo de forma explícita.</strong> Pasar una pregunta al modelo en la nube es una acción visible, marcada con ✦ IA, y viaja un resumen acotado al equipo o sitio, no la base de documentos.</li>
+                <li><strong>Los secretos no se suben.</strong> El sistema descarta las líneas con credenciales, pero la buena práctica es que los documentos no las traigan.</li>
+            </ul>
         </section>
 
         <section class="doc-section" id="seguridad">
-            <h2>10. Seguridad e inventario de servicios</h2>
+            <h2>11. Seguridad e inventario de servicios</h2>
             <h3>Seguridad de red</h3>
             <p>
                 Postura de seguridad calculada sobre la configuración recolectada de firewalls y switches, en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Cada hallazgo trae la línea de configuración que lo sustenta y su recomendación en la sintaxis del fabricante. Incluye puntaje global y por equipo, y filtros por dominio y severidad.
@@ -361,8 +426,19 @@
             </p>
             <h3>Qué atender primero</h3>
             <p>
-                Una lista de CVE no es una decisión. Argos cruza cada vulnerabilidad explotada o probable con la configuración activa del equipo —si la función vulnerable está encendida— y con su rol en la red, y la clasifica en <strong>actuar ya</strong>, <strong>planear</strong>, <strong>vigilar</strong> o <strong>confirmar versión</strong>. Un equipo de borde con la función expuesta va primero; uno interno con la función apagada, después.
+                Una lista de CVE no es una decisión. Argos cruza cada vulnerabilidad explotada o probable con la configuración activa del equipo —si la función vulnerable está encendida— y con su rol en la red, y la clasifica en <strong>actuar ya</strong>, <strong>planear</strong>, <strong>vigilar</strong> o <strong>confirmar versión</strong>. Un equipo de borde con la función expuesta va primero; uno interno con la función apagada, después. El puntaje va de 0 a 100, donde más es mejor, con bandas, y los CVE se filtran por sitio o por equipo.
             </p>
+            <h3>Reporte de red PCI DSS por sitio</h3>
+            <p>
+                Para los sitios en alcance del entorno de datos de tarjetahabientes —los puntos de venta—, Oktavia arma el reporte de red de PCI DSS v4.0.1 sobre los requisitos 1, 2, 6.3.3, 7, 8 y 10. Cada requisito queda como <strong>cumple</strong>, <strong>no cumple</strong> o <strong>no evaluado</strong>, y sólo cuenta si la familia de fabricante del equipo tiene una verificación para él. Trae la evidencia por equipo y sale en PDF imprimible. Apoya el trabajo del QSA; no lo sustituye.
+            </p>
+            <h3>Remediación y parches de seguridad</h3>
+            <ul>
+                <li><strong>Cómo remediar.</strong> La IA local lee el aviso del fabricante y extrae la versión corregida y la mitigación.</li>
+                <li><strong>Cambio urgente.</strong> Queda como borrador en el Gemelo Digital, en la categoría «Parches de seguridad», con su tablero: propuesto, aprobado, aplicado, verificado cuando las líneas aparecen en el respaldo y corregido cuando el CVE desaparece.</li>
+                <li><strong>Declarar en el Configurador.</strong> Si la línea de mitigación es un campo del estándar —servidor HTTP apagado, SSH v2, VTY sólo por SSH, vistas SNMP, cifrado de contraseñas, modo de spanning-tree, nivel de logging—, se escribe en la intención del equipo y el cumplimiento la vigila desde entonces. Las líneas que llevan un secreto quedan pendientes para la bóveda.</li>
+                <li><strong>Flujo de parches de seguridad.</strong> Con un botón, o pidiéndole a Argos «prepara los parches de seguridad», toma los CVE explotados o críticos cuya función está encendida, prepara los borradores y las propuestas al estándar y avisa. Nunca aplica: la aprobación sigue siendo humana.</li>
+            </ul>
             <h3>Estándar de hardening por rol</h3>
             <p>
                 El estándar de seguridad se declara una vez, en el rol, y lo heredan todos los equipos con ese rol, los existentes y los nuevos: registro hacia el colector, SNMP de sólo lectura restringido, NTP, acceso de gestión sólo por SSH y servicios innecesarios apagados. Los demás alcances guardan sólo lo que varía por sitio o por equipo. El cumplimiento verifica lo que falta y, en Cisco IOS, también lo que sobra; el Gemelo Digital propone la corrección y una persona la aprueba.
@@ -388,7 +464,7 @@
         </section>
 
         <section class="doc-section" id="vendors">
-            <h2>11. Cobertura por fabricante</h2>
+            <h2>12. Cobertura por fabricante</h2>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -410,7 +486,7 @@
         </section>
 
         <section class="doc-section" id="integraciones">
-            <h2>12. Integraciones</h2>
+            <h2>13. Integraciones</h2>
             <p>Oktavia se diseñó para convivir con el ecosistema del cliente, no para reemplazarlo. Puede alimentar y ser alimentada por las herramientas que ya están en operación.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -425,6 +501,8 @@
                         <tr><td><strong>Zabbix y otros sistemas SNMP</strong></td><td>Interoperable</td><td>Los dispositivos expuestos por SNMP pueden ser consumidos por el sistema de monitoreo que el cliente ya opera.</td></tr>
                         <tr><td><strong>Correo electrónico (SMTP)</strong></td><td>Producción</td><td>Notificaciones y alertas por correo sobre cualquier servidor SMTP del cliente.</td></tr>
                         <tr><td><strong>Anthropic (Claude API)</strong></td><td>Producción</td><td>Motor de IA para análisis, recomendaciones y asistencia conversacional.</td></tr>
+                        <tr><td><strong>Ollama (IA local)</strong></td><td>Producción</td><td>Modelos abiertos en el servidor de Oktavia para la IA local: bge-m3 para vectores y qwen2.5 de 7B para generación, con los vectores en la base PostgreSQL de la plataforma.</td></tr>
+                        <tr><td><strong>NVD, CISA KEV y FIRST EPSS</strong></td><td>Producción</td><td>Fuentes públicas de vulnerabilidades, explotación activa y probabilidad de explotación para el cruce por versión de software.</td></tr>
                         <tr><td><strong>Webhooks HTTP</strong></td><td>Producción</td><td>Envío de eventos a cualquier punto de integración HTTP, que es la vía para conectar herramientas de tickets y de mensajería.</td></tr>
                         <tr><td><strong>Fuente de verdad externa</strong></td><td>Opcional</td><td>Ingesta de inventario desde un sistema de registro externo si el cliente ya opera uno.</td></tr>
                         <tr><td><strong>CSV y API REST</strong></td><td>Producción</td><td>Import y export de inventario, catálogos y datos en todos los módulos; integración programática por API.</td></tr>
@@ -437,7 +515,7 @@
         </section>
 
         <section class="doc-section" id="arquitectura">
-            <h2>13. Arquitectura y modelo de operación</h2>
+            <h2>14. Arquitectura y modelo de operación</h2>
             <p>
                 La plataforma separa la interfaz web del motor de automatización. La interfaz concentra la experiencia de usuario, la organización por tenant y la persistencia; el motor ejecuta contra los dispositivos. Se comunican por una API REST autenticada con clave.
             </p>
@@ -457,14 +535,14 @@
         </section>
 
         <section class="doc-section" id="seguridad-plataforma">
-            <h2>14. Seguridad de la plataforma</h2>
+            <h2>15. Seguridad de la plataforma</h2>
             <p>
                 Oktavia tiene acceso de lectura y, cuando el cliente lo autoriza, de cambio sobre su red. Su propia seguridad es parte del alcance, no un anexo.
             </p>
 
             <h3>Dónde viven los datos</h3>
             <p>
-                La plataforma se despliega en la infraestructura del cliente, en sus instalaciones o en su nube privada. El inventario, las configuraciones y los artefactos no salen de ahí. La única excepción es el análisis con inteligencia artificial: cuando se ejecuta una acción que consume el modelo, el contenido necesario para esa consulta viaja al proveedor de IA. Argos declara antes de cada acción si va a consumirlo, así que la decisión es del operador caso por caso, y las capacidades deterministas cubren la mayor parte del trabajo sin enviar nada.
+                La plataforma se despliega en la infraestructura del cliente, en sus instalaciones o en su nube privada. El inventario, las configuraciones y los artefactos no salen de ahí. La única excepción es el análisis con inteligencia artificial: cuando se ejecuta una acción que consume el modelo, el contenido necesario para esa consulta viaja al proveedor de IA. Argos declara antes de cada acción si va a consumirlo, así que la decisión es del operador caso por caso, y las capacidades deterministas cubren la mayor parte del trabajo sin enviar nada. La IA local, marcada con ◆ IA local, corre en el mismo servidor y tampoco envía nada; su índice nunca guarda secretos.
             </p>
 
             <h3>Credenciales de los equipos</h3>
@@ -512,7 +590,7 @@
         </section>
 
         <section class="doc-section" id="requisitos">
-            <h2>15. Requisitos de integración</h2>
+            <h2>16. Requisitos de integración</h2>
             <p>Para implementar Oktavia sobre una red existente pedimos al cliente:</p>
             <ul>
                 <li>Inventario base de dispositivos.</li>
@@ -587,13 +665,13 @@
             <ul>
                 <li>El disco de telemetría crece con las interfaces por equipo y con la retención: guardar 30 días en lugar de 7 multiplica por cuatro esa parte.</li>
                 <li>Los respaldos y resultados de auditoría crecen con la frecuencia de auditoría; la política de retención se acuerda en la implementación.</li>
-                <li>Argos con un proveedor de IA en la nube no requiere recursos adicionales. Un modelo local requiere al menos 16 GB de RAM extra y, de preferencia, una GPU.</li>
+                <li>Argos con un proveedor de IA en la nube no requiere recursos adicionales. La IA local requiere al menos 16 GB de RAM extra y, de preferencia, una GPU: en CPU una respuesta tarda alrededor de un minuto.</li>
                 <li>Conectividad: el servidor necesita alcanzar la gestión de los equipos (SSH, HTTPS/API, NETCONF y SNMP según el fabricante) y recibir syslog (UDP 514) si se activa la telemetría. Los usuarios entran a la consola por HTTPS.</li>
             </ul>
         </section>
 
         <section class="doc-section" id="implementacion">
-            <h2>16. Proceso de implementación</h2>
+            <h2>17. Proceso de implementación</h2>
             <ol class="doc-steps">
                 <li><strong>Onboarding de datos.</strong> Recibir el inventario base, homologar nombres, roles, sitios, plataformas y modelos, y cargar el archivo inicial.</li>
                 <li><strong>Descubrimiento controlado.</strong> Validar alcanzabilidad, ejecutar el descubrimiento por lotes, recolectar respaldos y normalizar el inventario observado.</li>
@@ -623,13 +701,13 @@
         </section>
 
         <section class="doc-section" id="licenciamiento">
-            <h2>17. Licenciamiento</h2>
+            <h2>18. Licenciamiento</h2>
             <p>
                 La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
             </p>
             <h3>Oktavia Pro</h3>
             <p>
-                Descubrimiento multifabricante, inventario, cumplimiento de configuración y de estado, configuración deseada por equipo y por alcance, ciclo completo de remediación con Gemelo Digital, alta de servicios nuevos con su rollback, topología con trazado de rutas y análisis de políticas de firewall, seguridad de red, inventario de servicios, inteligencia IP, respaldos de configuración, reportes avanzados, provisioning, operaciones programadas, FinOps, multi-tenant y Argos completo.
+                Descubrimiento multifabricante, inventario, cumplimiento de configuración y de estado, configuración deseada por equipo y por alcance, ciclo completo de remediación con Gemelo Digital, alta de servicios nuevos con su rollback, topología con trazado de rutas y análisis de políticas de firewall, seguridad de red, inventario de servicios, inteligencia IP, respaldos de configuración, reportes avanzados, provisioning, operaciones programadas, FinOps, multi-tenant y Argos completo con la IA local.
             </p>
             <h3>Telemetría y Orquestación de Eventos</h3>
             <p>
@@ -642,7 +720,7 @@
         </section>
 
         <section class="doc-section" id="casos">
-            <h2>18. Casos de uso</h2>
+            <h2>19. Casos de uso</h2>
             <ul>
                 <li>Auditoría de cumplimiento de configuración sobre múltiples sitios en minutos.</li>
                 <li>Detección automática de desviación de configuración tras una ventana de mantenimiento.</li>
@@ -660,6 +738,9 @@
                 <li>Corregir una desviación de punta a punta: proponer, aprobar, aplicar y verificar que cerró.</li>
                 <li>Levantar un túnel entre dos sitios con sus rutas, y darlo de baja completo cuando el proyecto termina.</li>
                 <li>Publicar una red nueva en OSPF y BGP de los equipos de borde del sitio, con verificación por ping incluida.</li>
+                <li>Preguntar qué dice el runbook o la guía del fabricante durante un incidente, con la cita, sin que la documentación salga del servidor.</li>
+                <li>Preparar el reporte de red PCI DSS de los puntos de venta, con evidencia por equipo, para la revisión del QSA.</li>
+                <li>Llevar los CVE explotados con la función encendida a parches de seguridad listos para aprobar, y verificar que el CVE desapareció.</li>
             </ul>
         </section>
 
@@ -681,7 +762,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

@@ -216,6 +216,8 @@
                         <li>Los diffs, respaldos y reportes se redactan antes de guardarse o mostrarse: contraseñas, comunidades SNMP y claves se sustituyen.</li>
                         <li>El servidor MCP es de solo lectura, no tiene acceso a equipos ni a la bóveda, redacta por clave y por línea, y registra cada llamada en un registro de evidencia por organización.</li>
                         <li>Las remediaciones por API están apagadas por omisión en cada carril y se encienden con una bandera de configuración más un permiso de escritura en la credencial.</li>
+                        <li>La IA local corre en el mismo servidor y no envía nada fuera. Su índice nunca guarda secretos: se descartan las líneas con comunidades, llaves o contraseñas, y el estándar de configuración se genera con los campos secretos enmascarados.</li>
+                        <li>Los parches de seguridad que llevan un secreto no se escriben en la intención: quedan pendientes para la bóveda.</li>
                     </ul>
                     <p>El alta de credenciales y la migración desde configuraciones anteriores están en <a href="oktavia-docs-instalacion.html#vault-credenciales">Bóveda de credenciales</a>.</p>
                 </section>
@@ -236,7 +238,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

@@ -144,6 +144,18 @@ DOCUMENTOS = {
         "pie": "Security in Oktavia and Argos · Oktanet",
         "de": "of",
     },
+    "blog-ia-local-es": {
+        "pagina": "blog/ia-local-contexto-empresarial.html",
+        "salida": "blog/ia-local-contexto-empresarial-es.pdf",
+        "pie": "IA local con el contexto de su empresa · Oktanet",
+        "de": "de",
+    },
+    "blog-ia-local-en": {
+        "pagina": "blog/ia-local-contexto-empresarial-en.html",
+        "salida": "blog/ia-local-contexto-empresarial-en.pdf",
+        "pie": "Local AI with your company's context · Oktanet",
+        "de": "of",
+    },
     # El curso gratuito de la Academia: el gancho que se comparte fuera.
     "curso-automatizacion-es": {
         "pagina": "docs/curso-automatizacion-redes.html",
