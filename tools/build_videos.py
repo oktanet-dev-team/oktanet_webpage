@@ -10,8 +10,13 @@ terceros hasta el clic.
 Uso:
     python3 tools/build_videos.py
 
-La lista de videos vive en VIDEOS, y tiene que coincidir con la del diccionario
-`videoLista` de script/home_script.js.
+La lista de videos vive en VIDEOS, y tiene que coincidir con las tarjetas
+`.video-item` de index.html (y sus textos con `videoTitulos`/`videoCuerpos` de
+script/home_script.js). El segundo de inicio de cada video no va aqui: es el
+atributo `data-start` del boton en el HTML.
+
+Solo se descargan las caratulas que faltan; para refrescarlas todas:
+    python3 tools/build_videos.py --todas
 """
 from __future__ import annotations
 
@@ -22,12 +27,16 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Identificador de YouTube de cada video que aparece en la portada.
 VIDEOS = [
+    "Q8iTsXJBCGQ",   # Postura de seguridad de tu red
+    "Wq8VockarFo",   # Argos remediando: troubleshooting de BGP y GRE
+    "jipqMPMiDxw",   # Cerrar el ciclo con Argos
     "FGh8p9j2Wg0",   # Tu red bajo control (recorrido comercial)
     "WFgD9l0nNmo",   # Centro de automatizacion de red
     "bS2W2ZSfbJo",   # Descubrimiento de red
     "VKBOfMsdLzQ",   # Inventario
     "Tb6tp0IMpm0",   # De la visibilidad al cumplimiento
     "HmoXtXVi-io",   # Gemelo digital, de la deteccion a la remediacion
+    "seIST0rDvtA",   # Argos en accion (va en la seccion de Argos)
 ]
 
 # maxres no existe para todos los videos; se cae a la siguiente calidad.
@@ -56,5 +65,9 @@ def descargar(vid: str) -> None:
 
 
 if __name__ == "__main__":
+    import sys
+    todas = "--todas" in sys.argv
     for vid in VIDEOS:
+        if not todas and os.path.exists(os.path.join(RAIZ, "img", f"video-{vid}.jpg")):
+            continue
         descargar(vid)

@@ -25,6 +25,7 @@
     const argosSectionEl = document.querySelector('.argos-section');
     const proSectionEl = document.querySelector('.pro-section');
     const videoSectionEl = document.querySelector('.video-section');
+    const securitySectionEl = document.querySelector('.security-section');
     const quoteSectionEl = document.querySelector('.quote-section');
     const contactIntent = document.getElementById('contact-intent');
     const resourcesSectionEl = document.querySelector('.resources-section');
@@ -244,6 +245,9 @@
             videoIntro: 'Recorridos cortos por cada módulo, grabados sobre la plataforma real. El reproductor sólo se carga cuando pulsas, así que pasar por aquí no te rastrea.',
             videoTitulo: 'Video de Oktavia',
             videoTitulos: [
+                'Postura de seguridad de tu red',
+                'Argos remediando: de la incidencia a la resolución',
+                'Cerrar el ciclo con Argos',
                 'Tu red bajo control',
                 'El centro de automatización',
                 'Descubrimiento de red',
@@ -253,6 +257,9 @@
                 'Argos en acción: una loopback desde cero'
             ],
             videoCuerpos: [
+                'Cómo se califica la seguridad de la red por dominio, qué vulnerabilidades le aplican (NVD y CISA KEV) y qué atender primero.',
+                'Troubleshooting de BGP y GRE con Argos: del síntoma a la causa y al cambio aprobado, en minutos.',
+                'Auditoría, cambio en el Gemelo Digital, aprobación, aplicación y verificación de antes y después.',
                 'El recorrido comercial de la plataforma, en dos minutos.',
                 'El panel principal: cumplimiento, dispositivos accesibles y actividad reciente.',
                 'Cómo se construye la fuente de verdad a partir de los equipos que ya tienes.',
@@ -262,6 +269,40 @@
                 'Se le pide el servicio conversando y Argos lo propone como intención declarada. El cambio se revisa en el Gemelo Digital y sólo se aplica cuando alguien lo aprueba.'
             ],
             videoCanal: 'Ver el canal completo en YouTube',
+            securityAria: 'Postura de seguridad que cierra el ciclo',
+            securityEyebrow: 'Seguridad de red',
+            securityTitle: 'Postura de seguridad que cierra el ciclo.',
+            securityIntro: 'La postura de seguridad no es un reporte aparte que alguien lee cada trimestre. Oktavia la calcula con la misma configuración que audita, propone la corrección y no la da por buena hasta verificar que quedó aplicada.',
+            securityTitles: [
+                'Postura por dominio, desde la configuración real',
+                'PCI DSS v4.0.1 por sitio',
+                'Parches de seguridad',
+                'Y se verifica que cerró'
+            ],
+            securityBodies: [
+                'Cada sitio y cada equipo se califica en perímetro, gestión, identidad y segmentación a partir de la configuración recolectada. Se suman las vulnerabilidades por versión de software (NVD, CISA KEV y EPSS) y una lista de qué atender primero: los CVE explotados cuya función vulnerable está habilitada en la configuración en ejecución.',
+                'Los requisitos de red se evalúan sitio por sitio, con el alcance del CDE en los sitios con punto de venta. Cada requisito lleva su evidencia por equipo y sale en un PDF listo para imprimir. Es soporte para el QSA; no lo sustituye.',
+                'La IA local lee el aviso del fabricante y sólo acepta comandos que aparecen textuales en él. Los cambios urgentes quedan como borrador en el Gemelo Digital, o se proponen dentro de tu estándar en el Configurador. Nada se aplica sin la aprobación de una persona.',
+                'Apruebas, se aplica y Argos vuelve a auditar: compara antes y después, marca las pruebas que se corrigieron y las regresiones, y confirma que las líneas de mitigación quedaron en el respaldo.'
+            ],
+            cicloTitulo: 'Ciclo cerrado de seguridad con Argos',
+            cicloDesc: 'Seis etapas en círculo: detectar con la auditoría, la postura y los CVE; diagnosticar con Argos y la documentación; proponer el cambio en el Gemelo Digital o en el estándar; aprobarlo una persona; aplicarlo; y verificar antes y después. La verificación vuelve a detectar, y cada cambio verificado alimenta el conocimiento de la IA local.',
+            cicloEtapas: ['Detectar', 'Diagnosticar', 'Proponer', 'Aprobar', 'Aplicar', 'Verificar'],
+            cicloDetalles: [
+                'Auditoría, postura, CVE',
+                'Argos + documentación',
+                'Gemelo Digital o estándar',
+                'Tú decides',
+                'Cambio controlado',
+                'Antes y después'
+            ],
+            cicloCentro: ['Ciclo cerrado · Argos', 'Cada cambio verificado', 'alimenta la IA local'],
+            cicloNota: 'Cada cambio verificado deja un reporte de cambio, y esos reportes pasan a formar parte de lo que consulta la IA local.',
+            iaLocalTitle: 'IA local con contexto de tu empresa',
+            iaLocalBody: 'Argos responde con las guías del fabricante, la memoria técnica de tu red, tus estándares y tus runbooks, y cita de dónde sale cada respuesta. Corre en el servidor de Oktavia de tu empresa: la información no sale de ahí y no se paga por pregunta.',
+            iaLocalLink: 'Leer el artículo sobre la IA local',
+            iaLocalHref: 'blog/ia-local-contexto-empresarial.html',
+            securityVideoLinks: ['Ver el video de la postura de seguridad', 'Ver el video del ciclo cerrado'],
             familyAria: 'Oktanet, Oktavia y Argos',
             familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
             familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
@@ -699,6 +740,9 @@
             videoIntro: 'Short walkthroughs of each module, recorded on the real platform. The player only loads when you click, so passing through here does not track you. Videos are in Spanish.',
             videoTitulo: 'Oktavia video',
             videoTitulos: [
+                'Your network security posture',
+                'Argos remediating: from incident to resolution',
+                'Closing the loop with Argos',
                 'Your network under control',
                 'The automation center',
                 'Network discovery',
@@ -708,6 +752,9 @@
                 'Argos in action: a loopback from scratch'
             ],
             videoCuerpos: [
+                'How the network security is scored by domain, which vulnerabilities apply to it (NVD and CISA KEV), and what to fix first.',
+                'Troubleshooting BGP and GRE with Argos: from symptom to cause to the approved change, in minutes.',
+                'Audit, change in the Digital Twin, approval, apply, and before-and-after verification.',
                 'The commercial walkthrough of the platform, in two minutes.',
                 'The main dashboard: compliance, reachable devices, and recent activity.',
                 'How the source of truth is built from the devices you already have.',
@@ -717,6 +764,40 @@
                 'You ask for the service in conversation and Argos proposes it as declared intent. The change is reviewed in the Digital Twin and only applied once someone approves it. Video in Spanish.'
             ],
             videoCanal: 'Browse the full channel on YouTube',
+            securityAria: 'Security posture that closes the loop',
+            securityEyebrow: 'Network security',
+            securityTitle: 'Security posture that closes the loop.',
+            securityIntro: 'Security posture is not a separate report someone reads once a quarter. Oktavia calculates it from the same configuration it audits, proposes the fix, and does not consider it done until it verifies the change is in place.',
+            securityTitles: [
+                'Posture by domain, from the real configuration',
+                'PCI DSS v4.0.1 per site',
+                'Security patches',
+                'And it verifies the fix closed'
+            ],
+            securityBodies: [
+                'Every site and every device is scored on perimeter, management, identity, and segmentation from the collected configuration. Vulnerabilities by software version are added (NVD, CISA KEV, and EPSS), along with a what-to-fix-first list: exploited CVEs whose vulnerable feature is enabled in the running configuration.',
+                'Network requirements are evaluated site by site, with CDE scope on the point-of-sale sites. Each requirement carries its evidence per device and comes out as a printable PDF. It supports the QSA; it does not replace one.',
+                'The local AI reads the vendor advisory and only accepts commands that appear verbatim in it. Urgent changes are left as drafts in the Digital Twin, or proposed within your standard in the Configurator. Nothing is applied without a person approving it.',
+                'You approve, it is applied, and Argos audits again: it compares before and after, flags the tests that were fixed and any regressions, and confirms the mitigation lines made it into the backup.'
+            ],
+            cicloTitulo: 'Closed security loop with Argos',
+            cicloDesc: 'Six stages in a circle: detect with the audit, the posture, and CVEs; diagnose with Argos and the documentation; propose the change in the Digital Twin or the standard; a person approves it; apply it; and verify before and after. Verification feeds back into detection, and every verified change adds to the local AI knowledge.',
+            cicloEtapas: ['Detect', 'Diagnose', 'Propose', 'Approve', 'Apply', 'Verify'],
+            cicloDetalles: [
+                'Audit, posture, CVE',
+                'Argos + documentation',
+                'Digital Twin or standard',
+                'You decide',
+                'Controlled change',
+                'Before and after'
+            ],
+            cicloCentro: ['Closed loop · Argos', 'Every verified change', 'feeds the local AI'],
+            cicloNota: 'Every verified change leaves a change report, and those reports become part of what the local AI consults.',
+            iaLocalTitle: 'Local AI with your company context',
+            iaLocalBody: 'Argos answers using the vendor guides, your network design document, your standards, and your runbooks, and cites where each answer comes from. It runs on your company Oktavia server: the information never leaves it, and there is no per-question charge.',
+            iaLocalLink: 'Read the article on the local AI',
+            iaLocalHref: 'blog/ia-local-contexto-empresarial-en.html',
+            securityVideoLinks: ['Watch the security posture video', 'Watch the closed-loop video'],
             familyAria: 'Oktanet, Oktavia and Argos',
             familyEyebrow: 'One platform, one assistant, one team that implements it',
             familyTitle: 'Three fronts so the network does what its standard says.',
@@ -1625,6 +1706,30 @@
         setTextList(document.querySelectorAll('.video-item p'), copy.videoCuerpos);
         setText(document.querySelector('.video-canal a'), copy.videoCanal);
 
+        if (securitySectionEl) {
+            securitySectionEl.setAttribute('aria-label', copy.securityAria);
+        }
+
+        setText(document.querySelector('.security-section .eyebrow'), copy.securityEyebrow);
+        setText(document.querySelector('.security-section h2'), copy.securityTitle);
+        setText(document.querySelector('.security-section .section-intro'), copy.securityIntro);
+        setTextList(document.querySelectorAll('.security-card h3'), copy.securityTitles);
+        setTextList(document.querySelectorAll('.security-card p'), copy.securityBodies);
+        setText(document.getElementById('ciclo-titulo'), copy.cicloTitulo);
+        setText(document.getElementById('ciclo-desc'), copy.cicloDesc);
+        // Las etapas estan dos veces: en el SVG y en la lista que lo sustituye
+        // en telefono. Las dos reciben el mismo texto.
+        setTextList(document.querySelectorAll('.ciclo-svg .ciclo-etiqueta'), copy.cicloEtapas);
+        setTextList(document.querySelectorAll('.ciclo-lista .ciclo-etiqueta'), copy.cicloEtapas);
+        setTextList(document.querySelectorAll('.ciclo-svg .ciclo-detalle'), copy.cicloDetalles);
+        setTextList(document.querySelectorAll('.ciclo-lista .ciclo-detalle'), copy.cicloDetalles);
+        setTextList(document.querySelectorAll('.ciclo-centro-titulo, .ciclo-centro-nota'), copy.cicloCentro);
+        setText(document.querySelector('.ciclo-nota'), copy.cicloNota);
+        setText(document.querySelector('.ia-local-card h3'), copy.iaLocalTitle);
+        setText(document.querySelector('.ia-local-card p'), copy.iaLocalBody);
+        setText(document.querySelector('.ia-local-enlace'), copy.iaLocalLink);
+        setTextList(document.querySelectorAll('.security-video-texto'), copy.securityVideoLinks);
+
         setText(document.querySelector('.services-section .eyebrow'), copy.servicesEyebrow);
         setText(document.querySelector('.services-section h2'), copy.servicesTitle);
         setTextList(document.querySelectorAll('.services-grid .service-card h3'), copy.serviceTitles);
@@ -1750,6 +1855,7 @@
          ['[data-doc-resumen-online]', copy.resourceResumenHref],
          ['[data-docs]', copy.docsHref],
          ['[data-blog]', copy.blogHref],
+         ['[data-ia-local]', copy.iaLocalHref],
          ['[data-training]', copy.trainingHref]].forEach(function (par) {
             if (typeof par[1] !== 'string') {
                 return;
@@ -1817,13 +1923,28 @@
             const marco = document.createElement('iframe');
 
             marco.className = 'video-iframe';
-            marco.src = 'https://www.youtube-nocookie.com/embed/' + identificador + '?autoplay=1&rel=0';
+            const inicio = parseInt(caratula.dataset.start, 10);
+
+            marco.src = 'https://www.youtube-nocookie.com/embed/' + identificador + '?autoplay=1&rel=0' +
+                (inicio > 0 ? '&start=' + inicio : '');
             marco.title = titulo ? titulo.textContent : copia.videoTitulo;
             marco.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
             marco.allowFullscreen = true;
             marco.referrerPolicy = 'strict-origin-when-cross-origin';
 
             caratula.replaceWith(marco);
+        });
+    });
+
+    // Los enlaces a un video desde otra seccion bajan a la galeria y lo abren
+    // ahi mismo; si ya se estaba reproduciendo, solo bajan.
+    document.querySelectorAll('[data-abrir-video]').forEach(function (enlace) {
+        enlace.addEventListener('click', function () {
+            const caratula = document.querySelector('.video-caratula[data-video="' + enlace.dataset.abrirVideo + '"]');
+
+            if (caratula) {
+                caratula.click();
+            }
         });
     });
 

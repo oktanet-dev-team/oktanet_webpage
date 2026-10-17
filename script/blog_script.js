@@ -32,7 +32,10 @@
 
         const reproducir = function () {
             const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.youtube-nocookie.com/embed/' + identificador + '?autoplay=1&rel=0';
+            // data-start: segundo en el que empieza (el fragmento que importa del video).
+            const inicio = parseInt(marco.getAttribute('data-start') || '', 10);
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + identificador + '?autoplay=1&rel=0'
+                + (inicio > 0 ? '&start=' + inicio : '');
             iframe.title = marco.querySelector('img') ? marco.querySelector('img').alt : 'Vídeo';
             iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
             iframe.allowFullscreen = true;

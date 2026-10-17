@@ -225,7 +225,10 @@
                         <li>Separa las tres clases de no cumplimiento: <code>compliance_failure</code> es hallazgo; <code>data_missing</code> y <code>pipeline_inconsistency</code> son limitaciones de medición y se explican aparte.</li>
                         <li>Los artefactos ya vienen redactados (sin contraseñas ni comunidades). No compartas los snapshots crudos del discovery.</li>
                         <li>Para un hallazgo corregido, la cadena completa es: prueba fallida en el corte N, cambio <code>CHG-…</code> aprobado con ticket, prueba pasada en el corte N+1.</li>
+                        <li>El veredicto del ciclo cerrado ya trae la comparación antes y después por equipo (corregidas, regresiones, fallas nuevas, siguen fallando): adjúntalo al cambio.</li>
                     </ul>
+                    <h3>Reporte de red PCI DSS</h3>
+                    <p>Para un auditor de PCI, Oktavia genera el reporte de red de PCI DSS v4.0.1 <strong>por sitio</strong>, sobre los requisitos 1, 2, 6.3.3, 7, 8 y 10. El alcance del entorno de datos de tarjetahabientes son los sitios de punto de venta. Cada requisito sale como <strong>cumple</strong>, <strong>no cumple</strong> o <strong>no evaluado</strong>; sólo cuenta si la familia de fabricante del equipo tiene una verificación para él, así que un «no evaluado» es una limitación de medición, no un hallazgo, y se explica aparte. Trae evidencia por equipo y se imprime en PDF. Apoya al QSA; no lo sustituye.</p>
                 </section>
 
                 <nav class="docs-pager no-print" aria-label="Secciones vecinas" data-docs-pager></nav>
@@ -244,7 +247,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=5886d8a5aa"></script>
+    <script src="../script/oktavia_docs_data.js?v=ef7cf63fe3"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

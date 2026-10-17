@@ -95,6 +95,7 @@
                 <li><a href="#services">New service rollout</a></li>
                 <li><a href="#lifecycle">Site and device lifecycle</a></li>
                 <li><a href="#argos">Argos, the network ChatOps</a></li>
+                <li><a href="#local-ai">Local AI and documentation</a></li>
                 <li><a href="#security">Security and service inventory</a></li>
                 <li><a href="#vendors">Per-vendor coverage</a></li>
                 <li><a href="#integrations">Integrations</a></li>
@@ -117,7 +118,7 @@
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>What sets Oktavia apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos; Argos as a ChatOps layer across the whole platform; network security with configuration evidence; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
+                    <strong>What sets Oktavia apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos; Argos as a ChatOps layer across the whole platform; local AI that answers from the customer documentation without anything leaving the server; network security with configuration evidence, a PCI DSS report per site, and security patches prepared for approval; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
                 </p>
             </div>
         </section>
@@ -192,12 +193,13 @@
                         <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro</td></tr>
                         <tr><td><strong>Desired configuration</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device. JSON and CSV export.</td><td>Pro</td></tr>
                         <tr><td><strong>Hardening standard by role</strong></td><td>The security standard lives in the device role and a new device inherits it when onboarded: syslog, SNMP, NTP, management access and services across the four vendors. On Cisco IOS, besides what is missing, it detects what is extra —HTTP server, public community, remote access without SSH— and the Digital Twin proposes removing it.</td><td>Pro</td></tr>
-                        <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
+                        <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. The verdict compares each device's test results before and after the change: what was fixed, what broke, and what still fails; a regression prevents closing. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
                         <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, routing adjustments. Each with its rollback.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro</td></tr>
-                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain and severity, evidence per finding, and what to address first.</td><td>Pro</td></tr>
+                        <tr><td><strong>Local AI (RAG)</strong></td><td>Open models served on the Oktavia server itself that answer only from fragments retrieved from the documentation —official vendor guides, per-site technical report, the team's standards and procedures, previous change reports—, citing document, section, and page. Nothing leaves the server and there is no per-question cost. Includes the documentation kit with templates and validation.</td><td>Pro</td></tr>
+                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain, severity, site and device, evidence per finding, and what to address first. PCI DSS v4.0.1 network report per site and security patches: how to remediate each CVE, an urgent change in the Digital Twin, and an automatic flow that prepares the drafts without applying them.</td><td>Pro</td></tr>
                         <tr><td><strong>Service inventory</strong></td><td>Cross-check between what is observed on the device, what is declared as intent, and the service catalog. Classifies each service as covered, blind spot, not applied, or not applicable, with its configuration scope.</td><td>Pro</td></tr>
-                        <tr><td><strong>Digital Twin</strong></td><td>Network state snapshots and comparison between desired and live configuration. Per-device drift detection, impact quantification, and an approval flow through successive states up to application.</td><td>Pro</td></tr>
+                        <tr><td><strong>Digital Twin</strong></td><td>Network state snapshots and comparison between desired and live configuration. Per-device drift detection, impact quantification, and an approval flow through successive states up to application. The «Security patches» category tracks each change until it is verified in the backup and fixed once the CVE disappears.</td><td>Pro</td></tr>
                         <tr><td><strong>Firewall policy analysis</strong></td><td>Which policy decides a flow at each hop along the path, with its address translation and its logging. Resolves object groups and application sets recursively.</td><td>Pro</td></tr>
                         <tr><td><strong>IP Intelligence (IPAM)</strong></td><td>Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP address down to the access port by crossing the ARP table with the MAC table.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuration backups</strong></td><td>View, compare, and download configuration files by device and date.</td><td>Pro</td></tr>
@@ -228,6 +230,14 @@
                 <li><strong>Verify</strong>: audit again and confirm the finding closed.</li>
             </ol>
             <p>Every step leaves a downloadable artifact and lands in the job history. If the result is not convincing, there is a way back.</p>
+
+            <h3>Before and after verification</h3>
+            <p>
+                The verdict is not just «the rule passes now». Oktavia compares each device's test results before and after the change and splits them into <strong>fixed</strong>, <strong>regressions</strong>, <strong>new failures</strong>, and <strong>still failing</strong>. A regression prevents closing the loop. State failures that already existed before the change are shown separately and do not block it, because the change did not cause them.
+            </p>
+            <p>
+                Argos also closes the loop on changes that already exist in the Digital Twin, such as a security patch prepared by the automatic flow; a verified patch is marked as such. Every verdict is indexed as a change report in the local AI, so the next similar change starts from what was already learned.
+            </p>
 
             <h3>How it applies on each vendor</h3>
             <div class="doc-table-wrap">
@@ -312,14 +322,69 @@
                         <tr><td>Configuring by conversation: describing a service in plain language</td><td>AI</td></tr>
                         <tr><td>Correlating compliance failures with the configuration</td><td>AI only when there are findings</td></tr>
                         <tr><td>Optimizing scopes and proposing a standard</td><td>AI on top of a deterministic calculation</td></tr>
+                        <tr><td>«According to the documentation…» questions, «What the documentation says» per incident, and «How to remediate» a CVE</td><td>Local AI, on the customer server</td></tr>
+                        <tr><td>Preparing security patches: drafts in the Digital Twin and standard proposals, without applying</td><td>Deterministic</td></tr>
                     </tbody>
                 </table>
             </div>
             <p>The pattern repeats: the data is computed first, and the model only writes or prioritizes on that result. It never invents findings, it works with the ones the calculation produced.</p>
+            <p>Every action carries a visible badge before you click: <strong>⚙ IAOps</strong> is deterministic, <strong>◆ IA local</strong> (local AI) runs on the Oktavia server without sending anything or consuming tokens, and <strong>✦ IA</strong> uses the cloud model with its per-query cost.</p>
+        </section>
+
+        <section class="doc-section" id="local-ai">
+            <h2>10. Local AI and documentation</h2>
+            <p>
+                Argos answers with network data; the local AI adds what the documentation says. It is a retrieval-augmented generation (RAG) system that runs entirely on the customer's Oktavia server: the models are open and served with Ollama —bge-m3 for embeddings and qwen2.5 7B for generation, by default— and the vectors are stored in the platform's own PostgreSQL database. Nothing leaves the server and there are no per-question tokens.
+            </p>
+            <p>The business overview, with the flow diagram and an Argos video: <a href="../blog/ia-local-contexto-empresarial-en.html">Local AI with your company's context</a>.</p>
+            <h3>How it answers</h3>
+            <ul>
+                <li><strong>Only from what was retrieved.</strong> The answer is built from the retrieved fragments and cites them: document, section and, for PDFs, page.</li>
+                <li><strong>Verbatim commands only.</strong> A configuration command is accepted only if it appears verbatim in a cited fragment; no syntax is invented.</li>
+                <li><strong>Bounded scope.</strong> The question is asked about a device, a site, or the whole network, and retrieval is limited to that scope.</li>
+                <li><strong>Secrets are never indexed.</strong> Lines mentioning communities, keys, or passwords are dropped, and the configuration standard is generated with secret fields masked.</li>
+                <li><strong>Response time.</strong> On CPU an answer takes roughly a minute; a GPU makes it much faster.</li>
+            </ul>
+            <h3>What it indexes</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Corpus</th><th scope="col">Content</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Official vendor guides</strong></td><td>Selected by the platform families in the inventory, from verified sources that allow download: the Cisco IOS XE hardening guide from Cisco's security center, FortiOS 7.2 hardening and troubleshooting, Junos OSPF and BGP troubleshooting and security policies, Meraki MX troubleshooting, and the NSA network infrastructure security guide. Sites that block automated downloads (www.cisco.com, rfc-editor.org, nist.gov) are uploaded by an administrator.</td></tr>
+                        <tr><td><strong>Uploaded documents</strong></td><td>Text PDFs, not scanned, up to 80 MB and indexed in the background; HTML and Markdown. Adding by URL only accepts an allow-list of vendor documentation domains, over https and never resolving to private addresses.</td></tr>
+                        <tr><td><strong>Network technical report</strong></td><td>The technical report (LLD) for each site, re-indexed when asked about that site.</td></tr>
+                        <tr><td><strong>Oktavia documentation</strong></td><td>The articles of the platform's documentation portal.</td></tr>
+                        <tr><td><strong>Change reports</strong></td><td>Every Argos closed-loop verdict, so it learns from previous changes.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Documentation kit</h3>
+            <p>
+                In Integrations → Local AI, a nine-item checklist shows what documentation the network has and what is missing. Part of it is generated by Oktavia: the configuration standard from the intent, what each compliance rule audits, and the technical report per site. The rest is written by the team with Markdown templates whose «(obligatoria)» (mandatory) sections are validated on upload: design standard (HLD), troubleshooting runbooks, change procedure, network security policy, and circuits and provider escalation. The ninth item is the vendor guides. The kit ships filled examples for three test networks: Cisco IOS hub-and-spoke, Cisco SD-WAN, and multi-vendor with FortiGate, Junos and Cisco.
+            </p>
+            <h3>Where it is used</h3>
+            <ul>
+                <li>Argos questions that start with «according to the documentation…».</li>
+                <li>«What the documentation says» for each incident in the diagnosis.</li>
+                <li>«How to remediate · Local AI» on each CVE: it reads the vendor advisory and extracts the fix and the mitigations.</li>
+            </ul>
+            <h3>Good practices</h3>
+            <ul>
+                <li><strong>Curate the sources.</strong> Official, current guides for the versions running in the network; an old or third-party document produces old or foreign answers.</li>
+                <li><strong>Text PDFs.</strong> A scanned PDF has no text to retrieve; convert it before uploading.</li>
+                <li><strong>Fill the kit's mandatory sections.</strong> They answer the most questions and they are validated on upload.</li>
+                <li><strong>Name runbooks after the symptom</strong> («BGP neighbor down», «tunnel without traffic»), which is how people ask during an incident.</li>
+                <li><strong>Regenerate Oktavia's part</strong> —standard, rules, and technical report— after a major design change.</li>
+                <li><strong>Size the server.</strong> It works on CPU at roughly a minute per answer; for daily use, a GPU is worth it.</li>
+                <li><strong>Escalate to the cloud only explicitly.</strong> Sending a question to the cloud model is a visible action, marked ✦ IA, and only a summary bounded to the device or site travels, not the document base.</li>
+                <li><strong>Do not upload secrets.</strong> The system drops lines with credentials, but good practice is for documents not to carry them.</li>
+            </ul>
         </section>
 
         <section class="doc-section" id="security">
-            <h2>10. Security and service inventory</h2>
+            <h2>11. Security and service inventory</h2>
             <h3>Network security</h3>
             <p>
                 Security posture computed on the collected configuration of firewalls and switches, across four domains: perimeter, management plane, identities, and segmentation. Each finding carries the configuration line backing it and its recommendation in the vendor own syntax. It includes a global and per-device score, and filters by domain and severity.
@@ -330,8 +395,19 @@
             </p>
             <h3>What to address first</h3>
             <p>
-                A list of CVEs is not a decision. Argos crosses each exploited or likely vulnerability with the device's running configuration —whether the vulnerable feature is enabled— and with its role in the network, and classifies it as <strong>act now</strong>, <strong>plan</strong>, <strong>watch</strong> or <strong>confirm version</strong>. An edge device with the feature exposed goes first; an internal one with the feature off, later.
+                A list of CVEs is not a decision. Argos crosses each exploited or likely vulnerability with the device's running configuration —whether the vulnerable feature is enabled— and with its role in the network, and classifies it as <strong>act now</strong>, <strong>plan</strong>, <strong>watch</strong> or <strong>confirm version</strong>. An edge device with the feature exposed goes first; an internal one with the feature off, later. The score runs from 0 to 100, higher is better, with bands, and CVEs can be filtered by site or device.
             </p>
+            <h3>PCI DSS network report per site</h3>
+            <p>
+                For the sites in scope of the cardholder data environment —the point-of-sale sites—, Oktavia builds the PCI DSS v4.0.1 network report on requirements 1, 2, 6.3.3, 7, 8, and 10. Each requirement is <strong>met</strong>, <strong>not met</strong>, or <strong>not evaluated</strong>, and it only counts if the device's vendor family has a check for it. It carries evidence per device and comes out as a printable PDF. It supports the QSA's work; it does not replace it.
+            </p>
+            <h3>Remediation and security patches</h3>
+            <ul>
+                <li><strong>How to remediate.</strong> The local AI reads the vendor advisory and extracts the fixed version and the mitigation.</li>
+                <li><strong>Urgent change.</strong> It becomes a draft in the Digital Twin, in the «Security patches» category, with its board: proposed, approved, applied, verified when the lines appear in the backup, and fixed when the CVE disappears.</li>
+                <li><strong>Declare in the Configurator.</strong> When the mitigation line is a field of the standard —HTTP server off, SSH v2, VTY SSH only, SNMP views, password encryption, spanning-tree mode, logging trap—, it is written to the device's intent and compliance watches it from then on. Lines carrying a secret stay pending for the vault.</li>
+                <li><strong>Security patches flow.</strong> With a button, or by asking Argos to «prepare the security patches», it takes the exploited or critical CVEs whose feature is enabled, prepares the drafts and the standard proposals, and notifies. It never applies: approval stays human.</li>
+            </ul>
             <h3>Hardening standard by role</h3>
             <p>
                 The security standard is declared once, in the role, and every device with that role inherits it, existing and new: logging to the collector, restricted read-only SNMP, NTP, management access over SSH only, and unnecessary services turned off. Other scopes keep only what varies per site or per device. Compliance checks what is missing and, on Cisco IOS, also what is extra; the Digital Twin proposes the fix and a person approves it.
@@ -357,7 +433,7 @@
         </section>
 
         <section class="doc-section" id="vendors">
-            <h2>11. Per-vendor coverage</h2>
+            <h2>12. Per-vendor coverage</h2>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -379,7 +455,7 @@
         </section>
 
         <section class="doc-section" id="integrations">
-            <h2>12. Integrations</h2>
+            <h2>13. Integrations</h2>
             <p>Oktavia was designed to coexist with the customer ecosystem, not to replace it. It can feed and be fed by the tools already in operation.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -394,6 +470,8 @@
                         <tr><td><strong>Zabbix and other SNMP systems</strong></td><td>Interoperable</td><td>Devices exposed over SNMP can be consumed by whichever monitoring system the customer already runs.</td></tr>
                         <tr><td><strong>Email (SMTP)</strong></td><td>Production</td><td>Notifications and alerts by email over any customer SMTP server.</td></tr>
                         <tr><td><strong>Anthropic (Claude API)</strong></td><td>Production</td><td>AI engine for analysis, recommendations, and conversational assistance.</td></tr>
+                        <tr><td><strong>Ollama (local AI)</strong></td><td>Production</td><td>Open models on the Oktavia server for the local AI: bge-m3 for embeddings and qwen2.5 7B for generation, with the vectors in the platform's PostgreSQL database.</td></tr>
+                        <tr><td><strong>NVD, CISA KEV, and FIRST EPSS</strong></td><td>Production</td><td>Public sources for vulnerabilities, active exploitation, and exploitation probability, for the software-version cross-check.</td></tr>
                         <tr><td><strong>HTTP webhooks</strong></td><td>Production</td><td>Event delivery to any HTTP integration point, which is the way to connect ticketing and messaging tools.</td></tr>
                         <tr><td><strong>External source of truth</strong></td><td>Optional</td><td>Inventory ingestion from an external system of record if the customer already runs one.</td></tr>
                         <tr><td><strong>CSV and REST API</strong></td><td>Production</td><td>Import and export of inventory, catalogs, and data across every module; programmatic integration over API.</td></tr>
@@ -406,7 +484,7 @@
         </section>
 
         <section class="doc-section" id="architecture">
-            <h2>13. Architecture and operating model</h2>
+            <h2>14. Architecture and operating model</h2>
             <p>
                 The platform separates the web interface from the automation engine. The interface owns the user experience, tenant organization, and persistence; the engine executes against the devices. They talk over a REST API authenticated with a key.
             </p>
@@ -426,14 +504,14 @@
         </section>
 
         <section class="doc-section" id="platform-security">
-            <h2>14. Platform security</h2>
+            <h2>15. Platform security</h2>
             <p>
                 Oktavia has read access and, when the customer authorizes it, change access to their network. Its own security is part of the scope, not an annex.
             </p>
 
             <h3>Where the data lives</h3>
             <p>
-                The platform is deployed on the customer infrastructure, on premises or in their private cloud. Inventory, configurations, and artifacts do not leave it. The only exception is AI analysis: when an action that consumes the model runs, the content that query needs travels to the AI provider. Argos states before every action whether it will consume it, so the decision is the operator's, case by case, and the deterministic capabilities cover most of the work without sending anything.
+                The platform is deployed on the customer infrastructure, on premises or in their private cloud. Inventory, configurations, and artifacts do not leave it. The only exception is AI analysis: when an action that consumes the model runs, the content that query needs travels to the AI provider. Argos states before every action whether it will consume it, so the decision is the operator's, case by case, and the deterministic capabilities cover most of the work without sending anything. The local AI, marked ◆ IA local, runs on the same server and sends nothing either; its index never stores secrets.
             </p>
 
             <h3>Device credentials</h3>
@@ -481,7 +559,7 @@
         </section>
 
         <section class="doc-section" id="requirements">
-            <h2>15. Integration requirements</h2>
+            <h2>16. Integration requirements</h2>
             <p>To deploy Oktavia over an existing network we ask the customer for:</p>
             <ul>
                 <li>Base device inventory.</li>
@@ -556,13 +634,13 @@
             <ul>
                 <li>Telemetry disk grows with the interfaces per device and with retention: keeping 30 days instead of 7 multiplies that part by four.</li>
                 <li>Backups and audit results grow with audit frequency; the retention policy is agreed during implementation.</li>
-                <li>Argos with a cloud AI provider needs no extra resources. A local model needs at least 16 GB of additional RAM and, preferably, a GPU.</li>
+                <li>Argos with a cloud AI provider needs no extra resources. The local AI needs at least 16 GB of additional RAM and, preferably, a GPU: on CPU an answer takes roughly a minute.</li>
                 <li>Connectivity: the server must reach the devices' management plane (SSH, HTTPS/API, NETCONF, and SNMP depending on the vendor) and receive syslog (UDP 514) if telemetry is enabled. Users reach the console over HTTPS.</li>
             </ul>
         </section>
 
         <section class="doc-section" id="implementation">
-            <h2>16. Implementation process</h2>
+            <h2>17. Implementation process</h2>
             <ol class="doc-steps">
                 <li><strong>Data onboarding.</strong> Receive the base inventory, normalize names, roles, sites, platforms, and models, and load the initial file.</li>
                 <li><strong>Controlled discovery.</strong> Validate reachability, run discovery in batches, collect backups, and normalize the observed inventory.</li>
@@ -592,13 +670,13 @@
         </section>
 
         <section class="doc-section" id="licensing">
-            <h2>17. Licensing</h2>
+            <h2>18. Licensing</h2>
             <p>
                 The complete platform is <strong>Oktavia Pro</strong>. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
             </p>
             <h3>Oktavia Pro</h3>
             <p>
-                Multi-vendor discovery, inventory, configuration and state compliance, desired configuration per device and per scope, the full remediation cycle with Digital Twin, new service rollout with rollback, topology with path tracing and firewall policy analysis, network security, service inventory, IP Intelligence, configuration backups, advanced reports, provisioning, scheduled operations, FinOps, multi-tenant, and the complete Argos.
+                Multi-vendor discovery, inventory, configuration and state compliance, desired configuration per device and per scope, the full remediation cycle with Digital Twin, new service rollout with rollback, topology with path tracing and firewall policy analysis, network security, service inventory, IP Intelligence, configuration backups, advanced reports, provisioning, scheduled operations, FinOps, multi-tenant, and the complete Argos with the local AI.
             </p>
             <h3>Telemetry and Event Orchestration</h3>
             <p>
@@ -611,7 +689,7 @@
         </section>
 
         <section class="doc-section" id="usecases">
-            <h2>18. Use cases</h2>
+            <h2>19. Use cases</h2>
             <ul>
                 <li>Configuration compliance audit across multiple sites in minutes.</li>
                 <li>Automatic detection of configuration drift after a maintenance window.</li>
@@ -629,6 +707,9 @@
                 <li>Fixing a deviation end to end: propose, approve, apply, and verify it closed.</li>
                 <li>Bringing up a tunnel between two sites with its routes, and tearing it down completely when the project ends.</li>
                 <li>Advertising a new network in OSPF and BGP on the site edge devices, with ping verification included.</li>
+                <li>Asking what the runbook or the vendor guide says during an incident, with the citation, without the documentation leaving the server.</li>
+                <li>Preparing the PCI DSS network report for the point-of-sale sites, with evidence per device, for the QSA's review.</li>
+                <li>Turning exploited CVEs with the feature enabled into security patches ready for approval, and verifying the CVE disappeared.</li>
             </ul>
         </section>
 

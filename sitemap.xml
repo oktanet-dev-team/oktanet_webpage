@@ -83,6 +83,22 @@
 </url>
 
 <url>
+<loc>https://oktanet.io/blog/ia-local-contexto-empresarial.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/ia-local-contexto-empresarial.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/ia-local-contexto-empresarial-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/blog/ia-local-contexto-empresarial-en.html</loc>
+<priority>0.6</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/blog/ia-local-contexto-empresarial.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/blog/ia-local-contexto-empresarial-en.html"/>
+</url>
+
+<url>
 <loc>https://oktanet.io/blog/seguridad-en-oktavia-y-argos.html</loc>
 <priority>0.7</priority>
 <changefreq>monthly</changefreq>

@@ -3092,3 +3092,328 @@ body.quote-modal-open {
     margin: 0;
     color: var(--text-muted, #a3b7d2);
 }
+
+
+/* ------------------------- Postura de seguridad ---------------------------
+   Tarjetas a la izquierda y el diagrama del ciclo cerrado a la derecha. El
+   diagrama es un SVG con sus etiquetas como <text> (las traduce el script);
+   en telefono se cambia por una lista vertical de pasos, que se lee mejor que
+   un circulo encogido. */
+.security-section {
+    position: relative;
+    padding: 78px 0;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, #0a1826 100%);
+    border-top: 1px solid rgba(146, 186, 224, 0.18);
+    border-bottom: 1px solid rgba(146, 186, 224, 0.18);
+}
+
+.security-section h2 {
+    margin: 12px 0 18px;
+    font-size: clamp(1.5rem, 3.1vw, 2.25rem);
+    max-width: 32ch;
+}
+
+.security-layout {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 32px;
+    align-items: center;
+}
+
+.security-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.security-card,
+.ia-local-card {
+    padding: 22px 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(146, 186, 224, 0.24);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.security-card h3,
+.ia-local-card h3 {
+    margin: 0 0 9px;
+    font-size: 1.08rem;
+}
+
+.security-card p,
+.ia-local-card p {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--text-muted);
+}
+
+.ciclo-figura {
+    margin: 0;
+    min-width: 0;
+}
+
+.ciclo-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 640px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.ciclo-halo {
+    fill: rgba(43, 143, 212, 0.07);
+    stroke: rgba(87, 200, 234, 0.22);
+    stroke-width: 1;
+}
+
+.ciclo-pista {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-width: 6;
+}
+
+.ciclo-flujo {
+    fill: none;
+    stroke: var(--highlight);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 8 14;
+    animation: ciclo-flujo 1.4s linear infinite;
+}
+
+@keyframes ciclo-flujo {
+    to {
+        stroke-dashoffset: -22;
+    }
+}
+
+.ciclo-flechas polygon {
+    fill: var(--highlight);
+}
+
+.ciclo-nodo rect {
+    fill: var(--bg-elevated);
+    stroke: var(--brand);
+    stroke-width: 1.5;
+}
+
+.ciclo-nodo-humano rect {
+    fill: var(--bg-accent);
+    stroke: var(--highlight);
+    stroke-width: 2;
+}
+
+.ciclo-svg text {
+    font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.ciclo-num {
+    font-size: 12px;
+    font-weight: 700;
+    fill: var(--highlight);
+}
+
+.ciclo-svg .ciclo-etiqueta {
+    font-size: 19px;
+    font-weight: 700;
+    fill: var(--text-light);
+}
+
+.ciclo-svg .ciclo-detalle {
+    font-size: 14px;
+    fill: var(--text-muted);
+}
+
+.ciclo-centro-titulo {
+    font-size: 20px;
+    font-weight: 800;
+    fill: var(--brand-strong);
+}
+
+.ciclo-centro-nota {
+    font-size: 13.5px;
+    fill: var(--text-muted);
+}
+
+.ciclo-lista {
+    display: none;
+}
+
+.ciclo-nota {
+    margin: 14px auto 0;
+    max-width: 52ch;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.ia-local-card {
+    margin-top: 26px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    border-left: 3px solid var(--highlight);
+}
+
+.ia-local-card .card-icon {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+}
+
+.ia-local-card p {
+    max-width: 90ch;
+}
+
+.ia-local-enlace,
+.security-videos a {
+    color: #6fd7f5;
+    font-weight: 700;
+    border-bottom: 1px solid transparent;
+}
+
+.ia-local-enlace {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.ia-local-enlace:hover,
+.ia-local-enlace:focus-visible,
+.security-videos a:hover .security-video-texto,
+.security-videos a:focus-visible .security-video-texto {
+    border-bottom-color: #6fd7f5;
+}
+
+.security-videos {
+    margin: 22px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 26px;
+    font-size: 0.96rem;
+}
+
+.security-videos a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 0;
+}
+
+.security-video-texto {
+    border-bottom: 1px solid transparent;
+}
+
+@media (max-width: 1100px) {
+    .security-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Apilado, el ciclo va primero: es el resumen de lo que explican las
+       tarjetas. */
+    .ciclo-figura {
+        order: -1;
+    }
+
+    .ciclo-svg {
+        max-width: 560px;
+    }
+}
+
+@media (max-width: 640px) {
+    .security-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ciclo-svg {
+        display: none;
+    }
+
+    /* Pasos en vertical, con una linea que los une y el ultimo que vuelve
+       al primero. */
+    .ciclo-lista {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0 0 0 30px;
+        list-style: none;
+        counter-reset: ciclo;
+        position: relative;
+    }
+
+    .ciclo-lista::before {
+        content: "";
+        position: absolute;
+        left: 11px;
+        top: 14px;
+        bottom: 14px;
+        border-left: 2px dashed var(--line-strong);
+    }
+
+    .ciclo-lista li {
+        position: relative;
+        counter-increment: ciclo;
+        padding: 10px 14px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--brand);
+        background: var(--bg-elevated);
+    }
+
+    .ciclo-lista li::before {
+        content: counter(ciclo);
+        position: absolute;
+        left: -30px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: var(--bg-accent);
+        border: 1px solid var(--highlight);
+        color: var(--brand-strong);
+        font-size: 0.78rem;
+        font-weight: 700;
+    }
+
+    .ciclo-lista li.ciclo-paso-humano {
+        border-color: var(--highlight);
+        background: var(--bg-accent);
+    }
+
+    .ciclo-lista .ciclo-etiqueta {
+        display: block;
+        font-weight: 700;
+        color: var(--text-light);
+    }
+
+    .ciclo-lista .ciclo-detalle {
+        display: block;
+        font-size: 0.88rem;
+        color: var(--text-muted);
+    }
+
+    .ciclo-lista li:last-child::after {
+        content: "↻";
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--highlight);
+        font-size: 1.2rem;
+    }
+
+    .ia-local-card {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ciclo-flujo {
+        animation: none;
+    }
+}

@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=c0bf97142e">
+    <link rel="stylesheet" href="style/home_style.css?v=b6e89438f4">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -238,6 +238,33 @@
                 <p class="section-intro">Recorridos cortos por cada módulo, grabados sobre la plataforma real. El reproductor sólo se carga cuando pulsas, así que pasar por aquí no te rastrea.</p>
                 <div class="video-grid">
                     <article class="video-item">
+                        <button class="video-caratula" type="button" data-video="Q8iTsXJBCGQ" data-start="445">
+                            <img src="img/video-Q8iTsXJBCGQ.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                            <span class="video-velo" aria-hidden="true"></span>
+                            <span class="material-symbols-outlined video-play" aria-hidden="true">play_arrow</span>
+                        </button>
+                        <h3>Postura de seguridad de tu red</h3>
+                        <p>Cómo se califica la seguridad de la red por dominio, qué vulnerabilidades le aplican (NVD y CISA KEV) y qué atender primero.</p>
+                    </article>
+                    <article class="video-item">
+                        <button class="video-caratula" type="button" data-video="Wq8VockarFo" data-start="33">
+                            <img src="img/video-Wq8VockarFo.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                            <span class="video-velo" aria-hidden="true"></span>
+                            <span class="material-symbols-outlined video-play" aria-hidden="true">play_arrow</span>
+                        </button>
+                        <h3>Argos remediando: de la incidencia a la resolución</h3>
+                        <p>Troubleshooting de BGP y GRE con Argos: del síntoma a la causa y al cambio aprobado, en minutos.</p>
+                    </article>
+                    <article class="video-item">
+                        <button class="video-caratula" type="button" data-video="jipqMPMiDxw">
+                            <img src="img/video-jipqMPMiDxw.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                            <span class="video-velo" aria-hidden="true"></span>
+                            <span class="material-symbols-outlined video-play" aria-hidden="true">play_arrow</span>
+                        </button>
+                        <h3>Cerrar el ciclo con Argos</h3>
+                        <p>Auditoría, cambio en el Gemelo Digital, aprobación, aplicación y verificación de antes y después.</p>
+                    </article>
+                    <article class="video-item">
                         <button class="video-caratula" type="button" data-video="FGh8p9j2Wg0">
                             <img src="img/video-FGh8p9j2Wg0.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
                             <span class="video-velo" aria-hidden="true"></span>
@@ -293,6 +320,115 @@
                     </article>
                 </div>
                 <p class="video-canal"><a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">Ver el canal completo en YouTube</a></p>
+            </div>
+        </section>
+
+        <section class="security-section" id="seguridad" aria-label="Postura de seguridad que cierra el ciclo">
+            <div class="container">
+                <p class="eyebrow">Seguridad de red</p>
+                <h2>Postura de seguridad que cierra el ciclo.</h2>
+                <p class="section-intro">La postura de seguridad no es un reporte aparte que alguien lee cada trimestre. Oktavia la calcula con la misma configuración que audita, propone la corrección y no la da por buena hasta verificar que quedó aplicada.</p>
+                <div class="security-layout">
+                    <div class="security-grid">
+                        <article class="security-card">
+                            <span class="material-symbols-outlined card-icon" aria-hidden="true">shield</span>
+                            <h3>Postura por dominio, desde la configuración real</h3>
+                            <p>Cada sitio y cada equipo se califica en perímetro, gestión, identidad y segmentación a partir de la configuración recolectada. Se suman las vulnerabilidades por versión de software (NVD, CISA KEV y EPSS) y una lista de qué atender primero: los CVE explotados cuya función vulnerable está habilitada en la configuración en ejecución.</p>
+                        </article>
+                        <article class="security-card">
+                            <span class="material-symbols-outlined card-icon" aria-hidden="true">point_of_sale</span>
+                            <h3>PCI DSS v4.0.1 por sitio</h3>
+                            <p>Los requisitos de red se evalúan sitio por sitio, con el alcance del CDE en los sitios con punto de venta. Cada requisito lleva su evidencia por equipo y sale en un PDF listo para imprimir. Es soporte para el QSA; no lo sustituye.</p>
+                        </article>
+                        <article class="security-card">
+                            <span class="material-symbols-outlined card-icon" aria-hidden="true">healing</span>
+                            <h3>Parches de seguridad</h3>
+                            <p>La IA local lee el aviso del fabricante y sólo acepta comandos que aparecen textuales en él. Los cambios urgentes quedan como borrador en el Gemelo Digital, o se proponen dentro de tu estándar en el Configurador. Nada se aplica sin la aprobación de una persona.</p>
+                        </article>
+                        <article class="security-card">
+                            <span class="material-symbols-outlined card-icon" aria-hidden="true">fact_check</span>
+                            <h3>Y se verifica que cerró</h3>
+                            <p>Apruebas, se aplica y Argos vuelve a auditar: compara antes y después, marca las pruebas que se corrigieron y las regresiones, y confirma que las líneas de mitigación quedaron en el respaldo.</p>
+                        </article>
+                    </div>
+                    <figure class="ciclo-figura">
+                        <svg class="ciclo-svg" viewBox="40 40 560 500" role="img" aria-labelledby="ciclo-titulo ciclo-desc">
+                            <title id="ciclo-titulo">Ciclo cerrado de seguridad con Argos</title>
+                            <desc id="ciclo-desc">Seis etapas en círculo: detectar con la auditoría, la postura y los CVE; diagnosticar con Argos y la documentación; proponer el cambio en el Gemelo Digital o en el estándar; aprobarlo una persona; aplicarlo; y verificar antes y después. La verificación vuelve a detectar, y cada cambio verificado alimenta el conocimiento de la IA local.</desc>
+                            <circle class="ciclo-halo" cx="320" cy="290" r="128"/>
+                            <path class="ciclo-pista" d="M320 90 A200 200 0 0 1 320 490 A200 200 0 0 1 320 90"/>
+                            <path class="ciclo-flujo" d="M320 90 A200 200 0 0 1 320 490 A200 200 0 0 1 320 90"/>
+                            <g class="ciclo-flechas">
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(420.0 116.8) rotate(30)"/>
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(520.0 290.0) rotate(90)"/>
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(420.0 463.2) rotate(150)"/>
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(220.0 463.2) rotate(210)"/>
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(120.0 290.0) rotate(270)"/>
+                                <polygon points="-7,-7 9,0 -7,7" transform="translate(220.0 116.8) rotate(330)"/>
+                            </g>
+                            <text class="ciclo-centro-titulo" x="320" y="276" text-anchor="middle">Ciclo cerrado · Argos</text>
+                            <text class="ciclo-centro-nota" x="320" y="304" text-anchor="middle">Cada cambio verificado</text>
+                            <text class="ciclo-centro-nota" x="320" y="324" text-anchor="middle">alimenta la IA local</text>
+                            <g class="ciclo-nodo">
+                                <rect x="226" y="57" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="244" y="77">1</text>
+                                <text class="ciclo-etiqueta" x="320" y="87" text-anchor="middle">Detectar</text>
+                                <text class="ciclo-detalle" x="320" y="108" text-anchor="middle">Auditoría, postura, CVE</text>
+                            </g>
+                            <g class="ciclo-nodo">
+                                <rect x="399" y="157" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="417" y="177">2</text>
+                                <text class="ciclo-etiqueta" x="493" y="187" text-anchor="middle">Diagnosticar</text>
+                                <text class="ciclo-detalle" x="493" y="208" text-anchor="middle">Argos + documentación</text>
+                            </g>
+                            <g class="ciclo-nodo">
+                                <rect x="399" y="357" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="417" y="377">3</text>
+                                <text class="ciclo-etiqueta" x="493" y="387" text-anchor="middle">Proponer</text>
+                                <text class="ciclo-detalle" x="493" y="408" text-anchor="middle">Gemelo Digital o estándar</text>
+                            </g>
+                            <g class="ciclo-nodo ciclo-nodo-humano">
+                                <rect x="226" y="457" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="244" y="477">4</text>
+                                <text class="ciclo-etiqueta" x="320" y="487" text-anchor="middle">Aprobar</text>
+                                <text class="ciclo-detalle" x="320" y="508" text-anchor="middle">Tú decides</text>
+                            </g>
+                            <g class="ciclo-nodo">
+                                <rect x="53" y="357" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="71" y="377">5</text>
+                                <text class="ciclo-etiqueta" x="147" y="387" text-anchor="middle">Aplicar</text>
+                                <text class="ciclo-detalle" x="147" y="408" text-anchor="middle">Cambio controlado</text>
+                            </g>
+                            <g class="ciclo-nodo">
+                                <rect x="53" y="157" width="188" height="66" rx="12"/>
+                                <text class="ciclo-num" x="71" y="177">6</text>
+                                <text class="ciclo-etiqueta" x="147" y="187" text-anchor="middle">Verificar</text>
+                                <text class="ciclo-detalle" x="147" y="208" text-anchor="middle">Antes y después</text>
+                            </g>
+                        </svg>
+                        <ol class="ciclo-lista">
+                            <li><span class="ciclo-etiqueta">Detectar</span> <span class="ciclo-detalle">Auditoría, postura, CVE</span></li>
+                            <li><span class="ciclo-etiqueta">Diagnosticar</span> <span class="ciclo-detalle">Argos + documentación</span></li>
+                            <li><span class="ciclo-etiqueta">Proponer</span> <span class="ciclo-detalle">Gemelo Digital o estándar</span></li>
+                            <li class="ciclo-paso-humano"><span class="ciclo-etiqueta">Aprobar</span> <span class="ciclo-detalle">Tú decides</span></li>
+                            <li><span class="ciclo-etiqueta">Aplicar</span> <span class="ciclo-detalle">Cambio controlado</span></li>
+                            <li><span class="ciclo-etiqueta">Verificar</span> <span class="ciclo-detalle">Antes y después</span></li>
+                        </ol>
+                        <figcaption class="ciclo-nota">Cada cambio verificado deja un reporte de cambio, y esos reportes pasan a formar parte de lo que consulta la IA local.</figcaption>
+                    </figure>
+                </div>
+                <article class="ia-local-card">
+                    <span class="material-symbols-outlined card-icon" aria-hidden="true">lock</span>
+                    <div>
+                        <h3>IA local con contexto de tu empresa</h3>
+                        <p>Argos responde con las guías del fabricante, la memoria técnica de tu red, tus estándares y tus runbooks, y cita de dónde sale cada respuesta. Corre en el servidor de Oktavia de tu empresa: la información no sale de ahí y no se paga por pregunta.</p>
+                        <a class="ia-local-enlace" data-ia-local href="blog/ia-local-contexto-empresarial.html">Leer el artículo sobre la IA local</a>
+                    </div>
+                </article>
+                <p class="security-videos">
+                    <a href="#video" data-abrir-video="Q8iTsXJBCGQ"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span><span class="security-video-texto">Ver el video de la postura de seguridad</span></a>
+                    <a href="#video" data-abrir-video="jipqMPMiDxw"><span class="material-symbols-outlined" aria-hidden="true">play_circle</span><span class="security-video-texto">Ver el video del ciclo cerrado</span></a>
+                </p>
             </div>
         </section>
 
@@ -1046,6 +1182,6 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=71a7c94e5f"></script>
+    <script src="script/home_script.js?v=bffaf36750"></script>
 </body>
 </html>
