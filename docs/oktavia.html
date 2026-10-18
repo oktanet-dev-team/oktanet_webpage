@@ -293,11 +293,16 @@
                 <li><strong>Publicar una red</strong>: interfaz lógica, anuncio en OSPF, listas de control de acceso y BGP en los equipos de borde del sitio, con verificación por ping.</li>
                 <li><strong>Editar el enrutamiento</strong>: identificador de router desde la interfaz lógica, sumarización del sitio recomendada.</li>
                 <li><strong>DHCP para una VLAN</strong>, con el rango propuesto a partir de lo que Oktavia ya sabe del segmento.</li>
+                <li><strong>AAA</strong> con TACACS+ o RADIUS y respaldo local, o sólo local. El alta se bloquea si el equipo no tiene un usuario local de respaldo, para no quedarse fuera, y la llave del servidor vive en la bóveda, no en la intención.</li>
+                <li><strong>Túnel FlexVPN</strong> (IKEv2 e IPsec) hub-and-spoke, con la llave precompartida en la bóveda, y la <strong>migración desde GRE</strong> en tres cambios aprobados: BGP por el túnel cifrado, retiro del BGP anterior y baja del túnel GRE, con la limpieza de su intención y sus reglas.</li>
+                <li><strong>Licencia del equipo</strong>: el nivel se declara en la intención y la auditoría verifica que quedó activo después del reinicio, que decide el operador.</li>
+                <li><strong>Port-security</strong>: qué puerto se bloqueó, qué dirección MAC lo provocó y cuál es la permitida; el restablecimiento es un cambio con aprobación, y en el laboratorio se ensaya con una demostración guiada.</li>
                 <li><strong>Adoptar lo existente</strong>: leer el respaldo de un equipo y declarar como intención lo que ya tiene configurado, para empezar a auditarlo sin rediseñar nada.</li>
             </ul>
             <div class="doc-callout">
                 <p>Cada servicio se propone, se edita antes de aplicar y trae su rollback. Nada se escribe en la red sin que una persona lo apruebe.</p>
             </div>
+            <p>Los flujos de varios pasos muestran su avance por sitio —«X de N pasos» y su porcentaje— calculado del estado real de la red, no de casillas marcadas a mano, y cada tarjeta termina con el botón del paso siguiente.</p>
         </section>
 
         <section class="doc-section" id="ciclo-de-vida">
@@ -353,7 +358,9 @@
                         <tr><td>Configurar conversando: describir un servicio en lenguaje natural</td><td>IA</td></tr>
                         <tr><td>Correlacionar fallas de cumplimiento con la configuración</td><td>IA sólo si hay hallazgos</td></tr>
                         <tr><td>Optimizar alcances y proponer un estándar</td><td>IA sobre un cálculo determinista</td></tr>
-                        <tr><td>Preguntas «según la documentación…», «Qué dice la documentación» por incidente y «Cómo remediar» un CVE</td><td>IA local, en el servidor del cliente</td></tr>
+                        <tr><td>Avance de los flujos de varios pasos por sitio</td><td>Determinista</td></tr>
+                        <tr><td>Puertos bloqueados por port-security y su restablecimiento</td><td>Determinista</td></tr>
+                        <tr><td>Preguntas a la documentación y sobre cómo se hace algo en Oktavia, «Qué dice la documentación» por incidente y «Cómo remediar» un CVE</td><td>IA local, en el servidor del cliente</td></tr>
                         <tr><td>Preparar los parches de seguridad: borradores en el Gemelo Digital y propuestas al estándar, sin aplicar</td><td>Determinista</td></tr>
                     </tbody>
                 </table>
@@ -373,6 +380,9 @@
                 <li><strong>Sólo con lo recuperado.</strong> La respuesta se arma con los fragmentos recuperados y los cita: documento, sección y, en los PDF, página.</li>
                 <li><strong>Comandos sólo textuales.</strong> Un comando de configuración se acepta únicamente si aparece literal en un fragmento citado; no se inventa sintaxis.</li>
                 <li><strong>Alcance acotado.</strong> La pregunta se hace sobre un equipo, un sitio o toda la red, y la recuperación se limita a ese alcance.</li>
+                <li><strong>Búsqueda híbrida.</strong> Combina la búsqueda por significado (vectores) con la búsqueda por palabra exacta (BM25), así encuentra comandos y nombres como <code>snmp-server view</code> o FlexVPN.</li>
+                <li><strong>Del documento al flujo.</strong> Si la fuente citada es un flujo de Argos, la respuesta trae el botón para abrirlo («Hazlo en Argos»). Los botones salen del catálogo del producto, no del modelo.</li>
+                <li><strong>Respuestas guardadas.</strong> La misma pregunta sobre las mismas fuentes se responde al instante.</li>
                 <li><strong>Los secretos nunca se indexan.</strong> Las líneas que mencionan comunidades, llaves o contraseñas se descartan, y el estándar de configuración se genera con los campos secretos enmascarados.</li>
                 <li><strong>Tiempo de respuesta.</strong> En CPU una respuesta toma alrededor de un minuto; con GPU es mucho más rápida.</li>
             </ul>
@@ -386,7 +396,7 @@
                         <tr><td><strong>Guías oficiales del fabricante</strong></td><td>Se seleccionan por las familias de plataforma del inventario, de fuentes verificadas que permiten descarga: guía de hardening de Cisco IOS XE del centro de seguridad de Cisco, hardening y troubleshooting de FortiOS 7.2, troubleshooting de OSPF y BGP y políticas de seguridad de Junos, troubleshooting de Meraki MX y la guía de seguridad de infraestructura de red de la NSA. Los sitios que bloquean la descarga automática (www.cisco.com, rfc-editor.org, nist.gov) los sube un administrador.</td></tr>
                         <tr><td><strong>Documentos subidos</strong></td><td>PDF con texto, no escaneado, de hasta 80 MB e indexado en segundo plano; HTML y Markdown. Agregar por URL sólo acepta una lista de dominios de documentación de fabricantes, por https y nunca hacia direcciones privadas.</td></tr>
                         <tr><td><strong>Memoria técnica de la red</strong></td><td>El reporte técnico (LLD) de cada sitio, que se vuelve a indexar cuando se pregunta por ese sitio.</td></tr>
-                        <tr><td><strong>Documentación de Oktavia</strong></td><td>Los artículos del portal de documentación de la plataforma.</td></tr>
+                        <tr><td><strong>Documentación de Oktavia</strong></td><td>Los artículos del portal de documentación y fichas que se generan del código del producto: cada pestaña y botón de Argos, y cada servicio del Configurador con sus campos y un ejemplo sin secretos. Se regeneran con el producto, así que no se desfasan, y se filtran por los fabricantes del inventario.</td></tr>
                         <tr><td><strong>Reportes de cambios</strong></td><td>Cada veredicto del ciclo cerrado de Argos, para que aprenda de los cambios anteriores.</td></tr>
                     </tbody>
                 </table>
@@ -397,12 +407,17 @@
             </p>
             <h3>Dónde se usa</h3>
             <ul>
-                <li>Preguntas a Argos que empiezan con «según la documentación…».</li>
+                <li>Preguntas a Argos sobre la documentación («según la documentación…», «argos local: …») y sobre cómo se hace algo en Oktavia («¿cómo migro a FlexVPN en Oktavia?»), también desde «Pregúntale a la documentación» en el lanzador de Argos.</li>
                 <li>«Qué dice la documentación» por cada incidente del diagnóstico.</li>
                 <li>«Cómo remediar · IA local» en cada CVE: lee el aviso del fabricante y extrae la corrección y las mitigaciones.</li>
             </ul>
+            <h3>Calidad medida</h3>
+            <p>
+                Un set de preguntas de referencia, cada una con la fuente que debe citar, mide si la recuperación trae la fuente correcta. Corre en el servidor sin usar el modelo de respuesta. En la red de pruebas Cisco IOS, agregar la documentación generada del producto llevó los aciertos en la primera fuente de 4 % a 93 %, y a 100 % entre las seis fuentes que lee el modelo. Cada respuesta incorrecta que se detecta se agrega al set como pregunta nueva.
+            </p>
             <h3>Buenas prácticas</h3>
             <ul>
+                <li><strong>Sólo contenido con derecho de uso.</strong> Documentación propia, guías públicas del fabricante y lo que el equipo tiene derecho a usar. Libros y cursos con derechos de autor no se indexan.</li>
                 <li><strong>Curar las fuentes.</strong> Guías oficiales y vigentes para las versiones que corren en la red; un documento viejo o de terceros produce respuestas viejas o ajenas.</li>
                 <li><strong>PDF con texto.</strong> Un PDF escaneado no tiene texto que recuperar; se convierte antes de subirlo.</li>
                 <li><strong>Llenar las secciones obligatorias del kit.</strong> Son las que más preguntas responden y las que se validan al subir.</li>
@@ -418,7 +433,7 @@
             <h2>11. Seguridad e inventario de servicios</h2>
             <h3>Seguridad de red</h3>
             <p>
-                Postura de seguridad calculada sobre la configuración recolectada de firewalls y switches, en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Cada hallazgo trae la línea de configuración que lo sustenta y su recomendación en la sintaxis del fabricante. Incluye puntaje global y por equipo, y filtros por dominio y severidad.
+                Postura de seguridad calculada sobre la configuración recolectada de firewalls y switches, en cuatro dominios: perímetro, plano de gestión, identidades y segmentación. Cada hallazgo trae la línea de configuración que lo sustenta y su recomendación en la sintaxis del fabricante. Incluye puntaje global y por equipo, y filtros por dominio y severidad. En Cisco IOS revisa además los puertos de acceso sin port-security o con una acción de violación que no bloquea, el tráfico entre sitios por túneles GRE sin cifrar, el cifrado IKEv2 débil y las llaves precompartidas repetidas.
             </p>
             <h3>Vulnerabilidades por versión</h3>
             <p>
