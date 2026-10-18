@@ -262,11 +262,16 @@
                 <li><strong>Advertising a network</strong>: logical interface, OSPF announcement, access control lists, and BGP on the site edge devices, with ping verification.</li>
                 <li><strong>Editing routing</strong>: router identifier from the logical interface, recommended site summarization.</li>
                 <li><strong>DHCP for a VLAN</strong>, with the range proposed from what Oktavia already knows about the segment.</li>
+                <li><strong>AAA</strong> with TACACS+ or RADIUS and local fallback, or local only. The rollout is blocked if the device has no local fallback user, so nobody gets locked out, and the server key lives in the vault, not in the intent.</li>
+                <li><strong>FlexVPN tunnel</strong> (IKEv2 and IPsec), hub-and-spoke, with the pre-shared key in the vault, and the <strong>migration from GRE</strong> in three approved changes: BGP over the encrypted tunnel, removal of the old BGP session, and teardown of the GRE tunnel, including its intent and rules.</li>
+                <li><strong>Device license</strong>: the level is declared in the intent, and the audit verifies it became active after the reload, which the operator decides.</li>
+                <li><strong>Port security</strong>: which port was blocked, which MAC address caused it, and which one is allowed; the reset is an approved change, and the lab offers a guided demo.</li>
                 <li><strong>Adopting what exists</strong>: read a device backup and declare as intent what it already has configured, so auditing can start without redesigning anything.</li>
             </ul>
             <div class="doc-callout">
                 <p>Every service is proposed, edited before applying, and ships with its rollback. Nothing is written to the network without a person approving it.</p>
             </div>
+            <p>Multi-step workflows show their progress per site —«X of N steps» and a percentage— computed from the real state of the network, not from boxes ticked by hand, and every card ends with the button for the next step.</p>
         </section>
 
         <section class="doc-section" id="lifecycle">
@@ -322,7 +327,9 @@
                         <tr><td>Configuring by conversation: describing a service in plain language</td><td>AI</td></tr>
                         <tr><td>Correlating compliance failures with the configuration</td><td>AI only when there are findings</td></tr>
                         <tr><td>Optimizing scopes and proposing a standard</td><td>AI on top of a deterministic calculation</td></tr>
-                        <tr><td>«According to the documentation…» questions, «What the documentation says» per incident, and «How to remediate» a CVE</td><td>Local AI, on the customer server</td></tr>
+                        <tr><td>Progress of multi-step workflows per site</td><td>Deterministic</td></tr>
+                        <tr><td>Ports blocked by port security and their reset</td><td>Deterministic</td></tr>
+                        <tr><td>Questions to the documentation and about how to do something in Oktavia, «What the documentation says» per incident, and «How to remediate» a CVE</td><td>Local AI, on the customer server</td></tr>
                         <tr><td>Preparing security patches: drafts in the Digital Twin and standard proposals, without applying</td><td>Deterministic</td></tr>
                     </tbody>
                 </table>
@@ -342,6 +349,9 @@
                 <li><strong>Only from what was retrieved.</strong> The answer is built from the retrieved fragments and cites them: document, section and, for PDFs, page.</li>
                 <li><strong>Verbatim commands only.</strong> A configuration command is accepted only if it appears verbatim in a cited fragment; no syntax is invented.</li>
                 <li><strong>Bounded scope.</strong> The question is asked about a device, a site, or the whole network, and retrieval is limited to that scope.</li>
+                <li><strong>Hybrid search.</strong> Search by meaning (vectors) is combined with exact-word search (BM25), so it finds commands and names such as <code>snmp-server view</code> or FlexVPN.</li>
+                <li><strong>From the document to the workflow.</strong> When the cited source is an Argos workflow, the answer carries the button that opens it («Do it in Argos»). The buttons come from the product catalog, not from the model.</li>
+                <li><strong>Saved answers.</strong> The same question over the same sources is answered instantly.</li>
                 <li><strong>Secrets are never indexed.</strong> Lines mentioning communities, keys, or passwords are dropped, and the configuration standard is generated with secret fields masked.</li>
                 <li><strong>Response time.</strong> On CPU an answer takes roughly a minute; a GPU makes it much faster.</li>
             </ul>
@@ -355,7 +365,7 @@
                         <tr><td><strong>Official vendor guides</strong></td><td>Selected by the platform families in the inventory, from verified sources that allow download: the Cisco IOS XE hardening guide from Cisco's security center, FortiOS 7.2 hardening and troubleshooting, Junos OSPF and BGP troubleshooting and security policies, Meraki MX troubleshooting, and the NSA network infrastructure security guide. Sites that block automated downloads (www.cisco.com, rfc-editor.org, nist.gov) are uploaded by an administrator.</td></tr>
                         <tr><td><strong>Uploaded documents</strong></td><td>Text PDFs, not scanned, up to 80 MB and indexed in the background; HTML and Markdown. Adding by URL only accepts an allow-list of vendor documentation domains, over https and never resolving to private addresses.</td></tr>
                         <tr><td><strong>Network technical report</strong></td><td>The technical report (LLD) for each site, re-indexed when asked about that site.</td></tr>
-                        <tr><td><strong>Oktavia documentation</strong></td><td>The articles of the platform's documentation portal.</td></tr>
+                        <tr><td><strong>Oktavia documentation</strong></td><td>The articles of the documentation portal, plus sheets generated from the product code: every Argos tab and button, and every Configurator service with its fields and an example without secrets. They are regenerated with the product, so they do not drift, and they are filtered by the vendors in the inventory.</td></tr>
                         <tr><td><strong>Change reports</strong></td><td>Every Argos closed-loop verdict, so it learns from previous changes.</td></tr>
                     </tbody>
                 </table>
@@ -366,12 +376,17 @@
             </p>
             <h3>Where it is used</h3>
             <ul>
-                <li>Argos questions that start with «according to the documentation…».</li>
+                <li>Argos questions to the documentation («according to the documentation…», «argos local: …») and about how to do something in Oktavia («how do I migrate to FlexVPN in Oktavia?»), also from «Ask the documentation» in the Argos launcher.</li>
                 <li>«What the documentation says» for each incident in the diagnosis.</li>
                 <li>«How to remediate · Local AI» on each CVE: it reads the vendor advisory and extracts the fix and the mitigations.</li>
             </ul>
+            <h3>Measured quality</h3>
+            <p>
+                A set of reference questions, each with the source it must cite, measures whether retrieval brings back the right source. It runs on the server without using the answer model. On the Cisco IOS test network, adding the documentation generated from the product took first-source hits from 4% to 93%, and to 100% within the six sources the model reads. Every wrong answer that is found is added to the set as a new question.
+            </p>
             <h3>Good practices</h3>
             <ul>
+                <li><strong>Only content you have the right to use.</strong> Your own documentation, public vendor guides, and what the team is entitled to use. Copyrighted books and courses are not indexed.</li>
                 <li><strong>Curate the sources.</strong> Official, current guides for the versions running in the network; an old or third-party document produces old or foreign answers.</li>
                 <li><strong>Text PDFs.</strong> A scanned PDF has no text to retrieve; convert it before uploading.</li>
                 <li><strong>Fill the kit's mandatory sections.</strong> They answer the most questions and they are validated on upload.</li>
@@ -387,7 +402,7 @@
             <h2>11. Security and service inventory</h2>
             <h3>Network security</h3>
             <p>
-                Security posture computed on the collected configuration of firewalls and switches, across four domains: perimeter, management plane, identities, and segmentation. Each finding carries the configuration line backing it and its recommendation in the vendor own syntax. It includes a global and per-device score, and filters by domain and severity.
+                Security posture computed on the collected configuration of firewalls and switches, across four domains: perimeter, management plane, identities, and segmentation. Each finding carries the configuration line backing it and its recommendation in the vendor own syntax. It includes a global and per-device score, and filters by domain and severity. On Cisco IOS it also checks access ports without port security or with a violation action that does not block, traffic between sites over unencrypted GRE tunnels, weak IKEv2 encryption, and reused pre-shared keys.
             </p>
             <h3>Vulnerabilities by version</h3>
             <p>
