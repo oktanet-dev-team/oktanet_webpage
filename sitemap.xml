@@ -51,6 +51,22 @@
 </url>
 
 <url>
+<loc>https://oktanet.io/docs/oktavia-sp.html</loc>
+<priority>0.8</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-sp.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/oktavia-sp-en.html"/>
+</url>
+
+<url>
+<loc>https://oktanet.io/docs/oktavia-sp-en.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-sp.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/oktavia-sp-en.html"/>
+</url>
+
+<url>
 <loc>https://oktanet.io/docs/oktavia-en.html</loc>
 <priority>0.8</priority>
 <changefreq>monthly</changefreq>

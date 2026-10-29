@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oktavia for service providers | Oktanet</title>
+    <meta name="description" content="Oktavia for service providers (Carrier / SP): intent per customer service, model-driven Cisco IOS XR core over NETCONF and YANG, a catalog of L3VPN, EVPN-VPWS pseudowires and contracted QoS, and a closed loop with a network transaction in the Digital Twin.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-sp-en.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-sp.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/oktavia-sp-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Oktavia for service providers">
+    <meta property="og:description" content="Intent per customer service, a model-driven IOS XR core and a closed loop with a network transaction.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-sp-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:alt" content="Oktavia, the Oktanet network automation platform">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Oktavia logo" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <nav aria-label="Document">
+                <a href="./index-en.html">Documentation</a>
+                <a href="./oktavia-en.html">Technical sheet</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./oktavia-sp.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Oktavia family · Carrier / SP</p>
+            <h1>Oktavia for service providers</h1>
+            <p class="doc-lede">
+                The same Oktavia closed loop applied to a provider network: a customer service is declared once and Oktavia distributes it to every PE and CE, applies the Cisco IOS XR core as a single network transaction and verifies the service came up.
+            </p>
+            <ul class="doc-meta">
+                <li>Built by Oktanet</li>
+                <li>Mexico · 2026</li>
+                <li>Public document</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Share</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Document contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#que-es">What it is</a></li>
+                <li><a href="#enfoque">The approach</a></li>
+                <li><a href="#catalogo">Service catalog</a></li>
+                <li><a href="#ciclo">The cycle and the Digital Twin</a></li>
+                <li><a href="#visibilidad">Visibility</a></li>
+                <li><a href="#argos">Argos on a provider network</a></li>
+                <li><a href="#ia-local">Local AI with provider context</a></li>
+                <li><a href="#familia">The Oktavia platform family</a></li>
+                <li><a href="#proximamente">Coming soon</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="que-es">
+            <h2>1. What it is</h2>
+            <p>
+                Oktavia for service providers is the part of the platform that runs the core and edge of a provider network: the P routers and route reflectors in the core, the PEs at each point of presence, and the customer CEs. It is not a separate product: it is the same cycle of auditing, comparing against intent, proposing in the Digital Twin, approving, applying, verifying and auditing again, with a provider-specific service catalog.
+            </p>
+            <p>
+                It is tested in the lab with Cisco IOS XR (XRv9000 24.3) in the core and Cisco IOS on the customer CE.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Role</th><th scope="col">Site type</th><th scope="col">Devices</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>P and route reflector</strong></td><td>core</td><td>IOS XR core</td></tr>
+                        <tr><td><strong>PE</strong></td><td>pop</td><td>IOS XR provider edge</td></tr>
+                        <tr><td><strong>CE</strong></td><td>cliente (customer)</td><td>Customer device, Cisco IOS</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="enfoque">
+            <h2>2. The approach</h2>
+            <h3>Intent per service, not per device</h3>
+            <p>
+                Intent is declared per service, in the style of L3SM and L2SM: a customer service is declared once —the customer, its sites or circuits and the contracted bandwidth— and Oktavia distributes it to every PE and CE involved. Nobody edits device by device.
+            </p>
+            <p>
+                Each customer's numbering plan is derived from its identifier: the customer AS, the RTs, the RD per PE, the /31 PE-CE links, the pseudowire EVI and the subnets. Two customers never collide, and the same customer is numbered the same way on every rollout.
+            </p>
+            <h3>Model-driven on IOS XR</h3>
+            <p>
+                IOS XR devices are managed over NETCONF with YANG models: the Cisco-IOS-XR-um-* models for configuration and the native operational models for state. No screen scraping.
+            </p>
+            <h3>Closed loop with a network transaction</h3>
+            <p>
+                The core is not changed device by device: every IOS XR enters a single transaction. If one rejects the change or verification fails, it is cancelled on all of them.
+            </p>
+            <h3>The provider tenant is recognized automatically</h3>
+            <p>
+                When an organization has IOS XR devices or P, PE or RR roles, Oktavia treats it as a provider network: the domains become <strong>Transport · Services · Security · Management</strong> (in an enterprise they are Campus · WAN · Security · Management) in Argos, Architecture, Telemetry, Home and the analyses, and the campus flows —VLANs, port-security, FlexVPN and the campus test network— are hidden. Other tenants are not affected.
+            </p>
+        </section>
+
+        <section class="doc-section" id="catalogo">
+            <h2>3. Service catalog</h2>
+            <p>Services are declared in the Configurator, each with its own desired configuration and its own compliance:</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Service</th><th scope="col">What it configures</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>IOS XR hardening</strong></td><td>Device management and hardening: management VRF and ACL, SSH and NETCONF, SNMP, NTP, logging and banner.</td></tr>
+                        <tr><td><strong>IS-IS with Segment Routing</strong></td><td>IS-IS level 2 underlay with Segment Routing MPLS (prefix-SID), TI-LFA and BFD, with authentication whose key lives in the vault.</td></tr>
+                        <tr><td><strong>Core BGP</strong></td><td>BGP with a route reflector and the VPNv4 and L2VPN EVPN families; the EVPN family is added automatically when there are pseudowires.</td></tr>
+                        <tr><td><strong>L3VPN</strong></td><td>Per customer: VRF, RT and RD, PE-CE eBGP with as-override and the site LAN on the CE.</td></tr>
+                        <tr><td><strong>L2VPN EVPN-VPWS</strong></td><td>Point-to-point pseudowires, several per PE-CE link, on VLAN subinterfaces (EVI 1000 + id).</td></tr>
+                        <tr><td><strong>Contracted QoS</strong></td><td>The bandwidth contracted per site or circuit, on the PE interface: police inbound and shape outbound (police where the platform cannot shape on a subinterface), with a dedicated pair of policies per contract.</td></tr>
+                        <tr><td><strong>Streaming telemetry</strong></td><td>Model-driven telemetry over gRPC dial-out, on IOS XR and IOS XE, to the Oktavia collector.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>The customer side comes from the same service.</strong> The CE (Cisco IOS) part of the L3VPN and the pseudowires is generated from the same declaration as the PE part: there is no second intent to keep up to date.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="ciclo">
+            <h2>4. The cycle and the Digital Twin</h2>
+            <h3>Core network lane</h3>
+            <p>A core change is one transaction over every IOS XR at once:</p>
+            <ol>
+                <li><strong>Validation</strong> in each IOS XR candidate configuration, as a dry run.</li>
+                <li><strong>Commit confirmed</strong> on all of them.</li>
+                <li><strong>Automatic verification</strong>: IS-IS adjacencies, core BGP sessions and xconnects up.</li>
+                <li><strong>Human confirmation</strong> of the change.</li>
+            </ol>
+            <p>If an IOS XR rejects the commit or verification fails, the change is cancelled on all of them. CEs go through their own Digital Twin change, device by device.</p>
+            <h3>Compliance per service</h3>
+            <p>
+                The desired YANG configuration of each service is compared with the running configuration, leaf by leaf, and each service gets its own result. State tests are added on top: IS-IS adjacencies, BFD and the provider BGP sessions.
+            </p>
+        </section>
+
+        <section class="doc-section" id="visibilidad">
+            <h2>5. Visibility</h2>
+            <ul>
+                <li><strong>Desired configuration</strong> of each IOS XR, per service.</li>
+                <li><strong>Topology</strong> with the core point-to-point links, the IS-IS layer and the pseudowires.</li>
+                <li><strong>Control plane</strong>: IS-IS neighbors with level, area and adjacency SID; BGP with its ASN; routing table with VPN labels and TI-LFA backups told apart from ECMP.</li>
+                <li><strong>Path across the MPLS L3VPN</strong>: ingress PE, VPN label and egress PE, in both directions, also on the Topology.</li>
+                <li><strong>Customer services</strong>: one page per customer with its L3VPNs and pseudowires, end-to-end state, QoS contract and diagram.</li>
+                <li><strong>Telemetry</strong>: CPU and memory, BGP sessions, IS-IS adjacencies and routing table size over SNMP, and a pseudowires section with the traffic and attachment-circuit state on each PE, where the contracted bandwidth is 100 %. Over streaming, IOS XR also sends xconnect state.</li>
+                <li><strong>Technical record</strong> with a customer services section: numbering plan, sites, circuits and QoS.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="argos">
+            <h2>6. Argos on a provider network</h2>
+            <p>Organization flows follow the organization's architecture. On a provider tenant, Argos offers:</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Flow</th><th scope="col">What it does</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>SP core (IOS XR)</strong></td><td>Applies the core intent as a network change.</td></tr>
+                        <tr><td><strong>Customer pseudowires (EVPN-VPWS)</strong></td><td>Shows the circuits with their state and adds a pseudowire: validates VLAN, subnet and endpoints, saves the intent and proposes the network change.</td></tr>
+                        <tr><td><strong>Customer QoS (contracted bandwidth)</strong></td><td>Shows and changes contracts: validates, saves and proposes the change.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>The common tabs take on a provider meaning:</p>
+            <ul>
+                <li><strong>Diagnosis and analysis</strong> per domain, Transport and Services.</li>
+                <li><strong>Connectivity test</strong> of a customer site from the CE: reachability to the PE, the PE-CE BGP session, the remote LAN across the L3VPN and the remote CE of the pseudowire.</li>
+                <li><strong>Enable telemetry</strong> with IOS XR streaming.</li>
+            </ul>
+            <p>As everywhere else in the platform, no action that touches the network happens without a person approving it.</p>
+        </section>
+
+        <section class="doc-section" id="ia-local">
+            <h2>7. Local AI with provider context</h2>
+            <p>The local AI answers, on the customer's own server, with the context of a provider network:</p>
+            <ul>
+                <li>The team's documents: design (HLD), runbooks, change procedure, security policy and circuits.</li>
+                <li>The technical record per site.</li>
+                <li>The IOS XR guides from xrdocs: telemetry and Converged SDN Transport.</li>
+                <li>The RFCs of the technologies: RFC 4364 (L3VPN), RFC 4456 (route reflector), RFC 7432 (EVPN), RFC 8214 (EVPN-VPWS), RFC 8402 (Segment Routing), RFC 8667 (IS-IS with Segment Routing), RFC 1195 (IS-IS), and the TI-LFA documentation.</li>
+            </ul>
+            <p>How it works is covered in the article <a href="../blog/ia-local-contexto-empresarial-en.html">Local AI with your company's context</a>.</p>
+        </section>
+
+        <section class="doc-section" id="familia">
+            <h2>8. The Oktavia platform family</h2>
+            <p>The service provider is one more platform in the family. The cycle and the platform are the same; what changes is how each one is accessed:</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Platform</th><th scope="col">Access</th><th scope="col">Typical use</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Cisco IOS / IOS XE</strong></td><td>SSH (CLI) and model-driven streaming (IOS XE)</td><td>Campus, WAN, customer CE</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF / YANG</td><td>Provider core and PE</td></tr>
+                        <tr><td><strong>Cisco SD-WAN</strong></td><td>Manager API</td><td>Software-defined WAN</td></tr>
+                        <tr><td><strong>Cisco Meraki</strong></td><td>Dashboard API</td><td>Cloud-managed branches</td></tr>
+                        <tr><td><strong>Fortinet FortiGate / FortiSwitch</strong></td><td>REST API</td><td>Perimeter security and campus</td></tr>
+                        <tr><td><strong>Juniper Junos</strong></td><td>NETCONF</td><td>Security and routing</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Per-vendor coverage is in the <a href="oktavia-en.html#vendors">technical sheet</a>.</p>
+        </section>
+
+        <section class="doc-section" id="proximamente">
+            <h2>9. Coming soon</h2>
+            <ul>
+                <li><strong>On-demand SR-TE</strong> (ODN), with color per service.</li>
+                <li><strong>Data center integration</strong> with Cisco ACI.</li>
+            </ul>
+        </section>
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments in Latin America.
+            </p>
+            <p>
+                For a demonstration on your own environment, reach us at <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public document, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+</body>
+</html>

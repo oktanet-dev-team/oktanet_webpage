@@ -179,11 +179,12 @@ window.OKTAVIA_DOCS = (function () {
             kind: 'Ficha técnica',
             icon: 'description',
             page: 'oktavia-docs.html#producto',
-            summary: 'Para evaluar la plataforma: el resumen ejecutivo de dos páginas y la ficha técnica completa, en línea y en PDF.',
-            keywords: ['ficha técnica', 'data sheet', 'datasheet', 'resumen ejecutivo', 'pdf', 'licencias', 'evaluar'],
+            summary: 'Para evaluar la plataforma: el resumen ejecutivo de dos páginas, la ficha técnica completa y Oktavia para proveedores de servicios.',
+            keywords: ['ficha técnica', 'data sheet', 'datasheet', 'resumen ejecutivo', 'pdf', 'licencias', 'evaluar', 'proveedor de servicios', 'carrier'],
             docs: [
                 { id: 'resumen-ejecutivo', href: 'oktavia-resumen.html', title: 'Resumen ejecutivo', summary: 'Dos páginas para decidir si Oktavia encaja: el problema que resuelve, para quién, beneficios con métricas de referencia y el modelo de licencias.', keywords: ['resumen', 'beneficios', 'licencias', 'pdf'] },
-                { id: 'ficha-tecnica', href: 'oktavia.html', title: 'Ficha técnica', summary: 'Los módulos con su alcance, las categorías de capacidad, la cobertura y el método de acceso por fabricante, integraciones y requisitos.', keywords: ['data sheet', 'módulos', 'capacidades', 'fabricantes', 'requisitos', 'pdf'] }
+                { id: 'ficha-tecnica', href: 'oktavia.html', title: 'Ficha técnica', summary: 'Los módulos con su alcance, las categorías de capacidad, la cobertura y el método de acceso por fabricante, integraciones y requisitos.', keywords: ['data sheet', 'módulos', 'capacidades', 'fabricantes', 'requisitos', 'pdf'] },
+                { id: 'oktavia-sp', href: 'oktavia-sp.html', title: 'Oktavia para proveedores de servicios', summary: 'Carrier / SP: intención por servicio de cliente, núcleo Cisco IOS XR por NETCONF y YANG, L3VPN, pseudowires EVPN-VPWS y QoS contratada, y el núcleo aplicado como una sola transacción de red.', keywords: ['carrier', 'sp', 'service provider', 'proveedor de servicios', 'ios xr', 'iosxr', 'netconf', 'yang', 'l3vpn', 'evpn', 'vpws', 'pseudowire', 'is-is', 'segment routing', 'ti-lfa', 'qos', 'mpls'] }
             ]
         },
         {

@@ -5,6 +5,7 @@ de Oktavia: una sola documentación con el formato del portal.
 Cada página conserva su contenido y lo propio de su menú (Imprimir, PDF,
 English, Cotizar) y recibe lo del portal:
 
+- la marca de la cabecera: el icono y el nombre de Oktavia;
 - el menú común (Inicio · Documentación · Academia · Artículos · Contacto);
 - la ruta «Documentación de Oktavia › Sección › Documento»;
 - la barra lateral con el buscador y el árbol del catálogo
@@ -32,6 +33,7 @@ ENVUELTAS = {
     "curso-oktavia-fundamentos.html": ("Academia", "Oktavia Fundamentos"),
     "oktavia-resumen.html": ("Ficha técnica y resumen", "Resumen ejecutivo"),
     "oktavia.html": ("Ficha técnica y resumen", "Ficha técnica"),
+    "oktavia-sp.html": ("Ficha técnica y resumen", "Oktavia para proveedores de servicios"),
     "../blog/ia-local-contexto-empresarial.html": ("Artículos", "IA local con el contexto de su empresa"),
     "../blog/seguridad-en-oktavia-y-argos.html": ("Artículos", "Seguridad en Oktavia y Argos"),
     "../blog/red-de-pruebas-cml-y-sd-wan.html": ("Artículos", "La red de pruebas de Oktavia"),
@@ -75,6 +77,24 @@ def _extras(nav_html: str) -> list[str]:
         if "<button" in tag or "doc-btn" in tag or "data-doc-lang" in tag or " download" in tag:
             out.append(re.sub(r"\s+", " ", tag))
     return out
+
+
+#: Marca de la cabecera del portal: el icono de Oktavia, el mismo de la portada.
+MARCA_ES = (
+    '<a class="doc-brand" href="../">\n'
+    '                <picture>\n'
+    '                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">\n'
+    '                    <img src="../img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="34" height="34">\n'
+    '                </picture>\n'
+    '                <span>Oktavia</span>\n'
+    '            </a>'
+)
+
+
+def _cambiar_marca(html: str) -> str:
+    """Cambia la marca vieja (icono de Oktanet) por la de Oktavia."""
+    return re.sub(r'<a class="doc-brand" href="\.\./">\s*<img src="\.\./img/Oktanet_Logo_Textless\.png"'
+                  r'[^>]*>\s*<span>Oktanet</span>\s*</a>', MARCA_ES, html, count=1)
 
 
 def _cambiar_menu(html: str, d: str) -> str:
@@ -127,7 +147,7 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
     en_blog = archivo.parent.name == "blog"
     d = "../docs/" if en_blog else ""
 
-    html = _cambiar_menu(html, d)
+    html = _cambiar_marca(_cambiar_menu(html, d))
     if 'class="docs-layout"' not in html:
         base = ' data-docs-base="../docs/"' if en_blog else ""
         html = html.replace("<body>", f'<body class="docs-portal" data-docs-page="{ruta_catalogo}"{base}>', 1)
@@ -155,7 +175,7 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
 def portal_propio(archivo: Path) -> bool:
     html = archivo.read_text(encoding="utf-8")
     original = html
-    html = _cambiar_menu(html, "")
+    html = _cambiar_marca(_cambiar_menu(html, ""))
     # La ruta empieza en la Documentación: la Academia ahora vive dentro.
     html = html.replace('                <li><a href="academia.html">Academia</a></li>\n', "")
     if html != original:
