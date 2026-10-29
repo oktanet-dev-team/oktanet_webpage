@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=b6e89438f4">
+    <link rel="stylesheet" href="style/home_style.css?v=b3f385308f">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -68,6 +68,13 @@
             <nav class="main-nav" id="main-nav" aria-label="Principal">
                 <a href="#plataforma">Oktavia</a>
                 <a href="#argos">Argos</a>
+                <div class="nav-group">
+                    <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="nav-sp-menu"><span class="nav-group-label">Oktavia SP</span><span class="nav-caret" aria-hidden="true"></span></button>
+                    <div class="nav-submenu" id="nav-sp-menu" hidden>
+                        <a data-sp-landing href="oktavia-sp.html">Presentación</a>
+                        <a data-doc-sp href="docs/oktavia-sp.html">Documentación</a>
+                    </div>
+                </div>
                 <a href="#servicios-profesionales">Servicios</a>
                 <a href="#metodologia">Metodología</a>
                 <a href="#casos">Casos de uso</a>
@@ -171,30 +178,30 @@
                     <div class="trust-logos">
                         <div class="trust-logos-track">
                             <img src="img/LOGO_Cisco.png" alt="Cisco">
-                            <img src="img/LOGO_Juniper.png" alt="Juniper">
+                            <img class="logo-claro logo-fino" src="img/LOGO_Juniper.png" alt="Juniper">
                             <img src="img/LOGO_Arista.png" alt="Arista">
-                            <img src="img/LOGO_Extreme.png" alt="Extreme Networks">
-                            <img src="img/LOGO_Aruba.png" alt="Aruba">
-                            <img src="img/LOGO_Paloalto.png" alt="Palo Alto Networks">
-                            <img src="img/LOGO_Fortinet.png" alt="Fortinet">
-                            <img src="img/LOGO_Nokia.png" alt="">
-                            <img src="img/LOGO_Huawei.png" alt="">
-                            <img src="img/LOGO_Checkpoint.png" alt="">
-                            <img src="img/LOGO_Zte.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Extreme.png" alt="Extreme Networks">
+                            <img class="logo-claro" src="img/LOGO_Aruba.png" alt="Aruba">
+                            <img class="logo-claro" src="img/LOGO_Paloalto.png" alt="Palo Alto Networks">
+                            <img class="logo-claro" src="img/LOGO_Fortinet.png" alt="Fortinet">
+                            <img class="logo-claro" src="img/LOGO_Nokia.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Huawei.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Checkpoint.png" alt="">
+                            <img class="logo-realce" src="img/LOGO_Zte.png" alt="">
                             <img src="img/LOGO_Ciena.png" alt="">
                         </div>
                         <div class="trust-logos-track" aria-hidden="true">
                             <img src="img/LOGO_Cisco.png" alt="">
-                            <img src="img/LOGO_Juniper.png" alt="">
+                            <img class="logo-claro logo-fino" src="img/LOGO_Juniper.png" alt="">
                             <img src="img/LOGO_Arista.png" alt="">
-                            <img src="img/LOGO_Extreme.png" alt="">
-                            <img src="img/LOGO_Aruba.png" alt="">
-                            <img src="img/LOGO_Paloalto.png" alt="">
-                            <img src="img/LOGO_Fortinet.png" alt="">
-                            <img src="img/LOGO_Nokia.png" alt="">
-                            <img src="img/LOGO_Huawei.png" alt="">
-                            <img src="img/LOGO_Checkpoint.png" alt="">
-                            <img src="img/LOGO_Zte.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Extreme.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Aruba.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Paloalto.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Fortinet.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Nokia.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Huawei.png" alt="">
+                            <img class="logo-claro" src="img/LOGO_Checkpoint.png" alt="">
+                            <img class="logo-realce" src="img/LOGO_Zte.png" alt="">
                             <img src="img/LOGO_Ciena.png" alt="">
                         </div>
                     </div>
@@ -1183,6 +1190,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=32a4c8807b"></script>
+    <script src="script/home_script.js?v=857e4e5b12"></script>
+    <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>

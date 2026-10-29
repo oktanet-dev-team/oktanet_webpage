@@ -4,7 +4,10 @@
     const navShell = document.querySelector('.nav-shell');
     const navToggle = document.querySelector('.nav-toggle');
     const mainNav = document.querySelector('.main-nav');
-    const navLinks = document.querySelectorAll('.main-nav a');
+    // Solo los enlaces de primer nivel: los del submenu de Oktavia SP tienen sus
+    // propios textos y no deben correr las posiciones de `navLinks`.
+    const navLinks = document.querySelectorAll('.main-nav > a');
+    const navSubLinks = document.querySelectorAll('.main-nav .nav-submenu a');
     const navCta = document.querySelector('.nav-cta');
     const contactForm = document.querySelector('.contact-form');
     const languageDropdown = document.querySelector('.language-dropdown');
@@ -191,6 +194,9 @@
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
             navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Docs Oktavia', 'Artículos', 'Academia'],
+            navSpLabel: 'Oktavia SP',
+            navSpLinks: ['Presentación', 'Documentación'],
+            spLandingHref: 'oktavia-sp.html',
             navCta: 'Solicitar demostración',
             langToggleAria: 'Cambiar idioma',
             langCode: 'ES',
@@ -687,6 +693,9 @@
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
             navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Oktavia Docs', 'Articles', 'Academy'],
+            navSpLabel: 'Oktavia SP',
+            navSpLinks: ['Overview', 'Documentation'],
+            spLandingHref: 'oktavia-sp-en.html',
             navCta: 'Request Demo',
             langToggleAria: 'Change language',
             langCode: 'EN',
@@ -1622,6 +1631,8 @@
 
         setText(langCode, copy.langCode);
         setTextList(navLinks, copy.navLinks);
+        setText(document.querySelector('.nav-group-label'), copy.navSpLabel);
+        setTextList(navSubLinks, copy.navSpLinks);
         setText(navCta, copy.navCta);
         setTextList(footerLinks, copy.navLinks);
 
@@ -1856,6 +1867,7 @@
         [['[data-doc-online]', copy.resourceOnlineHref],
          ['[data-doc-resumen-online]', copy.resourceResumenHref],
          ['[data-doc-sp]', copy.resourceSpHref],
+         ['[data-sp-landing]', copy.spLandingHref],
          ['[data-docs]', copy.docsHref],
          ['[data-blog]', copy.blogHref],
          ['[data-ia-local]', copy.iaLocalHref],
@@ -2179,6 +2191,10 @@
         });
 
         navLinks.forEach(function (link) {
+            link.addEventListener('click', closeNav);
+        });
+
+        navSubLinks.forEach(function (link) {
             link.addEventListener('click', closeNav);
         });
 
