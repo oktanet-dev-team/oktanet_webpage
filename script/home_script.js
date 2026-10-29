@@ -632,9 +632,10 @@
                 'Documento técnico · 17 secciones · PDF en español e inglés',
                 'Academia Oktanet · 14 módulos · Examen interactivo · Gratis y sin registro'
             ],
-            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Tomar el curso gratis', 'PDF en español'],
+            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Oktavia para proveedores de servicios', 'Tomar el curso gratis', 'PDF en español'],
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
+            resourceSpHref: 'docs/oktavia-sp.html',
             docsHref: 'docs/oktavia-docs.html',
             blogHref: 'docs/oktavia-docs.html#articulos',
             trainingHref: 'docs/oktavia-docs.html#academia',
@@ -1127,9 +1128,10 @@
                 'Technical document · 17 sections · PDF in Spanish and English',
                 'Oktanet Academy · 14 modules · Interactive exam · Free, no sign-up'
             ],
-            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Take the free course', 'PDF in Spanish'],
+            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Oktavia for service providers', 'Take the free course', 'PDF in Spanish'],
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
+            resourceSpHref: 'docs/oktavia-sp-en.html',
             docsHref: 'docs/oktavia-docs.html',
             blogHref: 'blog/index-en.html',
             trainingHref: 'docs/academy-en.html',
@@ -1853,6 +1855,7 @@
         // El documento existe en dos idiomas: cada enlace apunta al que toca.
         [['[data-doc-online]', copy.resourceOnlineHref],
          ['[data-doc-resumen-online]', copy.resourceResumenHref],
+         ['[data-doc-sp]', copy.resourceSpHref],
          ['[data-docs]', copy.docsHref],
          ['[data-blog]', copy.blogHref],
          ['[data-ia-local]', copy.iaLocalHref],
