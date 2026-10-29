@@ -149,7 +149,7 @@
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>Lo que distingue a Oktavia:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos; Argos como capa de ChatOps sobre toda la plataforma; IA local que responde con la documentación del cliente sin que nada salga del servidor; seguridad de red con evidencia de configuración, reporte PCI DSS por sitio y parches de seguridad preparados para aprobar; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
+                    <strong>Lo que distingue a Oktavia:</strong> multivendor real en producción sobre Cisco IOS e IOS-XE, Fortinet FortiGate y FortiSwitch, y Juniper Junos, y núcleo de proveedor de servicios sobre Cisco IOS XR por NETCONF; Argos como capa de ChatOps sobre toda la plataforma; IA local que responde con la documentación del cliente sin que nada salga del servidor; seguridad de red con evidencia de configuración, reporte PCI DSS por sitio y parches de seguridad preparados para aprobar; inventario de servicios; y el ciclo completo de detectar, remediar y verificar en los cuatro fabricantes.
                 </p>
             </div>
         </section>
@@ -220,12 +220,13 @@
                         <tr><td><strong>Centro de automatización</strong></td><td>Vista ejecutiva de la red: puntaje de cumplimiento global, dispositivos accesibles por ping y SSH, distribución por rol, sitios cubiertos, fallas activas y actividad reciente de trabajos.</td><td>Pro</td></tr>
                         <tr><td><strong>Consolas por dominio</strong></td><td>Una consola por dominio de la red —Campus, WAN, Seguridad y Gestión—, al estilo de una consola de servicios en la nube: resumen, intención, reglas, cumplimiento, cambios, flujos de Argos y telemetría del dominio en un solo lugar, con el sitio como alcance. Las vistas de toda la red siguen disponibles con su filtro de dominio.</td><td>Pro</td></tr>
                         <tr><td><strong>Inventario de red</strong></td><td>Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante y tipo de sitio. Distribución visual, detalle por dispositivo, frescura de auditoría, import y export en CSV con fusión no destructiva.</td><td>Pro</td></tr>
-                        <tr><td><strong>Topología y trazado de rutas</strong></td><td>Mapa interactivo con vistas física, de plano de control, enrutamiento, OSPF, sistemas autónomos BGP y STP. Panel por nodo y por sitio. Trazado de la ruta activa entre dos puntos con salto, siguiente salto, interfaz de salida y protocolo, ruta inversa y detección de asimetría.</td><td>Pro</td></tr>
+                        <tr><td><strong>Topología y trazado de rutas</strong></td><td>Mapa interactivo con vistas física, de plano de control, enrutamiento, OSPF, IS-IS, sistemas autónomos BGP y STP; en el núcleo, enlaces punto a punto y pseudowires. Panel por nodo y por sitio. Trazado de la ruta activa entre dos puntos con salto, siguiente salto, interfaz de salida y protocolo, ruta inversa y detección de asimetría, también a través de una L3VPN MPLS.</td><td>Pro</td></tr>
                         <tr><td><strong>Cumplimiento de configuración</strong></td><td>Puntaje global y por sitio, principales fallas y tendencias. Resultados por dispositivo con severidad, diagnóstico y plan de corrección. Catálogo de servicios y reglas editables con habilitación selectiva por rol, fabricante, plataforma o tipo de sitio.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuración deseada</strong></td><td>Generación de configuración a partir de variables de servicio y plantillas, con precedencia por valores por omisión, tipo de sitio, sitio, plataforma, modelo, rol y dispositivo. Exportación en JSON y CSV.</td><td>Pro</td></tr>
                         <tr><td><strong>Estándar de hardening por rol</strong></td><td>El estándar de seguridad vive en el rol del equipo y un equipo nuevo lo hereda al darse de alta: syslog, SNMP, NTP, acceso de gestión y servicios de los cuatro fabricantes. En Cisco IOS, además de lo que falta, detecta lo que sobra —servidor HTTP, comunidad pública, acceso remoto sin SSH— y el Gemelo Digital propone quitarlo.</td><td>Pro</td></tr>
                         <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. El veredicto compara las pruebas de cada equipo antes y después del cambio: lo que se corrigió, lo que se rompió y lo que sigue fallando; una regresión impide cerrar. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
                         <tr><td><strong>Alta de servicios nuevos</strong></td><td>El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, ajustes de enrutamiento. Cada uno con su rollback.</td><td>Pro</td></tr>
+                        <tr><td><strong>Servicios de cliente</strong></td><td>Para proveedores de servicios: por cliente, sus L3VPN y sus pseudowires con el estado en vivo de cada uno y su diagrama de punta a punta.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — ChatOps de red</strong></td><td>Asistente en lenguaje natural integrado en todas las pantallas. Entiende, investiga, configura y cierra el ciclo. Cada acción declara si consume el modelo de IA antes de ejecutarse.</td><td>Pro</td></tr>
                         <tr><td><strong>IA local (RAG)</strong></td><td>Modelos abiertos servidos en el propio servidor de Oktavia que responden sólo con fragmentos recuperados de la documentación —guías oficiales del fabricante, memoria técnica por sitio, estándares y procedimientos del equipo, reportes de cambios anteriores—, con cita de documento, sección y página. Nada sale del servidor y no hay costo por pregunta. Incluye el kit de documentación con plantillas y validación.</td><td>Pro</td></tr>
                         <tr><td><strong>Seguridad de red</strong></td><td>Postura calculada sobre la configuración recolectada en cuatro dominios: perímetro, plano de gestión, identidades y segmentación, más las vulnerabilidades por versión de software (NVD, CISA KEV y FIRST EPSS). Puntaje global y por equipo, filtros por dominio, severidad, sitio y equipo, evidencia por hallazgo y qué atender primero. Reporte de red PCI DSS v4.0.1 por sitio y parches de seguridad: cómo remediar cada CVE, cambio urgente en el Gemelo Digital y flujo automático que prepara los borradores sin aplicarlos.</td><td>Pro</td></tr>
@@ -239,7 +240,7 @@
                         <tr><td><strong>Operaciones y auditorías programadas</strong></td><td>Ejecución y programación de auditorías, descubrimiento, sincronización de inventario y validaciones de conectividad, con historial de trabajos y artefactos.</td><td>Pro</td></tr>
                         <tr><td><strong>FinOps</strong></td><td>Calculadora de retorno de inversión de la automatización y análisis de ahorro operativo, con el costo estimado de la red por equipo, por sitio y por dominio.</td><td>Pro</td></tr>
                         <tr><td><strong>Gestión multi-tenant</strong></td><td>Multi-organización, gestión de usuarios y separación de datos por tenant.</td><td>Pro</td></tr>
-                        <tr><td><strong>Telemetría en tiempo real</strong></td><td>Métricas operativas de CPU, memoria, interfaces y vecinos de enrutamiento almacenadas como series de tiempo, con visualización temporal, tendencias y alertas por umbral. Por sondeo SNMP en cualquier fabricante y, en Cisco IOS XE, por streaming: el equipo empuja sus datos cada diez segundos sin ser consultado. Se enciende desde Argos y se aplica por el Gemelo Digital.</td><td>Telemetría y Eventos</td></tr>
+                        <tr><td><strong>Telemetría en tiempo real</strong></td><td>Métricas operativas de CPU, memoria, interfaces y vecinos de enrutamiento almacenadas como series de tiempo, con visualización temporal, tendencias y alertas por umbral. Por sondeo SNMP en cualquier fabricante —en Cisco IOS XR, además, sesiones BGP, adyacencias IS-IS y cantidad de rutas— y, en Cisco IOS XE, por streaming: el equipo empuja sus datos cada diez segundos sin ser consultado. Se enciende desde Argos y se aplica por el Gemelo Digital.</td><td>Telemetría y Eventos</td></tr>
                         <tr><td><strong>Automatización de eventos</strong></td><td>Reglas de condición a acción que reaccionan de forma automática ante caídas de sesión BGP, caídas de vecino OSPF, interfaces abajo y umbrales de CPU, memoria, temperatura o errores.</td><td>Telemetría y Eventos</td></tr>
                     </tbody>
                 </table>
@@ -279,6 +280,7 @@
                     <tbody>
                         <tr><td><strong>Juniper Junos</strong></td><td>Confirmación diferida sobre NETCONF</td><td>El equipo revierte solo si nadie confirma dentro de la ventana. Una sesión que se corta a media aplicación no deja el equipo inalcanzable.</td></tr>
                         <tr><td><strong>Fortinet FortiGate</strong></td><td>Operaciones sobre la API de configuración</td><td>Los cambios que tocan administradores y zonas quedan en simulación permanente, porque mover una zona invalida las políticas que la referencian.</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF con validación previa (dry-run) y commit confirmado</td><td>El equipo revierte solo si no se confirma. Después del cambio se verifican IS-IS, BGP y los pseudowires antes de dar el cambio por bueno.</td></tr>
                         <tr><td><strong>Fortinet FortiSwitch · Cisco IOS</strong></td><td>Sesión segura con credenciales de bóveda</td><td>Diff previo y verificación posterior. El rollback es el cambio inverso, también revisado y aprobado.</td></tr>
                     </tbody>
                 </table>
@@ -302,6 +304,16 @@
             <div class="doc-callout">
                 <p>Cada servicio se propone, se edita antes de aplicar y trae su rollback. Nada se escribe en la red sin que una persona lo apruebe.</p>
             </div>
+            <h3>Núcleo de proveedor de servicios (Cisco IOS XR)</h3>
+            <p>En el núcleo la intención se declara por servicio, del catálogo, y cada servicio tiene su configuración deseada y su diff de cumplimiento propio:</p>
+            <ul>
+                <li><strong>Hardening</strong> del equipo.</li>
+                <li><strong>IS-IS con Segment Routing MPLS</strong>, protección TI-LFA y BFD.</li>
+                <li><strong>BGP VPNv4</strong> con route reflector.</li>
+                <li><strong>L3VPN por cliente</strong>, con su VRF hacia el CE.</li>
+                <li><strong>Pseudowires L2VPN EVPN-VPWS</strong>, varios por enlace PE-CE sobre subinterfaces VLAN.</li>
+            </ul>
+            <p>Los equipos se gestionan model-driven por NETCONF, con los modelos de configuración Cisco-IOS-XR-um y los modelos operativos nativos, sin leer pantallas. Cada cambio pasa por el Gemelo Digital: validación previa, commit confirmado y confirmación de una persona.</p>
             <p>Los flujos de varios pasos muestran su avance por sitio —«X de N pasos» y su porcentaje— calculado del estado real de la red, no de casillas marcadas a mano, y cada tarjeta termina con el botón del paso siguiente.</p>
         </section>
 
@@ -329,6 +341,9 @@
                 <li><strong>Configurar</strong>: se describe el servicio en lenguaje natural o se pega la configuración, y Argos la propone como intención declarada para que el operador la edite antes de aplicar.</li>
                 <li><strong>Cerrar el ciclo</strong>: auditar, ver cumplimiento, llevarlo al Gemelo Digital, aprobar y verificar. Cada paso es un botón, no una frase que haya que teclear.</li>
             </ul>
+            <p>
+                Los flujos y los dominios siguen la arquitectura de cada organización. En una red de proveedor de servicios, Argos ofrece los flujos del núcleo, de L3VPN y de pseudowires, y organiza la red en los dominios de Transporte y Servicios en lugar de Campus y WAN.
+            </p>
             <p>
                 Dos principios de diseño lo separan de un asistente genérico. Cada respuesta declara si consumió el modelo de lenguaje o se resolvió de forma determinista, así que el costo es visible antes de pulsar. Y ninguna acción que toque la red ocurre sin que una persona la apruebe.
             </p>
@@ -359,6 +374,8 @@
                         <tr><td>Correlacionar fallas de cumplimiento con la configuración</td><td>IA sólo si hay hallazgos</td></tr>
                         <tr><td>Optimizar alcances y proponer un estándar</td><td>IA sobre un cálculo determinista</td></tr>
                         <tr><td>Avance de los flujos de varios pasos por sitio</td><td>Determinista</td></tr>
+                        <tr><td>Estado del núcleo IOS XR: adyacencias IS-IS con nivel, área y SID de adyacencia; BGP con su ASN; tabla de rutas con etiquetas VPN y respaldos TI-LFA distinguidos del ECMP; estado de los xconnect</td><td>Determinista</td></tr>
+                        <tr><td>Camino a través de una L3VPN MPLS: PE de entrada, etiqueta VPN y PE de salida, en ambos sentidos</td><td>Determinista</td></tr>
                         <tr><td>Puertos bloqueados por port-security y su restablecimiento</td><td>Determinista</td></tr>
                         <tr><td>Preguntas a la documentación y sobre cómo se hace algo en Oktavia, «Qué dice la documentación» por incidente y «Cómo remediar» un CVE</td><td>IA local, en el servidor del cliente</td></tr>
                         <tr><td>Preparar los parches de seguridad: borradores en el Gemelo Digital y propuestas al estándar, sin aplicar</td><td>Determinista</td></tr>
@@ -487,6 +504,7 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF (YANG)</td><td>Descubrimiento, cumplimiento por servicio, configuración deseada, remediación con commit confirmado, estado de IS-IS, BGP y pseudowires</td></tr>
                         <tr><td><strong>Fortinet FortiGate</strong></td><td>API REST</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas de firewall</td></tr>
                         <tr><td><strong>Fortinet FortiSwitch</strong></td><td>SSH</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación</td></tr>
                         <tr><td><strong>Juniper Junos</strong></td><td>NETCONF</td><td>Descubrimiento, cumplimiento, configuración deseada, remediación, políticas por zona</td></tr>
@@ -755,6 +773,8 @@
                 <li>Publicar una red nueva en OSPF y BGP de los equipos de borde del sitio, con verificación por ping incluida.</li>
                 <li>Preguntar qué dice el runbook o la guía del fabricante durante un incidente, con la cita, sin que la documentación salga del servidor.</li>
                 <li>Preparar el reporte de red PCI DSS de los puntos de venta, con evidencia por equipo, para la revisión del QSA.</li>
+                <li>Dar de alta la L3VPN o el pseudowire de un cliente en el núcleo IOS XR, con commit confirmado y verificación de IS-IS, BGP y el xconnect.</li>
+                <li>Seguir el camino de un cliente a través de la L3VPN MPLS: PE de entrada, etiqueta VPN y PE de salida, de ida y de regreso.</li>
                 <li>Llevar los CVE explotados con la función encendida a parches de seguridad listos para aprobar, y verificar que el CVE desapareció.</li>
             </ul>
         </section>

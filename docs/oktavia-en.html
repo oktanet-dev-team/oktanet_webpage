@@ -118,7 +118,7 @@
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>What sets Oktavia apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos; Argos as a ChatOps layer across the whole platform; local AI that answers from the customer documentation without anything leaving the server; network security with configuration evidence, a PCI DSS report per site, and security patches prepared for approval; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
+                    <strong>What sets Oktavia apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos, plus a service provider core on Cisco IOS XR over NETCONF; Argos as a ChatOps layer across the whole platform; local AI that answers from the customer documentation without anything leaving the server; network security with configuration evidence, a PCI DSS report per site, and security patches prepared for approval; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
                 </p>
             </div>
         </section>
@@ -189,12 +189,13 @@
                         <tr><td><strong>Automation center</strong></td><td>Executive view of the network: global compliance score, devices reachable by ping and SSH, distribution by role, sites covered, active failures, and recent job activity.</td><td>Pro</td></tr>
                         <tr><td><strong>Domain consoles</strong></td><td>One console per network domain —Campus, WAN, Security and Management—, in the style of a cloud services console: summary, intent, rules, compliance, changes, Argos workflows and telemetry for the domain in one place, with the site as scope. Network-wide views remain available with their domain filter.</td><td>Pro</td></tr>
                         <tr><td><strong>Network inventory</strong></td><td>Dynamic multi-vendor inventory with filters by site, role, platform, vendor, and site type. Visual distribution, per-device detail, audit freshness, CSV import and export with non-destructive merge.</td><td>Pro</td></tr>
-                        <tr><td><strong>Topology and path tracing</strong></td><td>Interactive map with physical, control-plane, routing, OSPF, BGP autonomous system, and STP views. Per-node and per-site panels. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection.</td><td>Pro</td></tr>
+                        <tr><td><strong>Topology and path tracing</strong></td><td>Interactive map with physical, control-plane, routing, OSPF, IS-IS, BGP autonomous system, and STP views; in the core, point-to-point links and pseudowires. Per-node and per-site panels. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection, including across an MPLS L3VPN.</td><td>Pro</td></tr>
                         <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro</td></tr>
                         <tr><td><strong>Desired configuration</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device. JSON and CSV export.</td><td>Pro</td></tr>
                         <tr><td><strong>Hardening standard by role</strong></td><td>The security standard lives in the device role and a new device inherits it when onboarded: syslog, SNMP, NTP, management access and services across the four vendors. On Cisco IOS, besides what is missing, it detects what is extra —HTTP server, public community, remote access without SSH— and the Digital Twin proposes removing it.</td><td>Pro</td></tr>
                         <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. The verdict compares each device's test results before and after the change: what was fixed, what broke, and what still fails; a regression prevents closing. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
                         <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, routing adjustments. Each with its rollback.</td><td>Pro</td></tr>
+                        <tr><td><strong>Customer services</strong></td><td>For service providers: per customer, its L3VPNs and pseudowires with the live status of each one and its end-to-end diagram.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro</td></tr>
                         <tr><td><strong>Local AI (RAG)</strong></td><td>Open models served on the Oktavia server itself that answer only from fragments retrieved from the documentation —official vendor guides, per-site technical report, the team's standards and procedures, previous change reports—, citing document, section, and page. Nothing leaves the server and there is no per-question cost. Includes the documentation kit with templates and validation.</td><td>Pro</td></tr>
                         <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain, severity, site and device, evidence per finding, and what to address first. PCI DSS v4.0.1 network report per site and security patches: how to remediate each CVE, an urgent change in the Digital Twin, and an automatic flow that prepares the drafts without applying them.</td><td>Pro</td></tr>
@@ -208,7 +209,7 @@
                         <tr><td><strong>Operations and scheduled audits</strong></td><td>Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.</td><td>Pro</td></tr>
                         <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis, with the estimated network cost per device, per site and per domain.</td><td>Pro</td></tr>
                         <tr><td><strong>Multi-tenant management</strong></td><td>Multi-organization, user management, and per-tenant data separation.</td><td>Pro</td></tr>
-                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, interface and routing-neighbor metrics stored as time series, with temporal visualization, trends, and threshold alerts. Through SNMP polling on any vendor and, on Cisco IOS XE, through streaming: the device pushes its data every ten seconds without being polled. Enabled from Argos and applied through the Digital Twin.</td><td>Telemetry and Events</td></tr>
+                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, interface and routing-neighbor metrics stored as time series, with temporal visualization, trends, and threshold alerts. Through SNMP polling on any vendor —on Cisco IOS XR also BGP sessions, IS-IS adjacencies and route counts— and, on Cisco IOS XE, through streaming: the device pushes its data every ten seconds without being polled. Enabled from Argos and applied through the Digital Twin.</td><td>Telemetry and Events</td></tr>
                         <tr><td><strong>Event automation</strong></td><td>Condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, or error thresholds.</td><td>Telemetry and Events</td></tr>
                     </tbody>
                 </table>
@@ -248,6 +249,7 @@
                     <tbody>
                         <tr><td><strong>Juniper Junos</strong></td><td>Deferred commit confirmation over NETCONF</td><td>The device rolls back on its own if nobody confirms within the window. A session that drops mid-apply does not leave the device unreachable.</td></tr>
                         <tr><td><strong>Fortinet FortiGate</strong></td><td>Operations over the configuration API</td><td>Changes touching administrators and zones stay in permanent simulation, because moving a zone invalidates the policies referencing it.</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF with prior validation (dry run) and commit confirmed</td><td>The device rolls back on its own if the commit is not confirmed. After the change, IS-IS, BGP and the pseudowires are verified before the change is accepted.</td></tr>
                         <tr><td><strong>Fortinet FortiSwitch · Cisco IOS</strong></td><td>Secure session with vault credentials</td><td>Diff before and verification after. The rollback is the inverse change, also reviewed and approved.</td></tr>
                     </tbody>
                 </table>
@@ -271,6 +273,16 @@
             <div class="doc-callout">
                 <p>Every service is proposed, edited before applying, and ships with its rollback. Nothing is written to the network without a person approving it.</p>
             </div>
+            <h3>Service provider core (Cisco IOS XR)</h3>
+            <p>In the core, intent is declared per service from the catalog, and each service has its own desired configuration and its own compliance diff:</p>
+            <ul>
+                <li><strong>Hardening</strong> of the device.</li>
+                <li><strong>IS-IS with Segment Routing MPLS</strong>, TI-LFA protection and BFD.</li>
+                <li><strong>BGP VPNv4</strong> with a route reflector.</li>
+                <li><strong>L3VPN per customer</strong>, with its VRF toward the CE.</li>
+                <li><strong>L2VPN EVPN-VPWS pseudowires</strong>, several per PE-CE link over VLAN subinterfaces.</li>
+            </ul>
+            <p>Devices are managed model-driven over NETCONF, with the Cisco-IOS-XR-um configuration models and the native operational models, with no screen scraping. Every change goes through the Digital Twin: prior validation, commit confirmed and confirmation by a person.</p>
             <p>Multi-step workflows show their progress per site —«X of N steps» and a percentage— computed from the real state of the network, not from boxes ticked by hand, and every card ends with the button for the next step.</p>
         </section>
 
@@ -298,6 +310,9 @@
                 <li><strong>Configure</strong>: describe the service in plain language or paste the configuration, and Argos proposes it as declared intent for the operator to edit before applying.</li>
                 <li><strong>Close the loop</strong>: audit, read compliance, take it to the Digital Twin, approve, and verify. Each step is a button, not a sentence you have to type.</li>
             </ul>
+            <p>
+                Workflows and domains follow each organization's architecture. In a service provider network, Argos offers the core, L3VPN and pseudowire workflows, and organizes the network into Transport and Services domains instead of Campus and WAN.
+            </p>
             <p>
                 Two design principles separate it from a generic assistant. Every answer states whether it consumed the language model or resolved deterministically, so the cost is visible before you click. And no action that touches the network happens without a person approving it.
             </p>
@@ -328,6 +343,8 @@
                         <tr><td>Correlating compliance failures with the configuration</td><td>AI only when there are findings</td></tr>
                         <tr><td>Optimizing scopes and proposing a standard</td><td>AI on top of a deterministic calculation</td></tr>
                         <tr><td>Progress of multi-step workflows per site</td><td>Deterministic</td></tr>
+                        <tr><td>IOS XR core state: IS-IS adjacencies with level, area and adjacency SID; BGP with its ASN; routing table with VPN labels and TI-LFA backups told apart from ECMP; xconnect state</td><td>Deterministic</td></tr>
+                        <tr><td>Path across an MPLS L3VPN: ingress PE, VPN label and egress PE, in both directions</td><td>Deterministic</td></tr>
                         <tr><td>Ports blocked by port security and their reset</td><td>Deterministic</td></tr>
                         <tr><td>Questions to the documentation and about how to do something in Oktavia, «What the documentation says» per incident, and «How to remediate» a CVE</td><td>Local AI, on the customer server</td></tr>
                         <tr><td>Preparing security patches: drafts in the Digital Twin and standard proposals, without applying</td><td>Deterministic</td></tr>
@@ -456,6 +473,7 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF (YANG)</td><td>Discovery, per-service compliance, desired configuration, remediation with commit confirmed, IS-IS, BGP and pseudowire state</td></tr>
                         <tr><td><strong>Fortinet FortiGate</strong></td><td>REST API</td><td>Discovery, compliance, desired configuration, remediation, firewall policies</td></tr>
                         <tr><td><strong>Fortinet FortiSwitch</strong></td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
                         <tr><td><strong>Juniper Junos</strong></td><td>NETCONF</td><td>Discovery, compliance, desired configuration, remediation, zone policies</td></tr>
@@ -724,6 +742,8 @@
                 <li>Advertising a new network in OSPF and BGP on the site edge devices, with ping verification included.</li>
                 <li>Asking what the runbook or the vendor guide says during an incident, with the citation, without the documentation leaving the server.</li>
                 <li>Preparing the PCI DSS network report for the point-of-sale sites, with evidence per device, for the QSA's review.</li>
+                <li>Rolling out a customer's L3VPN or pseudowire on the IOS XR core, with commit confirmed and verification of IS-IS, BGP and the xconnect.</li>
+                <li>Following a customer's path across the MPLS L3VPN: ingress PE, VPN label and egress PE, forward and back.</li>
                 <li>Turning exploited CVEs with the feature enabled into security patches ready for approval, and verifying the CVE disappeared.</li>
             </ul>
         </section>
