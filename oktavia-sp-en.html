@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oktavia SP · Automation for service providers | Oktanet</title>
+    <meta name="description" content="Oktavia SP automates a service provider network: the customer service is declared once, Oktavia distributes it to every PE and CE, applies the Cisco IOS XR core as a single transaction with commit confirmed, and verifies the service came up.">
+    <link rel="canonical" href="https://oktanet.io/oktavia-sp-en.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/oktavia-sp.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/oktavia-sp-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Oktavia SP · Customer services declared once">
+    <meta property="og:description" content="L3VPN, EVPN-VPWS pseudowires and contracted bandwidth over an IOS XR core, with a network transaction, automatic verification and per-service audit.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oktanet.io/oktavia-sp-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Oktavia, the network automation platform by Oktanet">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Oktavia SP · Customer services declared once">
+    <meta name="twitter:description" content="Intent per service, a network transaction on IOS XR and automatic verification for service providers.">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-en.png">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/home_style.css?v=b3f385308f">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body id="page-top" data-site-nav="standalone">
+    <header class="site-header" id="inicio">
+        <div class="container nav-shell">
+            <a class="brand" href="./" aria-label="Go to the Oktanet home page">
+                <picture>
+                    <source srcset="img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="img/LOGO_Oktavia.png" alt="Oktavia logo" width="512" height="499" decoding="async">
+                </picture>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu" data-label-open="Open menu" data-label-close="Close menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="main-nav" aria-label="Main">
+                <a href="./#plataforma">Oktavia</a>
+                <a href="./#argos">Argos</a>
+                <div class="nav-group">
+                    <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="nav-sp-menu"><span class="nav-group-label">Oktavia SP</span><span class="nav-caret" aria-hidden="true"></span></button>
+                    <div class="nav-submenu" id="nav-sp-menu" hidden>
+                        <a href="oktavia-sp-en.html" aria-current="page">Overview</a>
+                        <a href="docs/oktavia-sp-en.html">Documentation</a>
+                    </div>
+                </div>
+                <a href="./#servicios-profesionales">Services</a>
+                <a href="./#metodologia">Methodology</a>
+                <a href="./#casos">Use Cases</a>
+                <a href="./#licenciamiento">Licensing</a>
+                <a href="./#cotizar">Pricing</a>
+                <a href="./#recursos">Resources</a>
+                <a href="docs/oktavia-docs.html">Oktavia Docs</a>
+                <a href="blog/index-en.html">Articles</a>
+                <a href="docs/academy-en.html">Academy</a>
+            </nav>
+
+            <a class="btn btn-secondary nav-cta" href="./#contacto">Request Demo</a>
+            <div class="language-dropdown">
+                <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Change language">
+                    <span class="lang-code">EN</span>
+                    <span class="lang-caret" aria-hidden="true"></span>
+                </button>
+                <div class="lang-menu" id="lang-menu" role="menu" hidden>
+                    <a class="lang-option" role="menuitemradio" aria-checked="false" href="oktavia-sp.html" hreflang="es" data-doc-lang="es">Español</a>
+                    <a class="lang-option" role="menuitemradio" aria-checked="true" href="oktavia-sp-en.html" hreflang="en" data-doc-lang="en">English</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section sp-hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <h1><span class="hero-brandline"><img class="hero-brandmark" src="img/LOGO_Oktavia.png" alt="" width="96" height="96" decoding="async">Oktavia SP</span> Declare the customer service once and see it verified on every PE and CE</h1>
+                    <p>
+                        For carriers, ISPs and MPLS operators: Oktavia distributes every L3VPN, pseudowire and bandwidth contract to the devices involved, applies the Cisco IOS XR core as a single transaction with commit confirmed, and does not consider the change done until it verifies the service is up.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="./#contacto">Request a demo</a>
+                        <a class="btn btn-secondary" href="docs/oktavia-sp-en.html">Read the documentation</a>
+                    </div>
+                    <ul class="hero-points">
+                        <li><strong>Intent per service, not per device.</strong> Customer, sites or circuits and contracted bandwidth; the numbering plan is derived from the customer identifier.</li>
+                        <li><strong>Network transaction in the Digital Twin.</strong> All IOS XR routers validate and commit together; if one rejects it or verification fails, it is cancelled on all of them.</li>
+                        <li><strong>Model-driven.</strong> IOS XR over NETCONF with YANG models, no screen scraping.</li>
+                        <li><strong>Per-service audit.</strong> Each service's configuration against the running config, leaf by leaf, plus core state checks.</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual">
+                    <svg class="sp-diagrama" viewBox="0 0 560 300" role="img" aria-labelledby="sp-diagrama-titulo">
+                        <title id="sp-diagrama-titulo">A customer service, L3VPN and EVPN-VPWS pseudowire, from one CE to another across two PEs and the core with IS-IS, Segment Routing MPLS and TI-LFA</title>
+                        <text class="sp-detalle" x="280" y="26" text-anchor="middle">One intent: customer · sites · bandwidth</text>
+                        <path class="sp-servicio sp-servicio-l3" d="M56 180 C 56 62, 504 62, 504 180"/>
+                        <text class="sp-servicio-texto" x="280" y="84" text-anchor="middle" fill="#57c8ea">L3VPN</text>
+                        <path class="sp-servicio sp-servicio-l2" d="M84 180 C 84 118, 476 118, 476 180"/>
+                        <text class="sp-servicio-texto" x="280" y="125" text-anchor="middle" fill="#b3a8f6">EVPN-VPWS</text>
+                        <line class="sp-enlace" x1="102" y1="205" x2="130" y2="205"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="222" y1="205" x2="234" y2="205"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="326" y1="205" x2="338" y2="205"/>
+                        <line class="sp-enlace" x1="430" y1="205" x2="458" y2="205"/>
+                        <g class="sp-nodo"><rect x="10" y="180" width="92" height="50" rx="10"/><text class="sp-etiqueta" x="56" y="210" text-anchor="middle">CE</text></g>
+                        <g class="sp-nodo"><rect x="130" y="180" width="92" height="50" rx="10"/><text class="sp-etiqueta" x="176" y="210" text-anchor="middle">PE</text></g>
+                        <g class="sp-nodo sp-nodo-nucleo"><rect x="234" y="180" width="92" height="50" rx="10"/><text class="sp-etiqueta" x="280" y="210" text-anchor="middle">P · RR</text></g>
+                        <g class="sp-nodo"><rect x="338" y="180" width="92" height="50" rx="10"/><text class="sp-etiqueta" x="384" y="210" text-anchor="middle">PE</text></g>
+                        <g class="sp-nodo"><rect x="458" y="180" width="92" height="50" rx="10"/><text class="sp-etiqueta" x="504" y="210" text-anchor="middle">CE</text></g>
+                        <text class="sp-detalle" x="56" y="250" text-anchor="middle">Customer</text>
+                        <text class="sp-detalle" x="176" y="250" text-anchor="middle">PoP · QoS</text>
+                        <text class="sp-detalle" x="280" y="250" text-anchor="middle">Core</text>
+                        <text class="sp-detalle" x="384" y="250" text-anchor="middle">PoP · QoS</text>
+                        <text class="sp-detalle" x="504" y="250" text-anchor="middle">Customer</text>
+                        <text class="sp-detalle" x="280" y="284" text-anchor="middle">IS-IS · Segment Routing MPLS · TI-LFA · BGP with route reflector</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-section" id="problemas" aria-label="What Oktavia SP solves">
+            <div class="container">
+                <p class="eyebrow">What it solves</p>
+                <h2>A customer service should not depend on editing every device by hand.</h2>
+                <p class="section-intro">In a provider network, every new service touches several PEs and the customer CE, each with its numbering, its QoS and its BGP session. Oktavia turns that work into one declaration and one reviewed change.</p>
+                <div class="security-grid">
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">keyboard</span>
+                        <h3>Manual, device-by-device configuration</h3>
+                        <p>The service is declared once and Oktavia generates each PE's part and the CE's part from the same declaration. There is no second intent to keep up to date.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">schedule</span>
+                        <h3>Slow provisioning that invites collisions</h3>
+                        <p>The customer AS, the RTs, the RD per PE, the /31 PE-CE links, the pseudowire EVI and the subnets are derived from the customer identifier. Two customers do not collide, and the same customer is numbered the same way every time.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">difference</span>
+                        <h3>Drift nobody sees</h3>
+                        <p>Each service's desired YANG configuration is compared with the running config, leaf by leaf, and each service has its own result. IS-IS adjacencies, BFD and the provider BGP sessions are checked on top of that.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">fact_check</span>
+                        <h3>Proving the service complies</h3>
+                        <p>Every change goes through the Digital Twin, is approved by a person and is verified after it is applied. The technical record documents each customer's numbering plan, sites, circuits and QoS.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="method-section" id="como-funciona">
+            <div class="container">
+                <p class="eyebrow">How it works</p>
+                <h2>From service intent to audit, in one cycle.</h2>
+                <div class="method-grid">
+                    <article>
+                        <span>01</span>
+                        <h3>Intent per service</h3>
+                        <p>The customer service is declared in the style of L3SM and L2SM: its sites or circuits and the contracted bandwidth. Oktavia distributes it to every PE and CE.</p>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <h3>Transaction in the Digital Twin</h3>
+                        <p>All IOS XR routers in the core go into a single change: validation on each router's candidate configuration as a dry run, and commit confirmed on all of them.</p>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <h3>Automatic verification</h3>
+                        <p>IS-IS adjacencies, core BGP sessions and xconnects up, then human confirmation. If anything fails, the change is cancelled on every router.</p>
+                    </article>
+                    <article>
+                        <span>04</span>
+                        <h3>Audit</h3>
+                        <p>Per-service compliance compares the intent with the running config again, and state checks confirm the service is still up.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="argos-section" id="catalogo" aria-label="Provider service catalog">
+            <div class="container">
+                <p class="eyebrow">Service catalog</p>
+                <h2>What a provider needs to deliver service, declared in the Configurator.</h2>
+                <p class="section-intro">Each service has its own desired configuration and its own compliance.</p>
+                <div class="argos-grid">
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">lan</span>
+                        <h3>L3VPN</h3>
+                        <p>Per customer: VRF, RT and RD, PE-CE eBGP with as-override, and the site LAN on the CE.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">cable</span>
+                        <h3>EVPN-VPWS pseudowires</h3>
+                        <p>Point-to-point circuits, several per PE-CE link, on per-VLAN subinterfaces.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">speed</span>
+                        <h3>Contracted bandwidth</h3>
+                        <p>QoS per site or circuit on the PE interface: police inbound and shape outbound, with a dedicated pair of policies per contract.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">route</span>
+                        <h3>IS-IS with Segment Routing</h3>
+                        <p>Level 2 IS-IS underlay with SR-MPLS (prefix-SID), TI-LFA and BFD; the authentication key lives in the vault.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">hub</span>
+                        <h3>BGP with route reflector</h3>
+                        <p>VPNv4 and L2VPN EVPN address families; the EVPN family is added automatically when there are pseudowires.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">shield_lock</span>
+                        <h3>IOS XR hardening</h3>
+                        <p>Management VRF and ACL, SSH and NETCONF, SNMP, NTP, logging and banner.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">monitoring</span>
+                        <h3>Streaming telemetry</h3>
+                        <p>Model-driven over gRPC dial-out, on IOS XR and IOS XE, to the Oktavia collector.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">router</span>
+                        <h3>The customer side</h3>
+                        <p>The CE (Cisco IOS) part of the L3VPN and the pseudowires comes from the same service as the PE part.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cases-section" id="visibilidad">
+            <div class="container">
+                <p class="eyebrow">Visibility per customer service</p>
+                <h2>Each customer's end-to-end state, not just each device's.</h2>
+                <div class="cases-grid">
+                    <article>
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">contacts</span>
+                        <h3>Customer services</h3>
+                        <p>One page per customer with its L3VPNs and pseudowires, end-to-end state, QoS contract and diagram.</p>
+                    </article>
+                    <article>
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">alt_route</span>
+                        <h3>Path across the L3VPN</h3>
+                        <p>Ingress PE, VPN label and egress PE, in both directions, also drawn on the Topology.</p>
+                    </article>
+                    <article>
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">insights</span>
+                        <h3>Telemetry per pseudowire</h3>
+                        <p>Traffic and attachment-circuit state on each PE, with the contracted bandwidth as 100%. Over streaming, IOS XR also sends xconnect state.</p>
+                    </article>
+                </div>
+                <div class="chip-list" aria-label="More core visibility">
+                    <span>Topology with IS-IS layer and pseudowires</span>
+                    <span>IS-IS neighbors with adjacency SID</span>
+                    <span>Routing table with VPN labels</span>
+                    <span>TI-LFA backups told apart from ECMP</span>
+                    <span>Technical record per customer</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="argos-section" id="argos-sp" aria-label="Argos and local AI on a provider network">
+            <div class="container">
+                <picture class="section-mark">
+                    <source srcset="img/LOGO_Argos.webp" type="image/webp">
+                    <img src="img/LOGO_Argos.png" alt="Argos logo" width="512" height="512" loading="lazy" decoding="async">
+                </picture>
+                <p class="eyebrow">Argos · Organization flows</p>
+                <h2>The assistant adapts to a provider architecture.</h2>
+                <p class="section-intro">When an organization has IOS XR devices or P, PE or RR roles, Oktavia treats it as a provider network: the domains become Transport, Services, Security and Management, and campus flows are hidden. No action that touches the network happens without a person approving it.</p>
+                <div class="argos-grid">
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">dns</span>
+                        <h3>SP core (IOS XR)</h3>
+                        <p>Applies the core intent as a network change.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">cable</span>
+                        <h3>Customer pseudowires</h3>
+                        <p>Shows the circuits with their state and provisions a new one: validates VLAN, subnet and endpoints, saves the intent and proposes the change.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">speed</span>
+                        <h3>Customer QoS</h3>
+                        <p>Shows and changes bandwidth contracts: validates, saves and proposes the change.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">network_check</span>
+                        <h3>Site connectivity</h3>
+                        <p>From the CE: reachability to the PE, the PE-CE BGP session, the remote LAN across the L3VPN and the remote CE of the pseudowire.</p>
+                    </article>
+                </div>
+                <article class="ia-local-card">
+                    <span class="material-symbols-outlined card-icon" aria-hidden="true">lock</span>
+                    <div>
+                        <h3>Local AI with the operator's documentation and the standards</h3>
+                        <p>It answers on the Oktavia server with the team's documents (design, runbooks, changes, security and circuits), the technical record per site, the IOS XR guides from xrdocs and the RFCs for the technologies: L3VPN (RFC 4364), route reflector (RFC 4456), EVPN (RFC 7432), EVPN-VPWS (RFC 8214), Segment Routing (RFC 8402 and 8667) and IS-IS (RFC 1195).</p>
+                        <a class="ia-local-enlace" href="blog/ia-local-contexto-empresarial-en.html">Read the article on local AI</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cases-section" id="familia">
+            <div class="container">
+                <p class="eyebrow">The Oktavia family</p>
+                <h2>Enterprise and service provider on the same platform.</h2>
+                <p class="section-intro">The cycle is the same for all of them; what changes is how each one is accessed. Each organization sees the domains of its own architecture without affecting the others.</p>
+                <div class="sp-familia-grid">
+                    <article>
+                        <h3>Cisco IOS / IOS XE</h3>
+                        <p class="sp-acceso">SSH (CLI) and model-driven streaming on IOS XE</p>
+                        <p>Campus, WAN and customer CE.</p>
+                    </article>
+                    <article>
+                        <h3>Cisco IOS XR</h3>
+                        <p class="sp-acceso">NETCONF / YANG</p>
+                        <p>Provider core and PE.</p>
+                    </article>
+                    <article>
+                        <h3>Cisco SD-WAN</h3>
+                        <p class="sp-acceso">Manager API</p>
+                        <p>Software-defined WAN.</p>
+                    </article>
+                    <article>
+                        <h3>Cisco Meraki</h3>
+                        <p class="sp-acceso">Dashboard API</p>
+                        <p>Cloud-managed branches.</p>
+                    </article>
+                    <article>
+                        <h3>Fortinet FortiGate and FortiSwitch</h3>
+                        <p class="sp-acceso">FortiGate over REST API · FortiSwitch over SSH</p>
+                        <p>Perimeter security and campus.</p>
+                    </article>
+                    <article>
+                        <h3>Juniper Junos</h3>
+                        <p class="sp-acceso">NETCONF</p>
+                        <p>Security and routing.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="method-section" id="proximamente">
+            <div class="container">
+                <p class="eyebrow">Roadmap</p>
+                <h2>What comes next for the SP family.</h2>
+                <div class="security-grid">
+                    <article class="security-card">
+                        <span class="sp-pronto">Coming soon</span>
+                        <h3>On-demand SR-TE (ODN)</h3>
+                        <p>On-demand Segment Routing traffic engineering, with a color per service.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="sp-pronto">Coming soon</span>
+                        <h3>Data center with Cisco ACI</h3>
+                        <p>Data center integration with Cisco ACI.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-cta" aria-label="Request an Oktavia SP demo">
+            <div class="container">
+                <p class="eyebrow">Let's talk</p>
+                <h2>See a customer service go from intent to verification.</h2>
+                <p>Proven in the lab with Cisco IOS XR (XRv9000) in the core and Cisco IOS on the customer CE. We walk you through the full cycle and review how it fits your network.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="./#contacto">Request a demo</a>
+                    <a class="btn btn-secondary" href="docs/oktavia-sp-en.html">Read the documentation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div>
+                    <h4>OKTANET</h4>
+                    <p>Oktavia, your network under control.</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="./#plataforma">Oktavia</a>
+                <a href="./#argos">Argos</a>
+                <a href="./#servicios-profesionales">Services</a>
+                <a href="./#metodologia">Methodology</a>
+                <a href="./#casos">Use Cases</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a>
+            </div>
+            <p class="copyright">© <span id="current-year">2026</span> Oktanet. All rights reserved.</p>
+            <p class="copyright"><a href="docs/aviso-de-privacidad.html" hreflang="es">Privacy notice (Spanish)</a></p>
+        </div>
+    </footer>
+
+    <script src="script/site_nav.js?v=a84b5a7fdc"></script>
+</body>
+</html>

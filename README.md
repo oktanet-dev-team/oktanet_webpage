@@ -8,9 +8,15 @@ repositorio es lo que se publica.
 
 ```
 index.html              Portada (una sola página, con anclas por sección)
+oktavia-sp.html         Presentación comercial de Oktavia SP (proveedores de servicios);
+oktavia-sp-en.html      en inglés. Un archivo por idioma, con la cabecera de la portada
+                        y sus estilos; el detalle técnico vive en docs/oktavia-sp*.html
 404.html                Página de error, independiente del resto de estilos
 robots.txt              Permite la indexación y apunta al mapa del sitio
 script/home_script.js   Copy de la portada en español e inglés, y su interacción
+script/site_nav.js      Submenú del menú principal («Oktavia SP») en la portada y en las
+                        páginas sueltas; en éstas (body data-site-nav="standalone") también
+                        el menú móvil y el selector de idioma
 style/home_style.css    Estilos de la portada
 docs/                   Documentación pública
   index.html            Índice de documentos (español)
