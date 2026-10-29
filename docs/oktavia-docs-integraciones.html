@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Integraciones · Documentación de Oktavia</title>
-    <meta name="description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
+    <meta name="description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, Cisco IOS XR, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
     <link rel="canonical" href="https://oktanet.io/docs/oktavia-docs-integraciones.html">
     <meta name="robots" content="index, follow">
 
     <meta property="og:title" content="Integraciones · Documentación de Oktavia">
-    <meta property="og:description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
+    <meta property="og:description" content="Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, Cisco IOS XR, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://oktanet.io/docs/oktavia-docs-integraciones.html">
     <meta property="og:site_name" content="Oktanet">
@@ -45,6 +45,7 @@
                 <a href="oktavia-docs.html">Documentación</a>
                 <a href="oktavia-docs.html#academia">Academia</a>
                 <a href="oktavia-docs.html#articulos">Artículos</a>
+                <a href="../oktavia-sp.html">Oktavia SP</a>
                 <a href="../#contacto">Contacto</a>
                 <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
             </nav>
@@ -81,11 +82,11 @@
                 <section class="doc-cover">
                     <p class="doc-eyebrow">Documentación de Oktavia · Integraciones</p>
                     <h1>Integraciones</h1>
-                    <p class="doc-lede">Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.</p>
+                    <p class="doc-lede">Qué hace Oktavia con cada fabricante y herramienta: método de acceso, qué recolecta, qué genera, cómo aplica y con qué guardas. Cisco IOS e IOS-XE, Cisco IOS XR, FortiGate, FortiSwitch, Junos, Meraki, InfluxDB y Telegraf, MCP y Argos.</p>
                     <ul class="doc-meta">
                 <li>Integración</li>
                 <li>Sólo lo implementado en el código</li>
-                <li>Siete integraciones</li>
+                <li>Ocho integraciones</li>
                     </ul>
                 </section>
 
@@ -94,6 +95,7 @@
                     <ol>
                 <li><a href="#cobertura">Cobertura por función</a></li>
                 <li><a href="#cisco-ios">Cisco IOS / IOS-XE</a></li>
+                <li><a href="#cisco-iosxr">Cisco IOS XR</a></li>
                 <li><a href="#fortigate">FortiGate</a></li>
                 <li><a href="#fortiswitch">FortiSwitch</a></li>
                 <li><a href="#juniper">Juniper Junos</a></li>
@@ -107,17 +109,17 @@
                 <section class="doc-section" id="cobertura">
                     <h2>Cobertura por función</h2>
                     <p>Lo que está implementado en la plataforma, por fabricante y por función. Para fabricantes que no aparecen aquí, consulta a Oktanet.</p>
-                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Función</th><th scope="col">Cisco IOS / IOS-XE</th><th scope="col">FortiGate</th><th scope="col">FortiSwitch</th><th scope="col">Junos</th><th scope="col">Meraki</th><th scope="col">Cisco SD-WAN</th></tr></thead><tbody>
-                        <tr><td>Acceso</td><td>SSH</td><td>API REST</td><td>SSH</td><td>NETCONF 830</td><td>Dashboard API</td><td>API del Manager</td></tr>
-                        <tr><td>Discovery</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-                        <tr><td>Respaldo</td><td>.cfg</td><td>JSON lógico por VDOM</td><td>.cfg</td><td>Snapshot y JSON</td><td>JSON estructurado</td><td>.cfg y JSON</td></tr>
-                        <tr><td>Config Generator</td><td>43 servicios</td><td>16 servicios</td><td>12 servicios</td><td>16 servicios</td><td>Intención sin render (7 servicios)</td><td>Intención sin render (9 servicios)</td></tr>
-                        <tr><td>Compliance</td><td>Todos los tipos</td><td>Objetos y métricas</td><td>Sí</td><td>Sí</td><td>Carril propio</td><td>Subconjunto de tipos</td></tr>
-                        <tr><td>Topología</td><td>CDP, LLDP, BGP, OSPF, EIGRP, FHRP, GRE</td><td>Participa</td><td>LLDP</td><td>BGP</td><td>No</td><td>BFD</td></tr>
-                        <tr><td>Telemetría SNMP</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Por API</td><td>Por API cada 5 min</td></tr>
-                        <tr><td>Gemelo: vista previa</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
-                        <tr><td>Gemelo: aplicar</td><td>SSH con diff</td><td>Con bandera</td><td>Con bandera</td><td>Con bandera, commit confirmed</td><td>Con bandera, sin DELETE</td><td>Con bandera, Config Groups</td></tr>
-                        <tr><td>Red de pruebas CML</td><td>Sí</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Edge C8000V</td></tr>
+                    <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Función</th><th scope="col">Cisco IOS / IOS-XE</th><th scope="col">Cisco IOS XR</th><th scope="col">FortiGate</th><th scope="col">FortiSwitch</th><th scope="col">Junos</th><th scope="col">Meraki</th><th scope="col">Cisco SD-WAN</th></tr></thead><tbody>
+                        <tr><td>Acceso</td><td>SSH</td><td>NETCONF 830 (YANG)</td><td>API REST</td><td>SSH</td><td>NETCONF 830</td><td>Dashboard API</td><td>API del Manager</td></tr>
+                        <tr><td>Discovery</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td>Respaldo</td><td>.cfg</td><td>Running en XML (NETCONF)</td><td>JSON lógico por VDOM</td><td>.cfg</td><td>Snapshot y JSON</td><td>JSON estructurado</td><td>.cfg y JSON</td></tr>
+                        <tr><td>Config Generator</td><td>43 servicios</td><td>7 servicios (YANG)</td><td>16 servicios</td><td>12 servicios</td><td>16 servicios</td><td>Intención sin render (7 servicios)</td><td>Intención sin render (9 servicios)</td></tr>
+                        <tr><td>Compliance</td><td>Todos los tipos</td><td>Por servicio, hoja por hoja, y estado</td><td>Objetos y métricas</td><td>Sí</td><td>Sí</td><td>Carril propio</td><td>Subconjunto de tipos</td></tr>
+                        <tr><td>Topología</td><td>CDP, LLDP, BGP, OSPF, EIGRP, FHRP, GRE</td><td>Enlaces p2p, IS-IS y pseudowires</td><td>Participa</td><td>LLDP</td><td>BGP</td><td>No</td><td>BFD</td></tr>
+                        <tr><td>Telemetría SNMP</td><td>Sí</td><td>Sí, y streaming gRPC</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Por API</td><td>Por API cada 5 min</td></tr>
+                        <tr><td>Gemelo: vista previa</td><td>Sí</td><td>Validate en la candidata</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td><td>Sí</td></tr>
+                        <tr><td>Gemelo: aplicar</td><td>SSH con diff</td><td>Transacción de red, commit confirmado</td><td>Con bandera</td><td>Con bandera</td><td>Con bandera, commit confirmed</td><td>Con bandera, sin DELETE</td><td>Con bandera, Config Groups</td></tr>
+                        <tr><td>Red de pruebas CML</td><td>Sí</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Edge C8000V</td></tr>
                     </tbody></table></div>
                 </section>
 
@@ -135,6 +137,19 @@
                         <li><strong>Vulnerabilidades</strong>: normalización de versión de IOS e IOS-XE para el cruce con NVD, KEV y EPSS.</li>
                     </ul>
                     <p>Credencial: tipo <code>ssh</code>. En equipos virtuales lentos conviene aumentar el timeout de lectura en las opciones de conexión del inventario.</p>
+                </section>
+
+                <section class="doc-section" id="cisco-iosxr">
+                    <h2>Cisco IOS XR</h2>
+                    <p>El núcleo y los PE de una red de proveedor de servicios. Acceso model-driven por NETCONF (puerto 830) con modelos YANG: los <code>Cisco-IOS-XR-um-*</code> para la configuración y los modelos operativos nativos para el estado, sin leer pantallas. El detalle de producto está en <a href="oktavia-sp.html">Oktavia SP</a>.</p>
+                    <ul>
+                        <li><strong>Discovery y respaldo</strong>: por NETCONF; el respaldo es la configuración running en XML.</li>
+                        <li><strong>Config Generator</strong>: siete servicios: <code>xr_hardening</code> (VRF y ACL de gestión, SSH y NETCONF, SNMP, NTP, logging y banner), <code>xr_isis</code> (IS-IS nivel 2 con Segment Routing MPLS, TI-LFA y BFD), <code>xr_bgp</code> (route reflector con VPNv4 y L2VPN EVPN), <code>l3vpn</code>, <code>l2vpn</code> (pseudowires EVPN-VPWS), <code>xr_qos</code> (ancho de banda por contrato) y <code>telemetry_streaming</code>. La intención se declara por servicio de cliente y se reparte a cada PE y CE; la parte del CE (Cisco IOS) sale del mismo servicio.</li>
+                        <li><strong>Compliance</strong>: la configuración YANG deseada de cada servicio contra la running, hoja por hoja, con un resultado por servicio; más pruebas de estado: adyacencias IS-IS, BFD y sesiones BGP del proveedor.</li>
+                        <li><strong>Remediación</strong>: carril de red del Gemelo Digital. Todos los IOS XR entran en una sola transacción: <code>validate</code> en la candidata de cada equipo, commit confirmado en todos, verificación automática (adyacencias IS-IS, sesiones BGP del núcleo y xconnects arriba) y confirmación humana. Si un equipo rechaza el commit o la verificación no pasa, el cambio se cancela en todos. Los CE van por su propio cambio del Gemelo, equipo por equipo.</li>
+                        <li><strong>Topología</strong>: enlaces punto a punto del núcleo, capa IS-IS y pseudowires.</li>
+                        <li><strong>Telemetría</strong>: SNMP de CPU, memoria, sesiones BGP, adyacencias IS-IS y tamaño de la tabla de rutas, y streaming model-driven por gRPC dial-out hacia el colector de Oktavia, con el estado de los xconnects.</li>
+                    </ul>
                 </section>
 
                 <section class="doc-section" id="fortigate">
@@ -198,6 +213,7 @@
                     <h3>Qué recolecta por fabricante</h3>
                     <div class="doc-table-wrap"><table class="doc-table"><thead><tr><th scope="col">Fabricante</th><th scope="col">Qué recolecta</th></tr></thead><tbody>
                         <tr><td>Cisco IOS e IOS-XE (router y switch)</td><td>CPU a 5 segundos, 1 y 5 minutos; memoria; interfaces con contadores de 64 bits; temperatura y sensores; estado BGP</td></tr>
+                        <tr><td>Cisco IOS XR</td><td>CPU y memoria; sesiones BGP; adyacencias IS-IS; tamaño de la tabla de rutas</td></tr>
                         <tr><td>FortiGate</td><td>CPU, memoria, sesiones e interfaces</td></tr>
                         <tr><td>FortiSwitch</td><td>Sistema e interfaces</td></tr>
                         <tr><td>Junos</td><td>CPU y memoria por componente, alarmas e interfaces</td></tr>
@@ -295,7 +311,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=a321189d6c"></script>
+    <script src="../script/oktavia_docs_data.js?v=775650dba1"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

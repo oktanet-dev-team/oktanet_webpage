@@ -6,7 +6,8 @@ Cada página conserva su contenido y lo propio de su menú (Imprimir, PDF,
 English, Cotizar) y recibe lo del portal:
 
 - la marca de la cabecera: el icono y el nombre de Oktavia;
-- el menú común (Inicio · Documentación · Academia · Artículos · Contacto);
+- el menú común (Inicio · Documentación · Academia · Artículos · Oktavia SP ·
+  Contacto); «Oktavia SP» lleva a la presentación comercial (../oktavia-sp.html);
 - la ruta «Documentación de Oktavia › Sección › Documento»;
 - la barra lateral con el buscador y el árbol del catálogo
   (script/oktavia_docs_data.js), con la página actual marcada;
@@ -15,6 +16,10 @@ English, Cotizar) y recibe lo del portal:
 
 También normaliza el menú y la ruta de las páginas propias del portal
 (docs/oktavia-docs*.html). Es idempotente: correrlo dos veces no cambia nada.
+
+Las páginas en inglés (docs/*-en.html, blog/*-en.html) no son parte del portal
+(cada una tiene su menú propio); de ellas sólo se asegura el enlace
+«Oktavia SP» a ../oktavia-sp-en.html, antes de «Contact».
 
 Uso:  python3 tools/portalize.py          (desde la raíz del sitio)
 """
@@ -33,7 +38,7 @@ ENVUELTAS = {
     "curso-oktavia-fundamentos.html": ("Academia", "Oktavia Fundamentos"),
     "oktavia-resumen.html": ("Ficha técnica y resumen", "Resumen ejecutivo"),
     "oktavia.html": ("Ficha técnica y resumen", "Ficha técnica"),
-    "oktavia-sp.html": ("Ficha técnica y resumen", "Oktavia para proveedores de servicios"),
+    "oktavia-sp.html": ("Oktavia SP · Proveedores de servicios", "Documentación de Oktavia SP"),
     "../blog/ia-local-contexto-empresarial.html": ("Artículos", "IA local con el contexto de su empresa"),
     "../blog/seguridad-en-oktavia-y-argos.html": ("Artículos", "Seguridad en Oktavia y Argos"),
     "../blog/red-de-pruebas-cml-y-sd-wan.html": ("Artículos", "La red de pruebas de Oktavia"),
@@ -43,7 +48,8 @@ ENVUELTAS = {
     "../blog/cumplimiento-configuracion-y-estado.html": ("Artículos", "Cumplimiento de configuración y estado"),
     "../blog/inventario-fuente-de-verdad.html": ("Artículos", "Inventario y fuente de verdad"),
 }
-ANCLA_SECCION = {"Academia": "academia", "Ficha técnica y resumen": "producto", "Artículos": "articulos"}
+ANCLA_SECCION = {"Academia": "academia", "Ficha técnica y resumen": "producto", "Artículos": "articulos",
+                 "Oktavia SP · Proveedores de servicios": "sp"}
 
 ICONOS = ('<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:'
           'opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">')
@@ -63,6 +69,7 @@ def _menu(d: str, extras: list[str]) -> str:
         f'<a href="{d}oktavia-docs.html">Documentación</a>',
         f'<a href="{d}oktavia-docs.html#academia">Academia</a>',
         f'<a href="{d}oktavia-docs.html#articulos">Artículos</a>',
+        f'<a href="{raiz}oktavia-sp.html">Oktavia SP</a>',
         f'<a href="{raiz}#contacto">Contacto</a>',
     ]
     cuerpo = "\n".join("                " + x for x in enlaces + extras)
@@ -184,6 +191,25 @@ def portal_propio(archivo: Path) -> bool:
     return False
 
 
+#: Enlace a Oktavia SP en el menú de las páginas en inglés.
+SP_EN = '<a href="../oktavia-sp-en.html">Oktavia SP</a>'
+
+
+def menu_ingles(archivo: Path) -> bool:
+    """Agrega «Oktavia SP» al menú de una página en inglés, antes de «Contact»."""
+    html = archivo.read_text(encoding="utf-8")
+    m = re.search(r'<header class="doc-header[^"]*">.*?(<nav\b[^>]*>.*?</nav>)', html, re.S)
+    if not m or "oktavia-sp-en.html" in m.group(1):
+        return False
+    nav = m.group(1)
+    c = re.search(r'( *)<a href="\.\./#contacto">Contact</a>', nav)
+    if not c:
+        return False
+    nuevo = nav[: c.start()] + c.group(1) + SP_EN + "\n" + nav[c.start():]
+    archivo.write_text(html[: m.start(1)] + nuevo + html[m.end(1):], encoding="utf-8")
+    return True
+
+
 def main() -> int:
     portal = (RAIZ / "docs" / "oktavia-docs.html").read_text(encoding="utf-8")
     cambios = []
@@ -193,6 +219,9 @@ def main() -> int:
     for ruta, (seccion, titulo) in ENVUELTAS.items():
         if envolver(ruta, seccion, titulo, portal):
             cambios.append((RAIZ / "docs" / ruta).resolve().relative_to(RAIZ))
+    for archivo in sorted((RAIZ / "docs").glob("*-en.html")) + sorted((RAIZ / "blog").glob("*-en.html")):
+        if menu_ingles(archivo):
+            cambios.append(archivo.relative_to(RAIZ))
     for c in cambios:
         print(f"actualizado: {c}")
     print(f"{len(cambios)} página(s) cambiadas")
