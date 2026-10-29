@@ -53,6 +53,8 @@ tools/                  Scripts de mantenimiento (no se publican)
   check_copy.py         Revisa que los dos idiomas de la portada calcen
   stamp_assets.py       Sella CSS y JS con el hash de su contenido (anti-caché)
   portalize.py          Mete cursos, ficha, resumen y artículos en el portal (idempotente);
+                        también pone «Oktavia SP» en el menú del portal y en el de las
+                        páginas en inglés (que no son parte del portal);
                         correrlo al agregar una página de esas, y después stamp_assets.py
   check_datos.py        Falla si un artículo lleva direcciones o nombres reales
   build_og.py           Genera la imagen que se ve al compartir el enlace

@@ -127,6 +127,7 @@ window.OKTAVIA_DOCS = (function () {
             keywords: ['fabricantes', 'vendors', 'plataformas'],
             docs: [
                 { id: 'cisco-ios', title: 'Cisco IOS / IOS-XE', summary: 'SSH, 43 servicios con plantilla y remediación CLI con diff previo.', keywords: ['cisco', 'ios', 'iosxe', 'ssh', 'cli', 'remediación'] },
+                { id: 'cisco-iosxr', title: 'Cisco IOS XR', summary: 'NETCONF y YANG por el puerto 830, cumplimiento por servicio hoja por hoja y el núcleo aplicado como una transacción de red con commit confirmado.', keywords: ['cisco', 'ios xr', 'iosxr', 'xr', 'netconf', 'yang', 'carrier', 'sp', 'commit confirmed', 'proveedor de servicios'] },
                 { id: 'fortigate', title: 'FortiGate', summary: 'API REST por VDOM, respaldo lógico en JSON, 16 servicios de intención y aplicación con guardas.', keywords: ['fortinet', 'fortios', 'api', 'vdom', 'token'] },
                 { id: 'fortiswitch', title: 'FortiSwitch', summary: 'SSH, 12 servicios de intención y telemetría SNMP.', keywords: ['fortinet', 'fortiswitchos', 'ssh'] },
                 { id: 'juniper', title: 'Juniper Junos', summary: 'NETCONF por el puerto 830, 16 servicios y aplicación con commit confirmed supervisado.', keywords: ['juniper', 'junos', 'srx', 'netconf', 'commit confirmed', 'rollback'] },
@@ -179,12 +180,24 @@ window.OKTAVIA_DOCS = (function () {
             kind: 'Ficha técnica',
             icon: 'description',
             page: 'oktavia-docs.html#producto',
-            summary: 'Para evaluar la plataforma: el resumen ejecutivo de dos páginas, la ficha técnica completa y Oktavia para proveedores de servicios.',
-            keywords: ['ficha técnica', 'data sheet', 'datasheet', 'resumen ejecutivo', 'pdf', 'licencias', 'evaluar', 'proveedor de servicios', 'carrier'],
+            summary: 'Para evaluar la plataforma: el resumen ejecutivo de dos páginas y la ficha técnica completa.',
+            keywords: ['ficha técnica', 'data sheet', 'datasheet', 'resumen ejecutivo', 'pdf', 'licencias', 'evaluar'],
             docs: [
                 { id: 'resumen-ejecutivo', href: 'oktavia-resumen.html', title: 'Resumen ejecutivo', summary: 'Dos páginas para decidir si Oktavia encaja: el problema que resuelve, para quién, beneficios con métricas de referencia y el modelo de licencias.', keywords: ['resumen', 'beneficios', 'licencias', 'pdf'] },
                 { id: 'ficha-tecnica', href: 'oktavia.html', title: 'Ficha técnica', summary: 'Los módulos con su alcance, las categorías de capacidad, la cobertura y el método de acceso por fabricante, integraciones y requisitos.', keywords: ['data sheet', 'módulos', 'capacidades', 'fabricantes', 'requisitos', 'pdf'] },
-                { id: 'oktavia-sp', href: 'oktavia-sp.html', title: 'Oktavia para proveedores de servicios', summary: 'Carrier / SP: intención por servicio de cliente, núcleo Cisco IOS XR por NETCONF y YANG, L3VPN, pseudowires EVPN-VPWS y QoS contratada, y el núcleo aplicado como una sola transacción de red.', keywords: ['carrier', 'sp', 'service provider', 'proveedor de servicios', 'ios xr', 'iosxr', 'netconf', 'yang', 'l3vpn', 'evpn', 'vpws', 'pseudowire', 'is-is', 'segment routing', 'ti-lfa', 'qos', 'mpls'] }
+            ]
+        },
+        {
+            id: 'sp',
+            title: 'Oktavia SP · Proveedores de servicios',
+            kind: 'Proveedor de servicios',
+            icon: 'cell_tower',
+            page: 'oktavia-docs.html#sp',
+            summary: 'Oktavia para carriers, ISP y operadores MPLS: intención por servicio de cliente, núcleo Cisco IOS XR por NETCONF y YANG, L3VPN, pseudowires EVPN-VPWS y QoS contratada.',
+            keywords: ['oktavia sp', 'sp', 'carrier', 'service provider', 'proveedor de servicios', 'isp', 'mpls', 'ios xr', 'iosxr'],
+            docs: [
+                { id: 'oktavia-sp', href: 'oktavia-sp.html', title: 'Documentación de Oktavia SP', summary: 'Carrier / SP: intención por servicio de cliente, núcleo Cisco IOS XR por NETCONF y YANG, L3VPN, pseudowires EVPN-VPWS y QoS contratada, y el núcleo aplicado como una sola transacción de red.', keywords: ['carrier', 'sp', 'service provider', 'proveedor de servicios', 'ios xr', 'iosxr', 'netconf', 'yang', 'l3vpn', 'evpn', 'vpws', 'pseudowire', 'is-is', 'segment routing', 'ti-lfa', 'qos', 'mpls'] },
+                { id: 'oktavia-sp-presentacion', href: '../oktavia-sp.html', title: 'Presentación de Oktavia SP', summary: 'La página comercial: qué resuelve a un proveedor de servicios, cómo funciona, el catálogo de servicios y cómo pedir una demostración.', keywords: ['presentación', 'demostración', 'demo', 'carrier', 'proveedor de servicios'] }
             ]
         },
         {
