@@ -98,6 +98,9 @@
                 <li><a href="#auditorias">Auditorías</a></li>
                 <li><a href="#compliance">Compliance</a></li>
                 <li><a href="#config-generator">Config Generator</a></li>
+                <li><a href="#consolas-dominio">Consolas por dominio</a></li>
+                <li><a href="#servicios-l2-l3">Servicios de Capa 2 y Capa 3</a></li>
+                <li><a href="#analisis-ruteo">Análisis de ruteo</a></li>
                 <li><a href="#digital-twin">Digital Twin</a></li>
                 <li><a href="#telemetria">Telemetría</a></li>
                 <li><a href="#scheduler">Scheduler</a></li>
@@ -253,6 +256,41 @@
                     <p>Cómo decidir en qué alcance va cada variable: <a href="oktavia-docs-decisiones.html#scopes">Cuándo usar defaults, by_site, by_role, by_platform o by_device</a>. Estructura del archivo: <a href="oktavia-docs-datos.html#service-vars">Service Vars</a>.</p>
                 </section>
 
+                <section class="doc-section" id="consolas-dominio">
+                    <h2>Consolas por dominio</h2>
+                    <p>En <strong>Servicios</strong> cada dominio tiene su consola: Campus, WAN, Seguridad y Gestión, y Transporte y Servicios en un proveedor. El selector de <strong>Alcance</strong> recorta toda la consola a un sitio.</p>
+                    <h3>Pestañas</h3>
+                    <ul>
+                        <li><strong>Resumen</strong>: cumplimiento, equipos y costo del dominio, y los servicios que más fallan.</li>
+                        <li><strong>Intención</strong>: la intención de config en una sola tabla, valor por valor. Un administrador edita el JSON de una declaración, revisa la diferencia y guarda. Los secretos salen enmascarados.</li>
+                        <li><strong>Reglas</strong>: la intención de estado en una sola tabla, con lo que falla primero. Las reglas automáticas salen de la config.</li>
+                        <li><strong>Cumplimiento, Cambios, Flujos y Telemetría</strong>: lo mismo de la plataforma, ya filtrado por dominio.</li>
+                    </ul>
+                    <p>Al elegir un sitio, Intención muestra sólo las declaraciones que ganan en sus equipos, con la misma resolución del Configurador. Guardar no toca la red: el cambio llega por el ciclo. Cómo trabajar con ellas: <a href="guia-intencion.html">Guía de intención para ingenieros de red</a>.</p>
+                </section>
+
+                <section class="doc-section" id="servicios-l2-l3">
+                    <h2>Servicios de Capa 2 y Capa 3</h2>
+                    <p>Dos servicios que se navegan igual: de la red al sitio y al equipo. El mapa muestra los sitios y lo que los une; al elegir un sitio aparecen sus equipos y vecinos, y al elegir un equipo se despliega su detalle.</p>
+                    <h3>Capa 3</h3>
+                    <p>Dibuja las adyacencias OSPF, iBGP, eBGP, IS-IS y EIGRP con su salud. Por equipo muestra su tabla de ruteo, vecinos y políticas de ruteo. Los tableros de toda la red están en <strong>Panel de la red → Ruteo</strong>: sesiones, salud por sitio, ASN, cambios y vecinos en riesgo.</p>
+                    <h3>Capa 2</h3>
+                    <p>Llega hasta donde terminan las VLAN: los switches, sus enlaces y el borde L3. Por sitio lista cada VLAN de punta a punta: en qué switches vive, quién es la raíz de spanning-tree y en qué gateway termina. Por equipo muestra VTP, VLAN, spanning-tree, tablas MAC y ARP, puertos y blindaje.</p>
+                    <p>Refleja la última recolección; no es una lectura en vivo.</p>
+                </section>
+
+                <section class="doc-section" id="analisis-ruteo">
+                    <h2>Análisis de ruteo</h2>
+                    <p>Muestra por dónde va el tráfico. Los flujos salen de las tablas de ruteo reales: desde un sitio, uno por cada red aprendida más la ruta por defecto, con resultado, saltos, protocolos, cifrado y simetría.</p>
+                    <ul>
+                        <li>Al elegir un flujo se dibuja de punta a punta, con ida y regreso en el mismo diagrama. Si son asimétricos, se ve dónde se separan.</li>
+                        <li>Cada tramo BGP dice si es iBGP o eBGP, y el flujo muestra la cadena de sistemas autónomos.</li>
+                        <li>Al elegir un equipo se ve lo que encontró: ACL, políticas de ruteo y etiquetas MPLS.</li>
+                        <li>También se puede trazar entre dos direcciones IP.</li>
+                    </ul>
+                    <p>El camino se calcula de las tablas recolectadas: ningún modelo lo decide. Argos lo interpreta sobre ese mismo informe.</p>
+                </section>
+
                 <section class="doc-section" id="digital-twin">
                     <h2>Digital Twin</h2>
                     <p>El Gemelo Digital es la capa de operación de cambios. No edita la intención (eso es del Configurador): toma la diferencia entre lo deseado y lo observado y la lleva, con control, hasta el equipo.</p>
@@ -390,7 +428,7 @@ jobs:
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=775650dba1"></script>
+    <script src="../script/oktavia_docs_data.js?v=a1a90cba6e"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

@@ -39,6 +39,7 @@ ENVUELTAS = {
     "oktavia-resumen.html": ("Ficha técnica y resumen", "Resumen ejecutivo"),
     "oktavia.html": ("Ficha técnica y resumen", "Ficha técnica"),
     "oktavia-sp.html": ("Oktavia SP · Proveedores de servicios", "Documentación de Oktavia SP"),
+    "guia-intencion.html": ("Guías para ingenieros de red", "Guía de intención para ingenieros de red"),
     "../blog/ia-local-contexto-empresarial.html": ("Artículos", "IA local con el contexto de su empresa"),
     "../blog/seguridad-en-oktavia-y-argos.html": ("Artículos", "Seguridad en Oktavia y Argos"),
     "../blog/red-de-pruebas-cml-y-sd-wan.html": ("Artículos", "La red de pruebas de Oktavia"),
@@ -49,7 +50,8 @@ ENVUELTAS = {
     "../blog/inventario-fuente-de-verdad.html": ("Artículos", "Inventario y fuente de verdad"),
 }
 ANCLA_SECCION = {"Academia": "academia", "Ficha técnica y resumen": "producto", "Artículos": "articulos",
-                 "Oktavia SP · Proveedores de servicios": "sp"}
+                 "Oktavia SP · Proveedores de servicios": "sp",
+                 "Guías para ingenieros de red": "ingenieros"}
 
 ICONOS = ('<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:'
           'opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">')

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Guía de intención para ingenieros de red | Oktanet</title>
+    <meta name="description" content="Cómo definir y editar la intención de una red en Oktavia: alcances, consolas por dominio, JSON, Configurador y ciclo de cambio. Para ingenieros de red y socios.">
+    <link rel="canonical" href="https://oktanet.io/docs/guia-intencion.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-intencion.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-intencion-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Guía de intención para ingenieros de red">
+    <meta property="og:description" content="Cómo definir y editar la intención de una red en Oktavia: alcances, consolas por dominio, JSON, Configurador y ciclo de cambio. Para ingenieros de red y socios.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/guia-intencion.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8e9a9c17d2">
+</head>
+<body class="docs-portal" data-docs-page="guia-intencion.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="../">Inicio</a>
+                <a href="oktavia-docs.html">Documentación</a>
+                <a href="oktavia-docs.html#academia">Academia</a>
+                <a href="oktavia-docs.html#articulos">Artículos</a>
+                <a href="../oktavia-sp.html">Oktavia SP</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./guia-intencion-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn doc-btn-solid" href="guia-intencion-es.pdf" download>Descargar PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><a href="oktavia-docs.html#ingenieros">Guías para ingenieros de red</a></li>
+                <li><span aria-current="page">Guía de intención para ingenieros de red</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Guía para ingenieros de red</p>
+            <h1>Guía de intención para ingenieros de red</h1>
+            <p class="doc-lede">Cómo definir, leer y editar la intención de tu red en Oktavia, en cualquier dominio: desde las consolas de Servicios o desde el Configurador, entendiendo los alcances y sin saltarte ningún control.</p>
+            <ul class="doc-meta">
+                <li>Desarrollado por Oktanet</li>
+                <li>México · 2026</li>
+                <li>Documento público</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Compartir</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contenido">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#para-quien">Para quién es esta guía</a></li>
+                <li><a href="#la-idea">La idea: declarar, no teclear</a></li>
+                <li><a href="#donde-se-trabaja">Dónde se trabaja</a></li>
+                <li><a href="#dominios">Los dominios</a></li>
+                <li><a href="#alcances">Alcances: dónde va cada valor</a></li>
+                <li><a href="#consola">Editar desde la consola del dominio</a></li>
+                <li><a href="#json">El JSON que estás editando</a></li>
+                <li><a href="#configurador">Cuándo usar el Configurador</a></li>
+                <li><a href="#estado">La intención de estado</a></li>
+                <li><a href="#llevarlo-a-la-red">Llevar el cambio a la red</a></li>
+                <li><a href="#recetas">Recetas por dominio</a></li>
+                <li><a href="#buenas-practicas">Buenas prácticas</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="para-quien">
+    <h2>1. Para quién es esta guía</h2>
+    <p>Para ingenieros de red y de automatización, de cliente o de socio, que diseñan y mantienen la intención de una red en Oktavia. Sirve para cualquier dominio: Campus, WAN, Seguridad, Gestión y, en proveedores de servicios, Transporte y Servicios de cliente.</p>
+    <p>Al terminar sabrás en qué alcance va cada valor, cómo leer y editar la intención desde la consola de tu dominio, cuándo usar el Configurador y cómo llevar un cambio a la red sin saltarte ningún control.</p>
+    <p>No hace falta programar. Sí ayuda saber leer JSON, y aquí se explica lo necesario.</p>
+</section>
+
+<section class="doc-section" id="la-idea">
+    <h2>2. La idea: declarar, no teclear</h2>
+    <p>En Oktavia no se escriben comandos por equipo: se declara cómo debe ser la red. Esa declaración es la <strong>intención</strong> y es la fuente de verdad. Tiene dos caras:</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th></th><th>Intención de config</th><th>Intención de estado</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Responde</strong></td><td>Cómo debe estar configurado.</td><td>Cómo debe estar funcionando.</td></tr>
+            <tr><td><strong>Ejemplo</strong></td><td>Estos servidores NTP, estas VLAN, estos vecinos BGP.</td><td>Vecinos arriba, túneles cifrados, VLAN presentes.</td></tr>
+            <tr><td><strong>Se compara con</strong></td><td>La configuración del equipo.</td><td>Lo que el equipo reporta.</td></tr>
+            <tr><td><strong>En la consola</strong></td><td>Pestaña Intención.</td><td>Pestaña Reglas.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Editar la intención <strong>no toca la red</strong>. Guardar sólo cambia lo que la red debería ser; por eso, tras guardar, la auditoría mostrará como falla lo que todavía no llega a los equipos. El cambio viaja por un ciclo con aprobación humana (<a href="#llevarlo-a-la-red">sección 10</a>).</p>
+</section>
+
+<section class="doc-section" id="donde-se-trabaja">
+    <h2>3. Dónde se trabaja</h2>
+    <p>Es la misma intención vista desde cuatro lugares. Lo que guardas en uno aparece en los demás.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Lugar</th><th>Úsalo para</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Consola del dominio</strong><br><small>Servicios → Campus, WAN…</small></td><td>El trabajo diario: ver la intención de tu dominio en una tabla, filtrarla por sitio y editar valores. Es el punto de partida recomendado.</td></tr>
+            <tr><td><strong>Configurador</strong><br><small>Automatización → Generador de configuración</small></td><td>Declarar un servicio nuevo o en un alcance nuevo, formularios guiados por campo, vista previa de la configuración de un equipo, importación y exportación.</td></tr>
+            <tr><td><strong>Argos</strong><br><small>El asistente</small></td><td>Proponer intención con lenguaje natural, traerla desde el respaldo de un equipo y cerrar el ciclo.</td></tr>
+            <tr><td><strong>Propuesta JSON</strong></td><td>Cambios grandes preparados fuera de la plataforma: se suben al Configurador, se revisan como delta y se aplican.</td></tr>
+        </tbody>
+    </table></div>
+</section>
+
+<section class="doc-section" id="dominios">
+    <h2>4. Los dominios</h2>
+    <p>Cada servicio del catálogo pertenece a un dominio, y cada dominio tiene su consola con las mismas pestañas: Resumen, Intención, Reglas, Cumplimiento, Cambios, Flujos y Telemetría. Un ingeniero de WAN trabaja en WAN sin ver lo demás, y el Alcance de arriba recorta todo a un sitio.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Dominio</th><th>Qué cubre</th><th>Servicios típicos</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Campus</strong></td><td>La red del sitio.</td><td>VLAN, puertos, spanning-tree, gateways, DHCP, ruteo interno, inalámbrico.</td></tr>
+            <tr><td><strong>WAN</strong></td><td>Lo que une sitios.</td><td>BGP y sus políticas, túneles FlexVPN y GRE, SD-WAN, rutas de salida, NAT.</td></tr>
+            <tr><td><strong>Seguridad</strong></td><td>Quién entra y qué pasa.</td><td>Firewall, ACL, zonas, administradores y blindaje del acceso.</td></tr>
+            <tr><td><strong>Gestión</strong></td><td>La base del equipo.</td><td>NTP, SNMP, syslog, DNS, SSH, versión y modelo.</td></tr>
+            <tr><td><strong>Transporte</strong><br><small>Proveedores de servicios</small></td><td>El núcleo.</td><td>IS-IS, Segment Routing, TI-LFA, BFD.</td></tr>
+            <tr><td><strong>Servicios</strong><br><small>Proveedores de servicios</small></td><td>Lo que compra cada cliente.</td><td>VPNv4, L3VPN, pseudowires, QoS.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Centro de datos y nube se sumarán como dominios con la misma forma de trabajo: lo que aprendas aquí aplica igual.</p>
+</section>
+
+<section class="doc-section" id="alcances">
+    <h2>5. Alcances: dónde va cada valor</h2>
+    <p>La intención se declara una vez, en el alcance más general posible, y los equipos la heredan. Es la decisión de diseño más importante: un buen alcance evita cientos de excepciones.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>#</th><th>Alcance</th><th>Aplica a</th><th>Úsalo para</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td><code>defaults</code></td><td>Toda la organización.</td><td>La línea base: dominio, NTP, syslog, banner.</td></tr>
+            <tr><td>2</td><td><code>by_site</code></td><td>Un sitio.</td><td>Lo propio de un sitio.</td></tr>
+            <tr><td>3</td><td><code>by_site_type</code></td><td>Un tipo de sitio.</td><td>El diseño común de oficinas o sucursales.</td></tr>
+            <tr><td>4</td><td><code>by_role</code></td><td>Una función.</td><td>El estándar de <code>wan_router</code>, <code>lan_switch</code>, <code>pe</code>…</td></tr>
+            <tr><td>5</td><td><code>by_platform</code></td><td>Un fabricante o sistema.</td><td>Lo que cambia por plataforma.</td></tr>
+            <tr><td>6</td><td><code>by_model</code></td><td>Un modelo.</td><td>Versiones de software aprobadas.</td></tr>
+            <tr><td>7</td><td><code>by_tag</code></td><td>Equipos con una etiqueta.</td><td>Grupos que no siguen sitio ni rol.</td></tr>
+            <tr><td>8</td><td><code>by_filter</code></td><td>Una combinación.</td><td>Por ejemplo, un rol dentro de un sitio.</td></tr>
+            <tr><td>9</td><td><code>by_device</code></td><td>Un equipo.</td><td>IP, interfaces, vecinos y excepciones reales.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Las capas se aplican en ese orden y <strong>la última gana</strong>. Así funciona la mezcla:</p>
+    <ul>
+        <li><strong>Los objetos se mezclan campo por campo.</strong> Lo que un alcance no menciona sigue llegando de arriba.</li>
+        <li><strong>Las listas se reemplazan completas.</strong> Nunca se suman.</li>
+        <li><strong><code>"enabled": false</code></strong> apaga el servicio para los equipos de ese alcance.</li>
+    </ul>
+<pre><code>defaults              ntp.servers = ["192.0.2.1", "192.0.2.2"]
+by_role / wan_router  ntp.servers = ["198.51.100.9"]
+
+wan_router  →  ["198.51.100.9"]
+lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
+    <p>El router recibe un servidor, no tres: su lista reemplazó a la de arriba.</p>
+    <div class="doc-callout"><strong>Dos errores clásicos.</strong> Primero, las listas: si los routers necesitan los dos servidores comunes más uno propio, su lista lleva los tres. Segundo, el orden: <code>by_site_type</code> va después de <code>by_site</code>, así que si ambos declaran un campo gana el tipo. Para una excepción de un sitio usa <code>by_filter</code> o <code>by_device</code>.</div>
+</section>
+
+<section class="doc-section" id="consola">
+    <h2>6. Editar desde la consola del dominio</h2>
+    <p>Es la forma más directa de ver y cambiar tu intención. Abre <strong>Servicios</strong>, elige el dominio y entra a <strong>Intención</strong>.</p>
+    <h3>Leer la tabla</h3>
+    <p>Hay una fila por valor, agrupada por declaración: <strong>Servicio</strong>, <strong>Alcance</strong>, <strong>Parámetro</strong> y <strong>Valor</strong>. La etiqueta del alcance dice a cuántos equipos les gana:</p>
+    <ul>
+        <li><strong>Gana en N equipos</strong>: esa declaración es la que aplican.</li>
+        <li><strong>Sin efecto</strong>: un alcance más específico le gana en todos sus equipos. Conviene revisarla.</li>
+        <li><strong>Deshabilitado</strong>: tiene <code>enabled: false</code>.</li>
+    </ul>
+    <p>Con el <strong>Alcance</strong> de arriba eliges un sitio y la tabla muestra sólo lo que aplica a sus equipos, cada valor desde la declaración que les gana, sin importar en qué capa esté. Es la mejor forma de responder «¿qué tiene realmente este sitio?». El buscador encuentra servicios, parámetros y valores.</p>
+    <h3>Cambiar un valor</h3>
+    <ol class="doc-steps">
+        <li>Busca el servicio y pulsa <strong>Editar valores</strong> en la declaración que quieres cambiar. Si eliges mal el alcance, cambiarás a más equipos o a menos de los que crees.</li>
+        <li>Edita el JSON que se abre.</li>
+        <li>Pulsa <strong>Revisar el cambio</strong>. Oktavia valida y muestra cada valor antes y después, y cuántos equipos quedan afectados.</li>
+        <li>Si es correcto, pulsa <strong>Guardar en la intención</strong>. Las reglas de cumplimiento y la configuración esperada se actualizan.</li>
+        <li>Usa el botón que aparece para llevarlo a la red con Argos.</li>
+    </ol>
+    <div class="doc-callout"><strong>Qué necesitas saber.</strong> Editar requiere ser administrador de la organización. Desde la consola se cambian declaraciones que ya existen: para declarar un servicio nuevo o en otro alcance, usa <strong>Declarar en otro alcance</strong>, que abre el Configurador. Si alguien guardó mientras editabas, Oktavia rechaza el cambio y pide recargar, para que no pises su trabajo.</div>
+</section>
+
+<section class="doc-section" id="json">
+    <h2>7. El JSON que estás editando</h2>
+    <p>Cada declaración es un objeto con los campos del servicio. Este es un <code>ntp</code>:</p>
+<pre><code>{
+  "servers": ["192.0.2.1", "192.0.2.2"],
+  "source_interface": "Loopback0",
+  "vrf": "Mgmt"
+}</code></pre>
+    <p>Y una lista de objetos, como <code>vlan_database</code>, lleva un elemento por VLAN. La tabla muestra cada uno en su fila:</p>
+<pre><code>{
+  "entries": [
+    { "id": 100, "name": "data" },
+    { "id": 200, "name": "voice" }
+  ]
+}</code></pre>
+    <p>Reglas al editar:</p>
+    <ul>
+        <li><strong>Escribe sólo lo que este alcance define.</strong> Lo demás se hereda. Copiar valores heredados los congela aquí, y el estándar deja de llegar.</li>
+        <li><strong>Agregar a una lista es reescribirla:</strong> pon los elementos existentes y el nuevo.</li>
+        <li><strong>Para volver a heredar</strong>, quita la declaración desde el Configurador. Si quieres que un equipo no tenga algo heredado, apaga el servicio con <code>"enabled": false</code> o declara el valor que sí debe tener.</li>
+    </ul>
+    <h3>Secretos</h3>
+    <p>Las claves nunca se ven ni se escriben en claro. En pantalla aparecen como <code>••••</code>; déjalas así y Oktavia conserva el valor guardado. Para una clave nueva, guárdala en la bóveda de credenciales y usa su referencia:</p>
+<pre><code>{ "address": "203.0.113.2", "remote_as": 64501, "password": "&lt;&lt;vault:bgp&gt;&gt;" }</code></pre>
+    <p>Si escribes un secreto en claro, Oktavia rechaza el guardado y te pide la referencia.</p>
+</section>
+
+<section class="doc-section" id="configurador">
+    <h2>8. Cuándo usar el Configurador</h2>
+    <p>Abre el Configurador cuando vayas a:</p>
+    <ul>
+        <li><strong>Declarar un servicio por primera vez</strong> o llevarlo a otro alcance. Los formularios del catálogo guían cada campo.</li>
+        <li><strong>Revisar dónde está declarado algo</strong> en todos los alcances, con su estado efectivo o sombreado.</li>
+        <li><strong>Previsualizar</strong> las líneas que un equipo recibiría.</li>
+        <li><strong>Importar o exportar</strong>: propuestas JSON, CSV y la intención completa.</li>
+        <li><strong>Ordenar</strong>: la Estandarización sube a un alcance común lo que está repetido en muchos equipos, y separa lo que sólo ordena de lo que cambia equipos.</li>
+    </ul>
+    <p>Al guardar, escribe sólo los campos que tocaste. Y si vas a tapar listas heredadas, te avisa cuáles antes de hacerlo: léelo.</p>
+    <h3>Traer una red que ya existe</h3>
+    <p>No hace falta empezar en blanco. Argos compara lo declarado con lo que tienen los equipos y lleva a la intención lo que está configurado pero sin declarar, leyendo sus respaldos. Queda como propuesta para revisar. Ojo: importar no es aprobar. Si un equipo tiene un error y lo importas, se vuelve intención.</p>
+</section>
+
+<section class="doc-section" id="estado">
+    <h2>9. La intención de estado</h2>
+    <p>La pestaña <strong>Reglas</strong> de cada consola muestra cómo debe estar funcionando la red, también en una tabla: regla, resultado, equipo, parámetro y valor esperado, con lo que falla primero. Al elegir un sitio verás sus equipos y sus resultados.</p>
+    <ul>
+        <li><strong>Automática de la config</strong>: Oktavia la deriva de tu intención. Si declaras un túnel, la regla exige que esté arriba. No se edita: cambia al editar la config.</li>
+        <li><strong>Manual</strong>: la defines tú en Reglas de cumplimiento, por ejemplo un umbral.</li>
+        <li><strong>Fijada a mano</strong>: una automática que alguien fijó; ya no sigue a la config.</li>
+    </ul>
+    <p>Las reglas de configuración, una por servicio declarado, están en el plegable de abajo. Comparan la configuración del equipo con tu intención.</p>
+</section>
+
+<section class="doc-section" id="llevarlo-a-la-red">
+    <h2>10. Llevar el cambio a la red</h2>
+    <p>Después de guardar, la consola ofrece la frase de Argos para cerrar el ciclo. Todo cambio sigue el mismo camino:</p>
+    <ol class="doc-steps">
+        <li><strong>Auditar.</strong> Oktavia compara la intención con los equipos y encuentra lo que falta.</li>
+        <li><strong>Proponer.</strong> Cada diferencia se vuelve un cambio con ticket en el Gemelo digital, con su diferencia y su rollback.</li>
+        <li><strong>Revisar y aprobar.</strong> Una persona lo aprueba; se puede probar antes sin aplicar.</li>
+        <li><strong>Aplicar y verificar.</strong> Una nueva auditoría confirma que el equipo quedó como la intención.</li>
+    </ol>
+    <p>En un núcleo IOS XR el cambio es una sola transacción de red con <em>commit confirmed</em>: si no confirmas, los equipos regresan solos.</p>
+</section>
+
+<section class="doc-section" id="recetas">
+    <h2>11. Recetas por dominio</h2>
+    <h3>Gestión · Cambiar los servidores NTP de toda la red</h3>
+    <ol class="doc-steps">
+        <li>En Gestión → Intención, busca NTP. Sin elegir sitio, verás todas sus declaraciones.</li>
+        <li>Edita la de <code>defaults</code> con la lista completa de servidores.</li>
+        <li>Si aparecen declaraciones en otros alcances, decide con quien corresponda si son excepciones reales. Las que no, quítalas en el Configurador para que hereden.</li>
+    </ol>
+    <h3>Campus · Agregar una VLAN a un sitio</h3>
+    <ol class="doc-steps">
+        <li>En Campus → Intención, elige el sitio y busca VLAN.</li>
+        <li>Edita la declaración que gana en sus switches y agrega el elemento a <code>entries</code>, conservando los existentes.</li>
+        <li>Si la VLAN debe cruzar enlaces entre switches, revisa también sus trunks.</li>
+        <li>Después comprueba en Servicios de Capa 2 en qué switches vive y en qué gateway termina.</li>
+    </ol>
+    <h3>WAN · Agregar un vecino BGP</h3>
+    <ol class="doc-steps">
+        <li>En WAN → Intención, elige el sitio y busca BGP. Los vecinos casi siempre viven en <code>by_device</code>.</li>
+        <li>Agrega el vecino a la lista, con su clave como referencia a la bóveda.</li>
+        <li>Revisa si hacen falta prefix-lists o route-maps.</li>
+        <li>Al cerrar el ciclo, comprueba la adyacencia en Servicios de Capa 3 y el camino en Análisis de ruteo.</li>
+    </ol>
+    <h3>Seguridad · Ajustar una ACL</h3>
+    <ol class="doc-steps">
+        <li>En Seguridad → Intención, busca la ACL. Si está en un alcance común, cambiarla afecta a todos los equipos que muestra la etiqueta.</li>
+        <li>Para un solo equipo, no toques la común: declárala en su <code>by_device</code> con la lista completa.</li>
+    </ol>
+    <h3>Servicios (proveedor) · Dar ancho de banda a un cliente</h3>
+    <ol class="doc-steps">
+        <li>En Servicios → Intención, edita <code>l3vpn</code> o <code>l2vpn</code> y agrega <code>bandwidth_mbps</code> al sitio o circuito del cliente.</li>
+        <li>Con el servicio <code>xr_qos</code> declarado en el rol <code>pe</code>, Oktavia deriva la política.</li>
+        <li>Lleva el cambio al núcleo como transacción de red y revisa el servicio en Servicios de cliente.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="buenas-practicas">
+    <h2>12. Buenas prácticas</h2>
+    <ul>
+        <li><strong>Empieza por lo más general.</strong> Baja de alcance sólo cuando haya una razón.</li>
+        <li><strong><code>by_device</code> es para lo que es del equipo:</strong> IP, interfaces, vecinos y excepciones acordadas.</li>
+        <li><strong>Diseña por tipo de sitio</strong> para que los sitios nuevos nazcan iguales.</li>
+        <li><strong>Lee «a cuántos equipos»</strong> antes de guardar. Si el número te sorprende, no guardes.</li>
+        <li><strong>Revisa lo que dice «Sin efecto».</strong> Una declaración que no gana en ningún equipo confunde al siguiente ingeniero.</li>
+        <li><strong>Nada de secretos en claro.</strong> Todo por la bóveda.</li>
+        <li><strong>Estandariza antes de endurecer.</strong> Si el blindaje se hace con todo en <code>by_device</code>, el estándar del rol nunca existe.</li>
+        <li><strong>Verifica con cumplimiento, no con la memoria.</strong> Un cambio termina cuando la auditoría lo confirma.</li>
+    </ul>
+    <p>Para profundizar: <a href="oktavia-docs-decisiones.html#scopes">cuándo usar cada alcance</a>, la <a href="oktavia-docs-datos.html#service-vars">referencia de Service Vars</a> y <a href="oktavia-docs-operacion.html#consolas-dominio">las consolas por dominio</a>.</p>
+</section>
+
+
+        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p>
+                Para una demostración sobre su entorno, escríbanos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Documento público, sin información confidencial de clientes.</p>
+        </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+    <script src="../script/oktavia_docs_data.js?v=a1a90cba6e"></script>
+    <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
+</body>
+</html>
