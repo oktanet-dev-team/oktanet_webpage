@@ -57,6 +57,18 @@ DOCUMENTOS = {
         "pie": "Oktavia · Executive summary · Oktanet",
         "de": "of",
     },
+    "intencion-es": {
+        "pagina": "docs/guia-intencion.html",
+        "salida": "docs/guia-intencion-es.pdf",
+        "pie": "Oktavia · Guía de intención · Oktanet",
+        "de": "de",
+    },
+    "intencion-en": {
+        "pagina": "docs/guia-intencion-en.html",
+        "salida": "docs/guia-intencion-en.pdf",
+        "pie": "Oktavia · Intent guide · Oktanet",
+        "de": "of",
+    },
     # Los articulos del blog salen en PDF con la misma maquinaria: asi un
     # comercial puede mandar el articulo como adjunto sin depender de que el
     # cliente abra un enlace.

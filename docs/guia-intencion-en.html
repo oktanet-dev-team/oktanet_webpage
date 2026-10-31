@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Intent guide for network engineers | Oktanet</title>
+    <meta name="description" content="How to define and edit network intent in Oktavia: scopes, domain consoles, JSON, the Configurator and the change cycle. For network engineers and partners.">
+    <link rel="canonical" href="https://oktanet.io/docs/guia-intencion-en.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-intencion.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-intencion-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Intent guide for network engineers">
+    <meta property="og:description" content="How to define and edit network intent in Oktavia: scopes, domain consoles, JSON, the Configurator and the change cycle. For network engineers and partners.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/guia-intencion-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:alt" content="Oktavia, the Oktanet network automation platform">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Oktavia logo" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <nav aria-label="Document">
+                <a href="./index-en.html">Documentation</a>
+                <a href="./oktavia-en.html">Technical sheet</a>
+                <a href="../oktavia-sp-en.html">Oktavia SP</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./guia-intencion.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn doc-btn-solid" href="guia-intencion-en.pdf" download>Download PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Guide for network engineers</p>
+            <h1>Intent guide for network engineers</h1>
+            <p class="doc-lede">How to define, read and edit your network intent in Oktavia, in any domain: from the Services consoles or the Configurator, understanding scopes and without skipping any control.</p>
+            <ul class="doc-meta">
+                <li>Built by Oktanet</li>
+                <li>Mexico · 2026</li>
+                <li>Public document</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Share</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#para-quien">Who this guide is for</a></li>
+                <li><a href="#la-idea">The idea: declare, don't type</a></li>
+                <li><a href="#donde-se-trabaja">Where you work</a></li>
+                <li><a href="#dominios">The domains</a></li>
+                <li><a href="#alcances">Scopes: where each value goes</a></li>
+                <li><a href="#consola">Editing from the domain console</a></li>
+                <li><a href="#json">The JSON you are editing</a></li>
+                <li><a href="#configurador">When to use the Configurator</a></li>
+                <li><a href="#estado">State intent</a></li>
+                <li><a href="#llevarlo-a-la-red">Taking the change to the network</a></li>
+                <li><a href="#recetas">Recipes by domain</a></li>
+                <li><a href="#buenas-practicas">Good practices</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="para-quien">
+    <h2>1. Who this guide is for</h2>
+    <p>For network and automation engineers, at customers or partners, who design and maintain a network's intent in Oktavia. It applies to any domain: Campus, WAN, Security, Management and, at service providers, Transport and Customer Services.</p>
+    <p>By the end you will know which scope each value belongs in, how to read and edit intent from your domain console, when to use the Configurator, and how to take a change to the network without skipping any control.</p>
+    <p>You don't need to program. Being able to read JSON helps, and this guide covers what you need.</p>
+</section>
+
+<section class="doc-section" id="la-idea">
+    <h2>2. The idea: declare, don't type</h2>
+    <p>In Oktavia you don't write commands per device: you declare how the network should be. That declaration is the <strong>intent</strong>, and it is the source of truth. It has two sides:</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th></th><th>Config intent</th><th>State intent</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Answers</strong></td><td>How it should be configured.</td><td>How it should be running.</td></tr>
+            <tr><td><strong>Example</strong></td><td>These NTP servers, these VLANs, these BGP neighbors.</td><td>Neighbors up, tunnels encrypted, VLANs present.</td></tr>
+            <tr><td><strong>Compared with</strong></td><td>The device configuration.</td><td>What the device reports.</td></tr>
+            <tr><td><strong>In the console</strong></td><td>Intent tab.</td><td>Rules tab.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Editing intent <strong>does not touch the network</strong>. Saving only changes what the network should be, so after saving, an audit will show as failures whatever hasn't reached the devices yet. The change travels through a cycle with human approval (<a href="#llevarlo-a-la-red">section 10</a>).</p>
+</section>
+
+<section class="doc-section" id="donde-se-trabaja">
+    <h2>3. Where you work</h2>
+    <p>It is the same intent seen from four places. What you save in one appears in the others.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Place</th><th>Use it for</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Domain console</strong><br><small>Services → Campus, WAN…</small></td><td>Daily work: see your domain's intent in one table, filter it by site and edit values. This is the recommended starting point.</td></tr>
+            <tr><td><strong>Configurator</strong><br><small>Automation → Configuration generator</small></td><td>Declaring a new service or a new scope, guided field-by-field forms, previewing a device's configuration, import and export.</td></tr>
+            <tr><td><strong>Argos</strong><br><small>The assistant</small></td><td>Proposing intent in natural language, bringing it in from a device backup, and closing the cycle.</td></tr>
+            <tr><td><strong>JSON proposal</strong></td><td>Large changes prepared outside the platform: upload to the Configurator, review as a delta and apply.</td></tr>
+        </tbody>
+    </table></div>
+</section>
+
+<section class="doc-section" id="dominios">
+    <h2>4. The domains</h2>
+    <p>Every catalog service belongs to a domain, and each domain has a console with the same tabs: Summary, Intent, Rules, Compliance, Changes, Workflows and Telemetry. A WAN engineer works in WAN without seeing the rest, and the Scope at the top narrows everything to one site.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Domain</th><th>What it covers</th><th>Typical services</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Campus</strong></td><td>The site network.</td><td>VLANs, ports, spanning tree, gateways, DHCP, internal routing, wireless.</td></tr>
+            <tr><td><strong>WAN</strong></td><td>What connects sites.</td><td>BGP and its policies, FlexVPN and GRE tunnels, SD-WAN, exit routes, NAT.</td></tr>
+            <tr><td><strong>Security</strong></td><td>Who gets in and what passes.</td><td>Firewall, ACLs, zones, administrators and access hardening.</td></tr>
+            <tr><td><strong>Management</strong></td><td>The device baseline.</td><td>NTP, SNMP, syslog, DNS, SSH, version and model.</td></tr>
+            <tr><td><strong>Transport</strong><br><small>Service providers</small></td><td>The core.</td><td>IS-IS, Segment Routing, TI-LFA, BFD.</td></tr>
+            <tr><td><strong>Services</strong><br><small>Service providers</small></td><td>What each customer buys.</td><td>VPNv4, L3VPN, pseudowires, QoS.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Data center and cloud will join as domains with the same way of working: what you learn here applies just the same.</p>
+</section>
+
+<section class="doc-section" id="alcances">
+    <h2>5. Scopes: where each value goes</h2>
+    <p>Intent is declared once, at the most general scope possible, and devices inherit it. This is the most important design decision: a good scope avoids hundreds of exceptions.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>#</th><th>Scope</th><th>Applies to</th><th>Use it for</th></tr></thead>
+        <tbody>
+            <tr><td>1</td><td><code>defaults</code></td><td>The whole organization.</td><td>The baseline: domain, NTP, syslog, banner.</td></tr>
+            <tr><td>2</td><td><code>by_site</code></td><td>One site.</td><td>What is specific to a site.</td></tr>
+            <tr><td>3</td><td><code>by_site_type</code></td><td>A type of site.</td><td>The common design of offices or branches.</td></tr>
+            <tr><td>4</td><td><code>by_role</code></td><td>A function.</td><td>The standard for <code>wan_router</code>, <code>lan_switch</code>, <code>pe</code>…</td></tr>
+            <tr><td>5</td><td><code>by_platform</code></td><td>A vendor or OS.</td><td>What changes by platform.</td></tr>
+            <tr><td>6</td><td><code>by_model</code></td><td>A model.</td><td>Approved software versions.</td></tr>
+            <tr><td>7</td><td><code>by_tag</code></td><td>Devices with a tag.</td><td>Groups that don't follow site or role.</td></tr>
+            <tr><td>8</td><td><code>by_filter</code></td><td>A combination.</td><td>For example, a role within a site.</td></tr>
+            <tr><td>9</td><td><code>by_device</code></td><td>One device.</td><td>IPs, interfaces, neighbors and real exceptions.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Layers apply in that order and <strong>the last one wins</strong>. This is how merging works:</p>
+    <ul>
+        <li><strong>Objects merge field by field.</strong> What a scope doesn't mention keeps arriving from above.</li>
+        <li><strong>Lists are replaced whole.</strong> They never add up.</li>
+        <li><strong><code>"enabled": false</code></strong> turns the service off for the devices in that scope.</li>
+    </ul>
+<pre><code>defaults              ntp.servers = ["192.0.2.1", "192.0.2.2"]
+by_role / wan_router  ntp.servers = ["198.51.100.9"]
+
+wan_router  →  ["198.51.100.9"]
+lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
+    <p>The router receives one server, not three: its list replaced the one above.</p>
+    <div class="doc-callout"><strong>Two classic mistakes.</strong> First, lists: if routers need the two common servers plus their own, their list carries all three. Second, order: <code>by_site_type</code> comes after <code>by_site</code>, so if both declare a field the type wins. For a one-site exception use <code>by_filter</code> or <code>by_device</code>.</div>
+</section>
+
+<section class="doc-section" id="consola">
+    <h2>6. Editing from the domain console</h2>
+    <p>This is the most direct way to see and change your intent. Open <strong>Services</strong>, pick the domain and go to <strong>Intent</strong>.</p>
+    <h3>Reading the table</h3>
+    <p>There is one row per value, grouped by declaration: <strong>Service</strong>, <strong>Scope</strong>, <strong>Parameter</strong> and <strong>Value</strong>. The scope label says how many devices it wins on:</p>
+    <ul>
+        <li><strong>Wins on N devices</strong>: this is the declaration that applies to them.</li>
+        <li><strong>No effect</strong>: a more specific scope beats it on all its devices. Worth reviewing.</li>
+        <li><strong>Disabled</strong>: it has <code>enabled: false</code>.</li>
+    </ul>
+    <p>With the <strong>Scope</strong> at the top you pick a site and the table shows only what applies to its devices, each value from the declaration that wins for them, whichever layer it is in. It is the best way to answer "what does this site really have?". The search box finds services, parameters and values.</p>
+    <h3>Changing a value</h3>
+    <ol class="doc-steps">
+        <li>Find the service and click <strong>Edit values</strong> on the declaration you want to change. Pick the wrong scope and you will change more or fewer devices than you think.</li>
+        <li>Edit the JSON that opens.</li>
+        <li>Click <strong>Review the change</strong>. Oktavia validates it and shows each value before and after, and how many devices are affected.</li>
+        <li>If it is right, click <strong>Save to the intent</strong>. Compliance rules and the expected configuration are updated.</li>
+        <li>Use the button that appears to take it to the network with Argos.</li>
+    </ol>
+    <div class="doc-callout"><strong>What you need to know.</strong> Editing requires being an organization administrator. The console changes declarations that already exist: to declare a new service or use another scope, click <strong>Declare in another scope</strong>, which opens the Configurator. If someone saved while you were editing, Oktavia rejects the change and asks you to reload, so you don't overwrite their work.</div>
+</section>
+
+<section class="doc-section" id="json">
+    <h2>7. The JSON you are editing</h2>
+    <p>Each declaration is an object with the service's fields. This is an <code>ntp</code>:</p>
+<pre><code>{
+  "servers": ["192.0.2.1", "192.0.2.2"],
+  "source_interface": "Loopback0",
+  "vrf": "Mgmt"
+}</code></pre>
+    <p>A list of objects, such as <code>vlan_database</code>, has one element per VLAN. The table shows each in its own row:</p>
+<pre><code>{
+  "entries": [
+    { "id": 100, "name": "data" },
+    { "id": 200, "name": "voice" }
+  ]
+}</code></pre>
+    <p>Rules when editing:</p>
+    <ul>
+        <li><strong>Write only what this scope defines.</strong> The rest is inherited. Copying inherited values freezes them here, and the standard stops arriving.</li>
+        <li><strong>Adding to a list means rewriting it:</strong> include the existing elements and the new one.</li>
+        <li><strong>To go back to inheriting</strong>, remove the declaration from the Configurator. If a device must not have something inherited, turn the service off with <code>"enabled": false</code> or declare the value it should have.</li>
+    </ul>
+    <h3>Secrets</h3>
+    <p>Keys are never shown or written in clear text. On screen they appear as <code>••••</code>; leave them that way and Oktavia keeps the saved value. For a new key, store it in the credential vault and use its reference:</p>
+<pre><code>{ "address": "203.0.113.2", "remote_as": 64501, "password": "&lt;&lt;vault:bgp&gt;&gt;" }</code></pre>
+    <p>If you type a secret in clear text, Oktavia rejects the save and asks for the reference.</p>
+</section>
+
+<section class="doc-section" id="configurador">
+    <h2>8. When to use the Configurator</h2>
+    <p>Open the Configurator when you are going to:</p>
+    <ul>
+        <li><strong>Declare a service for the first time</strong> or take it to another scope. Catalog forms guide each field.</li>
+        <li><strong>Review where something is declared</strong> across all scopes, with its effective or shadowed status.</li>
+        <li><strong>Preview</strong> the lines a device would receive.</li>
+        <li><strong>Import or export</strong>: JSON proposals, CSV and the full intent.</li>
+        <li><strong>Tidy up</strong>: Standardization lifts what is repeated across many devices to a common scope, and separates what only reorganizes from what changes devices.</li>
+    </ul>
+    <p>When saving, it writes only the fields you touched. And if you are about to override inherited lists, it warns you which ones first: read it.</p>
+    <h3>Bringing in an existing network</h3>
+    <p>You don't have to start from scratch. Argos compares what is declared with what devices have and, reading their backups, brings into intent what is configured but undeclared. It arrives as a proposal to review. Careful: importing is not approving. If a device has a mistake and you import it, it becomes intent.</p>
+</section>
+
+<section class="doc-section" id="estado">
+    <h2>9. State intent</h2>
+    <p>The <strong>Rules</strong> tab of each console shows how the network should be running, also in one table: rule, result, device, parameter and expected value, with failures first. Pick a site to see its devices and results.</p>
+    <ul>
+        <li><strong>Automatic from config</strong>: Oktavia derives it from your intent. If you declare a tunnel, the rule requires it to be up. It isn't edited: it changes when you edit the config.</li>
+        <li><strong>Manual</strong>: you define it in Compliance rules, for example a threshold.</li>
+        <li><strong>Set by hand</strong>: an automatic rule someone set manually; it no longer follows the config.</li>
+    </ul>
+    <p>Configuration rules, one per declared service, are in the fold below. They compare the device configuration with your intent.</p>
+</section>
+
+<section class="doc-section" id="llevarlo-a-la-red">
+    <h2>10. Taking the change to the network</h2>
+    <p>After saving, the console offers the Argos phrase to close the cycle. Every change follows the same path:</p>
+    <ol class="doc-steps">
+        <li><strong>Audit.</strong> Oktavia compares intent with the devices and finds what is missing.</li>
+        <li><strong>Propose.</strong> Each difference becomes a ticketed change in the Digital Twin, with its diff and rollback.</li>
+        <li><strong>Review and approve.</strong> A person approves it; it can be tested first without applying.</li>
+        <li><strong>Apply and verify.</strong> A new audit confirms the device matches the intent.</li>
+    </ol>
+    <p>On an IOS XR core the change is a single network transaction with <em>commit confirmed</em>: if you don't confirm, the devices roll back on their own.</p>
+</section>
+
+<section class="doc-section" id="recetas">
+    <h2>11. Recipes by domain</h2>
+    <h3>Management · Change the NTP servers for the whole network</h3>
+    <ol class="doc-steps">
+        <li>In Management → Intent, find NTP. With no site selected you will see all its declarations.</li>
+        <li>Edit the <code>defaults</code> one with the complete server list.</li>
+        <li>If declarations appear in other scopes, decide with the right people whether they are real exceptions. Those that aren't, remove in the Configurator so they inherit.</li>
+    </ol>
+    <h3>Campus · Add a VLAN to a site</h3>
+    <ol class="doc-steps">
+        <li>In Campus → Intent, pick the site and find VLAN.</li>
+        <li>Edit the declaration that wins on its switches and add the element to <code>entries</code>, keeping the existing ones.</li>
+        <li>If the VLAN must cross links between switches, also review their trunks.</li>
+        <li>Then check in Layer 2 services which switches it lives on and which gateway it ends at.</li>
+    </ol>
+    <h3>WAN · Add a BGP neighbor</h3>
+    <ol class="doc-steps">
+        <li>In WAN → Intent, pick the site and find BGP. Neighbors almost always live in <code>by_device</code>.</li>
+        <li>Add the neighbor to the list, with its key as a vault reference.</li>
+        <li>Check whether prefix-lists or route-maps are needed.</li>
+        <li>After closing the cycle, check the adjacency in Layer 3 services and the path in Routing analysis.</li>
+    </ol>
+    <h3>Security · Adjust an ACL</h3>
+    <ol class="doc-steps">
+        <li>In Security → Intent, find the ACL. If it is in a common scope, changing it affects all the devices the label shows.</li>
+        <li>For a single device, leave the common one alone: declare it in its <code>by_device</code> with the complete list.</li>
+    </ol>
+    <h3>Services (provider) · Give a customer bandwidth</h3>
+    <ol class="doc-steps">
+        <li>In Services → Intent, edit <code>l3vpn</code> or <code>l2vpn</code> and add <code>bandwidth_mbps</code> to the customer's site or circuit.</li>
+        <li>With the <code>xr_qos</code> service declared on the <code>pe</code> role, Oktavia derives the policy.</li>
+        <li>Take the change to the core as a network transaction and review the service in Customer services.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="buenas-practicas">
+    <h2>12. Good practices</h2>
+    <ul>
+        <li><strong>Start with the most general.</strong> Go down a scope only when there is a reason.</li>
+        <li><strong><code>by_device</code> is for what belongs to the device:</strong> IPs, interfaces, neighbors and agreed exceptions.</li>
+        <li><strong>Design by site type</strong> so new sites are born the same.</li>
+        <li><strong>Read "how many devices"</strong> before saving. If the number surprises you, don't save.</li>
+        <li><strong>Review anything marked "No effect".</strong> A declaration that wins on no device confuses the next engineer.</li>
+        <li><strong>No secrets in clear text.</strong> Everything through the vault.</li>
+        <li><strong>Standardize before hardening.</strong> If you harden with everything in <code>by_device</code>, the role standard never exists.</li>
+        <li><strong>Verify with compliance, not memory.</strong> A change ends when the audit confirms it.</li>
+    </ul>
+    <p>To go deeper (in Spanish): <a href="oktavia-docs-decisiones.html#scopes">when to use each scope</a>, the <a href="oktavia-docs-datos.html#service-vars">Service Vars reference</a> and <a href="oktavia-docs-operacion.html#consolas-dominio">domain consoles</a>.</p>
+</section>
+
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments in Latin America.
+            </p>
+            <p>
+                For a demonstration on your own environment, reach us at <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public document, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+</body>
+</html>

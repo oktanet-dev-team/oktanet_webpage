@@ -78,6 +78,9 @@ window.OKTAVIA_DOCS = (function () {
                 { id: 'auditorias', title: 'Auditorías', summary: 'Lanzar una auditoría completa o parcial, seguir el job y revisar sus artefactos.', keywords: ['primera auditoría', 'run_all', 'compliance_dry', 'job', 'artefactos', 'scope'] },
                 { id: 'compliance', title: 'Compliance', summary: 'Reglas de configuración y de estado, puntajes, clases de no cumplimiento y diff contra la intención.', keywords: ['cumplimiento', 'reglas', 'checks', 'score', 'severidad', 'diff'] },
                 { id: 'config-generator', title: 'Config Generator', summary: 'Declarar la intención por alcances, generar la configuración deseada y activar sus checks.', keywords: ['configurador', 'service_vars', 'intended config', 'jinja', 'render', 'scopes', 'catálogo'] },
+                { id: 'consolas-dominio', title: 'Consolas por dominio', summary: 'Servicios por dominio: intención de config y de estado en una tabla, editable y filtrada por sitio.', keywords: ['consola', 'dominio', 'servicios', 'intención', 'campus', 'wan', 'seguridad', 'gestión'] },
+                { id: 'servicios-l2-l3', title: 'Servicios de Capa 2 y Capa 3', summary: 'Mapas de la red al sitio y al equipo: adyacencias, rutas, vecinos, políticas, spanning-tree y VLAN hasta su gateway.', keywords: ['capa 2', 'capa 3', 'ospf', 'bgp', 'is-is', 'vlan', 'stp', 'topología', 'adyacencias'] },
+                { id: 'analisis-ruteo', title: 'Análisis de ruteo', summary: 'Flujos desde las tablas de ruteo reales, con ida y regreso, iBGP y eBGP, y lo que encuentra cada equipo.', keywords: ['ruteo', 'flujos', 'ibgp', 'ebgp', 'asn', 'asimetría', 'path analysis'] },
                 { id: 'digital-twin', title: 'Digital Twin', summary: 'Snapshots, drift y solicitudes de cambio con vista previa, aprobación, ejecución y confirmación.', keywords: ['gemelo digital', 'cambio', 'preview', 'approve', 'execute', 'rollback', 'commit confirmed'] },
                 { id: 'telemetria', title: 'Telemetría', summary: 'SNMP con Telegraf e InfluxDB, syslog, métricas del plano de control y reglas de automatización.', keywords: ['snmp', 'telegraf', 'influxdb', 'métricas', 'syslog', 'alertas', 'automatización de eventos'] },
                 { id: 'scheduler', title: 'Scheduler', summary: 'Programar auditorías y otros trabajos desde la UI o desde su archivo de configuración, con ingesta automática.', keywords: ['programar', 'cron', 'daily', 'weekly', 'yaml'] },
@@ -158,6 +161,18 @@ window.OKTAVIA_DOCS = (function () {
            Oktavia. Estas secciones no tienen página propia: su `page` es su
            bloque en la portada, y cada documento abre su propia página
            (`href`, relativo a docs/), que lleva la misma barra lateral. */
+        {
+            id: 'ingenieros',
+            title: 'Guías para ingenieros de red',
+            kind: 'Guía',
+            icon: 'hub',
+            page: 'oktavia-docs.html#ingenieros',
+            summary: 'Para quien diseña y mantiene la intención de la red: alcances, consolas por dominio y cómo llevar un cambio a producción.',
+            keywords: ['intención', 'intent', 'ingeniero de red', 'socio', 'partner', 'alcances', 'scopes', 'service_vars', 'campus', 'wan', 'seguridad', 'configurador'],
+            docs: [
+                { id: 'guia-intencion', href: 'guia-intencion.html', title: 'Guía de intención para ingenieros de red', summary: 'Definir y editar la intención en cualquier dominio, desde las consolas de Servicios o el Configurador.', keywords: ['intención', 'alcances', 'json', 'consola', 'dominio', 'partners'] },
+            ]
+        },
         {
             id: 'academia',
             title: 'Academia',
