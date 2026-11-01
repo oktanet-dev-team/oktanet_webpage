@@ -353,6 +353,21 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li>Aplica y audita otra vez: el cumplimiento debe seguir igual y el ciclo no debe proponer cambios.</li>
         <li>Si todo sigue igual, aplica el resto de lo seguro de ese dominio y pasa al siguiente. Deja al final las que cambian equipos, una por una y con su ciclo.</li>
     </ol>
+    <h3>Ejemplo: la primera tanda en Gestión</h3>
+    <p><strong>Revisar la selección</strong> no guarda nada, así que puedes probarlo con todas las filas marcadas antes de decidir.</p>
+    <ol class="doc-steps">
+        <li>Abre <strong>Servicios → Gestión → Optimizar</strong> y confirma que estás en la organización correcta: las recomendaciones y los respaldos son de la organización activa.</li>
+        <li>Baja a <strong>Respaldos de la intención</strong> y pulsa <strong>Respaldar ahora</strong>. Aparece una fila con origen «Manual».</li>
+        <li>Pulsa <strong>Marcar lo seguro</strong> y luego <strong>Revisar la selección</strong>. Debajo de los botones sale la comprobación por equipo.</li>
+        <li>Si avisa que cambia algún equipo, <strong>Aplicar</strong> queda bloqueado. No marques la confirmación: pulsa <strong>Cancelar</strong>, desmarca esa fila y déjala para después.</li>
+        <li>Deja dos o tres filas de un mismo servicio, por ejemplo las copias de NTP, y revisa otra vez. Debe decir que la intención resuelta no cambia.</li>
+        <li>Pulsa <strong>Aplicar a la intención</strong>. Verás cuántas se guardaron y el nombre del respaldo. Recarga con ↻.</li>
+        <li>Corre una auditoría. No hace falta ciclo: nada cambió en los equipos. El cumplimiento debe seguir igual y las filas aplicadas ya no deben aparecer.</li>
+        <li>Si aparece «Lo guardado no coincide con lo previsto», detente y revísalo antes de cerrar cualquier ciclo. <strong>Restaurar</strong> regresa la intención a como estaba.</li>
+    </ol>
+    <p>Lo que dice <strong>Cambia N equipos</strong> se aplica aparte, una fila a la vez, y llega a la red con su ciclo. Lo que dice <strong>Revisar</strong> no trae casilla: se decide en Estandarización.</p>
+    <h3>Con Argos</h3>
+    <p>Escribe <code>optimiza la intención</code> para ver el resumen por dominio, o <code>optimiza la intención de gestión</code> para ver las recomendaciones de uno. Argos informa y te lleva a la pestaña; aplicar se hace ahí, para que todo pase por la comprobación y el respaldo.</p>
     <p>Las reglas de cumplimiento se ordenan aparte, en la misma pestaña: las automáticas siguen a la intención solas, y las que sobran cambian lo que Oktavia verifica, no lo que la red hace. Por eso se confirman en Argos, con respaldo y auditoría. Los secretos no se recomiendan: se mueven a mano.</p>
     <p>El hardening va por rol o plataforma; deja el sitio sólo para excepciones reales, como un NTP o syslog local.</p>
 </section>
