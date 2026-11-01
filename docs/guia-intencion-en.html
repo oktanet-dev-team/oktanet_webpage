@@ -87,6 +87,7 @@
                 <li><a href="#estado">State intent</a></li>
                 <li><a href="#llevarlo-a-la-red">Taking the change to the network</a></li>
                 <li><a href="#recetas">Recipes by domain</a></li>
+                <li><a href="#optimizar">Optimizing intent</a></li>
                 <li><a href="#buenas-practicas">Good practices</a></li>
             </ol>
         </nav>
@@ -276,14 +277,14 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li>In Campus → Intent, pick the site and find VLAN.</li>
         <li>Edit the declaration that wins on its switches and add the element to <code>entries</code>, keeping the existing ones.</li>
         <li>If the VLAN must cross links between switches, also review their trunks.</li>
-        <li>Then check in Layer 2 services which switches it lives on and which gateway it ends at.</li>
+        <li>Then check in Campus → Topology, picking the site, which switches it lives on and which gateway it ends at.</li>
     </ol>
     <h3>WAN · Add a BGP neighbor</h3>
     <ol class="doc-steps">
         <li>In WAN → Intent, pick the site and find BGP. Neighbors almost always live in <code>by_device</code>.</li>
         <li>Add the neighbor to the list, with its key as a vault reference.</li>
         <li>Check whether prefix-lists or route-maps are needed.</li>
-        <li>After closing the cycle, check the adjacency in Layer 3 services and the path in Routing analysis.</li>
+        <li>After closing the cycle, check the adjacency in WAN → Topology and the path in Routing analysis.</li>
     </ol>
     <h3>Security · Adjust an ACL</h3>
     <ol class="doc-steps">
@@ -298,8 +299,26 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     </ol>
 </section>
 
+<section class="doc-section" id="optimizar">
+    <h2>12. Optimizing intent</h2>
+    <p>Over time intent piles up copies: the same value declared device by device. It works, but every change gets more expensive. The <strong>Optimize</strong> tab in each console finds them for you.</p>
+    <ul>
+        <li><strong>Safe</strong>: simulated against every device and none changes. It only tidies intent.</li>
+        <li><strong>Changes N devices</strong>: it declares a shared value and those devices receive something different. It reaches the network through the cycle.</li>
+        <li><strong>Review</strong>: a person decides; for example, choosing a value across vendors in Standardization.</li>
+    </ul>
+    <ol class="doc-steps">
+        <li>Run an audit, with no open cycles.</li>
+        <li>Pick <strong>one</strong> safe row, review it and save.</li>
+        <li>Audit again: compliance must stay the same and the cycle must propose no changes.</li>
+        <li>Then select the safe rows of each domain and review the ones that change devices one by one.</li>
+    </ol>
+    <p>Compliance rules are tidied separately, on the same tab: automatic ones follow intent on their own, and redundant ones change what Oktavia verifies, not what the network does. That is why they are confirmed in Argos, with backup and audit. Secrets are never recommended: they are moved by hand.</p>
+    <p>Hardening goes per role or platform; keep the site scope for real exceptions, such as a local NTP or syslog.</p>
+</section>
+
 <section class="doc-section" id="buenas-practicas">
-    <h2>12. Good practices</h2>
+    <h2>13. Good practices</h2>
     <ul>
         <li><strong>Start with the most general.</strong> Go down a scope only when there is a reason.</li>
         <li><strong><code>by_device</code> is for what belongs to the device:</strong> IPs, interfaces, neighbors and agreed exceptions.</li>

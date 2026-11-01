@@ -118,6 +118,7 @@
                 <li><a href="#estado">La intención de estado</a></li>
                 <li><a href="#llevarlo-a-la-red">Llevar el cambio a la red</a></li>
                 <li><a href="#recetas">Recetas por dominio</a></li>
+                <li><a href="#optimizar">Optimizar la intención</a></li>
                 <li><a href="#buenas-practicas">Buenas prácticas</a></li>
             </ol>
         </nav>
@@ -307,14 +308,14 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li>En Campus → Intención, elige el sitio y busca VLAN.</li>
         <li>Edita la declaración que gana en sus switches y agrega el elemento a <code>entries</code>, conservando los existentes.</li>
         <li>Si la VLAN debe cruzar enlaces entre switches, revisa también sus trunks.</li>
-        <li>Después comprueba en Servicios de Capa 2 en qué switches vive y en qué gateway termina.</li>
+        <li>Después comprueba en Campus → Topología, eligiendo el sitio, en qué switches vive y en qué gateway termina.</li>
     </ol>
     <h3>WAN · Agregar un vecino BGP</h3>
     <ol class="doc-steps">
         <li>En WAN → Intención, elige el sitio y busca BGP. Los vecinos casi siempre viven en <code>by_device</code>.</li>
         <li>Agrega el vecino a la lista, con su clave como referencia a la bóveda.</li>
         <li>Revisa si hacen falta prefix-lists o route-maps.</li>
-        <li>Al cerrar el ciclo, comprueba la adyacencia en Servicios de Capa 3 y el camino en Análisis de ruteo.</li>
+        <li>Al cerrar el ciclo, comprueba la adyacencia en WAN → Topología y el camino en Análisis de ruteo.</li>
     </ol>
     <h3>Seguridad · Ajustar una ACL</h3>
     <ol class="doc-steps">
@@ -329,8 +330,26 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     </ol>
 </section>
 
+<section class="doc-section" id="optimizar">
+    <h2>12. Optimizar la intención</h2>
+    <p>Con el tiempo la intención acumula copias: el mismo valor declarado equipo por equipo. Funciona, pero cada cambio se vuelve más caro. La pestaña <strong>Optimizar</strong> de cada consola lo encuentra por ti.</p>
+    <ul>
+        <li><strong>Segura</strong>: se simuló contra cada equipo y ninguno cambia. Sólo ordena la intención.</li>
+        <li><strong>Cambia N equipos</strong>: declara un valor común y esos equipos reciben algo distinto. Llega a la red por el ciclo.</li>
+        <li><strong>Revisar</strong>: lo decide una persona; por ejemplo, elegir un valor entre fabricantes en Estandarización.</li>
+    </ul>
+    <ol class="doc-steps">
+        <li>Corre una auditoría, sin ciclos abiertos.</li>
+        <li>Elige <strong>una</strong> fila segura, revisa y guarda.</li>
+        <li>Audita otra vez: el cumplimiento debe seguir igual y el ciclo no debe proponer cambios.</li>
+        <li>Después marca lo seguro de cada dominio y deja las que cambian equipos para revisarlas una por una.</li>
+    </ol>
+    <p>Las reglas de cumplimiento se ordenan aparte, en la misma pestaña: las automáticas siguen a la intención solas, y las que sobran cambian lo que Oktavia verifica, no lo que la red hace. Por eso se confirman en Argos, con respaldo y auditoría. Los secretos no se recomiendan: se mueven a mano.</p>
+    <p>El hardening va por rol o plataforma; deja el sitio sólo para excepciones reales, como un NTP o syslog local.</p>
+</section>
+
 <section class="doc-section" id="buenas-practicas">
-    <h2>12. Buenas prácticas</h2>
+    <h2>13. Buenas prácticas</h2>
     <ul>
         <li><strong>Empieza por lo más general.</strong> Baja de alcance sólo cuando haya una razón.</li>
         <li><strong><code>by_device</code> es para lo que es del equipo:</strong> IP, interfaces, vecinos y excepciones acordadas.</li>
