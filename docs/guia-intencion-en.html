@@ -192,9 +192,11 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     <ol class="doc-steps">
         <li>Find the service and click <strong>Edit values</strong> on the declaration you want to change. Pick the wrong scope and you will change more or fewer devices than you think.</li>
         <li>Edit the JSON that opens.</li>
-        <li>Click <strong>Review the change</strong>. Oktavia validates it and shows each value before and after, and how many devices are affected.</li>
-        <li>If it is right, click <strong>Save to the intent</strong>. Compliance rules and the expected configuration are updated.</li>
-        <li>Use the button that appears to take it to the network with Argos.</li>
+        <li>To see it first, click <strong>See what changes</strong>: it shows each value before and after, and how many devices are affected. This is optional.</li>
+        <li>Click <strong>Save</strong>. Oktavia validates the JSON and updates the compliance rules and the expected configuration. Saving does not touch the devices.</li>
+        <li>Click <strong>Close</strong> to collapse the editor and see the new values in the table.</li>
+        <li>Move on to the next declaration, even in another domain. A notice at the top of the console collects the devices with saved changes.</li>
+        <li>When you finish, click <strong>Close the cycle</strong> in that notice: everything travels in a single cycle with Argos.</li>
     </ol>
     <div class="doc-callout"><strong>What you need to know.</strong> Editing requires being an organization administrator. The console changes declarations that already exist: to declare a new service or use another scope, click <strong>Declare in another scope</strong>, which opens the Configurator. If someone saved while you were editing, Oktavia rejects the change and asks you to reload, so you don't overwrite their work.</div>
 </section>
@@ -254,7 +256,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
 
 <section class="doc-section" id="llevarlo-a-la-red">
     <h2>10. Taking the change to the network</h2>
-    <p>After saving, the console offers the Argos phrase to close the cycle. Every change follows the same path:</p>
+    <p>After saving, the console notice gathers the pending devices and proposes a single cycle with Argos; an IOS XR core goes in its own lane. Every change follows the same path:</p>
     <ol class="doc-steps">
         <li><strong>Audit.</strong> Oktavia compares intent with the devices and finds what is missing.</li>
         <li><strong>Propose.</strong> Each difference becomes a ticketed change in the Digital Twin, with its diff and rollback.</li>
@@ -262,6 +264,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Apply and verify.</strong> A new audit confirms the device matches the intent.</li>
     </ol>
     <p>On an IOS XR core the change is a single network transaction with <em>commit confirmed</em>: if you don't confirm, the devices roll back on their own.</p>
+    <p>Software version and model are not applied to devices: they are compared with what each device reports. After changing them an audit is enough, with no cycle.</p>
 </section>
 
 <section class="doc-section" id="recetas">
@@ -307,11 +310,17 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Changes N devices</strong>: it declares a shared value and those devices receive something different. It reaches the network through the cycle.</li>
         <li><strong>Review</strong>: a person decides; for example, choosing a value across vendors in Standardization.</li>
     </ul>
+    <h3>The check before saving</h3>
+    <p>When you click <strong>Review the selection</strong>, Oktavia resolves the intent of every device with and without the change and compares them. If they do not differ, the expected configuration does not change either, and it says so. If any device differs, it shows which one and in which service, and <strong>Apply</strong> stays blocked until you confirm you understand, even if the recommendation was marked safe. After saving, it compares what was stored with the forecast and warns you if they do not match.</p>
+    <h3>Backups</h3>
+    <p>The same tab keeps full backups of the organization's intent: an automatic one before each optimization and the ones you make with <strong>Back up now</strong>. <strong>Restore</strong> leaves intent identical to the backup and saves the current one first. The download has no secrets, so it is for reading, not for restoring. Restoring changes the intent, not the devices: what already reached the network is corrected with a cycle.</p>
+    <h3>How to do it</h3>
     <ol class="doc-steps">
-        <li>Run an audit, with no open cycles.</li>
-        <li>Pick <strong>one</strong> safe row, review it and save.</li>
-        <li>Audit again: compliance must stay the same and the cycle must propose no changes.</li>
-        <li>Then select the safe rows of each domain and review the ones that change devices one by one.</li>
+        <li>Run an audit, with no open cycles, and click <strong>Back up now</strong>.</li>
+        <li>Start with the lowest-risk domain. Select two or three safe rows and click <strong>Review the selection</strong>.</li>
+        <li>Read the check. If it warns that devices change, unselect that row and leave it for later.</li>
+        <li>Apply and audit again: compliance must stay the same and the cycle must propose no changes.</li>
+        <li>If nothing moved, apply the rest of that domain's safe rows and go on to the next. Leave the ones that change devices for last, one by one and with their cycle.</li>
     </ol>
     <p>Compliance rules are tidied separately, on the same tab: automatic ones follow intent on their own, and redundant ones change what Oktavia verifies, not what the network does. That is why they are confirmed in Argos, with backup and audit. Secrets are never recommended: they are moved by hand.</p>
     <p>Hardening goes per role or platform; keep the site scope for real exceptions, such as a local NTP or syslog.</p>
@@ -324,6 +333,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong><code>by_device</code> is for what belongs to the device:</strong> IPs, interfaces, neighbors and agreed exceptions.</li>
         <li><strong>Design by site type</strong> so new sites are born the same.</li>
         <li><strong>Read "how many devices"</strong> before saving. If the number surprises you, don't save.</li>
+        <li><strong>Back up before tidying.</strong> And don't mix safe rows with ones that change devices in one batch: if something goes wrong, you will know which it was.</li>
         <li><strong>Review anything marked "No effect".</strong> A declaration that wins on no device confuses the next engineer.</li>
         <li><strong>No secrets in clear text.</strong> Everything through the vault.</li>
         <li><strong>Standardize before hardening.</strong> If you harden with everything in <code>by_device</code>, the role standard never exists.</li>
