@@ -223,9 +223,11 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     <ol class="doc-steps">
         <li>Busca el servicio y pulsa <strong>Editar valores</strong> en la declaración que quieres cambiar. Si eliges mal el alcance, cambiarás a más equipos o a menos de los que crees.</li>
         <li>Edita el JSON que se abre.</li>
-        <li>Pulsa <strong>Revisar el cambio</strong>. Oktavia valida y muestra cada valor antes y después, y cuántos equipos quedan afectados.</li>
-        <li>Si es correcto, pulsa <strong>Guardar en la intención</strong>. Las reglas de cumplimiento y la configuración esperada se actualizan.</li>
-        <li>Usa el botón que aparece para llevarlo a la red con Argos.</li>
+        <li>Si quieres verlo antes, pulsa <strong>Ver qué cambia</strong>: muestra cada valor antes y después, y cuántos equipos quedan afectados. Es opcional.</li>
+        <li>Pulsa <strong>Guardar</strong>. Oktavia valida el JSON y actualiza las reglas de cumplimiento y la configuración esperada. Guardar no toca los equipos.</li>
+        <li>Pulsa <strong>Cerrar</strong> para colapsar el editor y ver los valores nuevos en la tabla.</li>
+        <li>Sigue con la siguiente declaración, aunque sea de otro dominio. Un aviso arriba de la consola acumula los equipos con cambios guardados.</li>
+        <li>Cuando termines, pulsa <strong>Cerrar el ciclo</strong> en ese aviso: todo viaja en un solo ciclo con Argos.</li>
     </ol>
     <div class="doc-callout"><strong>Qué necesitas saber.</strong> Editar requiere ser administrador de la organización. Desde la consola se cambian declaraciones que ya existen: para declarar un servicio nuevo o en otro alcance, usa <strong>Declarar en otro alcance</strong>, que abre el Configurador. Si alguien guardó mientras editabas, Oktavia rechaza el cambio y pide recargar, para que no pises su trabajo.</div>
 </section>
@@ -285,7 +287,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
 
 <section class="doc-section" id="llevarlo-a-la-red">
     <h2>10. Llevar el cambio a la red</h2>
-    <p>Después de guardar, la consola ofrece la frase de Argos para cerrar el ciclo. Todo cambio sigue el mismo camino:</p>
+    <p>Después de guardar, el aviso de la consola reúne los equipos pendientes y propone un solo ciclo con Argos; un núcleo IOS XR va en su propio carril. Todo cambio sigue el mismo camino:</p>
     <ol class="doc-steps">
         <li><strong>Auditar.</strong> Oktavia compara la intención con los equipos y encuentra lo que falta.</li>
         <li><strong>Proponer.</strong> Cada diferencia se vuelve un cambio con ticket en el Gemelo digital, con su diferencia y su rollback.</li>
@@ -293,6 +295,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Aplicar y verificar.</strong> Una nueva auditoría confirma que el equipo quedó como la intención.</li>
     </ol>
     <p>En un núcleo IOS XR el cambio es una sola transacción de red con <em>commit confirmed</em>: si no confirmas, los equipos regresan solos.</p>
+    <p>La versión de software y el modelo no se aplican a los equipos: se comparan con lo que cada equipo reporta. Después de cambiarlos basta con auditar, sin ciclo.</p>
 </section>
 
 <section class="doc-section" id="recetas">
@@ -338,11 +341,17 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Cambia N equipos</strong>: declara un valor común y esos equipos reciben algo distinto. Llega a la red por el ciclo.</li>
         <li><strong>Revisar</strong>: lo decide una persona; por ejemplo, elegir un valor entre fabricantes en Estandarización.</li>
     </ul>
+    <h3>La comprobación antes de guardar</h3>
+    <p>Al pulsar <strong>Revisar la selección</strong>, Oktavia resuelve la intención de todos los equipos con y sin el cambio, y las compara. Si no difieren, la configuración esperada tampoco cambia, y lo dice así. Si algún equipo difiere, muestra cuál y en qué servicio, y <strong>Aplicar</strong> queda bloqueado hasta que confirmes que lo entiendes, aunque la recomendación estuviera marcada como segura. Después de guardar, compara lo que quedó con lo previsto y avisa si no coincide.</p>
+    <h3>Los respaldos</h3>
+    <p>La misma pestaña guarda respaldos completos de la intención de la organización: uno automático antes de cada optimización y los que hagas con <strong>Respaldar ahora</strong>. <strong>Restaurar</strong> deja la intención idéntica al respaldo y antes guarda la actual. La descarga va sin secretos, así que sirve para leer, no para restaurar. Restaurar cambia la intención, no los equipos: lo que ya llegó a la red se corrige con un ciclo.</p>
+    <h3>Cómo hacerlo</h3>
     <ol class="doc-steps">
-        <li>Corre una auditoría, sin ciclos abiertos.</li>
-        <li>Elige <strong>una</strong> fila segura, revisa y guarda.</li>
-        <li>Audita otra vez: el cumplimiento debe seguir igual y el ciclo no debe proponer cambios.</li>
-        <li>Después marca lo seguro de cada dominio y deja las que cambian equipos para revisarlas una por una.</li>
+        <li>Corre una auditoría, sin ciclos abiertos, y pulsa <strong>Respaldar ahora</strong>.</li>
+        <li>Empieza por el dominio de menor riesgo. Marca dos o tres filas seguras y pulsa <strong>Revisar la selección</strong>.</li>
+        <li>Lee la comprobación. Si avisa que cambian equipos, desmarca esa fila y déjala para después.</li>
+        <li>Aplica y audita otra vez: el cumplimiento debe seguir igual y el ciclo no debe proponer cambios.</li>
+        <li>Si todo sigue igual, aplica el resto de lo seguro de ese dominio y pasa al siguiente. Deja al final las que cambian equipos, una por una y con su ciclo.</li>
     </ol>
     <p>Las reglas de cumplimiento se ordenan aparte, en la misma pestaña: las automáticas siguen a la intención solas, y las que sobran cambian lo que Oktavia verifica, no lo que la red hace. Por eso se confirman en Argos, con respaldo y auditoría. Los secretos no se recomiendan: se mueven a mano.</p>
     <p>El hardening va por rol o plataforma; deja el sitio sólo para excepciones reales, como un NTP o syslog local.</p>
@@ -355,6 +364,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong><code>by_device</code> es para lo que es del equipo:</strong> IP, interfaces, vecinos y excepciones acordadas.</li>
         <li><strong>Diseña por tipo de sitio</strong> para que los sitios nuevos nazcan iguales.</li>
         <li><strong>Lee «a cuántos equipos»</strong> antes de guardar. Si el número te sorprende, no guardes.</li>
+        <li><strong>Respalda antes de ordenar.</strong> Y no mezcles en una tanda lo seguro con lo que cambia equipos: si algo sale mal, sabrás cuál fue.</li>
         <li><strong>Revisa lo que dice «Sin efecto».</strong> Una declaración que no gana en ningún equipo confunde al siguiente ingeniero.</li>
         <li><strong>Nada de secretos en claro.</strong> Todo por la bóveda.</li>
         <li><strong>Estandariza antes de endurecer.</strong> Si el blindaje se hace con todo en <code>by_device</code>, el estándar del rol nunca existe.</li>
