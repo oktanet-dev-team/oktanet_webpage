@@ -311,17 +311,32 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Review</strong>: a person decides; for example, choosing a value across vendors in Standardization.</li>
     </ul>
     <h3>The check before saving</h3>
-    <p>When you click <strong>Review the selection</strong>, Oktavia resolves the intent of every device with and without the change and compares them. If they do not differ, the expected configuration does not change either, and it says so. If any device differs, it shows which one and in which service, and <strong>Apply</strong> stays blocked until you confirm you understand, even if the recommendation was marked safe. After saving, it compares what was stored with the forecast and warns you if they do not match.</p>
+    <p>When you click <strong>Review selection</strong>, Oktavia resolves the intent of every device with and without the change and compares them. If they do not differ, the expected configuration does not change either, and it says so. If any device differs, it shows which one and in which service, and <strong>Apply</strong> stays blocked until you confirm you understand, even if the recommendation was marked safe. After saving, it compares what was stored with the forecast and warns you if they do not match.</p>
     <h3>Backups</h3>
     <p>The same tab keeps full backups of the organization's intent: an automatic one before each optimization and the ones you make with <strong>Back up now</strong>. <strong>Restore</strong> leaves intent identical to the backup and saves the current one first. The download has no secrets, so it is for reading, not for restoring. Restoring changes the intent, not the devices: what already reached the network is corrected with a cycle.</p>
     <h3>How to do it</h3>
     <ol class="doc-steps">
         <li>Run an audit, with no open cycles, and click <strong>Back up now</strong>.</li>
-        <li>Start with the lowest-risk domain. Select two or three safe rows and click <strong>Review the selection</strong>.</li>
+        <li>Start with the lowest-risk domain. Select two or three safe rows and click <strong>Review selection</strong>.</li>
         <li>Read the check. If it warns that devices change, unselect that row and leave it for later.</li>
         <li>Apply and audit again: compliance must stay the same and the cycle must propose no changes.</li>
         <li>If nothing moved, apply the rest of that domain's safe rows and go on to the next. Leave the ones that change devices for last, one by one and with their cycle.</li>
     </ol>
+    <h3>Example: the first batch in Management</h3>
+    <p><strong>Review selection</strong> saves nothing, so you can try it with every row selected before deciding.</p>
+    <ol class="doc-steps">
+        <li>Open <strong>Services → Management → Optimize</strong> and confirm you are in the right organization: recommendations and backups belong to the active organization.</li>
+        <li>Scroll to <strong>Intent backups</strong> and click <strong>Back up now</strong>. A row with source "Manual" appears.</li>
+        <li>Click <strong>Select the safe ones</strong> and then <strong>Review selection</strong>. The per-device check appears below the buttons.</li>
+        <li>If it warns that a device changes, <strong>Apply</strong> stays blocked. Don't tick the confirmation: click <strong>Cancel</strong>, unselect that row and leave it for later.</li>
+        <li>Keep two or three rows of one service, for example the NTP copies, and review again. It must say the resolved intent does not change.</li>
+        <li>Click <strong>Apply to intent</strong>. You will see how many were saved and the backup name. Reload with ↻.</li>
+        <li>Run an audit. No cycle is needed: nothing changed on the devices. Compliance must stay the same and the applied rows must no longer appear.</li>
+        <li>If you see "What was saved does not match the forecast", stop and review it before closing any cycle. <strong>Restore</strong> returns intent to how it was.</li>
+    </ol>
+    <p>Rows that say <strong>Changes N devices</strong> are applied separately, one at a time, and reach the network with their cycle. Rows that say <strong>Review</strong> have no checkbox: they are decided in Standardization.</p>
+    <h3>With Argos</h3>
+    <p>Type <code>optimiza la intención</code> for the summary per domain, or <code>optimiza la intención de gestión</code> for one domain's recommendations. Argos informs and takes you to the tab; applying happens there, so everything goes through the check and the backup.</p>
     <p>Compliance rules are tidied separately, on the same tab: automatic ones follow intent on their own, and redundant ones change what Oktavia verifies, not what the network does. That is why they are confirmed in Argos, with backup and audit. Secrets are never recommended: they are moved by hand.</p>
     <p>Hardening goes per role or platform; keep the site scope for real exceptions, such as a local NTP or syslog.</p>
 </section>
