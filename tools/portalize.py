@@ -40,6 +40,7 @@ ENVUELTAS = {
     "oktavia.html": ("Ficha técnica y resumen", "Ficha técnica"),
     "oktavia-sp.html": ("Oktavia SP · Proveedores de servicios", "Documentación de Oktavia SP"),
     "guia-intencion.html": ("Guías para ingenieros de red", "Guía de intención para ingenieros de red"),
+    "guia-servicios.html": ("Guías para ingenieros de red", "Servicios y plantillas"),
     "../blog/ia-local-contexto-empresarial.html": ("Artículos", "IA local con el contexto de su empresa"),
     "../blog/seguridad-en-oktavia-y-argos.html": ("Artículos", "Seguridad en Oktavia y Argos"),
     "../blog/red-de-pruebas-cml-y-sd-wan.html": ("Artículos", "La red de pruebas de Oktavia"),

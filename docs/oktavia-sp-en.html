@@ -82,6 +82,7 @@
                 <li><a href="#catalogo">Service catalog</a></li>
                 <li><a href="#ciclo">The cycle and the Digital Twin</a></li>
                 <li><a href="#visibilidad">Visibility</a></li>
+                <li><a href="#clientes">Customers and contracts</a></li>
                 <li><a href="#argos">Argos on a provider network</a></li>
                 <li><a href="#ia-local">Local AI with provider context</a></li>
                 <li><a href="#familia">The Oktavia platform family</a></li>
@@ -136,7 +137,7 @@
 
         <section class="doc-section" id="catalogo">
             <h2>3. Service catalog</h2>
-            <p>Services are declared in the Configurator, each with its own desired configuration and its own compliance:</p>
+            <p>Each service has its page in <strong>Services → Transport</strong> or <strong>Services → Services</strong>, with its own desired configuration and its own compliance:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -158,6 +159,10 @@
                     <strong>The customer side comes from the same service.</strong> The CE (Cisco IOS) part of the L3VPN and the pseudowires is generated from the same declaration as the PE part: there is no second intent to keep up to date.
                 </p>
             </div>
+            <h3>Viewing and testing an IOS XR service</h3>
+            <p>
+                On IOS XR there is no Jinja template: the NETCONF lane builds the YANG XML from the same values. On the service page, testing with a device shows its XML, with the device's values highlighted to tell them apart from what is fixed in the lane. <strong>See what changes</strong> and <strong>Test these values</strong> compare today's NETCONF plan with the plan for your change, as the Digital Twin would push it, with commit confirmed. This applies to core and customer services. Step by step in the <a href="guia-servicios-en.html#ios-xr">Services and templates guide</a>.
+            </p>
         </section>
 
         <section class="doc-section" id="ciclo">
@@ -184,14 +189,37 @@
                 <li><strong>Topology</strong> with the core point-to-point links, the IS-IS layer and the pseudowires.</li>
                 <li><strong>Control plane</strong>: IS-IS neighbors with level, area and adjacency SID; BGP with its ASN; routing table with VPN labels and TI-LFA backups told apart from ECMP.</li>
                 <li><strong>Path across the MPLS L3VPN</strong>: ingress PE, VPN label and egress PE, in both directions, also on the Topology.</li>
-                <li><strong>Customer services</strong>: one page per customer with its L3VPNs and pseudowires, end-to-end state, QoS contract and diagram.</li>
+                <li><strong>Customer services</strong>: one page per customer with its L3VPNs and pseudowires, end-to-end state, QoS contract, diagram and its commercial contract (<a href="#clientes">section 6</a>).</li>
                 <li><strong>Telemetry</strong>: CPU and memory, BGP sessions, IS-IS adjacencies and routing table size over SNMP, and a pseudowires section with the traffic and attachment-circuit state on each PE, where the contracted bandwidth is 100 %. Over streaming, IOS XR also sends xconnect state.</li>
                 <li><strong>Technical record</strong> with a customer services section: numbering plan, sites, circuits and QoS.</li>
             </ul>
         </section>
 
+        <section class="doc-section" id="clientes">
+            <h2>6. Customers and contracts</h2>
+            <p>In Customer services, each customer has its <strong>Contract</strong>: a lightweight CRM with what it bought. This is commercial data: the customer's configuration still lives in the intent.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Part</th><th scope="col">What it holds</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Profile</strong></td><td>The customer ID in your CRM, its tier (gold, silver or bronze) and notes.</td></tr>
+                        <tr><td><strong>Contracted services</strong></td><td>Service or circuit ID, type (L3VPN, pseudowire or dedicated internet), customer-type site, PE ↔ CE, contracted Mb, SLA and reference price.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Administrators edit contracts and add new customers. Customers that exist only in the CRM, with no service on the network, are listed separately.</p>
+            <h3>Actual usage against the contract</h3>
+            <p>For each service, Oktavia takes the last hour of traffic —average and peak— on the PE→CE interface, from the PE's SNMP telemetry, and compares it with the contracted Mb. The result is <strong>ok</strong>, <strong>near</strong> (80 % or more) or <strong>exceeds</strong>.</p>
+            <h3>FinOps per customer</h3>
+            <p>In <strong>FinOps → Per customer</strong>, the monthly cost of each device —amortized CAPEX, license, support and power— is split among the services that use it, by their bandwidth. With the contract's reference price you get revenue, cost and margin per customer. It exists only on provider tenants: an enterprise's FinOps does not change.</p>
+            <h3>Sites and devices</h3>
+            <p><strong>Edit site</strong> adds free attributes (key = value) and, at a provider, the customer the site belongs to. Each device has a <strong>Domain</strong> field —Transport, Services…—, filled in by role and editable, and its own free attributes.</p>
+        </section>
+
         <section class="doc-section" id="argos">
-            <h2>6. Argos on a provider network</h2>
+            <h2>7. Argos on a provider network</h2>
             <p>Organization flows follow the organization's architecture. On a provider tenant, Argos offers:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -211,11 +239,12 @@
                 <li><strong>Connectivity test</strong> of a customer site from the CE: reachability to the PE, the PE-CE BGP session, the remote LAN across the L3VPN and the remote CE of the pseudowire.</li>
                 <li><strong>Enable telemetry</strong> with IOS XR streaming.</li>
             </ul>
+            <p>On a provider tenant, Argos shows only what applies to a provider. In the Summary, the <strong>Customers and contracts</strong> group brings together Customer services, FinOps per customer and Customer QoS.</p>
             <p>As everywhere else in the platform, no action that touches the network happens without a person approving it.</p>
         </section>
 
         <section class="doc-section" id="ia-local">
-            <h2>7. Local AI with provider context</h2>
+            <h2>8. Local AI with provider context</h2>
             <p>The local AI answers, on the customer's own server, with the context of a provider network:</p>
             <ul>
                 <li>The team's documents: design (HLD), runbooks, change procedure, security policy and circuits.</li>
@@ -227,7 +256,7 @@
         </section>
 
         <section class="doc-section" id="familia">
-            <h2>8. The Oktavia platform family</h2>
+            <h2>9. The Oktavia platform family</h2>
             <p>The service provider is one more platform in the family. The cycle and the platform are the same; what changes is how each one is accessed:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -249,7 +278,7 @@
         </section>
 
         <section class="doc-section" id="proximamente">
-            <h2>9. Coming soon</h2>
+            <h2>10. Coming soon</h2>
             <ul>
                 <li><strong>On-demand SR-TE</strong> (ODN), with color per service.</li>
                 <li><strong>Data center integration</strong> with Cisco ACI.</li>

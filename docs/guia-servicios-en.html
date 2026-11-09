@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Services and templates: view, test and extend without development | Oktanet</title>
+    <meta name="description" content="How to view, test and extend Oktavia services without writing Jinja: the service page, Test with a device, IOS XR over NETCONF, gated extensions and value tests. For network engineers and partners.">
+    <link rel="canonical" href="https://oktanet.io/docs/guia-servicios-en.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-servicios.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-servicios-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Services and templates: view, test and extend without development">
+    <meta property="og:description" content="How to view, test and extend Oktavia services without writing Jinja: the service page, Test with a device, IOS XR over NETCONF, gated extensions and value tests. For network engineers and partners.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/guia-servicios-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:alt" content="Oktavia, the Oktanet network automation platform">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+</head>
+<body>
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Oktavia logo" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <nav aria-label="Document">
+                <a href="./index-en.html">Documentation</a>
+                <a href="./oktavia-en.html">Technical sheet</a>
+                <a href="../oktavia-sp-en.html">Oktavia SP</a>
+                <a href="../#contacto">Contact</a>
+                <a href="./guia-servicios.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn doc-btn-solid" href="guia-servicios-en.pdf" download>Download PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Guide for network engineers</p>
+            <h1>Services and templates: view, test and extend without development</h1>
+            <p class="doc-lede">How to see what each service generates on your devices, test a change before saving it, and add what the template doesn't include. You work with parameters; Oktavia takes care of the template, the gate and the tests.</p>
+            <ul class="doc-meta">
+                <li>Built by Oktanet</li>
+                <li>Mexico · 2026</li>
+                <li>Public document</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Share</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Email</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Link copied">Copy link</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>More apps</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contents">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#para-quien">Who this guide is for</a></li>
+                <li><a href="#la-idea">The idea: parameters, not Jinja</a></li>
+                <li><a href="#lista">Your domain's services</a></li>
+                <li><a href="#pagina">The service page</a></li>
+                <li><a href="#valores">Declared values and "See what changes"</a></li>
+                <li><a href="#probar">Test with a device</a></li>
+                <li><a href="#explicame">Explain this service</a></li>
+                <li><a href="#ios-xr">IOS XR: no Jinja, XML instead</a></li>
+                <li><a href="#extender">Extending a service</a></li>
+                <li><a href="#compuerta">The gate before publishing</a></li>
+                <li><a href="#pruebas">An extension's network tests</a></li>
+                <li><a href="#personalizados">Custom services</a></li>
+                <li><a href="#argos">With Argos: Services by domain</a></li>
+                <li><a href="#recetas">Recipes</a></li>
+                <li><a href="#buenas-practicas">Good practices</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="para-quien">
+    <h2>1. Who this guide is for</h2>
+    <p>For network and automation engineers, at customers or partners, who maintain a network's services in Oktavia: Campus, WAN, Security and Management in an enterprise; Transport, Services, Security and Management at a provider.</p>
+    <p>By the end you will be able to read a service end to end, test a value against a real device without saving anything, and add to a service what its template doesn't include, without writing Jinja and without asking for development.</p>
+    <p>This guide complements the <a href="guia-intencion-en.html">Intent guide</a>, which explains scopes and the change cycle. If this is your first time with Oktavia, start there.</p>
+</section>
+
+<section class="doc-section" id="la-idea">
+    <h2>2. The idea: parameters, not Jinja</h2>
+    <p>Every Oktavia service has a tested base template that turns values into configuration. That template <strong>is not edited</strong>: it is <strong>extended</strong>. That way an Oktavia update doesn't overwrite your work, and your work doesn't break the template.</p>
+    <p>Your work as an engineer is in the <strong>parameters</strong>: which values, in which scope and with which network test. An extension's template comes from the Oktavia catalog or is proposed by Argos, and a deterministic gate decides whether it can be published.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Piece</th><th>Who makes it</th><th>Where it lives</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Base template</strong></td><td>Oktavia.</td><td>The service catalog. Not touched.</td></tr>
+            <tr><td><strong>Extension</strong></td><td>The Oktavia catalog, with one click, or Argos from your description.</td><td>Next to the service it extends.</td></tr>
+            <tr><td><strong>Values</strong></td><td>You.</td><td>The intent (<code>service_vars</code>), in the scope you choose.</td></tr>
+            <tr><td><strong>Tests</strong></td><td>Oktavia derives them from the template and the parameters.</td><td>The compliance of every audit.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Saving values does not touch the network. They reach the devices through the usual cycle: audit, compliance, Digital Twin, you approve, and verification confirms it.</p>
+</section>
+
+<section class="doc-section" id="lista">
+    <h2>3. Your domain's services</h2>
+    <p>Open <strong>Services</strong> and pick the domain. The tab formerly called Intent is now called <strong>Services</strong>: it lists every service in the domain, declared or not.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Column</th><th>What it says</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Platform</strong></td><td>Which systems the service exists for: <code>ios</code>, <code>iosxe</code>, <code>xr</code>…</td></tr>
+            <tr><td><strong>Declared in</strong></td><td>The scopes where it has values.</td></tr>
+            <tr><td><strong>Devices</strong></td><td>How many devices it applies to.</td></tr>
+            <tr><td><strong>Failures and %</strong></td><td>Its compliance in the last audit.</td></tr>
+            <tr><td><strong>Tests</strong></td><td>How many config and state tests validate it; "no tests" if none.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Undeclared services come last, with a link to declare them. The domain <strong>Summary</strong> also shows each service's platform.</p>
+</section>
+
+<section class="doc-section" id="pagina">
+    <h2>4. The service page</h2>
+    <p>Each service in the list opens its own page. It gathers in one place everything you need to understand and change it:</p>
+    <ol class="doc-steps">
+        <li><strong>Declared values</strong>: every scope where it is declared, with its values, and the buttons to edit them, view the template and extend (<a href="#valores">section 5</a>).</li>
+        <li><strong>Test with a device</strong>: values, template and result, side by side, for a real device (<a href="#probar">section 6</a>).</li>
+        <li><strong>✦ Explain this service</strong>: Argos explains what it does and what it generates (<a href="#explicame">section 7</a>).</li>
+        <li><strong>＋ Extend this service</strong> and <strong>Advanced options</strong>: what you can add to it (<a href="#extender">section 9</a>).</li>
+        <li><strong>Devices where it is active</strong>, by site, with ⚠ on the failing ones, and <strong>Tests that validate it</strong>.</li>
+    </ol>
+    <p>Tests come in two kinds. <strong>Config</strong> tests compare the running configuration with what the template generates, one rule per device. <strong>State</strong> tests check that the service works on the network.</p>
+</section>
+
+<section class="doc-section" id="valores">
+    <h2>5. Declared values and "See what changes"</h2>
+    <p>The <strong>Declared values</strong> fold shows every scope where the service lives —<code>defaults</code>, <code>by_role</code>, <code>by_site</code>, <code>by_device</code>, <code>by_model</code>, <code>by_platform</code>…— with its values. <strong>Edit values</strong>, <strong>Template</strong> and <strong>Extend here</strong> sit on the same row.</p>
+    <h3>Edit and see what changes</h3>
+    <ol class="doc-steps">
+        <li>Click <strong>Edit values</strong> on the scope you want to change. A JSON editor opens.</li>
+        <li>Change the values.</li>
+        <li>Click <strong>See what changes</strong>. Oktavia shows, per device, the lines of the desired configuration that would change: <code>−</code> what is there today, <code>+</code> what your change leaves. Secrets stay hidden.</li>
+        <li>If it is what you expected, click <strong>Save</strong>. If not, adjust and look again.</li>
+    </ol>
+<pre><code>r1
+  router bgp 65001
++  neighbor 198.51.100.1 timers 10 30</code></pre>
+    <p>These are real configuration lines, not just values. If a device you didn't expect shows up in the list, your scope is wider than you thought: don't save yet.</p>
+    <div class="doc-callout"><strong>What you need to know.</strong> Editing requires being an organization administrator. Secrets always go as a vault reference, <code>&lt;&lt;vault:…&gt;&gt;</code>; never in clear text.</div>
+</section>
+
+<section class="doc-section" id="probar">
+    <h2>6. Test with a device</h2>
+    <p>This is the best way to understand a service. Pick a device from the menu, grouped by site, and you get three columns side by side:</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Column</th><th>What it shows</th></tr></thead>
+        <tbody>
+            <tr><td><strong>1. Values</strong></td><td>The device's values for this service and which scopes they come from. Each scope is a button that opens its declaration for editing.</td></tr>
+            <tr><td><strong>2. Template</strong></td><td>The service's Jinja template.</td></tr>
+            <tr><td><strong>3. What it generates</strong></td><td>The configuration it generates today on that device.</td></tr>
+        </tbody>
+    </table></div>
+    <p>The template, the JSON and the XML are colored as in VS Code. In column 3, whatever comes from the device's parameters is <strong>highlighted</strong>; hover over it to see which parameter it comes from. Anything not highlighted is fixed in the template.</p>
+    <h3>Test these values</h3>
+    <p>In column 1 you can change the values and click <strong>Test these values</strong>. Oktavia renders with the same engine used by audits and shows you the difference. <strong>Nothing is saved.</strong> Use it to answer "what would happen if…?" before touching intent.</p>
+    <div class="doc-callout"><strong>If the test says "nothing changes".</strong> Some values come from the device inventory, for example <code>ospf_config.router_id</code>, and win over the service's values. If you change one of those in the service, the configuration doesn't move. Check the device inventory.</div>
+</section>
+
+<section class="doc-section" id="explicame">
+    <h2>7. Explain this service</h2>
+    <p>Click <strong>✦ Explain this service</strong> and Argos, with local AI or with Claude, explains:</p>
+    <ul>
+        <li>what the service does;</li>
+        <li>each parameter;</li>
+        <li>what it generates on the device you picked;</li>
+        <li>tips for using it well.</li>
+    </ul>
+    <p>Argos receives the template, the masked values and the generated output. It never receives secrets or the device's full running configuration.</p>
+</section>
+
+<section class="doc-section" id="ios-xr">
+    <h2>8. IOS XR: no Jinja, XML instead</h2>
+    <p>On IOS XR there is no Jinja template. The NETCONF lane builds the YANG XML from the same values. The service page works the same way, with these differences:</p>
+    <ul>
+        <li><strong>Column 2</strong>: explains how the NETCONF lane builds the configuration.</li>
+        <li><strong>Column 3</strong>: shows the XML for the chosen device. The device's values are highlighted here too, so you can tell what comes from variables from what is fixed in the lane.</li>
+        <li><strong>See what changes</strong> and <strong>Test these values</strong> compare today's NETCONF plan with the plan for your change, exactly as the Digital Twin would push it, with <em>commit confirmed</em>.</li>
+    </ul>
+    <p>This applies to core services and to customer services. There is a recipe in <a href="#receta-xr">section 14</a>.</p>
+</section>
+
+<section class="doc-section" id="extender">
+    <h2>9. Extending a service</h2>
+    <p>When the base template doesn't include what you need, you extend it. There are two ways in:</p>
+    <ul>
+        <li><strong>Advanced options</strong>: tested extensions from the Oktavia catalog, enabled with one click. For example, in OSPF: timers, BFD and area types; in BGP: per-neighbor timers, address-family and aggregates; on interfaces: <code>bandwidth</code>.</li>
+        <li><strong>Extend here</strong>, on the row of the scope where you want the values, or <strong>＋ Extend this service</strong>.</li>
+    </ul>
+    <h3>Extend here, in three steps</h3>
+    <ol class="doc-steps">
+        <li><strong>What do you want to add?</strong> Pick it from the Oktavia catalog with one click, or describe it and generate it with Argos (local AI or Claude).</li>
+        <li><strong>Parameters.</strong> What you fill in, and its network test.</li>
+        <li><strong>Advanced template.</strong> Already resolved and folded, in case you want to adjust it.</li>
+    </ol>
+    <p>The extension's values stay in the intent (<code>service_vars</code>), in the same scope where you clicked <strong>Extend here</strong>. They reach the devices through the cycle: audit → compliance → Digital Twin → you approve → verification.</p>
+</section>
+
+<section class="doc-section" id="compuerta">
+    <h2>10. The gate before publishing</h2>
+    <p>Before an extension is published, a deterministic gate checks it. It is not an AI opinion: these are fixed rules.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Rule</th><th>What it checks</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Blocked commands</strong></td><td>The template carries no forbidden commands.</td></tr>
+            <tr><td><strong>No literal secrets</strong></td><td>Not even type 7. Secrets go as <code>&lt;&lt;vault:…&gt;&gt;</code>.</td></tr>
+            <tr><td><strong>Clean removal</strong></td><td>Removing the extension only uses <code>no</code> or <code>default</code>.</td></tr>
+            <tr><td><strong>Collateral</strong></td><td>If the extension changes lines that belong to another service, it is not published.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Then click <strong>Validate on these devices</strong>: Oktavia renders the extension on real devices without touching the network. <strong>It is published only once validated.</strong></p>
+</section>
+
+<section class="doc-section" id="pruebas">
+    <h2>11. An extension's network tests</h2>
+    <p>An extension doesn't end at the configuration: it also says how to check that it works. There are two kinds of test.</p>
+    <h3>State tests</h3>
+    <p>They check that something is up: BGP or OSPF neighbors, interfaces, BFD, IS-IS, routes. They are derived from the parameters. For example, <code>neighbors[].address</code> yields the list of neighbors that must be established.</p>
+    <h3>Value tests</h3>
+    <p>They compare what is seen on the network with what you declared. It is not enough for the neighbor to be up: it also has to have the right value.</p>
+    <ul>
+        <li>BGP timers negotiated with each neighbor.</li>
+        <li>OSPF hello and dead per interface.</li>
+        <li>SNMPv3 users: group and protocols, without keys.</li>
+    </ul>
+    <p>The catalog extensions <code>bgp_timers</code> and <code>ospf_timers</code> already ship with their value test. When you audit you will see, for example, "BGP · timers negotiated with the neighbor". Value tests exist today on IOS and IOS XE.</p>
+</section>
+
+<section class="doc-section" id="personalizados">
+    <h2>12. Custom services</h2>
+    <p>When what you need doesn't extend an existing service, create a new one in <strong>Services → Custom services</strong>.</p>
+    <ol class="doc-steps">
+        <li>Describe the service or paste a sample configuration.</li>
+        <li>Argos proposes the template, the fields and a sample of values.</li>
+        <li>The same gate from <a href="#compuerta">section 10</a> decides whether it can be published.</li>
+    </ol>
+    <p>From there you can also open <strong>View template</strong> for any service, to read it without editing it.</p>
+</section>
+
+<section class="doc-section" id="argos">
+    <h2>13. With Argos: Services by domain</h2>
+    <p>If you'd rather ask in your own words, open <strong>Argos → Configure → Services by domain</strong>. What used to be the Configurator assistant now lives here.</p>
+    <ol class="doc-steps">
+        <li>Pick the domain and the service. Only those for the platforms in your network appear.</li>
+        <li>Say which values you want and where, for example <code>timers 10 30 en los wan_router</code>. You can also bring them in from a device backup.</li>
+        <li>Argos proposes the change. Click <strong>🔍 What changes on the devices</strong> to see the desired configuration per device before saving.</li>
+        <li>If it is what you wanted, click <strong>Apply and close the cycle</strong>. You still approve the change in the Digital Twin.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="recetas">
+    <h2>14. Recipes</h2>
+
+    <h3 id="receta-bgp-timers">BGP · Timers 10/30 on one neighbor</h3>
+    <p>You want to detect a provider failure sooner. The BGP template has no per-neighbor timers; the catalog extension <code>bgp_timers</code> does.</p>
+    <ol class="doc-steps">
+        <li>In <strong>Services → WAN</strong>, open the BGP service.</li>
+        <li>In <strong>Declared values</strong>, find the router's scope, usually <code>by_device</code>, and click <strong>Extend here</strong>.</li>
+        <li>Pick <strong>BGP · per-neighbor timers</strong> from the catalog and fill in the parameters:
+<pre><code>{
+  "neighbors": [
+    { "address": "198.51.100.1", "keepalive": 10, "hold": 30 }
+  ]
+}</code></pre></li>
+        <li>Click <strong>See what changes</strong>. A single new line should appear, on that device:
+<pre><code>r1
+  router bgp 65001
++  neighbor 198.51.100.1 timers 10 30</code></pre></li>
+        <li>Save and close the cycle. Approve the change in the Digital Twin.</li>
+        <li>After verification, review the device's compliance: the value test <strong>BGP · timers negotiated with the neighbor</strong> appears. The neighbor negotiates the lower hold: if the other side has a lower one, that is what you will see.</li>
+    </ol>
+
+    <h3 id="receta-bandwidth">Interfaces · Add <code>bandwidth</code></h3>
+    <p>The interfaces template has no <code>bandwidth</code>, and you need it for OSPF or EIGRP cost and for a percentage-based QoS. <code>bandwidth</code> does not change the real link speed.</p>
+    <ol class="doc-steps">
+        <li>Open the router's interfaces service and, in <strong>Advanced options</strong>, enable <strong>Interfaces · bandwidth</strong> (<code>interface_bandwidth</code>).</li>
+        <li>Fill in one entry per interface, in kbps:
+<pre><code>{
+  "interfaces": [
+    { "name": "GigabitEthernet4", "bandwidth_kbps": 50000 }
+  ]
+}</code></pre></li>
+        <li>In <strong>Test with a device</strong>, pick the router and check column 3. What is highlighted comes from your parameters:
+<pre><code>interface GigabitEthernet4
+ bandwidth 50000
+!</code></pre></li>
+        <li>Save and close the cycle. The extension's state test checks that the interface stays up.</li>
+    </ol>
+
+    <h3 id="receta-personalizado">A new service with Argos from a sample config</h3>
+    <p>You want an IP SLA probe toward the provider gateway on every branch router, and there is no service for it.</p>
+    <ol class="doc-steps">
+        <li>Open <strong>Services → Custom services</strong> and paste the configuration you already use on a device:
+<pre><code>ip sla 10
+ icmp-echo 198.51.100.1 source-interface GigabitEthernet2
+ frequency 30
+ip sla schedule 10 life forever start-time now</code></pre></li>
+        <li>Argos proposes the template, the fields (for example, probe number, target, source interface and frequency) and a sample of values. Check that what varies is a field and what is fixed stays fixed.</li>
+        <li>Click <strong>Validate on these devices</strong> with two or three routers. If the gate rejects something, fix it before moving on.</li>
+        <li>Publish, declare the values in the right scope, for example <code>by_role</code>, and close the cycle.</li>
+    </ol>
+
+    <h3 id="receta-xr">IOS XR · A new BGP route reflector client</h3>
+    <p>You are adding a new PE as a route reflector client and want to see the XML that changes before saving.</p>
+    <ol class="doc-steps">
+        <li>In <strong>Services → Transport</strong>, open the core BGP service (<code>xr_bgp</code>).</li>
+        <li>In <strong>Test with a device</strong>, pick the route reflector. Column 3 shows its XML, with the values highlighted.</li>
+        <li>In column 1, add the new PE's loopback to <code>clients</code>. Remember: a list is rewritten whole.
+<pre><code>{
+  "asn": 65000,
+  "route_reflector": true,
+  "clients": ["192.0.2.11", "192.0.2.12", "192.0.2.13"]
+}</code></pre></li>
+        <li>Click <strong>Test these values</strong>. Oktavia compares today's NETCONF plan with the plan for your change and shows the new neighbor:
+<pre><code>+ &lt;neighbor&gt;
++   &lt;neighbor-address&gt;192.0.2.13&lt;/neighbor-address&gt;
++   &lt;remote-as&gt;65000&lt;/remote-as&gt;
++   &lt;update-source&gt;Loopback0&lt;/update-source&gt;
++   &lt;address-families&gt;
++     &lt;address-family&gt;
++       &lt;af-name&gt;vpnv4-unicast&lt;/af-name&gt;
++       &lt;route-reflector-client/&gt;
++     &lt;/address-family&gt;
++   &lt;/address-families&gt;
++ &lt;/neighbor&gt;</code></pre></li>
+        <li>If it is as expected, edit the declaration with <strong>Edit values</strong>, check <strong>See what changes</strong> and save.</li>
+        <li>The core changes as a single transaction with <em>commit confirmed</em>: if you don't confirm, the devices roll back on their own.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="buenas-practicas">
+    <h2>15. Good practices</h2>
+    <ul>
+        <li><strong>Test before saving.</strong> "Test these values" saves nothing: use it freely.</li>
+        <li><strong>Read "See what changes" device by device.</strong> If a device you didn't expect appears, check the scope.</li>
+        <li><strong>Prefer the catalog.</strong> A catalog extension is already tested and ships with its network test.</li>
+        <li><strong>Extend, don't copy.</strong> The base template is not edited; your work lives in the extension and the values.</li>
+        <li><strong>Declare at the most general scope possible.</strong> Same as with intent: <code>by_device</code> only for what belongs to the device.</li>
+        <li><strong>Give every extension its test.</strong> A service with "no tests" won't warn you when it stops working.</li>
+        <li><strong>No secrets in clear text.</strong> Everything through the vault, with <code>&lt;&lt;vault:…&gt;&gt;</code>.</li>
+        <li><strong>Verify with compliance.</strong> A change ends when the audit confirms it.</li>
+    </ul>
+    <p>For scopes and the change cycle, continue with the <a href="guia-intencion-en.html">Intent guide</a>.</p>
+</section>
+
+
+        <footer class="doc-footer">
+            <h3>About Oktanet</h3>
+            <p>
+                Oktanet is a Mexican network automation company focused on controlled, traceable, and scalable operations for enterprise environments in Latin America.
+            </p>
+            <p>
+                For a demonstration on your own environment, reach us at <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Public document, with no confidential customer information.</p>
+        </footer>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+</body>
+</html>
