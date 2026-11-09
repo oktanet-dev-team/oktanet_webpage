@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Servicios y plantillas: ver, probar y extender sin desarrollo | Oktanet</title>
+    <meta name="description" content="Cómo ver, probar y extender los servicios de Oktavia sin escribir Jinja: la página del servicio, Probar con un equipo, IOS XR por NETCONF, extensiones con compuerta y pruebas de valor. Para ingenieros de red y socios.">
+    <link rel="canonical" href="https://oktanet.io/docs/guia-servicios.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-servicios.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-servicios-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Servicios y plantillas: ver, probar y extender sin desarrollo">
+    <meta property="og:description" content="Cómo ver, probar y extender los servicios de Oktavia sin escribir Jinja: la página del servicio, Probar con un equipo, IOS XR por NETCONF, extensiones con compuerta y pruebas de valor. Para ingenieros de red y socios.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/guia-servicios.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=8e9a9c17d2">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+</head>
+<body class="docs-portal" data-docs-page="guia-servicios.html">
+    <header class="doc-header no-print">
+        <div class="doc-header-inner">
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <nav aria-label="Documentación de Oktavia">
+                <a href="../">Inicio</a>
+                <a href="oktavia-docs.html">Documentación</a>
+                <a href="oktavia-docs.html#academia">Academia</a>
+                <a href="oktavia-docs.html#articulos">Artículos</a>
+                <a href="../oktavia-sp.html">Oktavia SP</a>
+                <a href="../#contacto">Contacto</a>
+                <a href="./guia-servicios-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+                <a class="doc-btn doc-btn-solid" href="guia-servicios-es.pdf" download>Descargar PDF</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="doc-main">
+        <nav class="docs-crumbs" aria-label="Ruta">
+            <ol>
+                <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                <li><a href="oktavia-docs.html#ingenieros">Guías para ingenieros de red</a></li>
+                <li><span aria-current="page">Servicios y plantillas</span></li>
+            </ol>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-side no-print">
+                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
+                    <span>Contenido de la documentación</span>
+                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+                </button>
+                <div class="docs-side-body" id="docs-side-body">
+                    <div class="docs-search" data-docs-search>
+                        <form class="docs-search-form" role="search">
+                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <nav aria-label="Documentos" data-docs-tree></nav>
+                </div>
+            </aside>
+
+            <div class="docs-main-col">
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Guía para ingenieros de red</p>
+            <h1>Servicios y plantillas: ver, probar y extender sin desarrollo</h1>
+            <p class="doc-lede">Cómo ver qué genera cada servicio en tus equipos, probar un cambio antes de guardarlo y agregarle lo que la plantilla no trae. Tú trabajas con parámetros; Oktavia se encarga de la plantilla, la compuerta y las pruebas.</p>
+            <ul class="doc-meta">
+                <li>Desarrollado por Oktanet</li>
+                <li>México · 2026</li>
+                <li>Documento público</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Compartir</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contenido">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#para-quien">Para quién es esta guía</a></li>
+                <li><a href="#la-idea">La idea: parámetros, no Jinja</a></li>
+                <li><a href="#lista">Los servicios de tu dominio</a></li>
+                <li><a href="#pagina">La página del servicio</a></li>
+                <li><a href="#valores">Valores declarados y «Ver qué cambia»</a></li>
+                <li><a href="#probar">Probar con un equipo</a></li>
+                <li><a href="#explicame">Explícame este servicio</a></li>
+                <li><a href="#ios-xr">IOS XR: sin Jinja, con XML</a></li>
+                <li><a href="#extender">Extender un servicio</a></li>
+                <li><a href="#compuerta">La compuerta antes de publicar</a></li>
+                <li><a href="#pruebas">Las pruebas de red de una extensión</a></li>
+                <li><a href="#personalizados">Servicios personalizados</a></li>
+                <li><a href="#argos">Con Argos: Servicios por dominio</a></li>
+                <li><a href="#recetas">Recetas</a></li>
+                <li><a href="#buenas-practicas">Buenas prácticas</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="para-quien">
+    <h2>1. Para quién es esta guía</h2>
+    <p>Para ingenieros de red y de automatización, de cliente o de socio, que mantienen los servicios de una red en Oktavia: Campus, WAN, Seguridad y Gestión en una empresa; Transporte, Servicios, Seguridad y Gestión en un proveedor.</p>
+    <p>Al terminar sabrás leer un servicio de punta a punta, probar un valor contra un equipo real sin guardar nada, y agregar a un servicio lo que su plantilla no trae, sin escribir Jinja y sin pedir desarrollo.</p>
+    <p>Esta guía complementa la <a href="guia-intencion.html">Guía de intención</a>, que explica los alcances y el ciclo de cambio. Si es tu primera vez con Oktavia, empieza por esa.</p>
+</section>
+
+<section class="doc-section" id="la-idea">
+    <h2>2. La idea: parámetros, no Jinja</h2>
+    <p>Cada servicio de Oktavia tiene una plantilla base, probada, que convierte valores en configuración. Esa plantilla <strong>no se edita</strong>: se <strong>extiende</strong>. Así una actualización de Oktavia no pisa tu trabajo y tu trabajo no rompe la plantilla.</p>
+    <p>Tu trabajo como ingeniero está en los <strong>parámetros</strong>: qué valores, en qué alcance y con qué prueba de red. La plantilla de una extensión la trae el catálogo de Oktavia o la propone Argos, y una compuerta determinista decide si se puede publicar.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Pieza</th><th>Quién la hace</th><th>Dónde vive</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Plantilla base</strong></td><td>Oktavia.</td><td>El catálogo de servicios. No se toca.</td></tr>
+            <tr><td><strong>Extensión</strong></td><td>El catálogo de Oktavia, con un clic, o Argos a partir de tu descripción.</td><td>Junto al servicio que extiende.</td></tr>
+            <tr><td><strong>Valores</strong></td><td>Tú.</td><td>La intención (<code>service_vars</code>), en el alcance que elijas.</td></tr>
+            <tr><td><strong>Pruebas</strong></td><td>Oktavia las saca de la plantilla y de los parámetros.</td><td>El cumplimiento de cada auditoría.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Guardar valores no toca la red. Llegan a los equipos con el ciclo de siempre: auditar, cumplimiento, Gemelo digital, tú apruebas y la verificación lo confirma.</p>
+</section>
+
+<section class="doc-section" id="lista">
+    <h2>3. Los servicios de tu dominio</h2>
+    <p>Abre <strong>Servicios</strong> y elige el dominio. La pestaña que antes se llamaba Intención ahora se llama <strong>Servicios</strong>: lista todos los servicios del dominio, estén declarados o no.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Columna</th><th>Qué dice</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Plataforma</strong></td><td>Para qué sistemas existe el servicio: <code>ios</code>, <code>iosxe</code>, <code>xr</code>…</td></tr>
+            <tr><td><strong>Declarado en</strong></td><td>Los alcances donde tiene valores.</td></tr>
+            <tr><td><strong>Equipos</strong></td><td>A cuántos equipos les aplica.</td></tr>
+            <tr><td><strong>Fallas y %</strong></td><td>Su cumplimiento en la última auditoría.</td></tr>
+            <tr><td><strong>Pruebas</strong></td><td>Cuántas pruebas de config y de estado lo validan; «sin pruebas» si ninguna.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Los servicios no declarados salen al final, con un enlace para declararlos. El <strong>Resumen</strong> del dominio también muestra la plataforma de cada servicio.</p>
+</section>
+
+<section class="doc-section" id="pagina">
+    <h2>4. La página del servicio</h2>
+    <p>Cada servicio de la lista abre su página. Reúne en un solo lugar todo lo que necesitas para entenderlo y cambiarlo:</p>
+    <ol class="doc-steps">
+        <li><strong>Valores declarados</strong>: cada alcance donde se declara, con sus valores, y los botones para editarlos, ver la plantilla y extender (<a href="#valores">sección 5</a>).</li>
+        <li><strong>Probar con un equipo</strong>: valores, plantilla y resultado, lado a lado, para un equipo real (<a href="#probar">sección 6</a>).</li>
+        <li><strong>✦ Explícame este servicio</strong>: Argos te explica qué hace y qué genera (<a href="#explicame">sección 7</a>).</li>
+        <li><strong>＋ Extender este servicio</strong> y <strong>Opciones avanzadas</strong>: lo que puedes agregarle (<a href="#extender">sección 9</a>).</li>
+        <li><strong>Equipos donde está activo</strong>, por sitio, con ⚠ en los que fallan, y <strong>Pruebas que lo validan</strong>.</li>
+    </ol>
+    <p>Las pruebas son de dos tipos. Las de <strong>config</strong> comparan la running con lo que genera la plantilla, una regla por equipo. Las de <strong>estado</strong> comprueban que el servicio funcione en la red.</p>
+</section>
+
+<section class="doc-section" id="valores">
+    <h2>5. Valores declarados y «Ver qué cambia»</h2>
+    <p>El plegable <strong>Valores declarados</strong> muestra cada alcance donde vive el servicio —<code>defaults</code>, <code>by_role</code>, <code>by_site</code>, <code>by_device</code>, <code>by_model</code>, <code>by_platform</code>…— con sus valores. En la misma fila están <strong>Editar valores</strong>, <strong>Plantilla</strong> y <strong>Extender aquí</strong>.</p>
+    <h3>Editar y ver qué cambia</h3>
+    <ol class="doc-steps">
+        <li>Pulsa <strong>Editar valores</strong> en el alcance que quieres cambiar. Se abre un editor JSON.</li>
+        <li>Cambia los valores.</li>
+        <li>Pulsa <strong>Ver qué cambia</strong>. Oktavia muestra, por equipo, las líneas de la configuración deseada que cambiarían: <code>−</code> lo de hoy, <code>+</code> lo que queda con tu cambio. Los secretos salen ocultos.</li>
+        <li>Si es lo que esperabas, pulsa <strong>Guardar</strong>. Si no, ajusta y vuelve a ver.</li>
+    </ol>
+<pre><code>r1
+  router bgp 65001
++  neighbor 198.51.100.1 timers 10 30</code></pre>
+    <p>Son líneas reales de configuración, no sólo valores. Si un equipo que no esperabas aparece en la lista, tu alcance es más amplio de lo que creías: no guardes todavía.</p>
+    <div class="doc-callout"><strong>Qué necesitas saber.</strong> Editar requiere ser administrador de la organización. Los secretos van siempre como referencia a la bóveda, <code>&lt;&lt;vault:…&gt;&gt;</code>; nunca en claro.</div>
+</section>
+
+<section class="doc-section" id="probar">
+    <h2>6. Probar con un equipo</h2>
+    <p>Es la mejor forma de entender un servicio. Elige un equipo en el menú, agrupado por sitio, y verás tres columnas lado a lado:</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Columna</th><th>Qué muestra</th></tr></thead>
+        <tbody>
+            <tr><td><strong>1. Valores</strong></td><td>Los valores del equipo para ese servicio y de qué alcances salen. Cada alcance es un botón que abre su declaración para editarla.</td></tr>
+            <tr><td><strong>2. Plantilla</strong></td><td>La plantilla Jinja del servicio.</td></tr>
+            <tr><td><strong>3. Lo que genera</strong></td><td>La configuración que genera hoy en ese equipo.</td></tr>
+        </tbody>
+    </table></div>
+    <p>La plantilla, el JSON y el XML llevan colores como en VS Code. En la columna 3, lo que sale de los parámetros del equipo va <strong>resaltado</strong>; al pasar el mouse te dice de qué parámetro sale. Lo que no está resaltado es fijo de la plantilla.</p>
+    <h3>Probar estos valores</h3>
+    <p>En la columna 1 puedes cambiar los valores y pulsar <strong>Probar estos valores</strong>. Oktavia renderiza con el mismo motor de las auditorías y te muestra la diferencia. <strong>No guarda nada.</strong> Úsalo para responder «¿qué pasaría si…?» antes de tocar la intención.</p>
+    <div class="doc-callout"><strong>Si la prueba dice «no cambia nada».</strong> Algunos valores salen del inventario del equipo, por ejemplo <code>ospf_config.router_id</code>, y ganan sobre los del servicio. Si cambias uno de esos en el servicio, la configuración no se mueve. Revisa el inventario del equipo.</div>
+</section>
+
+<section class="doc-section" id="explicame">
+    <h2>7. Explícame este servicio</h2>
+    <p>Pulsa <strong>✦ Explícame este servicio</strong> y Argos, con IA local o con Claude, te explica:</p>
+    <ul>
+        <li>qué hace el servicio;</li>
+        <li>cada parámetro;</li>
+        <li>qué genera en el equipo que elegiste;</li>
+        <li>consejos para usarlo bien.</li>
+    </ul>
+    <p>Argos recibe la plantilla, los valores enmascarados y lo generado. Nunca recibe secretos ni la running completa del equipo.</p>
+</section>
+
+<section class="doc-section" id="ios-xr">
+    <h2>8. IOS XR: sin Jinja, con XML</h2>
+    <p>En IOS XR no hay plantilla Jinja. El carril NETCONF arma el XML YANG desde los mismos valores. La página del servicio funciona igual, con estas diferencias:</p>
+    <ul>
+        <li><strong>Columna 2</strong>: explica cómo el carril NETCONF construye la configuración.</li>
+        <li><strong>Columna 3</strong>: muestra el XML del equipo elegido. Los valores del equipo también van resaltados, así distingues lo que sale de variables de lo fijo del carril.</li>
+        <li><strong>Ver qué cambia</strong> y <strong>Probar estos valores</strong> comparan el plan NETCONF de hoy contra el de tu cambio, tal como lo empujaría el Gemelo digital, con <em>commit confirmed</em>.</li>
+    </ul>
+    <p>Aplica a los servicios del núcleo y a los de cliente. Hay una receta en la <a href="#receta-xr">sección 14</a>.</p>
+</section>
+
+<section class="doc-section" id="extender">
+    <h2>9. Extender un servicio</h2>
+    <p>Cuando la plantilla base no trae lo que necesitas, la extiendes. Tienes dos entradas:</p>
+    <ul>
+        <li><strong>Opciones avanzadas</strong>: extensiones del catálogo de Oktavia, probadas, que se activan con un clic. Por ejemplo, en OSPF: timers, BFD y tipos de área; en BGP: timers por vecino, address-family y agregados; en interfaces: <code>bandwidth</code>.</li>
+        <li><strong>Extender aquí</strong>, en la fila del alcance donde quieres los valores, o <strong>＋ Extender este servicio</strong>.</li>
+    </ul>
+    <h3>Extender aquí, en tres pasos</h3>
+    <ol class="doc-steps">
+        <li><strong>¿Qué quieres agregar?</strong> Elige del catálogo de Oktavia con un clic, o descríbelo y genéralo con Argos (IA local o Claude).</li>
+        <li><strong>Parámetros.</strong> Lo que llenas tú, y su prueba de red.</li>
+        <li><strong>Plantilla avanzada.</strong> Ya viene resuelta y plegada, por si quieres ajustarla.</li>
+    </ol>
+    <p>Los valores de la extensión quedan en la intención (<code>service_vars</code>), en el mismo alcance donde pulsaste <strong>Extender aquí</strong>. Llegan a los equipos con el ciclo: auditar → cumplimiento → Gemelo digital → tú apruebas → verificación.</p>
+</section>
+
+<section class="doc-section" id="compuerta">
+    <h2>10. La compuerta antes de publicar</h2>
+    <p>Antes de publicar una extensión, una compuerta determinista la revisa. No es una opinión de la IA: son reglas fijas.</p>
+    <div class="doc-table-wrap"><table class="doc-table">
+        <thead><tr><th>Regla</th><th>Qué revisa</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Comandos bloqueados</strong></td><td>La plantilla no lleva comandos prohibidos.</td></tr>
+            <tr><td><strong>Ningún secreto literal</strong></td><td>Tampoco tipo 7. Los secretos van como <code>&lt;&lt;vault:…&gt;&gt;</code>.</td></tr>
+            <tr><td><strong>Baja limpia</strong></td><td>Quitar la extensión sólo usa <code>no</code> o <code>default</code>.</td></tr>
+            <tr><td><strong>Colateral</strong></td><td>Si la extensión cambia líneas de otro servicio, no se publica.</td></tr>
+        </tbody>
+    </table></div>
+    <p>Después pulsa <strong>Validar en estos equipos</strong>: Oktavia renderiza la extensión en equipos reales sin tocar la red. <strong>Sólo con validación se publica.</strong></p>
+</section>
+
+<section class="doc-section" id="pruebas">
+    <h2>11. Las pruebas de red de una extensión</h2>
+    <p>Una extensión no termina en la configuración: también dice cómo comprobar que funciona. Hay dos tipos de prueba.</p>
+    <h3>Pruebas de estado</h3>
+    <p>Comprueban que algo esté arriba: vecinos BGP u OSPF, interfaces, BFD, IS-IS, rutas. Se sacan de los parámetros. Por ejemplo, de <code>neighbors[].address</code> sale la lista de vecinos que deben estar establecidos.</p>
+    <h3>Pruebas de valor</h3>
+    <p>Comparan lo que se ve en la red contra lo que declaraste. No basta con que el vecino esté arriba: también tiene que tener el valor correcto.</p>
+    <ul>
+        <li>Timers BGP negociados con cada vecino.</li>
+        <li>Hello y dead de OSPF por interfaz.</li>
+        <li>Usuarios SNMPv3: grupo y protocolos, sin claves.</li>
+    </ul>
+    <p>Las extensiones del catálogo <code>bgp_timers</code> y <code>ospf_timers</code> ya traen su prueba de valor. Al auditar aparece, por ejemplo, «BGP · timers negociados con el vecino». Hoy las pruebas de valor existen en IOS e IOS XE.</p>
+</section>
+
+<section class="doc-section" id="personalizados">
+    <h2>12. Servicios personalizados</h2>
+    <p>Cuando lo que necesitas no extiende un servicio existente, crea uno nuevo en <strong>Servicios → Servicios personalizados</strong>.</p>
+    <ol class="doc-steps">
+        <li>Describe el servicio o pega una configuración de ejemplo.</li>
+        <li>Argos propone la plantilla, los campos y un ejemplo de valores.</li>
+        <li>La misma compuerta de la <a href="#compuerta">sección 10</a> decide si se puede publicar.</li>
+    </ol>
+    <p>Desde ahí también puedes abrir <strong>Ver plantilla</strong> de cualquier servicio, para leerla sin editarla.</p>
+</section>
+
+<section class="doc-section" id="argos">
+    <h2>13. Con Argos: Servicios por dominio</h2>
+    <p>Si prefieres pedirlo con tus palabras, abre <strong>Argos → Configurar → Servicios por dominio</strong>. Lo que antes era el asistente del Configurador ahora vive aquí.</p>
+    <ol class="doc-steps">
+        <li>Elige el dominio y el servicio. Sólo aparecen los de las plataformas de tu red.</li>
+        <li>Di qué valores quieres y dónde, por ejemplo <code>timers 10 30 en los wan_router</code>. También puedes traerlos del respaldo de un equipo.</li>
+        <li>Argos propone el cambio. Pulsa <strong>🔍 Qué cambia en los equipos</strong> para ver la configuración deseada por equipo antes de guardar.</li>
+        <li>Si es lo que querías, pulsa <strong>Aplicar y cerrar el ciclo</strong>. Tú sigues aprobando el cambio en el Gemelo digital.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="recetas">
+    <h2>14. Recetas</h2>
+
+    <h3 id="receta-bgp-timers">BGP · Timers 10/30 en un vecino</h3>
+    <p>Quieres detectar antes la caída de un proveedor. La plantilla de BGP no trae timers por vecino; la extensión <code>bgp_timers</code> del catálogo sí.</p>
+    <ol class="doc-steps">
+        <li>En <strong>Servicios → WAN</strong>, abre el servicio BGP.</li>
+        <li>En <strong>Valores declarados</strong>, busca el alcance del router, normalmente <code>by_device</code>, y pulsa <strong>Extender aquí</strong>.</li>
+        <li>Elige <strong>BGP · timers por vecino</strong> del catálogo y llena los parámetros:
+<pre><code>{
+  "neighbors": [
+    { "address": "198.51.100.1", "keepalive": 10, "hold": 30 }
+  ]
+}</code></pre></li>
+        <li>Pulsa <strong>Ver qué cambia</strong>. Debe aparecer una sola línea nueva, en ese equipo:
+<pre><code>r1
+  router bgp 65001
++  neighbor 198.51.100.1 timers 10 30</code></pre></li>
+        <li>Guarda y cierra el ciclo. Aprueba el cambio en el Gemelo digital.</li>
+        <li>Después de la verificación, revisa el cumplimiento del equipo: aparece la prueba de valor <strong>BGP · timers negociados con el vecino</strong>. El vecino negocia el hold menor: si el otro lado tiene uno más bajo, eso es lo que verás.</li>
+    </ol>
+
+    <h3 id="receta-bandwidth">Interfaces · Agregar <code>bandwidth</code></h3>
+    <p>La plantilla de interfaces no trae <code>bandwidth</code>, y lo necesitas para el costo de OSPF o EIGRP y para un QoS en porcentaje. <code>bandwidth</code> no cambia la velocidad real del enlace.</p>
+    <ol class="doc-steps">
+        <li>Abre el servicio de interfaces del router y, en <strong>Opciones avanzadas</strong>, activa <strong>Interfaces · bandwidth</strong> (<code>interface_bandwidth</code>).</li>
+        <li>Llena una entrada por interfaz, en kbps:
+<pre><code>{
+  "interfaces": [
+    { "name": "GigabitEthernet4", "bandwidth_kbps": 50000 }
+  ]
+}</code></pre></li>
+        <li>En <strong>Probar con un equipo</strong>, elige el router y revisa la columna 3. Lo resaltado sale de tus parámetros:
+<pre><code>interface GigabitEthernet4
+ bandwidth 50000
+!</code></pre></li>
+        <li>Guarda y cierra el ciclo. La prueba de estado de la extensión comprueba que la interfaz siga arriba.</li>
+    </ol>
+
+    <h3 id="receta-personalizado">Un servicio nuevo con Argos desde una config de ejemplo</h3>
+    <p>Quieres una sonda IP SLA hacia el gateway del proveedor en cada router de sucursal, y no hay un servicio para eso.</p>
+    <ol class="doc-steps">
+        <li>Abre <strong>Servicios → Servicios personalizados</strong> y pega la configuración que ya usas en un equipo:
+<pre><code>ip sla 10
+ icmp-echo 198.51.100.1 source-interface GigabitEthernet2
+ frequency 30
+ip sla schedule 10 life forever start-time now</code></pre></li>
+        <li>Argos propone la plantilla, los campos (por ejemplo, número de sonda, destino, interfaz de origen y frecuencia) y un ejemplo de valores. Revisa que lo variable sea un campo y lo fijo quede fijo.</li>
+        <li>Pulsa <strong>Validar en estos equipos</strong> con dos o tres routers. Si la compuerta rechaza algo, corrígelo antes de seguir.</li>
+        <li>Publica, declara los valores en el alcance que corresponda, por ejemplo <code>by_role</code>, y cierra el ciclo.</li>
+    </ol>
+
+    <h3 id="receta-xr">IOS XR · Un cliente nuevo del reflector BGP</h3>
+    <p>Vas a sumar un PE nuevo como cliente del route reflector y quieres ver el XML que cambia antes de guardar.</p>
+    <ol class="doc-steps">
+        <li>En <strong>Servicios → Transporte</strong>, abre el servicio de BGP del núcleo (<code>xr_bgp</code>).</li>
+        <li>En <strong>Probar con un equipo</strong>, elige el route reflector. La columna 3 muestra su XML, con los valores resaltados.</li>
+        <li>En la columna 1, agrega la loopback del PE nuevo a <code>clients</code>. Recuerda: una lista se reescribe completa.
+<pre><code>{
+  "asn": 65000,
+  "route_reflector": true,
+  "clients": ["192.0.2.11", "192.0.2.12", "192.0.2.13"]
+}</code></pre></li>
+        <li>Pulsa <strong>Probar estos valores</strong>. Oktavia compara el plan NETCONF de hoy con el de tu cambio y muestra el vecino nuevo:
+<pre><code>+ &lt;neighbor&gt;
++   &lt;neighbor-address&gt;192.0.2.13&lt;/neighbor-address&gt;
++   &lt;remote-as&gt;65000&lt;/remote-as&gt;
++   &lt;update-source&gt;Loopback0&lt;/update-source&gt;
++   &lt;address-families&gt;
++     &lt;address-family&gt;
++       &lt;af-name&gt;vpnv4-unicast&lt;/af-name&gt;
++       &lt;route-reflector-client/&gt;
++     &lt;/address-family&gt;
++   &lt;/address-families&gt;
++ &lt;/neighbor&gt;</code></pre></li>
+        <li>Si es lo esperado, edita la declaración con <strong>Editar valores</strong>, revisa <strong>Ver qué cambia</strong> y guarda.</li>
+        <li>El núcleo cambia como una sola transacción con <em>commit confirmed</em>: si no confirmas, los equipos regresan solos.</li>
+    </ol>
+</section>
+
+<section class="doc-section" id="buenas-practicas">
+    <h2>15. Buenas prácticas</h2>
+    <ul>
+        <li><strong>Prueba antes de guardar.</strong> «Probar estos valores» no guarda nada: úsalo sin miedo.</li>
+        <li><strong>Lee «Ver qué cambia» equipo por equipo.</strong> Si aparece un equipo que no esperabas, revisa el alcance.</li>
+        <li><strong>Prefiere el catálogo.</strong> Una extensión del catálogo ya está probada y trae su prueba de red.</li>
+        <li><strong>Extiende, no copies.</strong> La plantilla base no se edita; tu trabajo vive en la extensión y en los valores.</li>
+        <li><strong>Declara en el alcance más general posible.</strong> Lo mismo que en la intención: <code>by_device</code> sólo para lo que es del equipo.</li>
+        <li><strong>Dale a cada extensión su prueba.</strong> Un servicio «sin pruebas» no te avisa cuando deja de funcionar.</li>
+        <li><strong>Nada de secretos en claro.</strong> Todo por la bóveda, con <code>&lt;&lt;vault:…&gt;&gt;</code>.</li>
+        <li><strong>Verifica con cumplimiento.</strong> Un cambio termina cuando la auditoría lo confirma.</li>
+    </ul>
+    <p>Para los alcances y el ciclo de cambio, sigue con la <a href="guia-intencion.html">Guía de intención</a>.</p>
+</section>
+
+
+        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p>
+                Para una demostración sobre su entorno, escríbanos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Documento público, sin información confidencial de clientes.</p>
+        </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
+    <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
+</body>
+</html>

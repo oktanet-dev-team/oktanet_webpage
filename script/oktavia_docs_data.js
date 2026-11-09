@@ -167,10 +167,11 @@ window.OKTAVIA_DOCS = (function () {
             kind: 'Guía',
             icon: 'hub',
             page: 'oktavia-docs.html#ingenieros',
-            summary: 'Para quien diseña y mantiene la intención de la red: alcances, consolas por dominio y cómo llevar un cambio a producción.',
-            keywords: ['intención', 'intent', 'ingeniero de red', 'socio', 'partner', 'alcances', 'scopes', 'service_vars', 'campus', 'wan', 'seguridad', 'configurador'],
+            summary: 'Para quien diseña y mantiene la intención de la red: alcances, servicios y plantillas, y cómo llevar un cambio a producción.',
+            keywords: ['intención', 'intent', 'ingeniero de red', 'socio', 'partner', 'alcances', 'scopes', 'service_vars', 'campus', 'wan', 'seguridad', 'configurador', 'plantillas', 'extensiones'],
             docs: [
-                { id: 'guia-intencion', href: 'guia-intencion.html', title: 'Guía de intención para ingenieros de red', summary: 'Definir y editar la intención en cualquier dominio, desde las consolas de Servicios o el Configurador.', keywords: ['intención', 'alcances', 'json', 'consola', 'dominio', 'partners'] },
+                { id: 'guia-intencion', href: 'guia-intencion.html', title: 'Guía de intención para ingenieros de red', summary: 'Definir y editar la intención en cualquier dominio, desde la página de cada servicio o con Argos.', keywords: ['intención', 'alcances', 'json', 'consola', 'dominio', 'partners'] },
+                { id: 'guia-servicios', href: 'guia-servicios.html', title: 'Servicios y plantillas: ver, probar y extender sin desarrollo', summary: 'La página de cada servicio, probar valores con un equipo real, IOS XR por NETCONF y extensiones con compuerta y pruebas de valor.', keywords: ['servicios', 'plantillas', 'jinja', 'extender', 'extensión', 'catálogo', 'probar', 'ver qué cambia', 'compuerta', 'pruebas de valor', 'bgp_timers', 'ospf_timers', 'interface_bandwidth', 'netconf', 'ios xr', 'argos', 'servicios personalizados'] },
             ]
         },
         {

@@ -223,4 +223,18 @@
 <xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-intencion.html"/>
 <xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-intencion-en.html"/>
 </url>
+<url>
+<loc>https://oktanet.io/docs/guia-servicios.html</loc>
+<priority>0.8</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-servicios.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-servicios-en.html"/>
+</url>
+<url>
+<loc>https://oktanet.io/docs/guia-servicios-en.html</loc>
+<priority>0.7</priority>
+<changefreq>monthly</changefreq>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/docs/guia-servicios.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/docs/guia-servicios-en.html"/>
+</url>
 </urlset>

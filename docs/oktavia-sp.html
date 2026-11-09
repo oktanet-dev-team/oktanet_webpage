@@ -113,6 +113,7 @@
                 <li><a href="#catalogo">Catálogo de servicios</a></li>
                 <li><a href="#ciclo">El ciclo y el Gemelo Digital</a></li>
                 <li><a href="#visibilidad">Visibilidad</a></li>
+                <li><a href="#clientes">Clientes y contratos</a></li>
                 <li><a href="#argos">Argos en una red de proveedor</a></li>
                 <li><a href="#ia-local">IA local con contexto de proveedor</a></li>
                 <li><a href="#familia">La familia de plataformas Oktavia</a></li>
@@ -167,7 +168,7 @@
 
         <section class="doc-section" id="catalogo">
             <h2>3. Catálogo de servicios</h2>
-            <p>Los servicios se declaran en el Configurador, cada uno con su configuración deseada y su cumplimiento propio:</p>
+            <p>Cada servicio tiene su página en <strong>Servicios → Transporte</strong> o <strong>Servicios → Servicios</strong>, con su configuración deseada y su cumplimiento propio:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -189,6 +190,10 @@
                     <strong>El lado del cliente sale del mismo servicio.</strong> La parte del CE (Cisco IOS) de la L3VPN y de los pseudowires se genera de la misma declaración que la del PE: no hay una segunda intención que mantener al día.
                 </p>
             </div>
+            <h3>Ver y probar un servicio de IOS XR</h3>
+            <p>
+                En IOS XR no hay plantilla Jinja: el carril NETCONF arma el XML YANG desde los mismos valores. En la página del servicio, al probar con un equipo verás su XML, con los valores del equipo resaltados para distinguirlos de lo fijo del carril. <strong>Ver qué cambia</strong> y <strong>Probar estos valores</strong> comparan el plan NETCONF de hoy con el de tu cambio, como lo empujaría el Gemelo Digital, con commit confirmado. Aplica a los servicios del núcleo y a los de cliente. Paso a paso en la <a href="guia-servicios.html#ios-xr">Guía de servicios y plantillas</a>.
+            </p>
         </section>
 
         <section class="doc-section" id="ciclo">
@@ -215,14 +220,37 @@
                 <li><strong>Topología</strong> con los enlaces punto a punto del núcleo, la capa IS-IS y los pseudowires.</li>
                 <li><strong>Plano de control</strong>: vecinos IS-IS con nivel, área y SID de adyacencia; BGP con su ASN; tabla de rutas con etiquetas VPN y los respaldos TI-LFA distinguidos del ECMP.</li>
                 <li><strong>Camino a través de la L3VPN MPLS</strong>: PE de entrada, etiqueta VPN y PE de salida, en los dos sentidos, también sobre la Topología.</li>
-                <li><strong>Servicios de cliente</strong>: una página por cliente con sus L3VPN y sus pseudowires, el estado de punta a punta, el contrato de QoS y el diagrama.</li>
+                <li><strong>Servicios de cliente</strong>: una página por cliente con sus L3VPN y sus pseudowires, el estado de punta a punta, el contrato de QoS, el diagrama y su contrato comercial (<a href="#clientes">sección 6</a>).</li>
                 <li><strong>Telemetría</strong>: CPU y memoria, sesiones BGP, adyacencias IS-IS y tamaño de la tabla de rutas por SNMP, y una sección de pseudowires con el tráfico y el estado del circuito de acceso en cada PE, donde el ancho de banda contratado es el 100 %. Por streaming, IOS XR envía además el estado de los xconnects.</li>
                 <li><strong>Memoria técnica</strong> con una sección de servicios de cliente: plan de numeración, sitios, circuitos y QoS.</li>
             </ul>
         </section>
 
+        <section class="doc-section" id="clientes">
+            <h2>6. Clientes y contratos</h2>
+            <p>En Servicios de cliente, cada cliente tiene su <strong>Contrato</strong>: un CRM ligero con lo que compró. Son datos comerciales: la configuración del cliente sigue en la intención.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Parte</th><th scope="col">Qué lleva</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Ficha</strong></td><td>El ID del cliente en tu CRM, su nivel (oro, plata o bronce) y notas.</td></tr>
+                        <tr><td><strong>Servicios contratados</strong></td><td>ID del servicio o circuito, tipo (L3VPN, pseudowire o internet dedicado), sitio de tipo cliente, PE ↔ CE, Mb contratados, SLA y precio de referencia.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Los administradores editan los contratos y dan de alta clientes nuevos. Los clientes que sólo están en el CRM, sin servicio en la red, aparecen aparte.</p>
+            <h3>Uso real contra lo contratado</h3>
+            <p>Para cada servicio, Oktavia toma el tráfico de la última hora —promedio y pico— de la interfaz PE→CE, de la telemetría SNMP del PE, y lo compara con los Mb contratados. El resultado es <strong>ok</strong>, <strong>cerca</strong> (80 % o más) o <strong>excede</strong>.</p>
+            <h3>FinOps por cliente</h3>
+            <p>En <strong>FinOps → Por cliente</strong>, el costo mensual de cada equipo —CAPEX amortizado, licencia, soporte y energía— se reparte entre los servicios que lo usan, según su ancho de banda. Con el precio de referencia del contrato salen el ingreso, el costo y el margen de cada cliente. Sólo existe en tenants de proveedor: el FinOps de una empresa no cambia.</p>
+            <h3>Sitios y equipos</h3>
+            <p><strong>Editar sitio</strong> agrega atributos libres (clave = valor) y, en un proveedor, el cliente al que pertenece el sitio. Cada equipo tiene un campo <strong>Dominio</strong> —Transporte, Servicios…—, que se llenó por rol y se puede editar, y sus propios atributos libres.</p>
+        </section>
+
         <section class="doc-section" id="argos">
-            <h2>6. Argos en una red de proveedor</h2>
+            <h2>7. Argos en una red de proveedor</h2>
             <p>Los flujos de la organización siguen su arquitectura. En un tenant de proveedor, Argos ofrece:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -242,11 +270,12 @@
                 <li><strong>Prueba de conectividad</strong> de un sitio de cliente desde el CE: acceso al PE, sesión BGP PE-CE, la LAN remota a través de la L3VPN y el CE remoto del pseudowire.</li>
                 <li><strong>Activar telemetría</strong> con streaming de IOS XR.</li>
             </ul>
+            <p>Argos en un tenant de proveedor sólo muestra lo que aplica a un proveedor. En el Resumen, el grupo <strong>Clientes y contratos</strong> reúne Servicios de cliente, FinOps por cliente y QoS de clientes.</p>
             <p>Como en el resto de la plataforma, ninguna acción que toque la red ocurre sin que una persona la apruebe.</p>
         </section>
 
         <section class="doc-section" id="ia-local">
-            <h2>7. IA local con contexto de proveedor</h2>
+            <h2>8. IA local con contexto de proveedor</h2>
             <p>La IA local responde, en el servidor del cliente, con el contexto de una red de proveedor:</p>
             <ul>
                 <li>Los documentos del equipo: diseño (HLD), runbooks, procedimiento de cambios, política de seguridad y circuitos.</li>
@@ -258,7 +287,7 @@
         </section>
 
         <section class="doc-section" id="familia">
-            <h2>8. La familia de plataformas Oktavia</h2>
+            <h2>9. La familia de plataformas Oktavia</h2>
             <p>El proveedor de servicios es una plataforma más de la familia. El ciclo y la plataforma son los mismos; cambia cómo se accede a cada una:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -280,7 +309,7 @@
         </section>
 
         <section class="doc-section" id="proximamente">
-            <h2>9. Próximamente</h2>
+            <h2>10. Próximamente</h2>
             <ul>
                 <li><strong>SR-TE bajo demanda</strong> (ODN), con color por servicio.</li>
                 <li><strong>Integración del centro de datos</strong> con Cisco ACI.</li>
@@ -305,7 +334,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=a1a90cba6e"></script>
+    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

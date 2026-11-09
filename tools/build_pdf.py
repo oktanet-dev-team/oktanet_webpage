@@ -69,6 +69,18 @@ DOCUMENTOS = {
         "pie": "Oktavia · Intent guide · Oktanet",
         "de": "of",
     },
+    "servicios-es": {
+        "pagina": "docs/guia-servicios.html",
+        "salida": "docs/guia-servicios-es.pdf",
+        "pie": "Oktavia · Servicios y plantillas · Oktanet",
+        "de": "de",
+    },
+    "servicios-en": {
+        "pagina": "docs/guia-servicios-en.html",
+        "salida": "docs/guia-servicios-en.pdf",
+        "pie": "Oktavia · Services and templates · Oktanet",
+        "de": "of",
+    },
     # Los articulos del blog salen en PDF con la misma maquinaria: asi un
     # comercial puede mandar el articulo como adjunto sin depender de que el
     # cliente abra un enlace.
