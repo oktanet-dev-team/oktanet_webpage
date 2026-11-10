@@ -85,6 +85,7 @@
                 <li><a href="#explicame">Explain this service</a></li>
                 <li><a href="#ios-xr">IOS XR: no Jinja, XML instead</a></li>
                 <li><a href="#diccionario">NETCONF dictionary: search like the CLI</a></li>
+                <li><a href="#constructor">Service Builder</a></li>
                 <li><a href="#extender">Extending a service</a></li>
                 <li><a href="#compuerta">The gate before publishing</a></li>
                 <li><a href="#pruebas">An extension's network tests</a></li>
@@ -143,7 +144,7 @@
         <li><strong>Declared values</strong>: every scope where it is declared, with its values, and the buttons to edit them, view the template and extend (<a href="#valores">section 5</a>).</li>
         <li><strong>Test with a device</strong>: values, template and result, side by side, for a real device (<a href="#probar">section 6</a>).</li>
         <li><strong>✦ Explain this service</strong>: Argos explains what it does and what it generates (<a href="#explicame">section 7</a>).</li>
-        <li><strong>＋ Add parameters</strong> (Change a service): what you can add to it (<a href="#extender">section 10</a>).</li>
+        <li><strong>＋ Add parameters</strong> (Change a service): what you can add to it (<a href="#extender">section 11</a>).</li>
         <li><strong>Devices where it is active</strong>, by site, with ⚠ on the failing ones, and <strong>Tests that validate it</strong>.</li>
     </ol>
     <p>Tests come in two kinds. <strong>Config</strong> tests compare the running configuration with what the template generates, one rule per device. <strong>State</strong> tests check that the service works on the network.</p>
@@ -203,7 +204,7 @@
         <li><strong>Column 3</strong>: shows the XML for the chosen device. The device's values are highlighted here too, so you can tell what comes from variables from what is fixed in the lane.</li>
         <li><strong>See what changes</strong> and <strong>Test these values</strong> compare today's NETCONF plan with the plan for your change, exactly as the Digital Twin would push it, with <em>commit confirmed</em>.</li>
     </ul>
-    <p>This applies to core services and to customer services. There is a recipe in <a href="#receta-xr">section 15</a>.</p>
+    <p>This applies to core services and to customer services. There is a recipe in <a href="#receta-xr">section 16</a>.</p>
 </section>
 
 <section class="doc-section" id="diccionario">
@@ -217,8 +218,45 @@
     <p>If you already have the XML you want on the device, <strong>From XML</strong> turns it into parameters: every leaf with text becomes a field, repeated siblings become a list and anything that looks like a secret stays as <code>&lt;&lt;vault:…&gt;&gt;</code>.</p>
 </section>
 
+<section class="doc-section" id="constructor">
+    <h2>10. Service Builder: build the service from the device's own options</h2>
+    <p><strong>Services → Service Builder</strong> brings into one screen what used to take several steps: you pick the options the device accepts, Oktavia builds the template and the form, you see the result as IOS XR CLI and as NETCONF XML, and you publish it with its preview. You don't write YANG models or service packages: the options come from the device's own YANG (the same index as the <a href="#diccionario">NETCONF dictionary</a>).</p>
+    <h3>IOS XR · NETCONF path, step by step</h3>
+    <p>Example: BGP keepalive and hold per neighbor on the PEs.</p>
+    <ol class="doc-steps">
+        <li><strong>Search like the CLI</strong>: "neighbor timers keepalive", or paste an XR line such as <code>neighbor 192.0.2.1 timers 10 30</code>. Tick <em>keepalive-interval</em> and <em>holdtime</em>; they show as "router bgp ‹as› › neighbor ‹ip› › timers".</li>
+        <li><strong>Pick the base service and the scope</strong>: "Core BGP (IOS XR)" on the <code>pe</code> role. The AS comes from the base service; you don't type it again.</li>
+        <li><strong>Fill in the form.</strong> Each option is a field with its range (0..65535) and the neighbor list comes pre-filled with the scope's real neighbors; you only enter 10 and 30.</li>
+        <li><strong>Look at the result</strong> in the tabs on the right: <em>XR CLI</em>, <em>NETCONF XML</em> and <em>Translate</em>.</li>
+        <li><strong>Save and propose the change.</strong> It goes through the gate (syntax, secrets, impact on other services), shows what changes per device and proposes the change in the Digital Twin: the dry run runs <em>validate</em> on the devices and you approve and confirm with confirmed commit.</li>
+    </ol>
+    <pre><code>router bgp 64500
+ neighbor 192.0.2.1
+  timers 10 30
+ neighbor 198.51.100.1
+  timers 10 30</code></pre>
+    <pre><code>&lt;router xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-um-router-bgp-cfg"&gt;
+  &lt;bgp&gt;&lt;as&gt;&lt;as-number&gt;64500&lt;/as-number&gt;
+    &lt;neighbors&gt;
+      &lt;neighbor&gt;&lt;neighbor-address&gt;192.0.2.1&lt;/neighbor-address&gt;
+        &lt;timers&gt;&lt;keepalive-interval&gt;10&lt;/keepalive-interval&gt;&lt;holdtime&gt;30&lt;/holdtime&gt;&lt;/timers&gt;
+      &lt;/neighbor&gt;
+    &lt;/neighbors&gt;
+  &lt;/as&gt;&lt;/bgp&gt;
+&lt;/router&gt;</code></pre>
+    <h3>Translate CLI ⇄ XML</h3>
+    <p>The <em>Translate</em> tab turns IOS XR CLI into the NETCONF XML that represents it, and back. The translation is <strong>deterministic</strong>: it comes from the device's YANG (the <code>Cisco-IOS-XR-um-*</code> models), not from an AI. With the lab's real configurations, XML → CLI → XML comes back identical for IS-IS, BGP, L2VPN, QoS, Segment Routing and telemetry. Whatever the dictionary doesn't know is flagged, never invented. <em>Coming soon:</em> "live" translation, where the device itself converts the CLI without committing and discards the result.</p>
+    <h3>IOS / IOS-XE · CLI path</h3>
+    <ol class="doc-steps">
+        <li><strong>Describe what you want</strong> ("IP SLA towards the provider on the WAN routers") and, if you have it, paste the config of a device that already has it. Lines with secrets are removed before anything reaches the AI.</li>
+        <li><strong>Argos drafts the Jinja template</strong> (local AI or Claude) with its parameters.</li>
+        <li>Same form, same per-device preview and the same <strong>Save and propose</strong> button.</li>
+    </ol>
+    <p>The previous editor is still available as the <em>Advanced editor</em> for anyone who wants to write the template by hand.</p>
+</section>
+
 <section class="doc-section" id="extender">
-    <h2>10. Extending a service</h2>
+    <h2>11. Extending a service</h2>
     <p>When the base template doesn't include what you need, you extend it. There are two ways in:</p>
     <ul>
         <li><strong>Advanced options</strong>: tested extensions from the Oktavia catalog, enabled with one click. For example, in OSPF: timers, BFD and area types; in BGP: per-neighbor timers, address-family and aggregates; on interfaces: <code>bandwidth</code>.</li>
@@ -236,7 +274,7 @@
 </section>
 
 <section class="doc-section" id="compuerta">
-    <h2>11. The gate before publishing</h2>
+    <h2>12. The gate before publishing</h2>
     <p>Before an extension is published, a deterministic gate checks it. It is not an AI opinion: these are fixed rules.</p>
     <div class="doc-table-wrap"><table class="doc-table">
         <thead><tr><th>Rule</th><th>What it checks</th></tr></thead>
@@ -251,7 +289,7 @@
 </section>
 
 <section class="doc-section" id="pruebas">
-    <h2>12. An extension's network tests</h2>
+    <h2>13. An extension's network tests</h2>
     <p>An extension doesn't end at the configuration: it also says how to check that it works. There are two kinds of test.</p>
     <h3>State tests</h3>
     <p>They check that something is up: BGP or OSPF neighbors, interfaces, BFD, IS-IS, routes. They are derived from the parameters. For example, <code>neighbors[].address</code> yields the list of neighbors that must be established.</p>
@@ -266,18 +304,18 @@
 </section>
 
 <section class="doc-section" id="personalizados">
-    <h2>13. Custom services</h2>
+    <h2>14. Custom services</h2>
     <p>When what you need doesn't extend an existing service, create a new one in <strong>Services → Custom services</strong>.</p>
     <ol class="doc-steps">
         <li>Describe the service or paste a sample configuration.</li>
         <li>Argos proposes the template, the fields and a sample of values.</li>
-        <li>The same gate from <a href="#compuerta">section 11</a> decides whether it can be published.</li>
+        <li>The same gate from <a href="#compuerta">section 12</a> decides whether it can be published.</li>
     </ol>
     <p>From there you can also open <strong>View template</strong> for any service, to read it without editing it.</p>
 </section>
 
 <section class="doc-section" id="argos">
-    <h2>14. With Argos: Services by domain</h2>
+    <h2>15. With Argos: Services by domain</h2>
     <p>If you'd rather ask in your own words, open <strong>Argos → Configure → Services by domain</strong>. What used to be the Configurator assistant now lives here.</p>
     <ol class="doc-steps">
         <li>Pick the domain and the service. Only those for the platforms in your network appear.</li>
@@ -288,7 +326,7 @@
 </section>
 
 <section class="doc-section" id="recetas">
-    <h2>15. Recipes</h2>
+    <h2>16. Recipes</h2>
 
     <h3 id="receta-bgp-timers">BGP · Timers 10/30 on one neighbor</h3>
     <p>You want to detect a provider failure sooner. The BGP template has no per-neighbor timers; the catalog extension <code>bgp_timers</code> does.</p>
@@ -368,7 +406,7 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
 </section>
 
 <section class="doc-section" id="como-funciona">
-    <h2>16. How templates and values work</h2>
+    <h2>17. How templates and values work</h2>
     <h3>Two pieces</h3>
     <p>Every service has a <strong>template</strong> per platform —Jinja for CLI, YANG XML for NETCONF— and its <strong>values</strong> in the intent (<code>service_vars</code>). The engineer only touches values; Oktavia maintains the template and it is not edited: it is extended.</p>
     <h3>Scopes and who wins</h3>
@@ -383,12 +421,12 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
 </section>
 
 <section class="doc-section" id="ansible">
-    <h2>17. With Ansible and the API</h2>
+    <h2>18. With Ansible and the API</h2>
     <p>The same can be automated from outside: a playbook can change a parameter or add a customer service with the preview, save the intent and return the change proposed in the Twin; approving and applying are still a person's call. Step by step in <a href="../blog/automatizar-oktavia-api-ansible-python-en.html">Automate Oktavia with its API, Ansible and Python</a>.</p>
 </section>
 
 <section class="doc-section" id="buenas-practicas">
-    <h2>18. Good practices</h2>
+    <h2>19. Good practices</h2>
     <ul>
         <li><strong>Test before saving.</strong> "Test these values" saves nothing: use it freely.</li>
         <li><strong>Read "See what changes" device by device.</strong> If a device you didn't expect appears, check the scope.</li>
