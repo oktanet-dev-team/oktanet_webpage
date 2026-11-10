@@ -180,6 +180,18 @@ DOCUMENTOS = {
         "pie": "Local AI with your company's context · Oktanet",
         "de": "of",
     },
+    "blog-automatizar-es": {
+        "pagina": "blog/automatizar-oktavia-api-ansible-python.html",
+        "salida": "blog/automatizar-oktavia-api-ansible-python-es.pdf",
+        "pie": "Automatiza Oktavia con su API, Ansible y Python · Oktanet",
+        "de": "de",
+    },
+    "blog-automatizar-en": {
+        "pagina": "blog/automatizar-oktavia-api-ansible-python-en.html",
+        "salida": "blog/automatizar-oktavia-api-ansible-python-en.pdf",
+        "pie": "Automate Oktavia with its API, Ansible and Python · Oktanet",
+        "de": "of",
+    },
     # El curso gratuito de la Academia: el gancho que se comparte fuera.
     "curso-automatizacion-es": {
         "pagina": "docs/curso-automatizacion-redes.html",

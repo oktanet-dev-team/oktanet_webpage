@@ -117,6 +117,18 @@ ARTICULOS = {
             "bajada": "Vulnerabilities with KEV first, posture with evidence and per-role hardening, with no secrets sent to AI.",
         },
     },
+    "og-blog-automatizar-oktavia": {
+        "es": {
+            "rotulo": "Automatizacion",
+            "titulo": "Automatiza Oktavia con su API, Ansible y Python",
+            "bajada": "De cero a un servicio de cliente por playbook: llaves con alcance, inventario dinamico, vista previa y el Gemelo con aprobacion humana.",
+        },
+        "en": {
+            "rotulo": "Automation",
+            "titulo": "Automate Oktavia with its API, Ansible and Python",
+            "bajada": "From zero to a customer service by playbook: scoped keys, dynamic inventory, preview and the Twin with human approval.",
+        },
+    },
     "og-blog-ia-local": {
         "es": {
             "rotulo": "IA local",

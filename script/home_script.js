@@ -474,13 +474,13 @@
             licensingAria: 'Licenciamiento Oktavia',
             licensingEyebrow: 'Licenciamiento',
             licensingTitle: 'Dos licencias',
-            licensingIntro: 'Oktavia Pro es la plataforma completa. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
+            licensingIntro: 'Oktavia Pro es la plataforma completa para la red de una empresa, y Oktavia SP la misma plataforma como orquestador de servicios carrier para un proveedor. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
             licensingSupportTitle: 'Incluido en toda licencia: soporte y actualizaciones',
             licensingSupportBody: 'Mientras la licencia está vigente, cualquier instalación de Oktavia recibe los parches de seguridad, las actualizaciones y las funciones nuevas de la plataforma, sin costo adicional.',
             licensingPlanLabels: ['Licencia principal', 'Licencia adicional'],
             licensingPlanTitles: ['Oktavia Pro', 'Telemetría y Orquestación de Eventos'],
             licensingPlanBodies: [
-                'La plataforma completa. Todo lo necesario para descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios nuevos, con aprobación humana en cada cambio.',
+                'La plataforma completa. Todo lo necesario para descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios y parámetros nuevos sin desarrollo, con aprobación humana en cada cambio. En un proveedor de servicios, como Oktavia SP.',
                 'Se licencia aparte porque almacena series de tiempo y corre un evaluador permanente: tiene otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
             ],
             licensingPlanItems: [
@@ -638,7 +638,7 @@
                 'Documento técnico · 17 secciones · PDF en español e inglés',
                 'Academia Oktanet · 14 módulos · Examen interactivo · Gratis y sin registro'
             ],
-            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Oktavia para proveedores de servicios', 'Tomar el curso gratis', 'PDF en español'],
+            resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Oktavia SP · orquestador de servicios carrier', 'Tomar el curso gratis', 'PDF en español'],
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
             resourceSpHref: 'docs/oktavia-sp.html',
@@ -973,13 +973,13 @@
             licensingAria: 'Oktavia licensing',
             licensingEyebrow: 'Licensing',
             licensingTitle: 'Two licenses',
-            licensingIntro: 'Oktavia Pro is the complete platform. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
+            licensingIntro: 'Oktavia Pro is the complete platform for an enterprise network, and Oktavia SP is the same platform as a carrier service orchestrator for a provider. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
             licensingSupportTitle: 'Included with every license: support and updates',
             licensingSupportBody: "While the license is active, every Oktavia deployment receives the platform's security patches, updates and new features, at no extra cost.",
             licensingPlanLabels: ['Main license', 'Add-on license'],
             licensingPlanTitles: ['Oktavia Pro', 'Telemetry and Event Orchestration'],
             licensingPlanBodies: [
-                'The complete platform. Everything needed to discover the network, verify it meets the standard, fix what does not, and roll out new services, with human approval on every change.',
+                'The complete platform. Everything needed to discover the network, verify it meets the standard, fix what does not, and roll out new services and parameters without development, with human approval on every change. For a service provider, as Oktavia SP.',
                 'Licensed separately because it stores time series and runs a permanent evaluator: a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
             ],
             licensingPlanItems: [
@@ -1137,7 +1137,7 @@
                 'Technical document · 17 sections · PDF in Spanish and English',
                 'Oktanet Academy · 14 modules · Interactive exam · Free, no sign-up'
             ],
-            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Oktavia for service providers', 'Take the free course', 'PDF in Spanish'],
+            resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Oktavia SP · carrier service orchestrator', 'Take the free course', 'PDF in Spanish'],
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
             resourceSpHref: 'docs/oktavia-sp-en.html',

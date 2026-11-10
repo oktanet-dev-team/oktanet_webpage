@@ -103,9 +103,9 @@
         <section class="hero-section sp-hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <h1><span class="hero-brandline"><img class="hero-brandmark" src="img/LOGO_Oktavia.png" alt="" width="96" height="96" decoding="async">Oktavia SP</span> Declare the customer service once and see it verified on every PE and CE</h1>
+                    <h1><span class="hero-brandline"><img class="hero-brandmark" src="img/LOGO_Oktavia.png" alt="" width="96" height="96" decoding="async">Oktavia SP</span> The carrier service orchestrator: declare the customer service once and see it verified on every PE and CE</h1>
                     <p>
-                        For carriers, ISPs and MPLS operators: Oktavia distributes every L3VPN, pseudowire and bandwidth contract to the devices involved, applies the Cisco IOS XR core as a single transaction with commit confirmed, and does not consider the change done until it verifies the service is up.
+                        For carriers, ISPs and MPLS operators: Oktavia orchestrates L3VPNs, EVPN-VPWS pseudowires, Dedicated Internet, contracted QoS, on-demand SR-TE with a color per service and customer multicast; it distributes every service to the devices involved, applies the Cisco IOS XR core as a single transaction with commit confirmed, and does not consider the change done until it verifies the service is up.
                     </p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="./#contacto">Request a demo</a>
@@ -209,7 +209,7 @@
         <section class="argos-section" id="catalogo" aria-label="Provider service catalog">
             <div class="container">
                 <p class="eyebrow">Service catalog</p>
-                <h2>What a provider needs to deliver service, declared in the Configurator.</h2>
+                <h2>What a provider needs to deliver service, declared once in Services.</h2>
                 <p class="section-intro">Each service has its own desired configuration and its own compliance.</p>
                 <div class="argos-grid">
                     <article class="argos-card">
@@ -248,6 +248,26 @@
                         <p>Model-driven over gRPC dial-out, on IOS XR and IOS XE, to the Oktavia collector.</p>
                     </article>
                     <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">public</span>
+                        <h3>Dedicated Internet</h3>
+                        <p>From the Oktavia catalog: the PE subinterface and policy and its CE side, added, changed and removed from Argos.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">alt_route</span>
+                        <h3>On-demand SR-TE (ODN)</h3>
+                        <p>Provider colors and a color per service, on L3VPNs and pseudowires: the remote PE builds the policy on its own.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">cell_tower</span>
+                        <h3>Customer multicast (mVPN)</h3>
+                        <p>Inside the L3VPN with Ingress Replication and BGP over the same SR-MPLS; PIM and IGMP on the CE.</p>
+                    </article>
+                    <article class="argos-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">tune</span>
+                        <h3>Architect knobs</h3>
+                        <p>IS-IS timers, overload to drain a node for maintenance, BGP BFD and graceful-restart, carrier-delay, SRGB.</p>
+                    </article>
+                    <article class="argos-card">
                         <span class="material-symbols-outlined card-icon" aria-hidden="true">router</span>
                         <h3>The customer side</h3>
                         <p>The CE (Cisco IOS) part of the L3VPN and the pseudowires comes from the same service as the PE part.</p>
@@ -283,6 +303,45 @@
                     <span>Routing table with VPN labels</span>
                     <span>TI-LFA backups told apart from ECMP</span>
                     <span>Technical record per customer</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-section" id="sin-desarrollo" aria-label="Orchestration without development">
+            <div class="container">
+                <p class="eyebrow">Orchestration without development</p>
+                <h2>New services and parameters without waiting for development, with the engineer in control.</h2>
+                <div class="security-grid">
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">edit_note</span>
+                        <h3>Change a service</h3>
+                        <p>One question, a form with range and default, a preview of what changes on each device and a single button: save and propose the change.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">menu_book</span>
+                        <h3>NETCONF dictionary</h3>
+                        <p>The parameters IOS XR accepts, read from its own YANG models and searchable like the CLI. Oktavia builds the XML, the field and its removal.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">health_and_safety</span>
+                        <h3>Core and per-service state</h3>
+                        <p>SR labels to every PE, TI-LFA coverage, SRGB, drained nodes, SR-TE policies and PIM neighbors, plus IS-IS, BFD and BGP.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">crisis_alert</span>
+                        <h3>Customer impact and NOC</h3>
+                        <p>Which customers go down if a PE fails, single points of failure with revenue at risk, and NOC emails carrying that impact.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">terminal</span>
+                        <h3>Ansible and API</h3>
+                        <p>Every customer service also by playbook, with per-tenant automation keys. Approving and applying is still a person's call.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">verified_user</span>
+                        <h3>Argos, your SP architect</h3>
+                        <p>The Custom orchestration tab gathers the flows built for the provider's architecture and standards.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -376,13 +435,18 @@
                 <div class="security-grid">
                     <article class="security-card">
                         <span class="sp-pronto">Coming soon</span>
-                        <h3>On-demand SR-TE (ODN)</h3>
-                        <p>On-demand Segment Routing traffic engineering, with a color per service.</p>
+                        <h3>Data center with Cisco ACI</h3>
+                        <p>Data center integration through the APIC API: tenants, VRFs, EPGs and L3Outs towards the core.</p>
                     </article>
                     <article class="security-card">
                         <span class="sp-pronto">Coming soon</span>
-                        <h3>Data center with Cisco ACI</h3>
-                        <p>Data center integration with Cisco ACI.</p>
+                        <h3>Juniper Junos over NETCONF</h3>
+                        <p>The same Dictionary and From XML converter for Junos.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="sp-pronto">Coming soon</span>
+                        <h3>Per-platform licensing</h3>
+                        <p>The service catalog filtered by the license's active platforms.</p>
                     </article>
                 </div>
             </div>
