@@ -161,7 +161,7 @@
             <tr><td>5</td><td><code>by_platform</code></td><td>A vendor or OS.</td><td>What changes by platform.</td></tr>
             <tr><td>6</td><td><code>by_model</code></td><td>A model.</td><td>Approved software versions.</td></tr>
             <tr><td>7</td><td><code>by_tag</code></td><td>Devices with a tag.</td><td>Groups that don't follow site or role.</td></tr>
-            <tr><td>8</td><td><code>by_filter</code></td><td>A combination.</td><td>For example, a role within a site.</td></tr>
+            <tr><td>8</td><td><code>by_filter</code></td><td>A combination.</td><td>For example, a role within a site, or device or site attributes: <code>attr.tier=gold</code>, <code>site_attr.region=north</code>.</td></tr>
             <tr><td>9</td><td><code>by_device</code></td><td>One device.</td><td>IPs, interfaces, neighbors and real exceptions.</td></tr>
         </tbody>
     </table></div>
@@ -192,7 +192,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>No effect</strong>: a more specific scope beats it on all its devices. Worth reviewing.</li>
         <li><strong>Disabled</strong>: it has <code>enabled: false</code>.</li>
     </ul>
-    <p><strong>Edit values</strong>, <strong>Template</strong> and <strong>Extend here</strong> sit on the same row.</p>
+    <p><strong>Edit values</strong>, <strong>Template</strong> and <strong>＋ Add parameters</strong> sit on the same row.</p>
     <h3>Changing a value</h3>
     <ol class="doc-steps">
         <li>Click <strong>Edit values</strong> on the scope you want to change. Pick the wrong scope and you will change more or fewer devices than you think.</li>
@@ -276,7 +276,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     <p>If a service template doesn't include what you need —per-neighbor BGP timers, BFD on OSPF, <code>bandwidth</code> on an interface—, it isn't edited: it is extended. You work with parameters, not with Jinja.</p>
     <ul>
         <li><strong>Advanced options</strong>, on the service page, enables tested extensions from the Oktavia catalog with one click.</li>
-        <li><strong>Extend here</strong> guides you in three steps: what to add (from the catalog or generated with Argos), its parameters with their network test, and the advanced template, already resolved.</li>
+        <li><strong>＋ Add parameters</strong> (Change a service) guides you: what to change (from the catalog or generated with Argos), a form with its network test and an automatic preview, and a single button to save and propose; the template stays resolved under “Advanced”.</li>
     </ul>
     <p>Before publishing, a deterministic gate checks the extension: blocked commands, no literal secrets, removal only with <code>no</code> or <code>default</code>, and no changes to lines of another service. It is published only after it is validated on real devices, without touching the network. Its values stay in the intent, in the same scope, and reach the devices through the cycle.</p>
     <p>The full detail, with recipes, is in the <a href="guia-servicios-en.html">Services and templates guide</a>.</p>

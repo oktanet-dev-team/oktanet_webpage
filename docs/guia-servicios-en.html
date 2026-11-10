@@ -84,12 +84,15 @@
                 <li><a href="#probar">Test with a device</a></li>
                 <li><a href="#explicame">Explain this service</a></li>
                 <li><a href="#ios-xr">IOS XR: no Jinja, XML instead</a></li>
+                <li><a href="#diccionario">NETCONF dictionary: search like the CLI</a></li>
                 <li><a href="#extender">Extending a service</a></li>
                 <li><a href="#compuerta">The gate before publishing</a></li>
                 <li><a href="#pruebas">An extension's network tests</a></li>
                 <li><a href="#personalizados">Custom services</a></li>
                 <li><a href="#argos">With Argos: Services by domain</a></li>
                 <li><a href="#recetas">Recipes</a></li>
+                <li><a href="#como-funciona">How templates and values work</a></li>
+                <li><a href="#ansible">With Ansible and the API</a></li>
                 <li><a href="#buenas-practicas">Good practices</a></li>
             </ol>
         </nav>
@@ -140,7 +143,7 @@
         <li><strong>Declared values</strong>: every scope where it is declared, with its values, and the buttons to edit them, view the template and extend (<a href="#valores">section 5</a>).</li>
         <li><strong>Test with a device</strong>: values, template and result, side by side, for a real device (<a href="#probar">section 6</a>).</li>
         <li><strong>✦ Explain this service</strong>: Argos explains what it does and what it generates (<a href="#explicame">section 7</a>).</li>
-        <li><strong>＋ Extend this service</strong> and <strong>Advanced options</strong>: what you can add to it (<a href="#extender">section 9</a>).</li>
+        <li><strong>＋ Add parameters</strong> (Change a service): what you can add to it (<a href="#extender">section 10</a>).</li>
         <li><strong>Devices where it is active</strong>, by site, with ⚠ on the failing ones, and <strong>Tests that validate it</strong>.</li>
     </ol>
     <p>Tests come in two kinds. <strong>Config</strong> tests compare the running configuration with what the template generates, one rule per device. <strong>State</strong> tests check that the service works on the network.</p>
@@ -200,27 +203,40 @@
         <li><strong>Column 3</strong>: shows the XML for the chosen device. The device's values are highlighted here too, so you can tell what comes from variables from what is fixed in the lane.</li>
         <li><strong>See what changes</strong> and <strong>Test these values</strong> compare today's NETCONF plan with the plan for your change, exactly as the Digital Twin would push it, with <em>commit confirmed</em>.</li>
     </ul>
-    <p>This applies to core services and to customer services. There is a recipe in <a href="#receta-xr">section 14</a>.</p>
+    <p>This applies to core services and to customer services. There is a recipe in <a href="#receta-xr">section 15</a>.</p>
+</section>
+
+<section class="doc-section" id="diccionario">
+    <h2>9. NETCONF dictionary: search like the CLI</h2>
+    <p>You do not need to know NETCONF to extend an IOS XR service. <strong>Services → NETCONF dictionary</strong> holds the parameters the device accepts, read from its own YANG models, with type, range and default.</p>
+    <ol class="doc-steps">
+        <li><strong>Search like the CLI</strong>: “neighbor timers keepalive”, “isis lsp-gen-interval”, “interface mtu”. You can also paste an XR line such as <code>neighbor 192.0.2.1 timers 10 30</code>: Oktavia ignores the values and finds the leaves.</li>
+        <li><strong>Pick the parameter.</strong> Each result is shown like the CLI —“router bgp ‹as› › neighbor ‹ip› › timers › keepalive-interval”— and the variants (VRF, session-group…) are grouped.</li>
+        <li><strong>Use it in a service.</strong> Oktavia builds the extension with no AI: the XML with its context (the AS comes from core BGP and the IS-IS process), the field with its range and the removal. You only enter the value, with the preview and “Save and propose”.</li>
+    </ol>
+    <p>If you already have the XML you want on the device, <strong>From XML</strong> turns it into parameters: every leaf with text becomes a field, repeated siblings become a list and anything that looks like a secret stays as <code>&lt;&lt;vault:…&gt;&gt;</code>.</p>
 </section>
 
 <section class="doc-section" id="extender">
-    <h2>9. Extending a service</h2>
+    <h2>10. Extending a service</h2>
     <p>When the base template doesn't include what you need, you extend it. There are two ways in:</p>
     <ul>
         <li><strong>Advanced options</strong>: tested extensions from the Oktavia catalog, enabled with one click. For example, in OSPF: timers, BFD and area types; in BGP: per-neighbor timers, address-family and aggregates; on interfaces: <code>bandwidth</code>.</li>
-        <li><strong>Extend here</strong>, on the row of the scope where you want the values, or <strong>＋ Extend this service</strong>.</li>
+        <li><strong>＋ Add parameters</strong>, on the row of the scope where you want the values, or from “Test with a device”.</li>
     </ul>
-    <h3>Extend here, in three steps</h3>
+    <h3>Change a service: one question, one form and one button</h3>
     <ol class="doc-steps">
-        <li><strong>What do you want to add?</strong> Pick it from the Oktavia catalog with one click, or describe it and generate it with Argos (local AI or Claude).</li>
-        <li><strong>Parameters.</strong> What you fill in, and its network test.</li>
-        <li><strong>Advanced template.</strong> Already resolved and folded, in case you want to adjust it.</li>
+        <li><strong>What do you want to change?</strong> Say it in your own words, for example “keepalive 10 and hold 30 for the RR neighbors”. If it matches an extension in the Oktavia catalog it is picked automatically, no AI; otherwise Argos generates it (local AI or Claude). The catalog shortcuts stay below as buttons.</li>
+        <li><strong>Form.</strong> The fields come from the extension, with label, range and default; lists are tables with “＋ row”, and it comes pre-filled with what is real in the scope, such as your neighbors. JSON and template stay under “Advanced”.</li>
+        <li><strong>Automatic preview.</strong> When you change a valid value you see, per device, the lines that change (on IOS XR, the XML it adds). If the gate rejects something, it says so in one line.</li>
+        <li><strong>Save and propose the change.</strong> One button: it publishes the extension, leaves the values in the scope and proposes the change in the Digital Twin. It is enabled only when the latest preview passed and matches the current values.</li>
     </ol>
-    <p>The extension's values stay in the intent (<code>service_vars</code>), in the same scope where you clicked <strong>Extend here</strong>. They reach the devices through the cycle: audit → compliance → Digital Twin → you approve → verification.</p>
+    <p>The same experience is in Argos: <strong>Custom orchestration → Change a service</strong>, or type “change a service”.</p>
+    <p>The extension's values stay in the intent (<code>service_vars</code>), in the same scope where you clicked <strong>＋ Add parameters</strong>. They reach the devices through the cycle: audit → compliance → Digital Twin → you approve → verification.</p>
 </section>
 
 <section class="doc-section" id="compuerta">
-    <h2>10. The gate before publishing</h2>
+    <h2>11. The gate before publishing</h2>
     <p>Before an extension is published, a deterministic gate checks it. It is not an AI opinion: these are fixed rules.</p>
     <div class="doc-table-wrap"><table class="doc-table">
         <thead><tr><th>Rule</th><th>What it checks</th></tr></thead>
@@ -231,11 +247,11 @@
             <tr><td><strong>Collateral</strong></td><td>If the extension changes lines that belong to another service, it is not published.</td></tr>
         </tbody>
     </table></div>
-    <p>Then click <strong>Validate on these devices</strong>: Oktavia renders the extension on real devices without touching the network. <strong>It is published only once validated.</strong></p>
+    <p>The preview renders the extension on real devices without touching the network, and it is signed: <strong>only what passed the gate with those same values is published</strong>.</p>
 </section>
 
 <section class="doc-section" id="pruebas">
-    <h2>11. An extension's network tests</h2>
+    <h2>12. An extension's network tests</h2>
     <p>An extension doesn't end at the configuration: it also says how to check that it works. There are two kinds of test.</p>
     <h3>State tests</h3>
     <p>They check that something is up: BGP or OSPF neighbors, interfaces, BFD, IS-IS, routes. They are derived from the parameters. For example, <code>neighbors[].address</code> yields the list of neighbors that must be established.</p>
@@ -250,18 +266,18 @@
 </section>
 
 <section class="doc-section" id="personalizados">
-    <h2>12. Custom services</h2>
+    <h2>13. Custom services</h2>
     <p>When what you need doesn't extend an existing service, create a new one in <strong>Services → Custom services</strong>.</p>
     <ol class="doc-steps">
         <li>Describe the service or paste a sample configuration.</li>
         <li>Argos proposes the template, the fields and a sample of values.</li>
-        <li>The same gate from <a href="#compuerta">section 10</a> decides whether it can be published.</li>
+        <li>The same gate from <a href="#compuerta">section 11</a> decides whether it can be published.</li>
     </ol>
     <p>From there you can also open <strong>View template</strong> for any service, to read it without editing it.</p>
 </section>
 
 <section class="doc-section" id="argos">
-    <h2>13. With Argos: Services by domain</h2>
+    <h2>14. With Argos: Services by domain</h2>
     <p>If you'd rather ask in your own words, open <strong>Argos → Configure → Services by domain</strong>. What used to be the Configurator assistant now lives here.</p>
     <ol class="doc-steps">
         <li>Pick the domain and the service. Only those for the platforms in your network appear.</li>
@@ -272,13 +288,13 @@
 </section>
 
 <section class="doc-section" id="recetas">
-    <h2>14. Recipes</h2>
+    <h2>15. Recipes</h2>
 
     <h3 id="receta-bgp-timers">BGP · Timers 10/30 on one neighbor</h3>
     <p>You want to detect a provider failure sooner. The BGP template has no per-neighbor timers; the catalog extension <code>bgp_timers</code> does.</p>
     <ol class="doc-steps">
         <li>In <strong>Services → WAN</strong>, open the BGP service.</li>
-        <li>In <strong>Declared values</strong>, find the router's scope, usually <code>by_device</code>, and click <strong>Extend here</strong>.</li>
+        <li>In <strong>Declared values</strong>, find the router's scope, usually <code>by_device</code>, and click <strong>＋ Add parameters</strong>.</li>
         <li>Pick <strong>BGP · per-neighbor timers</strong> from the catalog and fill in the parameters:
 <pre><code>{
   "neighbors": [
@@ -319,7 +335,7 @@
  frequency 30
 ip sla schedule 10 life forever start-time now</code></pre></li>
         <li>Argos proposes the template, the fields (for example, probe number, target, source interface and frequency) and a sample of values. Check that what varies is a field and what is fixed stays fixed.</li>
-        <li>Click <strong>Validate on these devices</strong> with two or three routers. If the gate rejects something, fix it before moving on.</li>
+        <li>Check the preview with two or three routers. If the gate rejects something, fix it before moving on.</li>
         <li>Publish, declare the values in the right scope, for example <code>by_role</code>, and close the cycle.</li>
     </ol>
 
@@ -351,8 +367,28 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
     </ol>
 </section>
 
+<section class="doc-section" id="como-funciona">
+    <h2>16. How templates and values work</h2>
+    <h3>Two pieces</h3>
+    <p>Every service has a <strong>template</strong> per platform —Jinja for CLI, YANG XML for NETCONF— and its <strong>values</strong> in the intent (<code>service_vars</code>). The engineer only touches values; Oktavia maintains the template and it is not edited: it is extended.</p>
+    <h3>Scopes and who wins</h3>
+    <p>Values are declared per scope and merged from the most general to the most specific: <code>defaults</code>, <code>by_site</code>, <code>by_site_type</code>, <code>by_role</code>, <code>by_platform</code>, <code>by_model</code>, <code>by_tag</code>, <code>by_filter</code> and <code>by_device</code>. The last one wins; objects merge field by field and lists are replaced whole. The full table is in the <a href="guia-intencion-en.html#alcances">Intent guide</a>.</p>
+    <p><code>by_filter</code> combines conditions, and it also reads the <strong>key = value attributes</strong> of the device and its site: <code>attr.tier=gold__role=pe</code> applies to PEs with that attribute and <code>site_attr.region=north</code> to devices in the sites of that region. When two filters apply, the one with more conditions wins.</p>
+    <h3>Extensions</h3>
+    <p>An extension declares <code>extends</code> with the base service, its fields, its template and its removal template. It generates its own block: it does not rewrite the base template or another service's lines (the gate prevents it). Its state or value test reaches compliance with it.</p>
+    <h3>Removals</h3>
+    <p>Removing something from the intent does not delete it from the device by itself. That is why every extension has its removal template (<code>no …</code> on CLI) and, on IOS XR, the removed row is marked <code>retired</code> and the plan removes it with <code>nc:operation="remove"</code>; compliance expects it gone.</p>
+    <h3>From value to device</h3>
+    <p>Saving does not touch the network. The change arrives through the cycle: the Digital Twin proposes the diff, a person approves, it is applied (on IOS XR with prior validation and confirmed commit) and the audit verifies it.</p>
+</section>
+
+<section class="doc-section" id="ansible">
+    <h2>17. With Ansible and the API</h2>
+    <p>The same can be automated from outside: a playbook can change a parameter or add a customer service with the preview, save the intent and return the change proposed in the Twin; approving and applying are still a person's call. Step by step in <a href="../blog/automatizar-oktavia-api-ansible-python-en.html">Automate Oktavia with its API, Ansible and Python</a>.</p>
+</section>
+
 <section class="doc-section" id="buenas-practicas">
-    <h2>15. Good practices</h2>
+    <h2>18. Good practices</h2>
     <ul>
         <li><strong>Test before saving.</strong> "Test these values" saves nothing: use it freely.</li>
         <li><strong>Read "See what changes" device by device.</strong> If a device you didn't expect appears, check the scope.</li>
@@ -362,6 +398,10 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
         <li><strong>Give every extension its test.</strong> A service with "no tests" won't warn you when it stops working.</li>
         <li><strong>No secrets in clear text.</strong> Everything through the vault, with <code>&lt;&lt;vault:…&gt;&gt;</code>.</li>
         <li><strong>Verify with compliance.</strong> A change ends when the audit confirms it.</li>
+        <li><strong>Use attributes for groups that are neither site nor role</strong> (customer tier, region, contract) and declare them with <code>by_filter</code> instead of repeating values per device.</li>
+        <li><strong>Name extensions well.</strong> The id says the service and what it adds (<code>xr_bgp_timers</code>, <code>ospf_bfd</code>); the label, in network language.</li>
+        <li><strong>Bump the version when you change a published extension.</strong> Oktavia keeps the version and its catalog origin; compliance and the Twin always use the published one.</li>
+        <li><strong>On the core, validate first.</strong> On IOS XR test the change (dry-run) and apply with confirmed commit: if verification fails, the device rolls back on its own.</li>
     </ul>
     <p>For scopes and the change cycle, continue with the <a href="guia-intencion-en.html">Intent guide</a>.</p>
 </section>

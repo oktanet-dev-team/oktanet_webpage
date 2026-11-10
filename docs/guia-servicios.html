@@ -115,12 +115,15 @@
                 <li><a href="#probar">Probar con un equipo</a></li>
                 <li><a href="#explicame">Explícame este servicio</a></li>
                 <li><a href="#ios-xr">IOS XR: sin Jinja, con XML</a></li>
+                <li><a href="#diccionario">Diccionario NETCONF: buscar como en la CLI</a></li>
                 <li><a href="#extender">Extender un servicio</a></li>
                 <li><a href="#compuerta">La compuerta antes de publicar</a></li>
                 <li><a href="#pruebas">Las pruebas de red de una extensión</a></li>
                 <li><a href="#personalizados">Servicios personalizados</a></li>
                 <li><a href="#argos">Con Argos: Servicios por dominio</a></li>
                 <li><a href="#recetas">Recetas</a></li>
+                <li><a href="#como-funciona">Cómo funcionan las plantillas y los valores</a></li>
+                <li><a href="#ansible">Con Ansible y la API</a></li>
                 <li><a href="#buenas-practicas">Buenas prácticas</a></li>
             </ol>
         </nav>
@@ -171,7 +174,7 @@
         <li><strong>Valores declarados</strong>: cada alcance donde se declara, con sus valores, y los botones para editarlos, ver la plantilla y extender (<a href="#valores">sección 5</a>).</li>
         <li><strong>Probar con un equipo</strong>: valores, plantilla y resultado, lado a lado, para un equipo real (<a href="#probar">sección 6</a>).</li>
         <li><strong>✦ Explícame este servicio</strong>: Argos te explica qué hace y qué genera (<a href="#explicame">sección 7</a>).</li>
-        <li><strong>＋ Extender este servicio</strong> y <strong>Opciones avanzadas</strong>: lo que puedes agregarle (<a href="#extender">sección 9</a>).</li>
+        <li><strong>＋ Agregar parámetros</strong> (Cambiar un servicio): lo que puedes agregarle (<a href="#extender">sección 10</a>).</li>
         <li><strong>Equipos donde está activo</strong>, por sitio, con ⚠ en los que fallan, y <strong>Pruebas que lo validan</strong>.</li>
     </ol>
     <p>Las pruebas son de dos tipos. Las de <strong>config</strong> comparan la running con lo que genera la plantilla, una regla por equipo. Las de <strong>estado</strong> comprueban que el servicio funcione en la red.</p>
@@ -231,27 +234,40 @@
         <li><strong>Columna 3</strong>: muestra el XML del equipo elegido. Los valores del equipo también van resaltados, así distingues lo que sale de variables de lo fijo del carril.</li>
         <li><strong>Ver qué cambia</strong> y <strong>Probar estos valores</strong> comparan el plan NETCONF de hoy contra el de tu cambio, tal como lo empujaría el Gemelo digital, con <em>commit confirmed</em>.</li>
     </ul>
-    <p>Aplica a los servicios del núcleo y a los de cliente. Hay una receta en la <a href="#receta-xr">sección 14</a>.</p>
+    <p>Aplica a los servicios del núcleo y a los de cliente. Hay una receta en la <a href="#receta-xr">sección 15</a>.</p>
+</section>
+
+<section class="doc-section" id="diccionario">
+    <h2>9. Diccionario NETCONF: buscar como en la CLI</h2>
+    <p>Para extender un servicio de IOS XR no necesitas saber NETCONF. <strong>Servicios → Diccionario NETCONF</strong> tiene los parámetros que acepta el equipo, leídos de sus propios modelos YANG, con su tipo, rango y valor por omisión.</p>
+    <ol class="doc-steps">
+        <li><strong>Busca como en la CLI</strong>: «neighbor timers keepalive», «isis lsp-gen-interval», «interface mtu». También puedes pegar una línea de XR, como <code>neighbor 192.0.2.1 timers 10 30</code>: Oktavia ignora los valores y encuentra las hojas.</li>
+        <li><strong>Elige el parámetro.</strong> Cada resultado se muestra como en la CLI —«router bgp ‹as› › neighbor ‹ip› › timers › keepalive-interval»— y las variantes (VRF, session-group…) quedan agrupadas.</li>
+        <li><strong>Usar en un servicio.</strong> Oktavia arma la extensión sin IA: el XML con su contexto (el AS sale de BGP del núcleo y el proceso de IS-IS), el campo con su rango y la baja. Tú sólo pones el valor, con la vista previa y «Guardar y proponer».</li>
+    </ol>
+    <p>Si ya tienes el XML que quieres en el equipo, <strong>Desde XML</strong> lo convierte en parámetros: cada hoja con texto es un campo, los hermanos repetidos son una lista y lo que parece secreto queda como <code>&lt;&lt;vault:…&gt;&gt;</code>.</p>
 </section>
 
 <section class="doc-section" id="extender">
-    <h2>9. Extender un servicio</h2>
+    <h2>10. Extender un servicio</h2>
     <p>Cuando la plantilla base no trae lo que necesitas, la extiendes. Tienes dos entradas:</p>
     <ul>
         <li><strong>Opciones avanzadas</strong>: extensiones del catálogo de Oktavia, probadas, que se activan con un clic. Por ejemplo, en OSPF: timers, BFD y tipos de área; en BGP: timers por vecino, address-family y agregados; en interfaces: <code>bandwidth</code>.</li>
-        <li><strong>Extender aquí</strong>, en la fila del alcance donde quieres los valores, o <strong>＋ Extender este servicio</strong>.</li>
+        <li><strong>＋ Agregar parámetros</strong>, en la fila del alcance donde quieres los valores, o desde «Probar con un equipo».</li>
     </ul>
-    <h3>Extender aquí, en tres pasos</h3>
+    <h3>Cambiar un servicio: una pregunta, un formulario y un botón</h3>
     <ol class="doc-steps">
-        <li><strong>¿Qué quieres agregar?</strong> Elige del catálogo de Oktavia con un clic, o descríbelo y genéralo con Argos (IA local o Claude).</li>
-        <li><strong>Parámetros.</strong> Lo que llenas tú, y su prueba de red.</li>
-        <li><strong>Plantilla avanzada.</strong> Ya viene resuelta y plegada, por si quieres ajustarla.</li>
+        <li><strong>¿Qué quieres cambiar?</strong> Escríbelo con tus palabras, por ejemplo «keepalive 10 y hold 30 a los vecinos del RR». Si coincide con una extensión del catálogo de Oktavia se elige sola, sin IA; si no, Argos la genera (IA local o Claude). Los atajos del catálogo siguen abajo como botones.</li>
+        <li><strong>Formulario.</strong> Los campos salen de la extensión, con etiqueta, rango y valor por omisión; las listas son tablas con «＋ fila», y viene prellenado con lo real del alcance, como tus vecinos. El JSON y la plantilla quedan en «Avanzado».</li>
+        <li><strong>Vista previa automática.</strong> Al cambiar un valor válido ves, por equipo, las líneas que cambian (en IOS XR, el XML que agrega). Si la compuerta rechaza algo, lo dice en una línea.</li>
+        <li><strong>Guardar y proponer el cambio.</strong> Un solo botón: publica la extensión, deja los valores en el alcance y propone el cambio en el Gemelo Digital. Se habilita sólo cuando la última vista previa pasó y corresponde a los valores de ahora.</li>
     </ol>
-    <p>Los valores de la extensión quedan en la intención (<code>service_vars</code>), en el mismo alcance donde pulsaste <strong>Extender aquí</strong>. Llegan a los equipos con el ciclo: auditar → cumplimiento → Gemelo digital → tú apruebas → verificación.</p>
+    <p>La misma experiencia está en Argos: <strong>Orquestación personalizada → Cambiar un servicio</strong>, o escribe «cambia un servicio».</p>
+    <p>Los valores de la extensión quedan en la intención (<code>service_vars</code>), en el mismo alcance donde pulsaste <strong>＋ Agregar parámetros</strong>. Llegan a los equipos con el ciclo: auditar → cumplimiento → Gemelo digital → tú apruebas → verificación.</p>
 </section>
 
 <section class="doc-section" id="compuerta">
-    <h2>10. La compuerta antes de publicar</h2>
+    <h2>11. La compuerta antes de publicar</h2>
     <p>Antes de publicar una extensión, una compuerta determinista la revisa. No es una opinión de la IA: son reglas fijas.</p>
     <div class="doc-table-wrap"><table class="doc-table">
         <thead><tr><th>Regla</th><th>Qué revisa</th></tr></thead>
@@ -262,11 +278,11 @@
             <tr><td><strong>Colateral</strong></td><td>Si la extensión cambia líneas de otro servicio, no se publica.</td></tr>
         </tbody>
     </table></div>
-    <p>Después pulsa <strong>Validar en estos equipos</strong>: Oktavia renderiza la extensión en equipos reales sin tocar la red. <strong>Sólo con validación se publica.</strong></p>
+    <p>La vista previa renderiza la extensión en equipos reales sin tocar la red, y queda firmada: <strong>sólo se publica lo que pasó la compuerta con esos mismos valores</strong>.</p>
 </section>
 
 <section class="doc-section" id="pruebas">
-    <h2>11. Las pruebas de red de una extensión</h2>
+    <h2>12. Las pruebas de red de una extensión</h2>
     <p>Una extensión no termina en la configuración: también dice cómo comprobar que funciona. Hay dos tipos de prueba.</p>
     <h3>Pruebas de estado</h3>
     <p>Comprueban que algo esté arriba: vecinos BGP u OSPF, interfaces, BFD, IS-IS, rutas. Se sacan de los parámetros. Por ejemplo, de <code>neighbors[].address</code> sale la lista de vecinos que deben estar establecidos.</p>
@@ -281,18 +297,18 @@
 </section>
 
 <section class="doc-section" id="personalizados">
-    <h2>12. Servicios personalizados</h2>
+    <h2>13. Servicios personalizados</h2>
     <p>Cuando lo que necesitas no extiende un servicio existente, crea uno nuevo en <strong>Servicios → Servicios personalizados</strong>.</p>
     <ol class="doc-steps">
         <li>Describe el servicio o pega una configuración de ejemplo.</li>
         <li>Argos propone la plantilla, los campos y un ejemplo de valores.</li>
-        <li>La misma compuerta de la <a href="#compuerta">sección 10</a> decide si se puede publicar.</li>
+        <li>La misma compuerta de la <a href="#compuerta">sección 11</a> decide si se puede publicar.</li>
     </ol>
     <p>Desde ahí también puedes abrir <strong>Ver plantilla</strong> de cualquier servicio, para leerla sin editarla.</p>
 </section>
 
 <section class="doc-section" id="argos">
-    <h2>13. Con Argos: Servicios por dominio</h2>
+    <h2>14. Con Argos: Servicios por dominio</h2>
     <p>Si prefieres pedirlo con tus palabras, abre <strong>Argos → Configurar → Servicios por dominio</strong>. Lo que antes era el asistente del Configurador ahora vive aquí.</p>
     <ol class="doc-steps">
         <li>Elige el dominio y el servicio. Sólo aparecen los de las plataformas de tu red.</li>
@@ -303,13 +319,13 @@
 </section>
 
 <section class="doc-section" id="recetas">
-    <h2>14. Recetas</h2>
+    <h2>15. Recetas</h2>
 
     <h3 id="receta-bgp-timers">BGP · Timers 10/30 en un vecino</h3>
     <p>Quieres detectar antes la caída de un proveedor. La plantilla de BGP no trae timers por vecino; la extensión <code>bgp_timers</code> del catálogo sí.</p>
     <ol class="doc-steps">
         <li>En <strong>Servicios → WAN</strong>, abre el servicio BGP.</li>
-        <li>En <strong>Valores declarados</strong>, busca el alcance del router, normalmente <code>by_device</code>, y pulsa <strong>Extender aquí</strong>.</li>
+        <li>En <strong>Valores declarados</strong>, busca el alcance del router, normalmente <code>by_device</code>, y pulsa <strong>＋ Agregar parámetros</strong>.</li>
         <li>Elige <strong>BGP · timers por vecino</strong> del catálogo y llena los parámetros:
 <pre><code>{
   "neighbors": [
@@ -350,7 +366,7 @@
  frequency 30
 ip sla schedule 10 life forever start-time now</code></pre></li>
         <li>Argos propone la plantilla, los campos (por ejemplo, número de sonda, destino, interfaz de origen y frecuencia) y un ejemplo de valores. Revisa que lo variable sea un campo y lo fijo quede fijo.</li>
-        <li>Pulsa <strong>Validar en estos equipos</strong> con dos o tres routers. Si la compuerta rechaza algo, corrígelo antes de seguir.</li>
+        <li>Revisa la vista previa con dos o tres routers. Si la compuerta rechaza algo, corrígelo antes de seguir.</li>
         <li>Publica, declara los valores en el alcance que corresponda, por ejemplo <code>by_role</code>, y cierra el ciclo.</li>
     </ol>
 
@@ -382,8 +398,28 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
     </ol>
 </section>
 
+<section class="doc-section" id="como-funciona">
+    <h2>16. Cómo funcionan las plantillas y los valores</h2>
+    <h3>Dos piezas</h3>
+    <p>Cada servicio tiene una <strong>plantilla</strong> por plataforma —Jinja para CLI, XML YANG para NETCONF— y sus <strong>valores</strong> en la intención (<code>service_vars</code>). El ingeniero sólo toca los valores; la plantilla la mantiene Oktavia y no se edita: se extiende.</p>
+    <h3>Alcances y quién gana</h3>
+    <p>Los valores se declaran por alcance y se mezclan del más general al más específico: <code>defaults</code>, <code>by_site</code>, <code>by_site_type</code>, <code>by_role</code>, <code>by_platform</code>, <code>by_model</code>, <code>by_tag</code>, <code>by_filter</code> y <code>by_device</code>. Gana el último; los objetos se mezclan campo por campo y las listas se reemplazan completas. La tabla completa está en la <a href="guia-intencion.html#alcances">Guía de intención</a>.</p>
+    <p><code>by_filter</code> combina condiciones, y también lee los <strong>atributos clave = valor</strong> del equipo y de su sitio: <code>attr.tier=oro__role=pe</code> aplica a los PE con ese atributo y <code>site_attr.region=norte</code> a los equipos de los sitios de esa región. Si dos filtros aplican, gana el que tiene más condiciones.</p>
+    <h3>Extensiones</h3>
+    <p>Una extensión declara <code>extends</code> con el servicio base, sus campos, su plantilla y su plantilla de baja. Genera su propio bloque: no reescribe la plantilla base ni las líneas de otro servicio (la compuerta lo impide). Su prueba de estado o de valor llega con ella al cumplimiento.</p>
+    <h3>Bajas</h3>
+    <p>Quitar algo de la intención no lo borra solo del equipo. Por eso cada extensión trae su plantilla de baja (<code>no …</code> en CLI) y, en IOS XR, la fila dada de baja queda marcada como <code>retired</code> y el plan la quita con <code>nc:operation="remove"</code>; el cumplimiento espera que ya no esté.</p>
+    <h3>Del valor al equipo</h3>
+    <p>Guardar no toca la red. El cambio llega con el ciclo: el Gemelo Digital propone el diff, una persona aprueba, se aplica (en IOS XR con validación previa y commit confirmado) y la auditoría verifica.</p>
+</section>
+
+<section class="doc-section" id="ansible">
+    <h2>17. Con Ansible y la API</h2>
+    <p>Lo mismo se automatiza desde fuera: un playbook puede cambiar un parámetro o dar de alta un servicio de cliente con la vista previa, guardar la intención y devolver el cambio propuesto en el Gemelo; aprobar y aplicar siguen siendo de una persona. Paso a paso en <a href="../blog/automatizar-oktavia-api-ansible-python.html">Automatiza Oktavia con su API, Ansible y Python</a>.</p>
+</section>
+
 <section class="doc-section" id="buenas-practicas">
-    <h2>15. Buenas prácticas</h2>
+    <h2>18. Buenas prácticas</h2>
     <ul>
         <li><strong>Prueba antes de guardar.</strong> «Probar estos valores» no guarda nada: úsalo sin miedo.</li>
         <li><strong>Lee «Ver qué cambia» equipo por equipo.</strong> Si aparece un equipo que no esperabas, revisa el alcance.</li>
@@ -393,6 +429,10 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
         <li><strong>Dale a cada extensión su prueba.</strong> Un servicio «sin pruebas» no te avisa cuando deja de funcionar.</li>
         <li><strong>Nada de secretos en claro.</strong> Todo por la bóveda, con <code>&lt;&lt;vault:…&gt;&gt;</code>.</li>
         <li><strong>Verifica con cumplimiento.</strong> Un cambio termina cuando la auditoría lo confirma.</li>
+        <li><strong>Usa atributos para los grupos que no son sitio ni rol</strong> (nivel de cliente, región, contrato) y decláralos con <code>by_filter</code>, en vez de repetir valores por equipo.</li>
+        <li><strong>Nombra bien las extensiones.</strong> El id dice el servicio y lo que agrega (<code>xr_bgp_timers</code>, <code>ospf_bfd</code>); la etiqueta, en lenguaje de red.</li>
+        <li><strong>Sube la versión al cambiar una extensión publicada.</strong> Oktavia guarda la versión y su origen del catálogo; el cumplimiento y el Gemelo usan siempre la publicada.</li>
+        <li><strong>En el núcleo, primero la validación previa.</strong> En IOS XR prueba el cambio (dry-run) y aplica con commit confirmado: si la verificación no pasa, el equipo revierte solo.</li>
     </ul>
     <p>Para los alcances y el ciclo de cambio, sigue con la <a href="guia-intencion.html">Guía de intención</a>.</p>
 </section>
@@ -416,7 +456,7 @@ ip sla schedule 10 life forever start-time now</code></pre></li>
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
+    <script src="../script/oktavia_docs_data.js?v=ebc32ae941"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

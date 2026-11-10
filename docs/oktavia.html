@@ -222,10 +222,9 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Centro de automatización</strong></td><td>Vista ejecutiva de la red: puntaje de cumplimiento global, dispositivos accesibles por ping y SSH, distribución por rol, sitios cubiertos, fallas activas y actividad reciente de trabajos.</td><td>Pro</td></tr>
-                        <tr><td><strong>Consolas por dominio</strong></td><td>Una consola por dominio de la red —Campus, WAN, Seguridad y Gestión—, al estilo de una consola de servicios en la nube: resumen, intención, reglas, cumplimiento, cambios, flujos de Argos y telemetría del dominio en un solo lugar, con el sitio como alcance. La intención de config y la de estado se leen en una sola tabla, valor por valor, y un administrador edita la config ahí mismo; al elegir un sitio queda sólo lo que aplica a sus equipos. Las vistas de toda la red siguen disponibles con su filtro de dominio.</td><td>Pro</td></tr>
+                        <tr><td><strong>Consolas por dominio</strong></td><td>Una consola por dominio de la red —Campus, WAN, Seguridad y Gestión—, al estilo de una consola de servicios en la nube: resumen, intención, reglas, cumplimiento, cambios, flujos de Argos y telemetría del dominio en un solo lugar, con el sitio como alcance. La intención de config y la de estado se leen en una sola tabla, valor por valor, y un administrador edita la config ahí mismo; al elegir un sitio queda sólo lo que aplica a sus equipos. Las vistas de toda la red siguen disponibles con su filtro de dominio. En un proveedor de servicios, los dominios son Transporte, Servicios, Seguridad y Gestión.</td><td>Pro</td></tr>
                         <tr><td><strong>Inventario de red</strong></td><td>Inventario dinámico multifabricante con filtros por sitio, rol, plataforma, fabricante y tipo de sitio. Distribución visual, detalle por dispositivo, frescura de auditoría, import y export en CSV con fusión no destructiva.</td><td>Pro</td></tr>
                         <tr><td><strong>Topología y trazado de rutas</strong></td><td>Mapa interactivo con vistas física, de plano de control, enrutamiento, OSPF, IS-IS, sistemas autónomos BGP y STP; en el núcleo, enlaces punto a punto y pseudowires. Panel por nodo y por sitio. Trazado de la ruta activa entre dos puntos con salto, siguiente salto, interfaz de salida y protocolo, ruta inversa y detección de asimetría, también a través de una L3VPN MPLS.</td><td>Pro</td></tr>
-                        <tr><td><strong>Consolas por dominio</strong></td><td>Campus, WAN, Seguridad y Gestión, cada una con resumen, intención editable, reglas, cumplimiento, cambios, flujos y telemetría. Campus y WAN traen su topología: la red de cada sitio con sus VLAN, spanning-tree y el dominio de broadcast hasta el gateway, y lo que une a los sitios por BGP, túneles, SD-WAN y circuitos. Cada servicio abre sus valores por equipo y de qué alcance sale cada uno. En un proveedor, Transporte y Servicios, con Capa 2 y Capa 3.</td><td>Pro</td></tr>
                         <tr><td><strong>Ficha del equipo</strong></td><td>Todo lo operativo de un equipo en un solo lugar: tabla de rutas, políticas de ruteo, VLAN, spanning-tree, tablas MAC y ARP, puertos, VPN, vecinos y el diff de cada servicio contra su intención.</td><td>Pro</td></tr>
                         <tr><td><strong>Análisis de ruteo</strong></td><td>Servicio que saca los flujos de las tablas de ruteo reales: desde un sitio, uno por cada red aprendida y la ruta por defecto, con resultado, saltos, protocolos, iBGP o eBGP, cifrado y simetría. Al elegir un flujo se dibuja de punta a punta, con ida y regreso en el mismo diagrama y la cadena de sistemas autónomos, y se ve lo que encontró cada equipo: ACL, políticas de ruteo y etiquetas MPLS.</td><td>Pro</td></tr>
                         <tr><td><strong>Cumplimiento de configuración</strong></td><td>Puntaje global y por sitio, principales fallas y tendencias. Resultados por dispositivo con severidad, diagnóstico y plan de corrección. Catálogo de servicios y reglas editables con habilitación selectiva por rol, fabricante, plataforma o tipo de sitio.</td><td>Pro</td></tr>
@@ -233,6 +232,13 @@
                         <tr><td><strong>Estándar de hardening por rol</strong></td><td>El estándar de seguridad vive en el rol del equipo y un equipo nuevo lo hereda al darse de alta: syslog, SNMP, NTP, acceso de gestión y servicios de los cuatro fabricantes. En Cisco IOS, además de lo que falta, detecta lo que sobra —servidor HTTP, comunidad pública, acceso remoto sin SSH— y el Gemelo Digital propone quitarlo.</td><td>Pro</td></tr>
                         <tr><td><strong>Ciclo cerrado de remediación</strong></td><td>Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar el cierre. El veredicto compara las pruebas de cada equipo antes y después del cambio: lo que se corrigió, lo que se rompió y lo que sigue fallando; una regresión impide cerrar. Cada paso deja artefacto descargable y queda en el historial.</td><td>Pro</td></tr>
                         <tr><td><strong>Alta de servicios nuevos</strong></td><td>El mismo ciclo para dar de alta servicios: túneles entre sitios, publicación de una red en OSPF y BGP, DHCP por VLAN, ajustes de enrutamiento. Cada uno con su rollback.</td><td>Pro</td></tr>
+                        <tr><td><strong>Servicios parametrizados</strong></td><td>Cada servicio en su página: valores declarados por alcance, «Probar con un equipo», «Ver qué cambia», plantilla, equipos donde está activo y las pruebas que lo validan. El ingeniero trabaja con parámetros, no con plantillas.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Servicios y parámetros nuevos sin desarrollo</strong></td><td>«Cambiar un servicio»: una pregunta, un formulario con rango y valor por omisión, vista previa automática por equipo y un solo botón para guardar y proponer el cambio. Catálogo de extensiones probadas, extensión generada con Argos (IA local o Claude), servicios personalizados del tenant y «Desde XML» para NETCONF. Todo pasa por una compuerta —sintaxis, comandos prohibidos, secretos en claro, impacto en otros servicios— antes de publicarse.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Diccionario NETCONF</strong></td><td>Los parámetros que acepta cada equipo NETCONF, leídos de sus propios modelos YANG, con tipo, rango y valor por omisión, buscables como en la CLI o pegando una línea. Al elegir uno, Oktavia arma la extensión del servicio: el XML, el campo y su baja.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Cumplimiento de estado de red</strong></td><td>Pruebas sobre la red viva además de la configuración: vecinos y sesiones arriba, túneles, políticas activas y pruebas de valor —que el parámetro declarado se vea en la red, como los timers BGP negociados con cada vecino—.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Orquestación de servicios carrier</strong></td><td>Oktavia SP: L3VPN, pseudowires EVPN-VPWS, Internet dedicado, QoS contratada, SR-TE bajo demanda con color por servicio y multicast de cliente sobre un núcleo IS-IS/SR-MPLS en Cisco IOS XR, con la parte del CE generada de la misma declaración. Estado del núcleo (etiquetas SR, TI-LFA, SRGB, nodos drenados), servicios de cliente con CRM ligero, uso contra lo contratado, FinOps por cliente, impacto en clientes y puntos únicos de falla.</td><td>SP</td></tr>
+                        <tr><td><strong>Automatización con API y Ansible</strong></td><td>API con llaves con alcance por organización y llaves de automatización de la interfaz para orquestar servicios de cliente por playbook: vista previa, guardar la intención y el cambio propuesto en el Gemelo Digital. Ninguna llave aprueba ni aplica. Kit de Ansible con inventario dinámico y playbooks de lectura, de cambio de parámetro y por servicio.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Sistema y soporte</strong></td><td>Visibilidad de la propia plataforma: estado de sus componentes, recursos del servidor y alertas, y las vulnerabilidades de los componentes de Oktavia con su seguimiento y remediación por el equipo de Oktanet.</td><td>Pro · SP</td></tr>
                         <tr><td><strong>Servicios de cliente</strong></td><td>Para proveedores de servicios: por cliente, sus L3VPN y sus pseudowires con el estado en vivo de cada uno y su diagrama de punta a punta.</td><td>Pro</td></tr>
                         <tr><td><strong>Argos — ChatOps de red</strong></td><td>Asistente en lenguaje natural integrado en todas las pantallas. Entiende, investiga, configura y cierra el ciclo. Cada acción declara si consume el modelo de IA antes de ejecutarse.</td><td>Pro</td></tr>
                         <tr><td><strong>IA local (RAG)</strong></td><td>Modelos abiertos servidos en el propio servidor de Oktavia que responden sólo con fragmentos recuperados de la documentación —guías oficiales del fabricante, memoria técnica por sitio, estándares y procedimientos del equipo, reportes de cambios anteriores—, con cita de documento, sección y página. Nada sale del servidor y no hay costo por pregunta. Incluye el kit de documentación con plantillas y validación.</td><td>Pro</td></tr>
@@ -321,6 +327,11 @@
                 <li><strong>BGP VPNv4</strong> con route reflector.</li>
                 <li><strong>L3VPN por cliente</strong>, con su VRF hacia el CE.</li>
                 <li><strong>Pseudowires L2VPN EVPN-VPWS</strong>, varios por enlace PE-CE sobre subinterfaces VLAN.</li>
+                <li><strong>QoS por servicio</strong>: el ancho de banda contratado en el PE.</li>
+                <li><strong>Internet dedicado</strong>, con su lado CE.</li>
+                <li><strong>SR-TE bajo demanda (ODN)</strong> con color por servicio, en L3VPN y en pseudowires.</li>
+                <li><strong>Multicast de cliente (mVPN)</strong> con Ingress Replication y BGP sobre el mismo SR-MPLS.</li>
+                <li><strong>Perillas de arquitecto</strong>: timers de IS-IS, overload para mantenimiento, BFD y graceful-restart en BGP, carrier-delay y SRGB.</li>
             </ul>
             <p>Los equipos se gestionan model-driven por NETCONF, con los modelos de configuración Cisco-IOS-XR-um y los modelos operativos nativos, sin leer pantallas. Cada cambio pasa por el Gemelo Digital: validación previa, commit confirmado y confirmación de una persona.</p>
             <p>Los flujos de varios pasos muestran su avance por sitio —«X de N pasos» y su porcentaje— calculado del estado real de la red, no de casillas marcadas a mano, y cada tarjeta termina con el botón del paso siguiente.</p>
@@ -614,6 +625,14 @@
                 Una integración externa nunca recibe la clave de la interfaz: recibe una clave propia, acotada a una organización, de lectura o de escritura y a una lista cerrada de operaciones. Se revoca sin tocar las demás.
             </p>
 
+            <h3>Llaves de automatización</h3>
+            <p>
+                Para orquestar servicios desde Ansible o un script, un administrador crea una llave de automatización por organización: se muestra una sola vez, se guarda con hash, abre sólo los flujos de servicios de cliente (vista previa y guardar) y nunca aprueba ni aplica un cambio. Cada uso queda en la bitácora de seguridad.
+            </p>
+            <h3>Visibilidad de la propia plataforma</h3>
+            <p>
+                Oktavia se vigila a sí misma: la página Sistema muestra el estado de cada componente, los recursos del servidor y las alertas, y las vulnerabilidades de sus propias librerías y contenedores con su seguimiento. El equipo de Oktanet las revisa y publica las correcciones como actualizaciones incluidas en la licencia.
+            </p>
             <h3>Ningún cambio sin aprobación</h3>
             <p>
                 Es también una propiedad de seguridad, no sólo de proceso: ninguna acción que escriba en la red ocurre sin que una persona la apruebe, y cada aplicación queda registrada con su aprobador, su diff y su artefacto.
@@ -748,11 +767,15 @@
         <section class="doc-section" id="licenciamiento">
             <h2>18. Licenciamiento</h2>
             <p>
-                La plataforma completa es <strong>Oktavia Pro</strong>. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
+                Oktavia se instala en uno de dos modos: <strong>Oktavia Pro</strong> para la red de una empresa (Campus, WAN, Seguridad y Gestión) y <strong>Oktavia SP</strong> para un proveedor de servicios (Transporte, Servicios, Seguridad y Gestión). El código y el ciclo son los mismos. La telemetría continua y la orquestación de eventos se licencian aparte porque tienen otro perfil de consumo, almacenan series de tiempo y corren un evaluador permanente, y no toda red las necesita desde el primer día.
             </p>
             <h3>Oktavia Pro</h3>
             <p>
                 Descubrimiento multifabricante, inventario, cumplimiento de configuración y de estado, configuración deseada por equipo y por alcance, ciclo completo de remediación con Gemelo Digital, alta de servicios nuevos con su rollback, topología con trazado de rutas y análisis de políticas de firewall, seguridad de red, inventario de servicios, inteligencia IP, respaldos de configuración, reportes avanzados, provisioning, operaciones programadas, FinOps, multi-tenant y Argos completo con la IA local.
+            </p>
+            <h3>Oktavia SP</h3>
+            <p>
+                El orquestador de servicios carrier: lo de Oktavia Pro que aplica a un proveedor más los servicios de cliente (L3VPN, EVPN-VPWS, Internet dedicado, QoS contratada, SR-TE bajo demanda, multicast), el núcleo IS-IS/SR-MPLS en Cisco IOS XR con commit confirmado, el estado del núcleo, el CRM ligero con uso contra lo contratado y FinOps por cliente, el impacto en clientes y los eventos al NOC. Se dimensiona por equipos del núcleo y del borde, dominios y centros de datos.
             </p>
             <h3>Telemetría y Orquestación de Eventos</h3>
             <p>
@@ -761,6 +784,14 @@
             <h3>Incluido en toda licencia: soporte y actualizaciones</h3>
             <p>
                 Mientras la licencia está vigente, cualquier instalación de Oktavia recibe los parches de seguridad, las actualizaciones y las funciones nuevas de la plataforma, sin costo adicional.
+            </p>
+            <h3>Servicios profesionales y Customer Success</h3>
+            <p>
+                Oktanet implementa y acompaña: instalación y puesta en marcha, migración de la intención desde la red que ya existe, <strong>Automation Packs</strong> para los casos que sí requieren desarrollo (flujos de varios pasos, integraciones con terceros, nuevos sistemas operativos) y un equipo de <strong>Customer Success</strong> con revisiones periódicas de cumplimiento y de postura, y alertas proactivas cuando cambia algo que afecta la plataforma o la red del cliente, como una vulnerabilidad nueva.
+            </p>
+            <h3>Cursos</h3>
+            <p>
+                La <a href="academia.html">Academia Oktanet</a> tiene cursos gratuitos de fundamentos y la ruta de certificación. Para equipos que operarán Oktavia, Oktanet imparte cursos a la medida: operación de la plataforma, servicios y plantillas, automatización con la API, Ansible y Python, y Oktavia SP con IOS XR.
             </p>
         </section>
 
@@ -809,7 +840,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
+    <script src="../script/oktavia_docs_data.js?v=ebc32ae941"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

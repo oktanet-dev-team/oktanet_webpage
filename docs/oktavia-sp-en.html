@@ -54,7 +54,7 @@
     <main class="doc-main">
         <section class="doc-cover">
             <p class="doc-eyebrow">Oktavia family · Carrier / SP</p>
-            <h1>Oktavia for service providers</h1>
+            <h1>Oktavia SP · Carrier service orchestrator</h1>
             <p class="doc-lede">
                 The same Oktavia closed loop applied to a provider network: a customer service is declared once and Oktavia distributes it to every PE and CE, applies the Cisco IOS XR core as a single network transaction and verifies the service came up.
             </p>
@@ -82,6 +82,10 @@
                 <li><a href="#catalogo">Service catalog</a></li>
                 <li><a href="#ciclo">The cycle and the Digital Twin</a></li>
                 <li><a href="#visibilidad">Visibility</a></li>
+                <li><a href="#estado-nucleo">Core and per-service state</a></li>
+                <li><a href="#noc">The NOC: customer impact and alerts</a></li>
+                <li><a href="#sin-desarrollo">New services and parameters, without development</a></li>
+                <li><a href="#automatizacion">Automation with the API, Ansible and Python</a></li>
                 <li><a href="#clientes">Customers and contracts</a></li>
                 <li><a href="#argos">Argos on a provider network</a></li>
                 <li><a href="#ia-local">Local AI with provider context</a></li>
@@ -93,7 +97,7 @@
         <section class="doc-section" id="que-es">
             <h2>1. What it is</h2>
             <p>
-                Oktavia for service providers is the part of the platform that runs the core and edge of a provider network: the P routers and route reflectors in the core, the PEs at each point of presence, and the customer CEs. It is not a separate product: it is the same cycle of auditing, comparing against intent, proposing in the Digital Twin, approving, applying, verifying and auditing again, with a provider-specific service catalog.
+                Oktavia SP is the Oktavia installation for service providers: the carrier service orchestrator that runs the core and edge of the network: the P routers and route reflectors in the core, the PEs at each point of presence, and the customer CEs. It is not a separate product: it is the same cycle of auditing, comparing against intent, proposing in the Digital Twin, approving, applying, verifying and auditing again, with a provider-specific service catalog.
             </p>
             <p>
                 It is tested in the lab with Cisco IOS XR (XRv9000 24.3) in the core and Cisco IOS on the customer CE.
@@ -150,6 +154,10 @@
                         <tr><td><strong>L3VPN</strong></td><td>Per customer: VRF, RT and RD, PE-CE eBGP with as-override and the site LAN on the CE.</td></tr>
                         <tr><td><strong>L2VPN EVPN-VPWS</strong></td><td>Point-to-point pseudowires, several per PE-CE link, on VLAN subinterfaces (EVI 1000 + id).</td></tr>
                         <tr><td><strong>Contracted QoS</strong></td><td>The bandwidth contracted per site or circuit, on the PE interface: police inbound and shape outbound (police where the platform cannot shape on a subinterface), with a dedicated pair of policies per contract.</td></tr>
+                        <tr><td><strong>Dedicated Internet</strong></td><td>A service from the Oktavia catalog: the PE subinterface and policy and, separately, the CE side. Add, change and remove from Argos with a preview and confirmed commit.</td></tr>
+                        <tr><td><strong>On-demand SR-TE (ODN)</strong></td><td>Provider colors (IGP, TE, latency or hop-count metric) and a color per service: L3VPN exports it with the VRF and pseudowires carry it in the EVPN route, so the remote PE builds the policy on its own. Removing the color is another Twin transaction.</td></tr>
+                        <tr><td><strong>Customer multicast (mVPN)</strong></td><td>Multicast inside the customer's L3VPN with Ingress Replication, BGP auto-discovery and BGP C-multicast over the same SR-MPLS (no LDP and no multicast state on the P routers). On the CE: PIM sparse mode, RP or SSM, and IGMP.</td></tr>
+                        <tr><td><strong>Architect knobs (IS-IS, BGP, interfaces)</strong></td><td>Catalog extensions confirmed against the device's own YANG models: IS-IS convergence timers and microloop avoidance, overload-bit to drain a node for maintenance, BGP graceful-restart, BFD and cluster-id, carrier-delay and dampening, and the SRGB. Each one with its risk explained and its removal.</td></tr>
                         <tr><td><strong>Streaming telemetry</strong></td><td>Model-driven telemetry over gRPC dial-out, on IOS XR and IOS XE, to the Oktavia collector.</td></tr>
                     </tbody>
                 </table>
@@ -195,8 +203,53 @@
             </ul>
         </section>
 
+        <section class="doc-section" id="estado-nucleo">
+            <h2>6. Core and per-service state</h2>
+            <p>Beyond configuration, Oktavia tests that the network <strong>works</strong> as declared, reading IOS XR operational models over NETCONF:</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th scope="col">Test</th><th scope="col">What it confirms</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>SR labels</strong></td><td>Every node reaches the loopback of every core PE and P with a label.</td></tr>
+                        <tr><td><strong>TI-LFA coverage</strong></td><td>Core prefixes have a precomputed backup.</td></tr>
+                        <tr><td><strong>Consistent SRGB</strong></td><td>The same global label block on every node.</td></tr>
+                        <tr><td><strong>No drained node</strong></td><td>No node with the overload bit outside a declared maintenance.</td></tr>
+                        <tr><td><strong>SR-TE policies</strong></td><td>Every service color has its <code>srte_c_&lt;color&gt;_ep_&lt;PE&gt;</code> policy up towards each remote PE.</td></tr>
+                        <tr><td><strong>Provider IS-IS, BFD and BGP</strong></td><td>Adjacencies, BFD sessions and VPNv4/EVPN sessions with the route reflector.</td></tr>
+                        <tr><td><strong>Multicast</strong></td><td>The CE of every multicast site is a PIM neighbor of the PE in the customer VRF.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>In Argos every service has its <strong>“State of…”</strong> button —the core, L3VPNs, pseudowires, Dedicated Internet and QoS— with configuration ✓/✗ per device, its network state and telemetry when available. The Transport console shows <strong>Core health</strong>, and the Architecture view and the technical report include a <strong>Provider services</strong> section: each service's declared design, its numbering, which customers use it and how it is doing today.</p>
+        </section>
+
+        <section class="doc-section" id="noc">
+            <h2>7. The NOC: customer impact and alerts</h2>
+            <h3>Which customers are affected?</h3>
+            <p>For any PE, P/RR or CE, Oktavia tells which customer services go down, which are degraded (a dual-homed site) and which stay protected by TI-LFA, with the contract, the SLA and the monthly revenue at risk from the CRM. Without choosing a device, it returns the network's <strong>single points of failure</strong>, highest revenue at risk first. No AI: explicit rules per role.</p>
+            <h3>Provider events and NOC email</h3>
+            <p>The event orchestrator understands provider events —pseudowire down, IS-IS adjacency or BFD session down, VPNv4/EVPN session with the route reflector down— and the NOC email carries the customer impact: which services go down, for which customer, their SLA and revenue at risk, with links to Customer services, Topology and Argos. Provider rules load with one click and each one has a “test email” with real data.</p>
+        </section>
+
+        <section class="doc-section" id="sin-desarrollo">
+            <h2>8. New services and parameters, without development</h2>
+            <p>A provider engineer does not need to know NETCONF to change what the device allows:</p>
+            <ul>
+                <li><strong>Change a service</strong>: one question (“what do you want to change?”), a form with range and default, an automatic preview of what changes on each device and a single button: <em>Save and propose the change</em>.</li>
+                <li><strong>NETCONF dictionary</strong>: the parameters the device accepts, read from its own YANG models, searchable <strong>like the CLI</strong> —“neighbor timers keepalive”, “isis lsp-gen-interval”, “interface mtu”— or by pasting an XR line. Pick one and Oktavia builds the extension: the XML, the field with its range and its removal.</li>
+                <li><strong>From XML</strong>: paste the XML you want on the device and turn it into a service parameter, no AI.</li>
+                <li>A <strong>catalog of proven extensions</strong> and the tenant's <strong>custom services</strong>.</li>
+            </ul>
+            <p>Everything goes through the gate before publishing (syntax, forbidden commands, plaintext secrets, impact on other services) and reaches the network through the Digital Twin, with prior validation and confirmed commit.</p>
+        </section>
+
+        <section class="doc-section" id="automatizacion">
+            <h2>9. Automation with the API, Ansible and Python</h2>
+            <p>Every customer service is orchestrated the same way from Argos or from an Ansible playbook: adding a pseudowire, an L3VPN site, a service's ODN color or a customer's multicast. Playbooks call the same APIs with per-tenant <strong>automation keys</strong> —shown once, stored hashed and revocable—: they preview or save the intent and return the change proposed in the Twin. Approving and applying is still a person's call. In Argos every flow has <em>Do it with Ansible</em> with the equivalent command. Step by step in the article <a href="../blog/automatizar-oktavia-api-ansible-python-en.html">Automate Oktavia with its API, Ansible and Python</a>.</p>
+        </section>
+
         <section class="doc-section" id="clientes">
-            <h2>6. Customers and contracts</h2>
+            <h2>10. Customers and contracts</h2>
             <p>In Customer services, each customer has its <strong>Contract</strong>: a lightweight CRM with what it bought. This is commercial data: the customer's configuration still lives in the intent.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -219,8 +272,8 @@
         </section>
 
         <section class="doc-section" id="argos">
-            <h2>7. Argos on a provider network</h2>
-            <p>Organization flows follow the organization's architecture. On a provider tenant, Argos offers:</p>
+            <h2>11. Argos on a provider network</h2>
+            <p>Argos is <strong>your SP architect</strong>: the <strong>Custom orchestration</strong> tab gathers the flows built for the provider's architecture and standards. On a provider tenant it offers:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -230,6 +283,10 @@
                         <tr><td><strong>SP core (IOS XR)</strong></td><td>Applies the core intent as a network change.</td></tr>
                         <tr><td><strong>Customer pseudowires (EVPN-VPWS)</strong></td><td>Shows the circuits with their state and adds a pseudowire: validates VLAN, subnet and endpoints, saves the intent and proposes the network change.</td></tr>
                         <tr><td><strong>Customer QoS (contracted bandwidth)</strong></td><td>Shows and changes contracts: validates, saves and proposes the change.</td></tr>
+                        <tr><td><strong>Customer L3VPN</strong></td><td>Add and remove a customer or site, L3VPN state and customer multicast.</td></tr>
+                        <tr><td><strong>Customer Dedicated Internet</strong></td><td>Add, change and remove on the PE and its CE side.</td></tr>
+                        <tr><td><strong>Traffic engineering (SR-TE ODN)</strong></td><td>Policy state, colors per service, assign and remove a color on an L3VPN or on a customer's pseudowires.</td></tr>
+                        <tr><td><strong>Change a service</strong></td><td>Add or move a parameter of any service with a preview and a single button.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -244,7 +301,7 @@
         </section>
 
         <section class="doc-section" id="ia-local">
-            <h2>8. Local AI with provider context</h2>
+            <h2>12. Local AI with provider context</h2>
             <p>The local AI answers, on the customer's own server, with the context of a provider network:</p>
             <ul>
                 <li>The team's documents: design (HLD), runbooks, change procedure, security policy and circuits.</li>
@@ -256,7 +313,7 @@
         </section>
 
         <section class="doc-section" id="familia">
-            <h2>9. The Oktavia platform family</h2>
+            <h2>13. The Oktavia platform family</h2>
             <p>The service provider is one more platform in the family. The cycle and the platform are the same; what changes is how each one is accessed:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -278,10 +335,11 @@
         </section>
 
         <section class="doc-section" id="proximamente">
-            <h2>10. Coming soon</h2>
+            <h2>14. Coming soon</h2>
             <ul>
-                <li><strong>On-demand SR-TE</strong> (ODN), with color per service.</li>
-                <li><strong>Data center integration</strong> with Cisco ACI.</li>
+                <li><strong>Data center integration</strong> with Cisco ACI (APIC API): tenants, VRFs, EPGs and L3Outs towards the core.</li>
+                <li><strong>Juniper Junos over NETCONF</strong> with the same Dictionary and the From XML converter.</li>
+                <li><strong>Per-platform licensing</strong>, with the service catalog filtered by the active platforms.</li>
             </ul>
         </section>
 

@@ -192,7 +192,7 @@
             <tr><td>5</td><td><code>by_platform</code></td><td>Un fabricante o sistema.</td><td>Lo que cambia por plataforma.</td></tr>
             <tr><td>6</td><td><code>by_model</code></td><td>Un modelo.</td><td>Versiones de software aprobadas.</td></tr>
             <tr><td>7</td><td><code>by_tag</code></td><td>Equipos con una etiqueta.</td><td>Grupos que no siguen sitio ni rol.</td></tr>
-            <tr><td>8</td><td><code>by_filter</code></td><td>Una combinación.</td><td>Por ejemplo, un rol dentro de un sitio.</td></tr>
+            <tr><td>8</td><td><code>by_filter</code></td><td>Una combinación.</td><td>Por ejemplo, un rol dentro de un sitio, o atributos del equipo o del sitio: <code>attr.tier=oro</code>, <code>site_attr.region=norte</code>.</td></tr>
             <tr><td>9</td><td><code>by_device</code></td><td>Un equipo.</td><td>IP, interfaces, vecinos y excepciones reales.</td></tr>
         </tbody>
     </table></div>
@@ -223,7 +223,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
         <li><strong>Sin efecto</strong>: un alcance más específico le gana en todos sus equipos. Conviene revisarla.</li>
         <li><strong>Deshabilitado</strong>: tiene <code>enabled: false</code>.</li>
     </ul>
-    <p>En la misma fila están <strong>Editar valores</strong>, <strong>Plantilla</strong> y <strong>Extender aquí</strong>.</p>
+    <p>En la misma fila están <strong>Editar valores</strong>, <strong>Plantilla</strong> y <strong>＋ Agregar parámetros</strong>.</p>
     <h3>Cambiar un valor</h3>
     <ol class="doc-steps">
         <li>Pulsa <strong>Editar valores</strong> en el alcance que quieres cambiar. Si eliges mal el alcance, cambiarás a más equipos o a menos de los que crees.</li>
@@ -307,7 +307,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     <p>Si la plantilla de un servicio no trae lo que necesitas —timers de BGP por vecino, BFD en OSPF, <code>bandwidth</code> en una interfaz—, no se edita: se extiende. Tú trabajas con parámetros, no con Jinja.</p>
     <ul>
         <li><strong>Opciones avanzadas</strong>, en la página del servicio, activa con un clic extensiones probadas del catálogo de Oktavia.</li>
-        <li><strong>Extender aquí</strong> te guía en tres pasos: qué agregar (del catálogo o generado con Argos), sus parámetros con su prueba de red y la plantilla avanzada, ya resuelta.</li>
+        <li><strong>＋ Agregar parámetros</strong> (Cambiar un servicio) te guía: qué quieres cambiar (del catálogo o generado con Argos), un formulario con su prueba de red y vista previa automática, y un solo botón para guardar y proponer; la plantilla queda resuelta en «Avanzado».</li>
     </ul>
     <p>Antes de publicar, una compuerta determinista revisa la extensión: comandos bloqueados, ningún secreto literal, baja sólo con <code>no</code> o <code>default</code>, y que no cambie líneas de otro servicio. Sólo se publica después de validarla en equipos reales, sin tocar la red. Sus valores quedan en la intención, en el mismo alcance, y llegan a los equipos con el ciclo.</p>
     <p>Todo el detalle, con recetas, está en la <a href="guia-servicios.html">Guía de servicios y plantillas</a>.</p>
@@ -446,7 +446,7 @@ lan_switch  →  ["192.0.2.1", "192.0.2.2"]</code></pre>
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
+    <script src="../script/oktavia_docs_data.js?v=ebc32ae941"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>

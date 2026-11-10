@@ -85,7 +85,7 @@
             <div class="docs-main-col">
         <section class="doc-cover">
             <p class="doc-eyebrow">Familia Oktavia · Carrier / SP</p>
-            <h1>Oktavia para proveedores de servicios</h1>
+            <h1>Oktavia SP · Orquestador de servicios carrier</h1>
             <p class="doc-lede">
                 El mismo ciclo cerrado de Oktavia aplicado a la red de un proveedor: el servicio de cliente se declara una vez y Oktavia lo reparte a cada PE y CE, aplica el núcleo Cisco IOS XR como una sola transacción de red y verifica que el servicio quedó arriba.
             </p>
@@ -113,6 +113,10 @@
                 <li><a href="#catalogo">Catálogo de servicios</a></li>
                 <li><a href="#ciclo">El ciclo y el Gemelo Digital</a></li>
                 <li><a href="#visibilidad">Visibilidad</a></li>
+                <li><a href="#estado-nucleo">Estado del núcleo y de cada servicio</a></li>
+                <li><a href="#noc">El NOC: impacto en clientes y alertas</a></li>
+                <li><a href="#sin-desarrollo">Servicios y parámetros nuevos, sin desarrollo</a></li>
+                <li><a href="#automatizacion">Automatización con API, Ansible y Python</a></li>
                 <li><a href="#clientes">Clientes y contratos</a></li>
                 <li><a href="#argos">Argos en una red de proveedor</a></li>
                 <li><a href="#ia-local">IA local con contexto de proveedor</a></li>
@@ -124,7 +128,7 @@
         <section class="doc-section" id="que-es">
             <h2>1. Qué es</h2>
             <p>
-                Oktavia para proveedores de servicios es la parte de la plataforma que opera el núcleo y el borde de una red de proveedor: los P y route reflectors del núcleo, los PE de cada punto de presencia y los CE de los clientes. No es un producto aparte: es el mismo ciclo de auditar, comparar con la intención, proponer en el Gemelo Digital, aprobar, aplicar, verificar y volver a auditar, con un catálogo de servicios propio de proveedor.
+                Oktavia SP es la instalación de Oktavia para proveedores de servicios: el orquestador de servicios carrier que opera el núcleo y el borde de la red: los P y route reflectors del núcleo, los PE de cada punto de presencia y los CE de los clientes. No es un producto aparte: es el mismo ciclo de auditar, comparar con la intención, proponer en el Gemelo Digital, aprobar, aplicar, verificar y volver a auditar, con un catálogo de servicios propio de proveedor.
             </p>
             <p>
                 Está probado en laboratorio con Cisco IOS XR (XRv9000 24.3) en el núcleo y Cisco IOS en el CE del cliente.
@@ -181,6 +185,10 @@
                         <tr><td><strong>L3VPN</strong></td><td>Por cliente: VRF, RT y RD, eBGP PE-CE con as-override y la LAN del sitio en el CE.</td></tr>
                         <tr><td><strong>L2VPN EVPN-VPWS</strong></td><td>Pseudowires punto a punto, varios por enlace PE-CE, en subinterfaces por VLAN (EVI 1000 + id).</td></tr>
                         <tr><td><strong>QoS contratada</strong></td><td>El ancho de banda contratado por sitio o circuito, en la interfaz del PE: police a la entrada y shape a la salida (police donde la plataforma no hace shape en subinterfaz), con un par de políticas propias por contrato.</td></tr>
+                        <tr><td><strong>Internet dedicado</strong></td><td>Servicio del catálogo de Oktavia: la subinterfaz y la política del PE y, aparte, el lado del CE. Alta, cambio y baja desde Argos con vista previa y commit confirmado.</td></tr>
+                        <tr><td><strong>SR-TE bajo demanda (ODN)</strong></td><td>Colores del proveedor (métrica IGP, TE, latencia o saltos) y el color por servicio: en la L3VPN se exporta con la VRF y en los pseudowires viaja en la ruta EVPN, así el PE remoto arma la política solo. Quitar el color es otra transacción del Gemelo.</td></tr>
+                        <tr><td><strong>Multicast de cliente (mVPN)</strong></td><td>Multicast dentro de la L3VPN del cliente con Ingress Replication, BGP auto-discovery y C-multicast por BGP sobre el mismo SR-MPLS (sin LDP ni estado multicast en los P). En el CE: PIM sparse, RP o SSM e IGMP.</td></tr>
+                        <tr><td><strong>Perillas de arquitecto (IS-IS, BGP, interfaces)</strong></td><td>Extensiones del catálogo confirmadas contra los modelos YANG del equipo: timers de convergencia de IS-IS y microloop avoidance, overload-bit para drenar un equipo en mantenimiento, graceful-restart, BFD y cluster-id en BGP, carrier-delay y dampening, y el SRGB. Cada una con su riesgo explicado y su baja.</td></tr>
                         <tr><td><strong>Telemetría por streaming</strong></td><td>Telemetría model-driven por gRPC dial-out, en IOS XR e IOS XE, hacia el colector de Oktavia.</td></tr>
                     </tbody>
                 </table>
@@ -226,8 +234,53 @@
             </ul>
         </section>
 
+        <section class="doc-section" id="estado-nucleo">
+            <h2>6. Estado del núcleo y de cada servicio</h2>
+            <p>Además de la configuración, Oktavia prueba que la red <strong>funcione</strong> como se declaró, leyendo los modelos operativos de IOS XR por NETCONF:</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th scope="col">Prueba</th><th scope="col">Qué confirma</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Etiquetas SR</strong></td><td>Cada nodo llega etiquetado a la loopback de cada PE y P del núcleo.</td></tr>
+                        <tr><td><strong>Cobertura TI-LFA</strong></td><td>Los prefijos del núcleo tienen respaldo precalculado.</td></tr>
+                        <tr><td><strong>SRGB consistente</strong></td><td>El mismo bloque global de etiquetas en todos los nodos.</td></tr>
+                        <tr><td><strong>Ningún nodo drenado</strong></td><td>Ningún nodo con overload-bit fuera de un mantenimiento declarado.</td></tr>
+                        <tr><td><strong>Políticas SR-TE</strong></td><td>Cada color de un servicio tiene su política <code>srte_c_&lt;color&gt;_ep_&lt;PE&gt;</code> arriba hacia cada PE remoto.</td></tr>
+                        <tr><td><strong>IS-IS, BFD y BGP del proveedor</strong></td><td>Adyacencias, sesiones BFD y sesiones VPNv4/EVPN con el route reflector.</td></tr>
+                        <tr><td><strong>Multicast</strong></td><td>El CE de cada sitio con multicast es vecino PIM del PE en la VRF del cliente.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>En Argos, cada servicio tiene su botón <strong>«Estado de…»</strong> —el núcleo, las L3VPN, los pseudowires, el Internet dedicado y la QoS— con la configuración ✓/✗ por equipo, su estado en la red y la telemetría cuando la hay. La consola de Transporte muestra la <strong>Salud del núcleo</strong>, y la Arquitectura y la memoria técnica incluyen la sección <strong>Servicios del proveedor</strong>: el diseño declarado de cada servicio, su numeración, qué clientes lo usan y cómo está hoy.</p>
+        </section>
+
+        <section class="doc-section" id="noc">
+            <h2>7. El NOC: impacto en clientes y alertas</h2>
+            <h3>¿A qué clientes afecta?</h3>
+            <p>Para cualquier PE, P/RR o CE, Oktavia dice qué servicios de cliente caen, cuáles se degradan (un sitio con doble PE) y cuáles quedan protegidos por TI-LFA, con el contrato, el SLA y el ingreso mensual en riesgo del CRM. Sin elegir equipo, entrega el ranking de <strong>puntos únicos de falla</strong> de la red, primero el que más ingreso arriesga. Sin IA: son reglas explícitas por rol.</p>
+            <h3>Eventos de proveedor y correo al NOC</h3>
+            <p>El orquestador de eventos reconoce eventos de proveedor —pseudowire caído, adyacencia IS-IS o sesión BFD caída, sesión VPNv4/EVPN con el route reflector caída— y el correo al NOC lleva el impacto en clientes: qué servicios caen, de qué cliente, su SLA y el ingreso en riesgo, con enlaces a Servicios de cliente, Topología y Argos. Las reglas de proveedor se cargan en un clic y cada una tiene su «correo de prueba» con datos reales.</p>
+        </section>
+
+        <section class="doc-section" id="sin-desarrollo">
+            <h2>8. Servicios y parámetros nuevos, sin desarrollo</h2>
+            <p>El ingeniero de un proveedor no necesita saber NETCONF para mover lo que el equipo permite:</p>
+            <ul>
+                <li><strong>Cambiar un servicio</strong>: una pregunta («¿qué quieres cambiar?»), un formulario con rango y valor por omisión, vista previa automática de lo que cambia en cada equipo y un solo botón: <em>Guardar y proponer el cambio</em>.</li>
+                <li><strong>Diccionario NETCONF</strong>: los parámetros que el equipo acepta, leídos de sus propios modelos YANG, buscables <strong>como en la CLI</strong> —«neighbor timers keepalive», «isis lsp-gen-interval», «interface mtu»— o pegando una línea de XR. Al elegir uno, Oktavia arma la extensión: el XML, el campo con su rango y su baja.</li>
+                <li><strong>Desde XML</strong>: pegar el XML que se quiere en el equipo y convertirlo en un parámetro del servicio, sin IA.</li>
+                <li><strong>Catálogo de extensiones</strong> probadas y <strong>servicios personalizados</strong> del tenant.</li>
+            </ul>
+            <p>Todo pasa por la compuerta antes de publicar (sintaxis, comandos prohibidos, secretos en claro, impacto en otros servicios) y llega a la red por el Gemelo Digital, con validación previa y commit confirmado.</p>
+        </section>
+
+        <section class="doc-section" id="automatizacion">
+            <h2>9. Automatización con API, Ansible y Python</h2>
+            <p>Cada servicio de cliente se orquesta igual desde Argos o desde un playbook de Ansible: alta de un pseudowire, de un sitio L3VPN, el color ODN de un servicio o el multicast de un cliente. Los playbooks llaman a las mismas API con <strong>llaves de automatización</strong> por tenant —se ven una sola vez, se guardan con hash y se revocan—: hacen la vista previa o guardan la intención y devuelven el cambio propuesto en el Gemelo. Aprobar y aplicar sigue siendo de una persona. En Argos, cada flujo trae <em>Hazlo con Ansible</em> con el comando equivalente. Paso a paso en el artículo <a href="../blog/automatizar-oktavia-api-ansible-python.html">Automatiza Oktavia con su API, Ansible y Python</a>.</p>
+        </section>
+
         <section class="doc-section" id="clientes">
-            <h2>6. Clientes y contratos</h2>
+            <h2>10. Clientes y contratos</h2>
             <p>En Servicios de cliente, cada cliente tiene su <strong>Contrato</strong>: un CRM ligero con lo que compró. Son datos comerciales: la configuración del cliente sigue en la intención.</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -250,8 +303,8 @@
         </section>
 
         <section class="doc-section" id="argos">
-            <h2>7. Argos en una red de proveedor</h2>
-            <p>Los flujos de la organización siguen su arquitectura. En un tenant de proveedor, Argos ofrece:</p>
+            <h2>11. Argos en una red de proveedor</h2>
+            <p>Argos es <strong>tu arquitecto de SP</strong>: la pestaña <strong>Orquestación personalizada</strong> reúne los flujos hechos a la arquitectura y los estándares del proveedor. En un tenant de proveedor ofrece:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
@@ -261,6 +314,10 @@
                         <tr><td><strong>Núcleo SP (IOS XR)</strong></td><td>Aplica la intención del núcleo como un cambio de red.</td></tr>
                         <tr><td><strong>Pseudowires de cliente (EVPN-VPWS)</strong></td><td>Muestra los circuitos con su estado y da de alta un pseudowire: valida VLAN, subred y extremos, guarda la intención y propone el cambio de red.</td></tr>
                         <tr><td><strong>QoS de clientes (ancho de banda contratado)</strong></td><td>Muestra y cambia los contratos: valida, guarda y propone el cambio.</td></tr>
+                        <tr><td><strong>L3VPN de clientes</strong></td><td>Alta y baja de un cliente o sitio, estado de las L3VPN y multicast del cliente.</td></tr>
+                        <tr><td><strong>Internet dedicado de clientes</strong></td><td>Alta, cambio y baja en el PE y su lado CE.</td></tr>
+                        <tr><td><strong>Ingeniería de tráfico (SR-TE ODN)</strong></td><td>Estado de las políticas, colores por servicio, asignar y quitar color a una L3VPN o a los pseudowires de un cliente.</td></tr>
+                        <tr><td><strong>Cambiar un servicio</strong></td><td>Agregar o mover un parámetro de cualquier servicio con vista previa y un solo botón.</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -275,7 +332,7 @@
         </section>
 
         <section class="doc-section" id="ia-local">
-            <h2>8. IA local con contexto de proveedor</h2>
+            <h2>12. IA local con contexto de proveedor</h2>
             <p>La IA local responde, en el servidor del cliente, con el contexto de una red de proveedor:</p>
             <ul>
                 <li>Los documentos del equipo: diseño (HLD), runbooks, procedimiento de cambios, política de seguridad y circuitos.</li>
@@ -287,7 +344,7 @@
         </section>
 
         <section class="doc-section" id="familia">
-            <h2>9. La familia de plataformas Oktavia</h2>
+            <h2>13. La familia de plataformas Oktavia</h2>
             <p>El proveedor de servicios es una plataforma más de la familia. El ciclo y la plataforma son los mismos; cambia cómo se accede a cada una:</p>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -309,10 +366,11 @@
         </section>
 
         <section class="doc-section" id="proximamente">
-            <h2>10. Próximamente</h2>
+            <h2>14. Próximamente</h2>
             <ul>
-                <li><strong>SR-TE bajo demanda</strong> (ODN), con color por servicio.</li>
-                <li><strong>Integración del centro de datos</strong> con Cisco ACI.</li>
+                <li><strong>Integración del centro de datos</strong> con Cisco ACI (API del APIC): tenants, VRF, EPG y L3Out hacia el núcleo.</li>
+                <li><strong>Juniper Junos por NETCONF</strong> con el mismo Diccionario y el convertidor desde XML.</li>
+                <li><strong>Licenciamiento por plataforma</strong>, con el catálogo de servicios filtrado por las plataformas activas.</li>
             </ul>
         </section>
 
@@ -334,7 +392,7 @@
     </main>
 
     <script src="../script/docs_script.js?v=1c5cf90378"></script>
-    <script src="../script/oktavia_docs_data.js?v=513deb2dbf"></script>
+    <script src="../script/oktavia_docs_data.js?v=ebc32ae941"></script>
     <script src="../script/oktavia_docs.js?v=f79f286c01"></script>
 </body>
 </html>
