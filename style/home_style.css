@@ -3319,6 +3319,23 @@ body.quote-modal-open {
     color: var(--text-muted);
 }
 
+/* Tarjeta destacada (Constructor de servicios NETCONF en Oktavia SP). */
+.security-card.is-featured {
+    border-color: rgba(110, 231, 183, 0.55);
+    background: linear-gradient(160deg, rgba(110, 231, 183, 0.08), rgba(124, 196, 255, 0.05));
+}
+
+.security-card ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.security-card li + li {
+    margin-top: 4px;
+}
+
 .ciclo-figura {
     margin: 0;
     min-width: 0;
