@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style/docs_style.css?v=fee28bf3d7">
+    <link rel="stylesheet" href="../style/docs_style.css?v=c28e4c43b2">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -44,7 +44,7 @@
     </script>
 </head>
 <body>
-    <header class="doc-header no-print">
+    <header class="doc-header doc-header-min no-print">
         <div class="doc-header-inner">
             <a class="doc-brand" href="../">
                 <picture>
@@ -53,17 +53,37 @@
                 </picture>
                 <span>Oktavia</span>
             </a>
-            <nav aria-label="Article">
-                <a href="./index-en.html">Articles</a>
-                <a href="../docs/index-en.html">Documentation</a>
-                <a href="../oktavia-sp-en.html">Oktavia SP</a>
-                <a href="../#contacto">Contact</a>
+            <a class="doc-header-section" href="../docs/index-en.html">Documentation</a>
+            <div class="doc-actions">
                 <a href="./automatizar-oktavia-api-ansible-python.html" data-doc-lang="es" hreflang="es">Español</a>
                 <button class="doc-btn" type="button" data-doc-print>Print</button>
                 <a class="doc-btn" href="automatizar-oktavia-api-ansible-python-en.pdf" download>Download PDF</a>
                 <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
-            </nav>
+            </div>
+            <button class="doc-icon-btn doc-menu-btn" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Open the site menu" data-site-menu-open><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Menu</span></button>
         </div>
+        <nav class="site-drawer" id="site-menu" aria-label="Site" data-site-menu>
+            <div class="site-drawer-head">
+                <span>Oktanet</span>
+                <button class="doc-icon-btn" type="button" aria-label="Close the menu" data-site-menu-close><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+            </div>
+            <ul>
+                <li><a href="../">Home</a></li>
+                <li><a href="../#plataforma">Oktavia Pro</a></li>
+                <li><a href="../oktavia-sp-en.html">Oktavia SP</a></li>
+                <li><a href="../docs/index-en.html">Documentation</a></li>
+                <li><a href="../docs/academy-en.html">Academy</a></li>
+                <li><a href="index-en.html">Articles</a></li>
+                <li><a href="../#contacto">Contact</a></li>
+            </ul>
+            <p class="site-drawer-label">This page</p>
+            <div class="site-drawer-actions">
+                <a href="./automatizar-oktavia-api-ansible-python.html" data-doc-lang="es" hreflang="es">Español</a>
+                <button class="doc-btn" type="button" data-doc-print>Print</button>
+                <a class="doc-btn" href="automatizar-oktavia-api-ansible-python-en.pdf" download>Download PDF</a>
+                <a class="doc-btn doc-btn-solid" href="../#cotizar">Get a quote</a>
+            </div>
+        </nav>
     </header>
 
     <main class="doc-main">
@@ -210,7 +230,7 @@ ansible-playbook -i localhost, playbooks/10_pseudowire.yml -e @servicios/pseudow
         </footer>
     </main>
 
-    <script src="../script/docs_script.js?v=1c5cf90378"></script>
+    <script src="../script/docs_script.js?v=6213ff2539"></script>
     <script src="../script/blog_script.js?v=dd806a03d2"></script>
 </body>
 </html>

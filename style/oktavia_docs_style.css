@@ -450,42 +450,116 @@ h3 .docs-badge {
     margin-left: 8px;
 }
 
-/* ------------------- Páginas con barra lateral (secciones) ---------------- */
+/* ------------- Disposición: índice | contenido | en esta página ----------- */
+
+/* Como un portal de documentación: el índice pegado al borde izquierdo y a
+   toda la altura bajo la barra superior, el contenido al centro y, en
+   pantallas anchas, el mini índice «En esta página» a la derecha. */
+body.docs-portal {
+    --docs-top: 57px;
+    --docs-side-width: 288px;
+    --docs-onpage-width: 232px;
+}
+
+body.docs-portal .doc-header-inner {
+    width: auto;
+    padding: 0 20px 0 16px;
+}
+
+body.docs-portal .doc-main {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-padding-top: calc(var(--docs-top, 0px) + 16px);
+}
 
 .docs-layout {
     display: grid;
     grid-template-columns: var(--docs-side-width) minmax(0, 1fr);
-    gap: 32px;
     align-items: start;
+    min-height: calc(100vh - var(--docs-top));
 }
 
 .docs-side {
     position: sticky;
-    top: 74px;
-    max-height: calc(100vh - 90px);
+    top: var(--docs-top);
+    height: calc(100vh - var(--docs-top));
     overflow-y: auto;
-    padding: 4px 4px 24px 0;
+    padding: 18px 12px 32px 14px;
+    border-right: 1px solid var(--line-soft);
+    background: var(--bg-deep);
     scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
 }
 
-.docs-side .docs-search {
-    margin-bottom: 16px;
+.docs-side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0 0 12px;
+    padding: 0 6px;
 }
 
-.docs-side .docs-search-form {
-    padding: 4px 4px 4px 12px;
+.docs-side-title {
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.25;
 }
 
-.docs-side .docs-search-form input {
-    font-size: 0.92rem;
+.docs-side-title:hover,
+.docs-side-title:focus-visible {
+    color: var(--brand-strong);
+    text-decoration: none;
 }
 
-.docs-side .docs-search-form button {
+.docs-side-close {
     display: none;
+    color: var(--text-muted);
 }
 
-.docs-side-toggle {
-    display: none;
+.docs-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 4px 14px;
+    padding: 0 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    background: var(--bg-main);
+}
+
+.docs-filter:focus-within {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px rgba(43, 143, 212, 0.22);
+}
+
+.docs-filter .material-symbols-outlined {
+    font-size: 19px;
+    color: var(--text-muted);
+}
+
+.docs-filter input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-main);
+    font: inherit;
+    font-size: 0.9rem;
+}
+
+.docs-filter input:focus {
+    outline: none;
+}
+
+.docs-filter input::placeholder {
+    color: var(--text-muted);
 }
 
 .docs-tree {
@@ -495,78 +569,171 @@ h3 .docs-badge {
     font-size: 0.9rem;
 }
 
-.docs-tree > li {
-    margin-bottom: 4px;
+.docs-tree [hidden] {
+    display: none !important;
 }
 
-.docs-tree > li > a {
+.docs-tree-group {
+    margin: 16px 0 4px;
+    padding: 10px 10px 0;
+    border-top: 1px solid var(--line-soft);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.docs-tree-home > a {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 10px;
-    border-radius: 8px;
+    padding: 6px 10px;
+    border-radius: 6px;
     color: var(--text-main);
     font-weight: 700;
 }
 
-.docs-tree > li > a .material-symbols-outlined {
+.docs-tree .material-symbols-outlined {
     font-size: 18px;
     color: var(--highlight);
+    flex: none;
 }
 
-.docs-tree > li > a:hover,
-.docs-tree > li > a:focus-visible {
+.docs-tree-row {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.docs-tree-row a {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px 6px 2px;
+    color: var(--text-main);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.docs-tree-twist {
+    flex: none;
+    width: 26px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.docs-tree-twist:hover,
+.docs-tree-twist:focus-visible {
+    color: var(--brand-strong);
     background: var(--bg-elevated);
+}
+
+.docs-tree .docs-tree-chevron {
+    font-size: 20px;
+    color: inherit;
+    transition: transform 150ms ease;
+}
+
+.docs-tree-branch.is-open > .docs-tree-row .docs-tree-chevron {
+    transform: rotate(90deg);
+}
+
+.docs-tree-home > a:hover,
+.docs-tree-home > a:focus-visible,
+.docs-tree-row a:hover,
+.docs-tree-row a:focus-visible {
+    color: var(--brand-strong);
     text-decoration: none;
 }
 
-.docs-tree ul {
-    margin: 0 0 6px;
-    padding: 0 0 0 14px;
+.docs-tree-row:hover {
+    background: var(--bg-elevated);
+}
+
+.docs-tree-branch > ul {
+    display: none;
+    margin: 2px 0 8px 22px;
+    padding: 0;
     list-style: none;
     border-left: 1px solid var(--line-soft);
-    margin-left: 18px;
 }
 
-.docs-tree ul a {
+.docs-tree-branch.is-open > ul {
     display: block;
-    padding: 5px 10px;
-    border-radius: 6px;
-    color: var(--text-muted);
 }
 
-.docs-tree ul a:hover,
-.docs-tree ul a:focus-visible {
+.docs-tree-branch ul a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px;
+    margin-left: -1px;
+    padding: 5px 10px 5px 14px;
+    border-left: 2px solid transparent;
+    color: var(--text-muted);
+    line-height: 1.35;
+}
+
+.docs-tree-branch ul a:hover,
+.docs-tree-branch ul a:focus-visible {
     color: var(--brand-strong);
-    background: var(--bg-elevated);
     text-decoration: none;
 }
 
-.docs-tree li.is-current > a {
+/* Página actual: la sección se resalta y el documento lleva la barra azul
+   a la izquierda, como en los índices de un portal de documentación. */
+.docs-tree-branch.is-current > .docs-tree-row a {
     color: var(--brand-strong);
+}
+
+.docs-tree-row.is-active,
+.docs-tree-home.is-active > a {
     background: var(--brand-soft);
 }
 
-.docs-tree ul li.is-active > a {
+.docs-tree-home.is-active > a {
+    color: var(--brand-strong);
+}
+
+.docs-tree-branch ul li.is-active > a {
+    border-left-color: var(--brand);
+    background: var(--brand-soft);
     color: var(--brand-strong);
     font-weight: 700;
-    background: var(--brand-soft);
 }
 
-.docs-tree ul .docs-badge {
-    margin-left: 6px;
-    font-size: 0.62rem;
+.docs-tree-branch ul .docs-badge {
+    font-size: 0.6rem;
     padding: 1px 6px;
 }
 
-/* La sección que corresponde a la página abierta muestra sus documentos;
-   las demás quedan plegadas para que el árbol se escanee. */
-.docs-tree li:not(.is-current) > ul {
-    display: none;
+.docs-tree.is-filtering .docs-tree-branch {
+    margin-bottom: 4px;
+}
+
+.docs-tree-empty {
+    margin: 10px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
 }
 
 .docs-main-col {
     min-width: 0;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px clamp(20px, 3vw, 44px) 72px;
 }
 
 .docs-main-col .doc-cover {
@@ -575,6 +742,70 @@ h3 .docs-badge {
 
 .docs-main-col .doc-section:first-of-type {
     margin-top: 26px;
+}
+
+/* «En esta página»: mini índice pegajoso a la derecha. */
+.docs-onpage {
+    display: none;
+}
+
+@media screen and (min-width: 1280px) {
+    .docs-layout.has-onpage {
+        grid-template-columns: var(--docs-side-width) minmax(0, 1fr) var(--docs-onpage-width);
+    }
+
+    .docs-onpage {
+        display: block;
+        position: sticky;
+        top: var(--docs-top);
+        max-height: calc(100vh - var(--docs-top));
+        overflow-y: auto;
+        padding: 26px 18px 32px 4px;
+        scrollbar-width: thin;
+    }
+
+    /* La tabla de contenido dentro del documento ya está a la derecha. */
+    .docs-layout.has-onpage .docs-main-col .doc-toc {
+        display: none;
+    }
+}
+
+.docs-onpage-title {
+    margin: 0 0 10px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+.docs-onpage ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 1px solid var(--line-soft);
+}
+
+.docs-onpage a {
+    display: block;
+    margin-left: -1px;
+    padding: 5px 0 5px 12px;
+    border-left: 2px solid transparent;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.35;
+}
+
+.docs-onpage a:hover,
+.docs-onpage a:focus-visible {
+    color: var(--brand-strong);
+    text-decoration: none;
+}
+
+.docs-onpage li.is-active a {
+    border-left-color: var(--brand);
+    color: var(--brand-strong);
+    font-weight: 700;
 }
 
 /* Navegación anterior / siguiente al pie de cada sección. */
@@ -735,55 +966,45 @@ table.doc-table tr[hidden] {
 
 /* ------------------------------ Responsivo -------------------------------- */
 
-@media (max-width: 960px) {
+/* Angosto: el índice se vuelve un cajón que se abre desde la barra superior. */
+@media (max-width: 1024px) {
     .docs-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .docs-side-open {
+        display: inline-flex;
+        margin-left: -6px;
     }
 
     .docs-side {
-        position: static;
-        max-height: none;
-        overflow: visible;
-        padding: 16px 18px;
-        border: 1px solid var(--line-soft);
-        border-radius: var(--radius-md);
-        background: var(--bg-elevated);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 70;
+        width: min(320px, 86vw);
+        height: auto;
+        padding-top: 12px;
+        border-right: 1px solid var(--line-strong);
+        box-shadow: 18px 0 40px rgba(0, 0, 0, 0.45);
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform 200ms ease, visibility 0s linear 200ms;
     }
 
-    .docs-side-toggle {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding: 0;
-        border: 0;
-        background: none;
-        color: var(--text-main);
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
+    .docs-side.is-open {
+        transform: none;
+        visibility: visible;
+        transition: transform 200ms ease;
     }
 
-    .docs-side-toggle .material-symbols-outlined {
-        transition: transform 160ms ease;
-    }
-
-    .docs-side-toggle[aria-expanded="true"] .material-symbols-outlined {
-        transform: rotate(180deg);
-    }
-
-    .docs-side-body {
-        margin-top: 14px;
-    }
-
-    .docs-side-body[hidden] {
-        display: none;
-    }
-
-    .docs-side .docs-search-form button {
+    .docs-side-close {
         display: inline-flex;
+    }
+
+    .docs-main-col {
+        padding: 18px 16px 56px;
     }
 }
 
@@ -819,6 +1040,7 @@ table.doc-table tr[hidden] {
 
 @media print {
     .docs-side,
+    .docs-onpage,
     .docs-search,
     .docs-pager,
     .docs-fields-filter,
@@ -828,6 +1050,12 @@ table.doc-table tr[hidden] {
 
     .docs-layout {
         display: block;
+        min-height: 0;
+    }
+
+    .docs-main-col {
+        max-width: none;
+        padding: 0;
     }
 
     .docs-card,
