@@ -3351,7 +3351,7 @@ body.quote-modal-open {
 }
 
 .ciclo-halo {
-    fill: rgba(43, 143, 212, 0.07);
+    fill: #09192b;
     stroke: rgba(87, 200, 234, 0.22);
     stroke-width: 1;
 }
@@ -3821,18 +3821,18 @@ body.nav-open .nav-toggle { position: relative; z-index: 1301; }
 .arch-card svg { width: 100%; height: auto; display: block; }
 .arch-card figcaption { margin-top: 10px; color: #b8c9dc; font-size: 0.92rem; line-height: 1.5; }
 .ar-links path { stroke: rgba(95, 182, 242, 0.45); stroke-width: 2; stroke-dasharray: 5 5; fill: none; }
-.ar-hub rect { fill: rgba(14, 50, 90, 0.95); stroke: #38bdf8; stroke-width: 2; }
+.ar-hub rect { fill: #0e3057; stroke: #38bdf8; stroke-width: 2; }
 .t-hub { fill: #ffffff; font-size: 19px; font-weight: 800; }
 .t-sub { fill: #9fb3c8; font-size: 12px; }
-.ar-dom rect { fill: rgba(10, 26, 46, 0.95); stroke-width: 2; }
+.ar-dom rect { fill: #0a1a2d; stroke-width: 2; }
 .d-campus rect { stroke: #34d399; } .d-wan rect { stroke: #38bdf8; } .d-sec rect { stroke: #f472b6; } .d-mgmt rect { stroke: #fbbf24; }
 .t-dom { fill: #e2ecf6; font-size: 15px; font-weight: 700; }
-.ar-core { fill: rgba(245, 158, 11, 0.07); stroke: #f59e0b; stroke-width: 2; stroke-dasharray: 6 5; }
+.ar-core { fill: #171a1d; stroke: #f59e0b; stroke-width: 2; stroke-dasharray: 6 5; }
 .ar-core-link { stroke: #f59e0b; stroke-width: 3; fill: none; }
 .ar-node text { fill: #ffffff; font-size: 13px; font-weight: 800; }
-.n-p circle { fill: rgba(245, 158, 11, 0.25); stroke: #f59e0b; stroke-width: 2; }
-.n-pe rect { fill: rgba(56, 189, 248, 0.2); stroke: #38bdf8; stroke-width: 2; }
-.n-ce circle { fill: rgba(52, 211, 153, 0.2); stroke: #34d399; stroke-width: 2; }
+.n-p circle { fill: #423419; stroke: #f59e0b; stroke-width: 2; }
+.n-pe rect { fill: #10334a; stroke: #38bdf8; stroke-width: 2; }
+.n-ce circle { fill: #0f3737; stroke: #34d399; stroke-width: 2; }
 .ar-svc { fill: none; stroke-width: 3; }
 .s-l3 { stroke: #38bdf8; } .s-pw { stroke: #a78bfa; stroke-dasharray: 7 5; }
 .t-svc { font-size: 12px; font-weight: 800; }
@@ -3915,12 +3915,12 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .platform-arch { display: flex; align-items: center; justify-content: center; border: 0 !important; background: none !important; box-shadow: none !important; }
 .platform-arch svg { width: 100%; max-width: 680px; height: auto; overflow: visible; }
 .platform-arch .pa-h { fill: #8ea4bf; font: 800 13px Manrope, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
-.platform-arch .pa-box rect { fill: rgba(8, 22, 38, 0.92); stroke: rgba(95, 182, 242, 0.35); }
+.platform-arch .pa-box rect { fill: #081625; stroke: rgba(95, 182, 242, 0.35); }
 .platform-arch .pa-t { fill: #e2ecf8; font: 800 13.5px Manrope, sans-serif; }
 .platform-arch .pa-s { fill: #8fb4d6; font: 600 12px Manrope, sans-serif; }
 .platform-arch .pa-line { fill: none; stroke: rgba(95, 182, 242, 0.45); stroke-width: 1.6; stroke-dasharray: 4 5; }
 .platform-arch .pa-line--out { stroke: rgba(110, 231, 183, 0.45); }
-.platform-arch .pa-core rect { fill: rgba(10, 28, 50, 0.96); stroke: #5fb6f2; stroke-width: 1.6; filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.25)); }
+.platform-arch .pa-core rect { fill: #0a1c31; stroke: #5fb6f2; stroke-width: 1.6; filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.25)); }
 .platform-arch .pa-core-t { fill: #f3f7ff; font: 800 22px Manrope, sans-serif; }
 .platform-arch .pa-row { fill: #c8d5ec; font: 600 14px Manrope, sans-serif; }
 .platform-arch .pa-row--ai { fill: #6ee7b7; font-size: 13px; }
@@ -3968,3 +3968,5 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 /* Licencias: Oktavia y Argos juntos, arriba a la derecha. */
 .licensing-plan-logos { float: right; display: flex; gap: 10px; align-items: center; margin: -4px 0 0 12px; }
 .licensing-plan-logos img { width: 50px; height: auto; }
+/* Oktavia SP en violeta también en su diagrama de referencia. */
+.ar-hub--sp rect { fill: #2c1658; stroke: #a78bfa; }
