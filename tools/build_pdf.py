@@ -10,6 +10,7 @@ depuracion si acepta una plantilla de pie propia, asi que se usa esa via.
 Uso:
     python3 tools/build_pdf.py                  # genera los cuatro PDF
     python3 tools/build_pdf.py es               # solo la ficha tecnica en espanol
+    python3 tools/build_pdf.py sp-es            # solo la ficha de Oktavia SP en espanol
     python3 tools/build_pdf.py resumen-es       # solo el resumen ejecutivo
 
 Requisitos: google-chrome en el PATH y el paquete `websocket-client`.
@@ -36,13 +37,25 @@ DOCUMENTOS = {
     "es": {
         "pagina": "docs/oktavia.html",
         "salida": "docs/oktavia-es.pdf",
-        "pie": "Oktavia · Ficha técnica · Oktanet",
+        "pie": "Oktavia Pro · Ficha técnica · Oktanet",
         "de": "de",
     },
     "en": {
         "pagina": "docs/oktavia-en.html",
         "salida": "docs/oktavia-en.pdf",
-        "pie": "Oktavia · Technical sheet · Oktanet",
+        "pie": "Oktavia Pro · Technical sheet · Oktanet",
+        "de": "of",
+    },
+    "sp-es": {
+        "pagina": "docs/oktavia-sp.html",
+        "salida": "docs/oktavia-sp-es.pdf",
+        "pie": "Oktavia SP · Ficha técnica · Oktanet",
+        "de": "de",
+    },
+    "sp-en": {
+        "pagina": "docs/oktavia-sp-en.html",
+        "salida": "docs/oktavia-sp-en.pdf",
+        "pie": "Oktavia SP · Technical sheet · Oktanet",
         "de": "of",
     },
     "resumen-es": {
