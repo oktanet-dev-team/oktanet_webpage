@@ -3853,3 +3853,58 @@ body.nav-open::after { backdrop-filter: none; }
 .licensing-plan-sp { border-color: rgba(167, 139, 250, 0.55); background: linear-gradient(180deg, rgba(24, 16, 44, 0.96) 0%, rgba(8, 12, 28, 0.96) 100%); }
 .licensing-plan-sp .licensing-plan-label { background: rgba(124, 58, 237, 0.25); color: #d8ccff; }
 .licensing-plan-sp .licensing-plan-list li::before { background: #a78bfa; box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.16); }
+
+/* ===================== Hero: el ciclo cerrado (en lugar de la captura) ===================== */
+.hero-loop { display: flex; align-items: center; justify-content: center; }
+.hero-loop svg { width: 100%; max-width: 640px; height: auto; overflow: visible; }
+.hero-loop .loop-ring { fill: none; stroke: url(#loopRing); stroke-width: 2.5; opacity: 0.55; }
+.hero-loop .loop-flow { fill: none; stroke: #7dd3fc; stroke-width: 3; stroke-dasharray: 60 977; stroke-linecap: round;
+    animation: loopFlow 7s linear infinite; filter: drop-shadow(0 0 6px rgba(125, 211, 252, 0.7)); }
+@keyframes loopFlow { to { stroke-dashoffset: -1037; } }
+@media (prefers-reduced-motion: reduce) { .hero-loop .loop-flow { animation: none; } }
+.hero-loop .loop-step circle { fill: #0b1a2b; stroke: #5fb6f2; stroke-width: 2; }
+.hero-loop .loop-n { fill: #e6f2ff; font: 800 15px Manrope, sans-serif; }
+.hero-loop .loop-label { fill: #d6e2f5; font: 700 22px Manrope, sans-serif; }
+.hero-loop .loop-pro { fill: #7dd3fc; font: 800 19px Manrope, sans-serif; }
+.hero-loop .loop-sp { fill: #c4b5fd; font: 800 19px Manrope, sans-serif; }
+.hero-loop .loop-sub { fill: #a3b7d2; font: 600 16px Manrope, sans-serif; }
+.hero-loop .loop-foot { fill: #8ea4bf; font: 600 15.5px Manrope, sans-serif; }
+
+/* ===================== Servicios nuevos sin desarrollo ===================== */
+.nodev-section { padding: 80px 0; }
+.nodev-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 44px; align-items: center; }
+.nodev-steps { margin: 22px 0 0; padding: 0; list-style: none; counter-reset: nd; display: grid; gap: 12px; }
+.nodev-steps li { counter-increment: nd; position: relative; padding-left: 44px; color: var(--text-muted); line-height: 1.5; }
+.nodev-steps li::before { content: counter(nd); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 800; color: #e6f2ff; background: linear-gradient(135deg, #1668ad, #6d28d9); }
+.nodev-visual { display: grid; gap: 12px; }
+.nodev-card { border: 1px solid rgba(95, 182, 242, 0.25); border-radius: 16px; background: rgba(6, 16, 30, 0.85); padding: 16px 18px; }
+.nodev-card--out { border-color: rgba(52, 211, 153, 0.35); }
+.nodev-card-title { margin: 0 0 10px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #5fb6f2; }
+.nodev-card--out .nodev-card-title { color: #6ee7b7; }
+.nodev-code { margin: 0; font: 500 0.95rem/1.6 "SFMono-Regular", Consolas, monospace; color: #d6e2f5; white-space: pre; overflow-x: auto; }
+.nodev-code .c { color: #8ea4bf; }
+.nodev-code mark { background: rgba(251, 191, 36, 0.18); color: #fde68a; border-radius: 4px; padding: 0 4px; outline: 1px dashed rgba(251, 191, 36, 0.6); }
+.nodev-arrow { text-align: center; color: #fbbf24; font-weight: 700; font-size: 0.9rem; }
+.nodev-arrow::before { content: "↓ "; }
+.nodev-params { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.nodev-params th { text-align: left; color: #8ea4bf; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 8px; }
+.nodev-params td { padding: 6px 8px; border-top: 1px solid #15263a; color: #d6e2f5; }
+.nodev-params td:first-child { font-family: "SFMono-Regular", Consolas, monospace; color: #6ee7b7; }
+.nodev-foot { margin: 10px 0 0; font-size: 0.85rem; color: #a3b7d2; }
+@media (max-width: 900px) { .nodev-grid { grid-template-columns: 1fr; } }
+
+/* ===================== Familia: Pro, SP, Argos y Oktanet ===================== */
+.family-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+.family-card--sp { border-color: rgba(167, 139, 250, 0.4); background: rgba(124, 58, 237, 0.08); }
+.family-card--sp .family-role, .family-card--sp .family-ir { color: #c4b5fd; }
+@media (max-width: 1100px) { .family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 640px) { .family-grid { grid-template-columns: 1fr !important; } }
+
+/* ===================== Logos en productos y licencias ===================== */
+.product-title { display: flex; align-items: center; gap: 12px; }
+.product-title img { width: 40px; height: auto; flex: none; }
+.licensing-plan-logo { float: right; width: 56px; height: auto; margin: -4px 0 0 12px; }
+span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
+.licensing-plan-list li.licensing-argos::before { background: url("../img/LOGO_Argos.png") center / contain no-repeat !important;
+    box-shadow: none !important; width: 20px; height: 20px; top: 0; left: -3px; border-radius: 0; }
