@@ -637,7 +637,7 @@
             resourcesEyebrow: 'Recursos',
             resourcesTitle: 'Documentación abierta para evaluar Oktavia sin pedir permiso.',
             resourcesIntro: 'El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.',
-            resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia', 'Curso gratis: fundamentos de automatización de redes'],
+            resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia Pro', 'Curso gratis: fundamentos de automatización de redes'],
             resourceCardBodies: [
                 'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional y los esquemas comerciales flexibles. Sin detalle de implementación.',
                 'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional, casos de uso y el proceso de implementación con sus tiempos estimados.',
@@ -645,7 +645,7 @@
             ],
             resourceCardMetas: [
                 'Documento ejecutivo · 2 páginas · PDF en español e inglés',
-                'Documento técnico · 17 secciones · PDF en español e inglés',
+                'Documento técnico · 19 secciones · PDF en español e inglés',
                 'Academia Oktanet · 14 módulos · Examen interactivo · Gratis y sin registro'
             ],
             resourceActions: ['Ver en línea', 'PDF en español', 'PDF in English', 'Ver en línea', 'PDF en español', 'PDF in English', 'Ver toda la documentación', 'Oktavia SP · orquestador de servicios carrier', 'Tomar el curso gratis', 'PDF en español'],
@@ -1136,7 +1136,7 @@
             resourcesEyebrow: 'Resources',
             resourcesTitle: 'Open documentation, so evaluating Oktavia never requires asking permission.',
             resourcesIntro: 'The document gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines, and can be read online or downloaded as a PDF.',
-            resourceCardTitles: ['Oktavia executive summary', 'Oktavia technical sheet', 'Free course: network automation fundamentals'],
+            resourceCardTitles: ['Oktavia executive summary', 'Oktavia Pro technical sheet', 'Free course: network automation fundamentals'],
             resourceCardBodies: [
                 'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, and the flexible commercial terms. No implementation detail.',
                 'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, use cases, and the implementation process with estimated timelines.',
@@ -1144,7 +1144,7 @@
             ],
             resourceCardMetas: [
                 'Executive document · 2 pages · PDF in Spanish and English',
-                'Technical document · 17 sections · PDF in Spanish and English',
+                'Technical document · 19 sections · PDF in Spanish and English',
                 'Oktanet Academy · 14 modules · Interactive exam · Free, no sign-up'
             ],
             resourceActions: ['Read online', 'PDF en español', 'PDF in English', 'Read online', 'PDF en español', 'PDF in English', 'Browse all documentation', 'Oktavia SP · carrier service orchestrator', 'Take the free course', 'PDF in Spanish'],
