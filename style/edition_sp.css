@@ -67,7 +67,7 @@ body.edition-sp .quote-warning { background: rgba(135, 92, 209, 0.1); }
 body.edition-sp .security-section { border-top: 1px solid rgba(206, 192, 233, 0.18); border-bottom: 1px solid rgba(206, 192, 233, 0.18); }
 body.edition-sp .security-card, body.edition-sp .ia-local-card { border: 1px solid rgba(206, 192, 233, 0.24); }
 body.edition-sp .security-card.is-featured { background: linear-gradient(160deg, rgba(110, 231, 183, 0.08), rgba(208, 185, 249, 0.05)); }
-body.edition-sp .ciclo-halo { fill: rgba(135, 92, 209, 0.07); stroke: rgba(178, 141, 232, 0.22); }
+body.edition-sp .ciclo-halo { stroke: rgba(178, 141, 232, 0.22); }
 body.edition-sp .ia-local-enlace, body.edition-sp .security-videos a { color: #c7a8f2; }
 body.edition-sp .ia-local-enlace:hover, body.edition-sp .ia-local-enlace:focus-visible, body.edition-sp .security-videos a:hover .security-video-texto, body.edition-sp .security-videos a:focus-visible .security-video-texto { border-bottom-color: #c7a8f2; }
 body.edition-sp .sp-cta { border-top: 1px solid rgba(206, 192, 233, 0.22); }
@@ -81,7 +81,7 @@ body.edition-sp .arch-card { border: 1px solid rgba(183, 151, 238, 0.22); }
 body.edition-sp .ar-links path { stroke: rgba(183, 151, 238, 0.45); }
 body.edition-sp .ar-hub rect { stroke: #a473ef; }
 body.edition-sp .d-wan rect { stroke: #a473ef; }
-body.edition-sp .n-pe rect { fill: rgba(164, 115, 239, 0.2); stroke: #a473ef; }
+body.edition-sp .n-pe rect { stroke: #a473ef; }
 body.edition-sp .s-l3 { stroke: #a473ef; }
 body.edition-sp .s-l3-t { fill: #d1b9f8; }
 body.edition-sp .hero-loop .loop-flow { stroke: #d1b9f8; filter: drop-shadow(0 0 6px rgba(209, 185, 248, 0.7)); }
