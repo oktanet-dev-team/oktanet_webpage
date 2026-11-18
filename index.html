@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=2818c41dc0">
+    <link rel="stylesheet" href="style/home_style.css?v=a3bb95905f">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -66,6 +66,7 @@
             </button>
 
             <nav class="main-nav" id="main-nav" aria-label="Principal">
+                <div class="nav-home"><a class="nav-home-link" href="#page-top"><img src="img/LOGO_Oktavia.png" alt="" width="34" height="33" decoding="async"><span data-copy="navHome">Inicio</span></a></div>
                 <div class="nav-head">Productos</div>
                 <a href="#plataforma">Oktavia Pro</a>
                 <a href="#argos">Argos</a>
@@ -961,8 +962,8 @@
                     </article>
                     <article class="about-card">
                         <span class="material-symbols-outlined card-icon" aria-hidden="true">workspace_premium</span>
-                        <h3>Dos licencias</h3>
-                        <p>Oktavia Pro incluye la plataforma completa. La telemetría continua y la orquestación de eventos se licencian aparte por su perfil de consumo.</p>
+                        <h3>Dos plataformas y un adicional</h3>
+                        <p>Oktavia Pro para empresas y Oktavia SP para proveedores de servicios. La telemetría continua y la orquestación de eventos se licencian aparte, para cualquiera de las dos.</p>
                     </article>
                 </div>
             </div>
@@ -972,42 +973,58 @@
             <div class="container">
                 <div class="licensing-copy">
                     <p class="eyebrow">Licenciamiento</p>
-                    <h2>Dos licencias</h2>
-                    <p class="section-intro">Oktavia Pro es la plataforma completa. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.</p>
+                    <h2>Dos plataformas y un adicional</h2>
+                    <p class="section-intro">Oktavia Pro es la plataforma completa para la red de una empresa y Oktavia SP la misma plataforma como orquestador de servicios para un proveedor: se elige una según la red. La telemetría continua y el motor de eventos siguen licenciándose aparte, para cualquiera de las dos, porque almacenan series de tiempo y corren un evaluador permanente.</p>
                 </div>
                 <div class="licensing-plans">
                     <article class="licensing-plan licensing-plan-pro">
-                        <span class="licensing-plan-label">Licencia principal</span>
+                        <span class="licensing-plan-label">Para empresas</span>
                         <h3>Oktavia Pro</h3>
-                        <p class="licensing-plan-body">La plataforma completa. Todo lo necesario para descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios nuevos, con aprobación humana en cada cambio.</p>
+                        <p class="licensing-plan-body">La plataforma completa para la red de una empresa: descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios y parámetros nuevos sin desarrollo, con aprobación humana en cada cambio.</p>
                         <ul class="licensing-plan-list">
                             <li><strong>Auditoría del estado de red</strong> Inventario, conectividad, configuración y cumplimiento en una sola operación.</li>
-                            <li><strong>Inventario de red</strong> Multifabricante, con filtros por sitio, rol, plataforma, modelo y metadatos.</li>
+                            <li><strong>Fuente de verdad</strong> Inventario multifabricante, sitios, grupos de equipos, IPAM y topología con mapa por sitio.</li>
                             <li><strong>Topología y trazado de rutas</strong> Vistas física y de plano de control, y el camino real entre dos direcciones IP.</li>
-                            <li><strong>Cumplimiento de configuración</strong> Reglas editables por sitio, rol o dispositivo, con severidad y evidencia.</li>
-                            <li><strong>Configuración deseada por alcance</strong> Desde plantillas y variables, con precedencia por sitio, modelo, rol y equipo.</li>
+                            <li><strong>Cumplimiento de configuración y de estado</strong> Reglas editables por sitio, rol, grupo o equipo, con severidad y evidencia.</li>
+                            <li><strong>Intención por alcance</strong> El Configurador declara la config deseada por rol, sitio, grupo o equipo, con precedencia.</li>
                             <li><strong>Ciclo cerrado de remediación</strong> Proponer, revisar el diff, aprobar, aplicar y verificar que el hallazgo cerró.</li>
-                            <li><strong>Alta de servicios nuevos</strong> Túneles, publicación de redes y DHCP, cada uno con su rollback.</li>
+                            <li><strong>Servicios y parámetros nuevos sin desarrollo</strong> Desde una config de ejemplo marcando los valores, o con IA local o en la nube; cada uno con su rollback.</li>
                             <li><strong>Argos, ChatOps de red</strong> El asistente completo, con la marca de qué consume IA y qué no.</li>
                             <li><strong>Seguridad de red</strong> Perímetro, gestión, identidades y segmentación, con evidencia por hallazgo.</li>
-                            <li><strong>Inventario de servicios</strong> Qué hay configurado en cada equipo y cuánto está declarado como intención.</li>
+                            <li><strong>Vulnerabilidades</strong> CVE de NVD y CISA KEV cruzados con la running de cada equipo: qué atender primero.</li>
+                            <li><strong>Consolas por dominio</strong> Campus, WAN y Seguridad con sus servicios, su inventario y su estado.</li>
                             <li><strong>Análisis de políticas de firewall</strong> Qué política decide un flujo en cada salto, con su NAT y su registro.</li>
-                            <li><strong>Gemelo digital</strong> Configuración deseada contra activa, y el diff que se aprueba antes de aplicar.</li>
-                            <li><strong>Respaldos de configuración</strong> Consulta, comparación y descarga por dispositivo y por fecha.</li>
-                            <li><strong>Inteligencia IP (IPAM)</strong> Subredes, solapamientos y la ubicación de una IP hasta el puerto de acceso.</li>
-                            <li><strong>Reportes avanzados</strong> Salud, riesgo, desvíos, capacidad y puertos, listos para auditoría.</li>
+                            <li><strong>Gemelo digital</strong> Configuración deseada contra activa, el diff que se aprueba y el cambio que se puede cancelar.</li>
+                            <li><strong>Respaldos de configuración</strong> Respaldo, deseada y diferencias por equipo y por fecha.</li>
+                            <li><strong>Ficha técnica de la red</strong> La memoria técnica por sitio y los reportes de cada trabajo, listos para auditoría.</li>
                             <li><strong>Provisioning y gestión de sitios</strong> Tipos de sitio, sitios y roles definidos antes del primer descubrimiento.</li>
                             <li><strong>Operaciones y auditorías programadas</strong> Ejecución y programación, con historial de trabajos y artefactos.</li>
                             <li><strong>FinOps</strong> Retorno de inversión de la automatización y análisis de ahorro operativo.</li>
                             <li><strong>Gestión multi-tenant</strong> Multi-organización, usuarios y separación de datos por cliente.</li>
                         </ul>
                     </article>
-                    <article class="licensing-plan licensing-plan-extra">
-                        <span class="licensing-plan-label">Licencia adicional</span>
-                        <h3>Telemetría y Orquestación de Eventos</h3>
-                        <p class="licensing-plan-body">Se licencia aparte porque almacena series de tiempo y corre un evaluador permanente: tiene otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.</p>
+                    <article class="licensing-plan licensing-plan-sp">
+                        <span class="licensing-plan-label">Para proveedores de servicios</span>
+                        <h3>Oktavia SP</h3>
+                        <p class="licensing-plan-body">La misma plataforma como orquestador de servicios carrier: el núcleo IOS XR y los servicios de cada cliente, de la intención a la verificación, en una base de servicios con su estado real.</p>
                         <ul class="licensing-plan-list">
-                            <li><strong>Telemetría en tiempo real</strong> CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias.</li>
+                            <li><strong>Todo Oktavia Pro</strong> Auditoría, cumplimiento, gemelo digital, ciclo cerrado, seguridad y Argos sobre la red del proveedor.</li>
+                            <li><strong>Servicios de cliente</strong> Una tabla con cada servicio contratado, su estado real en la red, filtros, CSV y alta, cambio o baja.</li>
+                            <li><strong>Campos propios y perfiles de servicio</strong> Los datos de tu organización sin programar, y el producto que vendes aplicado a todos sus servicios.</li>
+                            <li><strong>Núcleo</strong> IS-IS, SR-MPLS, TI-LFA, BFD y BGP con route reflectors sobre Cisco IOS XR por NETCONF.</li>
+                            <li><strong>Servicios gestionados</strong> L3VPN, EVPN-VPWS (pseudowires), internet dedicado, QoS y multicast, del PE al CE.</li>
+                            <li><strong>SR-TE con colores bajo demanda</strong> ODN: el color del servicio elige la política, visible como diagrama por cliente.</li>
+                            <li><strong>Orden de servicio PE + CE</strong> Un solo cambio con commit confirmado en el núcleo y verificación al final.</li>
+                            <li><strong>Diccionario NETCONF y constructor de servicios</strong> Cada parámetro YANG del equipo, explicado por Argos y listo para un servicio nuevo.</li>
+                            <li><strong>Argos para el proveedor</strong> Diagnóstico por cliente, sitio o servicio, y la ruta de LAN a LAN punta a punta.</li>
+                        </ul>
+                    </article>
+                    <article class="licensing-plan licensing-plan-extra">
+                        <span class="licensing-plan-label">Licencia adicional · Pro o SP</span>
+                        <h3>Telemetría y Orquestación de Eventos</h3>
+                        <p class="licensing-plan-body">Sigue siendo aparte y se suma a Oktavia Pro o a Oktavia SP: almacena series de tiempo y corre un evaluador permanente, otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.</p>
+                        <ul class="licensing-plan-list">
+                            <li><strong>Telemetría en tiempo real</strong> CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias; también por streaming.</li>
                             <li><strong>Dashboards y compatibilidad con Grafana</strong> Tableros propios, y la base de métricas como fuente directa de Grafana.</li>
                             <li><strong>Motor de automatización de eventos</strong> Reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU.</li>
                         </ul>
@@ -1167,7 +1184,7 @@
                     <span class="material-symbols-outlined resource-icon" aria-hidden="true">summarize</span>
                     <div class="resource-body">
                         <h3>Resumen ejecutivo de Oktavia</h3>
-                        <p>Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el modelo de dos licencias y los esquemas comerciales flexibles. Sin detalle de implementación.</p>
+                        <p>Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional y los esquemas comerciales flexibles. Sin detalle de implementación.</p>
                         <p class="resource-meta">Documento ejecutivo · 2 páginas · PDF en español e inglés</p>
                         <div class="resource-actions">
                             <a class="btn btn-primary" data-doc-resumen-online href="docs/oktavia-resumen.html">Ver en línea</a>
@@ -1180,7 +1197,7 @@
                     <span class="material-symbols-outlined resource-icon" aria-hidden="true">description</span>
                     <div class="resource-body">
                         <h3>Ficha técnica de Oktavia</h3>
-                        <p>El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.</p>
+                        <p>El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional, casos de uso y el proceso de implementación con sus tiempos estimados.</p>
                         <p class="resource-meta">Documento técnico · 17 secciones · PDF en español e inglés</p>
                         <div class="resource-actions">
                             <a class="btn btn-primary" data-doc-online href="docs/oktavia.html">Ver en línea</a>
@@ -1310,7 +1327,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=494f29c24f"></script>
+    <script src="script/home_script.js?v=81c9f10607"></script>
     <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>
