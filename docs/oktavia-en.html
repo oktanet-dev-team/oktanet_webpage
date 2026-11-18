@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Oktavia technical sheet | Oktanet</title>
-    <meta name="description" content="Oktavia technical sheet: modules, per-vendor coverage, integrations, architecture, licensing, and implementation process for Oktanet network automation platform.">
+    <title>Oktavia Pro technical sheet | Oktanet</title>
+    <meta name="description" content="Oktavia Pro technical sheet: modules, per-vendor coverage, integrations, architecture, licensing, and implementation process for Oktanet network automation platform.">
     <link rel="canonical" href="https://oktanet.io/docs/oktavia-en.html">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:title" content="Oktavia technical sheet">
+    <meta property="og:title" content="Oktavia Pro technical sheet">
     <meta property="og:description" content="Modules, per-vendor coverage, integrations, licensing, and implementation process.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://oktanet.io/docs/oktavia-en.html">
@@ -66,10 +66,10 @@
 
     <main class="doc-main">
         <section class="doc-cover">
-            <p class="doc-eyebrow">Technical sheet</p>
-            <h1>Oktavia<br>Multi-vendor network automation</h1>
+            <p class="doc-eyebrow">Technical sheet · Oktavia Pro</p>
+            <h1>Oktavia Pro<br>Multi-vendor network automation</h1>
             <p class="doc-lede">
-                Oktavia discovers the network, checks it against the customer standard, proposes the change against declared intent and, once a person approves, applies it and confirms the finding closed. One cycle, four vendors in production, every action with a downloadable artifact.
+                Oktavia Pro discovers the network, checks it against the customer standard, proposes the change against declared intent and, once a person approves, applies it and confirms the finding closed. One cycle, four vendors in production, every action with a downloadable artifact.
             </p>
             <ul class="doc-meta">
                 <li>Built by Oktanet</li>
@@ -115,16 +115,19 @@
         <section class="doc-section" id="summary">
             <h2>1. Executive summary</h2>
             <p>
-                Oktavia is a network automation platform for enterprise IT operations. It pairs an automation engine with a unified web interface to run audits, verify configuration compliance, visualize network state, and manage changes in a controlled and traceable way.
+                Oktavia Pro is Oktanet's network automation platform for enterprise IT operations. It pairs an automation engine with a unified web interface to run audits, verify configuration compliance, visualize network state, and manage changes in a controlled and traceable way.
             </p>
             <p>
                 It is built for teams that need to move fast without giving up control. Every action produces versioned artifacts, every change requires prior validation, and everything lands in a searchable history.
             </p>
             <div class="doc-callout">
                 <p>
-                    <strong>What sets Oktavia apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos, plus a service provider core on Cisco IOS XR over NETCONF; Argos as a ChatOps layer across the whole platform; local AI that answers from the customer documentation without anything leaving the server; network security with configuration evidence, a PCI DSS report per site, and security patches prepared for approval; service inventory; and the full detect, remediate, and verify cycle on all four vendors.
+                    <strong>What sets Oktavia Pro apart:</strong> true multi-vendor in production across Cisco IOS and IOS-XE, Fortinet FortiGate and FortiSwitch, and Juniper Junos; Argos as a ChatOps layer across the whole platform; local AI that answers from the customer documentation without anything leaving the server; network security with configuration evidence, a PCI DSS report per site, and security patches prepared for approval; service inventory; and the full detect, remediate, and verify cycle on all four vendors, with new services engineers create themselves without development.
                 </p>
             </div>
+            <p>
+                For service providers there is <strong>Oktavia SP</strong>, the same platform with the Cisco IOS XR core over NETCONF, customer services (L3VPN, pseudowires, dedicated internet) and the base of contracted services. It is described in its own <a href="oktavia-sp-en.html">Oktavia SP technical sheet</a>; in this sheet, items marked "SP" belong to that installation.
+            </p>
         </section>
 
         <section class="doc-section" id="problem">
@@ -184,47 +187,103 @@
 
         <section class="doc-section" id="modules">
             <h2>5. Platform modules</h2>
+            <p>Modules follow the Oktavia menu, grouped the way the operator sees them. The License column says where each one is included: <strong>Pro</strong> (Oktavia Pro), <strong>SP</strong> (Oktavia SP, with its <a href="oktavia-sp-en.html">own technical sheet</a>) or <strong>Telemetry and Events</strong> (additional license).</p>
+            <h3>Home and source of truth</h3>
             <div class="doc-table-wrap">
                 <table class="doc-table">
                     <thead>
                         <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Automation center</strong></td><td>Executive view of the network: global compliance score, devices reachable by ping and SSH, distribution by role, sites covered, active failures, and recent job activity.</td><td>Pro</td></tr>
-                        <tr><td><strong>Domain consoles</strong></td><td>One console per network domain —Campus, WAN, Security and Management—, in the style of a cloud services console: summary, intent, rules, compliance, changes, Argos workflows and telemetry for the domain in one place, with the site as scope. Config intent and state intent read as a single table, value by value, and an administrator edits the config right there; picking a site leaves only what applies to its devices. Network-wide views remain available with their domain filter. On a service provider, the domains are Transport, Services, Security and Management.</td><td>Pro</td></tr>
-                        <tr><td><strong>Network inventory</strong></td><td>Dynamic multi-vendor inventory with filters by site, role, platform, vendor, and site type. Visual distribution, per-device detail, audit freshness, CSV import and export with non-destructive merge.</td><td>Pro</td></tr>
-                        <tr><td><strong>Topology and path tracing</strong></td><td>Interactive map with physical, control-plane, routing, OSPF, IS-IS, BGP autonomous system, and STP views; in the core, point-to-point links and pseudowires. Per-node and per-site panels. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection, including across an MPLS L3VPN.</td><td>Pro</td></tr>
-                        <tr><td><strong>Device record</strong></td><td>Everything operational about a device in one place: route table, routing policies, VLANs, spanning tree, MAC and ARP tables, ports, VPN, neighbors and each service's diff against its intent.</td><td>Pro</td></tr>
-                        <tr><td><strong>Routing analysis</strong></td><td>A service that takes flows from the real routing tables: from a site, one per learned network plus the default route, with result, hops, protocols, iBGP or eBGP, encryption and symmetry. Selecting a flow draws it end to end, with forward and return paths in the same diagram and the chain of autonomous systems, and shows what each device found: ACLs, routing policies and MPLS labels.</td><td>Pro</td></tr>
-                        <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro</td></tr>
-                        <tr><td><strong>Desired configuration</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device. JSON and CSV export.</td><td>Pro</td></tr>
+                        <tr><td><strong>Main dashboard</strong></td><td>The executive view: Oktavia Pro with its version and the tenant, three donuts —configuration compliance, network state and security— that open their console, open changes, devices, sites and cost, the service consoles with their own donut, and recent job activity that refreshes on its own. Each indicator explains how it is computed.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Network inventory</strong></td><td>Dynamic multi-vendor inventory with filters by site, role, platform, vendor, and site type. Visual distribution, audit freshness, CSV import and export with non-destructive merge.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Sites and provisioning</strong></td><td>Logical structure of site types, sites, and roles defined before the first discovery run. Site page with tabs: devices, management addresses, compliance, ports and capacity, and network configuration.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Device groups</strong></td><td>Tenant-defined groups, independent of sites and regions ("plant switches", "Saturday window"). A group is an intent scope: a service or parameter declared on the group applies to its devices with the usual precedence. A group with declared services cannot be deleted or renamed.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Device record</strong></td><td>Everything operational about a device in one place, with tabs: route table, routing policies, VLANs, spanning tree, MAC and ARP tables, ports and capacity, VPN, neighbors and each service's diff against its intent.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Topology and path tracing</strong></td><td>Site map first —one circle per site and its neighbors, with search— and, picking one, its detail with physical, control-plane, routing, OSPF, IS-IS, BGP autonomous system, and STP views. A connections table when a device or link is selected, hierarchical, star or grid layouts, and diagram export as SVG. Live path trace between two points with hop, next hop, egress interface and protocol, reverse path, and asymmetry detection.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Routing analysis</strong></td><td>A service that takes flows from the real routing tables: from a site, one per learned network plus the default route, with result, hops, protocols, iBGP or eBGP, encryption and symmetry. Selecting a flow draws it end to end, with forward and return paths in the same diagram and the chain of autonomous systems, and shows what each device found: ACLs, routing policies and MPLS labels.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Configurations</strong></td><td>Per device, the backup (running), the intended configuration and their colored difference, with in-text search; backups by date to compare and download.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>IP Intelligence (IPAM)</strong></td><td>Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP address down to the access port by crossing the ARP table with the MAC table.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis, with the estimated network cost per device, per site and per domain.</td><td>Pro · SP</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Services and intent</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Domain consoles</strong></td><td>One console per network domain —Campus, WAN, Security and Management—, in the style of a cloud services console: summary, intent, rules, compliance, changes, Argos workflows, topology and telemetry for the domain in one place, with the site as scope. Config intent and state intent read as a single table, value by value, and an administrator edits the config right there; picking a site leaves only what applies to its devices. In Oktavia SP the domains are Core, Managed services, Security and Management.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Parameterized services</strong></td><td>Every service on its own page: values declared per scope (including parameters added to it), "Test with a device", "See what changes", template, devices where it is active and the tests that validate it. The engineer works with parameters, not templates.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Configurator (desired configuration)</strong></td><td>Configuration generated from service variables and templates, with precedence by defaults, site type, site, platform, model, role, and device, plus the device group as a scope. JSON and CSV export.</td><td>Pro · SP</td></tr>
                         <tr><td><strong>Hardening standard by role</strong></td><td>The security standard lives in the device role and a new device inherits it when onboarded: syslog, SNMP, NTP, management access and services across the four vendors. On Cisco IOS, besides what is missing, it detects what is extra —HTTP server, public community, remote access without SSH— and the Digital Twin proposes removing it.</td><td>Pro</td></tr>
-                        <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. The verdict compares each device's test results before and after the change: what was fixed, what broke, and what still fails; a regression prevents closing. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro</td></tr>
-                        <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, routing adjustments. Each with its rollback.</td><td>Pro</td></tr>
-                        <tr><td><strong>Parameterized services</strong></td><td>Every service on its own page: values declared per scope, “Test with a device”, “See what changes”, template, devices where it is active and the tests that validate it. The engineer works with parameters, not templates.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>New services and parameters without development</strong></td><td>“Change a service”: one question, a form with range and default, an automatic per-device preview and a single button to save and propose the change. A catalog of proven extensions, extensions generated with Argos (local AI or Claude), tenant custom services and “From XML” for NETCONF. Everything goes through a gate —syntax, forbidden commands, plaintext secrets, impact on other services— before it is published.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>NETCONF dictionary</strong></td><td>The parameters each NETCONF device accepts, read from its own YANG models, with type, range and default, searchable like the CLI or by pasting a line. Pick one and Oktavia builds the service extension: the XML, the field and its removal.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>Service Builder</strong></td><td>Build a service from the options the device accepts (from its own YANG) or, on IOS/IOS-XE, from a description and an example config with Argos. Automatic form, per-device preview, result as IOS XR CLI and as NETCONF XML, deterministic CLI ⇄ XML translation, and "Save and propose" with gate, dry run and confirmed commit. Compared with writing YANG models and service packages, the engineer publishes a new service in minutes, with the same validation against the real device.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>Network state compliance</strong></td><td>Tests on the live network in addition to configuration: neighbors and sessions up, tunnels, active policies and value tests —that a declared parameter is seen in the network, such as the BGP timers negotiated with each neighbor.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>Carrier service orchestration</strong></td><td>Oktavia SP: L3VPN, EVPN-VPWS pseudowires, Dedicated Internet, contracted QoS, on-demand SR-TE with a color per service and customer multicast over an IS-IS/SR-MPLS core on Cisco IOS XR, with the CE side generated from the same declaration. Core state (SR labels, TI-LFA, SRGB, drained nodes), customer services with a light CRM, usage against contract, FinOps per customer, customer impact and single points of failure.</td><td>SP</td></tr>
-                        <tr><td><strong>Automation with the API and Ansible</strong></td><td>API with organization-scoped keys and interface automation keys to orchestrate customer services by playbook: preview, save the intent and get the change proposed in the Digital Twin. No key approves or applies. Ansible kit with a dynamic inventory and read, parameter-change and per-service playbooks.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>System and support</strong></td><td>Visibility into the platform itself: the state of its components, server resources and alerts, and the vulnerabilities of Oktavia's own components with their tracking and remediation by the Oktanet team.</td><td>Pro · SP</td></tr>
-                        <tr><td><strong>Customer services</strong></td><td>For service providers: per customer, its L3VPNs and pseudowires with the live status of each one and its end-to-end diagram.</td><td>Pro</td></tr>
-                        <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro</td></tr>
-                        <tr><td><strong>Local AI (RAG)</strong></td><td>Open models served on the Oktavia server itself that answer only from fragments retrieved from the documentation —official vendor guides, per-site technical report, the team's standards and procedures, previous change reports—, citing document, section, and page. Nothing leaves the server and there is no per-question cost. Includes the documentation kit with templates and validation.</td><td>Pro</td></tr>
-                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain, severity, site and device, evidence per finding, and what to address first. PCI DSS v4.0.1 network report per site and security patches: how to remediate each CVE, an urgent change in the Digital Twin, and an automatic flow that prepares the drafts without applying them.</td><td>Pro</td></tr>
+                        <tr><td><strong>New services and parameters without development</strong></td><td>"Change a service": one question, a form with range and default, an automatic per-device preview and a single button to save and propose the change. A catalog of proven extensions and tenant custom services. A new service is created from a pasted configuration <strong>without AI</strong> —click each value that changes per device and it becomes a named parameter; with no marks, the configuration goes in as is with its switch— or, if preferred, with Argos (local AI or Claude), which receives the marked parameters. "Retire here" removes a custom service by showing what each device receives and proposes a single change. Everything passes through a gate —syntax, forbidden commands, clear-text secrets, impact on other services— before it is published.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Service Builder</strong></td><td>On Cisco IOS/IOS-XE, builds a service from a description and an example configuration with Argos. On Oktavia SP's NETCONF devices, from the options in their own YANG, with the result as IOS XR CLI and as XML and deterministic CLI ⇄ XML translation. Automatic form, per-device preview and "Save and propose" with the gate.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>NETCONF dictionary</strong></td><td>The parameters each NETCONF device accepts, read from its own YANG models, searchable like the CLI, with Argos' explanation. Details in the Oktavia SP sheet.</td><td>SP</td></tr>
                         <tr><td><strong>Service inventory</strong></td><td>Cross-check between what is observed on the device, what is declared as intent, and the service catalog. Classifies each service as covered, blind spot, not applied, or not applicable, with its configuration scope.</td><td>Pro</td></tr>
-                        <tr><td><strong>Digital Twin</strong></td><td>Network state snapshots and comparison between desired and live configuration. Per-device drift detection, impact quantification, and an approval flow through successive states up to application. The «Security patches» category tracks each change until it is verified in the backup and fixed once the CVE disappears.</td><td>Pro</td></tr>
+                        <tr><td><strong>Digital Twin</strong></td><td>Comparison between desired and live configuration, per-device drift detection, estimated impact, and an approval flow through successive states up to application. A change can be cancelled at any stage before it is applied; a change that went into some devices and not others is marked "partially applied" and the retry carries only what is missing. The «Security patches» category tracks each change until it is verified in the backup and fixed once the CVE disappears.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Closed-loop remediation</strong></td><td>Audit, propose, review the diff, approve, apply, and audit again to confirm closure. The verdict compares each device's test results before and after the change: what was fixed, what broke, and what still fails; a regression prevents closing. Every step leaves a downloadable artifact and lands in the history.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>New service rollout</strong></td><td>The same cycle for rolling out services: tunnels between sites, advertising a network in OSPF and BGP, DHCP per VLAN, AAA, FlexVPN, WAN QoS and routing adjustments. Each with its rollback (section <a href="#services">7</a>).</td><td>Pro</td></tr>
+                        <tr><td><strong>Carrier service orchestration</strong></td><td>Oktavia SP: L3VPN, EVPN-VPWS pseudowires, Dedicated Internet, contracted QoS, on-demand SR-TE and customer multicast over an IS-IS/SR-MPLS core on Cisco IOS XR, with confirmed commit and the CE side generated from the same declaration.</td><td>SP</td></tr>
+                        <tr><td><strong>Customer services</strong></td><td>Oktavia SP: one table with every contracted service and its real network state, provider custom fields without coding, service profiles, a customer page with diagrams, a light CRM, usage against contract and per-customer FinOps.</td><td>SP</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Compliance and security</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Configuration compliance</strong></td><td>Global and per-site score, top failures, and trends. Per-device results with severity, diagnosis, and remediation plan. Editable service catalog and rules with selective enablement by role, vendor, platform, or site type.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Network state compliance</strong></td><td>Tests on the live network in addition to configuration: neighbors and sessions up, tunnels, active policies and value tests —that a declared parameter is seen in the network, such as the BGP timers negotiated with each neighbor.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Software compliance</strong></td><td>Each device's software version and model against the network standard. It offers no automatic remediation: that gap is closed with an image and a maintenance window.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Network security</strong></td><td>Posture computed on collected configuration across four domains: perimeter, management plane, identities, and segmentation, plus vulnerabilities by software version (NVD, CISA KEV and FIRST EPSS). Global and per-device score, filters by domain, severity, site and device, evidence per finding, and what to address first. PCI DSS v4.0.1 network report per site and security patches: how to remediate each CVE, an urgent change in the Digital Twin, and an automatic flow that prepares the drafts without applying them.</td><td>Pro</td></tr>
                         <tr><td><strong>Firewall policy analysis</strong></td><td>Which policy decides a flow at each hop along the path, with its address translation and its logging. Resolves object groups and application sets recursively.</td><td>Pro</td></tr>
-                        <tr><td><strong>IP Intelligence (IPAM)</strong></td><td>Addressing map, detected subnets, overlaps, routing neighbors, and the location of an IP address down to the access port by crossing the ARP table with the MAC table.</td><td>Pro</td></tr>
-                        <tr><td><strong>Configuration backups</strong></td><td>View, compare, and download configuration files by device and date.</td><td>Pro</td></tr>
-                        <tr><td><strong>Advanced reports</strong></td><td>Network health, configuration risk, drift, capacity, ports, and topology, in downloadable reports ready for audit.</td><td>Pro</td></tr>
-                        <tr><td><strong>Provisioning and site management</strong></td><td>Logical structure of site types, sites, and roles defined before the first discovery run. Executive per-site view with devices, management addresses, compliance, and network configuration.</td><td>Pro</td></tr>
-                        <tr><td><strong>Operations and scheduled audits</strong></td><td>Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.</td><td>Pro</td></tr>
-                        <tr><td><strong>FinOps</strong></td><td>Automation return-on-investment calculator and operational savings analysis, with the estimated network cost per device, per site and per domain.</td><td>Pro</td></tr>
-                        <tr><td><strong>Multi-tenant management</strong></td><td>Multi-organization, user management, and per-tenant data separation.</td><td>Pro</td></tr>
-                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, interface and routing-neighbor metrics stored as time series, with temporal visualization, trends, and threshold alerts. Through SNMP polling on any vendor —on Cisco IOS XR also BGP sessions, IS-IS adjacencies and route counts— and, on Cisco IOS XE, through streaming: the device pushes its data every ten seconds without being polled. Enabled from Argos and applied through the Digital Twin.</td><td>Telemetry and Events</td></tr>
-                        <tr><td><strong>Event automation</strong></td><td>Condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, or error thresholds.</td><td>Telemetry and Events</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Telemetry and events</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Real-time telemetry</strong></td><td>Operational CPU, memory, interface and routing-neighbor metrics stored as time series, with temporal visualization, trends, and threshold alerts. Through SNMP polling on any vendor —on Cisco IOS XR also BGP sessions, IS-IS adjacencies and route counts— and, on Cisco IOS XE, through streaming: the device pushes its data every ten seconds without being polled. It is turned on from Argos and applied through the Digital Twin.</td><td>Telemetry and Events</td></tr>
+                        <tr><td><strong>Event orchestration</strong></td><td>Condition-to-action rules that react automatically to BGP session drops, OSPF neighbor drops, interfaces down, and CPU, memory, temperature, or error thresholds. Port-security incidents: the switch log opens the incident with the MAC address that caused it when known, Oktavia verifies it with an audit and tracks its closure, with links to the device record and to the Twin change when there is one.</td><td>Telemetry and Events</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Argos, AI, reports and integrations</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Argos — network ChatOps</strong></td><td>Plain-language assistant embedded in every screen. It understands, investigates, configures, and closes the loop. Each action states whether it consumes the AI model before it runs.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Local AI (RAG)</strong></td><td>Open models served on the Oktavia server itself that answer only from fragments retrieved from the documentation —official vendor guides, per-site technical report, the team's standards and procedures, previous change reports—, citing document, section, and page. Nothing leaves the server and there is no per-question cost. Includes the documentation kit with templates and validation.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Reports</strong></td><td>Per-site network technical report —design, diagrams, hop-by-hop traffic flows, ports and capacity— and job reports with their artifacts in JSON, CSV and CFG. Health, risk and drift are read in their consoles and in the device and site pages.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Connections</strong></td><td>Everything Oktavia keeps connected in the tenant —devices by platform and protocol (SSH, NETCONF, API), SNMP and streaming telemetry, external services, what comes into Oktavia and internal components— with protocol, port, direction and status, and a map of what goes in and out. Read-only and with no secrets: it says which ports to open.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Test network</strong></td><td>Rehearsing site and device creation and removal on Cisco Modeling Labs before touching production (section <a href="#lifecycle">8</a>).</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Automation with the API and Ansible</strong></td><td>API with organization-scoped keys and interface automation keys to orchestrate services by playbook: preview, save the intent and get the change proposed in the Digital Twin. No key approves or applies. Ansible kit with a dynamic inventory and read, parameter-change and per-service playbooks.</td><td>Pro · SP</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Tools and administration</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Module</th><th scope="col">Functional scope</th><th scope="col">License</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Operations and scheduled audits</strong></td><td>Running and scheduling audits, discovery, inventory sync, and connectivity validation, with job history and artifacts.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>Multi-tenant management</strong></td><td>Multi-organization, user management, and per-tenant data separation. Export a whole tenant and import it with a preview of the plan before applying it.</td><td>Pro · SP</td></tr>
+                        <tr><td><strong>System and support</strong></td><td>Visibility into the platform itself: the state of its components, server resources and alerts, and the vulnerabilities of Oktavia's own components with their tracking and remediation by the Oktanet team.</td><td>Pro · SP</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -254,6 +313,13 @@
                 Argos also closes the loop on changes that already exist in the Digital Twin, such as a security patch prepared by the automatic flow; a verified patch is marked as such. Every verdict is indexed as a change report in the local AI, so the next similar change starts from what was already learned.
             </p>
 
+            <h3>Change control</h3>
+            <ul>
+                <li>A change can be cancelled from its card at any stage before it is applied, and an administrator can clean up unfinished drafts.</li>
+                <li>What is saved in a scope travels in a single change, with the devices of that save.</li>
+                <li>A change that went into some devices and failed on others is shown as <strong>partially applied</strong>, with how many went in, which one failed and why; the retry carries only what is missing.</li>
+                <li>The loop gives no verdict on a device it could not read: the step fails or closes "with pending items", never green by default.</li>
+            </ul>
             <h3>How it applies on each vendor</h3>
             <div class="doc-table-wrap">
                 <table class="doc-table">
@@ -289,21 +355,8 @@
             <div class="doc-callout">
                 <p>Every service is proposed, edited before applying, and ships with its rollback. Nothing is written to the network without a person approving it.</p>
             </div>
-            <h3>Service provider core (Cisco IOS XR)</h3>
-            <p>In the core, intent is declared per service from the catalog, and each service has its own desired configuration and its own compliance diff:</p>
-            <ul>
-                <li><strong>Hardening</strong> of the device.</li>
-                <li><strong>IS-IS with Segment Routing MPLS</strong>, TI-LFA protection and BFD.</li>
-                <li><strong>BGP VPNv4</strong> with a route reflector.</li>
-                <li><strong>L3VPN per customer</strong>, with its VRF toward the CE.</li>
-                <li><strong>L2VPN EVPN-VPWS pseudowires</strong>, several per PE-CE link over VLAN subinterfaces.</li>
-                <li><strong>QoS per service</strong>: the contracted bandwidth on the PE.</li>
-                <li><strong>Dedicated Internet</strong>, with its CE side.</li>
-                <li><strong>On-demand SR-TE (ODN)</strong> with a color per service, on L3VPNs and pseudowires.</li>
-                <li><strong>Customer multicast (mVPN)</strong> with Ingress Replication and BGP over the same SR-MPLS.</li>
-                <li><strong>Architect knobs</strong>: IS-IS timers, overload for maintenance, BGP BFD and graceful-restart, carrier-delay and SRGB.</li>
-            </ul>
-            <p>Devices are managed model-driven over NETCONF, with the Cisco-IOS-XR-um configuration models and the native operational models, with no screen scraping. Every change goes through the Digital Twin: prior validation, commit confirmed and confirmation by a person.</p>
+            <h3>Provider services</h3>
+            <p>In Oktavia SP the same cycle rolls out a provider's services over the Cisco IOS XR core —L3VPN, EVPN-VPWS pseudowires, dedicated internet, contracted QoS, on-demand SR-TE and customer multicast— with prior validation, confirmed commit as a single transaction and the CE side generated from the same declaration. Details in the <a href="oktavia-sp-en.html">Oktavia SP technical sheet</a>.</p>
             <p>Multi-step workflows show their progress per site —«X of N steps» and a percentage— computed from the real state of the network, not from boxes ticked by hand, and every card ends with the button for the next step.</p>
         </section>
 
@@ -332,7 +385,7 @@
                 <li><strong>Close the loop</strong>: audit, read compliance, take it to the Digital Twin, approve, and verify. Each step is a button, not a sentence you have to type.</li>
             </ul>
             <p>
-                Workflows and domains follow each organization's architecture. In a service provider network, Argos offers the core, L3VPN and pseudowire workflows, and organizes the network into Transport and Services domains instead of Campus and WAN.
+                Workflows and domains follow each organization's architecture. In Oktavia SP, Argos offers the core, L3VPN, pseudowire and dedicated internet workflows, and organizes the network into Core and Managed services domains instead of Campus and WAN.
             </p>
             <p>
                 Two design principles separate it from a generic assistant. Every answer states whether it consumed the language model or resolved deterministically, so the cost is visible before you click. And no action that touches the network happens without a person approving it.
@@ -497,10 +550,11 @@
                     </thead>
                     <tbody>
                         <tr><td><strong>Cisco IOS / IOS-XE</strong></td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
-                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF (YANG)</td><td>Discovery, per-service compliance, desired configuration, remediation with commit confirmed, IS-IS, BGP and pseudowire state</td></tr>
+                        <tr><td><strong>Cisco IOS XR</strong></td><td>NETCONF (YANG)</td><td>Oktavia SP: discovery, per-service compliance, desired configuration, remediation with commit confirmed, IS-IS, BGP and pseudowire state</td></tr>
                         <tr><td><strong>Fortinet FortiGate</strong></td><td>REST API</td><td>Discovery, compliance, desired configuration, remediation, firewall policies</td></tr>
                         <tr><td><strong>Fortinet FortiSwitch</strong></td><td>SSH</td><td>Discovery, compliance, desired configuration, remediation</td></tr>
                         <tr><td><strong>Juniper Junos</strong></td><td>NETCONF</td><td>Discovery, compliance, desired configuration, remediation, zone policies</td></tr>
+                        <tr><td><strong>Cisco SD-WAN</strong></td><td>Manager API</td><td>Edge inventory, edge onboarding with its Config Group and bootstrap, LAN segment creation and removal</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -737,15 +791,15 @@
         <section class="doc-section" id="licensing">
             <h2>18. Licensing</h2>
             <p>
-                Oktavia is installed in one of two modes: <strong>Oktavia Pro</strong> for an enterprise network (Campus, WAN, Security and Management) and <strong>Oktavia SP</strong> for a service provider (Transport, Services, Security and Management). The code and the cycle are the same. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
+                Oktavia is installed in one of two modes: <strong>Oktavia Pro</strong> for an enterprise network (Campus, WAN, Security and Management) and <strong>Oktavia SP</strong> for a service provider (Core, Managed services, Security and Management). The code and the cycle are the same. Continuous telemetry and event orchestration are licensed separately because they have a different consumption profile, they store time series and run a permanent evaluator, and not every network needs them on day one.
             </p>
             <h3>Oktavia Pro</h3>
             <p>
-                Multi-vendor discovery, inventory, configuration and state compliance, desired configuration per device and per scope, the full remediation cycle with Digital Twin, new service rollout with rollback, topology with path tracing and firewall policy analysis, network security, service inventory, IP Intelligence, configuration backups, advanced reports, provisioning, scheduled operations, FinOps, multi-tenant, and the complete Argos with the local AI.
+                Multi-vendor discovery, inventory, configuration and state compliance, desired configuration per device and per scope, the full remediation cycle with Digital Twin, new service rollout with rollback, topology with path tracing and firewall policy analysis, network security, service inventory, IP Intelligence, configurations and backups, device groups, custom services without development, technical report and reports, provisioning, scheduled operations, FinOps, multi-tenant, and the complete Argos with the local AI.
             </p>
             <h3>Oktavia SP</h3>
             <p>
-                The carrier service orchestrator: what applies to a provider from Oktavia Pro plus customer services (L3VPN, EVPN-VPWS, Dedicated Internet, contracted QoS, on-demand SR-TE, multicast), the IS-IS/SR-MPLS core on Cisco IOS XR with confirmed commit, core state, the light CRM with usage against contract and FinOps per customer, customer impact and NOC events. Sized by core and edge devices, domains and data centers.
+                The carrier service orchestrator: what applies to a provider from Oktavia Pro plus customer services (L3VPN, EVPN-VPWS, Dedicated Internet, contracted QoS, on-demand SR-TE, multicast), the IS-IS/SR-MPLS core on Cisco IOS XR with confirmed commit, core state, Customer services with custom fields and service profiles, the light CRM with usage against contract and FinOps per customer, customer impact and NOC events. Sized by core and edge devices, domains and data centers. Details in the <a href="oktavia-sp-en.html">Oktavia SP technical sheet</a>.
             </p>
             <h3>Telemetry and Event Orchestration</h3>
             <p>
@@ -786,9 +840,11 @@
                 <li>Advertising a new network in OSPF and BGP on the site edge devices, with ping verification included.</li>
                 <li>Asking what the runbook or the vendor guide says during an incident, with the citation, without the documentation leaving the server.</li>
                 <li>Preparing the PCI DSS network report for the point-of-sale sites, with evidence per device, for the QSA's review.</li>
-                <li>Rolling out a customer's L3VPN or pseudowire on the IOS XR core, with commit confirmed and verification of IS-IS, BGP and the xconnect.</li>
-                <li>Following a customer's path across the MPLS L3VPN: ingress PE, VPN label and egress PE, forward and back.</li>
+                <li>With Oktavia SP: rolling out a customer's L3VPN or pseudowire on the IOS XR core, with commit confirmed and verification of IS-IS, BGP and the xconnect.</li>
+                <li>With Oktavia SP: following a customer's path across the MPLS L3VPN: ingress PE, VPN label and egress PE, forward and back.</li>
                 <li>Turning exploited CVEs with the feature enabled into security patches ready for approval, and verifying the CVE disappeared.</li>
+                <li>Creating a new service from a pasted configuration, without AI, by clicking the values that change per device, and retiring it later with a single change.</li>
+                <li>Declaring a parameter for a device group —a maintenance window, a type of switch— without depending on sites or regions.</li>
             </ul>
         </section>
 
