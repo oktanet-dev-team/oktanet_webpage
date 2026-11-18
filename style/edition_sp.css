@@ -98,6 +98,7 @@ body.edition-sp .platform-arch .pa-core rect { stroke: #b797ee; filter: drop-sha
 body.edition-sp .cx-step { border: 1px solid rgba(183, 151, 238, 0.22); }
 body.edition-sp .cx-step:not(:last-child)::after { color: #b797ee; }
 body.edition-sp .cx-n { background: linear-gradient(135deg, #4f21a2, #875cd1); }
+body.edition-sp .hero-loop .loop-argos image { filter: drop-shadow(0 0 6px rgba(164, 115, 239, 0.25)); }
 
 /* style/docs_style.css */
 body.edition-sp { --brand: #875cd1; --brand-strong: #d4c0f6; --highlight: #b28de8; }

@@ -3945,3 +3945,11 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .cx-nota { margin: 18px 0 0; color: #a3b7d2; }
 @media (max-width: 1100px) { .cx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cx-step::after { display: none; } }
 @media (max-width: 640px) { .cx-grid { grid-template-columns: 1fr; } }
+
+/* Menú: lo de Oktavia SP en violeta (en todas las páginas con el submenú de SP). */
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"],
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label,
+.main-nav #nav-sp-menu a { color: #c4b5fd !important; }
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-caret { border-color: #a78bfa !important; color: #a78bfa !important; }
+.main-nav #nav-sp-menu a:hover, .main-nav #nav-sp-menu a:focus-visible { background: rgba(167, 139, 250, 0.14) !important; color: #ede9fe !important; }
+.hero-loop .loop-argos image { filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.25)); }
