@@ -210,7 +210,7 @@
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
             heroTitle: 'Automatización de redes con ciclo cerrado',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'Audita tu red multivendor contra tu estándar, propone la corrección en un gemelo digital, la aplica sólo con tu aprobación y vuelve a auditar para demostrar que quedó bien. Cisco, Fortinet y Juniper desde una sola consola.',
+            heroBody: 'Oktavia Pro audita y corrige la red de tu empresa —Cisco, Fortinet, Juniper y SD-WAN— y Oktavia SP orquesta el núcleo y los servicios de cada cliente de un proveedor. Las dos con el mismo ciclo: proponen la corrección en un gemelo digital, la aplican sólo con tu aprobación y vuelven a auditar para demostrar que quedó bien.',
             heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Resumen ejecutivo', 'Ficha técnica'],
             heroPoints: [
                 {
@@ -701,7 +701,7 @@
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
             heroTitle: 'Closed-loop network automation',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'It audits your multi-vendor network against your standard, proposes the fix in a digital twin, applies it only with your approval, and audits again to prove it worked. Cisco, Fortinet, and Juniper from one console.',
+            heroBody: 'Oktavia Pro audits and fixes your enterprise network —Cisco, Fortinet, Juniper, and SD-WAN— and Oktavia SP orchestrates a provider\'s core and every customer\'s services. Both run the same loop: they propose the fix in a digital twin, apply it only with your approval, and audit again to prove it worked.',
             heroActions: ['Request a Demo', 'What does it cost?', 'Executive summary', 'Technical sheet'],
             heroPoints: [
                 {
