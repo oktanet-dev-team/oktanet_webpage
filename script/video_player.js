@@ -23,3 +23,23 @@
         });
     });
 }());
+
+/* Al llegar con #videos (desde la portada), bajar a la sección cuando la página
+   ya terminó de acomodarse: las imágenes y fuentes mueven el ancla. */
+(function () {
+    'use strict';
+    var ir = function () {
+        if (!location.hash) {
+            return;
+        }
+        var destino = document.getElementById(location.hash.slice(1));
+        if (destino) {
+            destino.scrollIntoView({ block: 'start' });
+        }
+    };
+    if (document.readyState === 'complete') {
+        setTimeout(ir, 50);
+    } else {
+        window.addEventListener('load', function () { setTimeout(ir, 50); });
+    }
+}());
