@@ -3908,3 +3908,40 @@ body.nav-open::after { backdrop-filter: none; }
 span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .licensing-plan-list li.licensing-argos::before { background: url("../img/LOGO_Argos.png") center / contain no-repeat !important;
     box-shadow: none !important; width: 20px; height: 20px; top: 0; left: -3px; border-radius: 0; }
+/* En la licencia de Oktavia SP, Argos va en violeta. */
+.licensing-plan-sp .licensing-plan-list li.licensing-argos::before { background-image: url("../img/LOGO_Argos_SP.png") !important; }
+
+/* ===================== Plataforma: cómo se conecta Oktavia ===================== */
+.platform-arch { display: flex; align-items: center; justify-content: center; border: 0 !important; background: none !important; box-shadow: none !important; }
+.platform-arch svg { width: 100%; max-width: 680px; height: auto; overflow: visible; }
+.platform-arch .pa-h { fill: #8ea4bf; font: 800 13px Manrope, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+.platform-arch .pa-box rect { fill: rgba(8, 22, 38, 0.92); stroke: rgba(95, 182, 242, 0.35); }
+.platform-arch .pa-t { fill: #e2ecf8; font: 800 13.5px Manrope, sans-serif; }
+.platform-arch .pa-s { fill: #8fb4d6; font: 600 12px Manrope, sans-serif; }
+.platform-arch .pa-line { fill: none; stroke: rgba(95, 182, 242, 0.45); stroke-width: 1.6; stroke-dasharray: 4 5; }
+.platform-arch .pa-line--out { stroke: rgba(110, 231, 183, 0.45); }
+.platform-arch .pa-core rect { fill: rgba(10, 28, 50, 0.96); stroke: #5fb6f2; stroke-width: 1.6; filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.25)); }
+.platform-arch .pa-core-t { fill: #f3f7ff; font: 800 22px Manrope, sans-serif; }
+.platform-arch .pa-row { fill: #c8d5ec; font: 600 14px Manrope, sans-serif; }
+.platform-arch .pa-row--ai { fill: #6ee7b7; font-size: 13px; }
+.platform-arch .pa-foot { fill: #8ea4bf; font: 600 12.5px Manrope, sans-serif; }
+
+/* ===================== Así queda registrado un cambio ===================== */
+.change-section { padding: 80px 0; }
+.cx-grid { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; counter-reset: none; }
+.cx-step { position: relative; padding: 18px 16px 16px; border-radius: 16px; border: 1px solid rgba(95, 182, 242, 0.22); background: rgba(6, 16, 30, 0.85); }
+.cx-step:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 22px; color: #5fb6f2; font-weight: 800; }
+.cx-n { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-weight: 800; color: #e6f2ff;
+    background: linear-gradient(135deg, #1668ad, #2b8fd4); }
+.cx-step h3 { margin: 10px 0 2px; font-size: 1.02rem; }
+.cx-sub { margin: 0 0 10px; color: #8ea4bf; font-size: 0.85rem; }
+.cx-ev { display: grid; gap: 4px; }
+.cx-ev code { display: block; font: 500 0.8rem/1.45 "SFMono-Regular", Consolas, monospace; color: #c8d5ec; background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px; padding: 3px 7px; white-space: normal; overflow-wrap: anywhere; }
+.cx-ev .cx-bad { color: #fca5a5; background: rgba(248, 113, 113, 0.1); }
+.cx-ev .cx-add { color: #86efac; background: rgba(52, 211, 153, 0.1); }
+.cx-ev .cx-ok { color: #6ee7b7; }
+.cx-ev .cx-ok::before { content: "✓ "; }
+.cx-nota { margin: 18px 0 0; color: #a3b7d2; }
+@media (max-width: 1100px) { .cx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .cx-step::after { display: none; } }
+@media (max-width: 640px) { .cx-grid { grid-template-columns: 1fr; } }
