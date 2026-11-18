@@ -3845,3 +3845,11 @@ body.nav-open .nav-toggle { position: relative; z-index: 1301; }
 body.nav-open .site-header { z-index: 1300 !important; }
 body.nav-open::after { backdrop-filter: none; }
 .main-nav .nav-group-toggle { font-size: 0.98rem !important; font-weight: 600 !important; color: #cfe0f2 !important; min-height: 0 !important; border: 0 !important; background: transparent; }
+/* «Inicio» con el logo arriba del menú lateral (el logo de la barra queda bajo el velo). */
+.main-nav .nav-home { width: 100%; margin: 0 0 6px; padding-bottom: 10px; border-bottom: 1px solid #152637; }
+.main-nav .nav-home-link { display: flex !important; align-items: center; gap: 12px; font-size: 1.05rem !important; font-weight: 800 !important; }
+.main-nav .nav-home-link img { width: 34px; height: auto; flex: none; }
+/* Licencias: Pro, SP y el adicional de telemetría. */
+.licensing-plan-sp { border-color: rgba(167, 139, 250, 0.55); background: linear-gradient(180deg, rgba(24, 16, 44, 0.96) 0%, rgba(8, 12, 28, 0.96) 100%); }
+.licensing-plan-sp .licensing-plan-label { background: rgba(124, 58, 237, 0.25); color: #d8ccff; }
+.licensing-plan-sp .licensing-plan-list li::before { background: #a78bfa; box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.16); }

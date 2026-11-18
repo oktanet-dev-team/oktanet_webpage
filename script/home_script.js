@@ -338,6 +338,7 @@
             archEntCap: "Oktavia Pro: una sola intención por dominio (campus, WAN, seguridad y gestión), auditada y llevada a cada equipo por el gemelo.",
             archSpCap: "Oktavia SP: el núcleo (P, RR y el lado de núcleo de los PE) y los servicios de cada cliente del PE al CE, con su estado de punta a punta.",
             navHeads: ["Productos", "Empresa y servicios", "Comprar", "Aprender"],
+            navHome: "Inicio",
             familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
             familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
@@ -491,118 +492,64 @@
                 'Extensibilidad por fabricante',
                 'Control y visibilidad en la automatización',
                 'Acceso controlado y datos en casa',
-                'Dos licencias'
+                'Dos plataformas y un adicional'
             ],
             aboutCardBodies: [
                 'Cada fabricante se integra con adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas Jinja.',
                 'Prioriza remediación supervisada con aprobación, evitando automatizaciones opacas y no auditables.',
                 'Se despliega en tu infraestructura, el acceso entra por tu proveedor de identidad con Okta y segundo factor, y las credenciales van cifradas en reposo.',
-                'Oktavia Pro incluye la plataforma completa. La telemetría continua y la orquestación de eventos se licencian aparte por su perfil de consumo.'
+                'Oktavia Pro para empresas y Oktavia SP para proveedores de servicios. La telemetría continua y la orquestación de eventos se licencian aparte, para cualquiera de las dos.'
             ],
             licensingAria: 'Licenciamiento Oktavia',
             licensingEyebrow: 'Licenciamiento',
-            licensingTitle: 'Dos licencias',
-            licensingIntro: 'Oktavia Pro es la plataforma completa para la red de una empresa, y Oktavia SP la misma plataforma como orquestador de servicios carrier para un proveedor. La telemetría continua y el motor de eventos se licencian aparte porque almacenan series de tiempo y corren un evaluador permanente, y no toda red los necesita desde el día uno.',
+            licensingTitle: 'Dos plataformas y un adicional',
+            licensingIntro: 'Oktavia Pro es la plataforma completa para la red de una empresa y Oktavia SP la misma plataforma como orquestador de servicios para un proveedor: se elige una según la red. La telemetría continua y el motor de eventos siguen licenciándose aparte, para cualquiera de las dos, porque almacenan series de tiempo y corren un evaluador permanente.',
             licensingSupportTitle: 'Incluido en toda licencia: soporte y actualizaciones',
             licensingSupportBody: 'Mientras la licencia está vigente, cualquier instalación de Oktavia recibe los parches de seguridad, las actualizaciones y las funciones nuevas de la plataforma, sin costo adicional.',
-            licensingPlanLabels: ['Licencia principal', 'Licencia adicional'],
-            licensingPlanTitles: ['Oktavia Pro', 'Telemetría y Orquestación de Eventos'],
+            licensingPlanLabels: ['Para empresas', 'Para proveedores de servicios', 'Licencia adicional · Pro o SP'],
+            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Telemetría y Orquestación de Eventos'],
             licensingPlanBodies: [
-                'La plataforma completa. Todo lo necesario para descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios y parámetros nuevos sin desarrollo, con aprobación humana en cada cambio. En un proveedor de servicios, como Oktavia SP.',
-                'Se licencia aparte porque almacena series de tiempo y corre un evaluador permanente: tiene otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
+                'La plataforma completa para la red de una empresa: descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios y parámetros nuevos sin desarrollo, con aprobación humana en cada cambio.',
+                'La misma plataforma como orquestador de servicios carrier: el núcleo IOS XR y los servicios de cada cliente, de la intención a la verificación, en una base de servicios con su estado real.',
+                'Sigue siendo aparte y se suma a Oktavia Pro o a Oktavia SP: almacena series de tiempo y corre un evaluador permanente, otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
             ],
             licensingPlanItems: [
                 [
-                    {
-                        module: 'Auditoría del estado de red',
-                        description: ' Inventario, conectividad, configuración y cumplimiento en una sola operación.'
-                    },
-                    {
-                        module: 'Inventario de red',
-                        description: ' Multifabricante, con filtros por sitio, rol, plataforma, modelo y metadatos.'
-                    },
-                    {
-                        module: 'Topología y trazado de rutas',
-                        description: ' Vistas física y de plano de control, y el camino real entre dos direcciones IP.'
-                    },
-                    {
-                        module: 'Cumplimiento de configuración',
-                        description: ' Reglas editables por sitio, rol o dispositivo, con severidad y evidencia.'
-                    },
-                    {
-                        module: 'Configuración deseada por alcance',
-                        description: ' Desde plantillas y variables, con precedencia por sitio, modelo, rol y equipo.'
-                    },
-                    {
-                        module: 'Ciclo cerrado de remediación',
-                        description: ' Proponer, revisar el diff, aprobar, aplicar y verificar que el hallazgo cerró.'
-                    },
-                    {
-                        module: 'Alta de servicios nuevos',
-                        description: ' Túneles, publicación de redes y DHCP, cada uno con su rollback.'
-                    },
-                    {
-                        module: 'Argos, ChatOps de red',
-                        description: ' El asistente completo, con la marca de qué consume IA y qué no.'
-                    },
-                    {
-                        module: 'Seguridad de red',
-                        description: ' Perímetro, gestión, identidades y segmentación, con evidencia por hallazgo.'
-                    },
-                    {
-                        module: 'Inventario de servicios',
-                        description: ' Qué hay configurado en cada equipo y cuánto está declarado como intención.'
-                    },
-                    {
-                        module: 'Análisis de políticas de firewall',
-                        description: ' Qué política decide un flujo en cada salto, con su NAT y su registro.'
-                    },
-                    {
-                        module: 'Gemelo digital',
-                        description: ' Configuración deseada contra activa, y el diff que se aprueba antes de aplicar.'
-                    },
-                    {
-                        module: 'Respaldos de configuración',
-                        description: ' Consulta, comparación y descarga por dispositivo y por fecha.'
-                    },
-                    {
-                        module: 'Inteligencia IP (IPAM)',
-                        description: ' Subredes, solapamientos y la ubicación de una IP hasta el puerto de acceso.'
-                    },
-                    {
-                        module: 'Reportes avanzados',
-                        description: ' Salud, riesgo, desvíos, capacidad y puertos, listos para auditoría.'
-                    },
-                    {
-                        module: 'Provisioning y gestión de sitios',
-                        description: ' Tipos de sitio, sitios y roles definidos antes del primer descubrimiento.'
-                    },
-                    {
-                        module: 'Operaciones y auditorías programadas',
-                        description: ' Ejecución y programación, con historial de trabajos y artefactos.'
-                    },
-                    {
-                        module: 'FinOps',
-                        description: ' Retorno de inversión de la automatización y análisis de ahorro operativo.'
-                    },
-                    {
-                        module: 'Gestión multi-tenant',
-                        description: ' Multi-organización, usuarios y separación de datos por cliente.'
-                    }
+                    { module: 'Auditoría del estado de red', description: ' Inventario, conectividad, configuración y cumplimiento en una sola operación.' },
+                    { module: 'Fuente de verdad', description: ' Inventario multifabricante, sitios, grupos de equipos, IPAM y topología con mapa por sitio.' },
+                    { module: 'Topología y trazado de rutas', description: ' Vistas física y de plano de control, y el camino real entre dos direcciones IP.' },
+                    { module: 'Cumplimiento de configuración y de estado', description: ' Reglas editables por sitio, rol, grupo o equipo, con severidad y evidencia.' },
+                    { module: 'Intención por alcance', description: ' El Configurador declara la config deseada por rol, sitio, grupo o equipo, con precedencia.' },
+                    { module: 'Ciclo cerrado de remediación', description: ' Proponer, revisar el diff, aprobar, aplicar y verificar que el hallazgo cerró.' },
+                    { module: 'Servicios y parámetros nuevos sin desarrollo', description: ' Desde una config de ejemplo marcando los valores, o con IA local o en la nube; cada uno con su rollback.' },
+                    { module: 'Argos, ChatOps de red', description: ' El asistente completo, con la marca de qué consume IA y qué no.' },
+                    { module: 'Seguridad de red', description: ' Perímetro, gestión, identidades y segmentación, con evidencia por hallazgo.' },
+                    { module: 'Vulnerabilidades', description: ' CVE de NVD y CISA KEV cruzados con la running de cada equipo: qué atender primero.' },
+                    { module: 'Consolas por dominio', description: ' Campus, WAN y Seguridad con sus servicios, su inventario y su estado.' },
+                    { module: 'Análisis de políticas de firewall', description: ' Qué política decide un flujo en cada salto, con su NAT y su registro.' },
+                    { module: 'Gemelo digital', description: ' Configuración deseada contra activa, el diff que se aprueba y el cambio que se puede cancelar.' },
+                    { module: 'Respaldos de configuración', description: ' Respaldo, deseada y diferencias por equipo y por fecha.' },
+                    { module: 'Ficha técnica de la red', description: ' La memoria técnica por sitio y los reportes de cada trabajo, listos para auditoría.' },
+                    { module: 'Provisioning y gestión de sitios', description: ' Tipos de sitio, sitios y roles definidos antes del primer descubrimiento.' },
+                    { module: 'Operaciones y auditorías programadas', description: ' Ejecución y programación, con historial de trabajos y artefactos.' },
+                    { module: 'FinOps', description: ' Retorno de inversión de la automatización y análisis de ahorro operativo.' },
+                    { module: 'Gestión multi-tenant', description: ' Multi-organización, usuarios y separación de datos por cliente.' }
                 ],
                 [
-                    {
-                        module: 'Telemetría en tiempo real',
-                        description: ' CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias.'
-                    },
-                    {
-                        module: 'Dashboards y compatibilidad con Grafana',
-                        description: ' Tableros propios, y la base de métricas como fuente directa de Grafana.'
-                    },
-                    {
-                        module: 'Motor de automatización de eventos',
-                        description: ' Reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU.'
-                    }
+                    { module: 'Todo Oktavia Pro', description: ' Auditoría, cumplimiento, gemelo digital, ciclo cerrado, seguridad y Argos sobre la red del proveedor.' },
+                    { module: 'Servicios de cliente', description: ' Una tabla con cada servicio contratado, su estado real en la red, filtros, CSV y alta, cambio o baja.' },
+                    { module: 'Campos propios y perfiles de servicio', description: ' Los datos de tu organización sin programar, y el producto que vendes aplicado a todos sus servicios.' },
+                    { module: 'Núcleo', description: ' IS-IS, SR-MPLS, TI-LFA, BFD y BGP con route reflectors sobre Cisco IOS XR por NETCONF.' },
+                    { module: 'Servicios gestionados', description: ' L3VPN, EVPN-VPWS (pseudowires), internet dedicado, QoS y multicast, del PE al CE.' },
+                    { module: 'SR-TE con colores bajo demanda', description: ' ODN: el color del servicio elige la política, visible como diagrama por cliente.' },
+                    { module: 'Orden de servicio PE + CE', description: ' Un solo cambio con commit confirmado en el núcleo y verificación al final.' },
+                    { module: 'Diccionario NETCONF y constructor de servicios', description: ' Cada parámetro YANG del equipo, explicado por Argos y listo para un servicio nuevo.' },
+                    { module: 'Argos para el proveedor', description: ' Diagnóstico por cliente, sitio o servicio, y la ruta de LAN a LAN punta a punta.' }
+                ],
+                [
+                    { module: 'Telemetría en tiempo real', description: ' CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias; también por streaming.' },
+                    { module: 'Dashboards y compatibilidad con Grafana', description: ' Tableros propios, y la base de métricas como fuente directa de Grafana.' },
+                    { module: 'Motor de automatización de eventos', description: ' Reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU.' }
                 ]
             ],
             quoteLegends: ['Tu red', 'Cómo administras tus equipos', 'Alcance', 'Cómo te contactamos'],
@@ -657,8 +604,8 @@
             resourcesIntro: 'El documento reúne módulos, cobertura por fabricante, integraciones, licenciamiento y tiempos de implementación, y se puede leer en línea o descargar en PDF.',
             resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia', 'Curso gratis: fundamentos de automatización de redes'],
             resourceCardBodies: [
-                'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el modelo de dos licencias y los esquemas comerciales flexibles. Sin detalle de implementación.',
-                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el modelo de dos licencias, casos de uso y el proceso de implementación con sus tiempos estimados.',
+                'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional y los esquemas comerciales flexibles. Sin detalle de implementación.',
+                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional, casos de uso y el proceso de implementación con sus tiempos estimados.',
                 'De la CLI a los agentes de IA: métodos de acceso, YANG y plantillas, Python y Ansible, fuente de verdad, validación y CI, telemetría, enterprise, centro de datos, proveedores y nube, scripts contra plataformas y buenas prácticas. Sin depender de ningún producto.'
             ],
             resourceCardMetas: [
@@ -865,6 +812,7 @@
             archEntCap: "Oktavia Pro: one intent per domain (campus, WAN, security and management), audited and taken to every device through the twin.",
             archSpCap: "Oktavia SP: the core (P, RR and the core side of the PEs) and every customer's services from PE to CE, with their end-to-end state.",
             navHeads: ["Products", "Company and services", "Buy", "Learn"],
+            navHome: "Home",
             familyEyebrow: 'One platform, one assistant, one team that implements it',
             familyTitle: 'Three fronts so the network does what its standard says.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
@@ -1018,118 +966,64 @@
                 'Vendor extensibility',
                 'Control and visibility in automation',
                 'Controlled access, data stays home',
-                'Two licenses'
+                'Two platforms and an add-on'
             ],
             aboutCardBodies: [
                 'Each vendor is integrated through a discovery adapter, normalizer, compliance rule set, and Jinja templates.',
                 'It prioritizes supervised remediation with approvals, avoiding opaque and non-auditable automation.',
                 'It deploys on your own infrastructure, access goes through your identity provider with Okta and a second factor, and credentials are encrypted at rest.',
-                'Oktavia Pro includes the complete platform. Continuous telemetry and event orchestration are licensed separately because of their consumption profile.'
+                'Oktavia Pro for enterprises and Oktavia SP for service providers. Continuous telemetry and event orchestration are licensed separately, for either one.'
             ],
             licensingAria: 'Oktavia licensing',
             licensingEyebrow: 'Licensing',
-            licensingTitle: 'Two licenses',
-            licensingIntro: 'Oktavia Pro is the complete platform for an enterprise network, and Oktavia SP is the same platform as a carrier service orchestrator for a provider. Continuous telemetry and the event engine are licensed separately because they store time series and run a permanent evaluator, and not every network needs them on day one.',
+            licensingTitle: 'Two platforms and an add-on',
+            licensingIntro: 'Oktavia Pro is the complete platform for an enterprise network and Oktavia SP is the same platform as a service orchestrator for a provider: you pick one for your network. Continuous telemetry and the event engine are still licensed separately, for either one, because they store time series and run a permanent evaluator.',
             licensingSupportTitle: 'Included with every license: support and updates',
             licensingSupportBody: "While the license is active, every Oktavia deployment receives the platform's security patches, updates and new features, at no extra cost.",
-            licensingPlanLabels: ['Main license', 'Add-on license'],
-            licensingPlanTitles: ['Oktavia Pro', 'Telemetry and Event Orchestration'],
+            licensingPlanLabels: ['For enterprises', 'For service providers', 'Add-on license · Pro or SP'],
+            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Telemetry and Event Orchestration'],
             licensingPlanBodies: [
-                'The complete platform. Everything needed to discover the network, verify it meets the standard, fix what does not, and roll out new services and parameters without development, with human approval on every change. For a service provider, as Oktavia SP.',
-                'Licensed separately because it stores time series and runs a permanent evaluator: a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
+                'The complete platform for an enterprise network: discover the network, verify it meets the standard, fix what does not, and roll out new services and parameters without development, with human approval on every change.',
+                "The same platform as a carrier service orchestrator: the IOS XR core and every customer's services, from intent to verification, in a service base with its real state.",
+                'Still separate, and it adds on to Oktavia Pro or Oktavia SP: it stores time series and runs a permanent evaluator, a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
             ],
             licensingPlanItems: [
                 [
-                    {
-                        module: 'Network state audit',
-                        description: ' Inventory, connectivity, configuration, and compliance in a single operation.'
-                    },
-                    {
-                        module: 'Network inventory',
-                        description: ' Multi-vendor, with filters by site, role, platform, model, and metadata.'
-                    },
-                    {
-                        module: 'Topology and path tracing',
-                        description: ' Physical and control-plane views, and the live path between two IP addresses.'
-                    },
-                    {
-                        module: 'Configuration compliance',
-                        description: ' Rules editable by site, role, or device, with severity and evidence.'
-                    },
-                    {
-                        module: 'Scoped desired configuration',
-                        description: ' From templates and variables, with precedence by site, model, role, and device.'
-                    },
-                    {
-                        module: 'Closed-loop remediation',
-                        description: ' Propose, review the diff, approve, apply, and verify the finding closed.'
-                    },
-                    {
-                        module: 'New service rollout',
-                        description: ' Tunnels, network advertisement, and DHCP, each with its rollback.'
-                    },
-                    {
-                        module: 'Argos, network ChatOps',
-                        description: ' The complete assistant, with the mark for what consumes AI and what does not.'
-                    },
-                    {
-                        module: 'Network security',
-                        description: ' Perimeter, management, identities, and segmentation, with evidence per finding.'
-                    },
-                    {
-                        module: 'Service inventory',
-                        description: ' What is configured on each device and how much is declared as intent.'
-                    },
-                    {
-                        module: 'Firewall policy analysis',
-                        description: ' Which policy decides a flow at each hop, with its NAT and its logging.'
-                    },
-                    {
-                        module: 'Digital Twin',
-                        description: ' Desired against live configuration, and the diff approved before applying.'
-                    },
-                    {
-                        module: 'Configuration backups',
-                        description: ' Lookup, comparison, and download by device and by date.'
-                    },
-                    {
-                        module: 'IP Intelligence (IPAM)',
-                        description: ' Subnets, overlaps, and the location of an IP down to the access port.'
-                    },
-                    {
-                        module: 'Advanced reports',
-                        description: ' Health, risk, drift, capacity, and ports, ready for audit.'
-                    },
-                    {
-                        module: 'Provisioning and site management',
-                        description: ' Site types, sites, and roles defined before the first discovery run.'
-                    },
-                    {
-                        module: 'Operations and scheduled audits',
-                        description: ' Running and scheduling, with job history and artifacts.'
-                    },
-                    {
-                        module: 'FinOps',
-                        description: ' Automation return on investment and operational savings analysis.'
-                    },
-                    {
-                        module: 'Multi-tenant management',
-                        description: ' Multi-organization, users, and per-customer data separation.'
-                    }
+                    { module: 'Network state audit', description: ' Inventory, connectivity, configuration, and compliance in a single operation.' },
+                    { module: 'Source of truth', description: ' Multi-vendor inventory, sites, device groups, IPAM, and topology with a per-site map.' },
+                    { module: 'Topology and path tracing', description: ' Physical and control-plane views, and the live path between two IP addresses.' },
+                    { module: 'Configuration and state compliance', description: ' Rules editable by site, role, group, or device, with severity and evidence.' },
+                    { module: 'Scoped intent', description: ' The Configurator declares the desired config by role, site, group, or device, with precedence.' },
+                    { module: 'Closed-loop remediation', description: ' Propose, review the diff, approve, apply, and verify the finding closed.' },
+                    { module: 'New services and parameters without development', description: ' From a sample config by marking the values, or with local or cloud AI; each with its rollback.' },
+                    { module: 'Argos, network ChatOps', description: ' The complete assistant, with the mark for what consumes AI and what does not.' },
+                    { module: 'Network security', description: ' Perimeter, management, identities, and segmentation, with evidence per finding.' },
+                    { module: 'Vulnerabilities', description: " NVD and CISA KEV CVEs matched against each device's running config: what to address first." },
+                    { module: 'Domain consoles', description: ' Campus, WAN, and Security with their services, inventory, and state.' },
+                    { module: 'Firewall policy analysis', description: ' Which policy decides a flow at each hop, with its NAT and its logging.' },
+                    { module: 'Digital twin', description: ' Desired versus active configuration, the diff you approve, and a change you can cancel.' },
+                    { module: 'Configuration backups', description: ' Backup, desired, and differences per device and per date.' },
+                    { module: 'Network technical report', description: " The per-site technical memory and each job's reports, ready for audit." },
+                    { module: 'Provisioning and site management', description: ' Site types, sites, and roles defined before the first discovery.' },
+                    { module: 'Scheduled operations and audits', description: ' Execution and scheduling, with job and artifact history.' },
+                    { module: 'FinOps', description: ' Automation ROI and operational savings analysis.' },
+                    { module: 'Multi-tenant management', description: ' Multi-organization, users, and data separation per customer.' }
                 ],
                 [
-                    {
-                        module: 'Real-time telemetry',
-                        description: ' CPU, memory, and interfaces as time series, with thresholds and trends.'
-                    },
-                    {
-                        module: 'Dashboards and Grafana compatibility',
-                        description: ' Native dashboards, and the metrics store as a direct Grafana datasource.'
-                    },
-                    {
-                        module: 'Event automation engine',
-                        description: ' Rules that react on their own to BGP or OSPF drops and CPU thresholds.'
-                    }
+                    { module: 'Everything in Oktavia Pro', description: ' Audit, compliance, digital twin, closed loop, security, and Argos on the provider network.' },
+                    { module: 'Customer services', description: ' One table with every contracted service, its real network state, filters, CSV, and add, change, or retire.' },
+                    { module: 'Custom fields and service profiles', description: " Your organization's data with no coding, and the product you sell applied to all its services." },
+                    { module: 'Core', description: ' IS-IS, SR-MPLS, TI-LFA, BFD, and BGP with route reflectors on Cisco IOS XR over NETCONF.' },
+                    { module: 'Managed services', description: ' L3VPN, EVPN-VPWS (pseudowires), dedicated internet, QoS, and multicast, from PE to CE.' },
+                    { module: 'SR-TE with on-demand colors', description: ' ODN: the service color picks the policy, shown as a diagram per customer.' },
+                    { module: 'PE + CE service order', description: ' A single change with confirmed commit on the core and verification at the end.' },
+                    { module: 'NETCONF dictionary and service builder', description: ' Every YANG parameter on the device, explained by Argos and ready for a new service.' },
+                    { module: 'Argos for the provider', description: ' Diagnosis by customer, site, or service, and the end-to-end LAN-to-LAN path.' }
+                ],
+                [
+                    { module: 'Real-time telemetry', description: ' CPU, memory, and interfaces as time series, with thresholds and trends; streaming too.' },
+                    { module: 'Dashboards and Grafana compatibility', description: ' Built-in dashboards, and the metrics store as a direct Grafana data source.' },
+                    { module: 'Event automation engine', description: ' Rules that react on their own to BGP or OSPF drops and CPU thresholds.' }
                 ]
             ],
             quoteLegends: ['Your network', 'How you manage your devices', 'Scope', 'How we reach you'],
@@ -1184,8 +1078,8 @@
             resourcesIntro: 'The document gathers modules, per-vendor coverage, integrations, licensing, and implementation timelines, and can be read online or downloaded as a PDF.',
             resourceCardTitles: ['Oktavia executive summary', 'Oktavia technical sheet', 'Free course: network automation fundamentals'],
             resourceCardBodies: [
-                'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, the two-license model, and the flexible commercial terms. No implementation detail.',
-                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, the two-license model, use cases, and the implementation process with estimated timelines.',
+                'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, and the flexible commercial terms. No implementation detail.',
+                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, use cases, and the implementation process with estimated timelines.',
                 'From the CLI to AI agents: access methods, YANG and templates, Python and Ansible, source of truth, validation and CI, telemetry, enterprise, data center, service provider and cloud, scripts versus platforms, and best practices. Independent of any product. In Spanish.'
             ],
             resourceCardMetas: [
@@ -2261,6 +2155,11 @@
         });
 
         navLinks.forEach(function (link) {
+            link.addEventListener('click', closeNav);
+        });
+
+        // «Inicio» con el logo, arriba del panel: regresa al principio de la página.
+        document.querySelectorAll('.nav-home-link').forEach(function (link) {
             link.addEventListener('click', closeNav);
         });
 
