@@ -231,15 +231,16 @@
                 }
             ],
             trustLabel: 'Multivendor en producción, y más fabricantes se integran por proyecto:',
-            platformEyebrow: 'Oktavia · La plataforma',
-            platformTitle: 'Oktavia: motor de automatización, interfaz web y ChatOps para operar la red con control continuo.',
-            platformBody: 'Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol o dispositivo, configuración deseada, seguridad de red y remediación verificada en una sola consola. Argos, el asistente de ChatOps, atraviesa todos los módulos y declara en cada acción si consume el modelo de IA o si se resuelve de forma determinista.',
+            platformEyebrow: "Oktavia Pro y Oktavia SP · La plataforma",
+            platformTitle: "Un motor, una interfaz web y ChatOps para operar la red de una empresa o la de un proveedor, con control continuo.",
+            platformBody: "Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol, grupo o equipo, configuración deseada, seguridad de red y remediación verificada en una sola consola. En una empresa, Oktavia Pro opera Campus, WAN, SD-WAN y seguridad; en un proveedor, Oktavia SP opera el núcleo IOS XR por NETCONF y los servicios de cada cliente —L3VPN, pseudowires e internet dedicado— con su estado real. Argos atraviesa todos los módulos y declara en cada acción si consume el modelo de IA.",
             platformChips: [
                 'Ciclo cerrado con aprobación',
                 'ChatOps con el costo de IA a la vista',
                 'Artefactos versionables',
                 'Multi-tenant',
-                'API REST con clave de API'
+                'API REST con clave de API',
+                'Pro para empresas · SP para proveedores'
             ],
             videoAria: 'Oktavia en video',
             videoEyebrow: 'Oktavia en video',
@@ -398,6 +399,8 @@
             cVer: "Verificación",
             cVerSub: "Vuelve a auditar",
             cNota: "Todo queda en el historial del cambio del Gemelo Digital y se exporta como evidencia. Si la verificación no pasa, el cambio no se da por bueno.",
+            argosSpTitle: "Argos en Oktavia SP",
+            argosSpBody: "En una red de proveedor, Argos suma los flujos del operador: da de alta pseudowires, L3VPN e internet dedicado con los datos de tu organización y el perfil del producto; cambia la QoS de todos los sitios de un cliente en un solo cambio; diagnostica un cliente, un sitio o un servicio con la ruta de LAN a LAN; y explica cada parámetro YANG del Diccionario NETCONF con los RFC y las guías de IOS XR.",
             familyMore: 'Ver más',
             argosAria: 'Argos, el ChatOps de red',
             argosEyebrow: 'Argos · ChatOps de red',
@@ -722,15 +725,16 @@
                 }
             ],
             trustLabel: 'Multi-vendor in production, and more vendors are integrated per project:',
-            platformEyebrow: 'Oktavia · The platform',
-            platformTitle: 'Oktavia: automation engine, web UI, and ChatOps for continuous-control network operations.',
-            platformBody: 'Oktavia unifies multi-vendor discovery, compliance by site, role, or device, desired configuration, network security, and verified remediation in one console. Argos, the ChatOps assistant, spans every module and states for each action whether it consumes the AI model or resolves deterministically.',
+            platformEyebrow: "Oktavia Pro and Oktavia SP · The platform",
+            platformTitle: "One engine, one web interface, and ChatOps to run an enterprise's network or a provider's, with continuous control.",
+            platformBody: "Oktavia unifies multi-vendor discovery, compliance by site, role, group, or device, desired configuration, network security, and verified remediation in a single console. In an enterprise, Oktavia Pro runs Campus, WAN, SD-WAN, and security; in a provider, Oktavia SP runs the IOS XR core over NETCONF and every customer's services —L3VPN, pseudowires, and dedicated internet— with their real state. Argos spans every module and states on each action whether it consumes the AI model.",
             platformChips: [
                 'Closed loop with approval',
                 'ChatOps with AI cost in plain sight',
                 'Versioned artifacts',
                 'Multi-tenant',
-                'REST API with API key'
+                'REST API with API key',
+                'Pro for enterprises · SP for providers'
             ],
             videoAria: 'Oktavia on video',
             videoEyebrow: 'Oktavia on video',
@@ -889,6 +893,8 @@
             cVer: "Verification",
             cVerSub: "Audits again",
             cNota: "Everything stays in the change history of the Digital Twin and exports as evidence. If verification fails, the change is not accepted.",
+            argosSpTitle: "Argos in Oktavia SP",
+            argosSpBody: "On a provider network, Argos adds the operator's flows: it provisions pseudowires, L3VPN, and dedicated internet with your organization's data and the product profile; changes the QoS of all of a customer's sites in a single change; diagnoses a customer, a site, or a service with the LAN-to-LAN path; and explains every YANG parameter of the NETCONF Dictionary with the RFCs and the IOS XR guides.",
             familyMore: 'See more',
             argosAria: 'Argos, the network ChatOps',
             argosEyebrow: 'Argos · network ChatOps',
