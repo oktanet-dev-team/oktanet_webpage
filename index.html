@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=ed2b76958c">
+    <link rel="stylesheet" href="style/home_style.css?v=f28f552df8">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -355,14 +355,19 @@
         <section class="platform-section" id="plataforma">
             <div class="container platform-grid">
                 <div class="platform-copy">
+                    <div class="section-marks">
                     <picture class="section-mark">
                         <source srcset="img/LOGO_Oktavia.webp" type="image/webp">
                         <img src="img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="512" height="512" loading="lazy" decoding="async">
                     </picture>
-                    <p class="eyebrow">Oktavia · La plataforma</p>
-                    <h2>Oktavia: motor de automatización, interfaz web y ChatOps para operar la red con control continuo.</h2>
+                    <picture class="section-mark section-mark--sp">
+                        <img src="img/LOGO_Oktavia_SP.png" alt="Logo de Oktavia SP" width="512" height="499" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                    <p class="eyebrow">Oktavia Pro y Oktavia SP · La plataforma</p>
+                    <h2>Un motor, una interfaz web y ChatOps para operar la red de una empresa o la de un proveedor, con control continuo.</h2>
                     <p>
-                        Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol o dispositivo, configuración deseada, seguridad de red y remediación verificada en una sola consola. Argos, el asistente de ChatOps, atraviesa todos los módulos y declara en cada acción si consume el modelo de IA o si se resuelve de forma determinista.
+                        Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol, grupo o equipo, configuración deseada, seguridad de red y remediación verificada en una sola consola. En una empresa, Oktavia Pro opera Campus, WAN, SD-WAN y seguridad; en un proveedor, Oktavia SP opera el núcleo IOS XR por NETCONF y los servicios de cada cliente —L3VPN, pseudowires e internet dedicado— con su estado real. Argos atraviesa todos los módulos y declara en cada acción si consume el modelo de IA.
                     </p>
                     <div class="chip-list" aria-label="Capacidades principales de Oktavia">
                         <span>Ciclo cerrado con aprobación</span>
@@ -370,6 +375,7 @@
                         <span>Artefactos versionables</span>
                         <span>Multi-tenant</span>
                         <span>API REST con clave de API</span>
+                        <span>Pro para empresas · SP para proveedores</span>
                     </div>
                 </div>
                 <div class="platform-visual platform-arch" role="img" aria-label="Cómo se conecta Oktavia" data-copy-aria="pArchAria">
@@ -760,10 +766,15 @@
 
         <section class="argos-section" id="argos" aria-label="Argos, el ChatOps de red">
             <div class="container">
-                <picture class="section-mark">
+                <div class="section-marks">
+                    <picture class="section-mark">
                     <source srcset="img/LOGO_Argos.webp" type="image/webp">
                     <img src="img/LOGO_Argos.png" alt="Logo de Argos" width="512" height="512" loading="lazy" decoding="async">
                 </picture>
+                    <picture class="section-mark section-mark--sp">
+                        <img src="img/LOGO_Argos_SP.png" alt="Logo de Argos para Oktavia SP" width="512" height="499" loading="lazy" decoding="async">
+                    </picture>
+                </div>
                 <p class="eyebrow">Argos · ChatOps de red</p>
                 <h2>Se le pregunta en lenguaje natural y responde con datos de tu red.</h2>
                 <p class="section-intro">Dos principios lo separan de un asistente genérico. Cada respuesta declara si consumió el modelo de IA o si se resolvió de forma determinista, así que el costo es visible antes de pulsar. Y ninguna acción que toque la red ocurre sin que una persona la apruebe.</p>
@@ -790,6 +801,13 @@
                     </article>
                 </div>
                 <p class="argos-nota">La mayoría de lo que hace Argos no consume el modelo: son consultas y cálculos sobre datos ya recolectados, con resultado reproducible. El modelo entra cuando hay que redactar, priorizar o interpretar lenguaje libre, y nunca inventa hallazgos: trabaja con los que el cálculo produjo.</p>
+                <div class="argos-sp">
+                    <img src="img/LOGO_Argos_SP.png" alt="" width="56" height="56" loading="lazy" decoding="async">
+                    <div>
+                        <h3 data-copy="argosSpTitle">Argos en Oktavia SP</h3>
+                        <p data-copy="argosSpBody">En una red de proveedor, Argos suma los flujos del operador: da de alta pseudowires, L3VPN e internet dedicado con los datos de tu organización y el perfil del producto; cambia la QoS de todos los sitios de un cliente en un solo cambio; diagnostica un cliente, un sitio o un servicio con la ruta de LAN a LAN; y explica cada parámetro YANG del Diccionario NETCONF con los RFC y las guías de IOS XR.</p>
+                    </div>
+                </div>
                 <article class="video-item argos-video">
                     <button class="video-caratula" type="button" data-video="seIST0rDvtA">
                         <img src="img/video-seIST0rDvtA.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -1374,7 +1392,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=1a5d9ca512"></script>
+    <script src="script/home_script.js?v=a00fbff0b4"></script>
     <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>
