@@ -27,6 +27,8 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Identificador de YouTube de cada video que aparece en la portada.
 VIDEOS = [
+    "mazagrtVnGw",   # Oktavia SP · parte 1: el Dashboard principal
+    "4IrBze8xf5U",   # Oktavia SP · parte 3: servicios, intención y cumplimiento
     "Q8iTsXJBCGQ",   # Postura de seguridad de tu red
     "Wq8VockarFo",   # Argos remediando: troubleshooting de BGP y GRE
     "jipqMPMiDxw",   # Cerrar el ciclo con Argos
@@ -38,6 +40,9 @@ VIDEOS = [
     "HmoXtXVi-io",   # Gemelo digital, de la deteccion a la remediacion
     "seIST0rDvtA",   # Argos en accion (va en la seccion de Argos)
 ]
+
+# Sólo en la página de Oktavia SP (oktavia-sp.html), no en la portada.
+VIDEOS_SP = ["6lC4DoSPzF8"]   # Oktavia SP · parte 2: Source of Truth
 
 # maxres no existe para todos los videos; se cae a la siguiente calidad.
 CALIDADES = ("maxresdefault", "sddefault", "hqdefault")
@@ -67,7 +72,7 @@ def descargar(vid: str) -> None:
 if __name__ == "__main__":
     import sys
     todas = "--todas" in sys.argv
-    for vid in VIDEOS:
+    for vid in VIDEOS + VIDEOS_SP:
         if not todas and os.path.exists(os.path.join(RAIZ, "img", f"video-{vid}.jpg")):
             continue
         descargar(vid)

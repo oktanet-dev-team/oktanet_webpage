@@ -3857,13 +3857,16 @@ body.nav-open::after { backdrop-filter: none; }
 /* ===================== Hero: el ciclo cerrado (en lugar de la captura) ===================== */
 .hero-loop { display: flex; align-items: center; justify-content: center; }
 .hero-loop svg { width: 100%; max-width: 640px; height: auto; overflow: visible; }
-.hero-loop .loop-ring { fill: none; stroke: url(#loopRing); stroke-width: 2.5; opacity: 0.55; }
-.hero-loop .loop-flow { fill: none; stroke: #7dd3fc; stroke-width: 3; stroke-dasharray: 60 977; stroke-linecap: round;
+.hero-loop .loop-ring { fill: none; stroke: url(#loopRing); stroke-width: 7; opacity: 0.95; stroke-linecap: round; }
+.hero-loop .loop-glow { fill: none; stroke: url(#loopRing); stroke-width: 18; opacity: 0.12; filter: blur(4px); }
+.hero-loop .loop-disk { fill: url(#loopDisk); }
+.hero-loop .loop-arrow { fill: none; stroke: #e6f2ff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.hero-loop .loop-flow { fill: none; stroke: #e0f2fe; stroke-width: 7; stroke-dasharray: 70 967; stroke-linecap: round;
     animation: loopFlow 7s linear infinite; filter: drop-shadow(0 0 6px rgba(125, 211, 252, 0.7)); }
 @keyframes loopFlow { to { stroke-dashoffset: -1037; } }
 @media (prefers-reduced-motion: reduce) { .hero-loop .loop-flow { animation: none; } }
-.hero-loop .loop-step circle { fill: #0b1a2b; stroke: #5fb6f2; stroke-width: 2; }
-.hero-loop .loop-n { fill: #e6f2ff; font: 800 15px Manrope, sans-serif; }
+.hero-loop .loop-step circle { fill: #0e2540; stroke: #7dd3fc; stroke-width: 3; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.45)); }
+.hero-loop .loop-n { fill: #ffffff; font: 800 17px Manrope, sans-serif; }
 .hero-loop .loop-label { fill: #d6e2f5; font: 700 22px Manrope, sans-serif; }
 .hero-loop .loop-pro { fill: #7dd3fc; font: 800 19px Manrope, sans-serif; }
 .hero-loop .loop-sp { fill: #c4b5fd; font: 800 19px Manrope, sans-serif; }
@@ -3970,3 +3973,13 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .licensing-plan-logos img { width: 50px; height: auto; }
 /* Oktavia SP en violeta también en su diagrama de referencia. */
 .ar-hub--sp rect { fill: #2c1658; stroke: #a78bfa; }
+
+/* Videos de Oktavia SP: etiqueta violeta sobre la carátula (las tres comparten la imagen del canal). */
+.video-caratula { position: relative; }
+.video-parte { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 5px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 800;
+    letter-spacing: 0.04em; color: #f5f3ff; background: rgba(109, 40, 217, 0.92); border: 1px solid rgba(196, 181, 253, 0.6); }
+.video-item--sp h3 { color: #ddd6fe; }
+.video-sp-link { margin: 18px 0 0; font-weight: 700; }
+.video-sp-link a { color: #c4b5fd; }
+.sp-videos .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 900px) { .sp-videos .video-grid { grid-template-columns: 1fr; } }
