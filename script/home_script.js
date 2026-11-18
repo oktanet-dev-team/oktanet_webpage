@@ -193,7 +193,7 @@
             navAria: 'Principal',
             navToggleOpen: 'Abrir menú',
             navToggleClose: 'Cerrar menú',
-            navLinks: ['Oktavia', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Docs Oktavia', 'Artículos', 'Academia'],
+            navLinks: ['Oktavia Pro', 'Argos', 'Servicios', 'Metodología', 'Casos de uso', 'Licencias', 'Cotizar', 'Recursos', 'Docs Oktavia', 'Artículos', 'Academia'],
             navSpLabel: 'Oktavia SP',
             navSpLinks: ['Presentación', 'Documentación'],
             spLandingHref: 'oktavia-sp.html',
@@ -310,6 +310,34 @@
             iaLocalHref: 'blog/ia-local-contexto-empresarial.html',
             securityVideoLinks: ['Ver el video de la postura de seguridad', 'Ver el video del ciclo cerrado'],
             familyAria: 'Oktanet, Oktavia y Argos',
+            productsEyebrow: "Dos productos, el mismo ciclo cerrado",
+            productsTitle: "Oktavia Pro para la red empresarial. Oktavia SP para el proveedor de servicios.",
+            productsIntro: "Las dos ediciones comparten el motor, el gemelo digital y a Argos; cambia lo que automatizan: la red de una empresa o los servicios que un proveedor entrega a sus clientes.",
+            proKicker: "Empresa",
+            proTagline: "Campus, WAN, SD-WAN y seguridad multivendor en un solo ciclo: auditar, proponer en el gemelo, aprobar, aplicar y verificar.",
+            proModules: ["Fuente de verdad: inventario, sitios, IPAM y topología", "Intención y Configurador por rol, sitio, grupo o equipo", "Cumplimiento de config y de estado de la red", "Gemelo digital con aprobación y verificación", "Postura de seguridad y vulnerabilidades (NVD y CISA KEV)", "Telemetría y FinOps por sitio y dominio", "Argos: ChatOps con IA local o en la nube", "Cisco IOS/IOS-XE, Fortinet, Juniper, Cisco SD-WAN y Meraki"],
+            proCta: "Conocer Oktavia Pro",
+            proSheet: "Ficha técnica",
+            spKicker: "Proveedor de servicios",
+            spTagline: "El núcleo y los servicios de cada cliente, de la intención a la verificación: L3VPN, pseudowires e internet dedicado sobre IOS XR por NETCONF.",
+            spModules: ["Servicios de cliente: una tabla con estado real y aprovisionamiento", "Perfiles de servicio: el producto que vendes, aplicado a todos sus servicios", "Núcleo: IS-IS, SR-MPLS, TI-LFA, BFD y BGP con RR", "Servicios gestionados: L3VPN, EVPN-VPWS, internet dedicado, QoS y multicast", "SR-TE con colores bajo demanda (ODN)", "Orden de servicio PE + CE con commit confirmado", "Diccionario NETCONF y constructor de servicios sin programar", "Argos: diagnóstico por cliente, sitio o servicio"],
+            spCta: "Conocer Oktavia SP",
+            spSheet: "Ficha técnica",
+            custEyebrow: "Oktavia SP · Servicios de cliente",
+            custTitle: "Cada servicio contratado, con su estado real en la red y su aprovisionamiento, en una sola tabla.",
+            custBody: "Lo que vende el área comercial y lo que configura ingeniería por fin se ven juntos: el cliente, su servicio, su perfil y si de verdad está arriba en la red. Desde la misma tabla se da de alta, se cambia o se da de baja, siempre por el gemelo y con tu aprobación.",
+            custPoints: ["Campos propios de tu organización (CRQ, data center, VLAN, EVI…) sin programar.", "Perfiles por producto: cambias el perfil y Oktavia propone el cambio a todos sus servicios.", "Ficha del cliente con su diagrama de punta a punta, políticas SR-TE y diagnóstico con Argos.", "Exporta a CSV o integra con tu CRM; el sitio de cada cliente queda ligado a sus servicios."],
+            custCta: "Ver Servicios de cliente",
+            archEyebrow: "Arquitecturas de referencia",
+            archTitle: "Dónde vive Oktavia en tu red.",
+            archCampus: "Campus",
+            archCampusSub: "switches · wireless",
+            archSec: "Seguridad",
+            archMgmt: "Gestión",
+            archCore: "Núcleo SR-MPLS · IS-IS",
+            archEntCap: "Oktavia Pro: una sola intención por dominio (campus, WAN, seguridad y gestión), auditada y llevada a cada equipo por el gemelo.",
+            archSpCap: "Oktavia SP: el núcleo (P, RR y el lado de núcleo de los PE) y los servicios de cada cliente del PE al CE, con su estado de punta a punta.",
+            navHeads: ["Productos", "Empresa y servicios", "Comprar", "Aprender"],
             familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
             familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
@@ -692,7 +720,7 @@
             navAria: 'Main',
             navToggleOpen: 'Open menu',
             navToggleClose: 'Close menu',
-            navLinks: ['Oktavia', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Oktavia Docs', 'Articles', 'Academy'],
+            navLinks: ['Oktavia Pro', 'Argos', 'Services', 'Methodology', 'Use Cases', 'Licensing', 'Pricing', 'Resources', 'Oktavia Docs', 'Articles', 'Academy'],
             navSpLabel: 'Oktavia SP',
             navSpLinks: ['Overview', 'Documentation'],
             spLandingHref: 'oktavia-sp-en.html',
@@ -809,6 +837,34 @@
             iaLocalHref: 'blog/ia-local-contexto-empresarial-en.html',
             securityVideoLinks: ['Watch the security posture video', 'Watch the closed-loop video'],
             familyAria: 'Oktanet, Oktavia and Argos',
+            productsEyebrow: "Two products, the same closed loop",
+            productsTitle: "Oktavia Pro for the enterprise network. Oktavia SP for the service provider.",
+            productsIntro: "Both editions share the engine, the digital twin and Argos; what changes is what they automate: an enterprise network or the services a provider delivers to its customers.",
+            proKicker: "Enterprise",
+            proTagline: "Multivendor campus, WAN, SD-WAN and security in one loop: audit, propose in the twin, approve, apply and verify.",
+            proModules: ["Source of truth: inventory, sites, IPAM and topology", "Intent and Configurator by role, site, group or device", "Configuration and network-state compliance", "Digital twin with approval and verification", "Security posture and vulnerabilities (NVD and CISA KEV)", "Telemetry and FinOps by site and domain", "Argos: ChatOps with local or cloud AI", "Cisco IOS/IOS-XE, Fortinet, Juniper, Cisco SD-WAN and Meraki"],
+            proCta: "Discover Oktavia Pro",
+            proSheet: "Datasheet",
+            spKicker: "Service provider",
+            spTagline: "The core and every customer's services, from intent to verification: L3VPN, pseudowires and dedicated internet on IOS XR over NETCONF.",
+            spModules: ["Customer services: one table with real state and provisioning", "Service profiles: the product you sell, applied to all its services", "Core: IS-IS, SR-MPLS, TI-LFA, BFD and BGP with RR", "Managed services: L3VPN, EVPN-VPWS, dedicated internet, QoS and multicast", "SR-TE with on-demand colors (ODN)", "PE + CE service order with confirmed commit", "NETCONF dictionary and no-code service builder", "Argos: diagnosis by customer, site or service"],
+            spCta: "Discover Oktavia SP",
+            spSheet: "Datasheet",
+            custEyebrow: "Oktavia SP · Customer services",
+            custTitle: "Every contracted service, with its real network state and its provisioning, in one table.",
+            custBody: "What sales sells and what engineering configures finally show up together: the customer, the service, its profile and whether it is really up in the network. From the same table you add, change or retire services, always through the twin and with your approval.",
+            custPoints: ["Your organization's own fields (CRQ, data center, VLAN, EVI…) with no coding.", "Profiles per product: change the profile and Oktavia proposes the change to all its services.", "Customer page with its end-to-end diagram, SR-TE policies and diagnosis with Argos.", "Export to CSV or integrate with your CRM; each customer site is linked to its services."],
+            custCta: "See Customer services",
+            archEyebrow: "Reference architectures",
+            archTitle: "Where Oktavia lives in your network.",
+            archCampus: "Campus",
+            archCampusSub: "switches · wireless",
+            archSec: "Security",
+            archMgmt: "Management",
+            archCore: "SR-MPLS core · IS-IS",
+            archEntCap: "Oktavia Pro: one intent per domain (campus, WAN, security and management), audited and taken to every device through the twin.",
+            archSpCap: "Oktavia SP: the core (P, RR and the core side of the PEs) and every customer's services from PE to CE, with their end-to-end state.",
+            navHeads: ["Products", "Company and services", "Buy", "Learn"],
             familyEyebrow: 'One platform, one assistant, one team that implements it',
             familyTitle: 'Three fronts so the network does what its standard says.',
             familyNames: ['Oktavia', 'Argos', 'Oktanet'],
@@ -1665,6 +1721,20 @@
         setTextList(document.querySelectorAll('.hero-actions a'), copy.heroActions);
         renderHeroPoints(copy);
 
+        // Secciones por clave (data-copy / data-copy-list): no dependen de la posición.
+        document.querySelectorAll('[data-copy]').forEach(function (el) {
+            if (typeof copy[el.dataset.copy] === 'string') {
+                el.textContent = copy[el.dataset.copy];
+            }
+        });
+        document.querySelectorAll('[data-copy-list]').forEach(function (lista) {
+            const textos = copy[lista.dataset.copyList];
+            if (Array.isArray(textos)) {
+                setTextList(lista.querySelectorAll('li'), textos);
+            }
+        });
+        setTextList(document.querySelectorAll('.nav-head'), copy.navHeads);
+
         setText(document.querySelector('.trust-grid > p'), copy.trustLabel);
 
         setText(document.querySelector('.platform-copy .eyebrow'), copy.platformEyebrow);
@@ -2202,10 +2272,16 @@
             brandLink.addEventListener('click', closeNav);
         }
 
-        window.addEventListener('resize', function () {
-            // Mismo umbral que el CSS del menu: por encima de 1340 la barra
-            // completa cabe y el menu desplegable no tiene sentido abierto.
-            if (window.innerWidth > 1340) {
+        // El menú es un panel lateral en todas las pantallas: Escape o clic
+        // fuera lo cierran (antes se cerraba solo por encima de 1340 px).
+        document.addEventListener('keydown', function (evento) {
+            if (evento.key === 'Escape' && body.classList.contains('nav-open')) {
+                closeNav();
+                navToggle.focus();
+            }
+        });
+        document.addEventListener('click', function (evento) {
+            if (body.classList.contains('nav-open') && !mainNav.contains(evento.target) && !navToggle.contains(evento.target)) {
                 closeNav();
             }
         });

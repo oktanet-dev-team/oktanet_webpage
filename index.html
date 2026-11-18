@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=cdfe538ce7">
+    <link rel="stylesheet" href="style/home_style.css?v=2818c41dc0">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -66,7 +66,8 @@
             </button>
 
             <nav class="main-nav" id="main-nav" aria-label="Principal">
-                <a href="#plataforma">Oktavia</a>
+                <div class="nav-head">Productos</div>
+                <a href="#plataforma">Oktavia Pro</a>
                 <a href="#argos">Argos</a>
                 <div class="nav-group">
                     <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="nav-sp-menu"><span class="nav-group-label">Oktavia SP</span><span class="nav-caret" aria-hidden="true"></span></button>
@@ -75,11 +76,14 @@
                         <a data-doc-sp href="docs/oktavia-sp.html">Documentación</a>
                     </div>
                 </div>
+                <div class="nav-head">Empresa y servicios</div>
                 <a href="#servicios-profesionales">Servicios</a>
                 <a href="#metodologia">Metodología</a>
                 <a href="#casos">Casos de uso</a>
+                <div class="nav-head">Comprar</div>
                 <a href="#licenciamiento">Licencias</a>
                 <a href="#cotizar">Cotizar</a>
+                <div class="nav-head">Aprender</div>
                 <a href="#recursos">Recursos</a>
                 <a data-docs href="docs/oktavia-docs.html">Docs Oktavia</a>
                 <a data-blog href="docs/oktavia-docs.html#articulos">Artículos</a>
@@ -128,6 +132,122 @@
                         <source srcset="img/DASHB_main.webp" type="image/webp">
                         <img src="img/DASHB_main.png" alt="Centro de automatización de red de Oktavia con el cumplimiento global y la actividad reciente" width="1400" height="701" loading="lazy" decoding="async">
                     </picture>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section" id="productos" aria-label="Oktavia Pro y Oktavia SP">
+            <div class="container">
+                <p class="eyebrow" data-copy="productsEyebrow">Dos productos, el mismo ciclo cerrado</p>
+                <h2 data-copy="productsTitle">Oktavia Pro para la red empresarial. Oktavia SP para el proveedor de servicios.</h2>
+                <p class="section-intro" data-copy="productsIntro">Las dos ediciones comparten el motor, el gemelo digital y a Argos; cambia lo que automatizan: la red de una empresa o los servicios que un proveedor entrega a sus clientes.</p>
+                <div class="products-grid">
+                    <article class="product-card product-card--pro">
+                        <p class="product-kicker" data-copy="proKicker">Empresa</p>
+                        <h3>Oktavia Pro</h3>
+                        <p class="product-tagline" data-copy="proTagline">Campus, WAN, SD-WAN y seguridad multivendor en un solo ciclo: auditar, proponer en el gemelo, aprobar, aplicar y verificar.</p>
+                        <ul class="product-modules" data-copy-list="proModules">
+                            <li>Fuente de verdad: inventario, sitios, IPAM y topología</li>
+                            <li>Intención y Configurador por rol, sitio, grupo o equipo</li>
+                            <li>Cumplimiento de config y de estado de la red</li>
+                            <li>Gemelo digital con aprobación y verificación</li>
+                            <li>Postura de seguridad y vulnerabilidades (NVD y CISA KEV)</li>
+                            <li>Telemetría y FinOps por sitio y dominio</li>
+                            <li>Argos: ChatOps con IA local o en la nube</li>
+                            <li>Cisco IOS/IOS-XE, Fortinet, Juniper, Cisco SD-WAN y Meraki</li>
+                        </ul>
+                        <div class="product-actions">
+                            <a class="btn btn-primary" href="#plataforma" data-copy="proCta">Conocer Oktavia Pro</a>
+                            <a class="btn btn-secondary" href="docs/oktavia.html" data-copy="proSheet">Ficha técnica</a>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--sp">
+                        <p class="product-kicker" data-copy="spKicker">Proveedor de servicios</p>
+                        <h3>Oktavia SP</h3>
+                        <p class="product-tagline" data-copy="spTagline">El núcleo y los servicios de cada cliente, de la intención a la verificación: L3VPN, pseudowires e internet dedicado sobre IOS XR por NETCONF.</p>
+                        <ul class="product-modules" data-copy-list="spModules">
+                            <li>Servicios de cliente: una tabla con estado real y aprovisionamiento</li>
+                            <li>Perfiles de servicio: el producto que vendes, aplicado a todos sus servicios</li>
+                            <li>Núcleo: IS-IS, SR-MPLS, TI-LFA, BFD y BGP con RR</li>
+                            <li>Servicios gestionados: L3VPN, EVPN-VPWS, internet dedicado, QoS y multicast</li>
+                            <li>SR-TE con colores bajo demanda (ODN)</li>
+                            <li>Orden de servicio PE + CE con commit confirmado</li>
+                            <li>Diccionario NETCONF y constructor de servicios sin programar</li>
+                            <li>Argos: diagnóstico por cliente, sitio o servicio</li>
+                        </ul>
+                        <div class="product-actions">
+                            <a class="btn btn-primary" href="oktavia-sp.html" data-copy="spCta">Conocer Oktavia SP</a>
+                            <a class="btn btn-secondary" href="docs/oktavia-sp.html" data-copy="spSheet">Ficha técnica</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="customers-section" id="servicios-de-cliente" aria-label="Servicios de cliente">
+            <div class="container customers-layout">
+                <div class="customers-copy">
+                    <p class="eyebrow" data-copy="custEyebrow">Oktavia SP · Servicios de cliente</p>
+                    <h2 data-copy="custTitle">Cada servicio contratado, con su estado real en la red y su aprovisionamiento, en una sola tabla.</h2>
+                    <p data-copy="custBody">Lo que vende el área comercial y lo que configura ingeniería por fin se ven juntos: el cliente, su servicio, su perfil y si de verdad está arriba en la red. Desde la misma tabla se da de alta, se cambia o se da de baja, siempre por el gemelo y con tu aprobación.</p>
+                    <ul class="customers-points" data-copy-list="custPoints">
+                        <li>Campos propios de tu organización (CRQ, data center, VLAN, EVI…) sin programar.</li>
+                        <li>Perfiles por producto: cambias el perfil y Oktavia propone el cambio a todos sus servicios.</li>
+                        <li>Ficha del cliente con su diagrama de punta a punta, políticas SR-TE y diagnóstico con Argos.</li>
+                        <li>Exporta a CSV o integra con tu CRM; el sitio de cada cliente queda ligado a sus servicios.</li>
+                    </ul>
+                    <a class="btn btn-primary" href="oktavia-sp.html#visibilidad" data-copy="custCta">Ver Servicios de cliente</a>
+                </div>
+                <figure class="customers-visual" aria-hidden="true">
+                    <div class="cust-table">
+                        <div class="cust-row cust-head"><span>Cliente</span><span>Servicio</span><span>Perfil</span><span>Estado</span></div>
+                        <div class="cust-row"><span>Cliente A</span><span class="k k-l3">L3VPN</span><span>Oro</span><span class="st st-up">arriba</span></div>
+                        <div class="cust-row"><span>Cliente A</span><span class="k k-pw">Pseudowire</span><span>Metro</span><span class="st st-up">arriba</span></div>
+                        <div class="cust-row"><span>Cliente B</span><span class="k k-in">Internet</span><span>Plata</span><span class="st st-deg">parcial</span></div>
+                        <div class="cust-row"><span>Cliente C</span><span class="k k-l3">L3VPN</span><span>Oro</span><span class="st st-up">arriba</span></div>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <section class="arch-section" id="arquitecturas" aria-label="Arquitecturas de referencia">
+            <div class="container">
+                <p class="eyebrow" data-copy="archEyebrow">Arquitecturas de referencia</p>
+                <h2 data-copy="archTitle">Dónde vive Oktavia en tu red.</h2>
+                <div class="arch-grid">
+                    <figure class="arch-card">
+                        <svg viewBox="0 0 520 300" role="img" aria-labelledby="arch-ent-t">
+                            <title id="arch-ent-t">Oktavia Pro en una red empresarial</title>
+                            <g class="ar-links"><path d="M260 92 L95 200"/><path d="M260 92 L210 200"/><path d="M260 92 L320 200"/><path d="M260 92 L430 200"/></g>
+                            <g class="ar-hub"><rect x="170" y="30" width="180" height="62" rx="14"/><text x="260" y="58" text-anchor="middle" class="t-hub">Oktavia Pro</text><text x="260" y="78" text-anchor="middle" class="t-sub">+ Argos</text></g>
+                            <g class="ar-dom d-campus"><rect x="40" y="200" width="110" height="74" rx="12"/><text x="95" y="228" text-anchor="middle" class="t-dom" data-copy="archCampus">Campus</text><text x="95" y="250" text-anchor="middle" class="t-sub" data-copy="archCampusSub">switches · wireless</text></g>
+                            <g class="ar-dom d-wan"><rect x="158" y="200" width="104" height="74" rx="12"/><text x="210" y="228" text-anchor="middle" class="t-dom">WAN</text><text x="210" y="250" text-anchor="middle" class="t-sub">SD-WAN · BGP</text></g>
+                            <g class="ar-dom d-sec"><rect x="270" y="200" width="104" height="74" rx="12"/><text x="322" y="228" text-anchor="middle" class="t-dom" data-copy="archSec">Seguridad</text><text x="322" y="250" text-anchor="middle" class="t-sub">firewalls</text></g>
+                            <g class="ar-dom d-mgmt"><rect x="382" y="200" width="104" height="74" rx="12"/><text x="434" y="228" text-anchor="middle" class="t-dom" data-copy="archMgmt">Gestión</text><text x="434" y="250" text-anchor="middle" class="t-sub">AAA · NTP · SNMP</text></g>
+                        </svg>
+                        <figcaption data-copy="archEntCap">Oktavia Pro: una sola intención por dominio (campus, WAN, seguridad y gestión), auditada y llevada a cada equipo por el gemelo.</figcaption>
+                    </figure>
+                    <figure class="arch-card">
+                        <svg viewBox="0 0 520 300" role="img" aria-labelledby="arch-sp-t">
+                            <title id="arch-sp-t">Oktavia SP en una red de proveedor</title>
+                            <g class="ar-hub"><rect x="175" y="16" width="170" height="52" rx="14"/><text x="260" y="40" text-anchor="middle" class="t-hub">Oktavia SP</text><text x="260" y="58" text-anchor="middle" class="t-sub">NETCONF · CLI</text></g>
+                            <g class="ar-links"><path d="M260 68 L130 140"/><path d="M260 68 L260 140"/><path d="M260 68 L390 140"/></g>
+                            <rect class="ar-core" x="170" y="118" width="180" height="86" rx="40"/>
+                            <text x="260" y="140" text-anchor="middle" class="t-sub" data-copy="archCore">Núcleo SR-MPLS · IS-IS</text>
+                            <g class="ar-node n-p"><circle cx="260" cy="168" r="20"/><text x="260" y="173" text-anchor="middle">P/RR</text></g>
+                            <g class="ar-node n-pe"><rect x="104" y="150" width="56" height="36" rx="10"/><text x="132" y="173" text-anchor="middle">PE</text></g>
+                            <g class="ar-node n-pe"><rect x="360" y="150" width="56" height="36" rx="10"/><text x="388" y="173" text-anchor="middle">PE</text></g>
+                            <path class="ar-core-link" d="M160 168 L240 168 M280 168 L360 168"/>
+                            <g class="ar-node n-ce"><circle cx="50" cy="250" r="22"/><text x="50" y="255" text-anchor="middle">CE</text></g>
+                            <g class="ar-node n-ce"><circle cx="470" cy="250" r="22"/><text x="470" y="255" text-anchor="middle">CE</text></g>
+                            <path class="ar-svc s-l3" d="M68 238 C 110 210, 120 200, 132 186"/><path class="ar-svc s-l3" d="M452 238 C 410 210, 400 200, 388 186"/>
+                            <path class="ar-svc s-pw" d="M72 256 C 200 300, 320 300, 448 256"/>
+                            <text x="260" y="270" text-anchor="middle" class="t-svc s-pw-t">EVPN-VPWS</text>
+                            <text x="58" y="204" text-anchor="middle" class="t-svc s-l3-t">L3VPN</text>
+                            <text x="462" y="204" text-anchor="middle" class="t-svc s-l3-t">L3VPN</text>
+                        </svg>
+                        <figcaption data-copy="archSpCap">Oktavia SP: el núcleo (P, RR y el lado de núcleo de los PE) y los servicios de cada cliente del PE al CE, con su estado de punta a punta.</figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
@@ -1190,7 +1310,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=54ac2c24f9"></script>
+    <script src="script/home_script.js?v=494f29c24f"></script>
     <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>

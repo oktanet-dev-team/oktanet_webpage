@@ -3757,3 +3757,91 @@ body.quote-modal-open {
         align-items: center;
     }
 }
+
+/* ===================== Menú lateral (todas las pantallas) =====================
+   La barra de arriba ya no lleva la fila de enlaces: el botón ☰ abre un panel
+   lateral con los enlaces agrupados (Productos, Empresa, Comprar, Aprender). */
+.nav-shell { display: flex !important; align-items: center; gap: 14px; }
+.nav-shell .brand { margin-right: auto; }
+.nav-toggle { display: inline-block !important; order: -1; margin-right: 6px; }
+.main-nav {
+    position: fixed !important; top: 0; left: 0; bottom: 0; z-index: 1200;
+    width: min(340px, 86vw);
+    display: flex !important; flex-direction: column; align-items: stretch !important; justify-content: flex-start !important;
+    gap: 2px !important; padding: 84px 16px 24px !important; margin: 0 !important; overflow-y: auto;
+    background: rgba(4, 14, 26, 0.98) !important; border: 0 !important; border-right: 1px solid #152637 !important;
+    border-radius: 0 !important; box-shadow: 18px 0 40px rgba(0, 0, 0, 0.45) !important;
+    transform: translateX(-105%); transition: transform 240ms ease, visibility 240ms; visibility: hidden;
+}
+body.nav-open .main-nav { transform: translateX(0) !important; visibility: visible !important; }
+body.nav-open::after { content: ""; position: fixed; inset: 0; z-index: 1100; background: rgba(1, 6, 12, 0.55); backdrop-filter: blur(2px); }
+body.nav-open .nav-toggle { position: relative; z-index: 1301; }
+.main-nav a {
+    display: flex !important; width: 100%; min-height: 0 !important; padding: 9px 12px !important; border-radius: 10px !important;
+    color: #cfe0f2 !important; font-size: 0.98rem !important; font-weight: 600 !important; border: 0 !important; white-space: normal;
+}
+.main-nav a::after { display: none !important; }
+.main-nav a:hover, .main-nav a:focus-visible { background: rgba(56, 189, 248, 0.12) !important; color: #ffffff !important; }
+.main-nav .nav-head { margin: 14px 12px 4px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #5fb6f2; }
+.main-nav .nav-head:first-child { margin-top: 0; }
+.main-nav .nav-group { width: 100%; }
+.main-nav .nav-group-toggle { width: 100%; justify-content: space-between; padding: 9px 12px; border-radius: 10px; }
+.main-nav .nav-submenu { position: static !important; box-shadow: none !important; border: 0 !important; background: transparent !important;
+    padding: 0 0 0 12px !important; margin: 0 !important; min-width: 0 !important; transform: none !important; }
+
+/* ===================== Productos, Servicios de cliente y arquitecturas ===================== */
+.products-section, .customers-section, .arch-section { padding: 72px 0; }
+.products-section .section-intro { max-width: 860px; color: #b8c9dc; }
+.products-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+.product-card { position: relative; padding: 28px 26px 24px; border-radius: 20px; border: 1px solid rgba(95, 182, 242, 0.25);
+    background: linear-gradient(160deg, rgba(14, 38, 66, 0.85), rgba(6, 16, 30, 0.9)); display: flex; flex-direction: column; gap: 12px; }
+.product-card--sp { border-color: rgba(167, 139, 250, 0.35); background: linear-gradient(160deg, rgba(40, 24, 72, 0.8), rgba(8, 14, 30, 0.92)); }
+.product-kicker { margin: 0; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #5fb6f2; }
+.product-card--sp .product-kicker { color: #c4b5fd; }
+.product-card h3 { margin: 0; font-size: 2rem; color: #ffffff; }
+.product-tagline { margin: 0; color: #cfdcea; line-height: 1.55; }
+.product-modules { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 8px; }
+.product-modules li { position: relative; padding-left: 26px; color: #dbe7f3; line-height: 1.45; }
+.product-modules li::before { content: ""; position: absolute; left: 4px; top: 7px; width: 10px; height: 10px; border-radius: 3px; background: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.6); }
+.product-card--sp .product-modules li::before { background: #a78bfa; box-shadow: 0 0 10px rgba(167, 139, 250, 0.6); }
+.product-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.customers-section { background: linear-gradient(180deg, rgba(40, 24, 72, 0.18), transparent); }
+.customers-layout { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.customers-copy p { color: #cfdcea; line-height: 1.6; }
+.customers-points { margin: 10px 0 20px; padding-left: 20px; color: #dbe7f3; display: grid; gap: 8px; }
+.customers-visual { margin: 0; }
+.cust-table { border: 1px solid rgba(167, 139, 250, 0.35); border-radius: 16px; overflow: hidden; background: rgba(6, 14, 28, 0.9); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); }
+.cust-row { display: grid; grid-template-columns: 1.1fr 1fr 0.7fr 0.8fr; gap: 8px; padding: 12px 16px; border-top: 1px solid rgba(143, 162, 184, 0.14); color: #dbe7f3; font-size: 0.92rem; align-items: center; }
+.cust-head { border-top: 0; background: rgba(167, 139, 250, 0.12); color: #c4b5fd; font-weight: 700; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.cust-row .k, .cust-row .st { justify-self: start; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; }
+.k-l3 { background: rgba(56, 189, 248, 0.16); color: #7dd3fc; } .k-pw { background: rgba(167, 139, 250, 0.2); color: #c4b5fd; } .k-in { background: rgba(251, 146, 60, 0.2); color: #fdba74; }
+.st-up { background: rgba(34, 197, 94, 0.18); color: #86efac; } .st-deg { background: rgba(251, 191, 36, 0.2); color: #fde047; }
+.arch-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 26px; }
+.arch-card { margin: 0; padding: 18px; border-radius: 18px; border: 1px solid rgba(95, 182, 242, 0.22); background: rgba(6, 16, 30, 0.85); }
+.arch-card svg { width: 100%; height: auto; display: block; }
+.arch-card figcaption { margin-top: 10px; color: #b8c9dc; font-size: 0.92rem; line-height: 1.5; }
+.ar-links path { stroke: rgba(95, 182, 242, 0.45); stroke-width: 2; stroke-dasharray: 5 5; fill: none; }
+.ar-hub rect { fill: rgba(14, 50, 90, 0.95); stroke: #38bdf8; stroke-width: 2; }
+.t-hub { fill: #ffffff; font-size: 19px; font-weight: 800; }
+.t-sub { fill: #9fb3c8; font-size: 12px; }
+.ar-dom rect { fill: rgba(10, 26, 46, 0.95); stroke-width: 2; }
+.d-campus rect { stroke: #34d399; } .d-wan rect { stroke: #38bdf8; } .d-sec rect { stroke: #f472b6; } .d-mgmt rect { stroke: #fbbf24; }
+.t-dom { fill: #e2ecf6; font-size: 15px; font-weight: 700; }
+.ar-core { fill: rgba(245, 158, 11, 0.07); stroke: #f59e0b; stroke-width: 2; stroke-dasharray: 6 5; }
+.ar-core-link { stroke: #f59e0b; stroke-width: 3; fill: none; }
+.ar-node text { fill: #ffffff; font-size: 13px; font-weight: 800; }
+.n-p circle { fill: rgba(245, 158, 11, 0.25); stroke: #f59e0b; stroke-width: 2; }
+.n-pe rect { fill: rgba(56, 189, 248, 0.2); stroke: #38bdf8; stroke-width: 2; }
+.n-ce circle { fill: rgba(52, 211, 153, 0.2); stroke: #34d399; stroke-width: 2; }
+.ar-svc { fill: none; stroke-width: 3; }
+.s-l3 { stroke: #38bdf8; } .s-pw { stroke: #a78bfa; stroke-dasharray: 7 5; }
+.t-svc { font-size: 12px; font-weight: 800; }
+.s-l3-t { fill: #7dd3fc; } .s-pw-t { fill: #c4b5fd; }
+@media (max-width: 900px) {
+    .products-grid, .arch-grid, .customers-layout { grid-template-columns: 1fr; }
+    .nav-cta { display: none; }
+}
+/* El panel queda arriba del velo: la cabecera sube de capa mientras está abierto. */
+body.nav-open .site-header { z-index: 1300 !important; }
+body.nav-open::after { backdrop-filter: none; }
+.main-nav .nav-group-toggle { font-size: 0.98rem !important; font-weight: 600 !important; color: #cfe0f2 !important; min-height: 0 !important; border: 0 !important; background: transparent; }
