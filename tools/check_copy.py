@@ -139,6 +139,13 @@ def main() -> int:
         if a is not None and b is not None and a != b:
             fallas.append(f"{clave}: {a} elementos en espanol y {b} en ingles")
 
+    # Lo que se traduce por clave (data-copy, data-copy-list, data-copy-aria):
+    # cada clave del HTML existe en los dos idiomas.
+    for clave in sorted(set(re.findall(r'data-copy(?:-list|-aria)?="([^"]+)"', html))):
+        for nombre, cuerpo in (("espanol", es), ("ingles", en)):
+            if clave not in claves(cuerpo):
+                fallas.append(f"data-copy «{clave}» no existe en {nombre}")
+
     tarjetas = html.count('class="service-card"')
     for clave in ("serviceTitles", "serviceBodies", "serviceIconAlts"):
         n = largo_de_arreglo(es, clave)
@@ -174,9 +181,10 @@ def main() -> int:
         fallas.append(f"licensingPlanItems tiene {len(por_plan_es)} listas y el HTML {planes} licencias")
     else:
         seccion = html[html.index('class="licensing-plans"'):html.index("</section>", html.index('class="licensing-plans"'))]
-        if sum(por_plan_es) != seccion.count("<li><strong>"):
+        n_html = len(re.findall(r"<li[^>]*><strong>", seccion))
+        if sum(por_plan_es) != n_html:
             fallas.append(f"licensingPlanItems suma {sum(por_plan_es)} modulos y el HTML lista "
-                          f"{seccion.count('<li><strong>')}")
+                          f"{n_html}")
 
     # Los videos: mismo numero de titulos, cuerpos y tarjetas en el HTML.
     # Cuenta tambien los que llevan otra clase (el de la seccion de Argos):

@@ -20,7 +20,6 @@
     const footerLinks = document.querySelectorAll('.footer-links a');
     const copyrightText = document.getElementById('copyright-text');
     const trustStrip = document.querySelector('.trust-strip');
-    const showcaseSectionEl = document.querySelector('.showcase-section');
     const featureFocusSectionEl = document.querySelector('.feature-focus-section');
     const metricsSectionLabelEl = document.querySelector('.metrics-section');
     const licensingSectionEl = document.querySelector('.licensing-section');
@@ -33,10 +32,8 @@
     const contactIntent = document.getElementById('contact-intent');
     const resourcesSectionEl = document.querySelector('.resources-section');
     const brandImage = document.querySelector('.brand img');
-    const heroImage = document.querySelector('.hero-visual img');
     const platformImage = document.querySelector('.platform-visual img');
     const serviceIcons = document.querySelectorAll('.services-grid .service-card .service-icon');
-    const showcaseImages = document.querySelectorAll('.showcase-grid img');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const globalAnimationDelayMs = 140;
     const storageKey = 'oktanet-language';
@@ -150,6 +147,9 @@
                 const nombre = document.createElement('strong');
 
                 nombre.textContent = modulo.module;
+                if (/^Argos\b/.test(modulo.module)) {
+                    item.className = 'licensing-argos';
+                }
                 item.appendChild(nombre);
                 item.appendChild(document.createTextNode(modulo.description));
                 fragmento.appendChild(item);
@@ -206,7 +206,6 @@
                 en: 'English'
             },
             trustAria: 'Tecnologías compatibles',
-            showcaseAria: 'Paneles de ejemplo',
             featureFocusAria: 'Capacidades destacadas',
             metricsAria: 'Impacto operativo',
             metricsEyebrow: 'Impacto medible',
@@ -339,16 +338,37 @@
             archSpCap: "Oktavia SP: el núcleo (P, RR y el lado de núcleo de los PE) y los servicios de cada cliente del PE al CE, con su estado de punta a punta.",
             navHeads: ["Productos", "Empresa y servicios", "Comprar", "Aprender"],
             navHome: "Inicio",
-            familyEyebrow: 'Una plataforma, un asistente, un equipo que lo implementa',
-            familyTitle: 'Tres frentes para que la red haga lo que dice su estándar.',
-            familyNames: ['Oktavia', 'Argos', 'Oktanet'],
-            familyRoles: ['La plataforma', 'La capa de ChatOps', 'Servicios profesionales'],
-            familyBodies: [
-                'Descubre, audita, corrige y verifica sobre Cisco, Fortinet y Juniper. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.',
-                'La forma de operar Oktavia: conversando o con un botón, desde cualquier pantalla. Cada acción declara si usa IA antes de ejecutarse, y ningún cambio se aplica sin aprobación.',
-                'Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada.'
-            ],
-            familyLogoAlts: ['Logo de Oktavia', 'Logo de Argos', 'Logo de Oktanet'],
+            familyEyebrow: "Dos plataformas, un asistente y el equipo que lo implementa",
+            familyTitle: "Cuatro frentes para que la red haga lo que dice su estándar.",
+            familyNames: ["Oktavia Pro", "Oktavia SP", "Argos", "Oktanet"],
+            familyRoles: ["La plataforma para empresas", "La plataforma para proveedores", "La capa de ChatOps", "Servicios profesionales"],
+            familyBodies: ["Descubre, audita, corrige y verifica Campus, WAN, SD-WAN y seguridad multivendor. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.", "El núcleo IOS XR y los servicios de cada cliente: L3VPN, pseudowires e internet dedicado, de la intención a la verificación, con su estado real en una sola tabla.", "La forma de operar Oktavia: conversando o con un botón, desde cualquier pantalla. Cada acción declara si usa IA antes de ejecutarse, y ningún cambio se aplica sin aprobación.", "Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada."],
+            familyLogoAlts: ["Logo de Oktavia Pro", "Logo de Oktavia SP", "Logo de Argos", "Logo de Oktanet"],
+            hLoopAria: "El ciclo cerrado de Oktavia",
+            hLoop1: "Descubre",
+            hLoop2: "Audita",
+            hLoop3: "Propone",
+            hLoop3b: "en el gemelo",
+            hLoop4: "Aprueba",
+            hLoop5: "Aplica",
+            hLoop6: "Verifica",
+            hLoopCenter: "el mismo ciclo, con tu aprobación",
+            hLoopFoot: "Argos lo recorre conversando o con un botón · la IA nunca decide si algo cumple",
+            ndAria: "Servicios nuevos sin desarrollo",
+            ndEyebrow: "Sin desarrollo",
+            ndTitle: "Un servicio nuevo, a partir de una configuración que ya funciona.",
+            ndIntro: "No hace falta esperar a que alguien programe una plantilla. Tu ingeniero pega la config de un equipo donde el servicio ya opera, marca lo que cambia de un equipo a otro y Oktavia arma el servicio completo.",
+            ndSteps: ["Pega la configuración de un equipo, o elige los parámetros en el Diccionario NETCONF de IOS XR.", "Marca los valores que cambian: cada uno se vuelve un parámetro con su tipo y su rango.", "Oktavia arma la plantilla, el esquema y las reglas de cumplimiento, con IA o sin ella.", "Lo declaras donde aplica y llega a la red por el gemelo, con tu aprobación y verificación."],
+            ndConfig: "Config de un equipo que ya funciona",
+            ndArrow: "marca los valores",
+            ndService: "Servicio «VLAN de voz» con sus parámetros",
+            ndColParam: "Parámetro",
+            ndColType: "Tipo",
+            ndColEx: "Ejemplo",
+            ndTypeInt: "entero 1-4094",
+            ndTypeText: "texto",
+            ndTypeIf: "interfaz",
+            ndFoot: "Plantilla · esquema · reglas de cumplimiento · rollback",
             familyMore: 'Ver más',
             argosAria: 'Argos, el ChatOps de red',
             argosEyebrow: 'Argos · ChatOps de red',
@@ -420,16 +440,6 @@
                 'Salud de red, riesgo de configuración, desvíos, capacidad y puertos, en reportes descargables listos para auditoría.',
                 'Métricas en tiempo real y reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU. Se licencia por separado.'
             ],
-            showcaseTitle: 'Una sola fuente de verdad, y una intención declarada sobre ella.',
-            showcaseIntro: 'El descubrimiento de red construye el inventario y la topología, que son la fuente de verdad. Sobre ella se declara la intención: lo que cada equipo debería tener configurado.',
-            showcaseCaptions: [
-                'El configurador: la herramienta de intención, siempre disponible para crear o editar un servicio a mano.',
-                'Inventario técnico consolidado, con trazabilidad de software, hardware y metadatos. Lo produce el descubrimiento.',
-                'Topología física y plano de control, con vistas de enrutamiento (BGP/OSPF) para analizar el impacto de un cambio.'
-            ],
-            showcaseNotaAntes: 'El camino habitual para declarar o editar un servicio es pedírselo a ',
-            showcaseNotaEnlace: 'Argos',
-            showcaseNotaDespues: ', que propone el cambio conversando. El configurador sigue ahí para cuando prefieras hacerlo a mano.',
             featureFocusEyebrow: 'Capacidades destacadas',
             featureFocusTitle: 'Lo que separa a Oktavia de una herramienta de auditoría: cerrar el ciclo, no sólo señalarlo.',
             featureFocusIntro: 'Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien. El mismo ciclo corrige desviaciones y da de alta servicios nuevos.',
@@ -630,7 +640,6 @@
             submitButton: 'Enviar solicitud',
             footerTagline: 'Oktavia, tu red bajo control.',
             copyright: 'Todos los derechos reservados.',
-            heroImageAlt: 'Centro de automatización de red de Oktavia con el cumplimiento global y la actividad reciente',
             platformImageAlt: 'Vista de cumplimiento de configuración en Oktavia',
             serviceIconAlts: [
                 'Icono de visibilidad de red',
@@ -648,11 +657,6 @@
                 'Icono de direccionamiento IP',
                 'Icono de reportes',
                 'Icono de telemetría'
-            ],
-            showcaseImageAlts: [
-                'Tablero de cumplimiento general',
-                'Tablero de inventario',
-                'Tablero de topología'
             ],
             featureFocusImageAlts: [
                 'Gemelo Digital de Oktavia con un cambio propuesto y sus botones de aprobar y ejecutar',
@@ -681,7 +685,6 @@
                 en: 'English'
             },
             trustAria: 'Compatible technologies',
-            showcaseAria: 'Sample dashboards',
             featureFocusAria: 'Highlighted capabilities',
             metricsAria: 'Operational impact',
             metricsEyebrow: 'Measurable impact',
@@ -814,16 +817,37 @@
             archSpCap: "Oktavia SP: the core (P, RR and the core side of the PEs) and every customer's services from PE to CE, with their end-to-end state.",
             navHeads: ["Products", "Company and services", "Buy", "Learn"],
             navHome: "Home",
-            familyEyebrow: 'One platform, one assistant, one team that implements it',
-            familyTitle: 'Three fronts so the network does what its standard says.',
-            familyNames: ['Oktavia', 'Argos', 'Oktanet'],
-            familyRoles: ['The platform', 'The ChatOps layer', 'Professional services'],
-            familyBodies: [
-                'It discovers, audits, fixes, and verifies across Cisco, Fortinet, and Juniper. Every run leaves a downloadable artifact and every change goes through a person.',
-                'The way to run Oktavia: by conversation or with a button, from any screen. Every action states whether it uses AI before it runs, and no change is applied without approval.',
-                'Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed.'
-            ],
-            familyLogoAlts: ['Oktavia logo', 'Argos logo', 'Oktanet logo'],
+            familyEyebrow: "Two platforms, one assistant, and the team that implements it",
+            familyTitle: "Four fronts so the network does what its standard says.",
+            familyNames: ["Oktavia Pro", "Oktavia SP", "Argos", "Oktanet"],
+            familyRoles: ["The platform for enterprises", "The platform for providers", "The ChatOps layer", "Professional services"],
+            familyBodies: ["Discovers, audits, fixes, and verifies Campus, WAN, SD-WAN, and multi-vendor security. Every run leaves a downloadable artifact and every change goes through a person.", "The IOS XR core and every customer's services: L3VPN, pseudowires, and dedicated internet, from intent to verification, with their real state in one table.", "The way to operate Oktavia: by conversation or with a button, from any screen. Every action declares whether it uses AI before it runs, and no change is applied without approval.", "Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed."],
+            familyLogoAlts: ["Oktavia Pro logo", "Oktavia SP logo", "Argos logo", "Oktanet logo"],
+            hLoopAria: "Oktavia's closed loop",
+            hLoop1: "Discover",
+            hLoop2: "Audit",
+            hLoop3: "Propose",
+            hLoop3b: "in the twin",
+            hLoop4: "Approve",
+            hLoop5: "Apply",
+            hLoop6: "Verify",
+            hLoopCenter: "the same loop, with your approval",
+            hLoopFoot: "Argos runs it by conversation or with a button · AI never decides compliance",
+            ndAria: "New services without development",
+            ndEyebrow: "No development",
+            ndTitle: "A new service, from a configuration that already works.",
+            ndIntro: "No need to wait for someone to code a template. Your engineer pastes the config of a device where the service already runs, marks what changes from one device to another, and Oktavia builds the complete service.",
+            ndSteps: ["Paste a device configuration, or pick the parameters in the IOS XR NETCONF Dictionary.", "Mark the values that change: each one becomes a parameter with its type and range.", "Oktavia builds the template, the schema, and the compliance rules, with or without AI.", "You declare it where it applies and it reaches the network through the twin, with your approval and verification."],
+            ndConfig: "Config of a device that already works",
+            ndArrow: "mark the values",
+            ndService: "“Voice VLAN” service with its parameters",
+            ndColParam: "Parameter",
+            ndColType: "Type",
+            ndColEx: "Example",
+            ndTypeInt: "integer 1-4094",
+            ndTypeText: "text",
+            ndTypeIf: "interface",
+            ndFoot: "Template · schema · compliance rules · rollback",
             familyMore: 'See more',
             argosAria: 'Argos, the network ChatOps',
             argosEyebrow: 'Argos · network ChatOps',
@@ -895,16 +919,6 @@
                 'Network health, configuration risk, drift, capacity, and ports, in downloadable reports ready for audit.',
                 'Real-time metrics and rules that react on their own to BGP or OSPF drops and CPU thresholds. Licensed separately.'
             ],
-            showcaseTitle: 'One source of truth, and a declared intent on top of it.',
-            showcaseIntro: 'Network discovery builds the inventory and the topology, which are the source of truth. Intent is declared on top of it: what each device should have configured.',
-            showcaseCaptions: [
-                'The configurator: the intent tool, always available to create or edit a service by hand.',
-                'Consolidated technical inventory, with software, hardware, and metadata traceability. Discovery produces it.',
-                'Physical and control-plane topology, with routing views (BGP/OSPF) to analyze the impact of a change.'
-            ],
-            showcaseNotaAntes: 'The usual path to declare or edit a service is to ask ',
-            showcaseNotaEnlace: 'Argos',
-            showcaseNotaDespues: ', which proposes the change by conversation. The configurator is still there for when you prefer to do it by hand.',
             featureFocusEyebrow: 'Highlighted capabilities',
             featureFocusTitle: 'What separates Oktavia from an audit tool: closing the loop, not just pointing at it.',
             featureFocusIntro: 'Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right. The same cycle fixes deviations and rolls out new services.',
@@ -1105,7 +1119,6 @@
             submitButton: 'Send Request',
             footerTagline: 'Oktavia, your network under control.',
             copyright: 'All rights reserved.',
-            heroImageAlt: 'Oktavia network automation center showing global compliance and recent activity',
             platformImageAlt: 'Configuration compliance view in Oktavia',
             serviceIconAlts: [
                 'Network visibility icon',
@@ -1123,11 +1136,6 @@
                 'IP addressing icon',
                 'Reports icon',
                 'Telemetry icon'
-            ],
-            showcaseImageAlts: [
-                'General compliance dashboard',
-                'Inventory dashboard',
-                'Topology dashboard'
             ],
             featureFocusImageAlts: [
                 'Oktavia Digital Twin showing a proposed change with its approve and execute buttons',
@@ -1553,9 +1561,6 @@
             trustStrip.setAttribute('aria-label', copy.trustAria);
         }
 
-        if (showcaseSectionEl) {
-            showcaseSectionEl.setAttribute('aria-label', copy.showcaseAria);
-        }
 
         if (featureFocusSectionEl) {
             featureFocusSectionEl.setAttribute('aria-label', copy.featureFocusAria);
@@ -1623,6 +1628,11 @@
                 el.textContent = copy[el.dataset.copy];
             }
         });
+        document.querySelectorAll('[data-copy-aria]').forEach(function (el) {
+            if (typeof copy[el.dataset.copyAria] === 'string') {
+                el.setAttribute('aria-label', copy[el.dataset.copyAria]);
+            }
+        });
         document.querySelectorAll('[data-copy-list]').forEach(function (lista) {
             const textos = copy[lista.dataset.copyList];
             if (Array.isArray(textos)) {
@@ -1649,7 +1659,8 @@
         setTextList(document.querySelectorAll('.family-card p:not(.family-role)'), copy.familyBodies);
         setAltList(document.querySelectorAll('.family-logo img'), copy.familyLogoAlts);
 
-        setTextList(document.querySelectorAll('.family-ir'), [copy.familyMore, copy.familyMore, copy.familyMore]);
+        const irFamilia = document.querySelectorAll('.family-ir');
+        setTextList(irFamilia, Array.prototype.map.call(irFamilia, function () { return copy.familyMore; }));
 
         if (argosSectionEl) {
             argosSectionEl.setAttribute('aria-label', copy.argosAria);
@@ -1713,22 +1724,6 @@
         setText(document.querySelector('.services-section h2'), copy.servicesTitle);
         setTextList(document.querySelectorAll('.services-grid .service-card h3'), copy.serviceTitles);
         setTextList(document.querySelectorAll('.services-grid .service-card p'), copy.serviceBodies);
-
-        setText(document.querySelector('.showcase-section h2'), copy.showcaseTitle);
-        setText(document.querySelector('.showcase-section .section-intro'), copy.showcaseIntro);
-        setTextList(document.querySelectorAll('.showcase-grid figcaption'), copy.showcaseCaptions);
-
-        // La nota lleva un enlace en medio: se arma por DOM para no perderlo.
-        const notaGaleria = document.querySelector('.showcase-nota');
-
-        if (notaGaleria && typeof copy.showcaseNotaAntes === 'string') {
-            const enlace = document.createElement('a');
-            enlace.href = '#argos';
-            enlace.textContent = copy.showcaseNotaEnlace;
-            notaGaleria.textContent = copy.showcaseNotaAntes;
-            notaGaleria.appendChild(enlace);
-            notaGaleria.appendChild(document.createTextNode(copy.showcaseNotaDespues));
-        }
 
         setText(document.querySelector('.feature-focus-section .eyebrow'), copy.featureFocusEyebrow);
         setText(document.querySelector('.feature-focus-section h2'), copy.featureFocusTitle);
@@ -1862,9 +1857,6 @@
             brandImage.alt = copy.brandLogoAlt;
         }
 
-        if (heroImage) {
-            heroImage.alt = copy.heroImageAlt;
-        }
 
         if (platformImage) {
             platformImage.alt = copy.platformImageAlt;
@@ -1872,7 +1864,6 @@
 
         setServiceIconLabels(serviceIcons, copy.serviceIconAlts);
         setAltList(document.querySelectorAll('.feature-focus-shot img'), copy.featureFocusImageAlts);
-        setAltList(showcaseImages, copy.showcaseImageAlts);
 
         langOptions.forEach(function (option) {
             const optionLang = option.dataset.lang;

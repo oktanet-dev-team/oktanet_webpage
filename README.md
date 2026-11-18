@@ -58,6 +58,10 @@ tools/                  Scripts de mantenimiento (no se publican)
                         misma barra con el menú en inglés; correrlo al agregar una
                         página de esas, y después stamp_assets.py
   check_datos.py        Falla si un artículo lleva direcciones o nombres reales
+  build_sp_theme.py     Genera style/edition_sp.css (Oktavia SP en violeta) desde las hojas;
+                        correrlo tras cambiar colores; --check falla si quedó vieja.
+                        Las páginas de SP llevan <body class="edition-sp"> y el logo
+                        img/LOGO_Oktavia_SP.png
   build_og.py           Genera la imagen que se ve al compartir el enlace
   build_videos.py       Descarga las carátulas de los vídeos de YouTube
   to_dark.py            Convirtió la paleta a oscura (histórico, no se re-ejecuta)
@@ -172,6 +176,7 @@ en la primera corrección; es el mismo criterio que ya se usa en `docs/`.
 python3 tools/check_datos.py     # ¿se coló una IP o un nombre real?
 python3 tools/build_og.py        # imagen propia para el feed de LinkedIn
 python3 tools/build_pdf.py       # el PDF del artículo
+python3 tools/build_sp_theme.py  # la hoja violeta de Oktavia SP
 python3 tools/stamp_assets.py    # sella CSS y JS
 ```
 
