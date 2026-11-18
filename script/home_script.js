@@ -20,7 +20,6 @@
     const footerLinks = document.querySelectorAll('.footer-links a');
     const copyrightText = document.getElementById('copyright-text');
     const trustStrip = document.querySelector('.trust-strip');
-    const featureFocusSectionEl = document.querySelector('.feature-focus-section');
     const metricsSectionLabelEl = document.querySelector('.metrics-section');
     const licensingSectionEl = document.querySelector('.licensing-section');
     const familySectionEl = document.querySelector('.family-section');
@@ -32,7 +31,6 @@
     const contactIntent = document.getElementById('contact-intent');
     const resourcesSectionEl = document.querySelector('.resources-section');
     const brandImage = document.querySelector('.brand img');
-    const platformImage = document.querySelector('.platform-visual img');
     const serviceIcons = document.querySelectorAll('.services-grid .service-card .service-icon');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const globalAnimationDelayMs = 140;
@@ -206,7 +204,6 @@
                 en: 'English'
             },
             trustAria: 'Tecnologías compatibles',
-            featureFocusAria: 'Capacidades destacadas',
             metricsAria: 'Impacto operativo',
             metricsEyebrow: 'Impacto medible',
             metricsTitle: 'Resultados operativos desde las primeras iteraciones de adopción.',
@@ -369,6 +366,38 @@
             ndTypeText: "texto",
             ndTypeIf: "interfaz",
             ndFoot: "Plantilla · esquema · reglas de cumplimiento · rollback",
+            pArchAria: "Cómo se conecta Oktavia",
+            pLeft: "Tu red",
+            pRight: "Tus sistemas",
+            pTelem: "Telemetría",
+            pTickets: "Tickets",
+            pMail: "Correo",
+            pAccess: "Acceso",
+            pAuto: "Automatización",
+            pMetrics: "Métricas",
+            pRow1: "Descubrimiento",
+            pRow2: "Intención y cumplimiento",
+            pRow3: "Gemelo digital y ciclo",
+            pRow4: "Telemetría y FinOps",
+            pRow5: "Interfaz web · Argos",
+            pRow6: "IA local en tu servidor",
+            pRow7: "o Claude, si lo enciendes",
+            pFoot: "Se instala en tu infraestructura · las credenciales viven en la bóveda, cifradas",
+            cAria: "Así queda registrado un cambio",
+            cEyebrow: "Trazabilidad",
+            cTitle: "Así queda registrado un cambio, de punta a punta.",
+            cIntro: "Cada corrección deja la misma evidencia: qué se encontró y en qué línea, qué se propuso contra tu estándar, quién lo aprobó, cómo se aplicó y qué dijo la auditoría después. Es lo que pide un comité de cambios o un auditor, sin armarlo a mano.",
+            cHall: "Hallazgo",
+            cHallSub: "Gestión · alto",
+            cProp: "Propuesta en el gemelo",
+            cPropSub: "Contra tu estándar",
+            cApr: "Aprobación",
+            cAprSub: "Una persona, con su CRQ",
+            cApl: "Aplicación",
+            cAplSub: "Primitiva segura del fabricante",
+            cVer: "Verificación",
+            cVerSub: "Vuelve a auditar",
+            cNota: "Todo queda en el historial del cambio del Gemelo Digital y se exporta como evidencia. Si la verificación no pasa, el cambio no se da por bueno.",
             familyMore: 'Ver más',
             argosAria: 'Argos, el ChatOps de red',
             argosEyebrow: 'Argos · ChatOps de red',
@@ -439,19 +468,6 @@
                 'Mapa de direccionamiento, subredes detectadas, solapamientos y la ubicación de una IP hasta el puerto de acceso cruzando ARP con la tabla MAC.',
                 'Salud de red, riesgo de configuración, desvíos, capacidad y puertos, en reportes descargables listos para auditoría.',
                 'Métricas en tiempo real y reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU. Se licencia por separado.'
-            ],
-            featureFocusEyebrow: 'Capacidades destacadas',
-            featureFocusTitle: 'Lo que separa a Oktavia de una herramienta de auditoría: cerrar el ciclo, no sólo señalarlo.',
-            featureFocusIntro: 'Encontrar un problema no sirve si corregirlo sigue siendo manual, y aplicar un cambio a ciegas no sirve si nadie verifica que quedó bien. El mismo ciclo corrige desviaciones y da de alta servicios nuevos.',
-            featureFocusTitles: [
-                'Ciclo cerrado de remediación verificada',
-                'Argos: ChatOps con el costo de la IA a la vista',
-                'Seguridad de red con la evidencia a la vista'
-            ],
-            featureFocusBodies: [
-                'Auditar, proponer contra la intención declarada, revisar el diff en el Gemelo Digital, aprobar, aplicar con la primitiva segura del fabricante y volver a auditar para confirmar que cerró.',
-                'La mayoría de las consultas no consumen el modelo: son cálculos reproducibles sobre datos ya recolectados. Cada acción lleva su marca antes de pulsarla.',
-                'Puntaje por perímetro, gestión, identidades y segmentación, calculado sobre la configuración real. Cada hallazgo trae la línea que lo sustenta y su corrección en la sintaxis del fabricante.'
             ],
             methodEyebrow: 'Modelo de ejecución',
             methodTitle: 'Operación basada en tareas asíncronas, artefactos, aprobación y verificación.',
@@ -640,7 +656,6 @@
             submitButton: 'Enviar solicitud',
             footerTagline: 'Oktavia, tu red bajo control.',
             copyright: 'Todos los derechos reservados.',
-            platformImageAlt: 'Vista de cumplimiento de configuración en Oktavia',
             serviceIconAlts: [
                 'Icono de visibilidad de red',
                 'Icono de inventario',
@@ -658,11 +673,6 @@
                 'Icono de reportes',
                 'Icono de telemetría'
             ],
-            featureFocusImageAlts: [
-                'Gemelo Digital de Oktavia con un cambio propuesto y sus botones de aprobar y ejecutar',
-                'Argos, el asistente de red de Oktavia, con sus acciones marcadas según consuman IA o no',
-                'Postura de seguridad de red en Oktavia, con puntaje por dominio y hallazgos por equipo'
-            ]
         },
         en: {
             htmlLang: 'en',
@@ -685,7 +695,6 @@
                 en: 'English'
             },
             trustAria: 'Compatible technologies',
-            featureFocusAria: 'Highlighted capabilities',
             metricsAria: 'Operational impact',
             metricsEyebrow: 'Measurable impact',
             metricsTitle: 'Operational outcomes from the first adoption cycles.',
@@ -848,6 +857,38 @@
             ndTypeText: "text",
             ndTypeIf: "interface",
             ndFoot: "Template · schema · compliance rules · rollback",
+            pArchAria: "How Oktavia connects",
+            pLeft: "Your network",
+            pRight: "Your systems",
+            pTelem: "Telemetry",
+            pTickets: "Tickets",
+            pMail: "Mail",
+            pAccess: "Access",
+            pAuto: "Automation",
+            pMetrics: "Metrics",
+            pRow1: "Discovery",
+            pRow2: "Intent and compliance",
+            pRow3: "Digital twin and loop",
+            pRow4: "Telemetry and FinOps",
+            pRow5: "Web interface · Argos",
+            pRow6: "Local AI on your server",
+            pRow7: "or Claude, if you enable it",
+            pFoot: "Installed on your infrastructure · credentials live in the vault, encrypted",
+            cAria: "How a change is recorded",
+            cEyebrow: "Traceability",
+            cTitle: "How a change is recorded, end to end.",
+            cIntro: "Every fix leaves the same evidence: what was found and on which line, what was proposed against your standard, who approved it, how it was applied, and what the audit said afterwards. It is what a change board or an auditor asks for, without building it by hand.",
+            cHall: "Finding",
+            cHallSub: "Management · high",
+            cProp: "Proposal in the twin",
+            cPropSub: "Against your standard",
+            cApr: "Approval",
+            cAprSub: "A person, with their CRQ",
+            cApl: "Apply",
+            cAplSub: "The vendor's safe primitive",
+            cVer: "Verification",
+            cVerSub: "Audits again",
+            cNota: "Everything stays in the change history of the Digital Twin and exports as evidence. If verification fails, the change is not accepted.",
             familyMore: 'See more',
             argosAria: 'Argos, the network ChatOps',
             argosEyebrow: 'Argos · network ChatOps',
@@ -918,19 +959,6 @@
                 'Addressing map, detected subnets, overlaps, and the location of an IP down to the access port by crossing ARP with the MAC table.',
                 'Network health, configuration risk, drift, capacity, and ports, in downloadable reports ready for audit.',
                 'Real-time metrics and rules that react on their own to BGP or OSPF drops and CPU thresholds. Licensed separately.'
-            ],
-            featureFocusEyebrow: 'Highlighted capabilities',
-            featureFocusTitle: 'What separates Oktavia from an audit tool: closing the loop, not just pointing at it.',
-            featureFocusIntro: 'Finding a problem is worthless if fixing it stays manual, and applying a change blind is worthless if nobody verifies it landed right. The same cycle fixes deviations and rolls out new services.',
-            featureFocusTitles: [
-                'Verified closed-loop remediation',
-                'Argos: ChatOps with the AI cost in plain sight',
-                'Network security with the evidence in plain sight'
-            ],
-            featureFocusBodies: [
-                'Audit, propose against declared intent, review the diff in the Digital Twin, approve, apply with the vendor safe primitive, and audit again to confirm it closed.',
-                'Most queries never touch the model: they are reproducible calculations over data already collected. Every action carries its mark before you click it.',
-                'A score for perimeter, management, identities, and segmentation, computed on the real configuration. Every finding carries the line that backs it and its fix in the vendor own syntax.'
             ],
             methodEyebrow: 'Execution model',
             methodTitle: 'Operations based on async jobs, artifacts, approval, and verification.',
@@ -1119,7 +1147,6 @@
             submitButton: 'Send Request',
             footerTagline: 'Oktavia, your network under control.',
             copyright: 'All rights reserved.',
-            platformImageAlt: 'Configuration compliance view in Oktavia',
             serviceIconAlts: [
                 'Network visibility icon',
                 'Inventory icon',
@@ -1137,11 +1164,6 @@
                 'Reports icon',
                 'Telemetry icon'
             ],
-            featureFocusImageAlts: [
-                'Oktavia Digital Twin showing a proposed change with its approve and execute buttons',
-                'Argos, the Oktavia network assistant, with each action marked by whether it consumes AI',
-                'Oktavia network security posture, with a score per domain and findings per device'
-            ]
         }
     };
 
@@ -1562,9 +1584,6 @@
         }
 
 
-        if (featureFocusSectionEl) {
-            featureFocusSectionEl.setAttribute('aria-label', copy.featureFocusAria);
-        }
 
         if (metricsSectionLabelEl) {
             metricsSectionLabelEl.setAttribute('aria-label', copy.metricsAria);
@@ -1725,11 +1744,6 @@
         setTextList(document.querySelectorAll('.services-grid .service-card h3'), copy.serviceTitles);
         setTextList(document.querySelectorAll('.services-grid .service-card p'), copy.serviceBodies);
 
-        setText(document.querySelector('.feature-focus-section .eyebrow'), copy.featureFocusEyebrow);
-        setText(document.querySelector('.feature-focus-section h2'), copy.featureFocusTitle);
-        setText(document.querySelector('.feature-focus-section .section-intro'), copy.featureFocusIntro);
-        setTextList(document.querySelectorAll('.feature-focus-card h3'), copy.featureFocusTitles);
-        setTextList(document.querySelectorAll('.feature-focus-card p'), copy.featureFocusBodies);
 
         setText(document.querySelector('.method-section .eyebrow'), copy.methodEyebrow);
         setText(document.querySelector('.method-section h2'), copy.methodTitle);
@@ -1858,12 +1872,8 @@
         }
 
 
-        if (platformImage) {
-            platformImage.alt = copy.platformImageAlt;
-        }
 
         setServiceIconLabels(serviceIcons, copy.serviceIconAlts);
-        setAltList(document.querySelectorAll('.feature-focus-shot img'), copy.featureFocusImageAlts);
 
         langOptions.forEach(function (option) {
             const optionLang = option.dataset.lang;

@@ -91,6 +91,13 @@ body.edition-sp .nodev-steps li::before { background: linear-gradient(135deg, #4
 body.edition-sp .nodev-card { border: 1px solid rgba(183, 151, 238, 0.25); }
 body.edition-sp .nodev-card-title { color: #b797ee; }
 body.edition-sp span.licensing-plan-logo { color: #c7a8f2; }
+body.edition-sp .platform-arch .pa-box rect { stroke: rgba(183, 151, 238, 0.35); }
+body.edition-sp .platform-arch .pa-s { fill: #c8bae1; }
+body.edition-sp .platform-arch .pa-line { stroke: rgba(183, 151, 238, 0.45); }
+body.edition-sp .platform-arch .pa-core rect { stroke: #b797ee; filter: drop-shadow(0 0 18px rgba(164, 115, 239, 0.25)); }
+body.edition-sp .cx-step { border: 1px solid rgba(183, 151, 238, 0.22); }
+body.edition-sp .cx-step:not(:last-child)::after { color: #b797ee; }
+body.edition-sp .cx-n { background: linear-gradient(135deg, #4f21a2, #875cd1); }
 
 /* style/docs_style.css */
 body.edition-sp { --brand: #875cd1; --brand-strong: #d4c0f6; --highlight: #b28de8; }
