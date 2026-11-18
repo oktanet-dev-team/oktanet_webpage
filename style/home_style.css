@@ -3965,3 +3965,6 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .argos-sp img { width: 48px; height: auto; flex: none; }
 .argos-sp h3 { margin: 0 0 6px; font-size: 1.05rem; color: #ddd6fe; }
 .argos-sp p { margin: 0; color: var(--text-muted); line-height: 1.55; }
+/* Licencias: Oktavia y Argos juntos, arriba a la derecha. */
+.licensing-plan-logos { float: right; display: flex; gap: 10px; align-items: center; margin: -4px 0 0 12px; }
+.licensing-plan-logos img { width: 50px; height: auto; }
