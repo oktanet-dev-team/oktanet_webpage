@@ -308,34 +308,102 @@
         });
     });
 
-    /* ----------------------- Barra lateral y paginador --------------------- */
+    /* ------------------------------ Barra lateral -------------------------- */
 
+    // Índice persistente a la izquierda, como en un portal de documentación:
+    // grupos de secciones, cada sección plegable con sus documentos, la página
+    // actual marcada y un filtro arriba. En pantallas angostas es un cajón.
     const lateral = document.querySelector('[data-docs-tree]');
+    const chevron = function () {
+        return el('span', { class: 'material-symbols-outlined docs-tree-chevron', 'aria-hidden': 'true', text: 'chevron_right' });
+    };
+    const ramas = [];
     if (lateral) {
         const arbol = el('ul', { class: 'docs-tree' });
-        arbol.appendChild(el('li', {}, [
-            el('a', { href: ruta(data.homePage) }, [icon('home'), 'Inicio del portal'])
+        const enPortada = page === data.homePage;
+        arbol.appendChild(el('li', { class: 'docs-tree-home' + (enPortada ? ' is-active' : '') }, [
+            el('a', { href: ruta(data.homePage), 'aria-current': enPortada ? 'page' : null }, [icon('home'), 'Inicio del portal'])
         ]));
-        sections.forEach(function (section) {
+
+        const rama = function (section) {
             const propia = section.docs.some(function (doc) { return doc.href && doc.href === page; });
-            const esActual = section.page === page || propia;
-            const hijos = el('ul', {}, section.docs.map(function (doc) {
+            const esPagina = section.page === page;
+            const abierta = esPagina || propia;
+            const idHijos = 'docs-tree-' + section.id;
+            const hijos = el('ul', { id: idHijos }, section.docs.map(function (doc) {
                 const aqui = Boolean(doc.href) && doc.href === page;
-                return el('li', { 'data-doc': doc.id, class: aqui ? 'is-active' : null }, [
-                    el('a', { href: docHref(section, doc), 'aria-current': aqui ? 'page' : null }, [doc.title, badge(doc.status)])
+                return el('li', {
+                    'data-doc': doc.id,
+                    'data-texto': plano([doc.title, doc.summary, (doc.keywords || []).join(' ')].join(' ')),
+                    class: aqui ? 'is-active' : null
+                }, [
+                    el('a', { href: docHref(section, doc), 'aria-current': aqui ? 'page' : null }, [
+                        el('span', { text: doc.title }), badge(doc.status)
+                    ])
                 ]);
             }));
-            arbol.appendChild(el('li', { class: esActual ? 'is-current' : null }, [
-                el('a', { href: sectionHref(section) }, [icon(section.icon), section.title]),
+            const boton = el('button', {
+                type: 'button',
+                class: 'docs-tree-twist',
+                'aria-expanded': String(abierta),
+                'aria-controls': idHijos,
+                'aria-label': 'Mostrar u ocultar ' + section.title
+            }, [chevron()]);
+            const li = el('li', {
+                class: 'docs-tree-branch' + (abierta ? ' is-open' : '') + (abierta ? ' is-current' : ''),
+                'data-texto': plano([section.title, section.summary, (section.keywords || []).join(' ')].join(' '))
+            }, [
+                el('div', { class: 'docs-tree-row' + (esPagina ? ' is-active' : '') }, [
+                    boton,
+                    el('a', { href: sectionHref(section), 'aria-current': esPagina ? 'page' : null }, [icon(section.icon), el('span', { text: section.title })])
+                ]),
                 hijos
-            ]));
+            ]);
+            const fijar = function (abrir) {
+                li.classList.toggle('is-open', abrir);
+                boton.setAttribute('aria-expanded', String(abrir));
+            };
+            boton.addEventListener('click', function () {
+                fijar(!li.classList.contains('is-open'));
+            });
+            ramas.push({ li: li, fijar: fijar, abierta: abierta });
+            return li;
+        };
+
+        const usadas = {};
+        const grupos = (data.treeGroups || []).map(function (g) {
+            return { title: g.title, sections: g.sections.map(sectionById).filter(Boolean) };
         });
+        grupos.forEach(function (g) { g.sections.forEach(function (s) { usadas[s.id] = true; }); });
+        const sueltas = sections.filter(function (s) { return !usadas[s.id]; });
+        if (sueltas.length) {
+            grupos.push({ title: '', sections: sueltas });
+        }
+        grupos.forEach(function (g) {
+            if (g.title) {
+                arbol.appendChild(el('li', { class: 'docs-tree-group', role: 'presentation', text: g.title }));
+            }
+            g.sections.forEach(function (section) { arbol.appendChild(rama(section)); });
+        });
+        const sinResultados = el('p', { class: 'docs-tree-empty', hidden: true, text: 'Nada coincide con el filtro.' });
         lateral.appendChild(arbol);
+        lateral.appendChild(sinResultados);
+
+        // El documento activo queda a la vista dentro del índice.
+        const activo = arbol.querySelector('[aria-current="page"]');
+        const lado = lateral.closest('.docs-side');
+        if (activo && lado) {
+            const caja = lado.getBoundingClientRect();
+            const pos = activo.getBoundingClientRect();
+            if (pos.bottom > caja.bottom - 24) {
+                lado.scrollTop += pos.top - caja.top - lado.clientHeight / 3;
+            }
+        }
 
         // Al desplazarse, el documento visible se marca en el árbol.
         const anclas = Array.prototype.slice.call(document.querySelectorAll('.doc-section[id]'));
         const marcar = function (id) {
-            arbol.querySelectorAll('li[data-doc]').forEach(function (li) {
+            arbol.querySelectorAll('.docs-tree-branch.is-current li[data-doc]').forEach(function (li) {
                 li.classList.toggle('is-active', li.dataset.doc === id);
             });
         };
@@ -356,27 +424,141 @@
             marcar(window.location.hash.slice(1));
         }
 
-        // En pantallas chicas el árbol se pliega bajo un botón.
-        const cuerpo = lateral.closest('.docs-side-body');
-        const boton = document.querySelector('.docs-side-toggle');
-        if (cuerpo && boton) {
-            const mq = window.matchMedia('(max-width: 960px)');
-            const ajustar = function () {
-                const chico = mq.matches;
-                boton.setAttribute('aria-expanded', String(!chico));
-                cuerpo.hidden = chico;
+        // Filtro del índice: deja los documentos que coinciden (título,
+        // resumen o palabras clave) y abre sus secciones. Enter abre el primero.
+        const filtro = lado ? lado.querySelector('[data-docs-filter] input') : null;
+        if (filtro) {
+            const aplicar = function () {
+                const terminos = plano(filtro.value).split(/\s+/).filter(Boolean);
+                const filtrando = terminos.length > 0;
+                arbol.classList.toggle('is-filtering', filtrando);
+                let total = 0;
+                const coincide = function (texto) {
+                    return terminos.every(function (t) { return texto.indexOf(t) !== -1; });
+                };
+                ramas.forEach(function (r) {
+                    const deSeccion = filtrando && coincide(r.li.dataset.texto);
+                    let hijos = 0;
+                    r.li.querySelectorAll('li[data-doc]').forEach(function (hoja) {
+                        const ve = !filtrando || deSeccion || coincide(hoja.dataset.texto);
+                        hoja.hidden = !ve;
+                        if (ve) {
+                            hijos += 1;
+                        }
+                    });
+                    const ve = !filtrando || deSeccion || hijos > 0;
+                    r.li.hidden = !ve;
+                    if (ve) {
+                        total += 1;
+                    }
+                    r.fijar(filtrando ? ve : r.abierta);
+                });
+                arbol.querySelectorAll('.docs-tree-group, .docs-tree-home').forEach(function (x) {
+                    x.hidden = filtrando;
+                });
+                sinResultados.hidden = !filtrando || total > 0;
             };
-            boton.addEventListener('click', function () {
-                const abierto = boton.getAttribute('aria-expanded') === 'true';
-                boton.setAttribute('aria-expanded', String(!abierto));
-                cuerpo.hidden = abierto;
+            filtro.addEventListener('input', aplicar);
+            filtro.addEventListener('keydown', function (evento) {
+                if (evento.key === 'Enter') {
+                    evento.preventDefault();
+                    const primero = arbol.querySelector('li[data-doc]:not([hidden]) a, .docs-tree-branch:not([hidden]) .docs-tree-row a');
+                    if (primero && filtro.value.trim()) {
+                        window.location.href = primero.getAttribute('href');
+                    }
+                } else if (evento.key === 'Escape' && filtro.value) {
+                    evento.stopPropagation();
+                    filtro.value = '';
+                    aplicar();
+                }
             });
-            if (mq.addEventListener) {
-                mq.addEventListener('change', ajustar);
+        }
+
+        // En pantallas angostas la barra es un cajón que se abre desde la
+        // barra superior (docs_script.js da el comportamiento del cajón).
+        if (lado && window.OktaCajon) {
+            const cajon = window.OktaCajon(lado,
+                document.querySelectorAll('[data-docs-side-open]'),
+                document.querySelectorAll('[data-docs-side-close]'));
+            const ancho = window.matchMedia('(min-width: 1025px)');
+            const alCambiar = function () {
+                if (ancho.matches) {
+                    cajon.cerrar();
+                }
+            };
+            if (ancho.addEventListener) {
+                ancho.addEventListener('change', alCambiar);
             }
-            ajustar();
         }
     }
+
+    /* ---------------------------- En esta página --------------------------- */
+
+    // Mini índice a la derecha en pantallas anchas: sale de la tabla de
+    // contenido de la página (.doc-toc) o, si no tiene, de sus títulos h2.
+    const columna = document.querySelector('.docs-main-col');
+    const disposicion = document.querySelector('.docs-layout');
+    if (columna && disposicion) {
+        let entradas = Array.prototype.slice.call(columna.querySelectorAll('.doc-toc ol > li > a[href^="#"]'))
+            .map(function (a) { return { id: a.getAttribute('href').slice(1), texto: a.textContent.trim() }; });
+        if (!entradas.length) {
+            entradas = Array.prototype.slice.call(columna.querySelectorAll('.doc-section > h2, .docs-block h2[id]'))
+                .map(function (h) {
+                    // Un título sin ancla (los artículos) recibe una derivada
+                    // de su texto; las anclas existentes no se tocan.
+                    if (!h.id && !h.parentNode.id) {
+                        const base = plano(h.textContent).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+                        let id = base || 'seccion';
+                        let n = 2;
+                        while (document.getElementById(id)) {
+                            id = base + '-' + n;
+                            n += 1;
+                        }
+                        h.id = id;
+                    }
+                    const id = h.parentNode.id || h.id;
+                    return { id: id, texto: h.textContent.trim() };
+                });
+        }
+        entradas = entradas.filter(function (e) { return e.id && document.getElementById(e.id); });
+        if (entradas.length > 1) {
+            const lista = el('ul', {}, entradas.map(function (e) {
+                return el('li', { 'data-onpage': e.id }, [el('a', { href: '#' + e.id, text: e.texto })]);
+            }));
+            disposicion.appendChild(el('aside', { class: 'docs-onpage no-print', 'aria-label': 'En esta página' }, [
+                el('p', { class: 'docs-onpage-title', text: 'En esta página' }),
+                lista
+            ]));
+            disposicion.classList.add('has-onpage');
+            const objetivos = entradas.map(function (e) { return document.getElementById(e.id); });
+            let pendiente = false;
+            const resaltar = function () {
+                pendiente = false;
+                const limite = 120;
+                let actual = objetivos[0];
+                objetivos.forEach(function (o) {
+                    if (o.getBoundingClientRect().top <= limite) {
+                        actual = o;
+                    }
+                });
+                if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+                    actual = objetivos[objetivos.length - 1];
+                }
+                lista.querySelectorAll('li').forEach(function (li) {
+                    li.classList.toggle('is-active', li.dataset.onpage === actual.id);
+                });
+            };
+            window.addEventListener('scroll', function () {
+                if (!pendiente) {
+                    pendiente = true;
+                    window.requestAnimationFrame(resaltar);
+                }
+            }, { passive: true });
+            resaltar();
+        }
+    }
+
+    /* ------------------------------- Paginador ----------------------------- */
 
     const paginador = document.querySelector('[data-docs-pager]');
     // En la página propia de un documento (curso, ficha, artículo) el

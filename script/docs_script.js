@@ -14,6 +14,90 @@
         year.textContent = String(new Date().getFullYear());
     }
 
+    /* Cajones: el menu del sitio (a la derecha) y, en el portal, el indice
+       de la documentacion en pantallas angostas (a la izquierda). Un solo
+       velo para los dos; Escape o un clic fuera cierran; el foco entra al
+       abrir y vuelve al boton al cerrar. oktavia_docs.js usa OktaCajon para
+       la barra lateral. */
+    const raiz = document.documentElement;
+    const cajones = [];
+    let velo = null;
+    const cerrarTodos = function () {
+        cajones.forEach(function (c) { c.cerrar(); });
+    };
+    const crearCajon = function (panel, abridores, cerradores) {
+        abridores = Array.prototype.slice.call(abridores || []);
+        cerradores = Array.prototype.slice.call(cerradores || []);
+        const cajon = { abierto: false, previo: null };
+        cajon.abrir = function () {
+            cerrarTodos();
+            if (!velo) {
+                velo = document.createElement('div');
+                velo.className = 'doc-scrim';
+                velo.hidden = true;
+                velo.addEventListener('click', cerrarTodos);
+                document.body.appendChild(velo);
+            }
+            cajon.previo = document.activeElement;
+            panel.classList.add('is-open');
+            velo.hidden = false;
+            raiz.classList.add('doc-drawer-open');
+            abridores.forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
+            cajon.abierto = true;
+            const primero = panel.querySelector('input, a[href], button');
+            if (primero) {
+                window.setTimeout(function () { primero.focus({ preventScroll: true }); }, 30);
+            }
+        };
+        cajon.cerrar = function () {
+            if (!cajon.abierto) {
+                return;
+            }
+            panel.classList.remove('is-open');
+            if (velo) {
+                velo.hidden = true;
+            }
+            raiz.classList.remove('doc-drawer-open');
+            abridores.forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+            cajon.abierto = false;
+            if (cajon.previo && cajon.previo.focus) {
+                cajon.previo.focus({ preventScroll: true });
+            }
+        };
+        abridores.forEach(function (b) {
+            b.addEventListener('click', function () {
+                if (cajon.abierto) {
+                    cajon.cerrar();
+                } else {
+                    cajon.abrir();
+                }
+            });
+        });
+        cerradores.forEach(function (b) { b.addEventListener('click', cajon.cerrar); });
+        // Un enlace elegido dentro del cajon lo cierra (los de ancla no
+        // recargan la pagina).
+        panel.addEventListener('click', function (evento) {
+            if (evento.target.closest('a[href]')) {
+                cajon.cerrar();
+            }
+        });
+        cajones.push(cajon);
+        return cajon;
+    };
+    document.addEventListener('keydown', function (evento) {
+        if (evento.key === 'Escape') {
+            cerrarTodos();
+        }
+    });
+    window.OktaCajon = crearCajon;
+
+    const menuSitio = document.querySelector('[data-site-menu]');
+    if (menuSitio) {
+        crearCajon(menuSitio,
+            document.querySelectorAll('[data-site-menu-open]'),
+            document.querySelectorAll('[data-site-menu-close]'));
+    }
+
     // Al cambiar de idioma se recuerda la eleccion antes de navegar.
     document.querySelectorAll('[data-doc-lang]').forEach(function (link) {
         link.addEventListener('click', function () {
