@@ -3965,3 +3965,5 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .argos-sp img { width: 48px; height: auto; flex: none; }
 .argos-sp h3 { margin: 0 0 6px; font-size: 1.05rem; color: #ddd6fe; }
 .argos-sp p { margin: 0; color: var(--text-muted); line-height: 1.55; }
+/* Oktavia SP en violeta también en su diagrama de referencia. */
+.ar-hub--sp rect { fill: rgba(46, 22, 92, 0.95); stroke: #a78bfa; }
