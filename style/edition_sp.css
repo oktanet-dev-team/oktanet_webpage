@@ -84,8 +84,8 @@ body.edition-sp .d-wan rect { stroke: #a473ef; }
 body.edition-sp .n-pe rect { stroke: #a473ef; }
 body.edition-sp .s-l3 { stroke: #a473ef; }
 body.edition-sp .s-l3-t { fill: #d1b9f8; }
-body.edition-sp .hero-loop .loop-flow { stroke: #d1b9f8; filter: drop-shadow(0 0 6px rgba(209, 185, 248, 0.7)); }
-body.edition-sp .hero-loop .loop-step circle { stroke: #b797ee; }
+body.edition-sp .hero-loop .loop-flow { filter: drop-shadow(0 0 6px rgba(209, 185, 248, 0.7)); }
+body.edition-sp .hero-loop .loop-step circle { stroke: #d1b9f8; filter: drop-shadow(0 0 8px rgba(164, 115, 239, 0.45)); }
 body.edition-sp .hero-loop .loop-pro { fill: #d1b9f8; }
 body.edition-sp .nodev-steps li::before { background: linear-gradient(135deg, #4f21a2, #6d28d9); }
 body.edition-sp .nodev-card { border: 1px solid rgba(183, 151, 238, 0.25); }
