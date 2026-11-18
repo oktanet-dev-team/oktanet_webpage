@@ -414,8 +414,20 @@ window.OKTAVIA_DOCS = (function () {
         }
     });
 
+    // Grupos del árbol de la barra lateral, en orden: cada uno junta varias
+    // secciones bajo un rótulo, como el índice de un portal de documentación.
+    // Una sección que no esté en ningún grupo se agrega al final.
+    const treeGroups = [
+        { title: 'Primeros pasos', sections: ['inicio', 'introduccion', 'instalacion'] },
+        { title: 'Operar y referencia', sections: ['operacion', 'referencia', 'datos', 'integraciones', 'decisiones'] },
+        { title: 'Guías y Academia', sections: ['ingenieros', 'academia'] },
+        { title: 'Producto', sections: ['producto', 'sp'] },
+        { title: 'Artículos', sections: ['articulos'] }
+    ];
+
     return {
         homePage: 'oktavia-docs.html',
+        treeGroups: treeGroups,
         fieldsPage: 'oktavia-docs-datos.html',
         sections: sections,
         featured: featured,

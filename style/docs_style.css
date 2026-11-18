@@ -152,6 +152,257 @@ img {
     color: #0b4a78;
 }
 
+/* ------------------- Barra superior mínima y menú del sitio ---------------- */
+
+/* La barra sólo lleva la marca, el rótulo «Documentación», las acciones de la
+   página (idioma, imprimir, PDF) y el botón Menú. Los enlaces del sitio viven
+   en un cajón a la derecha que se abre con ese botón. */
+.doc-header-min {
+    background: #0a1b2b;
+    border-bottom: 1px solid var(--line-strong);
+}
+
+.doc-header-min .doc-header-inner {
+    flex-wrap: nowrap;
+    height: 56px;
+    padding: 0;
+    gap: 12px;
+}
+
+.doc-header-section {
+    padding-left: 12px;
+    border-left: 1px solid rgba(255, 255, 255, 0.22);
+    color: #dceaf7;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.doc-header-section:hover,
+.doc-header-section:focus-visible {
+    color: #fff;
+}
+
+.doc-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.doc-actions > a:not(.doc-btn) {
+    color: #dceaf7;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.doc-actions .doc-btn {
+    padding: 6px 14px;
+    font-size: 0.86rem;
+}
+
+.doc-actions a.doc-btn {
+    color: #fff;
+}
+
+.doc-actions a.doc-btn-solid {
+    color: #0b4a78;
+}
+
+.doc-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: #dceaf7;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.doc-icon-btn:hover,
+.doc-icon-btn:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.doc-icon-btn svg {
+    flex: none;
+}
+
+.doc-menu-btn {
+    margin-left: auto;
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.doc-actions + .doc-menu-btn {
+    margin-left: 0;
+}
+
+/* El botón del índice sólo aparece cuando la barra lateral es un cajón. */
+.docs-side-open {
+    display: none;
+}
+
+.doc-header .site-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    width: min(320px, 86vw);
+    margin: 0;
+    display: block;
+    padding: 0 0 24px;
+    overflow-y: auto;
+    background: var(--bg-elevated);
+    border-left: 1px solid var(--line-strong);
+    box-shadow: -18px 0 40px rgba(0, 0, 0, 0.45);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 200ms ease, visibility 0s linear 200ms;
+}
+
+.doc-header .site-drawer.is-open {
+    transform: none;
+    visibility: visible;
+    transition: transform 200ms ease;
+}
+
+.site-drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 12px 0 22px;
+    border-bottom: 1px solid var(--line-soft);
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+.site-drawer-head .doc-icon-btn {
+    color: var(--text-muted);
+}
+
+.site-drawer ul {
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+}
+
+.doc-header .site-drawer ul a {
+    display: block;
+    padding: 11px 22px;
+    color: var(--text-main);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.doc-header .site-drawer ul a:hover,
+.doc-header .site-drawer ul a:focus-visible {
+    background: var(--brand-soft);
+    color: var(--brand-strong);
+    text-decoration: none;
+}
+
+.site-drawer-label {
+    margin: 6px 22px 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Las acciones de la página se repiten en el cajón sólo para pantallas
+   angostas, donde la barra no tiene sitio para ellas. */
+.site-drawer-label,
+.site-drawer-actions {
+    display: none;
+}
+
+.site-drawer-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 22px;
+}
+
+.doc-header .site-drawer-actions a:not(.doc-btn) {
+    align-self: center;
+    color: var(--brand-strong);
+    font-weight: 700;
+}
+
+.doc-header .site-drawer-actions .doc-btn {
+    color: var(--text-main);
+    border-color: var(--line-strong);
+}
+
+.doc-header .site-drawer-actions .doc-btn-solid {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #0d1319;
+}
+
+/* La barra superior es su propio contexto de apilamiento (sticky con
+   z-index): con el menú abierto sube por encima del velo. */
+.doc-header:has(.site-drawer.is-open) {
+    z-index: 80;
+}
+
+.doc-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(2, 8, 15, 0.6);
+}
+
+.doc-scrim[hidden] {
+    display: none;
+}
+
+html.doc-drawer-open {
+    overflow: hidden;
+}
+
+@media (max-width: 760px) {
+    .doc-actions {
+        display: none;
+    }
+
+    .doc-menu-btn,
+    .doc-actions + .doc-menu-btn {
+        margin-left: auto;
+    }
+
+    .site-drawer-label {
+        display: block;
+    }
+
+    .site-drawer-actions {
+        display: flex;
+    }
+}
+
+@media (max-width: 420px) {
+    .doc-header-min .doc-brand span,
+    .doc-icon-btn > span {
+        display: none;
+    }
+
+    .doc-header-section {
+        padding-left: 0;
+        border-left: 0;
+    }
+}
+
 /* --------------------------------- Cuerpo --------------------------------- */
 
 .doc-main {

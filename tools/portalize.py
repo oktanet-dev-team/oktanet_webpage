@@ -1,25 +1,31 @@
 #!/usr/bin/env python3
 """Mete cursos, ficha técnica, resumen y artículos dentro de la Documentación
-de Oktavia: una sola documentación con el formato del portal.
+de Oktavia: una sola documentación con el formato del portal, al estilo de un
+portal de documentación (índice a la izquierda, contenido, «En esta página» a
+la derecha).
 
-Cada página conserva su contenido y lo propio de su menú (Imprimir, PDF,
+Cada página conserva su contenido y lo propio de su barra (Imprimir, PDF,
 English, Cotizar) y recibe lo del portal:
 
-- la marca de la cabecera: el icono y el nombre de Oktavia;
-- el menú común (Inicio · Documentación · Academia · Artículos · Oktavia SP ·
-  Contacto); «Oktavia SP» lleva a la presentación comercial (../oktavia-sp.html);
-- la ruta «Documentación de Oktavia › Sección › Documento»;
-- la barra lateral con el buscador y el árbol del catálogo
-  (script/oktavia_docs_data.js), con la página actual marcada;
+- la barra superior mínima: [Índice] · marca de Oktavia · «Documentación» ·
+  acciones de la página · botón Menú; los enlaces del sitio (Inicio, Oktavia
+  Pro, Oktavia SP, Documentación, Academia, Artículos, Contacto) viven en un
+  cajón oculto que abre ese botón;
+- la barra lateral (#docs-side) con el filtro y el árbol del catálogo
+  (script/oktavia_docs_data.js), con la página actual marcada; en pantallas
+  angostas es un cajón que abre el botón Índice;
+- la ruta «Documentación de Oktavia › Sección › Documento», arriba del
+  contenido;
 - el paginador entre los documentos de su sección;
 - la hoja de estilos y los scripts del portal.
 
-También normaliza el menú y la ruta de las páginas propias del portal
-(docs/oktavia-docs*.html). Es idempotente: correrlo dos veces no cambia nada.
+También normaliza la barra, la barra lateral y la ruta de las páginas propias
+del portal (docs/oktavia-docs*.html), incluida su portada. Es idempotente:
+correrlo dos veces no cambia nada.
 
 Las páginas en inglés (docs/*-en.html, blog/*-en.html) no son parte del portal
-(cada una tiene su menú propio); de ellas sólo se asegura el enlace
-«Oktavia SP» a ../oktavia-sp-en.html, antes de «Contact».
+(no hay catálogo en inglés), pero reciben la misma barra superior mínima con
+el menú del sitio en inglés.
 
 Uso:  python3 tools/portalize.py          (desde la raíz del sitio)
 """
@@ -65,29 +71,110 @@ def _version(asset: str, html: str) -> str:
     return f"?v={m.group(1)}" if m else ""
 
 
-def _menu(d: str, extras: list[str]) -> str:
-    """Menú común; `d` lleva de la carpeta de la página a docs/."""
-    raiz = "../"
-    enlaces = [
-        f'<a href="{raiz}">Inicio</a>',
-        f'<a href="{d}oktavia-docs.html">Documentación</a>',
-        f'<a href="{d}oktavia-docs.html#academia">Academia</a>',
-        f'<a href="{d}oktavia-docs.html#articulos">Artículos</a>',
-        f'<a href="{raiz}oktavia-sp.html">Oktavia SP</a>',
-        f'<a href="{raiz}#contacto">Contacto</a>',
+#: Iconos de la barra superior en SVG en línea: las páginas en inglés no
+#: cargan la fuente de iconos y la barra debe verse igual en todas.
+SVG_MENU = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">'
+            '<path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>')
+SVG_CERRAR = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">'
+              '<path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>')
+SVG_INDICE = ('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">'
+              '<rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>'
+              '<path d="M9 4v16" stroke="currentColor" stroke-width="2" fill="none"/></svg>')
+
+#: Textos de la barra superior por idioma.
+TEXTOS = {
+    "es": {"doc": "Documentación", "menu": "Menú", "abrir_menu": "Abrir el menú del sitio",
+           "cerrar_menu": "Cerrar el menú", "sitio": "Sitio", "acciones": "Esta página",
+           "indice": "Índice", "abrir_indice": "Abrir el índice de la documentación"},
+    "en": {"doc": "Documentation", "menu": "Menu", "abrir_menu": "Open the site menu",
+           "cerrar_menu": "Close the menu", "sitio": "Site", "acciones": "This page",
+           "indice": "Contents", "abrir_indice": "Open the documentation contents"},
+}
+
+
+def _enlaces(lang: str, d: str, b: str) -> list[tuple[str, str]]:
+    """Los enlaces del sitio, en el orden del menú. `d` lleva de la carpeta de
+    la página a docs/ y `b` a blog/."""
+    if lang == "en":
+        return [
+            ("../", "Home"),
+            ("../#plataforma", "Oktavia Pro"),
+            ("../oktavia-sp-en.html", "Oktavia SP"),
+            (f"{d}index-en.html", "Documentation"),
+            (f"{d}academy-en.html", "Academy"),
+            (f"{b}index-en.html", "Articles"),
+            ("../#contacto", "Contact"),
+        ]
+    return [
+        ("../", "Inicio"),
+        ("../#plataforma", "Oktavia Pro"),
+        ("../oktavia-sp.html", "Oktavia SP"),
+        (f"{d}oktavia-docs.html", "Documentación"),
+        (f"{d}oktavia-docs.html#academia", "Academia"),
+        (f"{d}oktavia-docs.html#articulos", "Artículos"),
+        ("../#contacto", "Contacto"),
     ]
-    cuerpo = "\n".join("                " + x for x in enlaces + extras)
-    return f'<nav aria-label="Documentación de Oktavia">\n{cuerpo}\n            </nav>'
 
 
-def _extras(nav_html: str) -> list[str]:
-    """Lo propio de cada página: botones (Imprimir), descargas, idioma, Cotizar."""
+def _extras(header_html: str) -> list[str]:
+    """Lo propio de cada página: botones (Imprimir), descargas, idioma, Cotizar.
+
+    En una cabecera ya convertida viven en `.doc-actions`; en una vieja, entre
+    los enlaces del menú."""
+    m = re.search(r'<div class="doc-actions">(.*?)</div>', header_html, re.S)
+    if m:
+        fuente = m.group(1)
+    elif "site-drawer" in header_html:
+        return []  # ya convertida y sin acciones propias
+    else:
+        m = re.search(r"<nav\b[^>]*>.*?</nav>", header_html, re.S)
+        fuente = m.group(0) if m else ""
     out = []
-    for m in re.finditer(r"<(a|button)\b[^>]*>.*?</\1>", nav_html, re.S):
+    for m in re.finditer(r"<(a|button)\b[^>]*>.*?</\1>", fuente, re.S):
         tag = m.group(0)
         if "<button" in tag or "doc-btn" in tag or "data-doc-lang" in tag or " download" in tag:
             out.append(re.sub(r"\s+", " ", tag))
     return out
+
+
+def _cabecera(lang: str, d: str, b: str, extras: list[str], con_indice: bool, marca: str) -> str:
+    """Barra superior mínima: [índice] marca · Documentación … acciones · Menú,
+    y el cajón (oculto) con los enlaces del sitio."""
+    t = TEXTOS[lang]
+    portada_docs = f"{d}oktavia-docs.html" if lang == "es" else f"{d}index-en.html"
+    i = "            "
+    lineas = ['<header class="doc-header doc-header-min no-print">', '        <div class="doc-header-inner">']
+    if con_indice:
+        lineas.append(f'{i}<button class="doc-icon-btn docs-side-open" type="button" aria-controls="docs-side" '
+                      f'aria-expanded="false" aria-label="{t["abrir_indice"]}" data-docs-side-open>{SVG_INDICE}'
+                      f'<span>{t["indice"]}</span></button>')
+    lineas.append(i + marca)
+    lineas.append(f'{i}<a class="doc-header-section" href="{portada_docs}">{t["doc"]}</a>')
+    if extras:
+        lineas.append(f'{i}<div class="doc-actions">')
+        lineas += [f"{i}    {x}" for x in extras]
+        lineas.append(f"{i}</div>")
+    lineas.append(f'{i}<button class="doc-icon-btn doc-menu-btn" type="button" aria-controls="site-menu" '
+                  f'aria-expanded="false" aria-label="{t["abrir_menu"]}" data-site-menu-open>{SVG_MENU}'
+                  f'<span>{t["menu"]}</span></button>')
+    lineas.append("        </div>")
+    lineas.append(f'        <nav class="site-drawer" id="site-menu" aria-label="{t["sitio"]}" data-site-menu>')
+    lineas.append('            <div class="site-drawer-head">')
+    lineas.append('                <span>Oktanet</span>')
+    lineas.append(f'                <button class="doc-icon-btn" type="button" aria-label="{t["cerrar_menu"]}" '
+                  f'data-site-menu-close>{SVG_CERRAR}</button>')
+    lineas.append("            </div>")
+    lineas.append("            <ul>")
+    lineas += [f'                <li><a href="{h}">{x}</a></li>' for h, x in _enlaces(lang, d, b)]
+    lineas.append("            </ul>")
+    if extras:
+        lineas.append(f'            <p class="site-drawer-label">{t["acciones"]}</p>')
+        lineas.append('            <div class="site-drawer-actions">')
+        lineas += [f"                {x}" for x in extras]
+        lineas.append("            </div>")
+    lineas.append("        </nav>")
+    lineas.append("    </header>")
+    return "\n".join(lineas)
 
 
 #: Marca de la cabecera del portal: el icono de Oktavia, el mismo de la portada.
@@ -108,12 +195,20 @@ def _cambiar_marca(html: str) -> str:
                   r'[^>]*>\s*<span>Oktanet</span>\s*</a>', MARCA_ES, html, count=1)
 
 
-def _cambiar_menu(html: str, d: str) -> str:
-    m = re.search(r'(<header class="doc-header[^"]*">.*?)(<nav\b[^>]*>.*?</nav>)(.*?</header>)', html, re.S)
+def _marca(html: str) -> str:
+    m = re.search(r'<a class="doc-brand" href="\.\./">.*?</a>', html, re.S)
+    return m.group(0) if m else ""
+
+
+def _cambiar_cabecera(html: str, lang: str, d: str, b: str, con_indice: bool) -> str:
+    m = re.search(r'<header class="doc-header[^"]*">.*?</header>', html, re.S)
     if not m:
         return html
-    nuevo = _menu(d, _extras(m.group(2)))
-    return html[: m.start(2)] + nuevo + html[m.end(2):]
+    marca = _marca(m.group(0))
+    if not marca:
+        return html
+    nuevo = _cabecera(lang, d, b, _extras(m.group(0)), con_indice, marca)
+    return html[: m.start()] + nuevo + html[m.end():]
 
 
 def _ruta(d: str, seccion: str, titulo: str) -> str:
@@ -128,24 +223,43 @@ def _ruta(d: str, seccion: str, titulo: str) -> str:
     )
 
 
-LATERAL = """
+def _lateral(d: str) -> str:
+    """La barra lateral: título, filtro del árbol y el árbol (lo pinta
+    oktavia_docs.js desde el catálogo). En pantallas angostas es un cajón."""
+    return (
+        '<aside class="docs-side no-print" id="docs-side" aria-label="Índice de la documentación">\n'
+        '                <div class="docs-side-head">\n'
+        f'                    <a class="docs-side-title" href="{d}oktavia-docs.html">Documentación de Oktavia</a>\n'
+        '                    <button class="doc-icon-btn docs-side-close" type="button" aria-label="Cerrar el índice" '
+        f'data-docs-side-close>{SVG_CERRAR}</button>\n'
+        '                </div>\n'
+        '                <div class="docs-filter" data-docs-filter>\n'
+        '                    <span class="material-symbols-outlined" aria-hidden="true">search</span>\n'
+        '                    <input type="search" placeholder="Filtrar el índice" aria-label="Filtrar el índice de la documentación" autocomplete="off">\n'
+        '                </div>\n'
+        '                <nav aria-label="Documentos" data-docs-tree></nav>\n'
+        '            </aside>'
+    )
+
+
+def _normalizar_lateral(html: str, d: str) -> str:
+    """Pone la barra lateral canónica y deja la ruta dentro de la columna del
+    contenido (encima del documento, como en un portal de documentación)."""
+    html = re.sub(r'<aside class="docs-side[^"]*"[^>]*>.*?</aside>', lambda _m: _lateral(d), html, count=1, flags=re.S)
+    m = re.search(r'( *)<nav class="docs-crumbs".*?</nav>\n\n?', html, re.S)
+    lay = html.find('<div class="docs-layout">')
+    if m and lay > m.start():
+        ruta = m.group(0)
+        html = html[: m.start()] + html[m.end():]
+        col = re.search(r'<div class="docs-main-col">\n', html)
+        bloque = "\n".join(("    " + x if x.strip() else x) for x in ruta.rstrip("\n").split("\n")) + "\n\n"
+        html = html[: col.end()] + bloque + html[col.end():]
+    return html
+
+
+ABRE_LATERAL = """
         <div class="docs-layout">
-            <aside class="docs-side no-print">
-                <button class="docs-side-toggle" type="button" aria-expanded="true" aria-controls="docs-side-body">
-                    <span>Contenido de la documentación</span>
-                    <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
-                </button>
-                <div class="docs-side-body" id="docs-side-body">
-                    <div class="docs-search" data-docs-search>
-                        <form class="docs-search-form" role="search">
-                            <span class="material-symbols-outlined" aria-hidden="true">search</span>
-                            <input type="search" name="q" placeholder="Buscar en la documentación" aria-label="Buscar en la documentación" autocomplete="off">
-                            <button type="submit">Buscar</button>
-                        </form>
-                    </div>
-                    <nav aria-label="Documentos" data-docs-tree></nav>
-                </div>
-            </aside>
+            <aside class="docs-side"></aside>
 
             <div class="docs-main-col">
 """
@@ -157,8 +271,10 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
     original = html
     en_blog = archivo.parent.name == "blog"
     d = "../docs/" if en_blog else ""
+    b = "" if en_blog else "../blog/"
 
-    html = _cambiar_marca(_cambiar_menu(html, d))
+    html = _cambiar_marca(html)
+    html = _cambiar_cabecera(html, "es", d, b, True)
     if 'class="docs-layout"' not in html:
         base = ' data-docs-base="../docs/"' if en_blog else ""
         html = html.replace("<body>", f'<body class="docs-portal" data-docs-page="{ruta_catalogo}"{base}>', 1)
@@ -168,7 +284,7 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
         extra_head = estilo_portal if "Material+Symbols" in html else ICONOS + "\n    " + estilo_portal
         html = html[: m.end()] + "\n    " + extra_head + html[m.end():]
         html = html.replace('<main class="doc-main">\n',
-                            '<main class="doc-main">\n' + _ruta(d, seccion, titulo) + LATERAL, 1)
+                            '<main class="doc-main">\n' + _ruta(d, seccion, titulo) + ABRE_LATERAL, 1)
         html = html.replace('        <footer class="doc-footer">',
                             '        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>\n\n'
                             '        <footer class="doc-footer">', 1)
@@ -177,6 +293,7 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
                    f'\n    <script src="../script/oktavia_docs.js{_version("oktavia_docs.js", portal_html)}"></script>')
         m = re.search(r'<script src="\.\./script/docs_script\.js[^"]*"></script>', html)
         html = html[: m.end()] + scripts + html[m.end():]
+    html = _normalizar_lateral(html, d)
     if html != original:
         archivo.write_text(html, encoding="utf-8")
         return True
@@ -186,32 +303,33 @@ def envolver(ruta_catalogo: str, seccion: str, titulo: str, portal_html: str) ->
 def portal_propio(archivo: Path) -> bool:
     html = archivo.read_text(encoding="utf-8")
     original = html
-    html = _cambiar_marca(_cambiar_menu(html, ""))
+    html = _cambiar_marca(html)
+    html = _cambiar_cabecera(html, "es", "", "../blog/", True)
     # La ruta empieza en la Documentación: la Academia ahora vive dentro.
     html = html.replace('                <li><a href="academia.html">Academia</a></li>\n', "")
+    # La portada del portal también lleva la barra lateral.
+    if 'class="docs-layout"' not in html:
+        html = html.replace('    <main class="doc-main">\n', '    <main class="doc-main">\n' + ABRE_LATERAL.lstrip("\n").replace("\n\n", "\n\n", 1), 1)
+        html = html.replace("    </main>", "            </div>\n        </div>\n    </main>", 1)
+    html = _normalizar_lateral(html, "")
     if html != original:
         archivo.write_text(html, encoding="utf-8")
         return True
     return False
 
 
-#: Enlace a Oktavia SP en el menú de las páginas en inglés.
-SP_EN = '<a href="../oktavia-sp-en.html">Oktavia SP</a>'
-
-
-def menu_ingles(archivo: Path) -> bool:
-    """Agrega «Oktavia SP» al menú de una página en inglés, antes de «Contact»."""
+def pagina_ingles(archivo: Path) -> bool:
+    """Las páginas en inglés no son parte del portal, pero llevan la misma
+    barra superior mínima con el menú del sitio en inglés."""
     html = archivo.read_text(encoding="utf-8")
-    m = re.search(r'<header class="doc-header[^"]*">.*?(<nav\b[^>]*>.*?</nav>)', html, re.S)
-    if not m or "oktavia-sp-en.html" in m.group(1):
-        return False
-    nav = m.group(1)
-    c = re.search(r'( *)<a href="\.\./#contacto">Contact</a>', nav)
-    if not c:
-        return False
-    nuevo = nav[: c.start()] + c.group(1) + SP_EN + "\n" + nav[c.start():]
-    archivo.write_text(html[: m.start(1)] + nuevo + html[m.end(1):], encoding="utf-8")
-    return True
+    en_blog = archivo.parent.name == "blog"
+    d = "../docs/" if en_blog else ""
+    b = "" if en_blog else "../blog/"
+    nuevo = _cambiar_cabecera(html, "en", d, b, False)
+    if nuevo != html:
+        archivo.write_text(nuevo, encoding="utf-8")
+        return True
+    return False
 
 
 def main() -> int:
@@ -224,7 +342,7 @@ def main() -> int:
         if envolver(ruta, seccion, titulo, portal):
             cambios.append((RAIZ / "docs" / ruta).resolve().relative_to(RAIZ))
     for archivo in sorted((RAIZ / "docs").glob("*-en.html")) + sorted((RAIZ / "blog").glob("*-en.html")):
-        if menu_ingles(archivo):
+        if pagina_ingles(archivo):
             cambios.append(archivo.relative_to(RAIZ))
     for c in cambios:
         print(f"actualizado: {c}")

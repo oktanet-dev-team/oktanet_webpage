@@ -52,10 +52,11 @@ tools/                  Scripts de mantenimiento (no se publican)
   build_images.py       Recorta capturas y las exporta en WebP y PNG
   check_copy.py         Revisa que los dos idiomas de la portada calcen
   stamp_assets.py       Sella CSS y JS con el hash de su contenido (anti-caché)
-  portalize.py          Mete cursos, ficha, resumen y artículos en el portal (idempotente);
-                        también pone «Oktavia SP» en el menú del portal y en el de las
-                        páginas en inglés (que no son parte del portal);
-                        correrlo al agregar una página de esas, y después stamp_assets.py
+  portalize.py          Mete cursos, ficha, resumen y artículos en el portal (idempotente):
+                        barra superior mínima con menú en cajón, índice lateral y ruta;
+                        las páginas en inglés (que no son parte del portal) reciben la
+                        misma barra con el menú en inglés; correrlo al agregar una
+                        página de esas, y después stamp_assets.py
   check_datos.py        Falla si un artículo lleva direcciones o nombres reales
   build_og.py           Genera la imagen que se ve al compartir el enlace
   build_videos.py       Descarga las carátulas de los vídeos de YouTube
@@ -317,13 +318,26 @@ Hay **dos lugares donde vive el texto**, y conviene saber cuál es cuál:
   paginador. Las tablas de la **Referencia de datos** también viven ahí, una
   fila por campo, porque son datos y no prosa.
 
+La disposición es la de un portal de documentación: barra superior mínima
+(marca, «Documentación», acciones de la página y un botón **Menú** que abre el
+cajón con los enlaces del sitio), el **índice** fijo a la izquierda con todas
+las secciones y sus documentos (agrupadas según `treeGroups` del catálogo,
+plegables, con la página actual marcada y un filtro arriba), el contenido con
+su ruta y, en pantallas anchas, «En esta página» a la derecha (sale de la
+tabla de contenido del documento o de sus títulos). En pantallas angostas el
+índice es un cajón que abre el botón **Índice** de la barra. La barra, el
+índice y la ruta los escribe `tools/portalize.py`; el árbol, el filtro y «En
+esta página» los pinta `script/oktavia_docs.js`, y los cajones,
+`script/docs_script.js`.
+
 Para agregar un documento: escribir su `<section>` en la página de la sección,
 con el `id` que se va a usar, y darlo de alta en `docs` de esa sección en el
 catálogo con el mismo `id`. Si todavía no está escrito, se marca con
 `status: 'soon'` y aparece como «Próximamente» en lugar de prometer una página
 vacía. Para agregar una sección nueva, copiar la estructura de cualquier
 `docs/oktavia-docs-<seccion>.html` (barra lateral, migas y paginador son los
-mismos en todas) y darla de alta en `sections`.
+mismos en todas), darla de alta en `sections` y en un grupo de `treeGroups`,
+y correr `python3 tools/portalize.py`.
 
 El contenido se extrajo de los repositorios de la plataforma (`okta-nae-ui` y
 `oktanet-nae`) y describe sólo lo que existe en su código. Aplican las mismas
