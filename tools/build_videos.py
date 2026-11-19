@@ -27,6 +27,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Identificador de YouTube de cada video que aparece en la portada.
 VIDEOS = [
+    "W-TtNNHNjVg",   # Oktavia SP · pseudowire EVPN-VPWS con IA y automatización
     "mazagrtVnGw",   # Oktavia SP · parte 1: el Dashboard principal
     "4IrBze8xf5U",   # Oktavia SP · parte 3: servicios, intención y cumplimiento
     "Q8iTsXJBCGQ",   # Postura de seguridad de tu red
