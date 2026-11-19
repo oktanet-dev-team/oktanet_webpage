@@ -248,6 +248,7 @@
             videoIntro: 'Recorridos cortos por cada módulo, grabados sobre la plataforma real. El reproductor sólo se carga cuando pulsas, así que pasar por aquí no te rastrea.',
             videoTitulo: 'Video de Oktavia',
             videoTitulos: [
+                "Oktavia SP · Pseudowire EVPN-VPWS con IA y automatización",
                 "Oktavia SP · Parte 1: el Dashboard principal",
                 "Oktavia SP · Parte 3: servicios, intención y cumplimiento",
                 'Postura de seguridad de tu red',
@@ -262,6 +263,7 @@
                 'Argos en acción: una loopback desde cero'
             ],
             videoCuerpos: [
+                "La creación de un pseudowire EVPN-VPWS para un cliente, de punta a punta: Argos arma la intención, el cambio en los PE IOS XR y el CE pasa por el Gemelo para tu aprobación, y al aplicar se verifica el servicio arriba.",
                 "Recorrido por la interfaz principal: el estado de la red del proveedor, los indicadores clave, el inventario y Argos para analizar hallazgos y acortar el diagnóstico.",
                 "Servicios del núcleo y gestionados declarados como intención, cumplimiento de configuración, software y seguridad, telemetría en tiempo real y reportes.",
                 'Cómo se califica la seguridad de la red por dominio, qué vulnerabilidades le aplican (NVD y CISA KEV) y qué atender primero.',
@@ -747,6 +749,7 @@
             videoIntro: 'Short walkthroughs of each module, recorded on the real platform. The player only loads when you click, so passing through here does not track you. Videos are in Spanish.',
             videoTitulo: 'Oktavia video',
             videoTitulos: [
+                "Oktavia SP · EVPN-VPWS pseudowire with AI and automation",
                 "Oktavia SP · Part 1: the main dashboard",
                 "Oktavia SP · Part 3: services, intent, and compliance",
                 'Your network security posture',
@@ -761,6 +764,7 @@
                 'Argos in action: a loopback from scratch'
             ],
             videoCuerpos: [
+                "Creating an EVPN-VPWS pseudowire for a customer, end to end: Argos builds the intent, the change on the IOS XR PEs and the CE goes through the Twin for your approval, and once applied the service is verified up.",
                 "A tour of the main interface: the provider network's state, key indicators, inventory, and Argos to analyze findings and shorten diagnosis.",
                 "Core and managed services declared as intent, configuration, software, and security compliance, real-time telemetry, and reports.",
                 'How the network security is scored by domain, which vulnerabilities apply to it (NVD and CISA KEV), and what to fix first.',
