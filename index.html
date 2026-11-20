@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=31a605fbf8">
+    <link rel="stylesheet" href="style/home_style.css?v=ac7d9b9a8d">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -718,6 +718,32 @@
                         <p>Métricas en tiempo real y reglas que reaccionan solas ante caídas de BGP u OSPF y umbrales de CPU. Se licencia por separado.</p>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="wf-section" id="flujos-de-operacion" aria-label="Flujos de operación" data-copy-aria="wfAria">
+            <div class="container">
+                <p class="eyebrow" data-copy="wfEyebrow">Flujos de operación</p>
+                <h2 data-copy="wfTitle">Tu proceso de operación, de la petición a la verificación.</h2>
+                <figure class="wf-figure">
+                    <svg viewBox="0 0 980 330" role="img" aria-labelledby="wf-pro-t">
+                        <title id="wf-pro-t">Un flujo de operación corriendo desde Argos</title>
+                        <defs><filter id="wf-pro-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+                        <text x="30" y="24" class="wf-lane" data-copy="wfLane">Flujo «Alta de VLAN de usuarios»</text>
+                        <path id="wf-pro-ruta" class="wf-link" d="M130 82 L370 82 L610 82 L850 82"/>
+                        <g class="wf-node wf-svc wf-n1"><rect x="30" y="44" width="200" height="76" rx="14"/><circle cx="54" cy="66" r="11"/><text x="54" y="70" text-anchor="middle" class="wf-num">1</text><text x="74" y="71" class="wf-t" data-copy="wfN1">Red libre del IPAM</text><text x="46" y="100" class="wf-s" data-copy="wfN1s">la sugiere el SoT</text></g>
+                        <g class="wf-node wf-svc wf-n2"><rect x="270" y="44" width="200" height="76" rx="14"/><circle cx="294" cy="66" r="11"/><text x="294" y="70" text-anchor="middle" class="wf-num">2</text><text x="314" y="71" class="wf-t" data-copy="wfN2">Crear VLAN y BGP</text><text x="286" y="100" class="wf-s" data-copy="wfN2s">escribe la intención</text></g>
+                        <g class="wf-node wf-cyc wf-n3"><rect x="510" y="44" width="200" height="76" rx="14"/><circle cx="534" cy="66" r="11"/><text x="534" y="70" text-anchor="middle" class="wf-num">3</text><image href="img/LOGO_Argos.png" x="550" y="54" width="24" height="24"/><text x="580" y="71" class="wf-t" data-copy="wfN3">Cerrar el ciclo</text><text x="526" y="100" class="wf-s" data-copy="wfN3s">auditoría → Gemelo</text></g>
+                        <g class="wf-node wf-ver wf-n4"><rect x="750" y="44" width="200" height="76" rx="14"/><circle cx="774" cy="66" r="11"/><text x="774" y="70" text-anchor="middle" class="wf-num">4</text><text x="794" y="71" class="wf-t" data-copy="wfN4">Probar y avisar</text><text x="766" y="100" class="wf-s" data-copy="wfN4s">conectividad · correo</text></g>
+                        <g class="wf-approve"><rect x="512" y="132" width="196" height="30" rx="15"/><text x="610" y="152" text-anchor="middle" data-copy="wfApprove">👤 tú apruebas en el Gemelo</text></g>
+                        <circle class="wf-token" r="8" filter="url(#wf-pro-glow)"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;0.333;0.333;0.666;0.666;1;1" keyTimes="0;0.12;0.25;0.37;0.5;0.75;0.87;1" calcMode="linear"><mpath href="#wf-pro-ruta"/></animateMotion></circle>
+                        <path class="wf-launch" d="M240 230 C 160 200, 120 160, 120 124"/>
+                        <g class="wf-chat"><rect x="30" y="214" width="430" height="92" rx="16"/><image href="img/LOGO_Argos.png" x="46" y="232" width="40" height="40"/><text x="100" y="250" class="wf-chat-t" data-copy="wfAsk">«corre el flujo Alta de VLAN en CDMX»</text><text x="100" y="276" class="wf-s" data-copy="wfAskSub">Argos lo lanza y lo sigue en el chat</text></g>
+                        <path class="wf-link wf-done-link" d="M850 120 C 850 170, 840 190, 800 214"/>
+                        <g class="wf-done"><rect x="520" y="214" width="430" height="92" rx="16"/><text x="544" y="252" class="wf-done-t" data-copy="wfDone">✓ VLAN 103 arriba</text><text x="544" y="278" class="wf-s" data-copy="wfDoneSub">6/6 pruebas bien · aviso enviado</text></g>
+                    </svg>
+                    <figcaption data-copy="wfCap">Cada paso es un servicio de Oktavia, una verificación o una integración. Se simula animado con tus datos sin escribir nada; al correrlo desde Argos, el flujo se detiene donde una persona aprueba y sigue solo hasta verificar.</figcaption>
+                </figure>
             </div>
         </section>
 
@@ -1429,7 +1455,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=e683f6104a"></script>
+    <script src="script/home_script.js?v=25dd60ad3c"></script>
     <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>
