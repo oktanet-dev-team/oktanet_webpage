@@ -444,7 +444,7 @@
                 'Acompañamos las primeras remediaciones y el ciclo completo hasta que tu equipo lo recorre solo, con las ventanas y aprobadores que ya usas.'
             ],
             servicesEyebrow: 'Capacidades de la plataforma',
-            servicesTitle: 'Quince módulos para descubrir, verificar, remediar y dar de alta servicios nuevos.',
+            servicesTitle: 'Dieciséis módulos para descubrir, verificar, remediar y dar de alta servicios nuevos.',
             serviceTitles: [
                 'Descubrimiento multifabricante',
                 'Inventario de red',
@@ -453,6 +453,7 @@
                 'Configuración deseada por alcance',
                 'Ciclo cerrado de remediación',
                 'Alta de servicios nuevos',
+                'Flujos de operación',
                 'Argos, ChatOps de red',
                 'Seguridad de red',
                 'Inventario de servicios',
@@ -470,6 +471,7 @@
                 'Genera la configuración desde plantillas y variables de servicio, con precedencia por sitio, plataforma, modelo, rol y equipo.',
                 'Auditar, proponer, revisar el diff, aprobar, aplicar y volver a auditar para confirmar que el hallazgo cerró. Con artefacto y vuelta atrás.',
                 'Túneles entre sitios, publicación de una red en OSPF y BGP, o DHCP por VLAN. Cada servicio se propone, se edita y trae su rollback.',
+                'Encadena servicios, verificaciones, el ciclo con aprobación humana e integraciones en un proceso claro. Simúlalo animado con tus datos y córrelo desde Argos.',
                 'Se le pregunta en lenguaje natural y responde con datos de la red. Cada acción declara antes de pulsarla si consume IA o si es determinista.',
                 'Postura calculada sobre la configuración real en cuatro dominios: perímetro, gestión, identidades y segmentación, con la evidencia de cada hallazgo.',
                 'Responde qué hay configurado en cada equipo y cuánto de eso está declarado como intención, para cerrar los puntos ciegos sin tocar la red.',
@@ -642,7 +644,7 @@
             resourceCardTitles: ['Resumen ejecutivo de Oktavia', 'Ficha técnica de Oktavia Pro', 'Curso gratis: fundamentos de automatización de redes'],
             resourceCardBodies: [
                 'Dos páginas para decidir si Oktavia encaja: qué problema resuelve y para quién, los beneficios operativos con sus métricas de referencia, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional y los esquemas comerciales flexibles. Sin detalle de implementación.',
-                'El documento completo: los quince módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional, casos de uso y el proceso de implementación con sus tiempos estimados.',
+                'El documento completo: los dieciséis módulos con su alcance, las siete categorías de valor, cobertura y método de acceso por fabricante, integraciones con el ecosistema, arquitectura, requisitos de integración, el licenciamiento de Oktavia Pro y Oktavia SP con la telemetría como adicional, casos de uso y el proceso de implementación con sus tiempos estimados.',
                 'De la CLI a los agentes de IA: métodos de acceso, YANG y plantillas, Python y Ansible, fuente de verdad, validación y CI, telemetría, enterprise, centro de datos, proveedores y nube, scripts contra plataformas y buenas prácticas. Sin depender de ningún producto.'
             ],
             resourceCardMetas: [
@@ -674,6 +676,7 @@
                 'Icono de generación de configuración',
                 'Icono de ciclo cerrado de remediación',
                 'Icono de alta de servicio',
+                'Icono de flujos de operación',
                 'Icono de conversación',
                 'Icono de seguridad de red',
                 'Icono de inventario de servicios',
@@ -945,7 +948,7 @@
                 'We walk the first remediations and the full cycle with you until your team does it alone, with the windows and approvers you already use.'
             ],
             servicesEyebrow: 'Platform capabilities',
-            servicesTitle: 'Fifteen modules to discover, verify, remediate, and roll out new services.',
+            servicesTitle: 'Sixteen modules to discover, verify, remediate, and roll out new services.',
             serviceTitles: [
                 'Multi-vendor discovery',
                 'Network inventory',
@@ -954,6 +957,7 @@
                 'Scoped desired configuration',
                 'Closed-loop remediation',
                 'New service rollout',
+                'Workflows',
                 'Argos, network ChatOps',
                 'Network security',
                 'Service inventory',
@@ -971,6 +975,7 @@
                 'Generates configuration from templates and service vars, with precedence by site, platform, model, role, and device.',
                 'Audit, propose, review the diff, approve, apply, and audit again to confirm the finding closed. With artifacts and a way back.',
                 'Tunnels between sites, advertising a network in OSPF and BGP, or DHCP per VLAN. Every service is proposed, edited, and ships with its rollback.',
+                'Chain services, verifications, the closed loop with human approval and integrations into a clear process. Simulate it, animated, with your data and run it from Argos.',
                 'Ask in plain language and it answers with network data. Every action states, before you click it, whether it consumes AI or is deterministic.',
                 'Posture computed on the collected configuration across four domains: perimeter, management plane, identities, and segmentation, with evidence for each finding.',
                 'Answers what is configured on each device and how much of it is declared as intent, so blind spots close without touching the network.',
@@ -1143,7 +1148,7 @@
             resourceCardTitles: ['Oktavia executive summary', 'Oktavia Pro technical sheet', 'Free course: network automation fundamentals'],
             resourceCardBodies: [
                 'Two pages to decide whether Oktavia fits: what problem it solves and for whom, the operational benefits with their reference metrics, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, and the flexible commercial terms. No implementation detail.',
-                'The complete document: the fifteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, use cases, and the implementation process with estimated timelines.',
+                'The complete document: the sixteen modules and their scope, the seven value categories, coverage and access method per vendor, ecosystem integrations, architecture, integration requirements, Oktavia Pro and Oktavia SP licensing with telemetry as an add-on, use cases, and the implementation process with estimated timelines.',
                 'From the CLI to AI agents: access methods, YANG and templates, Python and Ansible, source of truth, validation and CI, telemetry, enterprise, data center, service provider and cloud, scripts versus platforms, and best practices. Independent of any product. In Spanish.'
             ],
             resourceCardMetas: [
@@ -1175,6 +1180,7 @@
                 'Configuration generation icon',
                 'Closed-loop remediation icon',
                 'Service rollout icon',
+                'Workflows icon',
                 'Conversation icon',
                 'Network security icon',
                 'Service inventory icon',
