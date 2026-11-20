@@ -39,7 +39,7 @@ VIDEOS = [
     "VKBOfMsdLzQ",   # Inventario
     "Tb6tp0IMpm0",   # De la visibilidad al cumplimiento
     "HmoXtXVi-io",   # Gemelo digital, de la deteccion a la remediacion
-    "seIST0rDvtA",   # Argos en accion (va en la seccion de Argos)
+    "3SwLaZPuUdo",   # Argos en accion: una VLAN (va en la seccion de Argos)
 ]
 
 # Sólo en la página de Oktavia SP (oktavia-sp.html), no en la portada.

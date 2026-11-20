@@ -260,7 +260,7 @@
                 'El inventario',
                 'De la visibilidad al cumplimiento',
                 'Gemelo digital: detectar y remediar',
-                'Argos en acción: una loopback desde cero'
+                'Argos en acción: una VLAN en pocos clics'
             ],
             videoCuerpos: [
                 "La creación de un pseudowire EVPN-VPWS para un cliente, de punta a punta: Argos arma la intención, el cambio en los PE IOS XR y el CE pasa por el Gemelo para tu aprobación, y al aplicar se verifica el servicio arriba.",
@@ -275,7 +275,7 @@
                 'Equipos, sitios, roles y plataformas, con filtros y exportación.',
                 'La auditoría: qué falló, con qué severidad y qué líneas de configuración faltan.',
                 'El ciclo cerrado: proponer, aprobar, aplicar y verificar que el hallazgo cerró.',
-                'Se le pide el servicio conversando y Argos lo propone como intención declarada. El cambio se revisa en el Gemelo Digital y sólo se aplica cuando alguien lo aprueba.'
+                'Se pide la VLAN a Argos y la propone como intención declarada. El cambio se revisa en el Gemelo Digital y sólo se aplica cuando alguien lo aprueba.'
             ],
             videoCanal: 'Ver el canal completo en YouTube',
             securityAria: 'Postura de seguridad que cierra el ciclo',
@@ -784,7 +784,7 @@
                 'The inventory',
                 'From visibility to compliance',
                 'Digital Twin: detect and remediate',
-                'Argos in action: a loopback from scratch'
+                'Argos in action: a VLAN in a few clicks'
             ],
             videoCuerpos: [
                 "Creating an EVPN-VPWS pseudowire for a customer, end to end: Argos builds the intent, the change on the IOS XR PEs and the CE goes through the Twin for your approval, and once applied the service is verified up.",
@@ -799,7 +799,7 @@
                 'Devices, sites, roles, and platforms, with filters and export.',
                 'The audit: what failed, at what severity, and which configuration lines are missing.',
                 'The closed loop: propose, approve, apply, and verify the finding closed.',
-                'You ask for the service in conversation and Argos proposes it as declared intent. The change is reviewed in the Digital Twin and only applied once someone approves it. Video in Spanish.'
+                'You ask Argos for the VLAN and it proposes it as declared intent. The change is reviewed in the Digital Twin and only applied once someone approves it. Video in Spanish.'
             ],
             videoCanal: 'Browse the full channel on YouTube',
             securityAria: 'Security posture that closes the loop',
