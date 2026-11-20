@@ -32,8 +32,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=31a605fbf8">
-    <link rel="stylesheet" href="style/edition_sp.css?v=7cf4e114ac">
+    <link rel="stylesheet" href="style/home_style.css?v=ac7d9b9a8d">
+    <link rel="stylesheet" href="style/edition_sp.css?v=645c536816">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -410,6 +410,32 @@
                         <p>La pestaña Orquestación personalizada reúne los flujos hechos a la arquitectura y los estándares del proveedor.</p>
                     </article>
                 </div>
+            </div>
+        </section>
+
+        <section class="wf-section" id="flujos-de-operacion" aria-label="Flujos de operación">
+            <div class="container">
+                <p class="eyebrow">Flujos de operación</p>
+                <h2>El servicio del cliente como un proceso: de la petición a la verificación.</h2>
+                <figure class="wf-figure">
+                    <svg viewBox="0 0 980 330" role="img" aria-labelledby="wf-sp-t">
+                        <title id="wf-sp-t">El alta de un pseudowire como flujo, corriendo desde Argos</title>
+                        <defs><filter id="wf-sp-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+                        <text x="30" y="24" class="wf-lane">Flujo «Alta de pseudowire de cliente»</text>
+                        <path id="wf-sp-ruta" class="wf-link" d="M130 82 L370 82 L610 82 L850 82"/>
+                        <g class="wf-node wf-svc wf-n1"><rect x="30" y="44" width="200" height="76" rx="14"/><circle cx="54" cy="66" r="11"/><text x="54" y="70" text-anchor="middle" class="wf-num">1</text><text x="74" y="71" class="wf-t">Sugerencia del cliente</text><text x="46" y="100" class="wf-s">subred, VLAN y extremos</text></g>
+                        <g class="wf-node wf-svc wf-n2"><rect x="270" y="44" width="200" height="76" rx="14"/><circle cx="294" cy="66" r="11"/><text x="294" y="70" text-anchor="middle" class="wf-num">2</text><text x="314" y="71" class="wf-t">Alta del pseudowire</text><text x="286" y="100" class="wf-s">escribe la intención</text></g>
+                        <g class="wf-node wf-cyc wf-n3"><rect x="510" y="44" width="200" height="76" rx="14"/><circle cx="534" cy="66" r="11"/><text x="534" y="70" text-anchor="middle" class="wf-num">3</text><image href="img/LOGO_Argos_SP.png" x="550" y="54" width="24" height="24"/><text x="580" y="71" class="wf-t">Orden de servicio</text><text x="526" y="100" class="wf-s">PE (commit) → CE</text></g>
+                        <g class="wf-node wf-ver wf-n4"><rect x="750" y="44" width="200" height="76" rx="14"/><circle cx="774" cy="66" r="11"/><text x="774" y="70" text-anchor="middle" class="wf-num">4</text><text x="794" y="71" class="wf-t">Verificar y avisar</text><text x="766" y="100" class="wf-s">xconnect · correo</text></g>
+                        <g class="wf-approve"><rect x="512" y="132" width="196" height="30" rx="15"/><text x="610" y="152" text-anchor="middle">👤 tú apruebas y confirmas</text></g>
+                        <circle class="wf-token" r="8" filter="url(#wf-sp-glow)"><animateMotion dur="8s" repeatCount="indefinite" keyPoints="0;0;0.333;0.333;0.666;0.666;1;1" keyTimes="0;0.12;0.25;0.37;0.5;0.75;0.87;1" calcMode="linear"><mpath href="#wf-sp-ruta"/></animateMotion></circle>
+                        <path class="wf-launch" d="M240 230 C 160 200, 120 160, 120 124"/>
+                        <g class="wf-chat"><rect x="30" y="214" width="430" height="92" rx="16"/><image href="img/LOGO_Argos_SP.png" x="46" y="232" width="40" height="40"/><text x="100" y="250" class="wf-chat-t">«corre el flujo pseudowire de CLIENTE_C»</text><text x="100" y="276" class="wf-s">Argos lo lanza y muestra la orden en el chat</text></g>
+                        <path class="wf-link wf-done-link" d="M850 120 C 850 170, 840 190, 800 214"/>
+                        <g class="wf-done"><rect x="520" y="214" width="430" height="92" rx="16"/><text x="544" y="252" class="wf-done-t">✓ xconnect arriba</text><text x="544" y="278" class="wf-s">PE y CE aplicados · aviso enviado</text></g>
+                    </svg>
+                    <figcaption>El cliente se elige de una lista del SoT; el flujo toma su numeración, guarda el circuito y propone la orden de servicio. Se simula animado sin escribir nada y, al correrlo, espera a que confirmes el PE y luego el CE antes de verificar.</figcaption>
+                </figure>
             </div>
         </section>
 
