@@ -4014,3 +4014,5 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 .wf-done-t { fill: #86efac; font-size: 18px; font-weight: 800; }
 @keyframes wf-fin { 0%, 86% { opacity: .45; } 90%, 100% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .wf-link, .wf-node, .wf-approve rect, .wf-done rect { animation: none; } .wf-token { display: none; } }
+/* Ilustración de SP: cuadros más anchos y título un poco menor para que quepa */
+.wf-compact .wf-t { font-size: 14px; }
