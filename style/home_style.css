@@ -4131,3 +4131,73 @@ body.edition-sp .hero-brandline {
         radial-gradient(35% 50% at 6% 92%, rgba(150, 70, 255, 0.09) 0%, transparent 70%),
         linear-gradient(180deg, #000623 0%, #020721 100%);
 }
+
+/* Títulos con la mezcla de los logos: cian, azul y violeta, más claros que la
+   marca para que se lean. En SP el violeta domina (tools/build_sp_theme.py). */
+:root {
+    --grad-titulos: linear-gradient(90deg, #7fe3ff 0%, #8ea6ff 45%, #c9a2ff 100%);
+}
+main h1,
+main h2 {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+    max-width: 100%;
+}
+
+/* Menú con los colores de la marca: los antetítulos y los productos llevan el
+   degradado; Oktavia SP el suyo, con el violeta como énfasis. */
+.main-nav .nav-head,
+.main-nav .nav-home-link span,
+.main-nav a.nav-producto,
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    width: fit-content;
+}
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    background-image: var(--grad-marca-sp);
+}
+.main-nav a.nav-producto,
+.main-nav .nav-home-link span,
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+}
+.main-nav a:not(.nav-producto):not(.nav-home-link) { color: #dfe6ff; }
+@media (hover: hover) {
+    .main-nav a:not(.nav-producto):not(.nav-home-link):hover { color: #c9a2ff; }
+}
+
+/* Licencias: el nombre del plan como marca y el título de cada módulo con la
+   mezcla de los logos; la descripción se queda igual. SP con el violeta. */
+.licensing-plan h3 {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+.licensing-plan-list strong {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+.licensing-plan-sp h3 { background-image: var(--grad-marca-sp); }
+.licensing-plan-sp .licensing-plan-list strong {
+    background-image: linear-gradient(90deg, #9db8ff 0%, #b48cff 45%, #e0c3ff 100%);
+}
+.licensing-plan-extra h3 { text-transform: none; }
+/* Las tarjetas de producto: el nombre con su degradado (le gana al blanco de .product-card h3). */
+.product-card h3.product-title { color: transparent; }

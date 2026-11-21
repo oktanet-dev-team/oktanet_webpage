@@ -38,6 +38,7 @@ AJUSTES = (
     # La marca en SP: empieza en azul y domina el violeta (la mezcla de los logos).
     "body.edition-sp { --grad-marca: linear-gradient(90deg, #5b8cff 0%, #9b5cff 40%, #c08bff 100%);"
     " --grad-marca-sp: linear-gradient(90deg, #5b8cff 0%, #9b5cff 40%, #c08bff 100%); }",
+    "body.edition-sp { --grad-titulos: linear-gradient(90deg, #9db8ff 0%, #b48cff 45%, #e0c3ff 100%); }",
     # Fondos de SP: domina el violeta, con un brillo azul (la mezcla de los logos).
     "body.edition-sp .hero-section { background: radial-gradient(48% 60% at 82% 18%, rgba(150, 70, 255, 0.22) 0%, transparent 70%),"
     " radial-gradient(38% 50% at 8% 88%, rgba(28, 132, 255, 0.16) 0%, transparent 70%),"

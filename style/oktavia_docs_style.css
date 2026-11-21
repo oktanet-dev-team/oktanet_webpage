@@ -1126,3 +1126,10 @@ table.doc-table tr[hidden] {
         grid-template-columns: 1fr;
     }
 }
+
+/* Botón de búsqueda con el degradado de la marca. */
+.docs-search-form button {
+    background: var(--grad-marca, linear-gradient(90deg, #12d8fa 0%, #4a8af4 55%, #a64dff 100%));
+    border-color: transparent;
+    color: #ffffff;
+}
