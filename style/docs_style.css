@@ -7,17 +7,17 @@
    --------------------------------------------------------------------------- */
 
 :root {
-    --bg-main: #08131f;
-    --bg-elevated: #0d1319;
-    --bg-deep: #060f1b;
+    --bg-main: #070b1d;
+    --bg-elevated: #0c0e17;
+    --bg-deep: #050919;
     --text-main: #c8d5ec;
     --text-muted: #a3b7d2;
-    --line-soft: #15202b;
+    --line-soft: #131628;
     --line-strong: #2a4159;
-    --brand: #2b8fd4;
-    --brand-strong: #99d1f9;
-    --brand-soft: #041322;
-    --highlight: #57c8ea;
+    --brand: #2c2bd4;
+    --brand-strong: #99c7f9;
+    --brand-soft: #030820;
+    --highlight: #57afea;
     --radius-lg: 18px;
     --radius-md: 12px;
     --shadow-soft: 0 16px 34px rgba(0, 0, 0, 0.42);
@@ -63,7 +63,7 @@ img {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #0f4d78 0%, #0b3a5c 100%);
+    background: linear-gradient(180deg, #100f78 0%, #081657 100%);
     color: #fff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
@@ -131,7 +131,7 @@ img {
 
 .doc-btn-solid {
     background: #fff;
-    color: #0b4a78;
+    color: #0c0b78;
     border-color: #fff;
 }
 
@@ -149,7 +149,7 @@ img {
 }
 
 .doc-header nav a.doc-btn-solid {
-    color: #0b4a78;
+    color: #0c0b78;
 }
 
 /* ------------------- Barra superior mínima y menú del sitio ---------------- */
@@ -158,7 +158,7 @@ img {
    página (idioma, imprimir, PDF) y el botón Menú. Los enlaces del sitio viven
    en un cajón a la derecha que se abre con ese botón. */
 .doc-header-min {
-    background: #0a1b2b;
+    background: #080e28;
     border-bottom: 1px solid var(--line-strong);
 }
 
@@ -207,7 +207,7 @@ img {
 }
 
 .doc-actions a.doc-btn-solid {
-    color: #0b4a78;
+    color: #0c0b78;
 }
 
 .doc-icon-btn {
@@ -348,7 +348,7 @@ img {
 .doc-header .site-drawer-actions .doc-btn-solid {
     background: var(--brand);
     border-color: var(--brand);
-    color: #0d1319;
+    color: #0c0e17;
 }
 
 /* La barra superior es su propio contexto de apilamiento (sticky con
@@ -361,7 +361,7 @@ img {
     position: fixed;
     inset: 0;
     z-index: 60;
-    background: rgba(2, 8, 15, 0.6);
+    background: rgba(2, 4, 14, 0.6);
 }
 
 .doc-scrim[hidden] {
@@ -456,7 +456,7 @@ html.doc-drawer-open {
     border-radius: 999px;
     font-size: 0.84rem;
     color: var(--text-muted);
-    background: #001326;
+    background: #000623;
 }
 
 .doc-share {
@@ -484,7 +484,7 @@ html.doc-drawer-open {
     padding: 7px 14px;
     border: 1px solid var(--line-strong);
     border-radius: 999px;
-    background: #001326;
+    background: #000623;
     color: var(--brand-strong);
     font-family: inherit;
     font-size: 0.86rem;
@@ -502,7 +502,7 @@ html.doc-drawer-open {
 .doc-share-link.is-done {
     background: var(--brand);
     border-color: var(--brand);
-    color: #0d1319;
+    color: #0c0e17;
 }
 
 .doc-toc {
@@ -598,7 +598,7 @@ table.doc-table td {
 }
 
 table.doc-table thead th {
-    background: linear-gradient(180deg, #0c5a91 0%, #073f67 100%);
+    background: linear-gradient(180deg, #0d0c91 0%, #041461 100%);
     color: #fff;
     font-size: 0.8rem;
     letter-spacing: 0.05em;
@@ -606,7 +606,7 @@ table.doc-table thead th {
 }
 
 table.doc-table tbody tr:nth-child(even) td {
-    background: #041322;
+    background: #030820;
 }
 
 table.doc-table td {
@@ -621,7 +621,7 @@ table.doc-table td strong {
     margin: 0 0 14px;
     padding: 14px 18px;
     border-left: 4px solid var(--brand);
-    background: #051321;
+    background: #04091f;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
@@ -681,7 +681,7 @@ table.doc-table td strong {
 }
 
 .doc-footer a {
-    color: #9fd0f2;
+    color: #9fc7f2;
 }
 
 /* ------------------------- Indice de documentacion ------------------------ */
@@ -750,7 +750,7 @@ table.doc-table td strong {
 .doc-item-actions a.is-primary {
     background: var(--brand);
     border-color: var(--brand);
-    color: #0d1319;
+    color: #0c0e17;
 }
 
 .doc-item-actions a.is-primary:hover,
@@ -795,19 +795,19 @@ table.doc-table td strong {
         --bg-main: #ffffff;
         --bg-elevated: #ffffff;
         --bg-deep: #ffffff;
-        --text-main: #132037;
+        --text-main: #111733;
         --text-muted: #4a5d7a;
         --line-soft: #d4deea;
         --line-strong: #a6bad5;
-        --brand: #0c5a91;
-        --brand-strong: #063e66;
+        --brand: #0d0c91;
+        --brand-strong: #031360;
         --brand-soft: #deecfb;
-        --highlight: #167a9f;
+        --highlight: #161b9f;
         --shadow-soft: none;
     }
 
     .doc-footer {
-        color: #132037;
+        color: #111733;
     }
 
     /* Las pastillas de la portada llevan su color literal, no un token. */
@@ -857,7 +857,7 @@ table.doc-table td strong {
 
     .doc-cover {
         padding-bottom: 10mm;
-        border-bottom: 2px solid #0c5a91;
+        border-bottom: 2px solid #0d0c91;
     }
 
     .doc-toc {
@@ -922,8 +922,8 @@ table.doc-table td strong {
 
     .doc-footer {
         background: #fff;
-        color: #132037;
-        border-top: 2px solid #0c5a91;
+        color: #111733;
+        border-top: 2px solid #0d0c91;
         border-radius: 0;
         padding: 6mm 0 0;
         break-inside: avoid;
@@ -931,7 +931,7 @@ table.doc-table td strong {
 
     .doc-footer h3,
     .doc-footer a {
-        color: #0c5a91;
+        color: #0d0c91;
     }
 }
 
@@ -1154,7 +1154,7 @@ table.doc-table td strong {
     }
 
     .post-punch {
-        color: #0c5a91;
+        color: #0d0c91;
     }
 
     .post-cta {
@@ -1180,9 +1180,9 @@ table.doc-table td strong {
     width: 66px;
     height: 66px;
     padding: 0 0 0 4px;
-    border: 1px solid rgba(153, 209, 249, 0.5);
+    border: 1px solid rgba(153, 199, 249, 0.5);
     border-radius: 50%;
-    background: rgba(8, 21, 33, 0.78);
+    background: rgba(7, 11, 31, 0.78);
     color: var(--brand-strong);
     font-size: 1.5rem;
     cursor: pointer;
@@ -1191,7 +1191,7 @@ table.doc-table td strong {
 
 .post-video-play:hover,
 .post-video-play:focus-visible {
-    background: rgba(12, 90, 145, 0.92);
+    background: rgba(13, 12, 145, 0.92);
     transform: translate(-50%, -50%) scale(1.06);
 }
 
@@ -1234,7 +1234,7 @@ table.doc-table td strong {
 
 @media print {
     .post-section-icon {
-        stroke: #0c5a91;
+        stroke: #0d0c91;
     }
 
     .post-brand {
@@ -1327,7 +1327,7 @@ table.doc-table td strong {
 }
 
 .quiz-opt:hover {
-    background: rgba(87, 200, 234, 0.07);
+    background: rgba(87, 175, 234, 0.07);
 }
 
 .quiz-opt input {
@@ -1346,7 +1346,7 @@ table.doc-table td strong {
     margin: 10px 0 0;
     padding: 10px 12px;
     border-radius: 8px;
-    background: rgba(43, 143, 212, 0.1);
+    background: rgba(44, 43, 212, 0.1);
     color: var(--text-main);
 }
 
@@ -1595,15 +1595,15 @@ pre {
     --bg-main: #e9eef5;
     --bg-elevated: #ffffff;
     --bg-deep: #ffffff;
-    --text-main: #132037;
+    --text-main: #111733;
     --text-muted: #4a5d7a;
     --line-soft: #d4deea;
     --line-strong: #a6bad5;
-    --brand: #0c5a91;
-    --brand-strong: #063e66;
+    --brand: #0d0c91;
+    --brand-strong: #031360;
     --brand-soft: #deecfb;
-    --highlight: #167a9f;
-    --shadow-soft: 0 18px 40px rgba(19, 32, 55, 0.18);
+    --highlight: #161b9f;
+    --shadow-soft: 0 18px 40px rgba(17, 23, 51, 0.18);
 }
 
 .cert-page .doc-main {

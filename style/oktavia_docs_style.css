@@ -39,7 +39,7 @@ body.docs-portal {
 
 .docs-search-form:focus-within {
     border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(43, 143, 212, 0.22);
+    box-shadow: 0 0 0 3px rgba(44, 43, 212, 0.22);
 }
 
 .docs-search-form .material-symbols-outlined {
@@ -71,7 +71,7 @@ body.docs-portal {
     border: 0;
     border-radius: 999px;
     background: var(--brand);
-    color: #0d1319;
+    color: #0c0e17;
     font: inherit;
     font-weight: 700;
     cursor: pointer;
@@ -441,7 +441,7 @@ body.docs-portal {
 }
 
 .docs-badge.is-ref {
-    border-color: rgba(87, 200, 234, 0.45);
+    border-color: rgba(87, 175, 234, 0.45);
     color: var(--highlight);
 }
 
@@ -535,7 +535,7 @@ html {
 
 .docs-filter:focus-within {
     border-color: var(--brand);
-    box-shadow: 0 0 0 3px rgba(43, 143, 212, 0.22);
+    box-shadow: 0 0 0 3px rgba(44, 43, 212, 0.22);
 }
 
 .docs-filter .material-symbols-outlined {
@@ -899,7 +899,7 @@ html {
 table.doc-table code {
     padding: 1px 6px;
     border-radius: 6px;
-    background: rgba(87, 200, 234, 0.1);
+    background: rgba(87, 175, 234, 0.1);
     color: var(--brand-strong);
     font-size: 0.86em;
     overflow-wrap: anywhere;
@@ -1075,7 +1075,7 @@ table.doc-table tr[hidden] {
     .docs-dl code,
     table.doc-table code {
         background: #eef4fb;
-        color: #063e66;
+        color: #031360;
     }
 }
 
@@ -1086,11 +1086,11 @@ table.doc-table tr[hidden] {
 .academy-pyramid { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: 5px; justify-items: center;
     max-width: 680px; }
 .academy-pyramid li { box-sizing: border-box; padding: 7px 12px; border-radius: 8px; text-align: center; color: #fff;
-    background: linear-gradient(135deg, #0b4a78, #2b8fd4); display: flex; flex-direction: column; gap: 2px; }
+    background: linear-gradient(135deg, #0c0b78, #2c2bd4); display: flex; flex-direction: column; gap: 2px; }
 .academy-pyramid .lvl-5 { width: 52%; background: linear-gradient(135deg, #3b1d6e, #7c4dcc); }
-.academy-pyramid .lvl-4 { width: 64%; background: linear-gradient(135deg, #0a3657, #1d6fa8); }
-.academy-pyramid .lvl-3 { width: 76%; background: linear-gradient(135deg, #0b4a78, #2482c2); }
-.academy-pyramid .lvl-2 { width: 88%; background: linear-gradient(135deg, #0f6b8f, #2fb0c9); }
+.academy-pyramid .lvl-4 { width: 64%; background: linear-gradient(135deg, #071452, #1e1da8); }
+.academy-pyramid .lvl-3 { width: 76%; background: linear-gradient(135deg, #0c0b78, #2524c2); }
+.academy-pyramid .lvl-2 { width: 88%; background: linear-gradient(135deg, #0f138f, #2f3ac9); }
 .academy-pyramid .lvl-1 { width: 100%; background: linear-gradient(135deg, #12806f, #34c3a0); }
 .academy-pyramid .lvl-name { font-weight: 800; font-size: 0.9rem; line-height: 1.25; }
 .academy-pyramid .lvl-tag { font-size: 0.74rem; opacity: 0.9; line-height: 1.25; }
