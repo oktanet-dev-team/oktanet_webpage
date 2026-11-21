@@ -31,9 +31,9 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Poppins:wght@500;600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=db1f245248">
+    <link rel="stylesheet" href="style/home_style.css?v=05b62dac46">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -53,10 +53,7 @@
     <header class="site-header" id="inicio">
         <div class="container nav-shell">
             <a class="brand" href="#page-top" aria-label="Ir al inicio">
-                <picture>
-                    <source srcset="img/LOGO_Oktavia.webp" type="image/webp">
-                    <img src="img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="512" height="499" decoding="async">
-                </picture>
+                <span class="wordmark wordmark--nav">oktanet</span>
             </a>
 
             <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menú">
@@ -178,7 +175,7 @@
                     </article>
                     <article class="product-card product-card--sp">
                         <p class="product-kicker" data-copy="spKicker">Proveedor de servicios</p>
-                        <h3 class="product-title"><img src="img/LOGO_Oktavia_SP.png" alt="" width="40" height="39">Oktavia SP</h3>
+                        <h3 class="product-title product-title--sp"><img src="img/LOGO_Oktavia_SP.png" alt="" width="40" height="39">Oktavia SP</h3>
                         <p class="product-tagline" data-copy="spTagline">El núcleo y los servicios de cada cliente, de la intención a la verificación: L3VPN, pseudowires e internet dedicado sobre IOS XR por NETCONF.</p>
                         <ul class="product-modules" data-copy-list="spModules">
                             <li>Servicios de cliente: una tabla con estado real y aprovisionamiento</li>
@@ -303,11 +300,8 @@
                         <span class="family-ir" aria-hidden="true">Ver más</span>
                     </a>
                     <a class="family-card" href="#servicios-profesionales">
-                        <picture class="family-logo">
-                            <source srcset="img/LOGO_Oktanet.webp" type="image/webp">
-                            <img src="img/LOGO_Oktanet.png" alt="Logo de Oktanet" width="512" height="512" loading="lazy" decoding="async">
-                        </picture>
-                        <h3>Oktanet</h3>
+                        <span class="family-logo family-logo--word" aria-hidden="true"><span class="wordmark">oktanet</span></span>
+                        <h3 class="sr-only">Oktanet</h3>
                         <p class="family-role">Servicios profesionales</p>
                         <p>Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada.</p>
                         <span class="family-ir" aria-hidden="true">Ver más</span>
@@ -1016,10 +1010,7 @@
 
         <section class="pro-section" id="servicios-profesionales" aria-label="Servicios profesionales de Oktanet">
             <div class="container">
-                <picture class="section-mark">
-                    <source srcset="img/LOGO_Oktanet.webp" type="image/webp">
-                    <img src="img/LOGO_Oktanet.png" alt="Logo de Oktanet" width="512" height="512" loading="lazy" decoding="async">
-                </picture>
+                <p class="wordmark wordmark--section" aria-hidden="true">oktanet</p>
                 <p class="eyebrow">Oktanet · Servicios profesionales</p>
                 <h2>La implementación llave en mano, no sólo la licencia.</h2>
                 <p class="section-intro">Una plataforma de automatización no sirve si nadie carga el inventario, declara la intención y ajusta las reglas a cómo opera la red de verdad. Ese trabajo lo hacemos nosotros, contigo, hasta que tu equipo lo recorre solo.</p>

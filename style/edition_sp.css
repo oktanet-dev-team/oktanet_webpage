@@ -105,6 +105,10 @@ body.edition-sp .wf-link { stroke: rgba(164, 115, 239, 0.55); }
 body.edition-sp .wf-svc rect { stroke: #a473ef; }
 body.edition-sp .wf-svc circle { fill: #a473ef; }
 body.edition-sp .wf-token { fill: #d4bdfa; }
+body.edition-sp { --grad-marca: linear-gradient(90deg, #934eed 0%, #a583ee 55%, #a64dff 100%); }
+@media (hover: hover) {
+  body.edition-sp .btn-primary:hover { box-shadow: 0 12px 24px rgba(165, 131, 238, 0.28); }
+}
 
 /* style/docs_style.css */
 body.edition-sp { --brand: #875cd1; --brand-strong: #d4c0f6; --highlight: #b28de8; }
@@ -131,6 +135,10 @@ body.edition-sp .post-video-play:hover, body.edition-sp .post-video-play:focus-v
 body.edition-sp .quiz-opt:hover { background: rgba(178, 141, 232, 0.07); }
 body.edition-sp .quiz-why { background: rgba(135, 92, 209, 0.1); }
 body.edition-sp .cert-page { --brand: #3f1687; --highlight: #4f2095; }
+body.edition-sp { --grad-marca: linear-gradient(90deg, #934eed 0%, #a583ee 55%, #a64dff 100%); }
+@media print {
+  body.edition-sp .wordmark, body.edition-sp .doc-brand span { color: #4f21a2; }
+}
 
 /* style/oktavia_docs_style.css */
 body.edition-sp .docs-search-form:focus-within { box-shadow: 0 0 0 3px rgba(135, 92, 209, 0.22); }
