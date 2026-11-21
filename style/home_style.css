@@ -4199,3 +4199,5 @@ main h2 {
     background-image: linear-gradient(90deg, #9db8ff 0%, #b48cff 45%, #e0c3ff 100%);
 }
 .licensing-plan-extra h3 { text-transform: none; }
+/* Las tarjetas de producto: el nombre con su degradado (le gana al blanco de .product-card h3). */
+.product-card h3.product-title { color: transparent; }
