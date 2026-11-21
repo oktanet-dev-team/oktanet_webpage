@@ -4131,3 +4131,18 @@ body.edition-sp .hero-brandline {
         radial-gradient(35% 50% at 6% 92%, rgba(150, 70, 255, 0.09) 0%, transparent 70%),
         linear-gradient(180deg, #000623 0%, #020721 100%);
 }
+
+/* Títulos con la mezcla de los logos: cian, azul y violeta, más claros que la
+   marca para que se lean. En SP el violeta domina (tools/build_sp_theme.py). */
+:root {
+    --grad-titulos: linear-gradient(90deg, #7fe3ff 0%, #8ea6ff 45%, #c9a2ff 100%);
+}
+main h1,
+main h2 {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+    max-width: 100%;
+}

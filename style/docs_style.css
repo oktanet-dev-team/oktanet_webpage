@@ -1914,3 +1914,21 @@ pre {
     .wordmark,
     .doc-brand span { color: #1668ad; background: none; }
 }
+
+/* Títulos y botón principal con la mezcla de los logos (ver home_style.css). */
+:root {
+    --grad-titulos: linear-gradient(90deg, #7fe3ff 0%, #8ea6ff 45%, #c9a2ff 100%);
+}
+main h1,
+main h2 {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+    max-width: 100%;
+}
+@media print {
+    main h1,
+    main h2 { color: #10233d; background: none; }
+}
