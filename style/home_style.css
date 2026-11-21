@@ -4168,10 +4168,16 @@ main h2 {
     font-family: "Poppins", "Manrope", sans-serif;
     font-weight: 500;
 }
-.main-nav a:not(.nav-producto):not(.nav-home-link) { color: #dfe6ff; }
-@media (hover: hover) {
-    .main-nav a:not(.nav-producto):not(.nav-home-link):hover { color: #c9a2ff; }
+.main-nav a:not(.nav-producto):not(.nav-home-link) {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    width: fit-content;
 }
+/* Al pasar el mouse la pastilla de fondo reemplaza al degradado: texto blanco. */
+.main-nav a:not(.nav-producto):not(.nav-home-link):hover,
+.main-nav a:not(.nav-producto):not(.nav-home-link):focus-visible { color: #ffffff !important; }
 
 /* Licencias: el nombre del plan como marca y el título de cada módulo con la
    mezcla de los logos; la descripción se queda igual. SP con el violeta. */
@@ -4201,3 +4207,9 @@ main h2 {
 .licensing-plan-extra h3 { text-transform: none; }
 /* Las tarjetas de producto: el nombre con su degradado (le gana al blanco de .product-card h3). */
 .product-card h3.product-title { color: transparent; }
+
+/* Lo que quedaba en blanco: el título de «Cuatro frentes» con el degradado de
+   los títulos y las descripciones de las tarjetas en un azul lavanda suave. */
+main .family-section h2 { color: transparent; }
+.family-card p:not(.family-role) { color: #bcc6f2; }
+.family-card--sp p:not(.family-role) { color: #cdbff5; }
