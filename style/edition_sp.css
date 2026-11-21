@@ -179,6 +179,7 @@ body.edition-sp .family-section { background: radial-gradient(45% 70% at 12% 10%
 body.edition-sp .argos-section { background: radial-gradient(42% 60% at 88% 20%, rgba(140, 90, 242, 0.15) 0%, transparent 70%), radial-gradient(40% 55% at 10% 85%, rgba(150, 70, 255, 0.12) 0%, transparent 70%), linear-gradient(180deg, #130a2a 0%, #0e0720 100%); }
 body.edition-sp .services-section, body.edition-sp .licensing-section, body.edition-sp .security-section { background: radial-gradient(40% 55% at 90% 10%, rgba(140, 90, 242, 0.12) 0%, transparent 70%), radial-gradient(35% 50% at 6% 92%, rgba(150, 70, 255, 0.09) 0%, transparent 70%), linear-gradient(180deg, #0a0023 0%, #0b0221 100%); }
 body.edition-sp { --grad-titulos: linear-gradient(90deg, #d6bcfa 0%, #cebdfa 45%, #c9a2ff 100%); }
+body.edition-sp .licensing-plan-sp .licensing-plan-list strong { background-image: linear-gradient(90deg, #cebdfa 0%, #b48cff 45%, #e0c3ff 100%); }
 
 /* style/docs_style.css */
 body.edition-sp { --bg-main: #0d071d; --bg-elevated: #0f0c17; --bg-deep: #0b0519; --line-soft: #191328; --brand: #755cd1; --brand-strong: #d3c0f6; --brand-soft: #0b0320; --highlight: #ae8de8; }

@@ -4172,3 +4172,30 @@ main h2 {
 @media (hover: hover) {
     .main-nav a:not(.nav-producto):not(.nav-home-link):hover { color: #c9a2ff; }
 }
+
+/* Licencias: el nombre del plan como marca y el título de cada módulo con la
+   mezcla de los logos; la descripción se queda igual. SP con el violeta. */
+.licensing-plan h3 {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+.licensing-plan-list strong {
+    background: var(--grad-titulos);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+.licensing-plan-sp h3 { background-image: var(--grad-marca-sp); }
+.licensing-plan-sp .licensing-plan-list strong {
+    background-image: linear-gradient(90deg, #9db8ff 0%, #b48cff 45%, #e0c3ff 100%);
+}
+.licensing-plan-extra h3 { text-transform: none; }
