@@ -4146,3 +4146,29 @@ main h2 {
     width: fit-content;
     max-width: 100%;
 }
+
+/* Menú con los colores de la marca: los antetítulos y los productos llevan el
+   degradado; Oktavia SP el suyo, con el violeta como énfasis. */
+.main-nav .nav-head,
+.main-nav .nav-home-link span,
+.main-nav a.nav-producto,
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    width: fit-content;
+}
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    background-image: var(--grad-marca-sp);
+}
+.main-nav a.nav-producto,
+.main-nav .nav-home-link span,
+.main-nav .nav-group-toggle[aria-controls="nav-sp-menu"] .nav-group-label {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+}
+.main-nav a:not(.nav-producto):not(.nav-home-link) { color: #dfe6ff; }
+@media (hover: hover) {
+    .main-nav a:not(.nav-producto):not(.nav-home-link):hover { color: #c9a2ff; }
+}
