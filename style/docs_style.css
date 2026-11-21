@@ -1892,3 +1892,25 @@ pre {
 .cert-page {
     page: cert;
 }
+
+/* Marca: la palabra en Poppins con el degradado de los logos (ver home_style.css). */
+:root { --grad-marca: linear-gradient(90deg, #12d8fa 0%, #4a8af4 55%, #a64dff 100%); }
+.wordmark,
+.doc-brand span {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.doc-brand span,
+.doc-brand .wordmark { font-size: 1.45rem; line-height: 1; }
+.post-brand .wordmark { font-size: 1.05rem; }
+
+@media print {
+    .wordmark,
+    .doc-brand span { color: #1668ad; background: none; }
+}

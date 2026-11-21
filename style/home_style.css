@@ -4016,3 +4016,86 @@ span.licensing-plan-logo { width: auto; font-size: 40px; color: #6fd7f5; }
 @media (prefers-reduced-motion: reduce) { .wf-link, .wf-node, .wf-approve rect, .wf-done rect { animation: none; } .wf-token { display: none; } }
 /* Ilustración de SP: cuadros más anchos y título un poco menor para que quepa */
 .wf-compact .wf-t { font-size: 14px; }
+
+/* ---------------------------------------------------------------------------
+   Marca: las palabras oktanet, oktavia y argos en Poppins con el degradado de
+   los logos nuevos (el azul de Pro al violeta de SP). Oktanet ya no lleva
+   icono: su marca es la palabra. Lo de SP sigue en violeta.
+   --------------------------------------------------------------------------- */
+:root {
+    --grad-marca: linear-gradient(90deg, #12d8fa 0%, #4a8af4 55%, #a64dff 100%);
+    --grad-marca-sp: linear-gradient(90deg, #d8b4fe 0%, #a64dff 55%, #7c3aed 100%);
+}
+
+.wordmark,
+.family-card h3,
+.product-title,
+.hero-brandline {
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+
+.family-card--sp h3,
+.product-title--sp,
+body.edition-sp .hero-brandline {
+    background-image: var(--grad-marca-sp);
+}
+
+.wordmark { display: inline-block; line-height: 1.15; padding-bottom: 0.06em; }
+.wordmark--nav { font-size: 2.05rem; }
+.wordmark--section { display: block; margin: 0 0 14px; font-size: 3rem; }
+
+/* La tarjeta de Oktanet: la palabra ocupa el lugar del icono y del título. */
+.family-logo--word {
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: auto;
+    height: 92px;
+    margin-bottom: 51px;
+    background: none;
+    border: 0;
+}
+.family-logo--word .wordmark { font-size: 2.6rem; }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* El color del sitio: el mismo degradado en los antetítulos y el botón principal. */
+.eyebrow {
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
+}
+.btn-primary {
+    background: var(--grad-marca);
+    border-color: transparent;
+    color: #ffffff;
+}
+@media (hover: hover) {
+    .btn-primary:hover {
+        background: var(--grad-marca);
+        border-color: transparent;
+        filter: brightness(1.1);
+        box-shadow: 0 12px 24px rgba(74, 138, 244, 0.28);
+    }
+}
+.product-card--sp .btn-primary,
+.family-card--sp .btn-primary { background: var(--grad-marca-sp); }
