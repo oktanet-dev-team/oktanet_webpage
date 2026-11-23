@@ -9,6 +9,20 @@
 </url>
 
 <url>
+<loc>https://oktanet.io/oktavia-dc.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/oktavia-dc.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/oktavia-dc-en.html"/>
+</url>
+<url>
+<loc>https://oktanet.io/oktavia-dc-en.html</loc>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+<xhtml:link rel="alternate" hreflang="es" href="https://oktanet.io/oktavia-dc.html"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://oktanet.io/oktavia-dc-en.html"/>
+</url>
+<url>
 <loc>https://oktanet.io/oktavia-sp.html</loc>
 <priority>0.9</priority>
 <changefreq>monthly</changefreq>

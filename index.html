@@ -33,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Poppins:wght@500;600&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style/home_style.css?v=5be5450d63">
+    <link rel="stylesheet" href="style/home_style.css?v=e1e4d3dc3a">
     <script>
     function initApollo() {
         var n = Math.random().toString(36).substring(7);
@@ -78,6 +78,7 @@
                         <a data-doc-sp href="docs/oktavia-sp.html">Documentación</a>
                     </div>
                 </div>
+                <a class="nav-producto" data-dc-landing href="oktavia-dc.html">Oktavia DC</a>
                 <div class="nav-head">Empresa y servicios</div>
                 <a href="#servicios-profesionales">Servicios</a>
                 <a href="#metodologia">Metodología</a>
@@ -151,7 +152,7 @@
             </div>
         </section>
 
-        <section class="products-section" id="productos" aria-label="Oktavia Pro y Oktavia SP">
+        <section class="products-section" id="productos" aria-label="Oktavia Pro, Oktavia SP y Oktavia DC">
             <div class="container">
                 <p class="eyebrow" data-copy="productsEyebrow">Dos productos, el mismo ciclo cerrado</p>
                 <h2 data-copy="productsTitle">Oktavia Pro para la red empresarial. Oktavia SP para el proveedor de servicios.</h2>
@@ -195,6 +196,24 @@
                         <div class="product-actions">
                             <a class="btn btn-primary" href="oktavia-sp.html" data-copy="spCta">Conocer Oktavia SP</a>
                             <a class="btn btn-secondary" href="docs/oktavia-sp.html" data-copy="spSheet">Ficha técnica</a>
+                        </div>
+                    </article>
+                    <article class="product-card product-card--dc">
+                        <p class="product-kicker" data-copy="dcKicker">Centro de datos</p>
+                        <h3 class="product-title"><img src="img/LOGO_Oktavia.png" alt="" width="40" height="40">Oktavia DC</h3>
+                        <p class="product-tagline" data-copy="dcTagline">La fabric VXLAN EVPN y los servicios de cada aplicación, de la intención a la verificación: Cisco Nexus por NX-API con checkpoint y vuelta atrás automática.</p>
+                        <ul class="product-modules" data-copy-list="dcModules">
+                            <li>Fabric: underlay OSPF, BGP EVPN con reflectores, VTEP y vPC</li>
+                            <li>Servicios orquestados: VRF de tenant, redes de servidores, puertos y salida externa</li>
+                            <li>Alta de una aplicación de punta a punta con un flujo</li>
+                            <li>Transacción en todos los Nexus: checkpoint, verificación y confirmación</li>
+                            <li>Cumplimiento por servicio y estado de la fabric</li>
+                            <li>Componentes de cada servicio con sus parámetros por equipo</li>
+                            <li>Ruteo por VRF, telemetría, hardening y FinOps</li>
+                            <li>Argos: diagnóstico de la fabric con IA local</li>
+                        </ul>
+                        <div class="product-actions">
+                            <a class="btn btn-primary" data-dc-landing href="oktavia-dc.html" data-copy="dcCta">Conocer Oktavia DC</a>
                         </div>
                     </article>
                 </div>
@@ -291,6 +310,16 @@
                         <h3>Oktavia SP</h3>
                         <p class="family-role">La plataforma para proveedores</p>
                         <p>El núcleo IOS XR y los servicios de cada cliente: L3VPN, pseudowires e internet dedicado, de la intención a la verificación, con su estado real en una sola tabla.</p>
+                        <span class="family-ir" aria-hidden="true">Ver más</span>
+                    </a>
+                    <a class="family-card family-card--dc" data-dc-landing href="oktavia-dc.html">
+                        <picture class="family-logo">
+                            <source srcset="img/LOGO_Oktavia.webp" type="image/webp">
+                            <img src="img/LOGO_Oktavia.png" alt="Logo de Oktavia DC" width="512" height="512" loading="lazy" decoding="async">
+                        </picture>
+                        <h3>Oktavia DC</h3>
+                        <p class="family-role">La plataforma para el centro de datos</p>
+                        <p>La fabric VXLAN EVPN de Cisco Nexus y los servicios de cada aplicación: VRF, redes de servidores, puertos y salida externa, con checkpoint, verificación y auditoría.</p>
                         <span class="family-ir" aria-hidden="true">Ver más</span>
                     </a>
                     <a class="family-card" href="#argos">
@@ -1454,7 +1483,7 @@
         }
         }
     </script>
-    <script src="script/home_script.js?v=64adf7afaa"></script>
+    <script src="script/home_script.js?v=8cf3241f61"></script>
     <script src="script/site_nav.js?v=a84b5a7fdc"></script>
 </body>
 </html>
