@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ficha técnica de Oktavia DC | Oktanet</title>
+    <meta name="description" content="Ficha técnica de Oktavia DC: la fabric VXLAN EVPN de Cisco Nexus por NX-API y los servicios de cada aplicación —VRF de tenant, redes de servidores, puertos y salida externa— con transacción con checkpoint en el Gemelo Digital, cumplimiento, estado de la fabric y Argos.">
+    <link rel="canonical" href="https://oktanet.io/docs/oktavia-dc.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/docs/oktavia-dc.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/docs/oktavia-dc-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Ficha técnica de Oktavia DC">
+    <meta property="og:description" content="La fabric VXLAN EVPN de Cisco Nexus y los servicios de cada aplicación, con transacción con checkpoint y verificación.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://oktanet.io/docs/oktavia-dc.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-es.png">
+    <meta property="og:image:alt" content="Oktavia, la plataforma de automatización de redes de Oktanet">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Poppins:wght@500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/docs_style.css?v=0fd19cd9b0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style/oktavia_docs_style.css?v=997f267631">
+</head>
+<body class="docs-portal" data-docs-page="oktavia-dc.html">
+    <header class="doc-header doc-header-min no-print">
+        <div class="doc-header-inner">
+            <button class="doc-icon-btn docs-side-open" type="button" aria-controls="docs-side" aria-expanded="false" aria-label="Abrir el índice de la documentación" data-docs-side-open><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9 4v16" stroke="currentColor" stroke-width="2" fill="none"/></svg><span>Índice</span></button>
+            <a class="doc-brand" href="../">
+                <picture>
+                    <source srcset="../img/LOGO_Oktavia.webp" type="image/webp">
+                    <img src="../img/LOGO_Oktavia.png" alt="Logo de Oktavia" width="34" height="34">
+                </picture>
+                <span>Oktavia</span>
+            </a>
+            <a class="doc-header-section" href="oktavia-docs.html">Documentación</a>
+            <div class="doc-actions">
+                <a href="./oktavia-dc-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </div>
+            <button class="doc-icon-btn doc-menu-btn" type="button" aria-controls="site-menu" aria-expanded="false" aria-label="Abrir el menú del sitio" data-site-menu-open><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Menú</span></button>
+        </div>
+        <nav class="site-drawer" id="site-menu" aria-label="Sitio" data-site-menu>
+            <div class="site-drawer-head">
+                <span>Oktanet</span>
+                <button class="doc-icon-btn" type="button" aria-label="Cerrar el menú" data-site-menu-close><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+            </div>
+            <ul>
+                <li><a href="../">Inicio</a></li>
+                <li><a href="oktavia.html">Oktavia Pro</a></li>
+                <li><a href="../oktavia-sp.html">Oktavia SP</a></li>
+                <li><a href="../oktavia-dc.html">Oktavia DC</a></li>
+                <li><a href="oktavia-docs.html">Documentación</a></li>
+                <li><a href="oktavia-docs.html#academia">Academia</a></li>
+                <li><a href="oktavia-docs.html#articulos">Artículos</a></li>
+                <li><a href="../#contacto">Contacto</a></li>
+            </ul>
+            <p class="site-drawer-label">Esta página</p>
+            <div class="site-drawer-actions">
+                <a href="./oktavia-dc-en.html" data-doc-lang="en" hreflang="en">English</a>
+                <button class="doc-btn" type="button" data-doc-print>Imprimir</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="doc-main">
+        <div class="docs-layout">
+            <aside class="docs-side no-print" id="docs-side" aria-label="Índice de la documentación">
+                <div class="docs-side-head">
+                    <a class="docs-side-title" href="oktavia-docs.html">Documentación de Oktavia</a>
+                    <button class="doc-icon-btn docs-side-close" type="button" aria-label="Cerrar el índice" data-docs-side-close><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+                </div>
+                <div class="docs-filter" data-docs-filter>
+                    <span class="material-symbols-outlined" aria-hidden="true">search</span>
+                    <input type="search" placeholder="Filtrar el índice" aria-label="Filtrar el índice de la documentación" autocomplete="off">
+                </div>
+                <nav aria-label="Documentos" data-docs-tree></nav>
+            </aside>
+
+            <div class="docs-main-col">
+            <nav class="docs-crumbs" aria-label="Ruta">
+                <ol>
+                    <li><a href="oktavia-docs.html">Documentación de Oktavia</a></li>
+                    <li><a href="oktavia-docs.html#dc">Oktavia DC · Centros de datos</a></li>
+                    <li><span aria-current="page">Documentación de Oktavia DC</span></li>
+                </ol>
+            </nav>
+
+        <section class="doc-cover">
+            <p class="doc-eyebrow">Ficha técnica · Familia Oktavia · Centro de datos</p>
+            <h1>Oktavia DC · La fabric y los servicios de cada aplicación</h1>
+            <p class="doc-lede">
+                El mismo ciclo cerrado de Oktavia aplicado al centro de datos: la fabric VXLAN EVPN de Cisco Nexus y lo que pide cada aplicación —su VRF, sus redes de servidores, sus puertos y su salida al exterior— se declaran una vez, entran a todos los Nexus como una sola transacción con checkpoint y no se dan por buenos hasta verificar que la fabric convergió.
+            </p>
+            <ul class="doc-meta">
+                <li>Desarrollado por Oktanet</li>
+                <li>México · 2026</li>
+                <li>Documento público</li>
+            </ul>
+            <div class="doc-share no-print">
+                <span class="doc-share-label">Compartir</span>
+                <a class="doc-share-link" data-share="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="doc-share-link" data-share="x" href="https://x.com/" target="_blank" rel="noopener">X</a>
+                <a class="doc-share-link" data-share="whatsapp" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="doc-share-link" data-share="email" href="mailto:">Correo</a>
+                <button class="doc-share-link" type="button" data-share-copy data-copied="Enlace copiado">Copiar enlace</button>
+                <button class="doc-share-link" type="button" data-share-native hidden>Más aplicaciones</button>
+            </div>
+        </section>
+
+        <nav class="doc-toc" aria-label="Contenido del documento">
+            <h2>Contenido</h2>
+            <ol>
+                <li><a href="#que-es">Resumen del producto</a></li>
+                <li><a href="#enfoque">El enfoque</a></li>
+                <li><a href="#modulos">Módulos de Oktavia DC</a></li>
+                <li><a href="#catalogo">La fabric y el catálogo de servicios</a></li>
+                <li><a href="#orquestados">Servicios orquestados y la ficha de cada servicio</a></li>
+                <li><a href="#alta">Alta de una aplicación: formulario, flujo o Argos</a></li>
+                <li><a href="#ciclo">El ciclo cerrado: una transacción en todos los Nexus</a></li>
+                <li><a href="#cumplimiento">Cumplimiento y estado de la fabric</a></li>
+                <li><a href="#visibilidad">Visibilidad: ruteo por VRF, topología y conectividad</a></li>
+                <li><a href="#operacion">Seguridad, telemetría y FinOps</a></li>
+                <li><a href="#argos">Argos y la IA local en el centro de datos</a></li>
+                <li><a href="#despliegue">Despliegue y seguridad</a></li>
+                <li><a href="#licenciamiento">Licenciamiento</a></li>
+                <li><a href="#proximamente">Próximamente</a></li>
+            </ol>
+        </nav>
+
+        <section class="doc-section" id="que-es">
+            <h2>1. Resumen del producto</h2>
+            <p>
+                Oktavia DC es la instalación de Oktavia para el centro de datos: arma y opera la fabric VXLAN EVPN de Cisco Nexus —underlay, BGP EVPN, VTEP y vPC— y orquesta, en la misma plataforma, los servicios de cada aplicación. No es un producto aparte: es el mismo ciclo de Oktavia Pro —auditar, comparar con la intención, proponer en el Gemelo Digital, aprobar, aplicar, verificar y volver a auditar— con un catálogo de servicios y unas pantallas propias de centro de datos.
+            </p>
+            <p>
+                Está probado en laboratorio con Cisco Nexus 9000v (NX-OS 10.5) en una fabric spine-leaf con vPC, y un router de salida Cisco IOS XE.
+            </p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Rol</th><th scope="col">Qué hace en la fabric</th><th scope="col">Equipos</th><th scope="col">Acceso</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Spine</strong></td><td>Underlay OSPF y route reflector de BGP EVPN</td><td>Cisco Nexus</td><td>NX-API (JSON-RPC)</td></tr>
+                        <tr><td><strong>Leaf</strong></td><td>VTEP (NVE), gateway anycast, puertos de servidor y par vPC</td><td>Cisco Nexus</td><td>NX-API (JSON-RPC)</td></tr>
+                        <tr><td><strong>Border leaf</strong></td><td>Salida de las VRF de tenant hacia el exterior</td><td>Cisco Nexus</td><td>NX-API (JSON-RPC)</td></tr>
+                        <tr><td><strong>Router WAN</strong></td><td>eBGP con el border; entrega la ruta por omisión a la fabric</td><td>Cisco IOS XE</td><td>SSH (CLI)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="doc-callout">
+                <p>
+                    <strong>Lo que distingue a Oktavia DC:</strong> una aplicación se declara una vez —VRF, red, puerto o salida— y Oktavia genera la parte de cada leaf, border y spine; todos los Nexus del cambio entran en una sola transacción con checkpoint y vuelta atrás automática; sólo se envían las líneas que faltan; y cada servicio tiene su ficha con sus componentes por equipo, su estado real y los datos de la aplicación que lo usa. Ningún cambio llega a la red sin que una persona lo apruebe y lo confirme.
+                </p>
+            </div>
+        </section>
+
+        <section class="doc-section" id="enfoque">
+            <h2>2. El enfoque</h2>
+            <h3>Intención por servicio, no por equipo</h3>
+            <p>
+                Una red nueva en una fabric toca la VLAN, el VNI, la SVI anycast, el EVPN y el NVE en cada leaf, la VRF en todos los VTEP y el puerto del servidor en el par vPC. En Oktavia DC eso es una sola declaración: Oktavia sabe en qué equipos va cada línea y deriva lo repetitivo, como el RD y los RT de cada VRF.
+            </p>
+            <h3>Model-driven en NX-OS</h3>
+            <p>
+                Los Nexus se gestionan por NX-API (JSON-RPC sobre HTTPS), con la huella del certificado de cada equipo aceptada por una persona. Sin leer pantallas.
+            </p>
+            <h3>Sólo lo que falta</h3>
+            <p>
+                El plan del cambio se compara con la running de cada Nexus y se envían sólo las líneas nuevas. Lo que ya está bien no se vuelve a mandar, y un cambio pequeño sigue siendo pequeño.
+            </p>
+            <h3>Determinista primero</h3>
+            <p>
+                La generación de la configuración, el plan del cambio, el cumplimiento y el estado de la fabric se calculan sin IA, con resultado reproducible. La IA —local, en el servidor, o Claude— se usa para explicar, diagnosticar y redactar, y cada acción dice antes de pulsarla si la usa.
+            </p>
+        </section>
+
+        <section class="doc-section" id="modulos">
+            <h2>3. Módulos de Oktavia DC</h2>
+            <p>El menú de Oktavia es el mismo en Oktavia Pro, Oktavia SP y Oktavia DC; en un tenant de centro de datos cada módulo toma sentido de fabric.</p>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Módulo</th><th scope="col">Qué hace en un centro de datos</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Panel principal</strong></td><td>Las donas de configuración, estado de la red y seguridad, los cambios abiertos, los equipos y sitios, y las consolas de servicio con su contador de servicios activos.</td></tr>
+                        <tr><td><strong>Consolas por dominio</strong></td><td>La fabric, el borde y WAN, la seguridad y la gestión, cada una con su intención, sus reglas, su cumplimiento, sus cambios y su telemetría.</td></tr>
+                        <tr><td><strong>Servicios orquestados</strong></td><td>Una tabla con cada VRF, red, puerto y salida externa, su estado real y los datos de la aplicación, y la ficha de cada servicio. Sección <a href="#orquestados">5</a>.</td></tr>
+                        <tr><td><strong>Fuente de verdad (SoT)</strong></td><td>Inventario, sitios, topología con el AS del sitio y las sesiones iBGP y OSPF, análisis de ruteo por VRF, Inteligencia IP y Configuraciones por equipo.</td></tr>
+                        <tr><td><strong>Flujos de operación</strong></td><td>Alta de una aplicación de punta a punta como flujo, con simulación animada y ejecución desde Argos. Sección <a href="#alta">6</a>.</td></tr>
+                        <tr><td><strong>Intención</strong></td><td>El Configurador con los servicios de la fabric por alcance, las Reglas de estado y el Gemelo Digital con su transacción NX-OS.</td></tr>
+                        <tr><td><strong>Cumplimiento</strong></td><td>De configuración, servicio por servicio contra la running; de estado de la fabric (OSPF, sesiones EVPN, VNI, vPC); y de software. Sección <a href="#cumplimiento">8</a>.</td></tr>
+                        <tr><td><strong>Seguridad</strong></td><td>Postura, hardening de NX-OS como intención y vulnerabilidades por versión con NVD y CISA KEV.</td></tr>
+                        <tr><td><strong>Telemetría</strong></td><td>SNMP de los Nexus, con la comunidad guardada en la bóveda. Licencia de Telemetría y Eventos.</td></tr>
+                        <tr><td><strong>FinOps</strong></td><td>Costo de la fabric y ahorro operativo de la automatización, por sitio y dominio.</td></tr>
+                        <tr><td><strong>Argos e IA local</strong></td><td>Diagnóstico de la fabric y de cada aplicación, y la IA local con la documentación de VXLAN, EVPN y vPC. Sección <a href="#argos">11</a>.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="doc-section" id="catalogo">
+            <h2>4. La fabric y el catálogo de servicios</h2>
+            <h3>La base de la fabric</h3>
+            <p>
+                La base sale del plan de la fabric: underlay OSPF entre spines y leafs, iBGP EVPN con los spines como route reflectors, la interfaz NVE de cada VTEP y el dominio vPC con su peer-link y su keepalive. Se declara, se audita y se corrige con el mismo ciclo que los servicios.
+            </p>
+            <h3>Los servicios de cada aplicación</h3>
+            <div class="doc-table-wrap">
+                <table class="doc-table">
+                    <thead>
+                        <tr><th scope="col">Servicio</th><th scope="col">Qué genera</th><th scope="col">Dónde</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>VRF de tenant</strong></td><td>La VRF con su L3VNI, RD y RT automáticos, y sus redes anunciadas por EVPN tipo 5</td><td>Todos los VTEP</td></tr>
+                        <tr><td><strong>Red de servidores</strong></td><td>VLAN, L2VNI con ingress replication por BGP y gateway anycast: la misma IP y MAC en todos los leafs</td><td>Leafs de la red</td></tr>
+                        <tr><td><strong>Puerto de servidor</strong></td><td>Acceso sencillo o vPC con LACP en el par de leafs, como edge de spanning tree</td><td>Leaf o par vPC</td></tr>
+                        <tr><td><strong>Salida externa</strong></td><td>Interfaz del border en la VRF y eBGP con el router WAN: la ruta por omisión entra a la fabric y las redes de la aplicación salen</td><td>Border leaf y router WAN</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>A estos se suman los servicios de plataforma de NX-OS: SNMP y hardening por rol, también como intención.</p>
+        </section>
+
+        <section class="doc-section" id="orquestados">
+            <h2>5. Servicios orquestados y la ficha de cada servicio</h2>
+            <p>
+                La tabla de servicios orquestados muestra cada VRF, red, puerto y salida externa con su sitio, sus equipos, sus valores y su estado (arriba, parcial, abajo, sin aplicar), con filtros, búsqueda y exportación a CSV. Es la misma estructura que los Servicios de cliente de Oktavia SP, sin cliente: cada renglón es un servicio.
+            </p>
+            <ul>
+                <li><strong>Ficha del servicio.</strong> Sus valores, su recorrido en cada Nexus —lo declarado frente a lo visto— y los cambios del Gemelo que lo tocaron, con acceso directo a diagnosticarlo con Argos.</li>
+                <li><strong>Componentes.</strong> Un servicio compuesto se desglosa en sus piezas (underlay, BGP, VTEP, vPC…) con sus parámetros por equipo y lo que le falta según la última auditoría.</li>
+                <li><strong>Datos de la aplicación.</strong> Campos propios por servicio para documentar qué aplicaciones y qué tráfico pasan por cada red: aplicación, dueño, criticidad, ambiente, tráfico esperado y CRQ. Se agregan sin programar, entran a la búsqueda y al CSV.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="alta">
+            <h2>6. Alta de una aplicación: formulario, flujo o Argos</h2>
+            <p>Un servicio nuevo entra por tres caminos, y los tres terminan en el mismo cambio del Gemelo Digital:</p>
+            <ul>
+                <li><strong>Formulario.</strong> «Servicios de la fabric» pide los datos de la VRF, la red, el puerto o la salida y valida que no choquen con lo que ya existe.</li>
+                <li><strong>Flujo de operación.</strong> La alta de una aplicación de punta a punta —VRF, redes, puertos y salida— con la simulación del flujo antes de escribir nada.</li>
+                <li><strong>Argos.</strong> El mismo flujo desde el chat, con el cambio y su diff a la vista antes de aprobarlo.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="ciclo">
+            <h2>7. El ciclo cerrado: una transacción en todos los Nexus</h2>
+            <ol>
+                <li><strong>Propuesta.</strong> El Gemelo Digital arma el plan para cada Nexus del cambio y muestra el diff por equipo.</li>
+                <li><strong>Aprobación.</strong> Una persona revisa y aprueba.</li>
+                <li><strong>Checkpoint.</strong> Cada Nexus guarda un checkpoint antes de tocar nada.</li>
+                <li><strong>Configuración.</strong> Se envían sólo las líneas que faltan.</li>
+                <li><strong>Verificación.</strong> OSPF, sesiones EVPN, VNI y vPC. Si un equipo rechaza una línea o la fabric no converge, todos regresan solos a su checkpoint.</li>
+                <li><strong>Confirmación.</strong> El cambio queda pendiente de confirmar; al confirmarlo, la configuración se guarda en la startup y el checkpoint se borra. Sin confirmación, la fabric regresa al checkpoint.</li>
+                <li><strong>Auditoría.</strong> El cumplimiento vuelve a comparar la intención con la running para demostrar que el hallazgo cerró.</li>
+            </ol>
+            <p>Los cambios largos corren en segundo plano y la pantalla sigue su avance; un cambio que falla se puede reintentar desde Argos.</p>
+        </section>
+
+        <section class="doc-section" id="cumplimiento">
+            <h2>8. Cumplimiento y estado de la fabric</h2>
+            <ul>
+                <li><strong>Configuración.</strong> Cada servicio se compara con la running bloque por bloque, con la línea exacta que falta o sobra.</li>
+                <li><strong>Estado.</strong> Las reglas de estado revisan las adyacencias OSPF, las sesiones BGP EVPN, los VNI arriba y el par vPC con su keepalive.</li>
+                <li><strong>Software.</strong> La versión de NX-OS de cada equipo contra la norma de su modelo.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="visibilidad">
+            <h2>9. Visibilidad: ruteo por VRF, topología y conectividad</h2>
+            <ul>
+                <li><strong>Ruteo por VRF.</strong> Las tablas de cada Nexus por VRF, con el salto VXLAN hacia el VTEP remoto y la salida por el border; el análisis de ruteo y la Inteligencia IP siguen el camino real de una aplicación.</li>
+                <li><strong>ARP y MAC.</strong> Dónde está cada servidor: la IP, la MAC, el leaf y el puerto.</li>
+                <li><strong>Topología.</strong> La fabric con el AS del sitio una sola vez, las sesiones iBGP y las adyacencias OSPF.</li>
+                <li><strong>Prueba de conectividad.</strong> Ping desde el propio Nexus por NX-API, dentro de la VRF que corresponde.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="operacion">
+            <h2>10. Seguridad, telemetría y FinOps</h2>
+            <ul>
+                <li><strong>Hardening de NX-OS.</strong> El estándar de endurecimiento por rol se declara como intención, se audita y se corrige con el mismo ciclo.</li>
+                <li><strong>Vulnerabilidades.</strong> Las CVE de NVD y CISA KEV que aplican a la versión de NX-OS de cada equipo: qué atender primero.</li>
+                <li><strong>Telemetría.</strong> SNMP de los Nexus activado como servicio; la comunidad vive en la bóveda y nunca en la intención.</li>
+                <li><strong>FinOps.</strong> El costo de la fabric y el ahorro operativo de la automatización por sitio y dominio.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="argos">
+            <h2>11. Argos y la IA local en el centro de datos</h2>
+            <p>
+                Argos diagnostica la fabric y cada aplicación, ejecuta los flujos de alta desde el chat y explica los cambios. La IA local responde con la documentación de VXLAN, EVPN y vPC y los runbooks de su equipo, sin enviar la running a la nube; la IA sólo recibe resúmenes acotados por equipo o sitio, nunca secretos. Cada acción dice antes de pulsarla si usa IA, y la IA nunca decide si algo cumple.
+            </p>
+            <p>El detalle está en el artículo <a href="../blog/ia-local-contexto-empresarial.html">IA local con el contexto de su empresa</a>.</p>
+        </section>
+
+        <section class="doc-section" id="despliegue">
+            <h2>12. Despliegue y seguridad</h2>
+            <ul>
+                <li><strong>Un solo código.</strong> Oktavia DC es la misma plataforma que Oktavia Pro y Oktavia SP; el modo de centro de datos sale del tenant.</li>
+                <li><strong>Instalación.</strong> Contenedores sobre un servidor Linux con Docker, en sus instalaciones o en su nube privada. El dimensionamiento está en la <a href="oktavia.html#servidor">ficha técnica de Oktavia Pro</a>.</li>
+                <li><strong>Seguridad de la plataforma.</strong> Credenciales cifradas en bóveda, separación de datos por tenant, lista blanca de acceso por IP, inicio de sesión con su proveedor de identidad y segundo factor. La huella del certificado NX-API de cada Nexus la acepta una persona.</li>
+                <li><strong>Red de pruebas.</strong> Los cambios se ensayan en Cisco Modeling Labs antes de tocar producción.</li>
+            </ul>
+        </section>
+
+        <section class="doc-section" id="licenciamiento">
+            <h2>13. Licenciamiento</h2>
+            <p><strong>Oktavia DC</strong> incluye lo de Oktavia Pro que aplica a un centro de datos más la fabric VXLAN EVPN de Cisco Nexus, los servicios orquestados con su ficha y sus campos de aplicación, la transacción NX-OS con checkpoint y el estado de la fabric.</p>
+            <ul>
+                <li><strong>Telemetría y Orquestación de Eventos</strong> se licencia aparte, como en Oktavia Pro.</li>
+                <li><strong>Soporte y actualizaciones</strong> incluidos mientras la licencia está vigente.</li>
+                <li><strong>Servicios profesionales</strong>: implementación, migración de la intención desde la fabric existente y alta de servicios nuevos.</li>
+            </ul>
+            <p>La cotización, en <a href="https://oktanet.io/#contacto">oktanet.io</a>.</p>
+        </section>
+
+        <section class="doc-section" id="proximamente">
+            <h2>14. Próximamente</h2>
+            <ul>
+                <li><strong>Cisco ACI por el APIC.</strong> El mismo catálogo sobre ACI: VRF → tenant y VRF, red → bridge domain y EPG, puerto → static path, salida → L3Out.</li>
+                <li><strong>Arista EOS.</strong> La misma intención de fabric y servicios por eAPI.</li>
+                <li><strong>Telemetría por streaming.</strong> gNMI desde los Nexus, además del SNMP de hoy.</li>
+            </ul>
+        </section>
+
+        <nav class="docs-pager no-print" aria-label="Documentos vecinos" data-docs-pager></nav>
+
+        <footer class="doc-footer">
+            <h3>Acerca de Oktanet</h3>
+            <p>
+                Oktanet es una empresa mexicana de automatización de redes con enfoque en operaciones controladas, trazables y escalables para entornos empresariales en Latinoamérica.
+            </p>
+            <p>
+                Para una demostración sobre su entorno, escríbanos desde <a href="https://oktanet.io/#contacto">oktanet.io</a>.
+            </p>
+            <p class="doc-social"><a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a></p>
+            <p>© <span id="doc-year">2026</span> Oktanet · Oktavia · Documento público, sin información confidencial de clientes.</p>
+        </footer>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/docs_script.js?v=6213ff2539"></script>
+    <script src="../script/oktavia_docs_data.js?v=6b8dfa5fa3"></script>
+    <script src="../script/oktavia_docs.js?v=8d2b0474e5"></script>
+</body>
+</html>

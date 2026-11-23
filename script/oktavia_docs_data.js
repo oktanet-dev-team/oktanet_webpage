@@ -221,6 +221,19 @@ window.OKTAVIA_DOCS = (function () {
             ]
         },
         {
+            id: 'dc',
+            title: 'Oktavia DC · Centros de datos',
+            kind: 'Centro de datos',
+            icon: 'dns',
+            page: 'oktavia-docs.html#dc',
+            summary: 'Oktavia para el centro de datos: la fabric VXLAN EVPN de Cisco Nexus por NX-API y los servicios de cada aplicación, con transacción con checkpoint en todos los Nexus.',
+            keywords: ['oktavia dc', 'dc', 'data center', 'centro de datos', 'nexus', 'nx-os', 'nxos', 'vxlan', 'evpn', 'fabric'],
+            docs: [
+                { id: 'oktavia-dc', href: 'oktavia-dc.html', title: 'Documentación de Oktavia DC', summary: 'La fabric VXLAN EVPN de Cisco Nexus —underlay OSPF, BGP EVPN con reflectores, VTEP y vPC— y los servicios orquestados de cada aplicación: VRF de tenant, redes de servidores, puertos y salida externa, con su ficha, sus componentes y los datos de la aplicación; transacción NX-OS con checkpoint, cumplimiento y estado de la fabric.', keywords: ['nexus', 'nx-os', 'nxos', 'nx-api', 'vxlan', 'evpn', 'vtep', 'nve', 'vpc', 'l3vni', 'l2vni', 'anycast', 'vrf', 'border leaf', 'spine', 'leaf', 'checkpoint', 'servicios orquestados', 'aplicaciones'] },
+                { id: 'oktavia-dc-presentacion', href: '../oktavia-dc.html', title: 'Presentación de Oktavia DC', summary: 'La página comercial: qué resuelve en un centro de datos, cómo funciona, los servicios de cada aplicación y cómo pedir una demostración.', keywords: ['presentación', 'demostración', 'demo', 'centro de datos', 'data center'] }
+            ]
+        },
+        {
             id: 'articulos',
             title: 'Artículos',
             kind: 'Artículo',

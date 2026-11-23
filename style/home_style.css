@@ -4219,3 +4219,32 @@ main .family-section h2 { color: transparent; }
 .product-card--dc .product-kicker { color: #93a8ff; }
 .product-card--dc .product-modules li::before { background: #818cf8; box-shadow: 0 0 10px rgba(129, 140, 248, 0.6); }
 @media (max-width: 1100px) and (min-width: 901px) { .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Oktavia DC en la portada: tres productos (Pro, SP y DC) arriba y Argos y
+   Oktanet abajo; tres arquitecturas de referencia lado a lado. */
+.family-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+@media (max-width: 1100px) { .family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 640px) { .family-grid { grid-template-columns: 1fr !important; } }
+.arch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1100px) and (min-width: 901px) { .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ar-fab path { stroke: rgba(129, 140, 248, 0.55); stroke-width: 1.6; fill: none; }
+.n-sp rect { fill: #0d1745; stroke: #818cf8; stroke-width: 2; }
+.n-lf rect { fill: #08122a; stroke: #34d399; stroke-width: 2; }
+.n-bd rect { fill: #1d1708; stroke: #fbbf24; stroke-width: 2; }
+.ar-vpc { stroke: #34d399; stroke-width: 3; fill: none; }
+.s-vx { stroke: #38bdf8; stroke-dasharray: 7 5; }
+.s-ext { stroke: #fbbf24; }
+.s-vpc-t { fill: #86efac; } .s-vx-t { fill: #7dd3fc; } .s-ext-t { fill: #fde047; }
+/* Menú: Oktavia DC con los colores de Oktavia Pro (degradado de la marca). */
+.main-nav .nav-group-toggle[aria-controls="nav-dc-menu"] .nav-group-label {
+    background: var(--grad-marca);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    width: fit-content;
+    font-family: "Poppins", "Manrope", sans-serif;
+    font-weight: 500;
+}
+.main-nav .nav-group-toggle[aria-controls="nav-dc-menu"] .nav-caret { border-color: #7dc1fc !important; color: #7dc1fc !important; }
+.main-nav #nav-dc-menu a { color: #cfe0f2 !important; }
+.main-nav #nav-dc-menu a:hover, .main-nav #nav-dc-menu a:focus-visible { background: rgba(56, 189, 248, 0.12) !important; color: #ffffff !important; }

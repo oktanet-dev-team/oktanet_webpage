@@ -211,7 +211,7 @@
             metricsIntro: 'Métricas de referencia en equipos que migran de procesos manuales a flujos controlados con artefactos.',
             heroTitle: 'Automatización de redes con ciclo cerrado',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'Oktavia Pro audita y corrige la red de tu empresa —Cisco, Fortinet, Juniper y SD-WAN— y Oktavia SP orquesta el núcleo y los servicios de cada cliente de un proveedor. Las dos con el mismo ciclo: proponen la corrección en un gemelo digital, la aplican sólo con tu aprobación y vuelven a auditar para demostrar que quedó bien.',
+            heroBody: 'Oktavia Pro audita y corrige la red de tu empresa —Cisco, Fortinet, Juniper y SD-WAN— Oktavia SP orquesta el núcleo y los servicios de cada cliente de un proveedor, y Oktavia DC automatiza la fabric VXLAN EVPN del centro de datos y las aplicaciones que corren en ella. Las tres con el mismo ciclo: proponen la corrección en un gemelo digital, la aplican sólo con tu aprobación y vuelven a auditar para demostrar que quedó bien.',
             heroActions: ['Solicitar una demostración', '¿Cuánto cuesta?', 'Resumen ejecutivo', 'Ficha técnica'],
             heroPoints: [
                 {
@@ -232,16 +232,16 @@
                 }
             ],
             trustLabel: 'Multivendor en producción, y más fabricantes se integran por proyecto:',
-            platformEyebrow: "Oktavia Pro y Oktavia SP · La plataforma",
-            platformTitle: "Un motor, una interfaz web y ChatOps para operar la red de una empresa o la de un proveedor, con control continuo.",
-            platformBody: "Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol, grupo o equipo, configuración deseada, seguridad de red y remediación verificada en una sola consola. En una empresa, Oktavia Pro opera Campus, WAN, SD-WAN y seguridad; en un proveedor, Oktavia SP opera el núcleo IOS XR por NETCONF y los servicios de cada cliente —L3VPN, pseudowires e internet dedicado— con su estado real. Argos atraviesa todos los módulos y declara en cada acción si consume el modelo de IA.",
+            platformEyebrow: "Oktavia Pro, SP y DC · La plataforma",
+            platformTitle: "Un motor, una interfaz web y ChatOps para operar la red de una empresa, la de un proveedor o la de un centro de datos, con control continuo.",
+            platformBody: "Oktavia integra descubrimiento multifabricante, cumplimiento por sitio, rol, grupo o equipo, configuración deseada, seguridad de red y remediación verificada en una sola consola. En una empresa, Oktavia Pro opera Campus, WAN, SD-WAN y seguridad; en un proveedor, Oktavia SP opera el núcleo IOS XR por NETCONF y los servicios de cada cliente —L3VPN, pseudowires e internet dedicado— con su estado real; en un centro de datos, Oktavia DC opera la fabric VXLAN EVPN de Cisco Nexus por NX-API y los servicios de cada aplicación. Argos atraviesa todos los módulos y declara en cada acción si consume el modelo de IA.",
             platformChips: [
                 'Ciclo cerrado con aprobación',
                 'ChatOps con el costo de IA a la vista',
                 'Artefactos versionables',
                 'Multi-tenant',
                 'API REST con clave de API',
-                'Pro para empresas · SP para proveedores'
+                'Pro para empresas · SP para proveedores · DC para el centro de datos'
             ],
             videoAria: 'Oktavia en video',
             videoEyebrow: 'Oktavia en video',
@@ -363,14 +363,19 @@
             archCore: "Núcleo SR-MPLS · IS-IS",
             archEntCap: "Oktavia Pro: una sola intención por dominio (campus, WAN, seguridad y gestión), auditada y llevada a cada equipo por el gemelo.",
             archSpCap: "Oktavia SP: el núcleo (P, RR y el lado de núcleo de los PE) y los servicios de cada cliente del PE al CE, con su estado de punta a punta.",
+            archDcTitle: "Oktavia DC en un centro de datos",
+            archDcBorder: "Borde",
+            archDcOverlay: "VXLAN EVPN · VRF · redes · puertos",
+            archDcExit: "WAN · internet",
+            archDcCap: "Oktavia DC: la fabric de Cisco Nexus (spines como reflectores EVPN, leafs con VTEP y vPC, borde hacia la WAN) y los servicios de cada aplicación, con checkpoint y verificación en cada equipo.",
             navHeads: ["Productos", "Empresa y servicios", "Comprar", "Aprender"],
             navHome: "Inicio",
-            familyEyebrow: "Dos plataformas, un asistente y el equipo que lo implementa",
-            familyTitle: "Cuatro frentes para que la red haga lo que dice su estándar.",
-            familyNames: ["Oktavia Pro", "Oktavia SP", "Argos", "Oktanet"],
-            familyRoles: ["La plataforma para empresas", "La plataforma para proveedores", "La capa de ChatOps", "Servicios profesionales"],
-            familyBodies: ["Descubre, audita, corrige y verifica Campus, WAN, SD-WAN y seguridad multivendor. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.", "El núcleo IOS XR y los servicios de cada cliente: L3VPN, pseudowires e internet dedicado, de la intención a la verificación, con su estado real en una sola tabla.", "La forma de operar Oktavia: conversando o con un botón, desde cualquier pantalla. Cada acción declara si usa IA antes de ejecutarse, y ningún cambio se aplica sin aprobación.", "Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada."],
-            familyLogoAlts: ["Logo de Oktavia Pro", "Logo de Oktavia SP", "Logo de Argos", "Logo de Oktanet"],
+            familyEyebrow: "Tres plataformas, un asistente y el equipo que lo implementa",
+            familyTitle: "Cinco frentes para que la red haga lo que dice su estándar.",
+            familyNames: ["Oktavia Pro", "Oktavia SP", "Oktavia DC", "Argos", "Oktanet"],
+            familyRoles: ["La plataforma para empresas", "La plataforma para proveedores", "La plataforma para el centro de datos", "La capa de ChatOps", "Servicios profesionales"],
+            familyBodies: ["Descubre, audita, corrige y verifica Campus, WAN, SD-WAN y seguridad multivendor. Cada ejecución deja artefacto descargable y cada cambio pasa por una persona.", "El núcleo IOS XR y los servicios de cada cliente: L3VPN, pseudowires e internet dedicado, de la intención a la verificación, con su estado real en una sola tabla.", "La fabric VXLAN EVPN de Cisco Nexus y los servicios de cada aplicación: VRF, redes de servidores, puertos y salida externa, con checkpoint, verificación y auditoría.", "La forma de operar Oktavia: conversando o con un botón, desde cualquier pantalla. Cada acción declara si usa IA antes de ejecutarse, y ningún cambio se aplica sin aprobación.", "Onboarding de datos, discovery controlado, línea base de intención y alta de servicios nuevos. La red queda operando, no sólo licenciada."],
+            familyLogoAlts: ["Logo de Oktavia Pro", "Logo de Oktavia SP", "Logo de Oktavia DC", "Logo de Argos"],
             hLoopAria: "El ciclo cerrado de Oktavia",
             hLoop1: "Descubre",
             hLoop2: "Audita",
@@ -553,26 +558,27 @@
                 'Extensibilidad por fabricante',
                 'Control y visibilidad en la automatización',
                 'Acceso controlado y datos en casa',
-                'Dos plataformas y un adicional'
+                'Tres plataformas y un adicional'
             ],
             aboutCardBodies: [
                 'Cada fabricante se integra con adaptador de descubrimiento, normalizador, reglas de cumplimiento y plantillas Jinja.',
                 'Prioriza remediación supervisada con aprobación, evitando automatizaciones opacas y no auditables.',
                 'Se despliega en tu infraestructura, el acceso entra por tu proveedor de identidad con Okta y segundo factor, y las credenciales van cifradas en reposo.',
-                'Oktavia Pro para empresas y Oktavia SP para proveedores de servicios. La telemetría continua y la orquestación de eventos se licencian aparte, para cualquiera de las dos.'
+                'Oktavia Pro para empresas, Oktavia SP para proveedores de servicios y Oktavia DC para el centro de datos. La telemetría continua y la orquestación de eventos se licencian aparte, para cualquiera de las tres.'
             ],
             licensingAria: 'Licenciamiento Oktavia',
             licensingEyebrow: 'Licenciamiento',
-            licensingTitle: 'Dos plataformas y un adicional',
-            licensingIntro: 'Oktavia Pro es la plataforma completa para la red de una empresa y Oktavia SP la misma plataforma como orquestador de servicios para un proveedor: se elige una según la red. La telemetría continua y el motor de eventos siguen licenciándose aparte, para cualquiera de las dos, porque almacenan series de tiempo y corren un evaluador permanente.',
+            licensingTitle: 'Tres plataformas y un adicional',
+            licensingIntro: 'Oktavia Pro es la plataforma completa para la red de una empresa, Oktavia SP la misma plataforma como orquestador de servicios para un proveedor y Oktavia DC la misma plataforma para la fabric de un centro de datos: se elige una según la red. La telemetría continua y el motor de eventos siguen licenciándose aparte, para cualquiera de las tres, porque almacenan series de tiempo y corren un evaluador permanente.',
             licensingSupportTitle: 'Incluido en toda licencia: soporte y actualizaciones',
             licensingSupportBody: 'Mientras la licencia está vigente, cualquier instalación de Oktavia recibe los parches de seguridad, las actualizaciones y las funciones nuevas de la plataforma, sin costo adicional.',
-            licensingPlanLabels: ['Para empresas', 'Para proveedores de servicios', 'Licencia adicional · Pro o SP'],
-            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Telemetría y Orquestación de Eventos'],
+            licensingPlanLabels: ['Para empresas', 'Para proveedores de servicios', 'Para el centro de datos', 'Licencia adicional · Pro, SP o DC'],
+            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Oktavia DC', 'Telemetría y Orquestación de Eventos'],
             licensingPlanBodies: [
                 'La plataforma completa para la red de una empresa: descubrir la red, verificar que cumpla el estándar, corregir lo que no cumple y dar de alta servicios y parámetros nuevos sin desarrollo, con aprobación humana en cada cambio.',
                 'La misma plataforma como orquestador de servicios carrier: el núcleo IOS XR y los servicios de cada cliente, de la intención a la verificación, en una base de servicios con su estado real.',
-                'Sigue siendo aparte y se suma a Oktavia Pro o a Oktavia SP: almacena series de tiempo y corre un evaluador permanente, otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
+                'La misma plataforma para la fabric del centro de datos: la fabric VXLAN EVPN de Cisco Nexus y los servicios de cada aplicación, de la intención a la verificación, aplicados por NX-API con checkpoint y vuelta atrás automática.',
+                'Sigue siendo aparte y se suma a Oktavia Pro, Oktavia SP u Oktavia DC: almacena series de tiempo y corre un evaluador permanente, otro perfil de consumo. No toda red la necesita desde el primer día, y la que la necesita la suma cuando quiere.'
             ],
             licensingPlanItems: [
                 [
@@ -609,6 +615,17 @@
                     { module: 'Flujos de operación', description: ' Alta de pseudowire y de sitio L3VPN de punta a punta, con la orden de servicio PE → CE y su verificación.' },
                     { module: 'Diccionario NETCONF y constructor de servicios', description: ' Cada parámetro YANG del equipo, explicado por Argos y listo para un servicio nuevo.' },
                     { module: 'Argos para el proveedor', description: ' Diagnóstico por cliente, sitio o servicio, y la ruta de LAN a LAN punta a punta.' }
+                ],
+                [
+                    { module: 'Todo Oktavia Pro', description: ' Auditoría, cumplimiento, gemelo digital, ciclo cerrado, seguridad y Argos sobre la red del centro de datos.' },
+                    { module: 'Fabric VXLAN EVPN', description: ' Underlay OSPF, BGP EVPN con spines como reflectores, VTEP y vPC sobre Cisco NX-OS.' },
+                    { module: 'Servicios orquestados', description: ' VRF de tenant, redes de servidores, puertos y salida externa, cada uno con su ficha, sus componentes por equipo y su estado.' },
+                    { module: 'Campos de aplicación', description: ' Qué aplicación, dueño, criticidad y tráfico pasan por cada servicio, sin programar.' },
+                    { module: 'Transacción en todos los Nexus', description: ' Checkpoint, configuración, verificación y confirmación; si algo falla, vuelve atrás sola.' },
+                    { module: 'Flujos de operación', description: ' Alta de una aplicación de punta a punta: VRF, red, puertos y salida en un solo flujo con aprobación.' },
+                    { module: 'Ruteo por VRF y conectividad', description: ' Tablas por VRF, inteligencia de IP y prueba de conectividad desde cada Nexus.' },
+                    { module: 'Telemetría, hardening y FinOps', description: ' SNMP, estándar de seguridad de NX-OS y retorno de inversión de la fabric.' },
+                    { module: 'Argos para la fabric', description: ' Diagnóstico de la fabric y de cada servicio, con IA local o en la nube.' }
                 ],
                 [
                     { module: 'Telemetría en tiempo real', description: ' CPU, memoria e interfaces como series de tiempo, con umbrales y tendencias; también por streaming.' },
@@ -681,6 +698,7 @@
             resourceOnlineHref: 'docs/oktavia.html',
             resourceResumenHref: 'docs/oktavia-resumen.html',
             resourceSpHref: 'docs/oktavia-sp.html',
+            resourceDcHref: 'docs/oktavia-dc.html',
             docsHref: 'docs/oktavia-docs.html',
             blogHref: 'docs/oktavia-docs.html#articulos',
             trainingHref: 'docs/oktavia-docs.html#academia',
@@ -740,7 +758,7 @@
             metricsIntro: 'Reference metrics from teams moving from manual processes to controlled artifact-based workflows.',
             heroTitle: 'Closed-loop network automation',
             heroTitleBrand: 'Oktavia',
-            heroBody: 'Oktavia Pro audits and fixes your enterprise network —Cisco, Fortinet, Juniper, and SD-WAN— and Oktavia SP orchestrates a provider\'s core and every customer\'s services. Both run the same loop: they propose the fix in a digital twin, apply it only with your approval, and audit again to prove it worked.',
+            heroBody: 'Oktavia Pro audits and fixes your enterprise network —Cisco, Fortinet, Juniper, and SD-WAN— Oktavia SP orchestrates a provider\'s core and every customer\'s services, and Oktavia DC automates the data center VXLAN EVPN fabric and the applications running on it. All three run the same loop: they propose the fix in a digital twin, apply it only with your approval, and audit again to prove it worked.',
             heroActions: ['Request a Demo', 'What does it cost?', 'Executive summary', 'Technical sheet'],
             heroPoints: [
                 {
@@ -761,16 +779,16 @@
                 }
             ],
             trustLabel: 'Multi-vendor in production, and more vendors are integrated per project:',
-            platformEyebrow: "Oktavia Pro and Oktavia SP · The platform",
-            platformTitle: "One engine, one web interface, and ChatOps to run an enterprise's network or a provider's, with continuous control.",
-            platformBody: "Oktavia unifies multi-vendor discovery, compliance by site, role, group, or device, desired configuration, network security, and verified remediation in a single console. In an enterprise, Oktavia Pro runs Campus, WAN, SD-WAN, and security; in a provider, Oktavia SP runs the IOS XR core over NETCONF and every customer's services —L3VPN, pseudowires, and dedicated internet— with their real state. Argos spans every module and states on each action whether it consumes the AI model.",
+            platformEyebrow: "Oktavia Pro, SP and DC · The platform",
+            platformTitle: "One engine, one web interface, and ChatOps to run an enterprise's network, a provider's, or a data center's, with continuous control.",
+            platformBody: "Oktavia unifies multi-vendor discovery, compliance by site, role, group, or device, desired configuration, network security, and verified remediation in a single console. In an enterprise, Oktavia Pro runs Campus, WAN, SD-WAN, and security; in a provider, Oktavia SP runs the IOS XR core over NETCONF and every customer's services —L3VPN, pseudowires, and dedicated internet— with their real state; in a data center, Oktavia DC runs the Cisco Nexus VXLAN EVPN fabric over NX-API and every application's services. Argos spans every module and states on each action whether it consumes the AI model.",
             platformChips: [
                 'Closed loop with approval',
                 'ChatOps with AI cost in plain sight',
                 'Versioned artifacts',
                 'Multi-tenant',
                 'REST API with API key',
-                'Pro for enterprises · SP for providers'
+                'Pro for enterprises · SP for providers · DC for the data center'
             ],
             videoAria: 'Oktavia on video',
             videoEyebrow: 'Oktavia on video',
@@ -892,14 +910,19 @@
             archCore: "SR-MPLS core · IS-IS",
             archEntCap: "Oktavia Pro: one intent per domain (campus, WAN, security and management), audited and taken to every device through the twin.",
             archSpCap: "Oktavia SP: the core (P, RR and the core side of the PEs) and every customer's services from PE to CE, with their end-to-end state.",
+            archDcTitle: "Oktavia DC in a data center",
+            archDcBorder: "Border",
+            archDcOverlay: "VXLAN EVPN · VRF · networks · ports",
+            archDcExit: "WAN · internet",
+            archDcCap: "Oktavia DC: the Cisco Nexus fabric (spines as EVPN reflectors, leafs with VTEP and vPC, border toward the WAN) and every application's services, with checkpoint and verification on each device.",
             navHeads: ["Products", "Company and services", "Buy", "Learn"],
             navHome: "Home",
-            familyEyebrow: "Two platforms, one assistant, and the team that implements it",
-            familyTitle: "Four fronts so the network does what its standard says.",
-            familyNames: ["Oktavia Pro", "Oktavia SP", "Argos", "Oktanet"],
-            familyRoles: ["The platform for enterprises", "The platform for providers", "The ChatOps layer", "Professional services"],
-            familyBodies: ["Discovers, audits, fixes, and verifies Campus, WAN, SD-WAN, and multi-vendor security. Every run leaves a downloadable artifact and every change goes through a person.", "The IOS XR core and every customer's services: L3VPN, pseudowires, and dedicated internet, from intent to verification, with their real state in one table.", "The way to operate Oktavia: by conversation or with a button, from any screen. Every action declares whether it uses AI before it runs, and no change is applied without approval.", "Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed."],
-            familyLogoAlts: ["Oktavia Pro logo", "Oktavia SP logo", "Argos logo", "Oktanet logo"],
+            familyEyebrow: "Three platforms, one assistant, and the team that implements it",
+            familyTitle: "Five fronts so the network does what its standard says.",
+            familyNames: ["Oktavia Pro", "Oktavia SP", "Oktavia DC", "Argos", "Oktanet"],
+            familyRoles: ["The platform for enterprises", "The platform for providers", "The platform for the data center", "The ChatOps layer", "Professional services"],
+            familyBodies: ["Discovers, audits, fixes, and verifies Campus, WAN, SD-WAN, and multi-vendor security. Every run leaves a downloadable artifact and every change goes through a person.", "The IOS XR core and every customer's services: L3VPN, pseudowires, and dedicated internet, from intent to verification, with their real state in one table.", "The Cisco Nexus VXLAN EVPN fabric and every application's services: VRF, server networks, ports, and external exit, with checkpoint, verification, and audit.", "The way to operate Oktavia: by conversation or with a button, from any screen. Every action declares whether it uses AI before it runs, and no change is applied without approval.", "Data onboarding, controlled discovery, intent baseline, and new service rollout. The network ends up running, not just licensed."],
+            familyLogoAlts: ["Oktavia Pro logo", "Oktavia SP logo", "Oktavia DC logo", "Argos logo"],
             hLoopAria: "Oktavia's closed loop",
             hLoop1: "Discover",
             hLoop2: "Audit",
@@ -1082,26 +1105,27 @@
                 'Vendor extensibility',
                 'Control and visibility in automation',
                 'Controlled access, data stays home',
-                'Two platforms and an add-on'
+                'Three platforms and an add-on'
             ],
             aboutCardBodies: [
                 'Each vendor is integrated through a discovery adapter, normalizer, compliance rule set, and Jinja templates.',
                 'It prioritizes supervised remediation with approvals, avoiding opaque and non-auditable automation.',
                 'It deploys on your own infrastructure, access goes through your identity provider with Okta and a second factor, and credentials are encrypted at rest.',
-                'Oktavia Pro for enterprises and Oktavia SP for service providers. Continuous telemetry and event orchestration are licensed separately, for either one.'
+                'Oktavia Pro for enterprises, Oktavia SP for service providers, and Oktavia DC for the data center. Continuous telemetry and event orchestration are licensed separately, for any of the three.'
             ],
             licensingAria: 'Oktavia licensing',
             licensingEyebrow: 'Licensing',
-            licensingTitle: 'Two platforms and an add-on',
-            licensingIntro: 'Oktavia Pro is the complete platform for an enterprise network and Oktavia SP is the same platform as a service orchestrator for a provider: you pick one for your network. Continuous telemetry and the event engine are still licensed separately, for either one, because they store time series and run a permanent evaluator.',
+            licensingTitle: 'Three platforms and an add-on',
+            licensingIntro: 'Oktavia Pro is the complete platform for an enterprise network, Oktavia SP is the same platform as a service orchestrator for a provider, and Oktavia DC is the same platform for a data center fabric: you pick one for your network. Continuous telemetry and the event engine are still licensed separately, for any of the three, because they store time series and run a permanent evaluator.',
             licensingSupportTitle: 'Included with every license: support and updates',
             licensingSupportBody: "While the license is active, every Oktavia deployment receives the platform's security patches, updates and new features, at no extra cost.",
-            licensingPlanLabels: ['For enterprises', 'For service providers', 'Add-on license · Pro or SP'],
-            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Telemetry and Event Orchestration'],
+            licensingPlanLabels: ['For enterprises', 'For service providers', 'For the data center', 'Add-on license · Pro, SP or DC'],
+            licensingPlanTitles: ['Oktavia Pro', 'Oktavia SP', 'Oktavia DC', 'Telemetry and Event Orchestration'],
             licensingPlanBodies: [
                 'The complete platform for an enterprise network: discover the network, verify it meets the standard, fix what does not, and roll out new services and parameters without development, with human approval on every change.',
                 "The same platform as a carrier service orchestrator: the IOS XR core and every customer's services, from intent to verification, in a service base with its real state.",
-                'Still separate, and it adds on to Oktavia Pro or Oktavia SP: it stores time series and runs a permanent evaluator, a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
+                "The same platform for the data center fabric: the Cisco Nexus VXLAN EVPN fabric and every application's services, from intent to verification, applied over NX-API with checkpoint and automatic rollback.",
+                'Still separate, and it adds on to Oktavia Pro, Oktavia SP, or Oktavia DC: it stores time series and runs a permanent evaluator, a different consumption profile. Not every network needs it on day one, and the ones that do can add it whenever they want.'
             ],
             licensingPlanItems: [
                 [
@@ -1138,6 +1162,17 @@
                     { module: 'Workflows', description: ' End-to-end pseudowire and L3VPN site provisioning, with the PE → CE service order and its verification.' },
                     { module: 'NETCONF dictionary and service builder', description: ' Every YANG parameter on the device, explained by Argos and ready for a new service.' },
                     { module: 'Argos for the provider', description: ' Diagnosis by customer, site, or service, and the end-to-end LAN-to-LAN path.' }
+                ],
+                [
+                    { module: 'All of Oktavia Pro', description: ' Audit, compliance, digital twin, closed loop, security, and Argos on the data center network.' },
+                    { module: 'VXLAN EVPN fabric', description: ' OSPF underlay, BGP EVPN with spines as route reflectors, VTEP, and vPC on Cisco NX-OS.' },
+                    { module: 'Orchestrated services', description: ' Tenant VRF, server networks, ports, and external exit, each with its page, its per-device components, and its state.' },
+                    { module: 'Application fields', description: ' Which application, owner, criticality, and traffic run through each service, without coding.' },
+                    { module: 'Transaction across every Nexus', description: ' Checkpoint, configuration, verification, and confirmation; if something fails, it rolls back on its own.' },
+                    { module: 'Operation workflows', description: ' End-to-end application onboarding: VRF, network, ports, and exit in one approved workflow.' },
+                    { module: 'Per-VRF routing and connectivity', description: ' Per-VRF tables, IP intelligence, and connectivity tests from each Nexus.' },
+                    { module: 'Telemetry, hardening, and FinOps', description: ' SNMP, the NX-OS security standard, and the fabric\'s return on investment.' },
+                    { module: 'Argos for the fabric', description: ' Diagnosis of the fabric and of each service, with local or cloud AI.' }
                 ],
                 [
                     { module: 'Real-time telemetry', description: ' CPU, memory, and interfaces as time series, with thresholds and trends; streaming too.' },
@@ -1210,6 +1245,7 @@
             resourceOnlineHref: 'docs/oktavia-en.html',
             resourceResumenHref: 'docs/oktavia-resumen-en.html',
             resourceSpHref: 'docs/oktavia-sp-en.html',
+            resourceDcHref: 'docs/oktavia-dc-en.html',
             docsHref: 'docs/oktavia-docs.html',
             blogHref: 'blog/index-en.html',
             trainingHref: 'docs/academy-en.html',
@@ -1684,7 +1720,10 @@
         setText(langCode, copy.langCode);
         setTextList(navLinks, copy.navLinks);
         setText(document.querySelector('.nav-group-label'), copy.navSpLabel);
-        setTextList(navSubLinks, copy.navSpLinks);
+        // Oktavia SP y Oktavia DC tienen el mismo submenú (Presentación y
+        // Documentación): cada grupo recibe sus dos textos.
+        setTextList(document.querySelectorAll('#nav-sp-menu a'), copy.navSpLinks);
+        setTextList(document.querySelectorAll('#nav-dc-menu a'), copy.navSpLinks);
         setText(navCta, copy.navCta);
         setTextList(footerLinks, copy.navLinks);
 
@@ -1920,6 +1959,7 @@
          ['[data-doc-sp]', copy.resourceSpHref],
          ['[data-sp-landing]', copy.spLandingHref],
          ['[data-dc-landing]', copy.dcLandingHref],
+         ['[data-doc-dc]', copy.resourceDcHref],
          ['[data-docs]', copy.docsHref],
          ['[data-blog]', copy.blogHref],
          ['[data-ia-local]', copy.iaLocalHref],
