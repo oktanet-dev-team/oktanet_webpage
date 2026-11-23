@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oktavia DC · Data center automation | Oktanet</title>
+    <meta name="description" content="Oktavia DC automates the data center: the Cisco Nexus VXLAN EVPN fabric and the services of every application (VRF, server networks, ports and external exit) are declared once and applied over NX-API with checkpoint, verification and automatic rollback.">
+    <link rel="canonical" href="https://oktanet.io/oktavia-dc-en.html">
+    <link rel="alternate" hreflang="es" href="https://oktanet.io/oktavia-dc.html">
+    <link rel="alternate" hreflang="en" href="https://oktanet.io/oktavia-dc-en.html">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Oktavia DC · The fabric and its applications, declared once">
+    <meta property="og:description" content="VXLAN EVPN on Cisco Nexus: tenant VRFs, server networks, vPC ports and external exit, with checkpoint, automatic verification and per-service audit.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oktanet.io/oktavia-dc-en.html">
+    <meta property="og:site_name" content="Oktanet">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://oktanet.io/img/og-en.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Oktavia, the network automation platform by Oktanet">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Oktavia DC · The fabric and its applications, declared once">
+    <meta name="twitter:description" content="Per-service intent, checkpoint transaction on Cisco Nexus and automatic verification for the data center.">
+    <meta name="twitter:image" content="https://oktanet.io/img/og-en.png">
+
+    <meta name="theme-color" content="#081521">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Poppins:wght@500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/home_style.css?v=e1e4d3dc3a">
+    <script>
+    function initApollo() {
+        var n = Math.random().toString(36).substring(7);
+        var o = document.createElement("script");
+        o.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function() {
+            window.trackingFunctions.onLoad({ appId: "6a96189a49d5eb00102833f0" });
+        };
+        document.head.appendChild(o);
+    }
+    initApollo();
+    </script>
+</head>
+<body id="page-top" data-site-nav="standalone">
+    <header class="site-header" id="inicio">
+        <div class="container nav-shell">
+            <a class="brand" href="./" aria-label="Go to the Oktanet home page">
+                <picture>
+                    <img src="img/LOGO_Oktavia.png" alt="Oktavia logo" width="512" height="512" decoding="async">
+                </picture>
+                <span class="wordmark wordmark--nav">oktanet</span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu" data-label-open="Open menu" data-label-close="Close menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="main-nav" id="main-nav" aria-label="Main">
+                <a class="nav-producto" href="docs/oktavia-en.html">Oktavia Pro</a>
+                <a class="nav-producto" href="./#argos">Argos</a>
+                <div class="nav-group">
+                    <button class="nav-group-toggle" type="button" aria-expanded="false" aria-controls="nav-sp-menu"><span class="nav-group-label">Oktavia SP</span><span class="nav-caret" aria-hidden="true"></span></button>
+                    <div class="nav-submenu" id="nav-sp-menu" hidden>
+                        <a href="oktavia-sp-en.html">Overview</a>
+                        <a href="docs/oktavia-sp-en.html">Documentation</a>
+                    </div>
+                </div>
+                <a class="nav-producto" href="oktavia-dc-en.html" aria-current="page">Oktavia DC</a>
+                <a href="./#servicios-profesionales">Services</a>
+                <a href="./#metodologia">Methodology</a>
+                <a href="./#casos">Use Cases</a>
+                <a href="./#licenciamiento">Licensing</a>
+                <a href="./#cotizar">Pricing</a>
+                <a href="./#recursos">Resources</a>
+                <a href="docs/oktavia-docs.html">Oktavia Docs</a>
+                <a href="blog/index-en.html">Articles</a>
+                <a href="docs/academy-en.html">Academy</a>
+            </nav>
+
+            <a class="btn btn-secondary nav-cta" href="./#contacto">Request Demo</a>
+            <div class="language-dropdown">
+                <button class="lang-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Change language">
+                    <span class="lang-code">EN</span>
+                    <span class="lang-caret" aria-hidden="true"></span>
+                </button>
+                <div class="lang-menu" id="lang-menu" role="menu" hidden>
+                    <a class="lang-option" role="menuitemradio" aria-checked="false" href="oktavia-dc.html" hreflang="es" data-doc-lang="es">Español</a>
+                    <a class="lang-option" role="menuitemradio" aria-checked="true" href="oktavia-dc-en.html" hreflang="en" data-doc-lang="en">English</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section sp-hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <h1><span class="hero-brandline"><img class="hero-brandmark" src="img/LOGO_Oktavia.png" alt="" width="96" height="96" decoding="async">Oktavia DC</span> The data center fabric and the services of every application, declared once and verified on every Nexus</h1>
+                    <p>
+                        For data center teams and colocation providers: Oktavia builds and operates the Cisco Nexus VXLAN EVPN fabric —underlay, BGP EVPN, VTEP and vPC— and orchestrates what each application needs: its VRF, its server networks with anycast gateway, its ports and its exit to the outside. Every change reaches all the Nexus switches as a single transaction with a checkpoint, and it is not accepted until the fabric has converged.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="./#contacto">Request a demo</a>
+                        <a class="btn btn-secondary" href="#servicios">See the services</a>
+                    </div>
+                    <ul class="hero-points">
+                        <li><strong>Per-service intent, not per device.</strong> VRF, network, port or external exit; Oktavia knows which leafs, border and spines get each line.</li>
+                        <li><strong>Checkpoint transaction.</strong> A checkpoint on every Nexus, config, then OSPF, EVPN and vPC verification; if anything fails, all of them roll back on their own.</li>
+                        <li><strong>Model-driven.</strong> NX-API (JSON-RPC) with certificate fingerprint pinning, no screen scraping.</li>
+                        <li><strong>Only what is missing.</strong> The plan is compared with the running config and sends only the new lines; on confirmation it is saved to the startup config.</li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual">
+                    <svg class="sp-diagrama" viewBox="0 0 560 300" role="img" aria-labelledby="dc-diagrama-titulo">
+                        <title id="dc-diagrama-titulo">A spine-leaf fabric: two spines as route reflectors, a vPC leaf pair with servers, a border leaf and an exit router; a tenant VRF with two server networks over VXLAN</title>
+                        <text class="sp-detalle" x="280" y="22" text-anchor="middle">One intent: VRF · networks · ports · exit</text>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="170" y1="92" x2="120" y2="176"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="170" y1="92" x2="280" y2="176"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="170" y1="92" x2="440" y2="176"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="390" y1="92" x2="120" y2="176"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="390" y1="92" x2="280" y2="176"/>
+                        <line class="sp-enlace sp-enlace-nucleo" x1="390" y1="92" x2="440" y2="176"/>
+                        <line class="sp-enlace" x1="166" y1="196" x2="234" y2="196"/>
+                        <line class="sp-enlace" x1="486" y1="196" x2="520" y2="150"/>
+                        <path class="sp-servicio sp-servicio-l3" d="M120 220 C 120 262, 280 262, 280 220"/>
+                        <text class="sp-servicio-texto" x="200" y="276" text-anchor="middle" fill="#57c8ea">VRF PROD · VXLAN</text>
+                        <g class="sp-nodo sp-nodo-nucleo"><rect x="124" y="68" width="92" height="44" rx="10"/><text class="sp-etiqueta" x="170" y="95" text-anchor="middle">Spine</text></g>
+                        <g class="sp-nodo sp-nodo-nucleo"><rect x="344" y="68" width="92" height="44" rx="10"/><text class="sp-etiqueta" x="390" y="95" text-anchor="middle">Spine</text></g>
+                        <g class="sp-nodo"><rect x="74" y="176" width="92" height="44" rx="10"/><text class="sp-etiqueta" x="120" y="203" text-anchor="middle">Leaf</text></g>
+                        <g class="sp-nodo"><rect x="234" y="176" width="92" height="44" rx="10"/><text class="sp-etiqueta" x="280" y="203" text-anchor="middle">Leaf</text></g>
+                        <g class="sp-nodo"><rect x="394" y="176" width="92" height="44" rx="10"/><text class="sp-etiqueta" x="440" y="203" text-anchor="middle">Border</text></g>
+                        <g class="sp-nodo"><rect x="476" y="110" width="80" height="40" rx="10"/><text class="sp-etiqueta" x="516" y="135" text-anchor="middle">WAN</text></g>
+                        <text class="sp-detalle" x="200" y="190" text-anchor="middle">vPC</text>
+                        <text class="sp-detalle" x="280" y="50" text-anchor="middle">OSPF · BGP EVPN with reflectors on the spines</text>
+                        <text class="sp-detalle" x="500" y="176" text-anchor="middle">eBGP</text>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-section" id="problemas" aria-label="What Oktavia DC solves">
+            <div class="container">
+                <p class="eyebrow">What it solves</p>
+                <h2>Provisioning an application should not mean editing every Nexus by hand.</h2>
+                <p class="section-intro">A new network in a fabric touches the VLAN, the VNI, the anycast SVI, EVPN and NVE on every leaf, the VRF on every VTEP and the server port on the vPC pair. Oktavia turns that work into one declaration and one reviewed change.</p>
+                <div class="security-grid">
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">keyboard</span>
+                        <h3>The same config on every leaf</h3>
+                        <p>The service is declared once and Oktavia generates each leaf, border and spine part from that same declaration: VLAN, VNI, anycast gateway, VRF with its L3VNI and automatic RD/RT.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">undo</span>
+                        <h3>A half-applied change breaks the fabric</h3>
+                        <p>A checkpoint on every Nexus before touching anything; if one device rejects a line or the fabric does not converge, all of them return to the checkpoint. The change only stays when a person confirms it.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">difference</span>
+                        <h3>Drift nobody sees</h3>
+                        <p>Every service is compared with the running config block by block, and state tests check OSPF, EVPN sessions, VNIs up and the vPC pair with its keepalive.</p>
+                    </article>
+                    <article class="security-card">
+                        <span class="material-symbols-outlined card-icon" aria-hidden="true">account_tree</span>
+                        <h3>Where does the traffic go?</h3>
+                        <p>Per-VRF routes on every Nexus, the VXLAN hop to the remote VTEP and the exit through the border: routing analysis and topology follow an application's real path.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="method-section" id="como-funciona">
+            <div class="container">
+                <p class="eyebrow">How it works</p>
+                <h2>From service intent to audit, in a single cycle.</h2>
+                <div class="method-grid">
+                    <article><span>01</span><h3>Per-service intent</h3><p>Declare the VRF, network, port or external exit (with a form, a workflow or Argos). Oktavia distributes it to the Nexus switches involved.</p></article>
+                    <article><span>02</span><h3>Transaction in the Digital Twin</h3><p>One change for the whole fabric: a dry run on every Nexus, a checkpoint, only the missing lines and OSPF, EVPN, vPC and VNI verification.</p></article>
+                    <article><span>03</span><h3>Human confirmation</h3><p>A window to confirm; on confirmation the config is saved to the startup config. Without it, the fabric rolls back to the checkpoint on its own.</p></article>
+                    <article><span>04</span><h3>Audit</h3><p>Per-service compliance compares the intent with the running config again, and the fabric state confirms the application is still up.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="argos-section" id="servicios" aria-label="Fabric services">
+            <div class="container">
+                <p class="eyebrow">Orchestrated services</p>
+                <h2>What an application needs, declared once.</h2>
+                <div class="security-grid">
+                    <article class="security-card"><span class="material-symbols-outlined card-icon" aria-hidden="true">lan</span><h3>Tenant VRF</h3><p>With its L3VNI on every VTEP, automatic RD/RT and its networks advertised as EVPN type 5.</p></article>
+                    <article class="security-card"><span class="material-symbols-outlined card-icon" aria-hidden="true">hub</span><h3>Server network</h3><p>VLAN, VNI with BGP ingress replication and an anycast gateway: the same IP and MAC on every leaf.</p></article>
+                    <article class="security-card"><span class="material-symbols-outlined card-icon" aria-hidden="true">settings_ethernet</span><h3>Server port</h3><p>Single access or vPC with LACP on the leaf pair, as a spanning-tree edge.</p></article>
+                    <article class="security-card"><span class="material-symbols-outlined card-icon" aria-hidden="true">public</span><h3>External exit</h3><p>The border interface in the VRF and eBGP with the WAN router: the default route enters the fabric and the application's networks go out.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cases-section" id="visibilidad">
+            <div class="container">
+                <p class="eyebrow">Visibility</p>
+                <h2>Every service with its components, its values and its real state.</h2>
+                <p class="section-intro">The orchestrated services table shows every VRF, network, port and exit with all its values, and its path on every Nexus: declared versus seen. The page of a composite service breaks it down into components (underlay, BGP, VTEP, vPC…) with their per-device parameters and what is missing according to the last audit.</p>
+            </div>
+        </section>
+
+        <section class="argos-section" id="argos-dc" aria-label="Argos in the data center">
+            <div class="container">
+                <p class="eyebrow">Argos</p>
+                <h2>The assistant knows the fabric.</h2>
+                <p class="section-intro">Diagnosis of the fabric and of each application, add and remove workflows from the chat, explanations of every change and a local AI with VXLAN, EVPN and vPC documentation and your team's runbooks, without sending the running config to the cloud.</p>
+            </div>
+        </section>
+
+        <section class="method-section" id="proximamente">
+            <div class="container">
+                <p class="eyebrow">Roadmap</p>
+                <h2>What comes next in Oktavia DC.</h2>
+                <div class="security-grid">
+                    <article class="security-card"><span class="sp-pronto">Coming soon</span><h3>Cisco ACI through the APIC</h3><p>The same catalog on ACI: VRF → tenant and VRF, network → bridge domain and EPG, port → static path, exit → L3Out.</p></article>
+                    <article class="security-card"><span class="sp-pronto">Coming soon</span><h3>Arista EOS</h3><p>The same fabric and service intent over eAPI.</p></article>
+                    <article class="security-card"><span class="sp-pronto">Coming soon</span><h3>Streaming telemetry</h3><p>gNMI from the Nexus switches, in addition to today's SNMP.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="sp-cta" aria-label="Request an Oktavia DC demo">
+            <div class="container">
+                <p class="eyebrow">Let's talk</p>
+                <h2>See an application from intent to verification.</h2>
+                <p>Tested in the lab with Cisco Nexus 9000v (NX-OS 10.5) in a spine-leaf fabric with vPC and a Cisco IOS XE exit router. We show you the full cycle and review how it fits your data center.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="./#contacto">Request a demo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div>
+                    <h4>OKTANET</h4>
+                    <p>Oktavia, your network under control.</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <a href="docs/oktavia-en.html">Oktavia Pro</a>
+                <a href="./#argos">Argos</a>
+                <a href="./#servicios-profesionales">Services</a>
+                <a href="./#metodologia">Methodology</a>
+                <a href="./#casos">Use Cases</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://mx.linkedin.com/company/oktanet" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.youtube.com/@OKTANETOFICIAL" target="_blank" rel="noopener">YouTube</a>
+            </div>
+            <p class="copyright">© <span id="current-year">2026</span> Oktanet. All rights reserved.</p>
+            <p class="copyright"><a href="docs/aviso-de-privacidad.html" hreflang="es">Privacy notice (Spanish)</a></p>
+        </div>
+    </footer>
+
+    <script src="script/site_nav.js?v=a84b5a7fdc"></script>
+</body>
+</html>

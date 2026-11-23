@@ -3792,7 +3792,7 @@ body.nav-open .nav-toggle { position: relative; z-index: 1301; }
 /* ===================== Productos, Servicios de cliente y arquitecturas ===================== */
 .products-section, .customers-section, .arch-section { padding: 72px 0; }
 .products-section .section-intro { max-width: 860px; color: #b8c9dc; }
-.products-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+.products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
 .product-card { position: relative; padding: 28px 26px 24px; border-radius: 20px; border: 1px solid rgba(95, 166, 242, 0.25);
     background: linear-gradient(160deg, rgba(12, 20, 62, 0.85), rgba(5, 9, 28, 0.9)); display: flex; flex-direction: column; gap: 12px; }
 .product-card--sp { border-color: rgba(167, 139, 250, 0.35); background: linear-gradient(160deg, rgba(40, 24, 72, 0.8), rgba(8, 14, 30, 0.92)); }
@@ -4213,3 +4213,9 @@ main h2 {
 main .family-section h2 { color: transparent; }
 .family-card p:not(.family-role) { color: #bcc6f2; }
 .family-card--sp p:not(.family-role) { color: #cdbff5; }
+
+/* Oktavia DC: colores de Pro (azul con violeta), un poco más hacia el violeta. */
+.product-card--dc { border-color: rgba(129, 140, 248, 0.32); background: linear-gradient(160deg, rgba(22, 26, 78, 0.85), rgba(6, 10, 30, 0.92)); }
+.product-card--dc .product-kicker { color: #93a8ff; }
+.product-card--dc .product-modules li::before { background: #818cf8; box-shadow: 0 0 10px rgba(129, 140, 248, 0.6); }
+@media (max-width: 1100px) and (min-width: 901px) { .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
