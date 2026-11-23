@@ -178,7 +178,7 @@
                         <tr><td><strong>Intent</strong></td><td>The Configurator with the fabric services by scope, the State rules and the Digital Twin with its NX-OS transaction.</td></tr>
                         <tr><td><strong>Compliance</strong></td><td>Configuration, service by service against the running config; fabric state (OSPF, EVPN sessions, VNIs, vPC); and software. Section <a href="#cumplimiento">8</a>.</td></tr>
                         <tr><td><strong>Security</strong></td><td>Posture, NX-OS hardening as intent, and vulnerabilities by version from NVD and CISA KEV.</td></tr>
-                        <tr><td><strong>Telemetry</strong></td><td>SNMP from the Nexus switches, with the community kept in the vault. Telemetry and Events license.</td></tr>
+                        <tr><td><strong>Telemetry</strong></td><td>gNMI streaming from the Nexus switches every 10 seconds (CPU, memory, interfaces and BGP) plus SNMP, with the credentials in the vault. Telemetry and Events license.</td></tr>
                         <tr><td><strong>FinOps</strong></td><td>Fabric cost and the operational savings from automation, per site and domain.</td></tr>
                         <tr><td><strong>Argos and local AI</strong></td><td>Diagnosis of the fabric and of each application, and local AI with the VXLAN, EVPN and vPC documentation. Section <a href="#argos">11</a>.</td></tr>
                     </tbody>
@@ -269,7 +269,7 @@
             <ul>
                 <li><strong>NX-OS hardening.</strong> The per-role hardening standard is declared as intent, audited and corrected with the same loop.</li>
                 <li><strong>Vulnerabilities.</strong> The NVD and CISA KEV CVEs that apply to each device's NX-OS version: what to address first.</li>
-                <li><strong>Telemetry.</strong> SNMP on the Nexus switches enabled as a service; the community lives in the vault, never in the intent.</li>
+                <li><strong>Telemetry.</strong> SNMP on the Nexus switches enabled as a service and, with «streaming», gNMI: the lane turns on the gRPC agent and creates a read-only user (<code>network-operator</code>) whose password Oktavia generates and keeps in the vault; the collector subscribes to CPU, memory, interfaces and BGP every 10 seconds and normalizes them to the same measurements as SNMP. The community and the password never go in the intent.</li>
                 <li><strong>FinOps.</strong> Fabric cost and the operational savings from automation, per site and domain.</li>
             </ul>
         </section>
@@ -307,7 +307,6 @@
             <ul>
                 <li><strong>Cisco ACI through the APIC.</strong> The same catalog on ACI: VRF → tenant and VRF, network → bridge domain and EPG, port → static path, exit → L3Out.</li>
                 <li><strong>Arista EOS.</strong> The same fabric and service intent over eAPI.</li>
-                <li><strong>Streaming telemetry.</strong> gNMI from the Nexus switches, in addition to today's SNMP.</li>
             </ul>
         </section>
 

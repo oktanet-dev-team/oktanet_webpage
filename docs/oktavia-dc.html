@@ -203,7 +203,7 @@
                         <tr><td><strong>Intención</strong></td><td>El Configurador con los servicios de la fabric por alcance, las Reglas de estado y el Gemelo Digital con su transacción NX-OS.</td></tr>
                         <tr><td><strong>Cumplimiento</strong></td><td>De configuración, servicio por servicio contra la running; de estado de la fabric (OSPF, sesiones EVPN, VNI, vPC); y de software. Sección <a href="#cumplimiento">8</a>.</td></tr>
                         <tr><td><strong>Seguridad</strong></td><td>Postura, hardening de NX-OS como intención y vulnerabilidades por versión con NVD y CISA KEV.</td></tr>
-                        <tr><td><strong>Telemetría</strong></td><td>SNMP de los Nexus, con la comunidad guardada en la bóveda. Licencia de Telemetría y Eventos.</td></tr>
+                        <tr><td><strong>Telemetría</strong></td><td>Streaming por gNMI desde los Nexus cada 10 segundos (CPU, memoria, interfaces y BGP) y SNMP, con las credenciales en la bóveda. Licencia de Telemetría y Eventos.</td></tr>
                         <tr><td><strong>FinOps</strong></td><td>Costo de la fabric y ahorro operativo de la automatización, por sitio y dominio.</td></tr>
                         <tr><td><strong>Argos e IA local</strong></td><td>Diagnóstico de la fabric y de cada aplicación, y la IA local con la documentación de VXLAN, EVPN y vPC. Sección <a href="#argos">11</a>.</td></tr>
                     </tbody>
@@ -294,7 +294,7 @@
             <ul>
                 <li><strong>Hardening de NX-OS.</strong> El estándar de endurecimiento por rol se declara como intención, se audita y se corrige con el mismo ciclo.</li>
                 <li><strong>Vulnerabilidades.</strong> Las CVE de NVD y CISA KEV que aplican a la versión de NX-OS de cada equipo: qué atender primero.</li>
-                <li><strong>Telemetría.</strong> SNMP de los Nexus activado como servicio; la comunidad vive en la bóveda y nunca en la intención.</li>
+                <li><strong>Telemetría.</strong> SNMP de los Nexus activado como servicio y, con «streaming», gNMI: el carril prende el agente gRPC y crea un usuario de sólo lectura (<code>network-operator</code>) cuya clave genera Oktavia y vive en la bóveda; el colector se suscribe a CPU, memoria, interfaces y BGP cada 10 segundos y lo normaliza a las mismas mediciones que SNMP. La comunidad y la clave nunca van en la intención.</li>
                 <li><strong>FinOps.</strong> El costo de la fabric y el ahorro operativo de la automatización por sitio y dominio.</li>
             </ul>
         </section>
@@ -333,7 +333,6 @@
             <ul>
                 <li><strong>Cisco ACI por el APIC.</strong> El mismo catálogo sobre ACI: VRF → tenant y VRF, red → bridge domain y EPG, puerto → static path, salida → L3Out.</li>
                 <li><strong>Arista EOS.</strong> La misma intención de fabric y servicios por eAPI.</li>
-                <li><strong>Telemetría por streaming.</strong> gNMI desde los Nexus, además del SNMP de hoy.</li>
             </ul>
         </section>
 
